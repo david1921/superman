@@ -1,0 +1,51 @@
+<div id="onecolumn"><!--REQUIRED FOR ONE-COLUMN LAYOUTS-->
+  <div class="box">
+    <div class="page_row">
+
+      <div id="signup">
+        <h2>Sign Up</h2>
+        <div id="signup_form">    
+          <form action="{{ publisher.subscribers_path }}" id="new_consumer" class="email_subscription_tracking" method="post">
+            <input id="subscriber_zip_code_required" name="subscriber[zip_code_required]" type="hidden" value="true" />
+            <input id="display_thank_you_page" name="display_thank_you_page" type="hidden" value="true" />
+            <input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+            <input id="subscriber_other_options_referral_code" name="subscriber[other_options][referral_code]" type="hidden" value="{{ referral_code }}" />
+            <div class="row">
+              <div class="label"><label for="subscriber_first_name">* First Name:</label></div>
+              <div class="input"><input id="subscriber_first_name" name="subscriber[first_name]" size="30" type="text" value="" /></div>
+              <div class="help"></div>
+            </div>
+            <div class="row">
+              <div class="label"><label for="subscriber_last_name">* Last Name:</label></div>
+              <div class="input"><input id="subscriber_last_name" name="subscriber[last_name]" size="30" type="text" value="" /></div>
+              <div class="help"></div>
+            </div>
+                    
+            <div class="row">
+              <div class="label"><label for="subscriber_email">* Email:</label></div>
+              <div class="input"><input id="subscriber_email" name="subscriber[email]" size="30" type="text" /></div>
+              <div class="help"></div>
+            </div>
+                                        
+            <div class="row">
+              <div class="label"><label for="subscriber_zip_code">* ZIP Code:</label></div>
+              <div class="input"><input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text" /></div>
+              <div class="help"></div>
+            </div>
+            
+                    
+            
+            
+            <div class="row check_box">
+              <input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" />
+              <label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('/publishers/155/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('/publishers/155/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a></label>
+            </div>
+            
+            <div class="row button_row">
+              <input name="sign_up" type="image" src="/themes/newsday/images/buttons/sign-up.png" value="Sign Up" />
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<% form_for :syndicated_deal, @daily_deal do |dd_form| %>
+  <%= dd_form.error_messages %>
+  <label>Syndicate To</label>
+  <select name="publisher_id">
+  <% @publishers.sort { |x, y|
+      if x.publishing_group_id.nil?
+        -1
+      elsif y.publishing_group_id.nil?
+        1
+      else
+        x.publishing_group.name.casecmp(y.publishing_group.name)
+      end
+    }.group_by(&:publishing_group).each do |publishing_group, publishers| %>
+      <optgroup label="<%= publishing_group.try :name %>">
+      <% publishers.sort.each do |publisher| %>
+      <option value="<%= publisher.id %>"><%= publisher.name %></option>
+      <% end %>
+      </optgroup>
+  <% end %>
+  </select>
+  <%= submit_tag "Syndicate" %>
+<% end %>

@@ -1,0 +1,34 @@
+<% div_for(subscription_rate, :class => cycle("left", "right")) do %>
+  <h1 class="name"><%= subscription_rate.name %></h1>
+  <div class="content">
+    <ul class="description">
+<% 1.upto(3) do |i| -%>
+      <%= %Q(<li>#{subscription_rate.send("description_%d" % i)}</li>).html_safe if subscription_rate.send("description_%d" % i).present? %>
+<% end -%>
+    </ul>
+    <% if @paypal_configuration -%>
+      <% form_tag(@paypal_configuration.ipn_url) do -%>
+        <% paypal_options = {
+              :currency_code => @advertiser.publisher.currency_code,
+              :cancel_return => edit_advertiser_url(@advertiser),
+              :cpp_header_image => paypal_checkout_header_image_url(@advertiser).to_s,
+              :custom => "ADVERTISER",
+              :invoice => @advertiser.subscription_invoice,
+              :item_name => "Self Serve Coupon Account for #{@advertiser.name}",
+              :redirect_cmd => "_xclick-subscriptions",
+              :return => edit_advertiser_url(@advertiser)
+            }.merge!(subscription_rate.to_paypal_params).merge!(@paypal_configuration.use_sandbox? ? {} : {
+              :business_cert => @paypal_configuration.certificate,
+              :business_certid => @paypal_configuration.cert_id,
+              :business_key => @paypal_configuration.key
+            }) -%>
+        <%= paypal_setup(@advertiser.id, 0, @paypal_configuration.business, paypal_options).html_safe -%>
+
+        <div class="paypal_buttons">
+          <input type="image" src="http://www.paypal.com/en_US/i/btn/x-click-but6.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          <%= image_tag("https://www.paypal.com/en_US/i/logo/logo_creditCards_169x21.gif") %>
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>
+<% end %>

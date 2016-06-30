@@ -1,0 +1,101 @@
+<div class="landing_page_content"><!-- Market Subscription containers -->
+	<% publisher_vermont = @publishing_group.publishers.find_by_label("wcax-vermont") 
+deal_vermont = publisher_vermont.daily_deals.current_or_previous
+%>
+	<div id="landing_box_vermont" class="market_subscription_box">
+		<h3>Vermont</h3>
+		<a href="<%= public_deal_of_day_path(publisher_vermont.label) %>" target="_blank">
+			<span class="market_image vermont_market_background">
+				<span class="landing_slider_box">
+					<span class="h4">
+						<% if deal_vermont.advertiser. address.blank? %>
+							<% unless deal_vermont.advertiser.website_url.blank? %>
+							  <%= deal_vermont.advertiser.website_url.gsub("http://", "") %>
+							<% end %>
+						<% else %>
+							<%= "#{deal_vermont.advertiser.store.city || publisher_vermont.city}, #{deal_vermont.advertiser.store.state}" if deal_vermont.advertiser. address? %>
+						<% end %>
+					</span>
+					<span class="h2"><%= deal_vermont.value_proposition %></span>
+				</span><!-- END .landing_slider_box -->
+			</span><!-- END .vermont_market_background -->
+		</a>
+		<p>Sign up and receive Vermont’s great jumponit deals!</p>	
+		<div class="market_subscription_form">
+			<form action="<%= publisher_daily_deal_subscribers_path(publisher_vermont) %>" method="post" class="presignup">
+				<input type="hidden" name="redirect_to" value="<%= verifiable_url(publishing_group_landing_page_path('wcax')) %>" id="redirect_to" />
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+				<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+				<input class="subscriber_email" name="subscriber[email]" title="Email Address" type="text" placeholder="Email Address" />
+				<input class="sign_up_button" name="sign_up_button" type="submit" value="Sign Up" />
+			</form>
+		</div><!-- END .market_subscription_form -->
+	</div><!-- END #landing_box_vermont  -->
+
+	<% publisher_adirondacks = @publishing_group.publishers.find_by_label("wcax-adirondacks")
+	   deal_adirondacks = publisher_adirondacks.daily_deals.current_or_previous %>
+		<div id="landing_box_adirondacks" class="market_subscription_box">
+			<h3>Adirondacks</h3>
+			<a href="<%= public_deal_of_day_path(publisher_adirondacks.label) %>" target="_blank">	
+				<span class="market_image adirondacks_market_background">
+					<span class="landing_slider_box">
+						<span class="h4">
+						<% if deal_adirondacks.advertiser. address.blank? %>
+							<% unless deal_adirondacks.advertiser.website_url.blank? %>
+							  <%= deal_adirondacks.advertiser.website_url.gsub("http://", "") %>
+							<% end %>
+						<% else %>
+							<%= "#{deal_adirondacks.advertiser.store.city || publisher_adirondacks.city}, #{deal_adirondacks.advertiser.store.state}" if deal_adirondacks.advertiser. address? %>
+						<% end %>
+						</span>
+						<span class="h2"><%= deal_adirondacks.value_proposition %></span>
+					</span><!-- END .landing_slider_box -->
+				</span><!-- END .adirondacks_market_background -->
+			</a>
+			<p>Sign up and receive Adirondacks' great jumponit deals!</p>
+			<div class="market_subscription_form">
+				<form action="<%= publisher_daily_deal_subscribers_path(publisher_adirondacks) %>" method="post" class="presignup">
+					<input type="hidden" name="redirect_to" value="<%= verifiable_url(publishing_group_landing_page_path('wcax')) %>" id="redirect_to" />
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+					<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+
+					<input class="subscriber_email" name="subscriber[email]" title="Email Address" type="text" placeholder="Email Address" />
+					<input class="sign_up_button" name="sign_up_button" type="submit" value="Sign Up" />
+				</form>
+			</div>
+		</div><!-- End #landing_box_adirondacks -->	
+
+
+		<% publisher_jumpaways = @publishing_group.publishers.find_by_label("wcax-jumpaways")
+	   deal_jumpaways = publisher_jumpaways.daily_deals.current_or_previous %>
+		<div id="landing_box_jumpaways" class="market_subscription_box">
+			<h3>Jumpaways</h3>
+			<a href="<%= public_deal_of_day_path(publisher_jumpaways.label) %>" target="_blank">	
+				<span class="market_image jumpaways_market_background">
+					<span class="landing_slider_box">
+					<span class="h4">
+						<% if deal_jumpaways.advertiser. address.blank? %>
+							<% unless deal_jumpaways.advertiser.website_url.blank? %>
+							  <%= deal_jumpaways.advertiser.website_url.gsub("http://", "") %>
+							<% end %>
+						<% else %>
+							<%= "#{deal_jumpaways.advertiser.store.city || publisher_jumpaways.city}, #{deal_jumpaways.advertiser.store.state}" if deal_jumpaways.advertiser. address? %>
+						<% end %>
+					</span>
+					<span class="h2"><%= deal_jumpaways.value_proposition %></span>
+					</span><!-- END .landing_slider_box -->
+				</span><!-- END .adirondacks_market_background -->
+			</a>
+			<p>Sign up and receive Jumpaways' great jumponit deals!</p>
+			<div class="market_subscription_form">
+				<form action="<%= publisher_daily_deal_subscribers_path(publisher_jumpaways) %>" method="post" class="presignup">
+					<input type="hidden" name="redirect_to" value="<%= verifiable_url(publishing_group_landing_page_path('wcax')) %>" id="redirect_to" />
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+					<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+
+					<input class="subscriber_email" name="subscriber[email]" title="Email Address" type="text" placeholder="Email Address" />
+					<input class="sign_up_button" name="sign_up_button" type="submit" value="Sign Up" />
+				</form>
+			</div>
+		</div><!-- End #landing_box_jumpaways -->
+</div>

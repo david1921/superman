@@ -1,0 +1,170 @@
+         <div class="row">
+           <div class="leftcol">
+             <div class="container">
+               <div id="todaysdeal">
+                 <h2>Today's Daily Indulgence: {{ daily_deal.savings_as_percentage | percentage }} Savings!</h2>
+                 <div class="boxcontent">
+                  <div id="deal_info">
+                    <div id="value_prop">
+                      <h4>{{ daily_deal.value_proposition }}</h4>
+                    </div><!--value prop-->
+                    <div class="photo"><img src="{{ daily_deal.photo.url }}" width="275" alt="" /></div>
+                   <div id="price">
+                     <div class="col">{{ daily_deal.value | currency }}<span>VALUE</span></div>
+                     <div class="col">{{ daily_deal.price | currency }}<span>TODAY'S DEAL</span></div>
+                     <div class="col">{{ daily_deal.savings | currency }}<span>YOU SAVE</span></div>
+                   </div><!--price-->
+                  </div><!--deal_info-->
+                   
+                  
+                 </div><!--box-content-->
+               </div><!--container-->
+             </div><!--leftcolumn-->
+             <div id="todaysdeal_bottom"></div>
+           </div><!--row-->
+           
+           <div class="rightcol">
+             <div id="dashboard">
+              
+               <h3><span id="text">Share it:</span>  <span id="share"><a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_button_facebook"><img src="/themes/my719deals/images/facebook_sm.png" width="27" height="24" alt="Facebook" /></a><a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/my719deals/images/twitter_sm.png" width="27" height="24" alt="Twitter" /></a><a href="{{ daily_deal.email_url }}" class="share_button_mail"><img src="/themes/my719deals/images/email_sm.png" width="27" height="24" alt="Email" /></a></span></h3>
+               <div class="boxcontent">
+              
+                 <div id="deals_sold_container" class="stats">
+                   <div id="deals_sold">{{ daily_deal.number_sold }}
+</div> <span>Deals Sold</span>
+                 </div><!--deals sold container-->
+				                  
+				   {% if daily_deal.sold_out? %}
+				   <img id="soldout" src="/themes/my719deals/images/buttons/sold-out.png" width="216" height="51" alt="Sold Out" />
+				   {% elsif daily_deal.over? %}
+				   <img id="deal_over" src="/themes/my719deals/images/buttons/deal-ended.png" width="216" height="51" alt="Deal Ended" />
+				   {% elsif daily_deal.active? %}
+				   <a href="{{ daily_deal.buy_now_path }}" id="buy_now_button"><img src="/themes/my719deals/images/buttons/buy-now.png" width="216" height="51" alt="Buy Now" /></a>
+				   <img id="deal_over" class="unavailable" src="/themes/my719deals/images/buttons/deal-ended.png" width="216" height="51" alt="Deal Ended" style="display:none;"/>
+				    {% else %}
+                   <img id="not_yet_available" src="/themes/my719deals/images/buttons/coming-soon.png" width="216" height="51" alt="Coming Soon" />
+				   {% endif %}
+                   
+                 
+              
+                 <div id="time">
+                   <img src="/themes/my719deals/images/backgrounds/clock.png" width="50" height="50" alt="" />
+                    <div id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</div>
+                    <div style="text-align: left">TIME LEFT TO BUY</div>
+                 </div><!--time-->
+               </div><!--box content-->
+
+             </div><!--dashboard-->
+             <div id="dashboard_bottom"></div>
+           </div><!--right column-->
+         </div>
+
+
+         <div class="row">
+           <div class="leftcol">
+             <div class="container">
+               <div id="details">
+                 <h2>Description</h2>
+                 <div id="bubble_container">
+                   <div id="bubble">
+                     <div id="terms">
+                       <h4>The Fine Print</h4>
+                       {{ daily_deal.terms }}
+                     </div>
+                     <div id="highlights">
+                       <h4>Highlights</h4>
+                       {{ daily_deal.highlights }}
+                     </div>
+                   </div>
+                 
+                 <div class="boxcontent">
+                   <div class="logo"><img src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /></div>
+                   <div class="advertiser">
+                     <h3>{{ advertiser.name }}</h3>
+					 
+				   {% if advertiser.address? %}
+				   {% for store in advertiser.stores %}
+					 
+					 <p class="location_container" style="{% if forloop.index > 1 %}display:none{% endif %}">
+                     
+					 {{ advertiser.address_line_1 }}<br />
+                     {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+					   {% if store.formatted_phone_number != empty %}
+                       <strong>{{ store.formatted_phone_number }}</strong>
+					   {% endif %}
+					 
+					 </p>
+					 {% endfor %}
+				   {% endif %}
+				   
+				   {% if advertiser.num_stores > 1 %}
+  				   <a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('p.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+				   {% endif %}	
+				   
+                   </div><!--advertiser-->
+                   
+                   <div class="description">
+                     {{ daily_deal.description }}
+                   </div><!--description-->
+                 </div>
+                 
+               </div>
+                 </div>
+             </div>
+             <div id="details_bottom"></div>
+                        </div>
+           
+           <div class="rightcol">
+             <div class="container">
+               <div id="location">
+                 <h3>Map &amp; Contact Information</h3>
+                 <div class="boxcontent">
+                   <div id="map">
+				   {% if advertiser.stores.size > 0 %}
+				   <a href="{{ advertiser.map_url }}"><img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="blank"  width="200" height="120" /></a>
+           {% endif %}
+				   </div>
+				   
+				   
+				   
+				   {{ advertiser.name }}
+				   
+				   {% if advertiser.address? %}
+				   {% for store in advertiser.stores %}
+				   
+					 
+					 <p class="location_container_side" style="{% if forloop.index > 1 %}display:none{% endif %}">
+                     
+					 {{ advertiser.address_line_1 }}<br />
+                     {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+					   {% if store.formatted_phone_number != empty %}
+                       <strong>{{ store.formatted_phone_number }}</strong>
+					   {% endif %}
+					 {% if advertiser.website_url != empty %}
+					 <a href="{{ advertiser.website_url }}" class="website"><img src="/themes/my719deals/images/buttons/visit-website.png" width="207" height="38" alt="Visit Website" /></a>
+					 {% endif %}
+					 </p>
+					 
+					 {% endfor %}
+				   {% endif %}
+				   
+				   {% if advertiser.num_stores > 1 %}
+  				   <a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('p.location_container_side').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+				   {% endif %}
+				   
+				   
+                   <div>
+                    
+                     
+                   </div>
+                 </div>
+               </div>
+             </div>
+             <div id="location_bottom"></div>
+             <div class="facebookbox">
+               <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Frubberdollar&amp;width=262&amp;colorscheme=light&amp;connections=9&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:262px; height:287px;" allowTransparency="true"></iframe>
+             </div>
+           </div>
+         </div>      

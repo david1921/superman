@@ -1,0 +1,22 @@
+<h4>Ενημερώσου καθημερινά</h4>
+<div class="content_box">
+	<div id="subscribe_form">
+		<p>Συμπλήρωσε τα στοιχεία σου για να λαμβάνεις τις προσφορές</p>
+		<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<fieldset>
+				<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+				<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+			</fieldset>
+			<fieldset>
+				<input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email':this.value;" />	
+				<input id="subscriber_zip" name="subscriber[city]" size="30" type="text" value="Πόλη" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Πόλη':this.value;" />
+				<input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /><%= t("i_agree_to_the") %> <%= daily_deals_terms_link(@publisher) %> <%= t("and") %> <%= daily_deals_privacy_link(@publisher) %></a>
+			</fieldset>
+			<fieldset class="sign_up">
+				<input type="submit" class="sign_up gradient" value="OK"/>
+			</fieldset>
+		</form>
+	</div><!-- /subscribe_form -->
+	<div class="clear"></div>
+</div>

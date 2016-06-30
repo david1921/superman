@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<% if @daily_deal %>
+		<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+		<meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+		<meta name='keywords' content="<%= @daily_deal.value_proposition %>">
+		<link rel="image_src" href="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+		<% else %>
+		<meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+		<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end %>
+		
+		<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+		<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/couponiversity/stylesheets/daily_deals.css" type="text/css" />
+		<!--   <link rel="stylesheet" href="/themes/roaringlion/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+		<link rel="stylesheet" href="/themes/couponiversity/stylesheets/daily_deals.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/couponiversity/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+		<link href="/themes/couponiversity/stylesheets/certificates.css" media="all" rel="stylesheet" type="text/css" />
+		<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+		<script src="/javascripts/effects.js" type="text/javascript"></script>
+		<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+		<script src="/javascripts/controls.js" type="text/javascript"></script>
+		<script src="/javascripts/application.js" type="text/javascript"></script>
+		  
+		<!--[if lte IE 9]>
+		<link href="/themes/couponiversity/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<!--[if IE 9]>
+		<link href="/themes/couponiversity/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<title><%= daily_deal_page_title %></title>
+		<%= raw render :partial => "shared/tracking_google_analytics" %>
+		<%= render :partial => with_theme("daily_deals/custom_stylesheet_includes") %>
+</head>
+<body>
+		<% @current_page = "deal" %>
+		<!--Analog_Analytics_Daily_Deal-->
+		<div id="analog_analytics">
+				<div id="daily_deal">
+					<div id="dd_content">
+						<%= render :partial => with_theme("shared/banner") %>
+						<%= render :partial => with_theme("shared/dd_nav") %>
+						
+						<%= render :partial => "shared/flash_messages" %>
+						
+						<div id="page_content">		
+								<%= yield %>
+								<div class="clear"></div>	
+						</div><!--page_content-->
+						</div>
+				</div><!--daily_deal-->
+				<div class="push"></div>
+				<%= render :partial => with_theme("shared/footer") %>
+		</div><!--analog_analytics-->
+		
+		
+		<%= render :partial => with_theme("shared/tracking_publisher") %>
+		<%= render :partial => "daily_deals/javascript.html.erb" %>
+</body>
+</html>

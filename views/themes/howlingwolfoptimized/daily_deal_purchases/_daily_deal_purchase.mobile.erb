@@ -1,0 +1,38 @@
+<table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase" cellspacing="0">
+<tr>
+  <% if daily_deal_purchase.daily_deal.present? %>
+
+	<th colspan="2">Descripton</th>
+</tr>
+<tr>
+	<td colspan="2" class="description"><%= daily_deal_purchase.line_item_name %></td>
+</tr>
+<tr>
+	<th>Quantity</th>
+	<th>Recipient</th>
+</tr>
+<tr>
+	<td class="quantity"><%= daily_deal_purchase.quantity_excluding_refunds %></td>
+	<td class="recipient">
+	<%- if (names = daily_deal_purchase.redeemer_names).length > 30 -%>
+	<span title="<%= names %>"><%= truncate(names, :length => 30) %></span>
+	<%- else -%>
+	<%= names %>
+	<%- end -%>
+	</td>
+</tr>
+<tr>
+	<th>Purchased</th>
+	<th>Expires</th>
+</tr>
+<tr>
+	<td class="purchased_on"><%= daily_deal_purchase.humanize_created_on %></td>
+	<td class="expires"><%= daily_deal_purchase.humanize_expires_on %></td>
+</tr>
+<tr>
+	<td colspan="2" class="status"><%= print_daily_deal_purchase_link(daily_deal_purchase) %></td>
+	<% else %>
+	<td colspan="6">** An error occurred with this purchase. Please contact support. **</td>
+	<% end %>
+</tr>
+</table>

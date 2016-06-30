@@ -1,0 +1,39 @@
+<% set_daily_deal_page_title_slug t(:my_deals) %>
+<% redeemable_certificates = @consumer.daily_deal_purchases.redeemable_certificates
+   redeemable_off_platform_certificates = @consumer.off_platform_daily_deal_certificates.find(:all, :conditions => ['redeemed = ? AND (expires_on >= ? OR expires_on IS NULL)', false, Time.zone.now], :order => 'id ASC')
+   available = redeemable_certificates + redeemable_off_platform_certificates
+%>
+
+<div class="page_row my_deals_page">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <%= render :partial => "daily_deal_purchases/navigation" %>
+    <h1 class="content"><%= t(:my_deals) %></h1>
+    
+    <%
+       if available.blank? %>
+      <p><%= t('.no_redeemable_certificates') %></p>
+    <% else %>
+        <div class="mydeals_unoptimized">
+          <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase my_deals" cellspacing="0">
+            <tr>
+              <th class="description"><%= t(:description) %></th>
+              <th class="serial_number"><%= t(:voucher_number) %></th>
+              <th class="recipient"><%= t(:recipient) %></th>
+              <th class="purchased_on"><%= t(:purchased) %></th>
+              <th class="expires"><%= t(:expires) %></th>
+              <th class="status"></th>
+            </tr>
+            <%= render(:partial => "unredeemed_voucher", :collection => redeemable_certificates) %>
+            <%= render(:partial => with_theme("off_platform_certificate"), :collection => redeemable_off_platform_certificates) %>
+          </table>
+        </div><!--/mdeals_unoptimized-->
+        
+        <div class="mydeals_optimized" style="display:none;">
+          <div id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase my_deals">
+            <%= render(:partial => with_theme("unredeemed_voucher_optimized"), :collection => redeemable_certificates) %>
+          </div>
+        </div><!--/mydeals_optimized-->
+        
+    <% end %>
+  </div>
+</div>

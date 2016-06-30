@@ -1,0 +1,69 @@
+<!--BOTTOM DEALS -->
+  <% if @daily_deal && @daily_deal.side_deals.size > 0 %>
+      <table width="648" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; color:#747474;font-size:14px;">   
+        <tr>
+          <td bgcolor="#0083bb" valign="middle" style="background-color:#0083bb;font-size:24px;font-weight:bold;color: #ffffff;padding-top:8px;padding-bottom:8px;padding-left:24px;"><%= t(:email_bottom_deals_header) %></td>
+        </tr>
+        <tr>
+          <td valign="top" style="padding-top:18px;">
+            <table width="606" align="center" border="0" cellspacing="0" cellpadding="8" style="padding-bottom: 20px;">
+              <tr>
+                <% @daily_deal.side_deals.shuffle[0..2].each_with_index do |bottom_deal, index| %>
+                  <!--DEAL-->
+                  <td valign="top" width="33%">
+                    <table border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td colspan="2">
+                          <a href="http://<%= @publisher.daily_deal_host %><%= publishing_group_landing_page_path('bcbsa') %>">
+                            <img src="<%= bottom_deal.secondary_photo.url(:optimized) %>" width="191" height="130" alt="" style="display:block;border:none" />
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" width="31" height="18" bgcolor="#0193cf" style="padding:3px; background-color:#0193cf;">
+                          <% if bottom_deal.publishers_category %>
+                            <img src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/icons/category/<%= bottom_deal.publishers_category.name.gsub(/\s/, '').downcase %>.png" width="18" height="18" alt="" />
+                          <% end %>
+                        </td>
+                        <td width="160" align="left" bgcolor="#0193cf" style="background:#0193cf;color:#ffffff;font-size:14px;text-transform:uppercase;font-family:Arial, Helvetica, sans-serif; padding-top:3px;padding-bottom:3px;">
+                          <% if bottom_deal.publishers_category %>
+                            <h4 style="margin:0;padding:0;font-size:14px;color:#ffffff;background:#0193cf;"><%= t(bottom_deal.publishers_category.name.downcase.gsub(/\s/, '_')) %></h4>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" align="right" style="font-family:Arial, Helvetica, sans-serif;padding-right:8px;padding-top:4px;">
+                          <p style="color:#42a9d6;text-transform:uppercase;font-size:14px;line-height:18px;margin-top:0px;margin-bottom:0;padding:0;">
+                            <% if bottom_deal.custom_2.present? %>
+                              <strong><%= bottom_deal.custom_2 %></strong>
+                            <% else %>
+                              <strong><%= bottom_deal.advertiser.name %></strong>
+                            <% end %>
+                            <br />
+                            <strong style="color:#646464;font-size:12px;margin:0;padding:0;text-transform:none;"><em> 
+                              <% if bottom_deal.side_deal_value_proposition.present? %>
+                                <%= bottom_deal.side_deal_value_proposition %>
+                              <% else %>
+                                <%= bottom_deal.value_proposition %>
+                              <% end %>
+                            </em></strong>
+                            <br />
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" align="right" style="font-family:Arial, Helvetica, sans-serif;padding-right:8px;padding-top:4px;">
+                          <a href="http://<%= @publisher.daily_deal_host %><%= publishing_group_landing_page_path('bcbsa') %>"><img border="0" style="padding-top:0px;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/buttons/<%= params[:locale] == "es-MX" ? 'view-now-es.png' : 'view-now.png' %>" width="68" height="18" alt="<%= t(:view_now) %>" /></a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                <!--/DEAL-->
+                <% end %>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+  <% end %>
+<!--/BOTTOM DEALS-->

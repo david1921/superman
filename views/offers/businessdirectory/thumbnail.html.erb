@@ -1,0 +1,49 @@
+<%= javascript_include_tag "http://#{@publisher.production_host}/javascripts/prototype.js", "http://#{@publisher.production_host}/javascripts/ghostie.js" %>
+<%= stylesheet_link_tag "http://#{@publisher.production_host}/stylesheets/#{@publisher.label}/thumbnail.css", :media => "all" %> 
+<div id="analog_analytics_content">
+  <div id="coupon_thumbnail">
+    <h2>Find A Coupon</h2>
+    <div id="thumbnail_search">
+      <% form_tag render_public_offers_path(@publisher), :method => :get do -%>
+        <% unless @categories.empty? -%>
+          <%= select_tag :category_id, "<option value=''>Search by Category</option>#{options_from_collection_for_select(@categories, 'id', 'name')}".html_safe %>
+        <% end -%>
+        <%= text_field_tag :postal_code, "", :class => "ghostie", :id => "postal_code", :title => "Zip Code" %>
+        <%= text_field_tag :text, "", :class => "ghostie", :id => "text", :title => "Keywords" %>
+        <button type='submit'>Search</button>
+      <% end %>
+    </div>
+    <div id="thumbnail_offers">
+      <h3>Popular Coupons</h3>
+      <% unless @offers.empty? -%>
+        <ul>
+          <% @offers.each do |offer| -%>
+            <% if @offers.last == offer %>
+            <li class='last'>
+            <% else -%>
+            <li>
+            <% end %>
+              <div class='photo'>
+                <%= image_tag( offer.photo.url(:thumbnail) ) %>
+              </div>
+              <div class='content'>
+                <h4><%= link_to( offer.value_proposition, render_public_offers_path( @publisher, :offer_id => offer.id ), :class => "proposition" ) %></h4>
+                <div class='advertiser'><%= offer.advertiser_name %></div>
+                <div class='address'>
+                   <% offer.address do |line| -%>
+                      <%= line -%><br/>
+                    <% end -%>  
+                </div>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      <% else -%>
+        <p>Sorry, there are no popular coupons at this time.</p>
+      <% end -%>
+    </div>  
+    <div id="more_offers">
+      <%= link_to( "More Popular Coupons &raquo;".html_safe, render_public_offers_path(@publisher), :class => "more" )%>
+    </div>
+  </div>
+</div>

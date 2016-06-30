@@ -1,0 +1,71 @@
+  <div class="front_panel" id="offer_<%= offer.id %>_front_panel">
+    <div class="body" id="offer_<%= offer.id %>_body">
+      <div class="top">
+        <div class="header"><%= offer.value_proposition %></div>
+        <div class="text" id="offer_<%= offer.id %>_text">
+          <div class="image_left">
+          <%# 
+            When this code is deployed to LOCM's server, or when we merge LOCM into master, we need to set the LOCM
+            publishing group's label to "locm".
+            
+            Better to handle this with a theme.
+          %>
+          <% if offer.offer_image.file? && offer.publisher.try(:publishing_group).try(:label) == "locm" %>
+            <%= image_tag offer.offer_image.url(:medium), :class => "photo", :id => "offer_#{offer.id}_logo", :alt => "photo" %>
+          <% else %>
+            <%= image_tag offer.photo.url(:standard), :class => "photo", :id => "offer_#{offer.id}_logo", :alt => "photo" %>
+          <% end %>
+          </div>
+          <div class="terms">
+            <p class='description'><%= offer.terms %></p>
+            <p class='expiration'><%= offer.expiration %></p>
+          </div>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="address">
+          <span class="advertiser_name"><%= advertiser_name offer -%></span><br/>
+          <% offer.address do |line| -%>
+            <%= line -%><br/>
+          <% end -%>
+          <% unless offer.formatted_phone_number.blank? -%>
+          <span class="phone_number"><%= offer.formatted_phone_number %></span>
+          <% end -%>
+          <% if offer.publisher.show_gift_certificate_button? && offer.advertiser.gift_certificates? -%>
+          <div class="website_link">
+            <%= link_to_website(offer, "Visit Website") %>            
+          </div>
+          <% end -%>
+        </div>
+        <div class="logo">
+          <div class="image_right_and_link">
+            <% if offer.publisher.show_gift_certificate_button? && offer.advertiser.gift_certificates? -%>
+            <div class="gift_certificates">
+              <%= link_to(
+                    image_tag("/themes/standard/images/gift_certificate_buy_now.png"), 
+                    gift_certificate_path(offer.advertiser.gift_certificates.available.active.first), 
+                    :class => "lbOn", :title => "Click to purchase deal certificate for #{offer.advertiser_name}"
+                  ) %>
+            </div>            
+            <% else -%>
+              <%= raw(
+                if offer.advertiser.logo.file?
+                  if link_to_website?(offer)
+                    link_to_website(offer, image_tag(offer.advertiser.logo.url(:standard)))
+                  else
+                    image_tag(offer.advertiser.logo.url(:standard))
+                  end
+                else
+                  "&nbsp;".html_safe
+                end
+              ) %>
+              <div class="website_link centered">
+                <%= link_to_website(offer, "Visit Website") %>            
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'offers/panels/standard/footer', :locals => {:offer => offer, :publisher => publisher, :icon_base_url => '/themes/standard/themes/sdreader/images'} %>
+  </div>

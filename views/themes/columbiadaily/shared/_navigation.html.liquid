@@ -1,0 +1,18 @@
+<ul id="nav" class="nav">
+	<li id="todays_deal">
+	  <a href="{{ publisher.todays_daily_deal_path }}">{{ controller.request.path }} Today's Deal</a>
+	</li>
+	<li id="recent_deals"><a href="{{ publisher.recent_deals_path }}">Recent Deals</a></li>
+	<li id="how_it_works"><a href="{{ publisher.how_it_works_path }}">How it Works</a></li>
+	<li id="faq"><a href="{{ publisher.faq_path }}">FAQ</a></li>
+  {% if publisher.launched? %}
+        {% if publisher.current_user_belongs_to? %}
+          <li class="optional_nav"><a href="{{ publisher.my_deals_path }}">MY DEALS</a></li>
+          <li class="optional_nav"><a href="{{ publisher.my_account_path }}">MY ACCOUNT</a></li>
+          <li class="optional_nav"><a href="{{ publisher.logout_path }}">SIGN OUT</a></li>
+        {% else %}
+          <li class="optional_nav"><a href="{{ publisher.login_path }}">SIGN IN</a></li>
+        {% endif %}
+  {% endif %}
+
+</ul>

@@ -1,0 +1,22 @@
+<div class="page_numbers <%= position %>">
+  &nbsp;
+  <%- if @pages > 1 -%>
+  <%= t(:page) %>&nbsp;&nbsp;
+  <% if @page > 1 %>
+    <span class="previous_page"><%= link_to t(:previous_page), public_offers_path(@publisher, pagination_link_params(@page - 1)) %></span>
+  <% end -%>
+  <ul class="pagination">
+<%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+<%- formatter.index_range.each do |page| -%>
+  <% if page == @page -%>
+    <li class="selected"><%= page %></li>
+  <%- else -%>
+    <li><%= link_to(formatter.text_for(page), public_offers_path(@publisher, pagination_link_params(page))) %></li>
+  <%- end -%>
+<%- end -%>
+  </ul>
+<% if @page < formatter.index_range.last %>
+  <span class="next_page"><%= link_to t(:next_page), public_offers_path(@publisher, pagination_link_params(@page + 1)) %></span>
+<% end -%>
+<%- end -%>
+</div>

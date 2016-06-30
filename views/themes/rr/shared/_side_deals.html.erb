@@ -1,0 +1,41 @@
+<div class="clear"></div>
+<% if @daily_deal -%>
+  <% if @daily_deal.side_deals.size > 0 %>
+	<div id="side_deals" class="other_deal_tracking">
+	         <div class="side_deal_wrap">
+	    		<h4>More Great Deals</h4>
+		    	<div id="side_deal_content">
+					<% side_deals = @daily_deal.side_deals.sort_by(&:hide_at)[0,12] %>
+					<% side_deals.each_with_index do |side_deal, i| %>
+                 									
+						<div class="side_deal<% if i == (side_deals.length - 1) %>  side_deal_last<% end %>">
+				 			<div id="time_left_to_buy_<%= side_deal.id %>" class="side_deal_timer">
+						 		<%= side_deal.time_remaining_text_display %> LEFT
+						 	</div>
+						 	
+							<div class="side_deal_advertiser">
+								<h3><%= side_deal.value_proposition %></h3>
+							     <p class="advertiser_name"> <%= side_deal.advertiser_name %> </p>
+							</div>
+
+						 	<div class="side_deal_thumb"><img src="<%= side_deal.photo.url(:facebook) %>" alt="Side Deal Photo" height="73" /></div>
+						
+							<div class="price_tag">
+								<h6><% if !side_deal.daily_deal_variations.blank? -%><span class="variation">From</span><% end %><%= formatted_price_for(side_deal.price, side_deal.currency_symbol) %></h6>
+							</div>
+
+							<div class="view_deal">
+								<span><a href="<%= daily_deal_path(side_deal) %>">View</a></span>
+							</div>
+           
+						</div>
+
+					<% end -%>
+	           <div class="clear"></div>
+	         	</div><!-- /side_deal_content -->
+				<h5><a href="<%= daily_deals_public_index_path(@publisher.label) %>?mall=1" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">View All <span>>></span></a></h5>
+	          </div><!-- /side_deal_wrap -->
+	</div><!-- /side_deals -->
+	<% end %>
+<% end %>
+

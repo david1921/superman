@@ -1,0 +1,26 @@
+<div id="banner">
+	<div class="container">
+		<h1 id="deal_logo">Mox Deals</h1>
+		<ul id="top_menu">
+			<li>
+				<div id="market_menu_wrapper">
+					<ul id="market_menu">
+						<li><a href="#" id="current_market_menu_selection" class="city">Choose City</a>
+							<%= market_selection_list(@publisher) %>
+						</li>
+					</ul>
+				</div><!-- /market_menu_wrapper -->
+			</li>
+			<li><a class="alert" href="<%= publisher_daily_deal_subscribers_path(@publisher)%>/presignup">Get Daily Alerts</a></li>
+			<li><a class="refer_a_friend_tracking" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>">Refer a Friend, get <%= formatted_price_for(@publisher.daily_deal_referral_credit_amount) %></a></li>
+		</ul>
+		<h2 id="tagline"><span>Best Daily Deals in</span> <%= @publisher.market_name_or_city %></h2>
+		<% unless current_consumer_for_publisher?(@publisher) %>
+			<ul id="login_buttons">
+				<li><a href="<%= auth_init_path(@publisher) %>"><img src="/images/buttons/facebook_connect.png" border="0" height="28" width="99" alt="facebook Connect" /></a></li>
+			</ul>
+		<% end %>
+		<%= render :partial => with_theme('shared/dd_nav') %>
+		<div class="clear"></div>
+	</div>
+</div>

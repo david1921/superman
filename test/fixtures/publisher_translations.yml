@@ -1,0 +1,17 @@
+sdh_austin_en:
+  publisher_id: <%= Fixtures.identify(:sdh_austin) %>
+  locale: 'en'
+  brand_name: MySDH.com
+  brand_txt_header: MySDH.com
+  brand_headline: Another Great Coupon from MySDH.com
+
+sdreader_en:
+  publisher_id: <%= Fixtures.identify(:sdreader) %>
+  locale: 'en'
+  brand_txt_header: SD Reader
+  brand_headline: Another Great Coupon from San Diego Reader
+
+entercom_en:
+  publisher_id: <%= Fixtures.identify(:entercom) %>
+  locale: 'en'
+  account_sign_up_message: "please sign up"

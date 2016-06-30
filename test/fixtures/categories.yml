@@ -1,0 +1,12 @@
+household:
+  name: Household
+
+restaurants:
+  name: Restaurants
+
+health:
+  name: Health
+
+dental:
+  name: Dental
+  parent: health

@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="index, follow" />
+
+  <% if @daily_deal -%>
+    <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+    <meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+    <meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+    <link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+  <% else -%>
+    <meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+    <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+  <% end -%>
+
+  <title>Good Times Santa Cruz newspaper, arts, music, entertainment</title>
+
+
+<%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/template.css", "/themes/goodtimessantacruz/stylesheets/ja.splitmenu.css" %>
+<%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/application", "scoped_reset", :media => "all" %>
+<%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/daily_deals", :media => "all" %>
+<!--[if IE]>
+<%= stylesheet_link_tag "ie", :media => "all" %>
+<![endif]-->
+
+<%= javascript_include_tag :defaults, 'ghostie' %>
+
+<!--[if lte IE 6]>
+<style type="text/css">
+.clearfix {height: 1%;}
+img {border: none;}
+</style>
+<![endif]-->
+
+<!--[if IE 7]>
+  <style type="text/css">
+    * {
+    text-align: left;
+    }
+  </style>
+<![endif]-->
+
+<!--[if gte IE 7.0]>
+<style type="text/css">
+.clearfix {display: inline-block;}
+#ja-header,
+#ja-mainnav,
+#ja-subnav,
+#ja-container,
+#ja-footer {
+	width: 970px;
+	margin: 0 auto;
+	clear: both;
+}
+</style>
+<![endif]-->
+
+
+<!--[if gt IE 7]>
+<%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/ie8.css" %>
+<![endif]-->
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+
+<body id="bd" class="wide fs4 <%= controller_name %> <%= action_name %>" >
+
+
+<div id="ja-wrapper">
+
+<!-- BEGIN: HEADER -->
+<div id="ja-headerwrap">
+	<div id="ja-header" class="clearfix">
+
+			<h1 class="logo">
+			<a href="http://www.goodtimessantacruz.com/index.php" title="Santa Cruz Good Times"><span>Santa Cruz Good Times</span></a>
+		</h1>
+	
+
+
+	</div>
+</div>
+
+<!-- END: HEADER -->
+
+<!-- BEGIN: MAIN NAVIGATION -->
+<div id="ja-mainnavwrap">
+	<div id="ja-mainnav" class="clearfix">
+		<div id="ja-splitmenu" class="mainlevel clearfix">
+					<ul><li class="menu-item0 active first-item"><a href="http://goodtimessantacruz.com/" class="menu-item0 active first-item" id="menu1" title="GT Home"><span class="menu-title">GT Home</span></a></li><li class="menu-item1"><a href="http://www.goodtimessantacruz.com/santa-cruz-news.html" class="menu-item1" id="menu2" title="News"><span class="menu-title">News</span></a></li><li class="menu-item2"><a href="http://www.goodtimessantacruz.com/good-times-cover-stories.html" class="menu-item2" id="menu152" title="Cover Story"><span class="menu-title">Covers</span></a></li><li class="menu-item3"><a href="http://www.goodtimessantacruz.com/santa-cruz-columns-commentary-oped.html" class="menu-item3" id="menu4" title="Columns"><span class="menu-title">Columns</span></a></li><li class="menu-item4"><a href="http://www.goodtimessantacruz.com/risa-astrology.html" class="menu-item4" id="menu170" title="Risa Astrology"><span class="menu-title">Astrology</span></a></li><li class="menu-item5"><a href="http://www.goodtimessantacruz.com/santa-cruz-arts-entertainment-lifestyles.html" class="menu-item5" id="menu3" title="A&E"><span class="menu-title">A&amp;E</span></a></li><li class="menu-item6"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-music.html" class="menu-item6" id="menu138" title="Music"><span class="menu-title">Music</span></a></li><li class="menu-item7"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-events.html" class="menu-item7" id="menu142" title="Events"><span class="menu-title">Calendar</span></a></li><li class="menu-item8"><a href="http://www.goodtimessantacruz.com/santa-cruz-blogs-commentary.html" class="menu-item8" id="menu27" title="Blogs"><span class="menu-title">Blogs</span></a></li><li class="menu-item9"><a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide.html" class="menu-item9" id="menu5" title="Santa Cruz"><span class="menu-title">Santa Cruz</span></a></li><li class="menu-item10"><a href="http://www.goodtimessantacruz.com/gtv-santa-cruz-videos.html" class="menu-item10" id="menu137" title="GTv"><span class="menu-title">GTV</span></a></li><li class="menu-item11"><a href="http://sb1.analoganalytics.com/publishers/139/offers" class="menu-item11" id="menu178" title="E.Coupons"><span class="menu-title">E.Coupons</span></a></li><li class="menu-item12 last-item"><a href="http://www.goodtimessantacruz.com/santa-cruz-good-times-contacts.html" class="menu-item12 last-item" id="menu7" title="Contact"><span class="menu-title">Contact</span></a></li></ul>
+
+</div>	</div>
+</div>
+<!-- END: MAIN NAVIGATION -->
+
+<div id="ja-containerwrap" class="clearfix">
+
+<div id="ja-container">
+<div id="ja-container-inner" class="clearfix">
+
+
+<!--START DAILY DEALS CODE-->
+
+<div id="analog_analytics">
+  <div id="daily_deal">
+
+  	<div id="outer_frame">
+      	<div id="inner_frame">
+
+                      <div id="header_nav">
+                          <div id="promo">&nbsp;</div>
+                          <div id="nav">
+                            <%= link_to("Today's Deal", public_deal_of_day_path(@publisher.label)) %> 
+                            <%= link_to("Contact Us", contact_publisher_daily_deals_path(@publisher))%>  
+                            <%= link_to("FAQ", faqs_publisher_daily_deals_path(@publisher))%>  
+                            <% if current_consumer_for_publisher?(@publisher) -%>
+                              <%= link_to("My Account", publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer)) %>
+                              <%= link_to("Sign Out", daily_deal_logout_path(@publisher)) %>
+                            <% else -%>
+                              <%= link_to("Sign In", daily_deal_login_path(@publisher), :style => "border:none;") %>
+                            <% end -%>
+                          </div>
+                      </div>
+
+              <div id="dd_content">
+      			<div id="inner_content">
+                  	<div id="deal_of_the_day_banner">
+                              <div id="dd_logo"><%= link_to( image_tag("/themes/goodtimessantacruz/images/display/deal_banner.png", :alt => "Deal of the Day", :width => "575", :height => "100"), public_deal_of_day_path(@publisher.label) )%></a></div>
+            <div id="email">
+                               <% form_for :subscriber, @subscriber, :url => publisher_subscribers_path(@publisher), :html => {:id => "daily_deal_header", :class => "email_subscription_tracking"} do |f| -%>
+                                 <%= f.hidden_field :must_accept_terms, :value => true %>
+                                 <%= hidden_field_tag :redirect_to, request.url %>
+                                   <div class="maincontent">
+                                     <%= f.text_field :email, :class => "dd_email_input ghostie", :value => "Enter Email", :title => "Enter Email" %>
+                                     <input type="image" id="submit_btn" class="sign_up_btn_form" src="/themes/goodtimessantacruz/images/buttons/subscribe.png" />
+                                   </div>
+                                   <div class="terms">
+                                    <%= f.check_box :terms, :class => "terms_agree" %> I agree to the <%= link_to("Terms", terms_publisher_daily_deals_path(@publisher) )%> and <%= link_to("Privacy Policy", privacy_policy_publisher_daily_deals_path(@publisher)) %>
+                                   </div>
+                                   
+                              <% end -%>
+                              
+                           
+          </div>
+                      </div> 
+                      <% if flash.present? -%>
+                      <div class="flash">
+                        <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+                          <%= flash[:warn] %>
+                        </div>
+                        <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+                          <%= flash[:notice] %>
+                        </div>  
+                      </div>                     
+                      <% end -%>
+                      <%= yield %>
+                              
+                               <% if @daily_deal.present? -%>
+                               <div id="side_bar">
+                               <div id="publisher"><img src="/themes/goodtimessantacruz/images/display/publisher.png" width="230" height="89" alt="publisher" /></div>
+
+                                   <div id="side_content_box">
+                                       <h2>To Our Readers</h2>
+                                       <p>Thank you for checking out Good Times Santa Cruz's Deal of the Day! We're working hard to bring you big savings from Santa Cruz's most trusted merchants, including everything from restaurants to spas to events. We hope you'll sign up for our email list and check back often so you won't miss any great deals! Have a great time with Good Times' Deal of the Day!</p>
+                                   </div>
+
+                                  <div id="side_content_box">
+                                       <h2>Feature Your Business</h2>
+                                       <p>Contact our Sales Manager</p>
+                                       <%= link_to( image_tag("/themes/goodtimessantacruz/images/buttons/click_here_button.png"), "mailto:stephanie@gtweekly.com", :width => 81, :height => 21 ) %>
+                                   </div>
+                                   
+                                   <% if @daily_deal.present? -%>
+                                   <div id="side_content_box">
+                                       <h2>MAP &amp; Location</h2>
+                                       <% if @daily_deal.advertiser.map_url.present? && !@daily_deal.multi_location? %>
+                                       <%= link_to(image_tag(map_image_url_for(@daily_deal, "199x169"), :id => "map"), @daily_deal.advertiser.map_url, :target => "_blank") %>
+                                       <% end -%>
+                                  <p><%= render :partial => "/themes/goodtimessantacruz/daily_deals/address" %></p>
+                                   </div>
+                                   <% end -%>
+
+
+                               </div>
+                               <% end -%>
+                  </div>
+                  <div class="clear">&nbsp;</div>
+      		</div>
+
+      	</div>
+      </div> 
+
+
+
+  </div>    
+
+</div>
+
+<!--END DAILY DEALS CODE-->
+	
+</div></div></div>
+
+<!-- BEGIN: FOOTER -->
+<div id="ja-footerwrap" class="clearfix">
+	<div id="ja-footer">
+		<ul class="menu"><li id="current" class="active item1"><a href="http://goodtimessantacruz.com/"><span>GT Home</span></a></li><li class="parent item2"><a href="http://www.goodtimessantacruz.com/santa-cruz-news.html"><span>News</span></a></li><li class="parent item152"><a href="http://www.goodtimessantacruz.com/good-times-cover-stories.html"><span>Cover Story</span></a></li><li class="parent item4"><a href="http://www.goodtimessantacruz.com/santa-cruz-columns-commentary-oped.html"><span>Columns</span></a></li><li class="item170"><a href="http://www.goodtimessantacruz.com/risa-astrology.html"><span>Risa Astrology</span></a></li><li class="parent item3"><a href="http://www.goodtimessantacruz.com/santa-cruz-arts-entertainment-lifestyles.html"><span>A&amp;E</span></a></li><li class="parent item138"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-music.html"><span>Music</span></a></li><li class="parent item142"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-events.html"><span>Events</span></a></li><li class="parent item27"><a href="http://www.goodtimessantacruz.com/santa-cruz-blogs-commentary.html"><span>Blogs</span></a></li><li class="parent item5"><a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide.html"><span>Santa Cruz</span></a></li><li class="item137"><a href="http://www.goodtimessantacruz.com/gtv-santa-cruz-videos.html"><span>GTv</span></a></li><li class="item178"><a href="http://sb1.analoganalytics.com/publishers/139/offers"><span>E.Coupons</span></a></li><li class="parent item7"><a href="http://www.goodtimessantacruz.com/santa-cruz-good-times-contacts.html"><span>Contact</span></a></li></ul>
+
+		Good Times online <a href="http://www.goodtimessantacruz.com/component/content/article/65/1538-good-times-online-terms-of-use.html">Terms of Use</a>
+		<div class="ja-cert">
+  		<span class="breadcrumbs pathway">
+Good Times Home</span>
+
+ 	  </div>
+	</div>
+</div>
+<!-- END: FOOTER -->   
+
+<%= raw render :partial => 'shared/a_a_alt' %>
+</div>
+
+<!-- AddThis Button BEGIN -->
+<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=goodtimesjef"><img src="//s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="//s7.addthis.com/js/250/addthis_widget.js#username=goodtimesjef"></script>
+<!-- AddThis Button END -->
+
+<%= raw render :partial => "themes/goodtimessantacruz/shared/tracking_publisher" %>
+<%= raw render :partial => "daily_deals/javascript" %>
+</body>
+</html>

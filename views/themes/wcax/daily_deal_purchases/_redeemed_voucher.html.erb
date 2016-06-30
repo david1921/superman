@@ -1,0 +1,26 @@
+<tr>
+  <% if redeemed_voucher.daily_deal.present? %>
+  <td class="description">
+    <%= redeemed_voucher.line_item_name %>
+  </td>
+  <td class="advertiser"><%= redeemed_voucher.daily_deal_purchase.advertiser.name %></td>
+  <td class="serial_number">#<%= redeemed_voucher.serial_number %></td>
+  <td class="recipient">
+  <%- if (redeemer_name = redeemed_voucher.redeemer_name).length > 30 -%>
+    <span title="<%= redeemer_name %>"><%= truncate(redeemer_name, :length => 30) %></span>
+  <%- else -%>
+    <%= redeemer_name %>
+  <%- end -%>
+  </td>
+  <td class="redeemed_on"><%= voucher_redeemed_on(redeemed_voucher) %></td>
+  <td class="status">
+    <%= print_daily_deal_purchase_link(redeemed_voucher.daily_deal_purchase) %>
+    <% if redeemed_voucher.marked_used_by_user? && !redeemed_voucher.redeemed? %>
+    &nbsp;&nbsp;&nbsp;
+    <%= link_to(t('.mark_as_unused'), mark_unused_daily_deal_certificate_path(:id => redeemed_voucher.to_param), :confirm => t('.confirm_mark_as_unused'), :method => :post) %>
+    <% end %>
+  </td>
+  <% else %>
+  <td colspan="4"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

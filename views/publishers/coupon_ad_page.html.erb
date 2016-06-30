@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  <title><%= @publisher.name %>: Coupon Ad</title>
+  <style type="text/css" media="screen">
+    body {
+      text-align: center;
+      font-family: Helvetica, Arial, "MS Trebuchet", sans-serif;
+    }
+  
+    #analog-analytics-iframe {
+      border: 1px dotted rgb(120, 120, 120);
+    }
+    
+    pre {
+      font: 9pt Monaco, "Courier New", sans-serif;
+      text-align: left;
+      width: <%= iframe_width %>px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px dotted rgb(120, 120, 120);
+    }
+  </style>
+</head>
+
+<body>
+  <h1><%= @publisher.name %> Coupon Ad</h1>
+  <h6>Place <a href="#ad_iframe_javascript">iframe JavaScript</a> in your page</h6>
+  <!-- Start ad code. Place everything between the comments into your page -->
+  <script type="text/javascript" src="<%= embed_coupon_ad_path(:label => @publisher.label, :format => :js, :only_path => false) %>"></script>
+  <noscript>
+    <div style="background-color:white; height: 60px; margin:0 auto; padding-top:0px; text-align:center; width:234px;">
+      <%= link_to "#{@publisher.name} COUPONS", coupons_page_path(:label => @publisher.label, :only_path => false) %>
+    </div>
+  </noscript>
+  <!-- End coupons code -->
+
+  <h3><a name="iframe_javascript">Iframe JavaScript</a></h3>
+    <pre>
+      &lt;script type=&quot;text/javascript&quot; src=&quot;<%= embed_coupon_ad_path(:label => @publisher.label, :format => :js, :only_path => false) %>&quot;&gt;&lt;/script&gt;
+      &lt;noscript&gt;
+        &lt;div style=&quot;background-color:white; height: 300px; margin:0 auto; padding-top:0px; text-align:center; width:250px;&quot;&gt;
+          &lt;a href=&quot;<%= public_offers_path(:publisher_id => @publisher.id, :format => :js, :only_path => false) %>&quot;&gt;<%= @publisher.name.upcase %> COUPONS&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/noscript&gt;
+    </pre>
+  </body>
+</html>

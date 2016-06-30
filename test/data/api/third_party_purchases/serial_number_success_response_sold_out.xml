@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<voucher_responses xmlns="http://analoganalytics.com/api/third_party_purchases/serial_numbers">
+  <voucher_response sequence="1">
+    <serial_number>1817-9817</serial_number>
+    <bar_code>
+      <value>3155015000481315</value>
+      <format>128B</format>
+    </bar_code>
+  </voucher_response>
+  <voucher_response sequence="2">
+    <serial_number>4569-8999</serial_number>
+    <bar_code>
+      <value>3155015000481316</value>
+      <format>128B</format>
+    </bar_code>
+  </voucher_response>
+  <error>
+    <code>2</code>
+    <text>The deal is sold out</text>
+  </error>
+</voucher_responses>

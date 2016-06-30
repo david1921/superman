@@ -1,0 +1,13 @@
+<% if affiliate_placements.present? %>
+  <ul id="affiliate-placements">
+  <% affiliate_placements.each do |ap| %>
+    <% next unless ap.affiliate.is_a? Publisher %>
+    <li publisher-label='<%= ap.affiliate.label %>' ap-id='<%= ap.id %>'>
+      <%= link_to("[x]", affiliate_placement_path(ap.id), :class => "delete-ap") %>
+      <%= link_to(ap.affiliate.label, edit_publisher_path(:id => ap.affiliate.to_param), :class => "publisher-label") %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  No affiliates
+<% end %>

@@ -1,0 +1,16 @@
+<% set_page_title "Purchases Eligible for Loyalty Credit: #{@publisher.name}" %>
+
+<%= render(:partial => "navigation", :locals => { :page => :loyalty_eligible }) %>
+
+<table cellspacing="0" summary="daily_deal_purchases" class="daily_deal_purchases">
+  <tr>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Recipient</th>
+    <th class="date">Purchased</th>
+    <th class="date">Expires</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+  <%= render :partial => "reports/loyalty_program/daily_deal_purchase", :collection => @eligible_purchases %>
+</table>

@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head></head>
+<body>
+  <p>
+    The following errors occurred with TravelsaversBooking <%= @booking.id %>
+    and require manual intervention by an AM and/or developer to resolve:<br/>
+    <ul id="unfixable-errors">
+      <% @booking.unfixable_errors.each do |e| %>
+      <li><%= e.message %></li>
+      <% end %>
+    </ul>
+  </p>
+
+  <%= render 'contact_info' %>
+
+</body>
+</html>

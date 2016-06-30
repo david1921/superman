@@ -1,0 +1,34 @@
+<html>
+<body>
+  <div>
+    <%- @publisher.find_braintree_credentials! -%>
+    <% form_for :transaction, :builder => BraintreeFormBuilder, :url => Braintree::TransparentRedirect.url, :html => { :id => "transparent_redirect_form", :style => "display: none" } do |f| -%>
+      <%- @daily_deal_purchase.consumer.credit_cards.each_with_index do |credit_card, index| -%>
+        <%= hidden_field_tag(:tr_data, braintree_transaction_data(@daily_deal_purchase, :redirect_url => @redirect_url, :payment_method_token => credit_card.token), :id => "credit_card_#{credit_card.id}") %>
+      <%- end -%>
+      <%= hidden_field_tag(:tr_data, braintree_transaction_data(@daily_deal_purchase, :redirect_url => @redirect_url), :id => "new_credit_card") %>
+
+      <% f.fields_for :credit_card do |c| -%>
+        <%= c.text_field(:cardholder_name) %>
+        <%= c.text_field(:number) %>
+        <%= c.text_field(:expiration_month) %>
+        <%= c.text_field(:expiration_year) %>
+        <%= c.text_field(:cvv) %>
+      <% end %>
+
+      <%= check_box_tag 'transaction[custom_fields][use_shipping_address_as_billing_address]', 'true', :id => 'use_shipping_address_as_billing_address'%>
+
+      <% f.fields_for :billing do |b| %>
+        <%= b.text_field :first_name %>
+        <%= b.text_field :last_name %>
+        <%= b.text_field :street_address %>
+        <%= b.text_field :extended_address %>
+        <%= b.text_field :locality %>
+        <%= b.text_field :region %>
+        <%= b.text_field :postal_code %>
+        <%= b.text_field :country_code_alpha2 %>
+      <% end %>
+    <% end %>
+  </div>
+</body>
+</html>

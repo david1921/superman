@@ -1,0 +1,518 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>Get My Perks! - Daily Deals, Half Off Deals - Restaurants, Entertainment, Spas, Recreation, Area Services and more!</title> 
+<meta name="description" content="Get My Perks provides great daily deals in 24 cities nationwide. Get half off deals at the hottest restaurants, bars, spas, salons, golf courses, recreation, auto services, local services, and much more." /> 
+<meta name="keywords" content="Buffalo, Northeastern Pennsylvania, New England, Providence, Rochester, Hampton Roads, Norfolk, Springfield, Worcester, Heart Of Florida, Gainesville, Memphis, New Orleans, Greenville, Piedmont Triad, Greensboro, Austin, Indianapolis, Kansas City, Madison, Milwaukee, Wichita, Denver, Portland, Seattle, Sacramento, San Francisco, Bay Area" /> 
+
+<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/ie6.css" /><![endif]--> 
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/ie7.css" /><![endif]--> 
+<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/ie8.css" /><![endif]--> 
+<!--[if IE 9]><link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/ie9.css" /><![endif]--> 
+
+<link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/style.css" media="screen" /> 
+
+<link rel="icon" type="image/ico" href="favicon.ico"> 
+
+<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.js"></script> 
+
+<!-- captionSliding --> 
+<script type="text/javascript">
+			$(document).ready(function(){
+				//Caption Sliding (Partially Hidden to Visible)
+				$('.boxgrid.caption').hover(function(){
+					$(".cover", this).stop().animate({top:'79px'},{queue:false,duration:160});
+				}, function() {
+					$(".cover", this).stop().animate({top:'140px'},{queue:false,duration:160});
+				});
+			});
+</script>
+
+<!-- scrollPage --> 
+<script type="text/javascript"> 
+$(document).ready(function() {
+$('.scrollPage').click(function() {
+   var elementClicked = $(this).attr("href");
+   var destination = $(elementClicked).offset().top;
+   $("html:not(:animated),body:not(:animated)").animate({ scrollTop: destination-20}, 500 );
+   return false;
+});
+});
+</script> 
+
+<!-- mega menu -->
+<script type="text/javascript" src="/themes/entercomnew/landing/js/jquery.hoverIntent.minified.js"></script>
+<script type="text/javascript" src="/themes/entercomnew/landing/js/megahover.js"></script>
+
+<!-- nivo slider -->
+<script type="text/javascript" src="/themes/entercomnew/landing/js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+$(window).load(function() {
+$('#slider').nivoSlider({
+effect:'fade',
+animSpeed:400, // Slide transition speed
+pauseTime:5000, // How long each slide will show  	
+pauseOnHover:false, // Stop animation while hovering
+directionNav:false, // Next & Prev navigation
+controlNav:false,
+captionOpacity:0.8 // Universal caption opacity
+	});
+});
+</script>
+<link rel="stylesheet" type="text/css" href="/themes/entercomnew/landing/css/nivo.css" media="screen" /> 
+<%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+<a id="pageTop"></a>
+
+<div id="navWrapper">
+
+<ul id="topnav">
+
+<li class="locations">
+<a href="#">Find Local Deals</a>
+<div class="sub">
+<p>Discover deals in your area today! Select a link:</p>
+<ul>
+<li><h2>Northeast</h2></li>
+<li><a href="http://www.mybuffaloperks.com">Buffalo, NY</a></li> 
+<li><a href="http://www.getmyperks.com/newengland">Boston, MA</a></li> 
+<li><a href="http://www.mynepaperks.com">Northeastern PA</a></li> 
+<li><a href="http://www.getmyperks.com/providence">Providence, RI</a></li> 
+<li><a href="http://www.myrochesterperks.com">Rochester, NY</a></li> 
+<li><a href="http://www.getmyperks.com/springfield">Springfield, MA</a></li> 
+<li><a href="http://www.getmyperks.com/worcester">Worcester, MA</a></li> 
+</ul>
+<ul>
+<li><h2>South</h2></li>
+<li><a href="http://www.myhamptonroadsperks.com">Hampton Roads, VA</a></li> 
+<li><a href="http://www.myheartoffloridaperks.com">Heart of Florida</a></li> 
+<li><a href="http://www.mymemphisperks.com">Memphis, TN</a></li> 
+<li><a href="http://www.myneworleansperks.com">New Orleans, LA</a></li> 
+<li><a href="http://www.mytriadperks.com">Piedmont Triad, NC</a></li> 
+<li><a href="http://www.mygreenvilleperks.com">Upstate, SC</a></li> 
+</ul>
+<ul>
+<li><h2>Midwest</h2></li>
+<li><a href="http://www.myaustinperks.com">Austin, TX</a></li> 
+<li><a href="http://www.myindianapolisperks.com">Indianapolis, IN</a></li> 
+<li><a href="http://www.mykansascityperks.com">Kansas City, KS-MO</a></li> 
+<li><a href="http://www.mymadisonperks.com">Madison, WI</a></li> 
+<li><a href="http://www.mymilwaukeeperks.com">Milwaukee, WI</a></li> 
+<li><a href="http://www.mywichitaperks.com">Wichita, KS</a></li> 
+</ul>
+<ul>
+<li><h2>West</h2></li>
+<li><a href="http://www.mydenverperks.com">Denver, CO</a></li> 
+<li><a href="http://www.myportlandperks.com">Portland, OR</a></li> 
+<li><a href="http://www.mysacramentoperks.com">Sacramento, CA</a></li> 
+<li><a href="http://www.mysanfranciscoperks.com">San Francisco, CA</a></li> 
+<li><a href="http://www.myseattleperks.com">Seattle, WA</a></li> 
+</ul>
+</div> <!-- end sub --> 
+</li>
+
+<li class="link"><a href="#featuredDeals" class="scrollPage">Today's Deals</a></li>
+<li class="link"><a href="http://www.howperksworks.com">How It Works</a></li>
+ 
+</ul> <!-- end topnav --> 
+
+</div> <!-- end navWrapper -->
+
+<div id="header">
+	
+<div id="logo"></div> <!-- end logo --> 	
+	
+<div id="signup">  
+<form name="market_navigation"> 
+<select id="market_navigation_menu" name="market_navigation_menu" class="dropDown"> 
+<option value="#" selected="selected">Confirm City</option> 
+<option value="https://www.getmyperks.com/buffalo">Buffalo, NY</option> 
+<option value="https://www.getmyperks.com/newengland">Boston, MA</option> 
+<option value="https://www.getmyperks.com/nepa">Northeastern, PA</option> 
+<option value="https://www.getmyperks.com/providence">Providence, RI</option> 
+<option value="https://www.getmyperks.com/rochester">Rochester, NY</option>
+<option value="https://www.getmyperks.com/seattle">Seattle, WA</option>  
+<option value="https://www.getmyperks.com/springfield">Springfield, MA</option> 
+<option value="https://www.getmyperks.com/worcester">Worcester, MA</option> 
+<option value="https://www.getmyperks.com/hamptonroads">Hampton Roads, VA</option> 
+<option value="https://www.getmyperks.com/heartofflorida">Heart Of Florida, FL</option> 
+<option value="https://www.getmyperks.com/memphis">Memphis, TN</option> 
+<option value="https://www.getmyperks.com/neworleans">New Orleans, LA</option> 
+<option value="https://www.getmyperks.com/triad">Piedmont Triad, NC</option> 
+<option value="https://www.getmyperks.com/upstate">Upstate, SC</option> 
+<option value="https://www.getmyperks.com/austin">Austin, TX</option> 
+<option value="https://www.getmyperks.com/indianapolis">Indianapolis, IN</option> 
+<option value="https://www.getmyperks.com/kansascity">Kansas City, KS - MO</option> 
+<option value="https://www.getmyperks.com/madison">Madison, WI</option> 
+<option value="https://www.getmyperks.com/milwaukee">Milwaukee, WI</option>
+<option value="https://www.getmyperks.com/wichita">Wichita, KS</option> 
+<option value="https://www.getmyperks.com/denver">Denver, CO</option>  
+<option value="https://www.getmyperks.com/porland">Portland, OR</option> 
+<option value="https://www.getmyperks.com/sacramento">Sacramento, CA</option>
+<option value="https://www.getmyperks.com/sanfrancisco">San Francisco, CA</option>
+<option value="https://www.getmyperks.com/seattle">Seattle, WA</option>   
+</select>  
+<input type="submit" value="Find Deals!" onclick="location=document.market_navigation.market_navigation_menu.options[document.market_navigation.market_navigation_menu.selectedIndex].value;return false;" class="signupButton"> 
+</form> 
+</div> <!-- end signup --> 
+
+</div> <!-- end header --> 
+
+<div class="oneColumn">
+	
+<div id="welcome">
+
+<div id="blurb">
+<div class="blurbSection">
+<h2>Find Local Deals Now!</h2>
+<p><img src="/themes/entercomnew/landing/images/localDailyDeals.jpg" class="floatLeft" alt="Featured Deals!" />
+...save 50% - 70% on the best shops & services your area has to offer!</p>
+</div> <!-- end blurbSection -->
+</a>
+
+<h2>Select City:</h2>
+<ul id="marketList">
+<li><a href="http://www.myaustinperks.com">Austin, TX</a></li> 
+<li><a href="http://www.mynepaperks.com">Northeastern PA</a></li> 
+<li><a href="http://www.getmyperks.com/newengland">Boston, MA</a></li> 
+<li><a href="http://www.mytriadperks.com">Piedmont Triad, NC</a></li> 
+<li><a href="http://www.mybuffaloperks.com">Buffalo, NY</a></li>
+<li><a href="http://www.myportlandperks.com">Portland, OR</a></li>  
+<li><a href="http://www.mydenverperks.com">Denver, CO</a></li> 
+<li><a href="http://www.getmyperks.com/providence">Providence, RI</a></li> 
+<li><a href="http://www.myhamptonroadsperks.com">Hampton Roads, VA</a></li> 
+<li><a href="http://www.myrochesterperks.com">Rochester, NY</a></li>
+<li><a href="http://www.myheartoffloridaperks.com">Heart of Florida</a></li> 
+<li><a href="http://www.mysacramentoperks.com">Sacramento, CA</a></li> 
+<li><a href="http://www.myindianapolisperks.com">Indianapolis, IN</a></li> 
+<li><a href="http://www.mysanfranciscoperks.com">San Francisco, CA</a></li> 
+<li><a href="http://www.mykansascityperks.com">Kansas City, KS-MO</a></li> 
+<li><a href="http://www.myseattleperks.com">Seattle, WA</a></li> 
+<li><a href="http://www.mymadisonperks.com">Madison, WI</a></li>
+<li><a href="http://www.getmyperks.com/springfield">Springfield, MA</a></li>  
+<li><a href="http://www.mymemphisperks.com">Memphis, TN</a></li> 
+<li><a href="http://www.mygreenvilleperks.com">Upstate, SC</a></li>
+<li><a href="http://www.mymilwaukeeperks.com">Milwaukee, WI</a></li> 
+<li><a href="http://www.mywichitaperks.com">Wichita, KS</a></li>  
+<li><a href="http://www.myneworleansperks.com">New Orleans, LA</a></li>
+<li><a href="http://www.getmyperks.com/worcester">Worcester, MA</a></li> 
+</ul> <!-- end marketList -->
+
+<!--
+<div class="blurbSection">
+<h2>Refer A Friend</h2>
+<p><img src="/themes/entercomnew/landing/images/perksBuckSmall.jpg" class="floatLeft" alt="Refer A Friend" />
+...and score $10 in free <span class="perks">PERKS</span> bucks! Log in to start referral.</p>
+</div>
+
+
+<a href="http://www.howperksworks.com" target="_blank" title="Get Your Business Featured With The PERKS Program">
+<div class="blurbSection bottomBlurb">
+<h2>Get Featured</h2>
+<p><img src="/themes/entercomnew/landing/images/getFeatured.jpg" class="floatLeft" alt="Get Featured" />
+...learn how your business can thrive in the <span class="perks">PERKS</span> program.</p>
+</div>
+</a>
+-->
+
+</div> <!-- end blurb -->
+
+<a href="#featuredDeals" class="scrollPage">
+<div id="slider" class="nivoSlider">
+<img src="/themes/entercomnew/landing/images/nivo/beach.jpg" title="Save Big On Weekend Getaways" />
+<img src="/themes/entercomnew/landing/images/nivo/birthday.jpg" title="Savings For Your Whole Family" />
+<img src="/themes/entercomnew/landing/images/nivo/pizza.jpg" title="Half Price Deals On Local Eateries" />
+<img src="/themes/entercomnew/landing/images/nivo/spa.jpg" title="Need To Unwind? Do It At 50% Off" />
+<img src="/themes/entercomnew/landing/images/nivo/shopping.jpg" title="Your Favorite Digs For Less" />
+<img src="/themes/entercomnew/landing/images/nivo/winter.jpg" title="Embark On A New Hobby!" />
+<img src="/themes/entercomnew/landing/images/nivo/concert.jpg" title="We've Got Your Night On The Town" />
+<img src="/themes/entercomnew/landing/images/nivo/restaurant.jpg" title="50% - 70% Off On What You Love Most" />
+<img src="/themes/entercomnew/landing/images/nivo/refer.jpg" title="Refer A Friend & Get $10 In Free PERKS Bucks!" />
+</div> <!-- end slider --> 
+</a>
+
+</div> <!-- end welcome --> 
+</div> <!-- end oneColumn --> 
+
+<div class="oneColumn">
+
+<div id="featuredDeals">
+
+<h1>Today's Featured Deals</h1>
+
+<p>Check out today's Featured Deals in the <a href="#northeast" class="scrollPage">Northeast</a>, <a href="#south" class="scrollPage">Southern</a>, <a href="#midwest" class="scrollPage">Midwestern</a>, and <a href="#west" class="scrollPage">Western</a> regions.</p>
+
+<div class="clearBoth"></div>
+
+<div id="northeast">
+<h2>Northeast</h2>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/buffalo.jpg" />
+<div class="cover boxcaption">
+<h3>Buffalo, NY</h3>
+<script src="http://feeds.feedburner.com/getmyperks/antZ?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/getmyperks/antZ"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/boston.jpg" />
+<div class="cover boxcaption">
+<h3>Boston, MA</h3>
+<script src="http://feeds.feedburner.com/getmyperks/HZdn?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/getmyperks/HZdn"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/scranton.jpg" />
+<div class="cover boxcaption">
+<h3>Northeastern PA</h3>
+<script src="http://feeds.feedburner.com/getmyperks/PztU?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/getmyperks/PztU"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/providence.jpg" />
+<div class="cover boxcaption">
+<h3>Providence, RI</h3>
+<script src="http://feeds.feedburner.com/ProvidencePerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/ProvidencePerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/rochester.jpg" />
+<div class="cover boxcaption">
+<h3>Rochester, NY</h3>
+<script src="http://feeds.feedburner.com/RochesterPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/RochesterPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/springfield.jpg" />
+<div class="cover boxcaption">
+<h3>Springfield, MA</h3>
+<script src="http://feeds.feedburner.com/SpringfieldPerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/SpringfieldPerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/worcester.jpg" />
+<div class="cover boxcaption">
+<h3>Worcester, MA</h3>
+<script src="http://feeds.feedburner.com/WorcesterPerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/WorcesterPerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="clearBoth"></div>
+
+</div> <!-- end northeast --> 
+
+<div id="south">
+<h2>South</h2>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/norfolk.jpg" />
+<div class="cover boxcaption">
+<h3>Hampton Roads, VA</h3>
+<script src="http://feeds.feedburner.com/HamptonRoadsPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/HamptonRoadsPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/gainesville.jpg" />
+<div class="cover boxcaption">
+<h3>Heart Of Florida</h3>
+<script src="http://feeds.feedburner.com/HeartOfFloridaPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/HeartOfFloridaPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/memphis.jpg" />
+<div class="cover boxcaption">
+<h3>Memphis, TN</h3>
+<script src="http://feeds.feedburner.com/MemphisPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/MemphisPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/neworleans.jpg" />
+<div class="cover boxcaption">
+<h3>New Orleans, LA</h3>
+<script src="http://feeds.feedburner.com/NewOrleansPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/NewOrleansPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/greensboro.jpg" />
+<div class="cover boxcaption">
+<h3>Piedmont Triad, NC</h3>
+<script src="http://feeds.feedburner.com/getmyperks/NGAO?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/getmyperks/NGAO"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/greenville.jpg" />
+<div class="cover boxcaption">
+<h3>Upstate, SC</h3>
+<script src="http://feeds.feedburner.com/UpstatePerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/UpstatePerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="clearBoth"></div>
+
+</div> <!-- end south --> 
+
+<div id="midwest">
+
+<h2>Midwest</h2>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/austin.jpg" />
+<div class="cover boxcaption">
+<h3>Austin, TX</h3>
+<script src="http://feeds.feedburner.com/AustinPerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/AustinPerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/indianapolis.jpg" />
+<div class="cover boxcaption">
+<h3>Indianapolis, IN</h3>
+<script src="http://feeds.feedburner.com/IndianapolisPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/IndianapolisPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/kansascity.jpg" />
+<div class="cover boxcaption">
+<h3>Kansas City, KS - MO</h3>
+<script src="http://feeds.feedburner.com/KansasCityPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/KansasCityPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/madison.jpg" />
+<div class="cover boxcaption">
+<h3>Madison, WI</h3>
+<script src="http://feeds.feedburner.com/MadisonPerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/MadisonPerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/milwaukee.jpg" />
+<div class="cover boxcaption">
+<h3>Milwaukee, WI</h3>
+<script src="http://feeds.feedburner.com/MilwaukeePerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/MilwaukeePerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/wichita.jpg" />
+<div class="cover boxcaption">
+<h3>Wichita, KS</h3>
+<script src="http://feeds.feedburner.com/WichitaPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/WichitaPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="clearBoth"></div>
+
+</div> <!-- end midwest --> 
+
+<div id="west">
+<h2>West</h2>
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/denver.jpg" />
+<div class="cover boxcaption">
+<h3>Denver, CO</h3>
+<script src="http://feeds.feedburner.com/DenverPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/DenverPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/portland.jpg" />
+<div class="cover boxcaption">
+<h3>Portland, OR</h3>
+<script src="http://feeds.feedburner.com/PortlandPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/PortlandPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption rightBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/sacramento.jpg" />
+<div class="cover boxcaption">
+<h3>Sacramento, CA</h3>
+<script src="http://feeds.feedburner.com/SacramentoPerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/SacramentoPerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption leftBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/sanfrancisco.jpg" />
+<div class="cover boxcaption">
+<h3>San Francisco, CA</h3>
+<script src="http://feeds.feedburner.com/BayAreaPerks-TodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/BayAreaPerks-TodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="boxgrid caption midBox">
+<div class="cornerBanner"></div>
+<img src="/themes/entercomnew/landing/images/markets/seattle.jpg" />
+<div class="cover boxcaption">
+<h3>Seattle, WA</h3>
+<script src="http://feeds.feedburner.com/SeattlePerksTodaysDealDailyDealsRss?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/SeattlePerksTodaysDealDailyDealsRss"></a><br/>Powered by FeedBurner</p> </noscript>
+</div>
+</div>
+
+<div class="clearBothNoDash"></div>
+
+</div> <!-- end west --> 
+
+</div> <!-- end featuredDeals --> 
+
+</div> <!-- end oneColumn --> 
+
+<div class="clearfooter"></div> <!-- for footer stick --> 
+
+</div>	<!-- end wrapper --> 
+
+<div id="footerWrapper">
+<div id="footer">
+<p><a href="http://static.intertechmedia.com/Entercom/Entercom_Internet_Privacy_Policy_January_2007.pdf" target="_blank">Privacy Policy</a> &#124;
+<a href="http://www.getmyperks.com/themes/entercomnew/docs/terms.pdf" target="_blank">Terms &amp; Conditions</a> &#124;
+<a href="#pageTop">Back To Top</a></p>
+<p>Copyright &copy; <%= localize Time.now, :format => '%Y' %> <a href="http://www.entercom.com" target="_blank">Entercom Communications</a>. All Rights Reserved.</p>
+</div> <!-- end footer --> 
+</div> <!-- end footer Wrapper --> 
+
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+</body>
+</html>

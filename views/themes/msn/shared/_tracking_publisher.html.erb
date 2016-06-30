@@ -1,0 +1,30 @@
+<% if "#{@controller.controller_name}##{@controller.action_name}" == "daily_deal_purchases#confirm" %>
+	<script type="text/javascript">
+	sas_pageid='32569/257204';	// Page : MSN_Deals/ros
+	sas_formatid=8215;		// Format : 1x1
+	sas_target='';			// Targeting
+	if (!sas_tmstp) var sas_tmstp = Math.round(Math.random()*10000000000);
+	if (!sas_masterflag) {var sas_masterflag=1;sas_master='M';} else {sas_master='S';};
+	document.write('<scr'+'ipt src="http://diff4.smartadserver.com/call/pubj/' + sas_pageid + '/' + sas_formatid + '/' + sas_master + '/' + sas_tmstp + '/' + escape(sas_target) + '?"></scr'+'ipt>');
+	</script>
+	<noscript>
+	<a href="http://diff4.smartadserver.com/call/pubjumpi/32569/257204/8215/M/[timestamp]/?">
+	<img src="http://diff4.smartadserver.com/call/pubi/32569/257204/8215/M/[timestamp]/?" border="0" alt="" /></a>
+	</noscript>
+<% elsif "#{@controller.controller_name}##{@controller.action_name}" == "daily_deal_purchases#thank_you" %>
+  <script src="http://affiliates.forestview.eu/i_sale_third/10249/<%= (@daily_deal_purchase.price * @daily_deal_purchase.quantity).to_s %>/<%= @daily_deal_purchase.id %>/&sale_status=P"></script>
+  <noscript><img src="http://affiliates.forestview.eu/i_sale_third/10249/<%= (@daily_deal_purchase.price * @daily_deal_purchase.quantity).to_s %>/<%= @daily_deal_purchase.id %>/&sale_status=P"></noscript>
+<% else %>
+  <script type="text/javascript">
+	sas_pageid='32569/224045';	// Page : MSN.gr - Deals
+	sas_formatid=8215;		// Format : 1x1
+	sas_target='';			// Targeting
+	if (!sas_tmstp) var sas_tmstp = Math.round(Math.random()*10000000000);
+	if (!sas_masterflag) {var sas_masterflag=1;sas_master='M';} else {sas_master='S';};
+	document.write('<scr'+'ipt src="http://diff4.smartadserver.com/call/pubj/' + sas_pageid + '/' + sas_formatid + '/' + sas_master + '/' + sas_tmstp + '/' + escape(sas_target) + '?"></scr'+'ipt>');
+	</script>
+	<noscript>
+	<a href="http://diff4.smartadserver.com/call/pubjumpi/32569/224045/8215/M/[timestamp]/?">
+	<img src="http://diff4.smartadserver.com/call/pubi/32569/224045/8215/M/[timestamp]/?" border="0" alt="" /></a>
+	</noscript>
+<% end %>

@@ -1,0 +1,160 @@
+<div class="left_column">
+  <% url = platform_revenue_sharing_agreement_edit_url(@publishing_group, @publisher, @daily_deal, @platform_revenue_sharing_agreement) -%>
+  <% form_for @platform_revenue_sharing_agreement, :url => url  do |f| -%>
+    <%= error_messages_for :platform_revenue_sharing_agreement %>
+    <div class="row date">
+      <div class="label"><%= f.label :effective_date, "Effective Date:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:effective_date, :popup => :force ) %>
+      </div>
+    </div>
+    <%= f.text_field_div(:platform_fee_gross_percentage, "AA Gross Fee %:") %>
+    <%= f.text_field_div(:platform_fee_net_percentage, "AA Net Fee %:") %>
+    <%= f.select_div(:credit_card_fee_source,
+          Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_SOURCES, 
+          {:include_blank => false, :label_text => "Credit Card Fee Source"}, {:onchange => "creditCardFeeSourceChanged();"}
+           ) %>
+    <div id="credit_card_fee_fixed_amount_div">
+      <%= f.text_field_div(:credit_card_fee_fixed_amount, "Fixed Fee ($/Transaction):") %>
+    </div>
+    <div id="credit_card_fee_fixed_percentage_div">
+      <%= f.text_field_div(:credit_card_fee_fixed_percentage, "Fixed Fee (%):") %>
+    </div>
+    <div id="credit_card_fee_percentages_div">
+      <div class="row">
+        <div class="label"><label>Actual Fees Gross Share:</label></div>
+        <div class="input"></div>
+      </div>
+      <%= f.check_box_div(:credit_card_fee_gross_pro_rata, "Pro Rata", {:onchange => "grossProRataChanged();"}) %>
+      <div id="credit_card_fee_gross_div">
+      <%= f.select_div(:credit_card_fee_gross_publisher_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "Publisher:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_gross_publisher_percentage) %>
+      <%= f.select_div(:credit_card_fee_gross_merchant_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "Merchant:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_gross_merchant_percentage) %>
+      <%= f.select_div(:credit_card_fee_gross_aa_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "AA:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_gross_aa_percentage) %>
+      </div>
+      <div class="row">
+        <div class="label"><label>Actual Fees Net Share:</label></div>
+        <div class="input"></div>
+      </div>
+      <%= f.check_box_div(:credit_card_fee_net_pro_rata, "Pro Rata", {:onchange => "netProRataChanged();"}) %>
+      <div id="credit_card_fee_net_div">
+      <%= f.select_div(:credit_card_fee_net_publisher_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "Publisher:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_net_publisher_percentage) %>
+      <%= f.select_div(:credit_card_fee_net_merchant_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "Merchant:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_net_merchant_percentage) %>
+      <%= f.select_div(:credit_card_fee_net_aa_percentage, 
+            Accounting::RevenueSharingAgreementConstants::CREDIT_CARD_FEE_VALUES, 
+            :include_blank => true,
+            :label_text => "AA:",
+            :selected => @platform_revenue_sharing_agreement.credit_card_fee_net_aa_percentage) %>
+      </div>
+    </div>
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{revenue_sharing_agreements_path}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  creditCardFeeSourceChanged();
+  grossProRataChanged();
+  netProRataChanged();
+  function creditCardFeeSourceChanged() {
+    var feeSource = $("accounting_platform_revenue_sharing_agreement_credit_card_fee_source").value;
+    switch(feeSource) {
+      case 'actual_fees':
+        $('credit_card_fee_percentages_div').show();
+        $('credit_card_fee_fixed_amount_div').hide();
+        $('credit_card_fee_fixed_percentage_div').hide();
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_amount').value = "";
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_percentage').value = "";
+        break;
+      case 'estimated':
+        $('credit_card_fee_percentages_div').show();
+        $('credit_card_fee_fixed_amount_div').hide();
+        $('credit_card_fee_fixed_percentage_div').hide();
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_amount').value = "";
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_percentage').value = "";
+        break;
+      case 'fixed_amount':
+        $('credit_card_fee_percentages_div').hide();
+        $('credit_card_fee_fixed_amount_div').show();
+        $('credit_card_fee_fixed_percentage_div').hide();
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_percentage').value = "";
+        resetCreditCardFeePercentages();
+        break;
+      case 'fixed_percentage':
+        $('credit_card_fee_percentages_div').hide();
+        $('credit_card_fee_fixed_amount_div').hide();
+        $('credit_card_fee_fixed_percentage_div').show();
+        $('accounting_platform_revenue_sharing_agreement_credit_card_fee_fixed_amount').value = "";
+        resetCreditCardFeePercentages();
+        break;
+      default:
+        $('credit_card_fee_percentages_div').show();
+        $('credit_card_fee_fixed_amount_div').show();
+        $('credit_card_fee_fixed_percentage_div').show();
+    }
+  }
+  
+  function resetCreditCardFeePercentages() {
+    resetCreditCardFeeNetPercentages();
+    resetCreditCardFeeGrossPercentages();
+  }
+  
+  function resetCreditCardFeeNetPercentages() {
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_pro_rata').checked = false;
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_publisher_percentage').value = "";
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_merchant_percentage').value = "";
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_aa_percentage').value = "";
+  }
+  
+  function resetCreditCardFeeGrossPercentages() {
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_pro_rata').checked = false;
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_publisher_percentage').value = "";
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_merchant_percentage').value = "";
+    $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_aa_percentage').value = "";
+  }
+  
+  function netProRataChanged() {
+    if($('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_pro_rata').checked == true) {
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_publisher_percentage').value = "";
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_merchant_percentage').value = "";
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_net_aa_percentage').value = "";
+      $('credit_card_fee_net_div').hide();
+    }
+    else {
+      $('credit_card_fee_net_div').show();
+    }
+  }
+  
+  function grossProRataChanged() {
+    if($('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_pro_rata').checked == true) {
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_publisher_percentage').value = "";
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_merchant_percentage').value = "";
+      $('accounting_platform_revenue_sharing_agreement_credit_card_fee_gross_aa_percentage').value = "";
+      $('credit_card_fee_gross_div').hide();
+    }
+    else {
+      $('credit_card_fee_gross_div').show();
+    }
+  }
+</script>

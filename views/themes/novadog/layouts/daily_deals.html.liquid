@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <meta name='keywords' content="{{ daily_deal.advertiser.name }}, {{ daily_deal.value_proposition }}">
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+  <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+
+  <meta name="topicname" content="home">
+  <meta name="WT.cg_s" content="Partner">
+  <meta name="WT.cg_n" content="Home">
+  <meta name="WT.ti" content="Partner">
+  <meta name="DCSext.mtype" content="interactive">
+
+  <title>{% daily_deal_page_title %}</title>
+  
+  <link href="/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/daily_deals/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  
+
+  <!--[if IE]>
+  <link href="/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if IE 7]>
+  <link href="/themes/novadog/stylesheets/ie7.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->  
+
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body class="{{ controller.controller_name }} {{ controller.action_name }}">
+
+<div id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+      {% include "shared/flash" %}	
+      		<div id="header">
+      			<a id="banner" href="http://www.novadogmagazine.com"><span></span></a>
+				<div id="sign_up_button"><a href="{{ publisher.new_consumer_path }}"></a></div>
+				<div id="top_nav">
+					<p>
+						<a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> |
+						<a href="{{ publisher.contact_path }}">Contact Us</a> |
+						<a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a> |
+						<a href="{{ publisher.faq_path }}">FAQ</a> |
+						{% if publisher.launched? %}
+						{% if publisher.current_user_belongs_to? %}
+						<a href="{{ publisher.my_account_path }}">My Account</a>
+						<a href="{{ publisher.my_deals_path }}">My Deals</a>
+						<a href="{{ publisher.logout_path }}">Sign Out</a> |
+						
+						{% else %}
+						<a href="{{ publisher.login_path }}">Sign in</a>
+						{% endif %}
+						{% endif %}      
+						{% if daily_deal.active? %}
+						  | <a href="{{ daily_deal.buy_now_path }}">Buy Now</a>
+						{% endif %}
+					</p>
+				</div><!-- /top nav -->
+      		</div><!-- /header -->				
+
+			{{ content_for_layout }}  
+      {% include "themes/novadog/layouts/shared/footer" %}   
+			<div class="clear"></div>			
+		</div><!-- /daily_deal -->
+	</div><!-- /analog_analytics -->
+	{% include "shared/a_a_alt" %}
+</div><!-- /content -->
+
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+		<div id="deal_info" class="container top">
+			<h1 id="value_proposition"><%= @daily_deal.value_proposition.try :html_safe %></h1>
+		<div class="rightcol">
+			<div class="content">
+				<div id="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" width="440" height="265" alt="" /></div>
+				<div id="shortdesc">
+					<div id="fine_print">
+					  <% if @daily_deal.terms.present? %>
+						<h2>The Fine Print</h2>
+						<%= @daily_deal.terms.try :html_safe %>
+					  <% end %>
+					</div>
+					<div id="highlights">
+					  <% if @daily_deal.highlights.present? %>
+						<h2>Highlights</h2>
+						<%= @daily_deal.highlights.try :html_safe %>
+					  <% end %>
+					</div>
+				</div>
+			    <div id="share">
+                    <div class="email_button">
+                        <span class="st_email_button share_button_mail" st_title="<%= URI.escape("#{@daily_deal.value_proposition}") %>" displayText="Email"></span>
+                    </div>
+					<div class="share_button">
+						<span class="st_twitter_hcount share_button_twitter" st_title="<%= @daily_deal.twitter_status %>" displayText="Tweet"></span>
+						<span class="st_facebook_hcount share_button_facebook" st_title="<%= URI.escape("#{@daily_deal.facebook_title}") %>"  displayText="Share"></span>
+					</div>
+					<div class="fb_like_button">
+						<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+						<fb:like href="<%= market_aware_daily_deal_url(@daily_deal, params) %>" layout="button_count" show_faces="false" width="130"></fb:like>
+					</div>
+				</div>
+			</div>
+		</div><!--END rightcol-->
+		<div class="leftcol">
+			<div id="deal_price">
+				
+				<strong<%= " class=variation" if !@daily_deal.daily_deal_variations.blank? %>>
+				<% if !@daily_deal.daily_deal_variations.blank? -%><em>From</em><% end %>
+				<% if @daily_deal.price >= 10000 %>
+					<%= number_to_currency(@daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+				<% else %>
+					<%= number_to_currency(@daily_deal.price, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %>
+				<% end %>
+				</strong>
+				<% if @daily_deal.sold_out? -%>
+				<span>SOLD OUT</span>
+				<% elsif @daily_deal.over? -%>
+				<span>DEAL OVER</span>
+				<% elsif @daily_deal.active? -%>
+				<a href="<%= daily_deal_buy_now_path(@daily_deal) %>" id="buy_now_button"<%= " class=dd_variations_button" if !@daily_deal.daily_deal_variations.blank? %>>
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+					<img src="/themes/entercomnew/images/buttons/buy_variations.png" width="113" height="48" alt="BUY" />
+					<% else -%>
+					<img src="/themes/entercomnew/images/buttons/buy.png" width="113" height="48" alt="BUY" />
+					<% end -%>
+				</a>
+				<span class="unavailable" style="display:none;">DEAL OVER</span>
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+				  		<%= render :partial => with_theme("shared/dd_variations_menu") %>
+				  	<% end %>
+				<% else -%>
+				<span>COMING SOON</span>
+				<% end -%>
+		  </div>
+		  <!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+		  <%= render :partial => 'shared/variation_delay.js' %>
+			<div class="content shade">
+				<div class="savings">
+					Value
+					<span id="daily_deal_value">
+					<% if @daily_deal.value >= 10000 %>
+						<%= number_to_currency(@daily_deal.value_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+					<% else %>
+						<%= number_to_currency(@daily_deal.value_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %>
+					<% end %>
+					</span>
+				</div>
+				<div class="savings">
+					You Save
+					<span id="daily_deal_savings">
+					<% if @daily_deal.savings >= 10000 %>
+						<%= number_to_currency(@daily_deal.savings, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+					<% else %>
+						<%= number_to_currency(@daily_deal.savings, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %>
+					<% end %>
+					</span>
+				</div>
+			</div>
+             <% if @publisher.enable_daily_deal_referral %>
+			<div class="content refer">
+            <div class="refer">
+                <a href="/publishers/<%= @publisher.id %>/consumers/refer_a_friend" class="refer_a_friend_tracking">Refer Friends, Get $10 </a>
+            </div>
+			</div>
+            <% end %>
+			<div class="content timer">
+              <div class="inset">
+				<img src="/themes/entercomnew/images/icons/clock.png" width="44" height="42" alt="" />
+				<span id="time_left_to_buy"></span>
+				Time left to buy
+              </div>
+			</div>
+			<div class="content shade">
+			  <% if @daily_deal.number_sold > 24 %>
+			    <div id="deals_sold_container">
+    			  <div id="deals_sold"><%= @daily_deal.number_sold %></div>&nbsp;bought  
+    			</div>
+			  <% end %>
+				<div id="limited-qty">Limited Quantity Available</div>
+			</div>
+		</div><!--END leftcol-->
+	</div><!--END deal_info-->
+	<div id="deal_details" class="container">
+		<div class="leftcol">
+			<div class="content">
+				
+				<a name="location" id="location"><h3>Location</h3></a>
+				
+				<div class="shade">
+				<p><strong class="advertiser_name"><%= @daily_deal.advertiser.name %></strong></p>
+			    <% if @daily_deal.advertiser.address.present? %>
+  					<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+	  					<p class="location" style="<% if idx > 2 %>display:none<% end %>">
+	  					  <% if store.address_line_1.present? %>
+							<%= store.address_line_1 %><br />
+						  <% end %>
+	  					  <% if store.address_line_2.present? %>
+							<%= store.address_line_2 %><br />
+						  <% end %>
+	  					  <% if @daily_deal.advertiser.store.city.present? and @daily_deal.advertiser.store.state.present? and @daily_deal.advertiser.store.zip.present? %>
+							<%= store.city %>, <%= store.state %> <%= store.zip %><br />
+						  <% end %>
+						  <% if @daily_deal.advertiser.store.formatted_phone_number.present? %>
+					        <%= store.formatted_phone_number %>
+					      <% end %>
+						</p>
+					<% end %>
+					<% if @daily_deal.advertiser.website_url.present? %>
+					  	<p><a href="<%= @daily_deal.advertiser.website_url %>" target="_blank"><%= raw HtmlTruncator.truncate_html(@daily_deal.advertiser.website_url, 45).gsub("http://", "") %></a></p>
+					<% end %>	
+  				<% end %>
+
+  				<% unless @daily_deal.advertiser.address.present? %>
+  					<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+				  	  <% if @daily_deal.advertiser.store.formatted_phone_number.present? %>
+					      <p class="phone"><%= store.formatted_phone_number %></p>
+					  <% end %>
+				  	<% end %>
+					<p class="website">
+	  					<% if @daily_deal.advertiser.website_url.present? %>
+					  	<a href="<%= @daily_deal.advertiser.website_url %>" target="_blank"><%= raw HtmlTruncator.truncate_html(@daily_deal.advertiser.website_url, 45).gsub("http://", "") %></a>
+				  	</p>
+				  	<% end %>
+  				<% end %>
+
+  				<% if @daily_deal.advertiser.address.present? %>
+	                <% if @daily_deal.advertiser.stores.size > 3 %>
+					  <a id="see_all_locations" href="#" onclick="javascript:$$('p.location').each(Element.show); $('see_all_locations').hide(); return false">See all locations...</a>
+	                <% end %>
+	                <a href="<%= @daily_deal.advertiser.map_url %>" target="_blank">
+				      <img src="<%= map_image_url_for(@daily_deal, "199x169", true) %>" id="map" target="_blank" alt="map" />
+				  	</a>
+                <% end %>
+
+				</div>
+				
+
+			</div>
+		</div>
+		<div class="rightcol" id="about_the_deal">
+			<div class="content">
+				<h2>About the deal</h2>
+				  <%= @daily_deal.description.try :html_safe %>
+				<!--<div id="reviews">
+                    <h2>Reviews</h2>
+                </div>-->
+			</div>
+		</div>
+	</div><!--END deal_details-->
+</div><!--END Inner-->
+<%=raw render :partial => with_theme("shared/affiliate_link_form_popup") %>
+<div id="sidebar">

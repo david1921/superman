@@ -1,0 +1,130 @@
+<div class="credit_cards">
+    <h1>Manage Saved Cards</h1>
+    
+    <button class="return" onclick="javascript:document.location='<%= url_for(:back) %>'">Return</button>
+
+    <ul class="saved_cards">
+        <% @consumer.credit_cards.each do |credit_card| %>
+        <li id="credit_card_<%= credit_card.id %>">
+            <section class="card_info">
+                <span class="card_type <%= credit_card.card_type.downcase %>">Visa</span>
+                <span class="card_number"><%= credit_card.card_type %> ending in <strong><%= credit_card.last_4 %></strong></span><br />
+                <% expiration_date = credit_card.expiration_date.present? ? credit_card.expiration_date.to_formatted_s(:credit_card_expiration) : "" %>
+                <span class="expiration">Expires <%= expiration_date %></span>
+            </section>
+            
+            <section class="card_actions">
+                <button type="button" class="remove" onClick="javascript:jQuery('#credit_card_<%= credit_card.id %> .confirm_delete').toggle();">Remove</button>
+                <div class="confirm_delete" style="display:none;">Are you sure?<br/> <!--(this needs to be added to translations)--><button role="confirm" onClick="javascript:removeCreditCard(<%= "#{@consumer.id},#{credit_card.id}" %>);">Confirm</button><button role="cancel" onClick="javascript:jQuery('#credit_card_<%= credit_card.id %> .confirm_delete').toggle();">Cancel</button></div>
+            </section>
+            <div class="clearfix"></div>
+        </li>
+        <% end %>
+
+        <!-- 
+        <li>
+            <section class="card_info">
+                <span class="card_type discover">Discover</span>
+                <span class="card_number">Discover ending in <strong>1122</strong></span><br />
+                <span class="expiration">Expires 03/12</span>
+            </section>
+            
+            <section class="card_actions">
+                <button type="button" class="edit">Edit</button>
+                <button type="button" class="remove">Remove</button>
+            </section>
+            <div class="clearfix"></div><!--I hate clear divs so I will probably figure out a better way to do this tomorrow
+            
+        This may get left out for the first iteration but I added it because it was quick/easy for now
+            <form class="edit">
+                <% fields_for "transaction[billing]", :builder => BraintreeFormBuilder do |b| -%>
+                    <fieldset class="cardholder_info">
+                        <fieldset class="cardholder_name">
+                            <%= b.label :cardholder_name %>
+                            <%= b.text_field :cardholder_name %>
+                        </fieldset>
+                        <fieldset class="credit_card_number">
+                            <%= b.label :credit_card_number %>
+                            <%= b.text_field :credit_card_number, :pattern => "[0-9]*" %>
+                        </fieldset>
+                        <fieldset class="expiration">
+                            <%= b.label :credit_card_expiration %>
+                          <select id="transaction_credit_card_expiration_month">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select id="transaction_credit_card_expiration_year">
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                          </select>
+                        </fieldset>
+                        <fieldset class="cvv">
+                            <%= b.label :CVV %>
+                            <%= b.text_field :credit_card_cvv, :class => "cvv", :size => "5", :pattern => "[0-9]*" %>                
+                            <a id="what-is-cvv">What's this?</a>
+                        </fieldset>
+                    </fieldset>
+                    <fieldset class="billing_info">
+                        <fieldset class="billing_first_name">
+                            <%= b.label :billing_first_name %>
+                            <%= b.text_field :first_name, :class => "required" %>
+                        </fieldset>
+                        <fieldset class="billing_last_name">
+                            <%= b.label :billing_last_name %>
+                            <%= b.text_field :last_name, :class => "required" %>
+                        </fieldset>
+                        <fieldset class="billing_address_1">
+                            <%= b.label :billing_address_line_1 %>
+                            <%= b.text_field :street_address, :class => "required" %>
+                        </fieldset>
+                        <fieldset class="billing_address_2">
+                            <%= b.label :billing_address_line_2 %>
+                            <%= b.text_field :extended_address %>
+                        </fieldset>
+                        <fieldset class="billing_locality">
+                            <%= b.label :billing_city %>
+                            <%= b.text_field :locality, :class => "required" %>
+                        </fieldset>
+                        <fieldset class="billing_region">
+                            <%= b.label :billing_address_state %>
+                            <%= b.select :billing_region, grouped_options_for_select(grouped_state_options) %>
+                        </fieldset>
+                        <fieldset class="billing_postal_code">
+                            <%= b.text_field :postal_code, :size => 10, :maxlength => 10, :class => "required" %>
+                        </fieldset>
+                        <fieldset class="billing_country_code">
+                            <%= b.label :billing_country %>
+                            <%= b.select :country_code_alpha2, options_for_select([["United States", "US"], ["Canada", "CA"]]) %>
+                        </fieldset>
+                    </fieldset>
+                    <button>Save Changes</button>
+                <% end -%>
+            </form>
+        </li> -->
+    </ul>
+</div><!--/credit_cards-->
+<%= javascript_include_tag "credit_cards.js" %>

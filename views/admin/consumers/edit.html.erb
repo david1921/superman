@@ -1,0 +1,54 @@
+<div class="left_column">
+  <% form_for [:admin, @consumer] do |f| -%>
+    <%= f.error_messages %>
+    
+    <%= f.select_div :publisher_id, options_from_collection_for_select(@publishers.sort_by(&:name), "id", "name", @consumer.publisher_id), {},
+           @consumer.new_record? ? {} : { :disabled => "true" } %>
+
+    <%= f.text_field_div :email %>
+    <%= f.text_field_div :first_name, "First Name:" %>
+    <%= f.text_field_div :last_name, "Last Name:" %>
+                         
+    <%= f.text_field_div :address_line_1 %>
+    <%= f.text_field_div :address_line_2 %>
+    <%= f.text_field_div :billing_city, 'City:' %>
+    <%= f.select_div :state, grouped_options_for_select(grouped_state_options, @consumer.try(:state)), {}, :class => 'floatleft' %>
+    <%= f.text_field_div :zip_code, nil, :size => '6', :maxlength => '6', :class => 'autowidth' %>
+    <%= f.select_div :country_code, options_for_select(@consumer.publisher ? @consumer.publisher.country_codes : Country.active_codes, @consumer.country_code), {}, :class => 'floatleft' %>
+      
+    <% if @consumer.publisher && @consumer.publisher.require_membership_codes? %>
+      <%= render :partial => 'membership_code', :locals => { :consumer => @consumer, :f => f } %>
+    <% end %>
+
+    <%= f.password_field_div :password, "New Password:" %>
+    <%= f.password_field_div :password_confirmation, "Confirm New Password:" %>
+    
+    <%= f.hidden_field :agree_to_terms, :value => true %>
+
+    <% if @consumer.publisher %>
+        <% if full_admin? %>
+        <div class="row">
+          <div class="label"><label for="credit_to_add">Credit To Add:</label></div>
+          <div class="input"><input type="text" id="credit_to_add" name="credit_to_add" size="8" value="" /></div>
+          <div class="help"></div>
+        </div>
+        <% end %>
+      <div class="row account_detail">
+      <p>Credit Available: <%= number_to_currency(@consumer.credit_available, :unit => @consumer.publisher.currency_symbol) %></p>
+      </div>
+    <% end %>
+    <div class="row button_row">
+      <%= submit_tag "Save", :name => "update" %>
+    </div>
+  <% end %>
+</div>
+
+<% unless @consumer.new_record? %>
+  <div class="related">
+    <% if @consumer.access_locked? %>
+      <%= link_to "Unlock Access", unlock_user_lock_path(@consumer), :id => "unlock-access", :method => :put %>
+    <% else %>
+      <%= link_to "Lock Access", lock_user_lock_path(@consumer), :id => "lock-access", :method => :put %>
+    <% end %>
+  </div>
+<% end %>

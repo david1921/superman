@@ -1,0 +1,53 @@
+<% publisher = @publisher || @publishing_group.publishers.find_by_label("bcbsa-national") %>
+
+<div class="footer">
+	<div id="footer_content">
+		
+		
+		<div class="footer_nav">	
+		<h4 id="blue_resources">
+			<%= t(:blue_resources) %>
+		</h4>
+		<div class="footer_links resources_footer_links">
+			<ul>
+				<li><a href="http://bcbs.com/"><%= t(:bcbs_com) %></a></li>
+				<li><a href="<%= params[:locale] == "es-MX" ? 'http://esic.jellyvision-conversation.com/?id=blue365deals' : 'http://ic.jellyvision-conversation.com/?id=blue365deals' %>"><%= t(:ask_blue) %></a></li>
+        <li><a href="<%= faqs_publisher_daily_deals_path(publisher) if publisher %>?page=plans"><%= t(:participating_blue_companies) %></a></li>
+			</ul>
+		</div>
+		</div>
+
+		<div class="footer_nav">
+			<h4 id="details">
+				<%= t(:details) %>
+			</h4>	
+			<div class="footer_links details_footer_links">
+				<ul>
+          <li><a href="<%= faqs_publisher_daily_deals_path(publisher) if publisher %>?page=about"><%= t(:about_blue365) %></a></li>
+          <li><a href="<%= new_publisher_support_contact_request_path(publisher) if publisher %>"><%= t(:contact_us) %></a></li>
+					<li><a href="<%= new_publisher_sales_contact_request_path(publisher) if publisher %>"><%= t(:feature_your_business) %></a></li>	    	
+				</ul>
+			</div>
+		</div>
+		<% if false %> 
+			<div id="social_links" class="footer_nav">
+				<a href="#"><img src="/themes/bcbsa/images/buttons/facebook.png"></a>
+				<a href="#"><img src="/themes/bcbsa/images/buttons/twitter.png"></a>
+			</div>
+		<% end %>
+		<div class="clear"></div>
+		
+		<div id="aa_disclaimer_wrapper">
+			<a href="http://www.analoganalytics.com"><img id="aa_logo" src="/themes/bcbsa/images/graphics/aa_logo.png" /></a>
+			<p id="aa_disclaimer">
+			<%= t(:aa_footer_disclaimer)%>
+			</p>
+		</div>
+		<div class="clear"></div>
+		
+		<div id="footer_terms">
+		   <p><%= raw t(:aa_footer_terms)%> <%= t(:aa_footer_national_pub_licensee) %> </p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

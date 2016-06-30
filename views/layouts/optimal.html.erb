@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <%# TODO: figure out what stylesheets and javascript we need for the optimal payment iframe %>
+
+  <%= stylesheet_link_tag "scoped_reset", "application", "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.publishing_group.try(:label)}/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/daily_deals", :media => "all" %>
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+  
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "deal" %>
+  
+    <title><%= daily_deal_page_title %></title>
+</head>
+<% content_tag :body, :class => "#{controller_name} #{action_name}", :onload => "attachEventsToPopoutLinks()" do -%>
+
+  <div id="flash">
+    <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+      <%= flash[:warn] %>
+    </div>
+    <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+      <%= flash[:notice] %>
+    </div>
+  </div>
+  
+  <div id='content' class="iframe_content">
+    <%= yield %>
+  <div class="clear"></div>
+  </div>
+<% end -%>
+<script type='text/javascript'>
+
+  /* 
+     Responsible for popping out link clicks into
+     the parent window of the iframe.  any anchor
+     with a class name of 'popout' will be transformed.
+     this only works when the parent window and iframe
+     are in the same domain.
+  */                                                   
+  function attachEventsToPopoutLinks() {
+        
+    var links = document.getElementsByTagName("a"),
+        count = links.length,
+        link  = null,
+        i     = 0;
+
+    for( i = 0; i < count; i++ ) {
+      link = links[i];
+      if ( link.className.match(/popout/) ) {
+        if (link.addEventListener){
+          link.addEventListener('click', handlePopoutClick, false);
+        } else if (link.attachEvent){
+          link.attachEvent('onclick', handlePopoutClick);
+        }        
+      }             
+    }
+    
+  };
+  
+  function handlePopoutClick(e) {
+    if (!e) var e = window.event;
+        
+    var target = null;
+    if (e.target) {
+      target = e.target;
+    } else if (e.srcElement) {
+      target = e.srcElement;
+    }
+    if( target && target.href ) {
+      parent.window.location = target.href;
+    } 
+    if ( e.preventDefault ) {
+      e.preventDefault();
+    } else {
+      e.returnValue = false;
+      e.cancelBubble = true;
+      return false;
+    }
+    
+  }
+    
+</script>
+
+</html>

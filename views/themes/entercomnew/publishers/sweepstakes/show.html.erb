@@ -1,0 +1,164 @@
+<div id="sweepstakes">
+
+	<div id="content" class="entry">
+
+		<div id="intro">
+			<img src="/themes/entercomnew/images/graphics/holiday_banner.jpg" alt="" />
+			<h1>Holidaze Craze!</h1>
+			<h2>From 11/28 to 12/24</h2>
+			<p>You must complete and submit all of the information required below to enter the Get My Perks Holidaze Craze contest.  You will be required to sign into your existing Get My Perks Account or to create an account (no purchase necessary).  No more than one entry per email address per day. By entering, you must agree to receive daily deal emails (which you can opt-out of at any time through the link in those daily emails). Good luck!</p>
+		</div>
+
+		<div id="entryform">
+
+			<form id="sweepstakes_entry_form" action="<%= entries_path %>" method="POST">
+
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+				<input type="hidden" name="consumer[agree_to_terms]" value="1"/>
+
+                <% if @sweepstake_entry %>
+                  <p class='warn'>
+                  <%= error_messages_for(
+                              :object => [login_errors_object || @sweepstake_entry.consumer, @sweepstake_entry],
+                              :header_message => nil,
+                              :message => nil
+                      ).sub('<li>Consumer is invalid</li>', '').html_safe %>
+                  </p>
+                <% end %>
+
+				<% if current_consumer_for_publisher?(@publisher) %>
+				  <h1 class="logged_in">Please submit to enter:</h1>
+                  <div id="entry_sign_up">
+                      <fieldset id="phone_number" class="floater">
+                          <label for="consumer_phone_number">Phone:</label>
+                          <input id="consumer_phone_number" name="sweepstake_entry[phone_number]" type="text" value="<%= params[:sweepstake_entry].try(:[], :phone_number) %>" />
+                          <div class="help"></div>
+                      </fieldset>
+                  </div>
+				<% else %>
+
+				<div id="entry_sign_in">
+					<h3>Sign In:</h3>
+						<p id="session_warning"></p>
+					<fieldset class="floater left">
+						<input id="consumer_login_url" name="consumer_login_url" type="hidden" value="/publishers/306/daily_deal_sessions" />
+						<label for="session_email">Email:</label>
+						<input id="session_email" class="email_input" name="session[email]" type="text" value="<%= params[:session].try(:[], :email) %>" />
+						<div class="help"></div>
+					</fieldset>
+					<fieldset class="floater">
+						<label for="session_password">Password:</label>
+						<input id="session_password" name="session[password]" type="password" value="<%= params[:session].try(:[], :password) %>" />
+						<div class="help"></div>
+						<h3 class="forgot_password"><%= link_to "Forgot password?", new_publisher_consumer_password_reset_path(@publisher) %></h6>
+					</fieldset>
+				</div><!-- /entry_sign_in -->
+
+				<div id="entry_sign_up">
+					<h3>Sign Up:</h3>
+					<fieldset id="firstname" class="floater left">
+						<label for="consumer_first_name">First Name:</label>
+						<input id="consumer_first_name" name="consumer[first_name]" type="text" value="<%= params[:consumer].try(:[], :first_name) %>" />
+						<div class="help"></div>
+					</fieldset>
+					<fieldset id="lastname" class="floater">
+						<label for="consumer_last_name">Last Name:</label>
+						<input id="consumer_last_name" name="consumer[last_name]" type="text" value="<%= params[:consumer].try(:[], :last_name) %>" />
+						<div class="help"></div>
+					</fieldset>
+				</div>
+				<div id="entry_sign_up_lower">
+					<fieldset class="floater left">
+						<label for="consumer_email" class="floater">Email:</label>
+						<input id="consumer_email" class="email_input" name="consumer[email]" type="text" value="<%= params[:consumer].try(:[], :email) %>" />
+						<div class="help"></div>
+					</fieldset>
+					<div style="width:155px;overflow:hidden;display:block;float:left;">
+						<fieldset class="floater zip">
+							<label for="consumer_zip_code" class="floater">Zip Code:</label>
+							<input id="consumer_zip_code" class="email_zip_code" name="consumer[zip_code]" type="text" value="<%= params[:consumer].try(:[], :zip_code) %>" />
+							<div class="help"></div>
+						</fieldset>
+					</div>
+					<fieldset id="phone_number" class="floater">
+						<label for="consumer_phone_number">Phone:</label>
+						<input id="consumer_phone_number" name="sweepstake_entry[phone_number]" type="text" value="<%= params[:sweepstake_entry].try(:[], :phone_number) %>" />
+						<div class="help"></div>
+					</fieldset>
+					<fieldset id="password" class="floater left">
+						<label for="consumer_password">Password:</label>
+						<input id="consumer_password" name="consumer[password]" type="password"  value="<%= params[:consumer].try(:[], :password) %>" />
+						<div class="help"></div>
+					</fieldset>
+					<fieldset id="confirm_password" class="floater">
+						<label for="consumer_password_confirmation">Confirm Password:</label>
+						<input id="consumer_password_confirmation" name="consumer[password_confirmation]"  type="password" value="<%= params[:consumer].try(:[], :password_confirmation) %>" />
+						<div class="help"></div>
+					</fieldset>
+				</div>
+				<!-- /entry_sign_up -->
+				<div class="clear"></div>
+				<% end %>
+
+				<div id="submit_entry">
+					<fieldset class="terms">
+						<input id="sweepstake_entry_agree_to_terms" name="sweepstake_entry[agree_to_terms]" type="checkbox" value="1" <%=  params[:sweepstake_entry].try(:[], :agree_to_terms) && 'checked' %> />
+						<label for="sweepstake_entry_agree_to_terms">I have read, understand, and agree to the <a href="<%= official_rules_publisher_sweepstake_path(@publisher.label, @sweepstake) %>" class="lbOn">Official Rules</a> and consent to receiving daily deal emails.</label>
+					</fieldset>
+					<fieldset class="terms">
+						<input id="sweepstake_entry_is_adult" name="sweepstake_entry[is_an_adult]" type="checkbox" value="1" <%=  params[:sweepstake_entry].try(:[], :is_an_adult) && 'checked' %> />
+						<label for="sweepstake_entry_is_adult">I acknowledge that I am over 18 years old and eligible to enter</label>
+					</fieldset>
+					<fieldset>
+						<button type="submit" class="sweeps_submit">Enter!</button>
+					</fieldset>
+				</div>
+
+				<div class="sweepstakes_fine_print">
+					<p>No purchase or payment of any kind is necessary to enter this contest.
+Must be legal resident of 48 contiguous U.S. states, 18 or older as of date of entry.
+One entry per day per email address. Entries must be received by 11:59 pm ET 12/24/11.
+Other requirements and restrictions apply. Check in daily at <a href="http://etm.getmyperks.com/winners/">http://etm.getmyperks.com/winners/</a> to see if you are a daily winner. Click here for complete <a class="lbOn" href="<%= official_rules_publisher_sweepstake_path(@publisher.label, @sweepstake) %>">Official Rules.</a></p>
+				</div>
+
+				</form><!-- sweepstakes_entry_form -->
+
+		</div>
+
+
+	</div>
+
+	<div id="sidebar">
+		<p align="center"><img src="/themes/entercomnew/images/graphics/holiday_gift.png" alt="" /></p>
+		<h2><strong>27 Days Of Prizes!</strong></h2>
+		<p><strong>11/28</strong>  $100 PERKS Bucks</p>
+		<p><strong>11/29</strong>  $200 in Panera Bread Gift Cards</p>
+		<p><strong>11/30</strong>  $200 Enchanted Florist Online Certificate</p>
+		<p><strong>12/01</strong> $200 PERKS Bucks</p>
+		<p><strong>12/02</strong>  $200 in Panera Bread Gift Cards</p>
+		<p><strong>12/03</strong>  iPad 2</p>
+		<p><strong>12/04</strong>  Silver & Pearl Bracelet ($99) and Gold & Silver cuff links ($100)</p>
+		<p><strong>12/05</strong>  $50 PERKS Bucks</p>
+		<p><strong>12/06</strong>  $300 online gift certificate to www.rokstok.com</p>
+		<p><strong>12/07</strong>  $200 in Amazon.com gift cards</p>
+		<p><strong>12/08</strong>  $250 in Fiorella's Jack Stack Barbecue gift cards</p>
+		<p><strong>12/09</strong>  $100 PERKS Bucks</p>
+		<p><strong>12/10</strong>  $200 in Panera Bread Gift Cards</p>
+		<p><strong>12/11</strong>  $300 in Sports Authority gift cards</p>
+		<p><strong>12/12</strong>  $50 PERKS Bucks</p>
+		<p><strong>12/13</strong>  $300 in Sports Authority gift cards</p>
+		<p><strong>12/14</strong>  $200 in Panera Bread Gift Cards</p>
+		<p><strong>12/15</strong>  $200 Dunkin' Donuts Gift Card</p>
+		<p><strong>12/16</strong>  50" LG Plasma HDTV valued at $800</p>
+		<p><strong>12/17</strong>  $200 PERKS Bucks</p>
+		<p><strong>12/18</strong>  $200 in Panera Bread Gift Cards</p>
+		<p><strong>12/19</strong>  $200 PERKS Bucks</p>
+		<p><strong>12/20</strong>  $450 Sonos Zone Player 5 Wireless Hi-Fi System w/ Bridge</p>
+		<p><strong>12/21</strong>  $200 Certificate for 3 shirts / 3 Jeans for Wrangler</p>
+		<p><strong>12/22</strong>  iPad 2</p>
+		<p><strong>12/23</strong>  $150 in Ruth's Chris Steak House gift cards</p>
+		<p><strong>12/24</strong>  Trip To Las Vegas</p>
+
+	</div><!--/sidebar-->
+
+</div>

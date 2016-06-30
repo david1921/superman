@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+
+  <title><%= @offer.advertiser_name %> Coupon</title>
+  <%= stylesheet_link_tag "coupon_ad", :media => "all" %>
+  <meta http-equiv="refresh" content="3" />
+</head>
+
+<body>
+
+<a href="<%= coupons_page_path(:label => @publisher.label, :only_path => false) %>" target="_parent">
+  <div class="offer">
+    <div class="advertiser_tagline">
+      <%= image_tag(@offer.advertiser.logo.url(:thumbnail), :size => "100x30", :class => "logo") %>
+      <span class="advertiser_name"><%= @offer.advertiser_name.upcase %></span>
+      <% if @offer.advertiser.tagline.present? %>: <%= @offer.advertiser.tagline %><% end -%>
+    </div>
+  </div>
+</a>
+<div class="see_more"><%= link_to "Click to see these and more on our new coupons page", 
+                                   coupons_page_path(:label => @publisher.label, :only_path => false) %></div>
+</body>
+</html>

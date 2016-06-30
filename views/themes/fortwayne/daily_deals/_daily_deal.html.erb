@@ -1,0 +1,36 @@
+<div class="product gradient">
+  <h3 class="past_deal_date"><%= daily_deal.start_at.to_s(:long_month_and_year) %></h3>
+  
+  <div class="past_deal_photo">
+  	<%= link_to image_tag(daily_deal.photo.url(:facebook)), publisher_daily_deal_path(daily_deal.publisher, daily_deal) %>
+  </div>
+  
+  <div class="value_proposition">
+  	<h2><%= link_to daily_deal.value_proposition, publisher_daily_deal_path(daily_deal.publisher, daily_deal) %></h2>
+  </div>
+  
+  <div class="clear"></div>
+  
+  <table cellspacing="0" class="dashboard">
+	  <tr>
+	    <th class="">Regular Price</th>
+	    <th class="">Savings</th>
+	    <th class="">Sale Price</th>
+	    <!-- <th class="odd">Purchased</th> -->
+	  </tr>
+	  <tr>
+	    <td class=""><%= number_to_currency daily_deal.value, :precision => 0, :unit => daily_deal.currency_symbol %></td>
+	    <td class=""><%= number_to_percentage daily_deal.savings_as_percentage, :precision => 0 %></td>
+	    <td class=""><%= number_to_currency daily_deal.price, :precision => 0, :unit => daily_deal.currency_symbol %></td>
+	    <!-- <td class="odd"><%= daily_deal.number_sold %></td> -->
+	  </tr>
+   </table>
+        
+    <div class="bring_back">
+    <h3>Bring this deal back!</h3>
+    <div class="fb_wrapper">
+      <div class="vote">Vote:</div>
+      <iframe src="http://www.facebook.com/plugins/like.php?href=<%= publisher_daily_deal_url(daily_deal.publisher, daily_deal) %>&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<% unless current_consumer_for_publisher?(@publisher) %>
+<div id="subscribe_box_wrapper">
+	<div id="subscribe_box">
+		<h4>Sign Up for Daily Deals</h4>
+		<div id="subscribe_form">
+			<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+				<fieldset>
+					<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+					<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+				</fieldset>
+				<fieldset>
+					<input id="subscriber_email" name="subscriber[email]" size="30" type="text" placeholder="Email Address" />
+					<input name="subscriber[terms]" value="0" type="hidden" />
+					<input type="submit" class="sign_up button gradient" value="Submit"/>
+					<div class="mobile_line_break_600"><br /></div>
+					<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" />
+					<span class="agree_to_terms">I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></span>
+				</fieldset>
+			</form>
+		</div><!-- END #subscribe_form -->
+		<a id="hide_form_btn" href="#hide" onclick="hideBtn()">Hide</a>
+	</div><!-- END #subscribe_box -->
+</div><!-- END #subscribe_box_wrapper -->
+<% end %>

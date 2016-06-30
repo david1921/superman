@@ -1,0 +1,9 @@
+<div class="content_box side_deal other_deal_tracking">
+	<div class="side_deal_price_tag">
+		<h1 class="side_deal_price"><span>Price</span> <%= number_to_currency side_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></h1>
+		<a class="side_deal_buy_button" href="<%= daily_deal_path(side_deal) %>" target="_blank" name="buy_now_button"><span>Buy</span></a>
+		<div class="clear"></div>
+	</div><!-- /price_tag -->
+	<a href="<%= daily_deal_path(side_deal) %>" class="side_deal_thumb" title="<%= side_deal.value_proposition %>" target="_blank"><img src="<%= side_deal.photo.url(:facebook) %>" alt="<%= side_deal.value_proposition %>" width="206" /></a>
+	<h3><strong><%= number_to_percentage(100*side_deal.savings/side_deal.value, :precision => 0)%> off:</strong> <%= side_deal.value_proposition %></h3>
+</div>

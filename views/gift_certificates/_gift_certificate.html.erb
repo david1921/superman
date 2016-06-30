@@ -1,0 +1,32 @@
+<tr class="gift_certificate">
+  <td class='logo'>
+    <%= image_tag(gift_certificate.advertiser.logo.url(:normal)) %>
+  </td>
+  <td class='message'>
+    <h3>
+      <%= gift_certificate.advertiser_name -%> <span><%= number_to_currency( gift_certificate.value, :unit => gift_certificate.currency_symbol ) %> Deal Certificate</span>
+    </h3>
+    <p>
+      <% gift_certificate.address do |line| -%>
+        <%= line -%><br/>
+      <% end -%>
+    </p>
+  </td>
+  <td class='purchase'>
+    <p class='price'>Only <%= number_to_currency( gift_certificate.price, :unit => gift_certificate.publisher.currency_symbol ) %></p>
+    <%= render(:partial => "paypal_buy_now_form", :locals => {
+      :target => "_blank",
+      :gift_certificate => gift_certificate,
+      :return_url => @return_url
+    }) -%>
+    <% if gift_certificate.active? -%>
+    <p class='number_available'><%= gift_certificate.available_count %> available</p>
+    <% if gift_certificate.handling_fee? %>
+      <p class='handling_fee'>There&nbsp;is&nbsp;a&nbsp;<%= number_to_currency( gift_certificate.handling_fee, :unit => gift_certificate.publisher.currency_symbol ) %>&nbsp;handling&nbsp;fee.</p>
+    <% end %>
+    <% end -%>
+  </td>
+</tr>
+<tr class="gift_certificate_terms">
+  <td colspan="3"><%= gift_certificate.plain_text_terms %></td>
+</tr>

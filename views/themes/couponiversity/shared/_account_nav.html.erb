@@ -1,0 +1,15 @@
+<div id="account_nav">
+	<% if current_consumer_for_publisher?(@publisher) %>
+		<h4>Welcome, <%= current_consumer.first_name %></h4>
+		<ul>
+			<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+			<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">View My Deals</a></li>
+			<li><a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a></li>
+		</ul>
+	<% else %>
+		<ul class="login_buttons">
+			<li><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+			<li><a href="#" onclick="slideDownAndForget('subscribe_form'); return false;">Subscribe</a></li>
+		</ul>
+	<% end %>
+</div><!-- /account_nav -->

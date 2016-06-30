@@ -1,0 +1,11 @@
+{% if daily_deal %}
+<script type="text/javascript">
+  var aaDealPath = '{{ daily_deal.js_path }}';
+</script>
+{% elsif daily_deals %}
+  <script type="text/javascript">
+    var aaDealPath = '{{ publisher.daily_deals_public_index_js_path }}';
+  </script>
+{% endif %}
+<script data-main="/javascripts/app/daily_deals/main.js" src="/javascripts/lib/require-jquery.js"></script>
+<script type='text/javascript'>jQuery.noConflict();</script>

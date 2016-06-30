@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/elivelife/stylesheets/daily_deals.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/elivelife/stylesheets/elivelife.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/{{ publisher.label }}.css" type="text/css" />
+  
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  
+<!--[if IE]>
+<link href="/themes/elivelife/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  
+  <title>{% daily_deal_page_title %}</title>
+{% include "shared/tracking_google_analytics" %}
+	{% include with_theme "daily_deals/custom_stylesheet_includes" %}
+</head>
+
+<body>
+
+<div class="clear"></div>
+<!--Analog_Analytics_Daily_Deal-->
+
+
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="header">
+			<table width="1000" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding:0;">
+    {% include with_theme "shared/account_nav" %}
+    <img name="new_elive_header" src="/themes/elivelife/images/graphics/header.gif" width="1000" height="160" border="0" id="new_elive_header" usemap="#m_new_elive_header" alt="" />
+      <map name="m_new_elive_header" id="m_new_elive_header">
+        <area shape="rect" coords="40,9,363,106" href="http://elivelife.com/" target="_blank" title="Elivelife.com" alt="Elivelife.com" />
+        <area shape="rect" coords="943,90,995,112" href="https://elivelife.com/index.php?dispatch=profiles.add" target="_blank" title="Register" alt="Register" />
+        <area shape="rect" coords="873,90,925,112" href="https://elivelife.com/index.php?dispatch=auth.login_form&amp;return_url=index.php%3Fdispatch%3Dpages.view%26page_id%3D10" target="_blank" title="Sign in" alt="Sign in" />
+        <area shape="poly" coords="672,119,781,119,781,160,672,160,672,119" href="https://elivelife.com/golf-courses.html" target="_blank" title="Resources" alt="Resources" />
+        <area shape="poly" coords="577,119,664,119,664,160,577,160,577,119" href="https://elivelife.com/about-our-company.html" target="_blank" title="About Us" alt="About Us" />
+        <area shape="poly" coords="486,119,573,119,573,160,486,160,486,119" href="https://elivelife.com/index.php?dispatch=checkout.cart" target="_blank" title="View Cart" alt="View Cart" />
+        <area shape="poly" coords="369,119,483,119,483,160,369,160,369,119" href="https://elivelife.com/index.php?dispatch=auth.login_form&amp;return_url=index.php%3Fdispatch%3Dprofiles.update" target="_blank" title="My Account" alt="My Account" />
+        <area shape="poly" coords="210,119,363,119,363,160,210,160,210,119" href="https://elivelife.com/index.php?dispatch=auth.login_form&amp;return_url=index.php%3Fdispatch%3Dreward_points.userlog" target="_blank" title="Redeem a Certificate" alt="Redeem a Certificate" />
+        <area shape="rect" coords="133,119,206,160" href="http://elivelife.com/index.php?dispatch=categories.catalog" target="_blank" title="Shop" alt="Shop" />
+        <area shape="rect" coords="57,119,130,160" href="http://elivelife.com/" target="_blank" title="Elivelife.com" alt="Elivelife.com" />
+        <area shape="poly" coords="967,4,996,4,996,28,967,28,967,4" href="http://maps.google.com/maps/place?hl=en&amp;georestrict=input_srcid:30f0e4861f18f8bd" target="_blank" title="Google us!" alt="Google us!" />
+        <area shape="poly" coords="934,4,958,4,958,28,934,28,934,4" href="http://twitter.com/elivelife_com" target="_blank" title="Follow us on Twitter!" alt="Follow us on Twitter!" />
+        <area shape="poly" coords="902,4,926,4,926,28,902,28,902,4" href="https://www.facebook.com/elivelife?sk=app_106878476015645" target="_blank" title="Like us on Facebook!" alt="Like us on Facebook!" />
+        <area shape="rect" coords="749,4,798,28" href="https://elivelife.com/index.php?dispatch=sitemap.view" target="_blank" title="Sitemap" alt="Sitemap" />
+        <area shape="rect" coords="676,4,739,28" href="http://visitor.r20.constantcontact.com/manage/optin/ea?v=001Vzv-UqW3G56lTVLxUJmneQ%3D%3D" target="_blank" title="Newsletter" alt="Newsletter" />
+        <area shape="rect" coords="603,4,667,28" href="https://elivelife.com/about-our-company/contact-us.html" target="_blank" title="Contact Us" alt="Contact Us" />
+        <area shape="rect" coords="538,4,595,28" href="https://elivelife.com/about-our-company.html" target="_blank" title="About Us" alt="About Us" />
+        <area shape="rect" coords="492,4,531,28" href="http://elivelife.com/" target="_blank" title="Elivelife.com" alt="Elivelife.com" />
+    </map></td>
+  </tr>
+</table>
+		</div><!--banner-->  
+		<div id="banner">
+			<div id="subscribe_form"><p class="subscribe">ENTER YOUR EMAIL FOR DEAL ALERTS!</p>
+				<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+					<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+					<p><input id="subscriber_email" name="subscriber[email]" size="30" class="ghostie" type="text" value="Email Address" title="Email Address"/></p>
+					<p><input id="subscribe_button" src="/themes/elivelife/images/buttons/sign_up.png" type="image" /></p>
+					<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+					</p>
+				</form>
+			</div>
+		</div><!--banner--> 
+		 
+		<div id="dd_content">
+			{% include with_theme "shared/dd_nav" %}
+	       	 
+		    {% include "shared/flash" %}
+		    {{ content_for_layout }}
+		    <div class="clear"></div>
+		    {% include "shared/a_a_alt" %}
+		</div><!--dd_content-->
+		
+		<div id="dd_footer">
+			<ul id="footer_nav">
+				<li><a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> </li>
+				<li><a href="{{ publisher.how_it_works_path }}">How It Works</a></li>
+				<!-- <li><a href="">Past Deals</a></li> -->
+				<li><a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+				<li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+				<li class="last"><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+			</ul><!-- /footer_nav -->
+			<div class="clear"></div>
+			<ul id="legal_nav">
+				<li><a href="{{ publisher.privacy_path }}">Privacy Policy</a></li>
+				<li class="last"><a href="{{ publisher.terms_path }}">Terms and Conditions</a></li>
+			</ul><!-- /legal_nav -->
+		</div><!-- /dd_footer -->
+	</div><!--daily_deal-->
+
+</div><!--analog_analytics-->
+
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>

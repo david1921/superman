@@ -1,0 +1,48 @@
+	<h1>Sign up for Daily Deal alerts
+	<br />Coming Soon!</h1>
+<!-- 	<h2>Enter your email address:</h2> -->
+	
+	<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" method="POST" class="presignup">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<input type="hidden" name="subscriber[required_fields][]" value="subscriber[city]">                  
+		
+		<table>
+		<tr>
+			<td>
+		
+				<label for="First Name">First Name:</label>
+			</td>
+			<td>
+        		<input class="dd_input name" id="subscriber_first_name" name="subscriber[first_name]" title="First Name" type="text"  />
+        	</td>
+ 		</tr>
+      	<tr>
+        	<td><label for="Last Name">Last Name:</label></td>
+        	<td><input class="dd_input name" id="subscriber_last_name" name="subscriber[last_name]" title="Last Name" type="text"  /></td>
+        </tr>
+		
+		<tr>
+			<td><label for="Email address">Email Address:</label></td>
+			<td><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></td>		
+		</tr>
+		
+		<tr>
+			<td colspan="2" id="market_menu">
+				<h2>Select your city:</h2>
+				{{ publisher | market_selection: 'subscriber[market_publisher_id]', true, false, true }}
+			</td>
+		</tr>
+		
+		</table>
+		
+		<fieldset>
+			<input name="subscriber[terms]" type="hidden" value="0" />
+			<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+			<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+		</fieldset>
+		<p><input id="subscribe_button" class="button" type="submit" value="Sign Up" /></p>
+	</form>
+	<div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div>
+

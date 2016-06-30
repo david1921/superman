@@ -1,0 +1,283 @@
+  <%= javascript_include_tag "/themes/gazette/javascripts/navload.js" %>
+  <%= render :partial => with_theme("shared/share_buttons_js") %>
+  <%= render :partial => with_theme("daily_deals/meta_tags") %>
+  <% @scode = "colgazette" %>
+  <% @domain = "dealoftheday.gazette.com" %>
+  <%= stylesheet_link_tag "/themes/gazette/analog-header_files/load.css" %>
+  <%= stylesheet_link_tag "/themes/gazette/stylesheets/load1.css" %>
+  <%= stylesheet_link_tag "/themes/gazette/stylesheets/mobile-mods.css" %>
+  
+    <style type="text/css">
+/*<![CDATA[*/
+        body {
+          background-color: #d2d2d2;
+          margin: 0px;
+          width: auto;
+        }
+        #logoLink {
+                        background: none;
+                }
+        .fi_footer2, .fi_footer {
+          line-height: normal;
+        }
+        .fi_footer a {
+          color: blue;
+        }
+        #content #analog_analytics #daily_deal {
+          border: 1px solid #9a9fa7;
+          padding-bottom: 10px;
+          background: #FFFFFF;
+          max-width:965px;
+        }
+        #content #analog_analytics #daily_deal #outer_frame {
+          background: #DDDDDD;
+          margin: 10px auto 0px;
+          -moz-border-radius: 10px; 
+          -webkit-border-radius: 10px;
+          border-radius: 10px;
+          padding-bottom: 10px;
+        }
+        /*]]>*/
+        </style>
+<!--[if IE]>
+        <style type="text/css">
+/*<![CDATA[*/
+        #content #analog_analytics #daily_deal .top {
+          line-height: 1.6em;
+        }
+        /*]]>*/
+        </style>
+<![endif]-->
+
+        <style type="text/css">
+/*<![CDATA[*/
+        #commentssummary {
+        margin-left:0px;
+        // margin-left:3px;
+        }
+        /* html #abovenavad, * html #slider_q1, * html .slider_pencil {
+        font-size:0%;
+        margin-top:-10px;
+        padding-top:0;
+        }
+        */
+        #closespace {
+        margin-bottom: -16px;
+        margin-top: -12px;
+        z-index: 1;
+        }
+
+        /*]]>*/
+        </style>
+        <style type="text/css">
+/*<![CDATA[*/
+        .ajlogin {
+        height: 100px;
+        padding-left: 10px;
+        }
+
+        .ajlogin p {
+        margin: 0;
+        margin-bottom: 5px;
+        }
+
+        .ajlogin a {
+        color: #fff;
+        text-decoration: none;
+        }
+
+        .ajlogin a:hover {
+        background: transparent;
+        }
+
+        .ajlogin h2 {
+        color: #fad450;
+        display: inline;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        }
+
+        .ajlogin input {
+        font-size: 9px;
+        width: 80px;
+        }
+
+        .ajlogin .signIN {
+        background-color: #00aad4;
+        color: #fff;
+        font-weight: bold;
+        border: 0;
+        padding: 1px 2px;
+        font-size: 9px;
+        width: auto;
+        margin-left: 5px;
+        }
+
+        .ajlogin .memberss,.ajlogin .memberss a {
+        color: #fad450;
+        font-size: 11px;
+        margin-top: 10px;
+        }
+
+        .ajlogin .forgetPass a {
+        color: #fff;
+        text-decoration: underline;
+        }
+
+        .ajlogin label {
+        font-size: 11px;
+        font-weight: bold;
+        color: #fff;
+        font-family: arial;
+        width: 100px;
+        display: inline;
+        float: none;
+        }
+                                #fi_header .logo{
+                                margin-bottom: 20px;
+                                }
+        .ajlogout {
+        position: relative;
+        font-size: 11px;
+        }
+
+        .memberName {
+        color: white;
+        }
+
+        .notMember a {
+        color: #fad450;
+        text-decoration: underline;
+        }
+
+        .clear {
+        clear: both;
+        }
+
+        .ajlogout ul {
+        list-style-position: inside;
+        color: #fff;
+        }
+
+        .ajlogout h2 {
+        font-size: 13px;
+        }
+
+        .ajlogout li {
+        font-weight: bold;
+        }
+
+        .avtr {
+        position: absolute;
+        top: 7px;
+        right: 10px;
+        }
+
+        .avtr img {
+        width: 40px;
+        height: 40px;
+        }
+
+        .ajlogin .label {
+        float: left;
+        width: 80px;
+        }
+
+        .headrow2 {
+        margin-top: 0px; *
+        margin-top: 10px;
+        }
+
+        #LoggedIn {
+        display: none;
+        }
+
+        #LoggedOut {
+        display: block;
+        }
+
+        #systemWorking {
+        text-align: center;
+        }
+
+        #componentDiv embed {
+        height: 33px;
+        }
+
+        a.signIn,a.join {
+        font-size: 12px;
+        text-decoration: underline;
+        margin: 0 5px;
+        }
+
+        #SitelifeStatusBox {
+        height: 60px;
+        *overflow: hidden;
+
+        }
+        .pluck_user_info {      
+        text-align: center;
+        }
+
+        * html body #fi_header_headrow2{
+        margin-top: 10px;
+
+        }
+        /*]]>*/
+        </style>
+        <style type="text/css">
+/*<![CDATA[*/
+        .MYCfeaturelink11410, .MYCfeaturelink11410 a, .MYCfeaturelink11410 a:visited, .MYCfeaturelink11410 a:hover {
+        color:#000;
+        font-family:Arial;
+        font-size:0.8em;
+        text-decoration:none;
+        text-align:center;
+
+        }
+
+        .iefix{
+        margin-top:15px;
+        _margin-top:18px;
+        *margin-top:20px;
+        }
+
+
+        /*]]>*/
+        </style>
+        <link rel="stylesheet" type="text/css" href=
+        "/themes/gazette/stylesheets/load3.css" />
+        <style type="text/css">
+/*<![CDATA[*/
+        .localSearch, .localSearchCategories {
+        font-size: 12px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        }
+        select.localSearchCityList  {
+        width: 174px;
+        height: 19px;
+        }
+        .localSearchCityList option {
+        font-size: 10px;
+        }
+        .localSearch label, .localSearchCategories label {
+        font-weight: bold;
+        padding-left: 5px;
+        }
+        ul.localSearchCatList {
+        list-style-type: none;
+        }
+        .localSearchCatList {
+        font-size: 11px;
+        float: left;
+        text-align: left;
+        padding-left: 25px;
+        padding-top: 7px;
+        }
+        .localSearchCatList a {
+        color: #003366;
+        }
+        /*]]>*/
+        </style>
+<%= javascript_include_tag "/javascripts/jquery/jquery.min.js" %>

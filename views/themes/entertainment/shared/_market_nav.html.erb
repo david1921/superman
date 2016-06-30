@@ -1,0 +1,23 @@
+<ul id="market_menu"><span><%= @publisher.market_name_or_city %></span>
+	<li><a href="#" id="market_selection_tab"><p>Change Location</p></a>
+		<div id="market_selection_container">
+			<%= market_selection_list(@publisher) %>
+		</div>
+	</li>
+</ul>
+
+<script type="text/javascript">
+jQuery.noConflict();
+       jQuery("#market_menu li").hover(function() {
+        var thisitem = jQuery(this);
+        jQuery('.market_selection_list').css('visibility', 'visible')
+            thisitem.find("ul").stop(true,true).show();
+    } , function() {
+        var thisitem = jQuery(this)
+            thisitem.find("ul").stop(true,true).delay('300').fadeOut('200');
+    });
+</script>
+
+
+
+

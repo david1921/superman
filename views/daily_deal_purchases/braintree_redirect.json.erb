@@ -1,0 +1,5 @@
+<%= {
+  :captured => @daily_deal_purchase.captured? ? "true" : "false",
+  :session  => @session,
+  :status   => status_daily_deal_purchase_url(@daily_deal_purchase.uuid, :host => AppConfig.api_host, :format => "json")
+}.to_json.html_safe -%>

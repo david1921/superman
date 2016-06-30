@@ -1,0 +1,18 @@
+<% if featured_deal.publishers_category.present? %>
+
+    <% if featured_deal.publishers_category.name == "Activities" %>
+        <h3>Activities
+    <% elsif featured_deal.publishers_category.name == "Beauty" -%>
+        <h3>Beauty
+    <% elsif featured_deal.publishers_category.name == "Other" -%>
+        <h3>Shopping
+    <% elsif featured_deal.publishers_category.name == "Theater" -%>
+        <h3>Entertainment
+    <% elsif featured_deal.publishers_category.name == "Tourism" -%>
+        <h3>Travel
+    <% elsif featured_deal.publishers_category.name == "Dining" -%>
+        <h3>Dining
+    <% end %>
+    <span class="category_icon <%= featured_deal.publishers_category.name.downcase %>_category_icon"></span></h3>
+    
+<% end %>    	

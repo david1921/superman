@@ -1,0 +1,22 @@
+<%= {
+  :name => @advertiser.name,
+  :logo => @advertiser.logo.url,
+  :updated_at => @advertiser.updated_at.utc.to_formatted_s(:iso8601),
+  :website => @advertiser.website_url,
+  :locations => @advertiser.stores.map { |store| {
+    :id => store.id,
+    :name => nil,
+    :address_line_1 => store.address_line_1,
+    :address_line_2 => store.address_line_2,
+    :city => store.city,
+    :state => store.state,
+    :zip => store.zip,
+    :country => "US",
+    :latitude => store.latitude,
+    :longitude => store.longitude, 
+	:phone_number => store.phone_number
+  }},
+  :connections => {
+    :publisher => publisher_url(:id => @advertiser.publisher.label, :format => "json", :host => AppConfig.api_host)
+  }
+}.to_json.html_safe -%>

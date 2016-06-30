@@ -1,0 +1,8 @@
+<% if @offer -%>
+  <%= error_messages_for(:advertiser) %>
+  <%= error_messages_for(:store) if @store %>
+
+  <iframe src="<%= edit_offer_url(@offer) %>" width="1000" height="1500" scrolling="no"></iframe>
+<% else -%>
+  <p>There are no more errors</p>
+<% end -%>

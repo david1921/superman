@@ -1,0 +1,7 @@
+ <% if @publisher.allow_all_deals_page %>
+<h4>All Deals</h4>
+<div id="all_deals" class="content_box">
+  <h2 class="refer">See the next <%= @publisher.daily_deals.active.length %> deals!</h2>
+	<a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=9" class="button gradient all_deals_tracking <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">More</a>
+</div><!-- /all_deals -->
+<% end %>       

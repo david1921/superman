@@ -1,0 +1,6 @@
+<%# This logo is a promotional logo, it's not meant for all purchases %>
+<% if @daily_deal_purchase.try(:earned_discount) %>
+    <h1><img class="promotion_logo" src="<%= "http://#{AppConfig.default_host}/themes/entercom/images/email/header_for_promo_purchase_confirmation.jpg" %>"/></h1>
+<% elsif logo = @daily_deal_purchase.try(:consumer).try(:publisher).try(:daily_deal_logo) -%>
+    <h1><img src="<%= logo.url %>"/></h1>
+<% end -%>

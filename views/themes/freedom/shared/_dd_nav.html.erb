@@ -1,0 +1,30 @@
+<div id="dd_nav_wrapper">
+
+	<% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending  %>
+    <% travel_category = categories.find_by_name("Travel Deal") %>
+	<ul id="dd_nav" class="<%= travel_category.blank? ? 'short_dd_nav' : 'full_dd_nav'%>">
+		<li><a id="first" href="<%= public_deal_of_day_path(@publisher.label) %>" class="<%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>">Today's Deal</a></li>
+		
+		<!-- travel deals link -->
+    	<% unless travel_category.blank? %>
+			<li>
+				<a href="<%= publisher_daily_deal_category_path(@publisher, travel_category) %>" class="<%= "#{controller_name}" == "daily_deal_categories" ? 'current_page' : nil %>">Travel Deals</a></li>
+		<% end %>
+		<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals</a></li>
+		<% if @publisher.launched? %>
+			<% if current_consumer_for_publisher?(@publisher) %>
+		<li><a id="last" href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>" class="<%= "#{controller_name}##{action_name}" == "consumers#edit" ? 'current_page' : nil %>">My Account</a></li>
+			<% else %>
+		<li><a id="last" href="<%= daily_deal_login_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deal_sessions#new" ? 'current_page' : nil %>">My Account</a></li>	
+			<% end %>
+		<% end %>
+	</ul><!-- /dd_nav -->
+	<% if @publisher.launched? %>
+		<% unless current_consumer_for_publisher?(@publisher) %>
+	<div id="facebook_connect">
+		<a href="<%= auth_init_path(@publisher) %>"><img src="/themes/freedom/images/buttons/facebook_connect.png" alt="Facebook Connect"></a>
+	</div>
+		<% end %>
+	<% end %>
+	<div class="clear"></div>
+</div><!-- /dd_nav_wrapper -->

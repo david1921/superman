@@ -1,0 +1,69 @@
+<div id="omniture" style="display:none;">
+<!-- SiteCatalyst code version: H.17.
+Copyright 1997-2005 Omniture, Inc. More info available at
+http://www.omniture.com -->
+<script language="JavaScript"><!--//
+/* Specify the Report Suite ID(s) to track here */
+var s_account="<%= @publisher.analytics_site_id %>";
+//--></script>
+<script language="JavaScript" src="/javascripts/omniture/SiteCatalystCode_H_17.js"></script>
+<script language="JavaScript" src="/javascripts/omniture/OmnitureHelper.js"></script>
+<script language="JavaScript"><!--
+/* You may give each page an identifying name, server, and channel on
+the next lines. */
+s.pageName="Deal of the Day / Todays Deal"
+s.channel="Deal of the Day"
+s.prop1="d=g"
+s.prop2 = "Deal of the Day / Todays Deal"
+s.prop9=getCiQueryString("SOURCE")
+s.eVar2=getCiQueryString("SOURCE")
+/* E-commerce Variables */
+s.campaign=getCiQueryString("EADID")+getCiQueryString("CREF")
+s.events="event1"
+s.eVar4=s.pageName
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script>
+<noscript>
+<img src="<%= request.protocol %><%= @publisher.analytics_site_id %>.112.2O7.net/b/ss/<%= @publisher.analytics_site_id %>/1/H.17--NS/0"
+height="1" width="1" border="0" alt="" />
+</noscript>
+<!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.17. -->
+</div>
+
+<% if analytics_tag.sale? -%>
+<!-- Begin SearchRev CONVERSION Tag -->
+<noscript>
+<img src='https://s1.srtk.net/www/delivery/ti.php?trackerid=1275&cb=1594761480&_sr_amount=0&_sr_orderid=0' width='1' height='1' border='0'/>
+</noscript>
+<script language='JavaScript' type='text/javascript'>
+var _sr_amount=<%= analytics_tag.data.value %>;
+var _sr_orderid='0';
+var az_p=location.protocol=='https:'?'https:':'http:';
+var az_r=Math.floor(Math.random()*999999);
+document.write ("<" + "script language='JavaScript' ");
+document.write ("type='text/javascript' src='"+az_p);
+document.write ("//s1.srtk.net/www/delivery/tjs.php");
+document.write ("?trackerid=1275&r="+az_r+"'><" + "/script>");
+</script>
+<!-- End SearchRev Tag -->
+<% end -%>
+<% if analytics_tag.signup? -%>
+<!-- Begin SearchRev ACTION Tag -->
+<noscript>
+<img src='https://s1.srtk.net/www/delivery/ti.php?trackerid=1276&cb=166195669' width='1' height='1' border='0'/>
+</noscript>
+<script language='JavaScript' type='text/javascript'>
+var az_p=location.protocol=='https:'?'https:':'http:';
+var az_r=Math.floor(Math.random()*999999);
+document.write ("<" + "script language='JavaScript' ");
+document.write ("type='text/javascript' src='"+az_p);
+document.write ("//s1.srtk.net/www/delivery/tjs.php");
+document.write ("?trackerid=1276&r="+az_r+"'><" + "/script>");
+</script>
+<!-- End SearchRev Tag -->
+<% end -%>
+

@@ -1,0 +1,7 @@
+if @disclosed
+  page["disclosure_#{@category.id}"].remove_class_name "disclosed"
+  page.replace_html "subcategories_#{@category.id}", ""
+else
+  page["disclosure_#{@category.id}"].add_class_name "disclosed"
+  page.replace_html "subcategories_#{@category.id}", :partial => "subcategory", :collection => @subcategories.sort_by(&:name)
+end

@@ -1,0 +1,349 @@
+my_space:
+  name: MySpace
+  label: myspace
+  password: giro2008
+  self_serve: true
+  production_subdomain: sb1
+  enable_paypal_buy_now: true
+  enable_daily_deal_referral: true
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+li_press:
+  name: Long Island Press
+  label: longislandpress
+  self_serve: true
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+gvnews:
+  name: Green Valley News
+  label: gvnews
+  theme: enhanced
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: [us, ca, uk]
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+sdh_austin:
+  name: Student Discount Handbook Austin
+  label: mysdh-austin
+  theme: simple
+  publishing_group: student_discount_handbook
+  txt_keyword_prefix: SDH
+  production_subdomain: sb1
+  self_serve: true
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+sdh_boulder:
+  name: Student Discount Handbook Boulder
+  label: mysdh-boulder
+  theme: simple
+  publishing_group: student_discount_handbook
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+locm:
+  name: Local.com
+  label: locm
+  theme: simple
+  publishing_group: locm
+  default_offer_search_distance: 5
+  search_box: true
+  advertiser_has_listing: true
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+sdreader:
+  name: San Diego Reader
+  label: sdreader
+  theme: standard
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+tucsonweekly:
+  name: Tucson Weekly
+  label: tucsonweekly
+  theme: standard
+  production_subdomain: sb2
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+sdcitybeat:
+  name: San Diego City Beat
+  label: sdcitybeat
+  theme: sdcitybeat  
+  production_subdomain: sb3
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+vcreporter:
+  name: Ventura County Reporter
+  label: vcreporter
+  theme: standard  
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+    
+monthlygrapevine:
+  name: The Monthly Grapevine
+  label: monthlygrapevine
+  theme: standard
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+elpasotimes:
+  name: El Paso Times
+  label: elpasotimes
+  theme: standard    
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+knoxville:
+  name: Knoxville
+  label: knoxville
+  theme: standard
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+chicoer:
+  name: Chico ER
+  label: chicoer
+  theme: standard    
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+houston_press:
+  name: Houston Press
+  label: houstonpress
+  self_serve: true
+  theme: businessdirectory
+  publishing_group: vvm
+  advertiser_has_listing: true
+  txt_keyword_prefix: HOU
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+express_milwaukee:
+  name: Express Milwaukee
+  label: expressmilwaukee
+  theme: standard
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+north_shore_sun:
+  name: North Shore Sun
+  publishing_group: times_review
+  label: northshoresun
+  theme: standard
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+suffolk_times:
+  name: The Suffolk Times
+  publishing_group: times_review
+  label: suffolktimes
+  theme: standard
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+dallas_observer:
+  name: Dallas Observer
+  label: dallasobserver
+  self_serve: true
+  theme: standard
+  publishing_group: vvm
+  advertiser_has_listing: true
+  txt_keyword_prefix: DAL
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+denver_westword:
+  name: Denver Westword
+  label: denverwestword
+  self_serve: true
+  theme: standard
+  publishing_group: vvm
+  advertiser_has_listing: true
+  txt_keyword_prefix: DEN
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+wor710:
+  name: WOR 710
+  label: wor710
+  self_serve: true
+  theme: standard
+  advertiser_has_listing: true
+  txt_keyword_prefix: WOR
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+  
+journal_register:
+  name: Journal Register
+  label: journalregister
+  self_serve: true
+  theme: businessdirectory
+  advertiser_has_listing: true
+  txt_keyword_prefix: WOR
+  production_subdomain: sb1
+  page_preference: 20
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"
+
+entercom:
+  name: Entercom
+  label: entercom
+  theme: standard
+  production_subdomain: sb1
+  launched: true
+  address_line_1: "1600 Pennsylvania Avenue NW"
+  city: "Washington"
+  state: "DC"
+  zip: "20500"
+  country_id: <%= Fixtures.identify(:us) %>
+  countries: us
+  encrypted_federal_tax_id: "if4g/FBdLPELdRtwvvnP1A==\n"

@@ -1,0 +1,102 @@
+<%- metadata = {
+        :apply_discount_url => apply_publisher_discounts_url(@publisher),
+        :unit_price => @daily_deal_purchase.price,
+        :credit_available => @daily_deal_purchase.credit_available,
+        :discount_amount => @daily_deal_purchase.discount_amount,
+        :currency_symbol => @daily_deal_purchase.currency_symbol
+} -%>
+<h1 id="payment_header"><%=t ".title" %></h1>
+
+<% form_for [@daily_deal, @daily_deal_purchase], :html => {:id => "daily_deal_purchase"}.merge(metadata) do |f| %>
+    <%= f.hidden_field(:discount_uuid) %>
+    <%= f.hidden_field(:credit_used) %>
+    <%= f.hidden_field(:certificates_to_generate_per_unit_quantity) %>
+    <%= f.hidden_field(:daily_deal_variation_id) %>
+    <%= hidden_field_tag :daily_deal_id, @daily_deal.id %>
+
+    <%= error_messages_for(
+                :object => [@daily_deal_purchase, @daily_deal_purchase.consumer],
+                :header_message => t('.error_header_message')
+        ) %>
+
+    <h2 id="quantity_header"><%=t '.quantity_header' %></h2>
+    <%= render(:partial => "quantity", :locals => {:publisher => @publisher, :daily_deal_purchase => @daily_deal_purchase, :f => f}) %>
+
+    <%- if @daily_deal_purchase.location_required? -%>
+      <h2><%=t 'location.one' %></h2>
+        <%= f.select_div(:store_id, daily_deal_purchase_store_id_options(@daily_deal_purchase)) %>
+    <%- end -%>
+
+    <% unless @daily_deal_purchase.travelsavers? %>
+      <h2 class="clear"><%=t '.recipient_header' %></h2>
+      <%= f.radio_button_div(:gift, false, t('.self_purchase_message'), :class => "daily_deal_purchase_gift") %>
+      <%= f.radio_button_div(:gift, true, t('.gift_purchase_message'), :class => "daily_deal_purchase_gift") %>
+    <% end %>
+
+    <% if @daily_deal.requires_shipping_address? %>
+        <div id="recipients" class="with_addresses">
+          <% if @daily_deal_purchase.gift? %>
+              <h3><%=t '.recipients_and_shipping_information' %></h3>
+
+              <p class="shipping_address_message"><%= @daily_deal.shipping_address_message %></p>
+
+              <%- @daily_deal_purchase.recipients.each do |recipient| -%>
+                <%= render with_theme("recipient"), :recipient => recipient, :form => f %>
+              <%- end -%>
+          <%- else -%>
+              <div id="customer_shipping_address">
+                <h3><%=t '.shipping_information' %></h3>
+
+                <p class="shipping_address_message"><%= @daily_deal.shipping_address_message %></p>
+
+                <%= render with_theme("recipient"),
+                            :recipient => (@daily_deal_purchase.recipients.first) || DailyDealPurchaseRecipient.new(:name => @daily_deal_purchase.consumer.name),
+                           :form => f %>
+              </div>
+          <%- end -%>
+        </div>
+
+    <% else %>
+        <div id="recipients" style="display: <%= @daily_deal_purchase.gift? ? "" : "none" %>;">
+          <%- (@daily_deal_purchase.recipient_names || []).each_with_index do |recipient_name, i| -%>
+              <%- id = "daily_deal_purchase_recipient_name_#{i}" -%>
+              <div class="row">
+                <div class="label">
+                  <label for="<%= id %>"><%=t '.recipient_name' %>:</label>
+                </div>
+                <div class="input">
+                  <input type="text" size="30" name="daily_deal_purchase[recipient_names][]" id="<%= id %>" value="<%= recipient_name %>" autocomplete="off">
+                </div>
+              </div>
+          <%- end -%>
+        </div>
+    <% end %>
+
+    <% if @publisher.allows_donations? %>
+        <div id="donation">
+          <%= render with_theme("donation"), :f => f %>
+        </div>
+    <% end %>
+
+    <% if @publisher.allow_voucher_shipping? && !@daily_deal.travelsavers? %>
+        <div id="fulfillment_options" style="margin: 20px 0;">
+          <%= render with_theme("fulfillment_options"), :f => f %>
+        </div>
+    <% end %>
+
+    <div id="facebook" style="<%= show_if(@daily_deal_purchase.facebook_user?) %>">
+      <h2 class="clear"><%=t 'facebook' %></h2>
+
+      <div id="post_to_facebook">
+        <%= f.check_box_div(:post_to_facebook, t('.share_with_facebook')) %>
+      </div>
+    </div>
+
+    <h2 class="clear"><%=t '.buyer_header' %></h2>
+    <%= render(:partial => with_theme("consumer"), :object => @daily_deal_purchase.consumer, :locals => {:publisher => @publisher}) %>
+
+    <div id="buttons" class="row">
+      <%= submit_tag(@publisher.shopping_cart ? t('.add_to_cart') : t('.review_and_buy'), :id => "review_button",
+                     :name => "review", :onclick => "submitBuyerFormAndDisableReviewAndBuyButton();") %> <%= daily_deal_cancel_link(@publisher) %>
+    </div>
+<% end -%>

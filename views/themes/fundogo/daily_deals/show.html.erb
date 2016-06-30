@@ -1,0 +1,110 @@
+<div class="clear"></div>
+<div class="main_column">
+	<% if !@daily_deal.daily_deal_variations.blank? -%>
+		<%= render :partial => with_theme("shared/dd_variations_menu") %>
+	<% end %>
+	<div class="content_box"><!-- deal info top row -->
+		<h1 class="value_prop"><%= @daily_deal.value_proposition %></h1>
+		<% if @daily_deal.value_proposition_subhead.present? -%>
+		  <h2 class="value_prop_subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+		<% end -%>
+		
+		<div class="photo_share_wrapper">
+			<div class="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.advertiser.name %>" /></div>
+				
+				<% if @daily_deal.sold_out? -%>
+				  <div class="sold_out_message">
+				    <div>
+					  <h5>Did you miss out?</h5>
+					  <p>Enter your email at the top of the page to be notified of future deals like this!</p>
+				    </div>
+				  </div>
+				<% end -%>
+
+				<div class="share">
+					<p>Share this deal:</p>
+					<a href="<%= facebook_daily_deal_path(@daily_deal) %>" class="share_button facebook"  target="_blank" title="Share coupon on Facebook"><span>Facebook</span></a>
+					<a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_button twitter" target="_blank"><span>Twitter</span></a>
+					<a id="share_via_email_link" href="" class="share_button email"><span>Email</span></a>
+					<script type="text/javascript" charset="utf-8">
+						var mailto = "mailto:"
+						mailto += escape("<Insert Recipients Here>") +"?subject=" +escape('<%= "#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}" %>') +"&body=" +escape('Check out this deal at <%= daily_deal_url(@daily_deal) -%>?utm_source=fundogo-share_this_deal&utm_medium=email&utm_campaign=share-this-deal');
+						document.getElementById('share_via_email_link').href = mailto;
+					</script>
+					<!-- Google Plus -->
+<!-- 					<g:plusone></g:plusone> -->
+					
+					<!-- Place this render call where appropriate -->
+					<script type="text/javascript">
+					(function() {
+					var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					po.src = 'https://apis.google.com/js/plusone.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					})();
+					</script>				
+					<!-- /Google Plus -->
+			</div><!-- /share -->
+		</div><!-- /photo_share_wrapper -->
+		
+		<div class="dashboard"><!--dashboard -->
+			<div id="price_tag">
+				<p class="daily_deal_price"><% if !@daily_deal.daily_deal_variations.blank? -%><span>From</span><% end %><%= number_to_currency @daily_deal.price_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></p>
+				<div id="buy_now">
+					<% if @daily_deal.sold_out? -%>
+					<div id="sold_out" class="dd_button sold_out gradient"><span>Sold Out!</span></div>
+					<% elsif @daily_deal.over? -%>
+					<div id="deal_over" class="dd_button deal_over gradient"><span>Deal Over</span></div>
+					<% elsif @daily_deal.active? -%>
+					<a id="buy_now_button" class="dd_button buy gradient<% if !@daily_deal.daily_deal_variations.blank? -%> dd_variations_button<% end %>" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><span>Get it!</span></a>
+					<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+					<% else -%>
+					<div id="not_yet" class="dd_button"><span>Coming Soon!</span></div>
+					<% end -%>
+				</div><!-- /buy_now -->
+				<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+				<%= render :partial => 'shared/variation_delay.js' %>
+			</div><!-- /price_tag -->
+            <div class="deal_specs">
+                <table class="value_summary" cellspacing="0">
+                     <tr>
+                          <td class="value"><span id="daily_deal_value"><%= number_to_currency @daily_deal.value_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></span></td>
+                          <th>Value</th>
+                     </tr>
+                     <tr>
+                          <td class="savings"><span id="daily_deal_savings_as_percentage"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span></td>
+                          <th>Savings</th>
+                     </tr>
+                     <tr>
+                     
+                        <% if @daily_deal.number_sold_meets_or_exceeds_display_threshold? -%>
+                          <td class="purchased"><%= @daily_deal.number_sold %></td>
+                          <th>Purchased!</th>
+                        <% end -%>
+
+                     </tr>
+                </table>
+            </div><!-- /deal_specs -->
+
+			<table class="timer">
+				<tr>
+					<th class="time_left_to_buy_label">Time Left to Buy:</th>
+				</tr>
+				<tr>
+					<td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+				</tr>
+			</table><!-- /timer -->
+			
+		</div><!-- /dashboard -->
+		
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	
+	<div><!-- deal info bottom row -->
+	
+		<%= render :partial => with_theme('shared/deal_tab_content'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+		
+	</div><!-- /deal info bottom row -->
+
+</div><!-- /main_column -->
+<%= render :partial => with_theme('shared/sidebar'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+<%= render :partial => with_theme('shared/bottombar'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>

@@ -1,0 +1,193 @@
+	<!-- Header : Begin -->
+	<div id="header">
+
+		<!-- Header Inner : Begin -->
+		<div id="headerInner">
+
+			<!-- Logo : Begin -->
+			<div id="logo">
+			  <%= link_to( image_tag("/themes/#{@publisher.label}/images/branding/logo.jpg", :alt => "VCR"), "http://www.vcreporter.com", :title => "Visit the VCR Homepage") %>
+			</div>
+			<!-- Logo : End -->
+      <!-- Banner Ad : Begin -->
+      <!--
+			<iframe id="bannerAd_1" src="http://www.vcreporter.com/custom-media/html/bannerad-1.html" width="728"  height="90"  scrolling="no" frameborder="0" marginheight="0"  marginwidth="0" vspace="0" hspace="0" style="padding: 0px; text-align: center;"></iframe>
+			-->
+			<% unless request.ssl? -%>
+			<script type="text/javascript">GA_googleFillSlot("Leaderboard");</script>
+			<% end -%>
+			<!-- Banner Ad : End -->
+			<!-- Main Search : Begin -->
+			<div id="mainSearch">
+				<div id="searchBar">
+					<a href="http://www.vcreporter.com/custom-media/html/newsletter.html?keepThis=true&amp;TB_iframe=true&amp;height=230&amp;width=400" title="Subscribe to our newsletter" style="margin: 6px 20px 0 0; display: block; float: left;" class="thickbox">Subscribe to newsletter</a>
+					<form action="http://www.vcreporter.com/cms/commons/global_search/" method="get">
+							<input type="text" name="text_search" id="mainSearchInput" value="" />
+							<input type="image" src="/themes/<%= @publisher.label %>/images/button/btn_search.png" name="mainsearchsubmit" class="mainSearchButton" value="Search" />
+					</form>
+
+
+				</div>
+			</div>
+			<!-- Main Search : End -->
+
+
+		<!-- Menu : Begin -->
+		<div id="menu">
+			<ul>
+
+				<li><a href="http://www.vcreporter.com/cms/index/?menu=Home" title="Home"class="on">Home</a>
+					<ul>
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?menu=News" title="News">News</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=10&menu=News" title="News of the Week">News of the Week</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=9&menu=News" title="In Brief">In Brief</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=12&menu=News" title="Planet Ventura">Planet Ventura</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?category=2&menu=Opinion" title="Opinion">Opinion</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=7&menu=Opinion" title="Editorial">Editorial</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=6&menu=Opinion" title="Letters">Letters</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=8&menu=Opinion" title="Power to Speak">Power to Speak</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=5&menu=Opinion" title="The Critical Line">The Critical Line</a></li>
+
+						<li><a href="" title="Right Persuasion">Right Persuasion</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?category=3&menu=Arts" title="Art/Culture">Art/Culture</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=50" title="Art & Culture">Art & Culture</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=15&menu=Arts" title="Film">Film</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=17&menu=Arts" title="Media">Media</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=16&menu=Arts" title="Books">Books</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/movie/search/" title="Movie Times">Movie Times</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?category=4&menu=Music" title="Music">Music</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=22&menu=Music" title="Music Features">Music Features</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=23&menu=Music" title="Home Spun">Home Spun</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=25&menu=Music" title="Sounding the 805">Sounding the 805</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=24&menu=Music" title="On the Record">On the Record</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=61" title="Picks of the Week">Picks of the Week</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?category=27" title="Dining">Dining</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=28&menu=Food/Drink" title="In Good Taste">In Good Taste</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=36&menu=Food/Drink" title="Straight Up">Straight Up</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="" title="Lifestyle">Lifestyle</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=37&menu=Lifestyle" title="Advice Goddess">Advice Goddess</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=33&menu=Lifestyle" title="Real Astrology">Real Astrology</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=31&menu=Lifestyle" title="Health">Health</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=32&menu=Lifestyle" title="Outdoor Observer">Outdoor Observer</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/directory/search/?menu=Marketplace" title="Shop Local">Shop Local</a></li>
+
+						<li><a href="http://class.avenews.com/?referrer=http://www.vcreporter.com" title="Classifieds">Classifieds</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/event/search/?menu=Events" title="Events">Events</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/event/today/" title="Today's Events">Today's Events</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/event/week/" title="This week's events">This week's events</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/event/search/?" title="All Events">All Events</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/event/edit/" title="Submit your Event">Submit your Event</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="http://www.vcreporter.com/cms/story/search/?category=55&menu=Special Issues" title="Special Issues">Special Issues</a>
+					<ul>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=56&menu=Best of Ventura County" title="Best Of">Best Of</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=30&menu=Dining Guide" title="Dining Guide">Dining Guide</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=57&menu=Summer Guide" title="Summer Guide">Summer Guide</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=53&menu=Wedding Guide" title="Wedding Guide">Wedding Guide</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=58&menu=Fitness Guide" title="Fitness Guide">Fitness Guide</a></li>
+
+						<li><a href="http://www.vcreporter.com/cms/story/search/?category=72&menu=Gift Guide" title="Gift Guide">Gift Guide</a></li>
+
+					</ul>
+				</li>
+
+				<li class="parent"><a href="" title="Blogs">Blogs</a>
+					<ul>
+
+						<li><a href="http://sullyspeaks.wordpress.com/" title="Sully Speaks ">Sully Speaks </a></li>
+
+						<li><a href="http://serialcommakiller.wordpress.com/" title="Serial Comma Killer">Serial Comma Killer</a></li>
+
+						<li><a href="http://secohn.wordpress.com/" title="Quill Pro Cohn">Quill Pro Cohn</a></li>
+
+						<li><a href="http://twotrees.wordpress.com/" title="Two Trees">Two Trees</a></li>
+
+						<li><a href="http://www.venturafoodhappenings.com" title="Food happenings">Food happenings</a></li>
+
+						<li><a href="http://www.thefoodsavant.blogspot.com/" title="The Food Savant">The Food Savant</a></li>
+
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+		<!-- Menu : End -->
+
+
+
+
+		</div>
+		<!--- Header Inner : End -->
+
+	</div>
+	<!-- Header : End --> 

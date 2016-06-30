@@ -1,0 +1,38 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<% if @featured_deal.present? %>
+		<div id="featured_deal" class="content_box daily_deal">
+			<a href="<%= Drop::DailyDeal.new(@featured_deal).url %>" name="View Deal"><%= image_tag  protocol_relative_url(@featured_deal.photo.url(:alternate_standard)), :class => 'deal_image' %></a>
+			<table width="100%" cellspacing="0" cellpadding="0" class="deal_info">
+				<tr>
+					<td width="120">
+						<a class="all_deals_view_deal dd_button" href="<%= Drop::DailyDeal.new(@featured_deal).url %>" name="View Deal">View<br />deal</a>
+					</td>
+					<td>
+						<h2><%= @featured_deal.value_proposition %></h2>
+						<h3><%= @featured_deal.value_proposition_subhead %></h3>
+						<p class="daily_deal_price"><%= number_to_percentage(100 * (@featured_deal.value.to_i - @featured_deal.price) / @featured_deal.value, :precision => 0) %> Off - Save <%= number_to_currency(@featured_deal.value.to_i - @featured_deal.price,  :precision => 0) %>!</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+	<% end %>
+
+	<% unless @side_deals.blank? %>
+		<% if @publisher.daily_deals.side.length > 4 %>
+			<div id="paginate_top">
+				<%= will_paginate @side_deals, :per_page => 4 %>
+			</div>
+		<% end %>
+	
+		<div id="side_deals">
+			<% @side_deals.each do |daily_deal| %>
+				<%= render :partial => with_theme('daily_deals/daily_deal'), :locals => {:daily_deal => daily_deal} %>
+			<% end %>
+			<div class="clear"></div>
+		</div>
+	<% end %>
+</div><!-- /main_column -->
+
+</div>

@@ -1,0 +1,20 @@
+<% set_daily_deal_page_title_slug t(:feature_your_business) %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:contact_us) %></h1>
+
+    <h2><%= t(:main_office) %></h2>
+    <p>
+      <%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+      <%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+      <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}" unless @publisher.city.blank? %>      
+    </p>
+
+    <% unless @publisher.sales_email_address.blank? %>
+      <h2 style="margin-top: 18px;"><%= t '.feature_business_header' %></h2>
+      <%=raw(t('.feature_business_message',
+          :email_link => link_to(@publisher.sales_email_address, "mailto:#{@publisher.sales_email_address}", :target => "_blank"))) %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+	<!--header_wrapper1 -->
+	<div id="header_wrapper1">
+		<div id="header">
+			<!--Site LOGO-->
+			<div id="site_logo">
+				<img src="/themes/<%= @publisher.label %>/images/graphics/site_logo.png" alt="<%= @publisher.name %>" />
+			</div>
+			<!--/Site LOGO-->
+			
+			<!-- account nav -->
+			<%= render :partial => with_theme("shared/account_nav") %>
+			<!-- /account nav -->
+			
+			<!--account_header--> 
+			<div id="account_header">	
+				<% unless current_consumer_for_publisher?(@publisher) %>
+				<div id="subscribe_form">		
+					<form action="<%= subscribe_publisher_daily_deals_path(@publisher) %>" id="daily_deal_header" class="email_subscription_tracking" method="post">
+						<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+						<p><input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" /></p>
+						<p>
+							<label for="daily_deal_header"  class="subscribe">Sign up for deal alerts!</label>
+							<input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />
+						</p>
+						<p><input id="subscribe_button" type="submit" value="Sign Up" /></p>
+						<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+							<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" checked /> I agree to the &nbsp;<a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;">Terms</a> and &nbsp;<a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;">Privacy Policy</a>
+						</p>
+					</form>
+				</div><!-- /subscribe_form -->
+				<% end %>
+			</div><!--/account_header--> 
+		</div><!-- /header -->
+	</div> <!-- /header_wrapper1 -->
+	<div class="clear"></div>
+	
+	<!-- header_wrapper2 -->
+	<div id="header_wrapper2">
+	    <div id="navrow">
+	    	<%= render :partial => with_theme("shared/dd_nav") %>
+	    	<div class="clear"></div>
+	    </div> 	
+	</div><!--/ header_wrapper2 -->
+	<div class="clear"></div>
+	
+	<!-- header_wrapper3 -->
+	<div id="header_wrapper3">
+	    <div id="titlerow">
+	    	<%= render :partial => with_theme("shared/site_tagline") %>
+	    	<%= render :partial => with_theme('shared/market_menu') if @publisher.enable_market_menu %>
+	    </div> 	
+	</div><!--/ header_wrapper3 -->

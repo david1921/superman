@@ -1,0 +1,9 @@
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+		<li><a href="{{ publisher.todays_daily_deal_path }}" class="first {% if_page_name 'publishers#deal_of_the_day'%}current_page{%endif_page_name%}" target="_blank">Today's Deal</a></li>
+		<li><a href="{{ publisher.how_it_works_path }}" class="{% if_page_name == 'daily_deals#how_it_works'%}current_page{%endif_page_name%}" target="_blank">How it Works</a></li>
+		<li><a href="{{ publisher.feature_your_business_path }}" class="{% if_page_name == 'daily_deals#feature_your_business'%}current_page{%endif_page_name%}" target="_blank">Feature Your Business</a></li>
+		<li><a href="{{ publisher.faq_path }}" class="{% if_page_name == 'daily_deals#faqs'%}current_page{%endif_page_name%}" target="_blank">FAQ</a></li>
+		<li><a href="{{ publisher.contact_path }}" class="last {% if_page_name == 'daily_deals#contact'%}current_page{%endif_page_name%}" target="_blank">Contact Us</a></li>
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->

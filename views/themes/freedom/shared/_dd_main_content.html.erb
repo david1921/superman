@@ -1,0 +1,82 @@
+<div id="main_column">
+	<div id="dd_main_content">
+	<!-- Show custom field if available otherwise advertiser location -->
+	<h2><%= daily_deal.value_proposition %> 
+		<% if daily_deal.publishers_category %>
+			<% if daily_deal.custom_1.present? %>
+    		 	<span class="store_city"><%= daily_deal.custom_1 %></span>
+      <% elsif daily_deal.advertiser.store.present? %> 
+      	<% if  daily_deal.advertiser.stores.size > 1 %>
+        	<span class="store_city">Multiple Locations</span>
+        <% elsif daily_deal.advertiser.store.city.present? %> 
+        	<span class="store_city">(<%= daily_deal.advertiser.store.city %>, <%= daily_deal.advertiser.store.country.name %>)</span>
+        <% end %>
+      <% end %>
+    <% else %>
+			<span>(<%= formatted_price_for(@daily_deal.value) %> value)</span>
+		<% end %> 
+	</h2>
+		<div id="deal_photo_wrapper">
+			<div id="deal_photo">
+				<!-- old shadow <img src="/themes/freedom/images/graphics/deal_shadow_left.png" alt="Left Shadow" class="shadow"> -->
+				<img src="<%= daily_deal.photo.url %>" alt="<%= daily_deal.value_proposition %>">
+				<!-- old shadow ><img src="/themes/freedom/images/graphics/deal_shadow_right.png" alt="Right Shadow" class="shadow"> -->
+			</div>
+		</div><!--/deal_photo_wrapper-->
+		<div id="dashboard">
+			<h2><% if !@daily_deal.daily_deal_variations.blank? -%><span class="variation">From</span><% end %><%= formatted_price_for(daily_deal.price) %></h2>
+			<h3>Today's Deal</h3>
+			<div id="buy_now">
+				<% if daily_deal.sold_out? -%>
+				<div id="sold_out" class="dd_button sold_out gradient"><span>Sold Out!</span></div>
+				<% elsif daily_deal.over? -%>
+				<div id="deal_over" class="dd_button deal_over gradient"><span>Deal Over</span></div>
+				<% elsif daily_deal.active? -%>
+				<a id="buy_now_button" class="dd_button buy gradient<% if !@daily_deal.daily_deal_variations.blank? -%> dd_variations_button<% end %>" href="<%= raw daily_deal_buy_now_path(daily_deal) %>" name="buy_now_button">Buy Now</a>
+				<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+			  			<%= render :partial => with_theme("shared/dd_variations_menu") %>
+			  		<% end %>
+
+				<% else -%>
+				<div id="not_yet" class="dd_button"><span>Coming Soon!</span></div>
+				<% end -%>
+			</div><!-- /buy_now -->
+			<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+			<%= render :partial => 'shared/variation_delay.js' %>
+			<div id="deal_specs">
+				<table class="value_summary">
+					<tr>
+						<td class="value">
+							<p>Value</p>
+							<span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display, @daily_deal.currency_symbol) %></span>
+						</td>
+						<td class="you_save">
+							<p>You Save</p>
+							<span id="daily_deal_savings_as_percentage"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span>
+						</td>
+					</tr>
+				</table>
+				<table class="timer">
+					<tr>
+						<td rowspan="2"><img src="/themes/freedom/images/graphics/timer_clock.png" alt="Timer Clock"></td>
+						<td class="time_left_to_buy_label">Time Left To Buy</td>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy" class="time_left_to_buy"><%= daily_deal.time_remaining_display %></td>
+					</tr>
+				</table>
+				<div class="deals_sold">
+					<h4>Deals Sold</h4>
+					<p><%= daily_deal.number_sold %></p>
+				</div>
+			</div><!-- /deal_specs-->
+		</div>
+		<div class="ie_clear"></div>
+		<%= render :partial => with_theme("shared/social") %>
+
+	</div><!-- /dd_main_content -->
+	<%= render :partial => with_theme("shared/deal_info"), :locals => { :daily_deal => daily_deal,:publisher => @publisher, :advertiser => daily_deal.advertiser } %>
+</div><!-- /main_column -->
+

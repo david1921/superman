@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>{{ daily_deal.value_proposition }}</title>
+</head>
+<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" style="margin: 0px; background-color: #FFFFFF; font-family: Helvetica, Arial, sans-serif;">
+<table cellspacing="0" border="0" bgcolor="#ffffff" style="margin: 0; padding: 0; border: 0;" width="100%" cellpadding="0">
+<tr>
+<td>
+	<table cellspacing="0" cellpadding="0" border="0" width="665" bgcolor="#170a0a" align="center" style="background-image:url(http://{{ publisher.daily_deal_host }}/themes/sportdeals/images/backgrounds/email_bg.png);background-repeat: repeat-x;background-position:top;"><!-- outer_wrapper -->
+		<tr>
+			<td colspan="3" align="center">
+				<a href="{{ daily_deal.url_for_email }}" style="color:#ffffff;"><img style="display:block;" border="0" src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/graphics/email_banner.png" height="154" width="665" alt="Sport Deals [Please enable images]" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td width="30" valign="top"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/sportdeals/images/backgrounds/email_bg_side.png" width="30" height="674" alt="" /></td>
+			<td width="605" valign="top">
+				<table cellpadding="0" cellspacing="0" border="0" bgcolor="#c6c6c6" width="605" align="center" style="padding-top: 6px;"><!-- inner_wrapper -->
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" bgcolor="#ffffff" width="592" align="center"><!-- top_row -->
+								<tr>
+									<td colspan="2" style="padding:8px;">
+										<h1 style="color: black;font-family: Helvetica, sans-serif;font-size:28px; line-height:34px;margin:0;padding-bottom:16px;">{{ daily_deal.value_proposition }}</h1>
+									</td>
+								</tr>
+								<tr>
+									<td style="vertical-align:top; padding-left:10px;">
+										<table cellpadding="0" cellspacing="0" border="0" width="255"><!-- dashboard -->
+											<tr>
+												<td>
+													<table border="0" cellpadding="0" cellspacing="0" width="255" align="center" style="background-image: url(http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/graphics/price_tag_email.png); background-repeat: no-repeat; background-position:right top;padding-bottom:10px;">
+														<tr>
+															<td valign="top" align="right" style="padding-top:10px;padding-left:20px;"><strong style="color:#414141;font-size:28px;font-family:Helvetica, Arial, sans-serif;"><em>$</em></strong></td>
+															<td valign="middle" align="left"><a href="{{ daily_deal.url_for_email }}" style="color:#414141; font-family: Helvetica, sans-serif;font-size:60px;libe-height:65px;font-weight:bold; text-decoration:none; letter-spacing:-3px;"><em>{{ daily_deal.price | number }}</em></a></td>
+															<td valign="top" width="136" style="padding-top:10px;text-align:left;font-size:30px;font-weight:bold;font-family:Helvetica, Arial, sans-serif;"><a style="color:red;" href="{{ daily_deal.url_for_email }}"><img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/buttons/email_buy_button.png" height="68" width="119" border="0" alt="Buy!" /></a></td>
+														</tr>
+													</table>
+												</td>
+												
+											</tr>
+											<tr>
+												<td colspan="2" style="text-align:center;">
+													<table align="center" cellpadding="0" cellspacing="0" border="0" style="text-align:center;padding-top:5px;">
+														<tr>
+															<th style="color:black; border-right:1px solid #ababab;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold; padding-right:10px;">VALUE</th>
+															<th style="border-right:1px solid #ababab; color:black;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold; padding-right:10px; padding-left:10px;">COST</th>
+															<th style="color:#e31718;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold;padding-left:10px;">SAVINGS</th>
+														</tr>
+														<tr>
+															<td style="color:black; border-right:1px solid #ababab;font-family: Helvetica, sans-serif;font-size:25px; font-weight:bold; padding-right:10px;">{{ daily_deal.value | currency }}</td>
+															<td style="border-right:1px solid #ababab; color:black;font-family: Helvetica, sans-serif;font-size:25px; font-weight:bold;padding-right:10px; padding-left:10px;">{{ daily_deal.price | currency }}</td>
+															<td style="color:#e31718;font-family: Helvetica, sans-serif;font-size:25px; font-weight:bold;padding-left:10px;">{{ daily_deal.savings_as_percentage | percentage }}</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2" style="padding-top:20px;padding-bottom:20px;">
+				    								<table width="240" cellpadding="0" cellspacing="5" border="0" align="center" style="background-image:url(http://{{ publisher.daily_deal_host }}/themes/sportdeals/images/backgrounds/share_bg.png);background-position:left top;background-repeat:no-repeat;">
+				    									<tr>
+															<td align="center" width="80"><p style="color:black;font-family: Helvetica, sans-serif;font-size:14px; font-weight:bold;margin:0;padding:0;">Share<br />this deal</p></td>
+				    										<td align="center"><a href="{{ daily_deal.facebook_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/buttons/facebook.png" height="44" alt="Facebook" style="border: none;" width="44" /></a></td>
+				    										<td align="center"><a href="{{ daily_deal.twitter_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/buttons/twitter.png" height="44" alt="Twitter" style="border: none;" width="44" /></a></td>
+				    										<td align="center"><a href="mailto:?subject={{ daily_deal.publisher_prefix | uri_escape }}:%20{{ daily_deal.value_proposition | uri_escape }}&amp;body=Check%20out%20this%20deal%20at%20{{ daily_deal.url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/buttons/mail.png" height="44" alt="Email" style="border: none;" width="44" /></a></td>
+				    									</tr>
+				    								</table>
+												</td>
+											</tr>
+										</table><!-- /dashboard -->
+									</td>
+									<td style="padding-left:20px; padding-right:8px;padding-bottom:20px;width:300px;vertical-align:top;"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" width="300" /></td>								
+								</tr>
+							</table><!-- /top_row -->
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+							<table cellpadding="0" cellspacing="0" bgcolor="#ffffff" width="592" align="center"><!-- bottom_row -->
+								<tr>
+									<td valign="top" style="padding-left:20px;padding-top:10px;text-align:left;width:290px;">
+										<h3 style="font-family: Helvetica, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #e31718;">Highlights</h3>
+										<span style="font-family: Helvetica, sans-serif;font-size:12px;font-weight:normal;">{{ daily_deal.highlights }}</span>
+									</td>
+									<td valign="top" style="font-family: Helvetica, sans-serif;font-weight: bold;width:280px;padding-left:20px;padding-right:10px;text-align:left;" width="270">
+										<h3 style="font-family: Helvetica, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #e31718;">Location</h3>
+										<img src="{{ advertiser.logo.standard_url }}" alt="" style="display: block;" />
+										<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;">{{ advertiser.name }}<br />
+										    {% if advertiser.address? %}
+                                                {% if advertiser.address_line_1 != empty %}
+                                                    {{ advertiser.address_line_1 }}<br />
+                                                {% endif %}
+                                                {% if advertiser.city != empty and advertiser.state != empty and advertiser.zip != empty %}
+                                                    {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                                                {% endif %}
+                                                {% if advertiser.phone_number != empty %}
+                                                    {{ advertiser.phone_number }}<br />
+                                                {% endif %}
+                                            {% endif %}
+										<a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a></p>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" style="padding-left:20px; padding-right:20px; padding-top:20px;padding-bottom:20px;text-align:left;">
+										<h3 style="font-family: Helvetica, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #e31718;">Description</h3>
+										<span style="font-family: Helvetica, sans-serif;font-size:12px;font-weight:normal;">{{ daily_deal.description }}</span>
+										<h3 style="font-family: Helvetica, sans-serif; font-size: 12px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #e31718;">Fine Print</h3>
+										<span style="font-family: Helvetica, sans-serif;font-size:11px;font-weight:normal;">{{ daily_deal.terms }}</span>
+									</td>
+								</tr>
+							
+							</table><!-- /bottom_row -->
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:center;">
+				      		<p><a style="border: none; text-align: center" href="http://analoganalytics.com"><img style="border:none;" src="http://{{ publisher.daily_deal_host }}/images/powered_by_analog_analytics.png" alt="Powered by Analog Analytics" /></a></p>
+						</td>
+					</tr>
+				</table><!-- /inner_wrapper -->
+			</td>
+			<td width="30" valign="top"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/sportdeals/images/backgrounds/email_bg_side.png" width="30" height="674" alt="" /></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<table width="605" align="center" bgcolor="#303030" style="text-align:center;">
+					<tr>
+						<td align="center">
+							<p style="font-family: Arial, Helvetica, sans-serif;font-size:16px; color:#ffffff;font-size:11px;"><strong>Copyright {{ "now" | date: "%Y" }}. All rights reserved.</strong></p>
+						</td>
+					</tr>	
+				</table>
+			</td>
+		</tr>	
+	</table><!-- /wrapper -->
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<div id="refer_friend" class="sidebar_box">
+	<h3>Refer A Friend</h3>
+	<p>Refer a friend and receive a <%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :precision => 0) %> credit towards your first purchase.</p>
+	<a class="click_button refer_a_friend_tracking" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>"><span>Click Here</span></a>
+</div><!-- /refer_friend -->

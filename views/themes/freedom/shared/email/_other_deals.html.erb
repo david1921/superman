@@ -1,0 +1,8 @@
+<% side_deals.each_with_index do |side_deal, index| %>
+ <%=raw '<tr valign="top">' if index % 2 == 0 %>
+		<%= render :partial => with_theme('shared/email/small_deal'), :locals => {:small_deal => side_deal} %>
+		<% if index == side_deals.count - 1 && side_deals.length.odd? %>
+			<%= render :partial => with_theme('shared/email/email_ad') %>
+		<% end %>
+ <%=raw'</tr>' if index % 2 == 1 or index + 1 == side_deals.length %>
+<% end %>

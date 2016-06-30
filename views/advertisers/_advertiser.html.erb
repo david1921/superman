@@ -1,0 +1,46 @@
+<% if params[:advertiser_name].blank? || advertiser_match?(advertiser) %>
+  <%- content_tag_for(:tr, advertiser, :class => cycle("even", "odd")) do -%>
+    <td class="check">
+      <%= check_box_tag "id[]", advertiser.id, false, :disabled => !can_create, :class => "checkbox", :id => "advertiser_id_#{advertiser.id}" %>
+    </td>
+    <td class="name">
+      <%= link_to advertiser.name, edit_advertiser_path(advertiser) %>
+    </td>
+    <td class="users right">
+      <%= link_to(advertiser.users_count, advertiser_users_path(advertiser)) if advertiser.users_count > 0 %>
+    </td>
+    <td class="right new">
+      <%= link_to("New", new_advertiser_user_path(advertiser)) if current_user.can_manage?(advertiser) %>
+    </td>
+    <% if publisher.allow_offers? -%>
+    <td class="total_coupons right">
+      <%= advertiser.offers_count if advertiser.offers_count > 0 %>
+    </td>
+    <td class="right new">
+      <%= link_to("New", new_advertiser_offer_path(advertiser)) if current_user.can_manage?(advertiser) %>
+    </td>
+    <td class="active_coupons right">
+      <%= advertiser.active_offers_count if advertiser.active_offers_count > 0 %>
+    </td>
+    <% end -%>
+    <% if publisher.allow_gift_certificates? -%>
+    <td class="total_certificates right">
+      <%= advertiser.gift_certificates_count if advertiser.gift_certificates_count > 0 %>
+    </td>
+    <td class="right new">
+      <%= link_to("New", new_advertiser_gift_certificate_path(advertiser)) if current_user.can_manage?(advertiser) && advertiser.gift_certificates_count == 0 %>
+    </td>
+    <% end -%>
+    <% if publisher.allow_daily_deals? -%>
+    <td class="total_daily_deals right">
+      <%= advertiser.daily_deals.count if advertiser.daily_deals.count > 0 %>
+    </td>
+    <td class="right new">
+      <%= link_to("New", new_advertiser_daily_deal_path(advertiser)) if current_user.can_manage?(advertiser) %>
+    </td>
+    <% end -%>
+    <td class="last edit">
+      <%= link_to("Edit", edit_advertiser_path(advertiser)) if current_user.can_manage?(advertiser) %>
+    </td>
+  <%- end -%>
+<% end %>

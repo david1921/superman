@@ -1,0 +1,71 @@
+<div id="footer">
+	<div id="stations">
+		<%= render :partial => with_theme("daily_deals/stations") %>
+	</div>
+	<div id="footernav">
+		<div id="topbar">
+			<div class="wrap">
+				
+				
+				<div class="footer_market_menu_wrapper">
+					<ul id="footer_market_menu">
+						<li><a href="#" id="footer_market_selection_tab"><span>Choose Your City:</span></a>
+							<div id="footer_market_selection_container">
+								<ul id="footer_market_foo" class="footer_market_selection_list">
+									<%= render :partial => with_theme("shared/market_menu_list_items") %>
+								 </ul>
+							</div>
+						</li>
+					</ul>
+					<div id="footer_market_select_menu">
+					<%= market_selection_dropdown(@publisher, :launched_only => true, :blank_option_string => "Choose Your City:", :include_state => true) %>
+					</div>
+				</div>
+				
+				<ul id="contacts">
+					<li><a href="/themes/entercomnew/docs/Privacy_Policy.pdf">Privacy Policy</a></li>
+					<li><a href="http://www.entercom.com/careers.php">Jobs</a></li>
+					<li><a href="http://www.entercom.com/eeo.php">EEO Public File</a></li>
+					<li><a href="http://www.entercom.com">Entercom.com</a></li>
+					<li><a href="http://www.1thingus.com">Do 1Thing</a></li>
+				</ul>
+				
+				<div class="clear"></div>
+				
+				</div>
+			</div>
+			<div id="menus">
+			  <div id="colwrap">
+				<ul id="footer_markets" class="footer_market_columns">
+					<%= render :partial => with_theme("shared/market_menu_list_items") %>
+				</ul>
+				
+				<div id="customer_service">
+					<h4>Customer Service</h4>
+					<ul>
+						<% if current_consumer_for_publisher?(@publisher) %>
+						<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+						<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">View Orders</a></li>
+						<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">Edit Profile</a></li>
+						<% else %>
+						<li><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+						<% end %>
+						<li><a href="<%= publisher_support_contact_requests_path(@publisher) %>">Customer Service</a></li>
+						<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">FAQs</a></li>
+						<li><a href="<%= terms_publisher_daily_deals_path(@publisher.id) %>">Terms and Conditions</a></li>
+					</ul>
+				</div>
+
+			  </div>
+			</div>
+		
+		</div>
+		
+		<div id="copyright">
+            <p>Copyright &copy; <%= localize Time.now, :format => '%Y' %> Entercom Communications. All Rights Reserved.</p></br>
+            <h6><font color="red" size="+1">*</font>You will receive up to 7 messages per week. Text <strong class="heavy">HELP</strong> for help and Text <strong  class="heavy">STOP</strong> to quit at any time. Message and data rates may apply.<h6>
+		  <%= raw render :partial => 'shared/a_a_alt' %>
+		</div>
+		
+	
+	</div><!--END FOOTER-->

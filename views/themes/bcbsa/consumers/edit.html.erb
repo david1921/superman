@@ -1,0 +1,39 @@
+<% set_daily_deal_page_title_slug t(:my_account) %>
+
+<%= render :partial => 'shared/flash_messages' %>
+<div class="page_row consumer_edit">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">
+    	<span class="left_header_title"><%= t(:my_account) %></span>
+    	<span class="right_header_title_2"><%= t(:my_deal_history) %></span></h1>
+    	<div id="left_column">
+        <%- show_terms = !@consumer.agree_to_terms || ( @consumer.member_authorization != "1" && @consumer.member_authorization_required?) %>
+        <%= render :partial => with_theme("consumers/consumer_form"), :locals => { :show_terms => show_terms, :use_reset_password_link => true, :signup_button => false } %>
+      </div> <!--left_column-->
+		<div class="right_column_1">
+			<div id="top">
+				<div class="deal_history">
+          <%= render :partial => with_theme("consumers/my_deal_history") %>
+				</div>
+				<a class="view_deal_history" href="<%= publisher_consumer_daily_deal_purchases_path(@consumer.publisher, @consumer) %>"><%= t(:view_deal_history) %></a>
+				<div class="clear"></div>
+
+			</div>
+		
+
+			<div id="bottom">
+				<h5 class="content_bottom_right"><%= t(:my_rewards) %></h5>
+				<div id="my_rewards">
+					<h6><%= t(:you_earned) %>:<h6>
+					<p class="reward_credit"><%= number_to_currency(current_user.credit_available, :unit => @publisher.currency_symbol) %></p>
+					<a id='inline' class='fancybox' id='refer' href='#refer_lightbox_info'><%= t(:read_details) %>.</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="clear"></div>
+  </div>
+</div>
+
+<%= render :partial => with_theme("shared/lightboxes/card_prefix") %>
+<%= render :partial => with_theme("shared/lightboxes/refer") %>

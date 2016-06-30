@@ -1,0 +1,57 @@
+<div id="deal-footer">
+	<div id="deal-footer-inner">
+		<div id="kowabunga-footer-logo">
+		<img src="/themes/kowabunga/images/presignup/kowabunga-footer-logo.png" alt="Sign Up for Kowabunga Deals!"/>
+			<p> &copy; 2011 <a href="http://inuvo.com/" target="_blank">Inuvo &reg;</p></a>
+		</div><!--  end #kowabunga-footer-logo -->
+		
+		<div id="footer-company-info-block">
+			
+			<div id="connect">
+				<h4>CONNECT</h4>
+				<div id="sharethis-widget">
+					<span class='facebook_large'><a href="http://www.facebook.com/pages/Kowabunga/109310692486496" target="_blank"><img src="/themes/kowabunga/images/buttons/facebook-mall-button.png" alt="link to kowabunga facebook"/></a></span>
+					<span class='twitter_large' ><a href="http://twitter.com/#!/Kowabunga" target="_blank"><img src="/themes/kowabunga/images/buttons/twitter-mall-button.png" alt="link to kowabunga twitter"/></a></span>
+					<span  class='st_sharethis_large'></span>
+				</div><!--  end #sharethis-widget	 -->
+				<div id="a_a-wrap">
+					{% include "shared/a_a" %}
+				</div><!--  end #"a_a-wrap -->
+
+			</div><!--  end #connect -->
+			
+
+			
+			<div id="deals-footer">
+				<h4>DEALS</h4>
+				<ul class="footer-ul">
+					<li><a href="{{ publisher.todays_daily_deal_path }}" class=" {% if_page_name 'publishers#deal_of_the_day'%}current_page{%endif_page_name%}">Featured Deal</a></li>
+					<li><a  href="{{ publisher.shopping_mall_path }}" class="{% if_page_name == 'shopping_malls#show'%}current_page{%endif_page_name%}">More Deals</a></li>
+					<li><a href="{{ publisher.how_it_works_path }}" class=" last-a {% if_page_name == 'daily_deals#how_it_works'%}current_page{%endif_page_name%}">How it Works</a></li>
+				</ul><!--  end .footer-ul -->
+			</div><!--  end #information -->
+			<div class="clear"></div>
+			
+			<div id="information">
+				<h4>INFORMATION</h4>
+				<ul class="footer-ul">
+					<li><a href="{{ publisher.faq_path }}" class="{% if_page_name == 'daily_deals#faqs'%}current_page{%endif_page_name%}">FAQ</a></li>
+					<li><a href="{{ publisher.about_us_path }}" class="{% if_page_name == 'daily_deals#about_us'%}current_page{%endif_page_name%}">About</a></li>
+					<li><a href="{{ publisher.contact_path }}" class="{% if_page_name == 'daily_deals#contact'%}current_page{%endif_page_name%}">Contact</a></li>
+					<li><a href="{{ publisher.privacy_path}}"class="{% if_page_name == 'daily_deals#privacy_policy'%}current_page{%endif_page_name%}">Privacy</a></li>
+					<li><a class="last-a {% if_page_name == 'daily_deals#terms'%}current_page{%endif_page_name%}" href="{{ publisher.terms_path }}">Terms</a></li>
+				</ul><!--  end .footer-ul -->
+			</div><!--  end #information -->
+			<div class="clear"></div>
+			<div id="advertising">
+				<h4>ADVERTISING</h4>
+				<ul class="footer-ul">
+					<li><a href="{{ publisher.affiliate_show_path }}" class="{% if_page_name == 'affiliate#show'%}current_page{%endif_page_name%}">Affiliates</a></li>
+					<li><a class=" last-a {% if_page_name == 'daily_deals#feature_your_business'%}current_page{%endif_page_name%}" href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+				</ul><!--  end .footer-ul -->
+			</div><!--  end #advertising -->
+			
+		</div><!-- end #footer-company-info-block -->
+	<div class="clear"></div>
+	</div><!--  end deal-footer-inner -->
+</div><!--  end deal-footer -->

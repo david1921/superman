@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  <title><%= @publisher.name %>: Coupons</title>
+  <style type="text/css" media="screen">
+    body {
+      text-align: center;
+      font-family: Helvetica, Arial, "MS Trebuchet", sans-serif;
+    }
+  
+    #analog-analytics-iframe {
+      border: 1px dotted rgb(120, 120, 120);
+    }
+    
+    pre {
+      font: 9pt Monaco, "Courier New", sans-serif;
+      text-align: left;
+      width: 936px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px dotted rgb(120, 120, 120);
+    }
+    
+    h6 {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><%= @publisher.name %> Coupons</h1>
+  <h6>Place <a href="#iframe_javascript">iframe JavaScript</a> in your coupon page</h6>
+  <h6>Use the optional <em>page_size</em> parameter to set the number of coupons per page. Default: <%= PaginationHelper::DEFAULT_PAGE_SIZE %></h6>
+  <h6>Use the optional <em>iframe_height</em> parameter to set iframe height. Default: <%= iframe_height(PaginationHelper::DEFAULT_PAGE_SIZE) %></h6>
+  <h6>Use the optional <em>iframe_width</em> parameter to set iframe width. Default: <%= iframe_width %></h6>
+  <!-- Start coupons code. Place everything between the comments into your coupons page -->
+  <script type="text/javascript" src="<%= embed_coupons_path(:label => @publisher.label, :format => :js, :only_path => false) %>"></script>
+  <noscript>
+    <div style="background-color:white; height:<%= @iframe_height %>px; margin:0 auto; padding-top:100px; text-align:center; width:<%= @iframe_width %>px;">
+      Sorry, you must enable JavaScript in your web browser to view this content.
+    </div>
+  </noscript>
+  <!-- End coupons code -->
+
+  <h3><a name="iframe_javascript">Iframe JavaScript</a></h3>
+    <pre>
+&lt;script type=&quot;text/javascript&quot; src=&quot;<%= embed_coupons_path(:label => @publisher.label, :format => :js, :only_path => false) %>&quot;&gt;&lt;/script&gt;
+&lt;noscript&gt;
+  &lt;div style=&quot;background-color:white; height:<%= iframe_height(PaginationHelper::DEFAULT_PAGE_SIZE) %>px; margin:0 auto; padding-top:100px; text-align:center; width:<%= iframe_width %>px;&quot;&gt;
+    Sorry, you must enable JavaScript in your web browser to view this content.
+  &lt;/div&gt;
+&lt;/noscript&gt;
+    </pre>
+  </body>
+</html>

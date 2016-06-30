@@ -1,0 +1,8 @@
+<% if daily_deal.publishers_category.present? %>
+    <span class="category_icon <%= daily_deal.publishers_category.name.downcase %>_category_icon"></span>
+    <% if %w(Other Giving Membership Activities Dining Shopping Beauty Theater Entertainment Travel Tourism).include? daily_deal.publishers_category.name %>
+        <h3><%= daily_deal.publishers_category.name %></h3>
+    <% end %>
+<% else %>
+<h3></h3>    
+<% end %>    	

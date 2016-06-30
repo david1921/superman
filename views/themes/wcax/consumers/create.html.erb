@@ -1,0 +1,33 @@
+<% set_daily_deal_page_title_slug "Activate Account" %>
+
+<div class="page_row">
+  <div class="signup prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <div class="login_header"><h2><%= t 'consumers.create.header' %></h2></div>
+    <p><%= raw(t('consumers.create.activation_instructions', :publisher_brand_or_name => @publisher.brand_name_or_name)) %></p>
+
+    <p class="small"><%= raw(t('consumers.create.resend_instructions',
+                           :sending_email_address => daily_deal_sending_email_address(@publisher),
+                           :send_activation_request_link => link_to_remote(
+                               t(:resend_email), { :url => send_activation_request_consumer_path(@consumer) }, { :id => "send_activation_request_link" }))) %>
+    </p>
+    
+    <% if @consumer.signup_discount -%>
+      <p class="small"><%= t '.signup_discount_confirmation' %></p>
+    <% end -%>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px", :id => "activate_form" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, Consumer.human_attribute_name(:activation_code)) %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons button_row">
+        <%= submit_tag(t(:activate), :name => 'activate') %>
+      </div>
+    <% end %>
+  </div>
+</div>

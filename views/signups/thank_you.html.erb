@@ -1,0 +1,40 @@
+<% set_daily_deal_page_title_slug "Thanks for joining" %>
+<div class="page_row signups_thank_you">
+  <div class="page_column_12 first">
+    <h2><%= @email %></h2>
+
+    <p>has just been added successfully to receive our free daily email bringing you 50-90% off local restaurants, salons, events, fitness and more. 
+      <br/>
+    <% if @discount.present? && @discount.to_i > 0 %><span class="discount">You have also earned up to <span class="amount"><%= number_to_currency @discount, :precision => 0, :unit => @publisher.currency_symbol %> off</span> your first purchase,</span>
+    <br/>
+    starting with our next deal after we've had a chance to add the credit to your email account.
+    <% end %>
+    You can click below to view today's deal now, and we'll send you an email when our next deal goes live.</p>
+
+    <h1>Thanks for joining!</h1>
+    
+    <% if @daily_deal %>
+    <p class="view_todays_deal">
+    <%= link_to(image_tag("/themes/villagevoicemedia/images/buttons/view_todays_deal.png"), 
+                public_deal_of_day_path(@publisher.label)
+               ) %>
+               
+    </p>
+    <% end -%>
+    
+    <p>
+      <span class="find">Find Voice Deal of the Day on Twitter and Facebook</span>
+      <br/>
+      <% if @publisher.city.present? %>
+      <span class="sharing">
+      <%= link_to image_tag("/themes/villagevoicemedia/images/buttons/square_twitter.png"), 
+                  "http://twitter.com/Dealsof#{@publisher.city.titlecase}" %> 
+      <%= link_to "Twitter", "http://twitter.com/Dealsof#{@publisher.city.titlecase}" %> 
+      <%= link_to image_tag("/themes/villagevoicemedia/images/buttons/square_facebook.png"),
+                  "http://www.facebook.com/Dealsof#{@publisher.city.titlecase}" %>
+      <%= link_to "Facebook", "http://www.facebook.com/Dealsof#{@publisher.city.titlecase}" %> 
+      </span>
+      <% end -%>
+    </p>
+  </div>
+</div>

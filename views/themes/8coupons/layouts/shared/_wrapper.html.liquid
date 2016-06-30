@@ -1,0 +1,40 @@
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="header">
+			<div id="banner">
+				{% include with_theme "layouts/shared/publisher_logo" %}      
+				
+				<div id="header_content">
+				<a href="http://analoganalytics.com/">
+					<img id="aa_logo" src="/themes/8coupons/images/graphics/aa_logo.png" alt="Powered by Analog Analytics" />
+				</a>
+
+				<ul id="account_nav">			
+					{% if publisher.launched? %}
+						{% if publisher.current_user_belongs_to? %}
+					<li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+					<li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+					<li class="last"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+						{% else %}
+					<li class="last"><a href="{{ publisher.login_path }}">Sign In</a></li>
+						{% endif %}
+					{% endif %}
+				</ul><!-- /account_nav -->
+
+				</div> <!-- /content box wrapper-->		
+								
+			</div><!--banner-->   
+		</div><!-- /header -->    
+		
+		<div id="page_content">
+      		{% include with_theme "layouts/shared/tabs" %}	
+      		<div class="clear"></div>	
+		</div><!--page_content-->
+		{% include "shared/a_a_alt" %}
+<!-- 		<div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div> -->
+		
+	</div><!--daily_deal-->
+<div class="push"></div>
+</div><!--analog_analytics-->
+
+{% include with_theme "layouts/shared/footer" %}

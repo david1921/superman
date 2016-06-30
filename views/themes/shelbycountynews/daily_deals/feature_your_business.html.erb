@@ -1,0 +1,21 @@
+<% set_daily_deal_page_title_slug "Contact Us" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1>Contact Us</h1>
+
+    <h2 class="main_office">Main Office</h2>
+    <p class="main_office">
+      Shelby County News<br/>
+      <%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+      <%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+      <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}<br/>".html_safe unless @publisher.city.blank? %>
+      (217) 774-1001 <br />
+    </p>
+    
+    <% unless @publisher.sales_email_address.blank? %>
+      <h2 style="margin-top: 18px;">To Have Your Business Featured</h2>
+      <p>Please email <a href="mailto:<%= @publisher.sales_email_address %>" target="_blank"><%= @publisher.sales_email_address %></a>.
+    <% end %>
+  </div>
+</div>

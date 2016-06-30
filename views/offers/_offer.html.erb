@@ -1,0 +1,20 @@
+<tr class="<%= cycle("even", "odd") -%>">
+  <td class="check">
+    <%= check_box_tag("id[]", offer.id, false, :class => "checkbox", :id => "offer_id_#{offer.id}") if admin? %>
+  </td>
+  <td>
+    <%= image_tag(offer.image.url(:thumbnail)) if offer.respond_to?(:image) %>
+  </td>
+  <td>
+    <%= offer.message %>
+  </td>
+  <td>
+    <%= offer.txt_message if offer.respond_to?(:txt_message) %>
+  </td>
+  <td>
+    <%= offer.price if offer.respond_to?(:price) %>
+  </td>
+  <td class="last edit">
+    <%= link_to("Edit", edit_offer_path(offer)) if admin? %>&nbsp;&nbsp;
+  </td>
+</tr>

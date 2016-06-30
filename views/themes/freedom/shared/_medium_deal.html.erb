@@ -1,0 +1,46 @@
+<div class="small_deal">
+    <div class="small_deal_info">
+        <h3><%= truncate(small_deal.value_proposition, 30) %></h3>
+
+        <!-- Show custom field for location if available otherwise advertiser location -->
+        <% if small_deal.custom_2.present? %>
+            <span class="store_city"><%= small_deal.custom_2 %></span>
+        <% elsif small_deal.advertiser.store.present? %> 
+            <% if  small_deal.advertiser.stores.size > 1 %>
+                <span class="store_city">Multiple Locations</span>
+            <% else small_deal.advertiser.store.city.present? %> 
+                <span class="store_city"><%= small_deal.advertiser.store.city %>, <%= small_deal.advertiser.store.country.name %></span>
+            <% end %>
+        <% else %>
+            <h4>&nbsp;</h4>
+        <% end %>
+    </div>
+    <div class="small_deal_dashboard_container">
+        <table class="small_deal_dashboard" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="small_deal_tag">
+                    <a href="<%= daily_deal_path(small_deal) %>" name="view_now_button">
+                        <p>See it</p>
+                    </a>
+                    <!-- <img class="" src="/themes/freedom/images/graphics/side_tag_full.png"  alt=""/> -->
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="clear"></div>
+
+	<div class="small_deal_image_wrapper">
+    	<img class="small_deal_image" src="<%= protocol_relative_url(small_deal.photo.url(:alternate_standard)) %>" alt=""/>
+	</div>
+    <div class="small_deal_timer_wrapper">
+        <div class="small_clock">
+            <img src="/themes/freedom/images/graphics/timer_clock.png" alt="Timer Clock">
+        </div>
+        <div class="days_to_buy">
+            <p><%= hours_or_days_remaining_from_now(small_deal.hide_at).gsub(/day/, "Day").gsub(/hour/, "Hour") %> Left to Buy</p>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+</div>

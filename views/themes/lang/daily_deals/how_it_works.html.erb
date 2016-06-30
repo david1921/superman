@@ -1,0 +1,36 @@
+<% set_daily_deal_page_title_slug "How It Works" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    <h1>How It Works</h1>
+    <ol>
+      <li>
+        <h4>Click and Buy</h4>
+        <p>Every day we’ll announce a new DEAL OF THE DAY that is 50-90% off of regular prices at 
+        restaurants, spas, events and other local goodies. </p>
+      </li>
+      
+      <li>
+        <h4>Share</h4>
+        <p>When you find an offer you like, share it with your friends using our Facebook, Twitter or email links. </p>
+      </li>
+      
+      <li>
+        <h4>Print</h4>
+        <p>After you make a purchase, you’ll receive the Deal of the Day voucher to print out via email. 
+        </p>
+        <p>
+          Take the Deal of the Day to the store or merchant any time before the expiration date to enjoy 
+          the fruits of your labor.
+        </p>
+      </li>
+      
+      <li>
+        <h4>Repeat</h4>
+        <p>Don’t miss out! <%= link_to( "Sign up", new_publisher_consumer_path(@publisher) ) %> to receive an email every time we post a new deal.</p>
+      </li>
+    </ol>
+    
+    <p id="questions">Still have questions? <%= link_to("Check out our FAQ page", faqs_publisher_daily_deals_path(@publisher) ) %></p>
+  </div>
+</div>

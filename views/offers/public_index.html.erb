@@ -1,0 +1,24 @@
+    <%= public_index_notice(@publisher) %>
+
+    
+    <table cellspacing="0">
+      <tr>
+        <td class="left_column">&nbsp;</td>
+        <td class="pagination"><%= render :partial => "pagination" %></td>
+      </tr>
+      <tr>
+        <td class="left_column">
+          <%= render(:partial => "search") if @publisher.search_box? %>
+          <%= render :partial => "categories", :object => @publisher_categories %>
+        </td>
+        <td class="<%= @publisher.theme %>" id="offers">
+          <%= render :partial => "offers/panels/#{@publisher.theme}/offer", :collection => @offers %>
+        </td>
+      </tr>
+      <% if @publisher.show_bottom_pagination? %>
+        <td class="left_column">&nbsp;</td>
+        <td class="pagination"><%= render :partial => "pagination" %></td>
+      <% end -%>
+    </table>
+
+    <%= render :partial => 'shared/terms_and_conditions' %>

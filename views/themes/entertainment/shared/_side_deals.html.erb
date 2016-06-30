@@ -1,0 +1,31 @@
+
+<% @daily_deal.side_deals.sort_by(&:start_at)[0,3].each do |side_deal| %>
+<div class="side_deals">
+	<div class="side_deal_photo">
+		<img src="<%= side_deal.photo.url(:standard) %>" alt="<%= side_deal.value_proposition %>" width="230" />
+	</div>
+	<div class="side_details">
+		<h5><strong><%= side_deal.advertiser.name %></strong> <a href="<%= daily_deal_path(side_deal) %>"><%= side_deal.value_proposition %></a></h5>
+		<% if side_deal.value_proposition_subhead.present? -%>
+		<h6><a href="<%= daily_deal_path(side_deal) %>"><%= side_deal.value_proposition_subhead %></a></h6>
+		<% end %>
+		<div class="view_deal_tag">
+			<p><a href="<%= daily_deal_path(side_deal) %>" targe="_blank">View Deal</a></p>
+			<h5><%= number_to_currency side_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></h5>
+		</div>
+		<div class="city_location">
+			<% if side_deal.advertiser.store.present? %>
+				<% if side_deal.advertiser.stores.size > 1 %>				
+				<p>Multiple Locations</p>
+				<% else  %>
+				<p><%= side_deal.advertiser.store.city %></p>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="shadow_side"></div>
+</div>
+<% end %>
+
+

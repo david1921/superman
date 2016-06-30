@@ -1,0 +1,44 @@
+burger_king_en:
+  daily_deal_id: <%= Fixtures.identify(:burger_king) %>
+  locale: "en"
+  value_proposition: "$81 value for $39"
+  description: "The description"
+  highlights: "The highlights"
+  terms: "These are the terms"
+  short_description: "Today's deal from Burger King"
+
+changos_en:
+  daily_deal_id: <%= Fixtures.identify(:changos) %>
+  locale: "en"
+  value_proposition: $50 of Tacos for $20
+  description: More tacos than you can possibly eat
+  highlights: Tacos!
+  terms: Must eat all tacos on premises
+  short_description: "Tacos from Changos"
+
+no_percent_savings_en:
+  daily_deal_id: <%= Fixtures.identify(:no_percent_savings) %>
+  locale: "en"
+  description: More tacos than you can possibly eat
+  value_proposition: $50 of Tacos for $20
+  highlights: Tacos!
+  terms: Must eat all tacos on premises
+  short_description: "Tacos from Changos"
+
+one_hundred_percent_savings_en:
+  daily_deal_id: <%= Fixtures.identify(:one_hundred_percent_savings) %>
+  locale: "en"
+  value_proposition: $50 of Tacos for $20
+  description: More tacos than you can possibly eat
+  highlights: Tacos!
+  terms: Must eat all tacos on premises
+  short_description: "Tacos from Changos"
+
+zero_value_en:
+  daily_deal_id: <%= Fixtures.identify(:zero_value) %>
+  locale: "en"
+  value_proposition: $50 of Tacos for $20
+  description: More tacos than you can possibly eat
+  highlights: Tacos!
+  terms: Must eat all tacos on premises
+  short_description: "Tacos from Changos"

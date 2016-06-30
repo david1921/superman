@@ -1,0 +1,9 @@
+<% @booking.passengers.each_with_index do |passenger, i| -%>
+Passenger #<%= i + 1 %>:
+
+<%= passenger.name %>
+<%= passenger.address1 %><% if passenger.address2.present? %><%= "\n" + passenger.address2 %><% end %>
+<%= passenger.locality %>, <%= passenger.region %> <%= passenger.postal_code %> <%= passenger.country_code %>
+Date Of Birth: <%= passenger.birth_date.try(:strftime, "%m/%d/%Y") %>
+
+<% end -%>

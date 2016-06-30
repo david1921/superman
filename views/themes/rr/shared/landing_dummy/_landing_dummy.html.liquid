@@ -1,0 +1,157 @@
+<div id="center_column">
+	<div id="top_row">
+		<div id="deal_headings">
+			<h2 id="value_proposition">{{ daily_deal.value_proposition }}
+			<br /><span>{{ daily_deal.value_proposition_subhead }}<span></h2>
+			
+			
+		</div><!-- /deal_headings -->
+		<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" /></div>
+	<div id="dashboard">
+		<p>{{ daily_deal.price | currency }}</p>
+		<div id="buy_wrapper">
+			<div id="buy_now">
+				{% if daily_deal.sold_out? %}
+				<div id="sold_out" class="dd_button">Sold Out</div>
+				{% elsif daily_deal.over? %}
+				<div id="deal_over" class="dd_button">Deal Over</div>
+				{% elsif daily_deal.active? %}
+				<a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button">Buy Now</a>
+				<div id="deal_over" class="dd_button unavailable" style="display:none;">Deal Over</div>
+				{% else %}
+				<div id="not_yet" class="dd_button img_button">Not Yet Available</div>
+				{% endif %}
+			</div><!-- /buy_now -->
+		</div><!-- /buy_wrapper -->
+		<table id="value_summary">     
+			<tr>
+				<th>Value</th>
+				<th class="savings" {% unless daily_deal.number_sold_meets_or_exceeds_display_threshold? %}style="border-right:none"{% endunless %}>Savings</th>
+				{% if daily_deal.number_sold_meets_or_exceeds_display_threshold? %}
+				<th class="last">Bought</th>
+				{% endif %}
+			</tr>
+			<tr>
+				<td >{{ daily_deal.value_based_on_min_quantity | currency }}</td>
+				<td class="savings" {% unless daily_deal.number_sold_meets_or_exceeds_display_threshold? %}style="border-right:none"{% endunless %}>{{ daily_deal.savings_based_on_min_quantity | currency }}</td>
+				{% if daily_deal.number_sold_meets_or_exceeds_display_threshold? %}
+				<td class="last" id="deals_sold">{{ daily_deal.number_sold }}</td>
+				{% endif %}
+			</tr>
+		</table>
+		<table id="timer">     
+			<tr>
+				<th rowspan="2"><img src="/themes/rr/images/graphics/clock.png"</th>
+				<th id="time_left_to_buy_label">Time Left</th>
+			</tr>
+			<tr>
+				<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+			</tr>
+		</table><!-- /timer -->
+	
+	</div><!-- /dashboard -->
+	</div><!-- top_row -->
+	<div id="bottom_row" class="deal_details">
+		<div class="deal_details_right">
+			<div id="highlights">
+				{{ daily_deal.highlights }}
+			</div>
+			<div id="details">
+				<h4 id="description">Description</h3>
+				{{ daily_deal.description }}
+			</div>
+			<div id="fine_print">
+				{% if daily_deal.fine_print != "" %}
+				<h4 id="limitations">Limitations</h3>
+				{{ daily_deal.terms }}
+				{% endif %}
+			</div>
+		</div><!-- /deal_details right -->
+		
+				<div class="deal_details_left">
+					<div id="share_deal">     
+					<h4 id="share_deal">Share this deal:</h4> 
+						<a href="{{ daily_deal.twitter_url }}" target="_blank" id="twitter_button" class="share_button share_button_twitter"><span>Share on Twitter</span></a>
+						<a href="mailto:?subject={{ daily_deal.publisher_prefix | uri_escape }}:%20{{ daily_deal.value_proposition | uri_escape }}&amp;body=Check%20out%20this%20great%20deal%20at%20{{ daily_deal.url }}" target="_blank" id="email_button" class="share_button share_button_mail"><span>Email to a friend</span></a>
+
+							<div class="fb_like_button">
+								<iframe src="http://www.facebook.com/plugins/like.php?href={{ daily_deal.url | cgi_escape }}&amp;send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
+							</div>
+
+
+					</div><!-- /share -->
+					<div id="advertiser">
+
+					<h4 id="location">Location</h4> 
+
+					     <h3 class="advertiser_name">{{ advertiser.name }}</h3>
+
+					     {% if advertiser.num_stores == 1 %}
+					     {{ store.formatted_phone_number }}
+					     {% endif %}
+
+					     {% if advertiser.website_url != empty %}
+					     </span><a href="{{ advertiser.website_url }}" target="_blank">Visit Website</a></span>
+					     {% endif %}
+
+					     {% for store in advertiser.stores %}
+					     <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}"> 
+					          <p>
+					          {% if store.address_line_1 != empty %}
+					          <span>{{ store.address_line_1 }}</span>
+					          {% endif %}
+					          {% if store.address_line_2 != empty %}
+					          <span>{{ store.address_line_2 }}</span>
+					          {% endif %}
+
+					          {% if store.city != empty and store.state != empty and store.zip != empty %}
+					          <span>{{ store.city }}, {{ store.state }} {{ store.zip }}</span>
+					          {% endif %}
+
+					          {% if store.formatted_phone_number != empty %}
+					          <span>{{ store.formatted_phone_number }}</span>
+					          {% endif %}        
+
+					          </p>
+
+					     </div><!-- /location_container -->
+					{% endfor %}
+
+
+					{% if advertiser.num_stores > 2 %}
+					<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+					{% endif %}
+
+						{% if advertiser.address? %}
+						{% assign map_image_url_size = daily_deal.multi_loc_map_image_url.size %}
+
+		       	   {% if map_image_url_size <= 2048 %}
+						  <div class="map">
+						    <a id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" /></a>
+						  </div>
+						  {% endif %}
+						{% endif %} 
+
+
+					</div><!-- /advertiser -->
+				</div><!-- /deal_details left -->
+		
+		
+	</div><!-- /bottom_row -->
+	
+	<div class="clear"></div>
+</div><!--/center_column-->
+
+<div id="right_column">
+
+  {% include 'themes/rr/shared/landing_dummy/search' %}
+  {% include 'themes/rr/shared/landing_dummy/side_deals' %}  	
+  {% include 'themes/rr/shared/landing_dummy/refer_friend' %}
+
+</div><!--right_column-->
+    
+    
+<div class="clear"></div>
+
+		{% include "shared/affiliate_link_form_popup" %}
+

@@ -1,0 +1,30 @@
+<% if @publisher.launched %>
+  <%# "#{controller_name}##{action_name}" %>
+  <!-- normal publisher tracking tags -->
+  <% if "#{controller_name}##{action_name}" == "publishers#deal_of_the_day"%>
+    <%= render :partial => with_theme("shared/tracking/#{@publisher.label.downcase.gsub('-', '_')}_tracking") %>
+  <% end %>
+  <% if "#{controller_name}##{action_name}" == "consumers#create" %>
+      <%= render :partial => with_theme("shared/tracking/bcbsa_national_activation_tracking") %>
+  <% end %>
+
+  <% if @publisher.label == "bcbsa-national" %>
+    <!-- national specific tracking tags -->
+
+    <% if "#{controller_name}##{action_name}" == "daily_deal_sessions#new" %>
+      <%= render :partial => with_theme("shared/tracking/bcbsa_national_login_tracking") %>
+    <% end %>
+    <% if "#{controller_name}##{action_name}" == "consumers#new" %>
+      <%= render :partial => with_theme("shared/tracking/bcbsa_national_register_tracking") %>
+    <% end %>
+    <% if "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" %>
+      <%= render :partial => with_theme("shared/tracking/bcbsa_national_dotd_tracking") %>
+    <% end %>
+    <% if "#{controller_name}##{action_name}" == "daily_deals#show" %>
+      <%= render :partial => with_theme("shared/tracking/bcbsa_national_dealid_tracking") %>
+    <% end %>
+
+  <% end %>
+  
+    
+<% end %> <!-- / publisher tracking tags -->

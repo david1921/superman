@@ -1,0 +1,24 @@
+<%= raw render :partial => '/shared/flash', :locals => { :flash => flash } %>
+<div>
+
+<div class="clear"></div>
+<div id="main">	
+	<!-- filter out deal page for non-launched pubs -->
+	<% if @publisher.launched || params[:display] =="true" %>		
+			<% if ("#{controller_name}##{action_name}" == "publishers#deal_of_the_day") || ("#{controller_name}##{action_name}" == "publishers#seo_friendly_deal_of_the_day")  %>
+			 	<!-- home page stuff -->
+			 	<%= render :partial => with_theme('shared/homepage_top'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+				<%= render :partial => with_theme('shared/deal_overview'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+				<%= render :partial => with_theme('shared/bottom_deals') %>
+			<% else %>
+			 	<!--  offer page stuff -->
+				<%= render :partial => with_theme('shared/breadcrumbs_dealpage'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } unless @publisher.label == 'bcbsa-national' %>
+				<%= render :partial => with_theme('shared/deal_overview'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+				<div class="clear"></div>
+				<%= render :partial => with_theme('shared/deal_info'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+				<%= render :partial => with_theme('shared/bottom_deals') %>
+			<% end %>
+	<% end %>
+	
+</div><!-- /main -->
+</div>

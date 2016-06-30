@@ -1,0 +1,94 @@
+<% set_daily_deal_page_title_slug t(:my_account) %>
+
+<div class="page_row">
+  <div class="my_account_page prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <div id="signup_form">
+      <h2 class="my_account_heading"><%= t(:my_account) %></h2>
+      <% form_for [@publisher, @consumer], :html => {:class => 'email_subscription_tracking', :id => 'signup'} do |f| -%>
+        <%= f.error_messages %>
+      	<div>
+          <p class="credit_balance"><%= t('.credit_balance_message', :credit_available => number_to_currency(@consumer.credit_available, :unit => @publisher.currency_symbol)) %></p>
+        </div>
+        <fieldset>
+          <%= f.label :first_name %>
+          <%= f.text_field(:first_name) %>
+        
+          <%= f.label :last_name%>
+          <%= f.text_field(:last_name) %>
+        </fieldset>
+        
+        <fieldset>
+          <%= f.label :email %>
+          <%= f.text_field(:email, :disabled => true, :class => 'dd_input') %>
+        </fieldset>
+      
+        <fieldset>
+          <%= f.label :address %>
+          <%= f.text_field(:address_line_1) %>
+        </fieldset>
+        
+        <fieldset>
+          <%= f.label :city %>
+          <%= f.text_field(:city) %>
+        
+          <%= f.label :zip_code %>
+          <%= f.text_field :zip_code, :id => 'consumer_zip' %>
+        </fieldset>
+      
+        <fieldset>
+          <%= f.label :mobile_number, 'Mobile Phone' %>
+          <%= f.text_field :mobile_number %>
+        </fieldset>
+      
+        <fieldset>
+          <%= f.label :birth_year, 'Year of Birth' %>
+          <%= f.select :birth_year, (1900...2010).map { |year| [year, year] }, :include_blank => 'Select...' %>
+        
+          <%= f.label :gender %>
+          <%= f.select :gender, { :Male => 'M', :Female => 'F'}, :include_blank => 'Select...' %>
+        </fieldset>
+      
+        <div id="categories">
+          <p><%= f.label :categories, "I'm interested in:" %></p>
+          <fieldset class="checklist">
+            <ul>
+              <% @publisher.default_daily_deal_categories.each do |category| %>
+                <li><input type="checkbox" name="consumer[daily_deal_category_ids][]" value="<%= category.id %>" <%= 'checked="checked"' if @consumer.daily_deal_category_ids.include?(category.id) %> /><%= category.name %></li>
+              <% end %>
+            </ul>
+            <div class="selection_checkboxes clear">
+              <a href="javascript:;" onclick="setChecked('#categories input', 1)">Select All</a>
+              <a href="javascript:;" onclick="setChecked('#categories input', 0)">Select None</a>
+            </div>
+          </fieldset>
+        </div>
+      
+        <fieldset class="password">
+          <%= f.label :password, 'New Password' %>
+          <%= f.password_field(:password) %>
+        </fieldset>
+        <fieldset class="password">
+          <%= f.label :password_confirmation, 'Confirm Password' %>
+          <%= f.password_field(:password_confirmation) %>
+        </fieldset>
+      
+        <%= f.hidden_field :device %>
+
+        <div id="buttons" class="row">
+          <%= submit_tag(t(:update), :name => "update") %>  <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function setChecked(checkboxSelector, state) {
+    $$(checkboxSelector).each(function(checkbox) {
+      checkbox.checked = state;
+    });
+  }
+</script>
+

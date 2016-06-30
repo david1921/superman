@@ -1,0 +1,17 @@
+<%- content_tag_for :tr, user, :class => cycle("even", "odd") do -%>
+  <td class="check">
+    <%= check_box_tag "id[]", user.id, false, :class => "checkbox", :id => "user_id_#{user.id}" %>
+  </td>
+  <td class="login">
+    <%= user.login %>
+  </td>
+  <td class="name">
+    <%= user.name %>
+  </td>
+  <td class="email">
+    <%= user.email %>
+  </td>
+  <td class="last">
+    <%= link_to "Edit", edit_parent_user_url(user) %>
+  </td>
+<%- end -%>

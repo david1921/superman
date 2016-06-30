@@ -1,0 +1,54 @@
+<div id="filter_search_wrapper">
+      <div id="filter_button">Filter Search</div>
+      
+      <div id="filter_search"><div>
+       <% form_for :search_request, @search_request, :html => {:method => :get, :id => "search_filters"} do |form| -%>
+		  <%#Search parameters from other forms to carry with filter params %>
+		  <%= hidden_field_tag :publisher_id, @publisher.id %>
+		  <%= hidden_field_tag :sort, @search_request.sort %>
+		  <%= hidden_field_tag :status, @search_request.status %>
+		  <%= hidden_field_tag( :page, @search_response.try(:current_page) || 1 ) %>		      
+		      <% if @search_request.map? -%>
+            <% form.fields_for :bounds, @search_request.bounds do |bounds| -%>
+              <%= bounds.hidden_field :sw %>
+              <%= bounds.hidden_field :ne %>
+              <%= bounds.hidden_field :center %>
+              <%= bounds.hidden_field :zoom %>
+            <% end -%>
+          <% end -%>
+          <% form.fields_for :filter, @search_request.filter do |filter| -%>
+            <% field_set_tag do -%>
+            <%= filter.text_field :text, :value => @search_request.filter.text.present? ? @search_request.filter.text : "Search Deals", :onfocus => "if (this.value=='Search Deals') this.value='';", :onblur => "if (this.value=='') this.value='Search Deals'" %>
+            <% end -%>
+            <% field_set_tag( nil, :class => 'featured' ) do -%>
+              <%= filter.check_box :national_deals, :class => "label" %> National Deals<br>
+            <% end -%>
+            <% field_set_tag do -%>
+              <%= filter.label :location, "Location:" %>
+              <%= filter.text_field :location, :value => @search_request.filter.location.present? ? @search_request.filter.location : "Zip Code", :onfocus => "if (this.value=='Zip Code') this.value='';", :onblur => "if (this.value=='') this.value='Zip Code'" %>
+              <%= filter.select :radius, Syndication::SearchRequest::RADIUS.collect {|mile| [pluralize(mile, "mile"), mile.to_s]}, {:include_blank => true, :selected => @search_request.filter.radius.to_s} %>
+            <% end -%>
+            <% field_set_tag do -%>
+              <% @categories.each do |category| -%>
+				<% if @search_request.filter.categories.include?( category.id.to_s) -%>
+					<%= check_box_tag("search_request[filter][categories][]", category.id, :checked => true) %>
+				<% else -%>
+					<%= check_box_tag("search_request[filter][categories][]", category.id) %>
+				<% end -%>                
+                <%= category.name.titleize %><br>
+              <% end -%>
+            <% end -%>
+            <% field_set_tag nil, :id => "date_filters" do -%>
+              <%= label_tag("date", "Date:") %>
+              <%= filter.label :start_date, "From:", :class => "date" %>
+              <%= filter.text_field :start_date, :value => @search_request.filter.start_date.present? ? @search_request.filter.start_date : 'mm/dd/yyyy', :onfocus => "if (this.value=='mm/dd/yyyy') this.value='';", :onblur => "if (this.value=='') this.value='mm/dd/yyyy';" %>
+              <%= filter.label :end_date, "To:", :class => "date" %>
+              <%= filter.text_field :end_date, :value => @search_request.filter.end_date.present? ? @search_request.filter.end_date : 'mm/dd/yyyy', :onfocus => "if (this.value=='mm/dd/yyyy') this.value='';", :onblur => "if (this.value=='') this.value='mm/dd/yyyy';" %>
+            <% end -%>
+            <%= submit_tag "Search", :name => "search" %>
+            <%= submit_tag "Reset", :name => "reset"  %>
+          <% end -%>
+        <% end -%>
+      </div></div><!-- /filter_search -->
+
+</div><!-- /filter_search_wrapper -->

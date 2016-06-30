@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  
+  <title>
+    <%= @publisher.name %>: Coupons
+  </title>
+
+  <%= render :partial => "layouts/offers/standard/facebook_metadata" %>
+
+  <%= stylesheet_link_tag "reset", "offers", "#{@publisher.theme}/offers", "businesses", "#{@publisher.label}/businesses", :media => "all" %>
+  <%= stylesheet_link_tag "lightbox", "standard/lightbox", :media => "all" %>
+  <%= stylesheet_link_tag("#{@publisher.label}/main.css", :media => "all") if File.exists? "#{Rails.root}/public/stylesheets/#{@publisher.label}/main.css" %>
+  <%= stylesheet_link_tag("/themes/#{@publisher.label}/iframe_businesses.css", :media => "all") if File.exists? "#{Rails.root}/public/themes/#{@publisher.label}/stylesheets/iframe_businesses.css" %>
+  <!--[if IE 6]>
+    <%= stylesheet_link_tag "ie6", :media => "all" %>
+  <![endif]-->
+  <%= javascript_include_tag :defaults, "ghostie", "lightbox", "coupons" %>
+  
+  <style type="text/css" media="screen">
+  <%- if @background_color -%>
+    body {
+      background-color: #<%= @background_color %>;
+    }
+  <% end  -%>
+      
+  <%- if @foreground_color -%>
+    #analog_analytics_content {
+      color: #<%= @foreground_color %>;
+    }
+
+    #analog_analytics_content a {
+      color: #<%= @foreground_color %>;
+    }
+  <% end  -%>    
+  </style>
+<%= raw render :partial => "/shared/tracking_offers" %>
+</head>
+
+<body class="iframe">
+  <div class="iframe" id="analog_analytics_content">
+<%= yield %>
+  </div>
+
+
+</body>
+<%= raw render :partial => "offers/map_javascript" %>
+</html>

@@ -1,0 +1,57 @@
+<% set_page_title("#{@gift_certificate.advertiser.name} Deal Certificate: New") if @gift_certificate.new_record? %>
+
+<div class="left_column">
+  <% form_for @gift_certificate, :html => {:multipart => true} do |f| -%>
+    <%= error_messages_for :gift_certificate %>
+    <%= hidden_field_tag :advertiser_id, @gift_certificate.advertiser_id %>
+    
+    <%= f.text_area_div(:message, nil, :rows => 3, :required => true) %>
+    <%= f.text_field_div(:price, nil, :required => true) %>
+    <%= f.text_field_div(:value) %>
+    <%= f.text_field_div(:handling_fee ) %>
+    <%= f.text_field_div(:number_allocated) %>
+    <%= f.check_box_div(:physical_gift_certificate, "Physical Deal Certificate") %>
+    <%= f.check_box_div(:collect_address) %>
+    <%= f.text_area_div(:terms, nil, :rows => 3) %>
+    
+    <div class="row date">
+      <div class="label"><%= f.label :show_on, "Show On:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:show_on, :popup => :force, :time => true) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+
+    <div class="row date">
+      <div class="label"><%= f.label :expires_on, "Show Until:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:expires_on, :popup => :force, :time => true) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+
+    <% if @gift_certificate.featured_gift_certificate_enabled? -%>
+      
+      <div class="row">
+        <div class="label"><%= f.label(:logo) %></div>
+        <div class="input">
+          <%= image_tag(@gift_certificate.logo.url(:normal), :class => "thumbnail") %><br />
+          <%= f.file_field(:logo) %>
+        </div>
+      </div>
+      
+      <%= f.text_area_div(:description) %>
+      
+    <% end -%>
+    
+    <%= f.text_field_div :bit_ly_url, "bit.ly URL:", :disabled => true %>
+
+    <div class="full_width buttons">
+      <%= button_to_function "Cancel", "window.location.href = '#{edit_advertiser_path(@gift_certificate.advertiser)}'", :class => "left" %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+    
+  <% end -%>
+</div>
+
+<%= focus "offer_message" %>

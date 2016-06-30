@@ -1,0 +1,65 @@
+<% if Rails.env.development? || admin? %>
+<div id="admin_wrap">
+    <!--[if gte IE 9]>
+    <style type="text/css">.gradient {filter: none;}</style>
+    <![endif]-->
+    <%= stylesheet_link_tag "sass/admin_toolbar" %>
+    <div class="small_window_btn">Admin Tools</div>
+    <div class="admin_toolbar">
+        <section id="quick_resize">
+            <h5>Quick Resize</h5>
+            <section class="admin_mobile_buttons">
+                <ul>
+                    <li class="iphone_vertical btn_320"><a>iPhone Vertical</a></li>
+                    <li class="iphone_horizontal btn_480"><a>iPhone Horizontal</a></li>
+                    <li class="ipad_vertical btn_768"><a>iPad Vertical</a></li>
+                    <li class="ipad_horizontal btn_1024">iPad Horizontal</a></li>
+                </ul>
+            </section><!-- END .admin_mobile_buttons -->
+            <a id="custom_size" href="#custom">custom</a>
+            <section class="admin_mobile_custom" style="display:none">
+                <form>
+                    <fieldset>
+                        <input id="window_width" type="text" name="width" placeholder="W"/>
+                    </fieldset>
+                    <span>X</span>
+                    <fieldset>
+                        <input id="window_height" type="text" name="height" placeholder="H" />
+                    </fieldset>
+                    <input id="window_size_submit" type="submit" value="Submit" />
+                </form>
+            </section><!-- END .admin_mobile_custom -->
+        </section><!-- END .quick_resize -->
+        <div class="button_wrap">     
+            <section id='deal_states' style="display:none">
+                <h5>Deal State</h5>
+                <ul>
+                    <li><a href="#?deal_preview=active" class="active">Active</a></li>
+                    <li><a href="#?deal_preview=variation" class="toggle_variations">Active</a></li>
+                    <li><a href="#?deal_preview=sold_out" class="sold_out">Sold Out</a></li>
+                    <li><a href="#?deal_preview=coming_soon" class="coming_soon">Coming Soon</a></li>
+                    <li><a href="#?deal_preview=expired" class="expired">Expired</a></li>
+                </ul>
+            </section><!-- END #deal_states -->
+            <% if params[:controller] == 'publishers' && params[:action] == 'deal_of_the_day' || params[:controller] == 'daily_deals' && params[:action] == 'show' %>
+                <section id="admin_deal_links">
+                    <h5>Deal Links</h5>
+                    <ul>
+                        <li><%= link_to "Edit Deal", edit_daily_deal_path(@daily_deal), :target => "_blank" %></li>
+                        <li><%= link_to "Edit Publisher", edit_publisher_path(@daily_deal.publisher), :target => "_blank" %></li>
+                        <li><%= link_to "Edit Advertiser", edit_advertiser_path(@daily_deal.advertiser), :target => "_blank" %></li>
+                    </ul>
+                </section><!-- END #admin_deal_links -->
+            <% end %>
+        </div><!-- END .button_wrap -->
+    </div><!-- END .admin_toolbar -->
+    <div id="unsupported" style="display:none;">
+        <h5><span class="exclamation">!</span>We're sorry, the Admin Toolbar is not supported in your browser version.</h5>
+        <p>Please use Internet Explorer 9 or above. We suggest Chrome, Safari, or Firefox for the best user experience.</p>
+    </div>
+</div><!-- END .admin_wrap -->
+<% end %>
+<% if deal_state_access? %>
+    <script>window.jQuery || document.write('<script src="/javascripts/jquery/jquery.1.7.1.min.js"><\/script>')</script>
+    <%= javascript_include_tag "admin_toolbar" %>
+<% end %>

@@ -1,0 +1,47 @@
+<% set_daily_deal_page_title_slug "#{@daily_deal_category.name} Deals" %>
+
+<div class="clear"></div>
+<div id="main_column">
+  <div id="all_deals" class="content_box">
+    <div id="all_deals_header">
+      <h2><%= @daily_deal_category.name %> Deals</h2>
+      <!-- deal category links -->      
+      <%= raw render :partial => with_theme("shared/all_deals_category_list_nocount") %>
+
+      <div class="clear"></div>
+    </div>
+
+
+  <div class="clear"></div>
+      <div class="inner">
+
+        <%= will_paginate @daily_deals,
+        :per_page => 6,
+        :class => "pagination_top" %>
+        
+	     
+        <!-- Grab the deals for this category and render first filtering out deals without categories to avoid errors -->
+        <% all_category_deals = @daily_deals.select { |x| x.publishers_category.present? } %>
+        <% this_category_deals = all_category_deals.select { |x| x.publishers_category.name == "#{@daily_deal_category.name}" } %> 
+
+
+
+			  <% unless @daily_deals.blank? %>
+	       	<% @daily_deals.shuffle.each_with_index do |deal, index| %>
+              <%= render :partial => with_theme('daily_deals/daily_deal'), :locals => {:daily_deal => deal} %>
+ 		 	    <% end %>		
+	  	  <% end %>
+
+      </div>
+      <div class="clear"></div>
+          <%= will_paginate @daily_deals,
+      :per_page => 6,
+      :class=> "pagination_bottom" %>
+    
+  </div><!-- /content_box -->
+    
+</div><!-- /main_column -->
+
+<%= render :partial => with_theme("shared/all_deals_sidebar") %>
+
+</div>

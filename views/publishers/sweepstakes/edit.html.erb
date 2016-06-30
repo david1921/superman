@@ -1,0 +1,105 @@
+<div class="left_column">
+  <% form_for [@publisher, @sweepstake], :html => {:multipart => true} do |f| -%>
+    <%= f.error_messages %>
+    <%= f.text_field_div(:value_proposition, nil, :required => true)  %>
+    <%= f.text_field_div(:value_proposition_subhead, nil)  %>
+    <%= f.text_area_div :description, "Description/Details", :rows => 4 %>
+    <%= f.text_area_div :terms, "Terms", :rows => 4, :required => true %>
+    <%= f.text_area_div :official_rules, "Official Rules", :rows => 4, :required => true %>
+    <%= f.text_area_div :short_description, "Short Description", :rows => 4 %>
+    <%= f.check_box_div :featured %>
+    
+    <div class="row date">
+      <div class="label"><%= f.label :start_at, "Start At:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:start_at, :popup => :force ) %>
+      </div>
+      <div class="help" id="start_at_help"><%= @publisher.time_zone %></div>
+    </div>
+    
+    <div class="row date">
+      <div class="label"><%= f.label :hide_at, "Hide At:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:hide_at, :popup => :force ) %>
+      </div>
+      <div class="help" id="hide_at_help"><%= @publisher.time_zone %></div>
+    </div>
+    
+    <div class="row">
+      <div class="label"><%= f.label :photo %></div>
+        <div class="input">
+            <% if @sweepstake.photo.file? && !@sweepstake.new_record? -%>
+              <%= image_tag @sweepstake.photo.url(:thumb), :id => "sweepstake_photo_image" %>
+              <p class="delete_link" id="sweepstake_photo_delete_link">
+              <%= link_to_remote "Delete Photo",
+                :url => clear_photo_publisher_sweepstake_path(@publisher, @sweepstake),
+                :confirm => "Really delete this photo?" %>
+              </p>
+            <% end -%>
+            <%= f.file_field(:photo, :style => "display: #{@sweepstake.photo.file? ? "none" : "visible" }") %>
+        </div>
+    </div>  
+    
+    <div class="row">
+      <div class="label"><%= f.label :logo %></div>
+        <div class="input">
+            <% if @sweepstake.logo.file? && !@sweepstake.new_record? -%>
+              <%= image_tag @sweepstake.logo.url(:thumb), :id => "sweepstake_logo_image" %>
+              <p class="delete_link" id="sweepstake_logo_delete_link">
+              <%= link_to_remote "Delete Logo",
+                :url => clear_logo_publisher_sweepstake_path(@publisher, @sweepstake),
+                :confirm => "Really delete this logo?" %>
+              </p>
+            <% end -%>
+            <%= f.file_field(:logo, :style => "display: #{@sweepstake.logo.file? ? "none" : "visible" }") %>
+        </div>
+    </div>
+    
+    <div class="row">
+      <div class="label"><%= f.label :logo_alternate %></div>
+        <div class="input">
+            <% if @sweepstake.logo_alternate.file? && !@sweepstake.new_record? -%>
+              <%= image_tag @sweepstake.logo_alternate.url(:thumb), :id => "sweepstake_logo_alternate_image" %>
+              <p class="delete_link" id="sweepstake_logo_alternate_delete_link">
+              <%= link_to_remote "Delete Logo",
+                :url => clear_logo_alternate_publisher_sweepstake_path(@publisher, @sweepstake),
+                :confirm => "Really delete this Alternate Logo?" %>
+              </p>
+            <% end -%>
+            <%= f.file_field(:logo_alternate, :style => "display: #{@sweepstake.logo_alternate.file? ? "none" : "visible" }") %>
+        </div>
+    </div>
+    <div class="row">
+      <div class="label"><%= f.label :unlimited_entries, "Consumer Entries:" %></div>
+      <div>
+        <%= f.select(:unlimited_entries, [["Unlimited", true], ["Limited", false]], {:selected => @sweepstake.unlimited_entries }, { :onchange => "unlimitedEntriesChanged();" }) %>&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+    <div id="sweepstakes_limited_entries_row" class="row">
+      <div class="label"><%= f.label :max_entries_per_period, "Max Entries:" %></div>
+      <div>
+        <%= f.text_field(:max_entries_per_period, :size => "3")  %> &nbsp;entries per&nbsp;
+        <%= f.select(:max_entries_period, Sweepstake::ALLOWED_ENTRY_PERIODS.sort_by(&:first).map { |k,v| [ v, k ] }, { :include_blank => true }) %>
+      </div>
+    </div>
+    <%= f.check_box_div :show_promotional_opt_in_checkbox %>
+    <%= f.text_field_div :promotional_opt_in_text, "Promotional Opt In Text" %>
+    <div class="full_width buttons">
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  function unlimitedEntriesChanged() {
+    if ($F('sweepstake_unlimited_entries') == "true") {
+      $('sweepstakes_limited_entries_row').hide();
+    }
+    else {
+      $('sweepstakes_limited_entries_row').show();
+      $('sweepstakes_limited_entries_row').focus();
+      $('sweepstakes_limited_entries_row').select();
+    }
+  }
+  unlimitedEntriesChanged();
+</script>

@@ -1,0 +1,7 @@
+require "third_party_deals_api/exceptions"
+require "third_party_deals_api/xml/helper"
+require "third_party_deals_api/xml/serial_number_request"
+require "third_party_deals_api/xml/serial_number_response"
+require "third_party_deals_api/xml/voucher_status_change_notification"
+require "third_party_deals_api/xml/voucher_status_request"
+require "third_party_deals_api/xml/voucher_status_response"

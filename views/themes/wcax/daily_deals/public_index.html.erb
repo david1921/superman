@@ -1,0 +1,20 @@
+<div class="all_deals_wrap">
+<div id="deal_page_left_column">
+	<div id="daily_deal_container" class="daily_deal_box">
+		<div id="dd_nav">
+			<%= raw render :partial => with_theme("shared/dd_nav")%>
+		</div><!-- END #dd_nav -->
+		<div id="daily_deal_content_box">
+ <% side_deals = @publisher.daily_deals.active.in_custom_wcax_order %>
+        <% unless side_deals.blank? %>        
+            <%= render :partial => with_theme('daily_deals/daily_deal'), :collection => side_deals %>
+        <% end %>
+		</div>
+	</div><!--END #daily_deal_container-->
+	<!-- END #dd_info_container -->
+</div><!-- END #deal_page_left_column -->
+<div id="daily_deal_right_rail">
+	<%= raw render :partial => with_theme("shared/side_deals")%>
+	<%= raw render :partial => with_theme("shared/facebook_likebox")%>
+</div><!-- END #daily_deal_right_rail -->
+</div><!-- END .all_deals_wrap -->

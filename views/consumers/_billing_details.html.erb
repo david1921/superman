@@ -1,0 +1,20 @@
+<% fields_for "transaction[billing]", :builder => BraintreeFormBuilder do |b| -%>
+  <fieldset class="billing_address_1">
+    <%= b.text_field :street_address, :placeholder => t('.billing_address_line_1_label'), :class => "required" %>
+  </fieldset>
+  <fieldset class="billing_address_2">
+    <%= b.text_field :extended_address, :placeholder => t('.billing_address_line_2_label') %>
+  </fieldset>
+  <fieldset class="billing_locality">
+    <%= b.text_field :locality, :placeholder => t('.billing_address_city_label'), :class => "required" %>
+  </fieldset>
+  <fieldset class="billing_region">
+    <%= b.braintree_select_div :region, grouped_options_for_select(grouped_state_options), {:label_text => t('.billing_address_state_label')},:class => "floatLeft" %>
+  </fieldset>
+  <fieldset class="billing_postal_code">
+   <%= b.text_field :postal_code, :placeholder => t('.billing_zipcode_label', :zip_code_label => zip_code_label(daily_deal_purchase.publisher)), :size => 10, :maxlength => 10, :class => "autowidth required zipCode" %>
+  </fieldset>
+  <fieldset class="billing_country_code">
+    <%= b.braintree_select_div :country_code_alpha2, options_for_select([["United States", "US"], ["Canada", "CA"]]), {:label_text => t('.billing_address_country_label')},:class => "floatLeft" %>
+  </fieldset>
+<% end -%>

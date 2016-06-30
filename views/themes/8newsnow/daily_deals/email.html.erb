@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Vegas Says Daily Deal - Today's Deal</title>
+</head>
+<body bgcolor="#ffffff">
+<div style="width:600px; font-family:Arial, Helvetica, sans-serif; font-size: 16px; background-color:#ffffff">
+  <table width="600" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td colspan="2">
+        <%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/8newsnow/images/email/header.png",
+                      :alt =>"Las Vegas Daily Deals - Today's Deal",
+                      :width =>"600", 
+                      :height =>"") %>
+      </td>
+    </tr>
+    <tr>
+      <td><table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td align="center" colspan="2" bgcolor="#ffffff"><h1><%= @daily_deal.value_proposition %></h1></td>
+          </tr>
+          <tr>
+            <td valign="top" width="281"><table width="281" height="213" cellpadding="0" cellspacing="0" border="0" bgcolor="#b6d8ef">
+                <tr>
+                  <td width="33%" align="center"><strong>Worth</strong></td>
+                  <td width="33%" align="center"><strong>Discount</strong></td>
+                  <td width="33%" align="center"><strong>Savings</strong></td>
+                </tr>
+                <tr>
+                  <td width="33%" align="center"><strong><%= number_to_currency @daily_deal.value, :precision => 0 %></strong></td>
+                  <td width="33%" align="center"><strong><%= number_to_percentage @daily_deal.savings_as_percentage, :precision => 0 %></strong></td>
+                  <td width="33%" align="center"><strong><%= number_to_currency @daily_deal.savings, :precision => 0 %></strong></td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center"><%= link_to(
+                        image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/8newsnow/images/email/get-deal-button.png"), 
+                        add_params_to_email_link(new_daily_deal_daily_deal_purchase_url(@daily_deal, :host => @daily_deal.publisher.daily_deal_host)),
+                        :id => "buy_now_button").html_safe
+                  %>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center" bgcolor="#FFFFCC"><strong>Share The Love!</strong></td>
+                </tr>
+                <tr>
+                  <td width="33%" align="center"><%= link_to( 
+                        "Facebook",
+                        facebook_daily_deal_url(@daily_deal),
+                        :class => "facebook",
+                        :id => "facebook_link",
+                        :title => "Share coupon on Facebook") %>
+                  </td>
+                  <td width="33%" align="center"><%= link_to(
+                        "Twitter",
+                        twitter_daily_deal_url(@daily_deal),
+                        :class => "twitter",
+                        :title => "Share coupon on Twitter"
+                      ) %></td>
+                  <td width="33%" align="center"><%= mail_to(
+                            "", 
+                            "Email", 
+                            :subject => "#{@daily_deal.publisher_prefix} #{@daily_deal.value_proposition}",
+                            :body => "Check out this deal at #{daily_deal_url(@daily_deal)}"
+                      ) %></td>
+                </tr>
+              </table></td>
+            <td width="319"><%= image_tag @daily_deal.photo.url(:standard) %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><table cellpadding="15" cellspacing="0" border="0" bgcolor="#ffffff">
+                <tr>
+                  <td><p><strong><%= @daily_deal.advertiser.name %></strong><br/>
+                      <%= @daily_deal.advertiser.address.join(", ") %></p>
+                    <h4><strong>Why This Deal is So Great!</strong></h4>
+                    <%= @daily_deal.highlights.try :html_safe %>
+                    <h4><strong>The Fine Print</strong></h4>
+                    <%= @daily_deal.terms.try :html_safe %>
+                    <h4>More About <%= @daily_deal.advertiser.name %></h4>
+                    <%= @daily_deal.description.try :html_safe %></td>
+                </tr>
+            </table></td>
+          </tr>
+        </table></td>
+    </tr>
+        <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr> 
+    <tr>
+      <td colspan="2"> <%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/8newsnow/images/email/footer.png") %></td>
+    </tr>    
+    <tr>
+      <td colspan="2" align="center"  bgcolor="#a6bac9"><table  cellspacing="0" border="0" cellpadding="15"><tr><td><strong><a href="mailto:bblood@8newsnow.com">Send Your Deal of the Day!</a></strong><br>
+        Learn about how we can bring some folks knocking on your door!</td></tr></table></td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>    
+    <tr>
+      <td colspan="2" align="center"><font size="-1">Channel 8 News NOW, 3228 Channel 8 Drive, Las Vegas, NV 89109&nbsp;&nbsp;&copy; 2010, KLAS, LLC</font></td>
+    </tr>
+
+  </table>
+</div>
+</div>
+</body>
+</html>

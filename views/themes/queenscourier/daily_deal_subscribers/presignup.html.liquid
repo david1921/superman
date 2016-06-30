@@ -1,0 +1,103 @@
+    <h1>
+      NEVER MISS A DEAL AGAIN!
+    </h1>
+    <div class="page_column_1 first">
+      <h2>
+        You’re almost there to receive discounts to your favorite Queens businesses.
+      </h2>
+      <h3>
+        Simply fill the form below and you’re done!
+      </h3>
+      <div id="signup_form">
+        <h2 class="signup">
+          SIGN UP FOR FREE BELOW AND GET AMAZING QUEENS DISCOUNTS.
+        </h2>
+        <p>
+          (*) Name, Email, and ZIP are mandatory information for us to serve you. Additional information will help us serve you better.
+        </p>
+        <form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="new_subscriber">
+
+          <input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}">
+          <input type="hidden" name="subscriber[required_fields][]" value="name">
+          <input type="hidden" name="subscriber[required_fields][]" value="zip_code">
+          
+            <div class="row">
+              <div class="label">
+                <label for="subscriber_name">* Name:</label>
+              </div>
+              <div class="input">
+                <input id="subscriber_name" name="subscriber[name]" size="30" type="text">                              
+              </div>
+            </div>
+
+          <div class="row">
+            <div class="label">
+              <label for="subscriber_email">* Email:</label>
+            </div>
+            <div class="input">
+              <input id="subscriber_email" name="subscriber[email]" size="30" type="text">
+            </div>            
+          </div>
+
+
+          <div class="row">
+            <div class="label">
+              <label for="subscriber_zip_code">* ZIP Code:</label>
+            </div>
+            <div class="input">
+              <input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text">
+            </div>            
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <label for="subscriber_birth_year">Year of Birth:</label>
+            </div>
+            <div class="input">
+              <select id="subscriber_birth_year" name="subscriber[birth_year]" class="floatleft">
+                <option value="">
+                  - select year -
+                </option>
+                {% for i in (1900..2010) %}
+                <option value="{{ i }}">
+                  {{ i }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <label for="subscriber_gender">Gender:</label>
+            </div>
+            <div class="input">
+              <select name="subscriber[gender]" id="subscriber_gender" class="floatleft">
+                <option value="">
+                  - select gender -
+                </option>
+                <option value="M">
+                  Male
+                </option>
+                <option value="F">
+                  Female
+                </option>
+              </select>
+            </div>            
+          </div>
+
+          <div id="buttons" class="row">
+            <div class="label">
+              <label for="subscriber_submit"></label>
+            </div>
+            <div class="input">
+              <input name="submit" id="subscriber_submit" type="submit" value="Submit" class="floatleft">              
+            </div>
+          </div>
+          
+        </form>
+      </div><!-- end sign-up form -->
+    </div><!-- end page_column_1 first -->
+    <div class="page_column_2 last">
+      <img src="/themes/queenscourier/images/start_saving.png" height="278" width="388" alt="Start Saving 50%-90% Today!"><img src="/themes/queenscourier/images/daily_deal.png" height="320" width="388" alt="Daily Deal Preview">
+    </div><!-- end page_column 2 -->

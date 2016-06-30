@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  
+  <% if @daily_deal -%>
+  <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+  <meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+  <link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+  <% end -%>
+  
+  <%= stylesheet_link_tag "scoped_reset", "application", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/daily_deals", :media => "all" %>
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+
+  <%= javascript_include_tag :defaults %>
+  
+  <title><%= daily_deal_page_title %></title>
+  <meta name="google-site-verification" content="PJ7mxU--QP2biKpuVE2fKsAFea7IX_gm0PPXhPvnQJQ" />
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+
+<body>
+<% if @publisher.using_analytics_provider? %>
+  <%= render(:partial => @publisher.analytics_service_provider[:partial]) %>  
+<% end %>
+<div class="content" id="content">
+  <div id="analog_analytics">
+    <div id="daily_deal">
+      <%= render(:partial => "themes/lang/daily_deals/navbar", :locals => { :publisher => @publisher }) if @publisher %>
+
+      <% link_to public_deal_of_day_path(@publisher.label) do -%>
+        <div id="masthead"></div>
+      <% end -%>
+      
+      <div class="warn rounded_corners" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+        <%= flash[:warn] %>
+      </div>
+      <div class="notice rounded_corners" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+        <%= flash[:notice] %>
+      </div>
+
+      <%= yield %>
+      <div class="clear"></div>
+
+      <p id="navbar_bottom">
+        <%= link_to "CONTACT US", contact_publisher_daily_deals_path(@publisher) %> |
+        <%= mail_to(@publisher.sales_email_address, "FEATURE YOUR BUSINESS") %> |
+        <%= link_to "FAQ", faqs_publisher_daily_deals_path(@publisher) %> |
+        <% if current_consumer_for_publisher?(@publisher) -%>
+          <%= navbar_link("MY DEALS", publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer)) %> |
+          <%= navbar_link("MY ACCOUNT", edit_publisher_consumer_path(@publisher, current_consumer)) %> |
+          <%= navbar_link("SIGN OUT", daily_deal_logout_path(@publisher)) %> |
+        <% else -%>
+          <%= navbar_link("SIGN IN", daily_deal_login_path(@publisher)) %> |
+          <%= navbar_link("SIGN UP", new_publisher_consumer_path(@publisher)) %> |
+        <% end -%>
+        <%= link_to "BUY NOW", current_deal_for_publisher_path(@publisher.label) %>
+      </p>
+      <p class="publisher_links">
+        <%= link_to "Privacy Notice", "http://www.#{@publisher.label}.com/privacy" %>  |  
+        &copy; Los Angeles Newspaper Group
+      </p>
+
+      <div class="clear"></div>
+      <%= link_to image_tag("/images/powered_by_analog_analytics.png"), 
+                  "http://www.analoganalytics.com/", 
+                  :alt => "Powered by Analog Analytics", 
+                  :id => "analog_analytics_logo" %> 
+    </div>
+  </div>
+</div>
+  
+<%= raw render :partial => "themes/langold/shared/tracking_publisher" %>
+<%= raw render :partial => "daily_deals/javascript" %>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div class="free_offers">
+<%= public_index_notice(@publisher) %>
+<!-- <%= render :partial => "offers/standard/pagination", :locals => { :position => "top" } %> -->
+<div class="left_column">
+    <%= render :partial => "search" %>
+        
+<!--
+    <div id="advanced_search">
+    <%= link_to_advanced_search("Advanced Search", @publisher, @text, @postal_code, @radius, @category, @categories, @iframe_height, @iframe_width, @layout) %>
+    </div>
+-->
+    
+    <%= render :partial => "offers/categories", :object => @publisher_categories %>
+</div><!-- /left_column -->
+<div class="right_column">
+    <div class="<%= @publisher.theme %>" id="offers">
+        <%= render :partial => with_theme('offers/offer'), :collection => @offers %>
+      <% if @offers.empty? -%>
+        Sorry, no coupons found
+      <%- end -%>
+      <%= render :partial => "offers/standard/pagination", :locals => { :position => "bottom" } %>
+    </div>
+<!-- <%= render :partial => 'shared/terms_and_conditions' %> -->
+</div><!-- /right_column -->
+<div class="clear"></div>
+</div><!-- /free_offers -->

@@ -1,0 +1,18 @@
+<% set_daily_deal_page_title_slug t('.title') %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%=t '.title' %></h1>
+    <% if flash[:travelsavers_errors_user_cannot_fix].present? %>
+    <div class="errorExplanation travelsavers" id="errorExplanation">
+      <h2>
+        An error occurred while processing this purchase:
+      </h2>
+      <ul>
+        <% flash[:travelsavers_errors_user_cannot_fix].each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div>

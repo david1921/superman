@@ -1,0 +1,89 @@
+<div id="header_wrapper">
+	<div id="header">
+		
+		<% case @publisher.label %>
+			<% when "IBXTPA", "BCNEPA", "CapitalBC", "IBX", "HighmarkBS", "BSNENY" %>
+				<div id="bcbsa_logo_no_shield" class="menu">
+			    	<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= image_tag "/themes/bcbsa/images/graphics/logo_no_shield_small.png" %></a>
+				</div>
+		<% else %>
+			<div id="bcbsa_logo_shield" class="menu">
+      			<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= image_tag "/themes/bcbsa/images/graphics/logo_shield_small.png" %></a>
+			</div>
+		<% end %>
+	    
+        <div id="browse_deals" class="menu">
+            <ul id="browse_deals_menu">
+            <li>
+                <a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:browse_deals) %></a>
+                <ul class="browse_deals_list">
+                    <% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals %>
+                    <% categories.ordered_by_name_ascending.each_with_index do |daily_deal_category, i| %>
+     
+                      <li<%= raw (i == categories.length - 1) ? ' class="last"' : '' %>>
+                          <%= image_tag "/themes/bcbsa/images/graphics/#{daily_deal_category.name.downcase.gsub(/\s/, '_')}.png",
+                              :class => daily_deal_category.name.downcase.gsub(/\s/, '_') %>
+                              
+                          <%= link_to(t(daily_deal_category.name.downcase.gsub(/\s/, '_')), publisher_daily_deal_category_path(@publisher, daily_deal_category)) %>
+                      </li>
+                       
+                    <% end %>
+                    
+                    <!--
+                    <ul class="sorting">
+                        <li><a href="#">Newest</a></li>
+                        <li><a href="#">Most Popular</a></li>
+                        <li class="last"><a href="#">Most Shared</a></li>
+                    </ul>
+                    -->
+                </ul><!-- /browse_deals_list -->
+            </li>
+            </ul><!-- /browse_deals_menu -->
+        </div><!-- /browse_deals -->
+		
+		<div id="how_it_works" class="menu"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>"><%= t(:how_it_works) %></a></div>
+		
+		<% if current_consumer_for_publisher?(@publisher) %>
+
+		<div id="logout" class="menu">
+			<div id="logout_wrap">
+				<h4><%= t(:account_greeting) %>, <%= current_consumer.first_name %></h4>
+				<ul class="account_nav">
+					<li><a href="<%= publisher_consumer_path(@publisher, current_consumer) %>"><%= t(:my_account) %></a></li>
+					<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>"><%= t(:logout) %></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<% else %>
+        <div id="login" class="menu">
+            <div id="login_wrap">
+                <ul>
+                    <li class="login"><a href="<%= daily_deal_login_path(@publisher) %>"><%= t(:login) %></a></li>
+                    <li class="signup"><a href="<%= new_publisher_consumer_path(@publisher) %>"><%= t(:register) %></a></li>
+                    <a href="<%= new_publisher_consumer_path(@publisher) %>">
+                    	<%= image_tag "/themes/bcbsa/images/graphics/arrow_down.png" %>
+                    </a>
+                </ul>
+            </div><!-- /login_wrap -->
+        </div><!-- /login -->
+		<% end %>
+		
+		<div id="bcbsa_branding">
+        <%= image_tag "/themes/bcbsa/images/graphics/branding/#{@publisher.label.downcase}_logo.png" %>
+		</div><!-- /bcbsa_branding -->
+
+	</div>
+	
+	<!-- removed until phase 2
+<div id="market_box">
+		<%# image_tag "/themes/bcbsa/images/graphics/arrow.png" %>
+		<h4>Find local deals</h4>
+		<form>
+			<input type="text" name="zipcode" />
+		</form>
+	</div>
+-->
+
+</div>
+

@@ -1,0 +1,26 @@
+<%- if @daily_deal_purchase.pay_using?(:credit) -%>
+
+  <%- buy_now_locals = {
+          :daily_deal_purchase => @daily_deal_purchase,
+          :result => @result, :consumer => @consumer,
+          :item_code => @daily_deal_purchase.daily_deal.item_code,
+          :redirect_url => braintree_redirect_daily_deal_purchase_url(@daily_deal_purchase, :host => @daily_deal_purchase.publisher.daily_deal_host)
+        }
+  -%>
+
+  <% if @daily_deal_purchase.daily_deal.publisher.use_vault %>
+    <%= render(:partial => with_theme("braintree_buy_now_with_stored_cards_form"), :locals => buy_now_locals) %>
+  <% else %>
+    <%= render(:partial => with_theme("braintree_buy_now_form"), :locals => buy_now_locals) %>
+  <% end %>
+
+<%- elsif @daily_deal_purchase.pay_using?(:cyber_source) -%>
+  <%= render(:partial => "daily_deal_purchases/confirm/cyber_source", :locals => {
+        :purchase => @daily_deal_purchase,
+        :order => @cyber_source_order
+      }) %>
+<%- elsif @daily_deal_purchase.pay_using?(:travelsavers) -%>
+    <%= render :partial => "daily_deal_purchases/confirm/travelsavers" -%>
+<%- else -%>
+  <%= render(:partial => "paypal_buy_now_form", :locals => { :daily_deal_purchase => @daily_deal_purchase }) %>
+<%- end -%>

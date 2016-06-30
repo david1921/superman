@@ -1,0 +1,42 @@
+<%# expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals<% endcomment %>
+<div id="main_tabs">
+	<div class="main_tab">
+		<% if @current_page == "deal" %>
+			<% href_css_class = "main_tab_selected" %>      
+		<% else %>
+			<% href_css_class = "main_tab_not_selected" %>
+		<% end %>
+		<a href="<%= public_deal_of_day_path(@publisher.label) %>" class="<%= href_css_class %>">DEAL of the DAY</a>
+	</div>
+	
+	<div class="main_tab future_tab">
+		<% if @current_page == "coupons" %>
+			<% href_css_class = "main_tab_selected" %>      
+		<% else %>
+			<% href_css_class = "main_tab_not_selected" %>
+		<% end %>
+		<a href="<%= public_offers_path(@publisher) %>" class="<%= href_css_class %>">Coupons</a>
+	</div>
+	
+	<div class="main_tab future_tab">
+		<% if @current_page == "gift_certificates" %>
+			<% href_css_class = "main_tab_selected" %>      
+		<% else %>
+			<% href_css_class = "main_tab_not_selected" %>
+		<% end %>
+		<a href="<%= public_gift_certificates_path(:label => @publisher.label) %>" class="<%= href_css_class %>">Deal Certificates</a>
+	</div>
+	<div class="clear"></div>
+	
+	<div class='tab_content <%= @current_page %>_content'>
+		<% if %w(coupons gift_certificates).include? @current_page %>
+		<div id="analog_analytics_content">
+			<%= yield %>
+		</div>
+		<% else %>
+			<%= render :partial => with_theme("shared/dd_nav") %>
+			<%= yield %>
+		<% end %>
+		<div class="clear"></div>
+	</div>               
+</div><!-- /main_tabs -->

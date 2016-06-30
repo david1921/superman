@@ -1,0 +1,24 @@
+<% content_tag_for :tr, user, :class => cycle("even", "odd") do %>
+  <td class="check">
+    <%= check_box_tag "id[]", user.id, false, :class => "checkbox", :id => "user_id_#{user.id}" %>
+  </td>
+  <td class="name">
+    <%= user.name %>
+  </td>
+  <td class="admin">
+    <% case user.admin_privilege %>
+    <% when User::FULL_ADMIN %>
+      admin
+    <% when User::RESTRICTED_ADMIN %>
+      admin (restricted)
+    <% else %>
+     &nbsp;
+    <% end %>
+  </td>
+  <td class="email">
+    <%= user.login %>
+  </td>
+  <td class="last">
+    <%= link_to "Edit", edit_admin_path(user) %>
+  </td>
+<%- end -%>

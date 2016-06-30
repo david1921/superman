@@ -1,0 +1,25 @@
+<table class='gift_certificates'> 
+  <% unless @gift_certificates.empty? -%>
+    <% unless @publisher.enable_featured_gift_certificate? -%>
+      <%= render :partial => 'gift_certificates/gift_certificate', :collection => @gift_certificates -%>
+    <% else -%>
+      <% @gift_certificates.each_with_index do |gc, index| -%>
+        <% if index == 0 -%>
+          <%= render :partial => 'gift_certificates/featured_gift_certificate', :object => gc %>
+        <% else -%>
+          <% if index == 1 %>
+          <tr class="previous">
+            <td colspan="3"><h3>PREVIOUS DEALS</h3></td>
+          </tr>          
+          <% end -%>
+          <%= render :partial => 'gift_certificates/gift_certificate', :object => gc %>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  <% else -%>
+   <tr>
+     <td>There are no deal certificates.</td>
+   </tr>
+  <% end -%>
+</table>
+<%= render :partial => 'gift_certificates/disclaimer' %>

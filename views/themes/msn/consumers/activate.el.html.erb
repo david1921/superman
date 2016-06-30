@@ -1,0 +1,26 @@
+<% set_daily_deal_page_title_slug "Invalid Activation Code" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Άκυρος κωδικός ενεργοποίησης</h2>
+    <p>Συγγνώμη, ο σύνδεσμος που ακολουθήσατε , ή ο κωδικός που καταχωρήσατε δεν είναι έγκυρος.</p>
+
+    <p>Παρακαλούμε ελέγξτε τα email σας για ένα μήνυμα από τη <%= @publisher.brand_name_or_name %> και ακολουθείστε το σύνδεσμο που περιλαμβάνεται στο email για να ενεργοποιήσετε το λογαριασμό σας. Αν ο σύνδεσμος δεν λειτουργεί μπορείτε να αντιγράψετε τον κωδικό που περιλαμβάνεται στο μήνυμα και να τον επικολλήσετε εδώ, πατώντας μετά το κουμπί ενεργοποίηση.</p>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, 'Κωδικός Ενεργοποίησης') %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons">
+        <%= submit_tag("Ενεργοποίηση", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

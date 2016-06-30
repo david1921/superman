@@ -1,0 +1,104 @@
+<% set_daily_deal_page_title_slug t(:feature_your_business) %>
+
+	<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	<ul>
+		<li>
+			<a href="<%= public_deal_of_day_path(@publisher.label) %>">Home</a>
+		</li>
+		<li class="no_underline">></li>
+		<li class="no_underline">          
+			Feature Your Business
+		</li>
+	</ul>
+	</div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:feature_your_business) %></h1>
+	<div id="feature_your_business_content">
+		
+		<div id="left_column">
+			<p>Blue365 is a one-stop resource for millions of Americans looking to live healthier for less.  If you have great deals to share with Blue365 members &#8212; just let us know how to be in touch.</p>
+			
+			<%= error_messages_for :sales_contact_request, :header_message =>nil %>
+			<% form_for [@publisher, @sales_contact_request], :html => {:id => "feature_form"}  do |f| %>
+			  <div>
+			    <span>
+			    	<h5>Name:</h5><span class="required">*</span>
+			    	<%= f.text_field :first_name, :class => "first" %> <%= f.text_field :last_name, :class => "last" %>
+					<label id="name_first" for="first_name">First</label><label id="name_last" for="last_name">Last</label>
+			    	<!-- <p class="first_name_label">First</p><p class="last_name_label">Last</p> -->
+			    </span>
+			  </div>
+			  <div>
+			    <span>
+			    	<h5>Title:</h5>
+			     	<%= f.text_field :title, :class => "title" %>
+			  	</span>
+			  </div>
+			  <div>
+			  	<span>
+			  		<h5>Company:</h5><span class="required">*</span>
+			  		<%= f.text_field :company, :class => "company" %>
+			  	</span>
+			  </div>
+			  <div>
+			    <span>
+			    	<h5>Email:</h5><span class="required">*</span>
+			    	<%= f.text_field :email, :class => "email" %>
+			    </span>
+			  </div>
+			  <div>
+			    <span>
+			    	<h5>Phone Number:</h5> 
+			    	<%= f.text_field :phone_number, :class => "phone_number" %>
+			    </span>
+			  </div>
+			  <div>
+			    <span>
+			    	<h5>Website:</h5>
+			    	<%= f.text_field :website, :class => "website" %>
+			    </span>
+			  </div>
+			  <div>
+			    <span class="fyb-textbox">
+			    	<h5>Message:</h5><span class="required">*</span>
+			    	<%= f.text_area :message, :class => "message" %>
+			    </span>
+			  </div>
+			  <div class="clear"></div>
+			   <div class="submit_field">
+			  	<%= f.submit 'Send', :id => "submit", :class => "blue_button" %>
+			  	<span class="required_fields">* required fields</span>
+			  </div>
+			<% end %>
+		</div>
+		<div class="right_column_2">
+			<div class="content">
+				<div class="top">
+					<h5>Why participate in Blue365?</h5>
+					<p>Helping others live healthier lives should help your business too.</p>
+				</div>
+			
+				<div class="middle">
+					<img src="/themes/bcbsa/images/graphics/reach_icon.png">
+					<h6>Reach new customers:</h6>
+					<p>Blue365 members will see your latest offers through weekly emails and targeted promotional activities.</p>
+				
+					<img src="/themes/bcbsa/images/graphics/share_icon.png">
+					<h6>Spread the word:</h6>
+					<p>Blue365 members have easy options to share deals by Facebook, Twitter and email &#8212; helping you find more customers, faster.</p>
+					
+					<img src="/themes/bcbsa/images/graphics/earn_icon.png">
+					<h6>Grow Your Business:</h6>
+					<p>There's no initial fee to run a deal, and we'll pay you for each deal purchased shortly after your deal promotion ends.  Sounds simple &#8212; and it is.</p>
+				</div>
+				<div class="bottom_img"></div>			
+			</div>
+		</div>
+		
+  	</div>
+  </div>
+</div>

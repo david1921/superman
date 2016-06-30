@@ -1,0 +1,63 @@
+<div class="product gradient">
+
+  <h2 class="product_name"><span><%= daily_deal.side_deal_value_proposition %></span>
+  </h2>
+  
+  <div id="left_col">
+  
+  		<div id="advertiser_logo">
+  			<img class="product_image" src="<%= daily_deal.photo.alternate_standard_url %>" alt="" width="120" />
+  		</div>
+  		
+  		<div class="details">
+  		  	<p class="location">
+  		   	 <span class="advertiser_name"><%= daily_deal.advertiser_name %></span><br/>
+  		   	 <% for line in daily_deal.address %>
+  		   	   <%= line %><br/>
+  		   	 <% end %>
+  		  	</p>
+  		</div><!-- /details -->
+  	</div><!-- /left_col -->
+  
+  <div id="right_col">
+  	<div class="payment">
+      <p class="value"><%=t 'daily_deals.daily_deal.deal_value', :value => number_to_currency(daily_deal.price) %></p>
+    	<% if daily_deal.active? %>
+		
+		<div class="add_to_cart">
+    		<a id="buy_now_button" class="dd_button buy gradient" href="<%= daily_deal.buy_now_path %>" name="buy_now_button">
+    		  <!-- <img alt="Buy_now" src="https://www.paypal.com/en_US/i/btn/btn_cart_LG.gif" /> -->
+          <%= t 'buy_now_bang' %>
+    		</a>
+    	</div>
+    	     <% if daily_deal.number_left %>
+    	<!-- <p class="number_available"><%= daily_deal.number_left %> Available</p> -->
+    	  <% end %>
+    	<% else %>
+    	  <div class="sold_out">SOLD OUT</div>
+    	<% end %>
+  	</div><!-- /payment -->
+  	
+  	<div class="view_details">
+  		 	<a id="view_deal" class="view_deal dd_button gradient" href="<%= daily_deal.url %>" name="buy_now_button">
+          <%= t 'view_deal_details' %>
+  		   	</a>
+  	</div>
+  		
+  </div> <!-- /right_col -->
+
+  <div style="clear:both"></div>
+  <div class="product_terms">
+    <%= daily_deal.terms.html_safe %>
+  </div>
+  
+  <% if daily_deal.active? %>
+  <div class="gift_certificate_share_buttons">
+    <div class="gift_certificate_share_label"><%= t 'share_this_deal' %>:</div>
+   	<a class="gift_certificate_share_facebook" href="<%= daily_deal.facebook_url %>" target="_blank"><span>Share on Facebook</span></a>
+   	<a class="gift_certificate_share_twitter" href="<%= daily_deal.twitter_url %>" target="_blank"><span>Share on Twitter</span></a>
+   	<a class="gift_certificate_share_email" href="mailto:?subject=<%= URI.escape("Busca-Ayuda Deal: #{daily_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal.url %>" class="share_button last"><span>Share with email</span></a>
+  </div>
+  <% end %>
+
+</div><!-- /product -->

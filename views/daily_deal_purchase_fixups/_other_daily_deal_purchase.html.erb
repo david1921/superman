@@ -1,0 +1,7 @@
+<tr>
+  <td><%= other_daily_deal_purchase.executed_at.to_date.to_formatted_s(:db) %></td>
+  <td><%= other_daily_deal_purchase.quantity %></td>
+  <td><%= number_to_currency(other_daily_deal_purchase.credit_used) %></td>
+  <td><%= number_to_currency(other_daily_deal_purchase.actual_purchase_price) %></td>
+  <td><%= number_to_currency((other_daily_deal_purchase.actual_purchase_price + other_daily_deal_purchase.credit_used)/other_daily_deal_purchase.quantity) %></td>
+</tr>

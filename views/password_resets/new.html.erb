@@ -1,0 +1,13 @@
+<% set_page_title "Password Reset" %>
+
+<div class="left_column">
+  <% form_tag password_resets_path do -%>
+    <div class="row">
+      <div class="label"><%= label_tag(:email, "#{t(:email)}:") %></div>
+      <div class="input"><%= text_field_tag(:email) %></div>
+    </div>
+    <div class="row button_row">
+      <%= submit_tag(t(:reset_password), :name => "reset_password") %>
+    </div>
+  <% end %>
+</div>

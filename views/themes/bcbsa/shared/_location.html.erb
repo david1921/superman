@@ -1,0 +1,56 @@
+<div id="location">
+				
+				<div id="advertiser">
+					<% if @daily_deal.advertiser.logo? %>
+						<img id="advertiser_logo" src="<%= protocol_relative_url(@daily_deal.advertiser.logo.url(:normal)) %>" alt="<%= @daily_deal.advertiser.name %>" /><br />
+					<% end %>
+
+				<% if !@daily_deal.advertiser.do_not_show_map %>
+
+					<div class="map">
+						<% if @daily_deal.advertiser.address.present? %>
+						    <div id="advertiser_map">
+						    	<a id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank">
+						    	<img src="<%= map_image_url_for(@daily_deal, "168x167", true) %>" border="0" /></a>
+						    </div><!-- /advertiser_map -->
+						<% end %>
+					</div><!-- /map -->
+				
+					<p class="advertiser_name"><%= @daily_deal.advertiser.name %></p>
+				
+					<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+						<div class="location_container" style="<% if idx > 2 %>display:none<% end %>">                  
+							<p>
+							<% if store.address_line_1.present? %>
+								<%= store.address_line_1 %><br />
+							<% end %>
+							<% if store.address_line_2.present? %>
+								<%= store.address_line_2 %><br />
+							<% end %>
+							<% if store.city. present? and store.state.present? and store.zip.present? %>
+								<%= store.city %>, <%= store.state %> <%= store.zip %><br />
+							<% end %>
+							<% if store.formatted_phone_number.present? %>
+								<%= store.formatted_phone_number %>
+							<% end %><br />
+							</p>
+						</div><!-- /location_container -->
+					<% end %>
+				
+					<% if @daily_deal.advertiser.stores.size > 3 %>
+						<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false"><%= t(:see_all_locations) %></a><br />
+					<% end %>
+					
+				<% else %>	
+					<p class="advertiser_name"><%= @daily_deal.advertiser.name %></p>
+				<% end %>
+
+
+					<% if @daily_deal.advertiser.website_url.present? %>
+						<a class="advertiser_website" href="<%= @daily_deal.advertiser.website_url %>" target="blank"><%= t(:visit_website) %></a>
+					<% end %>
+				
+
+				</div><!-- /advertiser -->
+			
+			</div><!-- /location -->

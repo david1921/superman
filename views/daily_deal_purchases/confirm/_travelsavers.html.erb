@@ -1,0 +1,54 @@
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html" charset="utf-8">
+  var shouldShowLoadTestDataButton = <%= !Rails.env.production? ? "true" : "false" %>;
+</script>
+
+<form id="travelsavers_booking" action="<%= Travelsavers::BookingRequest::URI %>" method="POST">
+  <input type="hidden" name="transaction_data" value="<%= travelsavers_booking_request_transaction_data(@daily_deal_purchase) %>"/>
+  <%= travelsavers_errors_user_can_fix %>
+
+  <!--fieldset here does not work in FF-->
+  <div id="payment_inputs">
+
+    <legend>Payment Info</legend>
+
+    <fieldset id="credit_card_inputs">
+      <legend>Credit Card</legend>
+
+      <%= travelsavers_text_field_div("credit_card[cardholder_firstname]", :label_text => "Cardholder First Name:", :required => true) %>
+      <%= travelsavers_text_field_div("credit_card[cardholder_lastname]", :label_text => "Cardholder Last Name:", :required => true) %>
+      <%= travelsavers_select_div("credit_card[vendor_code]", travelsavers_card_type_select_options, :label_text => "Card Type:", :include_blank => true, :required => true) %>
+      <%= travelsavers_text_field_div("credit_card[number]", :label_text => "Card Number:", :required => true, :validate_as => "creditcard") %>
+      <%= travelsavers_text_field_div("credit_card[cvv]", :label_text => "Security Code (CVV):", :required => true, :validate_as => "creditCardSecurityCode") %>
+      <%= travelsavers_text_field_div("credit_card[expiration_date]", :label_text => "Expiration Date (mm/yyyy):", :required => true, :validate_as => "creditCardExpiryDate", :maxlength => 7) %>
+
+    </fieldset>
+
+    <fieldset id="billing_address_inputs">
+      <legend>Billing Address</legend>
+
+      <%= travelsavers_text_field_div("credit_card[billing][address_line_1]", :label_text => "Address 1:", :required => true) %>
+      <%= travelsavers_text_field_div("credit_card[billing][address_line_2]", :label_text => "Address 2:") %>
+      <%= travelsavers_text_field_div("credit_card[billing][locality]", :label_text => "City:", :required => true) %>
+      <%= travelsavers_select_div("credit_card[billing][region]", travelsavers_region_select_options, :label_text => "State:", :include_blank => true, :required => true) %>
+      <%= travelsavers_text_field_div("credit_card[billing][postal_code]", :label_text => "Zip Code:", :required => true, :validate_as => "zipCode") %>
+
+      <div class="row" style="display: none;">
+        <label for="credit_card_billing_country_code">Country (e.g. US):</label>
+        <input type="hidden" id="credit_card_billing_country_code" name="credit_card[billing][country_code]" value="US">
+      </div>
+
+    </fieldset>
+
+  </div>
+  <fieldset id="passenger_inputs">
+    <legend>Passenger Information</legend>
+
+    <%= render :partial => "daily_deal_purchases/confirm/travelsavers_passenger", :locals => {:passenger_idx => 0} %>
+    <%= render :partial => "daily_deal_purchases/confirm/travelsavers_passenger", :locals => {:passenger_idx => 1} %>
+  </fieldset>
+
+  <div class="row submit">
+    <input type="submit" value="<%= t('buy_now') %>" id="ts-buy-now">
+    <%= daily_deal_cancel_link(@daily_deal_purchase.publisher) %>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<%- @booking = @daily_deal_purchase.travelsavers_booking -%>
+<%= render :partial => 'daily_deal_purchase_mailer/confirmation/travelsavers/thank_you.text.plain' %>
+
+<%= render :partial => 'daily_deal_purchase_mailer/confirmation/travelsavers/summary.text.plain' %>
+
+<%= render :partial => 'daily_deal_purchase_mailer/confirmation/travelsavers/passengers.text.plain' %>
+
+<%= render :partial => 'daily_deal_purchase_mailer/confirmation/travelsavers/next_steps.text.plain' %>

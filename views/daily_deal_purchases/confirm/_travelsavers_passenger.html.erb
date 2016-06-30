@@ -1,0 +1,23 @@
+<fieldset id="passenger_<%= passenger_idx %>_inputs">
+  <legend>Passenger <%= passenger_idx + 1 %></legend>
+
+  <%= travelsavers_select_div("traveler[#{passenger_idx}][title]", travelsavers_title_select_options, :label_text => "Title:", :include_blank => true, :required => true, :class => "title") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][first_name]", :label_text => "First Name:", :required => true) %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][last_name]", :label_text => "Last Name:", :required => true) %>
+  <%= travelsavers_select_div("traveler[#{passenger_idx}][gender]", travelsavers_gender_select_options, :label_text => "Gender:", :include_blank => true, :required => true, :class => "titleGender") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][birth_date]", :label_text => "Date Of Birth (mm/dd/yyyy):", :required => true, :validate_as => "validDateOfBirth", :maxlength => 10) %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][citizenship]", :label_text => "Citizenship (e.g. US):", :required => true, :validate_as => "countryCode") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][phone_number]", :label_text => "Phone Number (XXXXXXXXXX):", :required => true, :validate_as => "phoneUS") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][email]", :label_text => "Email:", :required => true, :validate_as => "email") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][address_line_1]", :label_text => "Address 1:", :required => true) %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][address_line_2]", :label_text => "Address 2:") %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][locality]", :label_text => "City:", :required => true) %>
+  <%= travelsavers_select_div("traveler[#{passenger_idx}][region]", travelsavers_region_select_options, :label_text => "State:", :include_blank => true, :required => true) %>
+  <%= travelsavers_text_field_div("traveler[#{passenger_idx}][postal_code]", :label_text => "Zip Code:", :required => true, :validate_as => "zipCode") %>
+  <%= travelsavers_check_box_div("traveler[#{passenger_idx}][terms_accepted]", :label_text => "I accept the terms and conditions", :required => true) %>
+  <div class="row" style="display: none">
+    <label for="traveler_<%= passenger_idx %>_country_code">Country:</label>
+    <input type="hidden" id="traveler_<%= passenger_idx %>_country_code" name="traveler[<%= passenger_idx %>][country_code]" value="US">
+  </div>
+
+</fieldset>

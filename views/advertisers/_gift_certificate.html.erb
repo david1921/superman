@@ -1,0 +1,33 @@
+<div class="wrapper" id="certificate_<%= gift_certificate.id %>_wrapper">
+  <div class="certificate" id="certificate_<%= gift_certificate.id %>">
+    <div class="body" id="certificate_<%= gift_certificate.id %>_body">
+      <div class="logo" id="certificate_<%= gift_certificate.id %>_logo">
+        <%= image_tag(gift_certificate.advertiser.logo.url(:thumbnail)) %>
+      </div>
+      <h3 class="advertiser_name"><%= advertiser_name gift_certificate %></h3>
+      <div class="text" id="gift_certificate_<%= gift_certificate.id %>_text">
+        <p class="message"><%= gift_certificate.message %></p>
+        <p class="terms"><%= gift_certificate.plain_text_terms %></p>
+        <p class="price">Price: <%= number_to_currency( gift_certificate.price, :unit => @advertiser.currency_symbol ) %></p>
+      </div>
+      <div class="footer">
+        <div class="dates">
+          <% if gift_certificate.show_on && gift_certificate.expires_on -%>
+            <%= gift_certificate.show_on.to_s(:compact) %> to <%= gift_certificate.expires_on.to_s(:compact) %>
+          <% elsif !gift_certificate.show_on && gift_certificate.expires_on -%>
+            Until <%= gift_certificate.expires_on.to_s(:compact) %>
+          <% elsif gift_certificate.show_on && !gift_certificate.expires_on -%>
+            From <%= gift_certificate.show_on.to_s(:compact) %>
+          <% end -%>
+          &nbsp;
+        </div>
+        <div class="edit"><%= link_to "Edit", edit_advertiser_gift_certificate_path(@advertiser, gift_certificate) %></div>
+      </div>
+    </div>
+  </div>
+  <div class="links">
+    <%= link_to("Listing View", preview_gift_certificate_path(gift_certificate), :target => "_blank") %><br /> 
+    <%= link_to("PDF View", preview_pdf_gift_certificate_path(gift_certificate))%><br />
+    <%= link_to("Delete", advertiser_gift_certificate_path(gift_certificate.advertiser, gift_certificate), :method => :delete, :confirm => "Are you sure you want to delete this deal certificate?") %>    
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<% set_page_title "Opted Out" %>
+<% @navbar_active_item_tag = :r3 %>
+
+<% row1 do %>
+  <% box2 do %>
+    <div class="padding" style="text-align:justify">
+  <h2>Opted out</h2>
+  <br/>
+  <br style="line-height:10px" />
+  <% if @mobile_phone.opt_out? %>
+    You won't receive text messages from TXT411 any more.
+    <br/>
+    <br style="line-height:10px;"/>
+    To re-enable messages from TXT411, please text START to 898411 from your mobile phone. Standard message rates apply.
+  <% else %>
+    <%= number_to_phone(@mobile_phone.number[1..-1], :area_code => true) %> is <em>not</em> opted out
+  <% end %>
+    </div>
+  <% end -%>
+<% end -%>

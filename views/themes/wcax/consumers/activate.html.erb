@@ -1,0 +1,26 @@
+<% set_daily_deal_page_title_slug "Invalid Activation Code" %>
+
+<div class="page_row">
+  <div class="signup prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <div class="login_header"><h2>Invalid Activation Code</h2></div>
+    <p>Sorry, the link you followed, or the activation code you entered, is not valid.</p>
+
+    <p>Please check your email for a message from <%= @publisher.brand_name_or_name %> and click the link inside to activate your account. If clicking the link doesn't work, you can copy the activation code shown in the message and paste it here, then click the Activate button.</p>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, "Activation Code:") %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons">
+        <%= submit_tag("Activate", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

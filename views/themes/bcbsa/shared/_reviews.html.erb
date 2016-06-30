@@ -1,0 +1,38 @@
+<div id="reviews">
+ <div class="reviews_header">
+ 	<% if @daily_deal.reviews.present? || @daily_deal.yelp_business.present? && params[:locale] != "es-MX" %>
+ 		<p class="title"><%= t(:reviews_title) %></p>	
+    <% end %>
+ </div>
+ 
+  	<% if @daily_deal.reviews.present? %>
+       <p><%= raw @daily_deal.reviews %></p>	
+    <% end %>
+
+	<div id="yelp_reviews">
+	<% if @daily_deal.yelp_business.present? && params[:locale] != "es-MX" %>
+		<div id="yelp_top">
+			<div id="yelp_rating">
+				<img src=<%= protocol_relative_url(@daily_deal.yelp_business.rating_image_url) %> /> <br />
+				<p id="review_count"><%= t(:based_on) %> <%= @daily_deal.yelp_business.review_count %> <%= t(:reviews) %></div>
+			</div>
+			<img id="yelp_logo" src="/themes/bcbsa/images/graphics/yelp_logo.png"/>
+		</div>
+		<div class="clear"></div>
+		<div id="yelp_content">
+			<% @daily_deal.yelp_business.yelp_reviews.each do |yelp_review| %>
+				<div class="user_image">
+					<img src="<%= protocol_relative_url(yelp_review.user_image_url) %>" />
+				</div>
+        <p>
+          "<%= yelp_review.excerpt %>"
+          <a href='#' onclick="window.open('<%= yelp_review.url %>')"><%= t(:read_more) %></a>
+        </p>
+			<% end %>
+		</div>
+		
+		<a id="see_all_link" href="#" onclick="window.open('<%= @daily_deal.yelp_business.url %>')"><%= t(:see_all) %> ></a>
+	<% end %>
+	</div> 
+</div>
+<div class="clear"></div>

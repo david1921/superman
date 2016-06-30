@@ -1,0 +1,73 @@
+<% set_daily_deal_page_title_slug "FAQs" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+<h1 class="content"><%= @h1 || "FREQUENTLY ASKED QUESTIONS" %></h1>
+
+<h4>What is the <%= @publisher.daily_deal_name %>?</h4>
+<p>Each day one incredible deal is featured 
+as the <%= @publisher.daily_deal_name %>. The offer is only available for a limited amount 
+of time, so make sure to check back frequently so you don't miss out!</p>
+
+<h4>How do I buy today's <%= @publisher.daily_deal_name %>?</h4>
+<p>Click on the "Buy Now" button before 
+midnight on the day the offer expires.</p>
+
+<h4>What happens after I buy a <%= @publisher.daily_deal_name %>?</h4>
+<p>After you make a purchase, you'll 
+receive the <%= @publisher.daily_deal_name %> voucher to print out via email. Take the <%= @publisher.daily_deal_name %> to the store
+or merchant any time before the expiration date to enjoy the fruits 
+of your labor.  </p>
+
+<h4>What if I want to use just part 
+of the <%= @publisher.daily_deal_name %> voucher and save the rest for later? </h4>
+<p>Sorry, you're going to have to use 
+that sweet deal in just one visit. However, some merchants may be willing 
+to work with you if this situation arises. </p>
+
+<h4>If my name is on the <%= @publisher.daily_deal_name %> voucher, can the merchant charge my account? </h4>
+<p>No. The merchant does not have your 
+account information. That is held by Analog Analytics, the software 
+company that processes the transaction for the publisher. </p>
+
+<h4>Is the transaction safe for me to use?</h4>
+<p>Yes. The transaction uses SSL and other 
+industry standard security features to ensure that no one else has access 
+to your credit card information.  </p>
+
+<h4>When I gift the <%= @publisher.daily_deal_name %> to a friend, will they have access to my account information? </h4>
+<p>No, on the <%= @publisher.daily_deal_name %> voucher, 
+there is a record of the transaction, the purchaser's name and the 
+gifted consumer's name, along with a unique 8-digit code.  The 
+payment information is secure on a site that no consumer has access 
+to.  </p>
+
+<h4>Can I combine the <%= @publisher.daily_deal_name %> with other offers the merchant might have presented previously? </h4>
+<p>No, each <%= @publisher.daily_deal_name %> has its own 
+terms.  </p>
+
+<h4>What if the merchant does not honor the offer?</h4>
+<p>We go out of our way to vet each advertiser 
+and make sure they live up to our high standards.  We will also 
+provide recent reviews or testimonials to help you get a better feel 
+for what you are buying. On the rare occurrence that something happens 
+and you're not satisfied, we (through Analog Analytics) will refund 
+the offer.  </p>
+
+<h4>What if I miss the expiration date?</h4>
+<p>If you miss the expiration date on 
+your deal, take heart, all is not lost! While the additional discounts 
+are no longer available, you are still entitled to goods and services 
+equal to the paid value of the voucher. </p>
+<p>For example, if you spend <%= number_to_currency(25, :unit => @publisher.currency_symbol) %> to buy 
+a <%= number_to_currency 50, :unit => @publisher.currency_symbol %> voucher for your new favorite restaurant, but are unable to get 
+there before the expiration date, you will still be entitled to <%= number_to_currency 25, :unit => @publisher.currency_symbol %> 
+of food, drink and good times. </p>
+
+<h4>What if I have more questions?</h4>
+<p>Feel free to email <%= mail_to(@publisher.support_email_address, nil, :target => "_blank") %> or call (877) 898-4114.
+The Save Now Customer Service team will be more than happy to answer any additional questions you may have. </p>
+
+  </div>
+</div>

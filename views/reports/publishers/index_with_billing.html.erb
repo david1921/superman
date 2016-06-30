@@ -1,0 +1,23 @@
+<% set_page_title "Reports: Billing Summary" %>
+
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => { :csv_url => reports_publishers_url(url_options.merge(:format => "csv")) }) %>
+
+<%= render(:partial => "reports/navigation", :locals => {:page => :billing_summary, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "billing_summary",
+  :data_source => reports_publishers_path(:format => "xml"),
+  :data_params => { :summary => @summary},
+  :result_node => :publisher,
+  :data_columns => [
+    [:publisher_name, { :label => "Publisher", :class_name => "left" }],
+    [:prints_count, { :label => "Prints", :parser => "number" }],
+    [:txts_count, { :label => "Texts", :parser => "number" }],
+    [:emails_count, { :label => "Emails", :parser => "number" }],
+    [:calls_count, { :label => "Calls", :parser => "number" }],
+    [:calls_minutes, { :label => "Call Minutes", :parser => "number" }]
+  ]
+}) %>

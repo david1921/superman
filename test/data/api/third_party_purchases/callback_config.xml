@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<callback_config xmlns="http://analoganalytics.com/api/third_party_purchases/callback_config">
+    <url>https://yourserver.com/path/to/resource?query=parameters</url>
+    <username>basic_auth_username</username>
+    <password>basic_auth_password</password>
+</callback_config>

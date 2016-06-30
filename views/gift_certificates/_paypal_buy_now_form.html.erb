@@ -1,0 +1,39 @@
+<% if gift_certificate.available? -%>
+  <% if gift_certificate.active? -%>
+    <% if @paypal_configuration -%>
+      <% form_tag(@paypal_configuration.ipn_url, :target => target) do -%>
+        <% paypal_options = {
+              :currency_code => gift_certificate.publisher.currency_code,
+              :no_shipping => 2,
+              :invoice => "#{gift_certificate.id}-#{Time.now.to_i}",
+              :item_name => gift_certificate.item_name,
+              :cpp_header_image => paypal_checkout_header_image_url(gift_certificate).to_s,
+              :return => return_url,
+              :cancel_return => return_url,
+              :rm => 2,
+              :custom => "PURCHASED_GIFT_CERTIFICATE"
+            }.merge!(@paypal_configuration.use_sandbox? ? {} : {
+              :business_key => @paypal_configuration.key,
+              :business_cert => @paypal_configuration.certificate,
+              :business_certid => @paypal_configuration.cert_id
+            }) -%>
+        <% paypal_options.merge!( :handling => number_with_precision( gift_certificate.handling_fee, :precision => 2) ) if gift_certificate.handling_fee? -%>
+        <% paypal_options.merge!( :notify_url => AppConfig.paypal_notify_url ) if AppConfig.respond_to?( :paypal_notify_url ) %>
+        <%= paypal_setup(gift_certificate.id, gift_certificate.price, @paypal_configuration.business, paypal_options).html_safe -%>
+        <%= hidden_field_tag :return_url, @return_url unless @return_url.blank? %>
+        <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <% end -%>
+    <% else -%>
+      <% form_tag "#", :method => :get do -%>
+        <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+      <% end -%>  
+    <% end -%>  
+  <% else -%>
+    <p class="available_soon"><%= image_tag("/themes/wor710/images/available_soon.jpg" ) %></p>
+  <% end -%>
+  
+<% else -%>
+    <div class='sold_out'>
+      SOLD OUT
+    </div>
+<% end %>

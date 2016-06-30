@@ -1,0 +1,29 @@
+<% set_page_title "Opt In" %>
+<% @navbar_active_item_tag = :r3 %>
+
+<% row1 do %>
+  <% box2 do %>
+    <div class="padding" style="text-align:justify">
+    <% if @email_recipient.email_allowed_before %>
+      <h2>Already Opted In</h2>
+      <br/><br style="line-height:10px" />
+      Thank you for completing the email opt-in process. You can begin forwarding coupons to your email now.
+    <% else %>
+      <h2>Opting In to Email</h2>
+      <br/><br/>
+      Thank you for opting in to receive coupons at <span class="email"><%= @email_recipient.email_address %></span>.
+      <br/><br/>
+      We've just sent you an email message containing <strong>directions for completing the opt-in process</strong>.
+      You'll need to carry out the last step described in that message before you can begin forwarding coupons to
+      your email.
+      <br/><br/>
+      If the message hasn't arrived within a few minutes, please check your junk mail folder to see whether it was
+      misclassified as spam. In that case, please <strong>add the message sender to your safe list</strong> so that
+      you can be assured of receiving coupons you forward in the future.
+    <% end %>
+
+
+    </div>
+  <% end -%>
+<% end -%>
+

@@ -1,0 +1,28 @@
+<% set_daily_deal_page_title_slug "My Deals" %>
+<div class="page_row my_deals">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <h1>My Deals</h1>
+    
+    <% if @daily_deal_purchases.blank? %>
+      <p>You have not purchased any deals yet.</p>
+    <% else %>
+    <div class="normal_screen">
+      <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase" cellspacing="0">
+        <tr>
+          <th class="description">Description</th>
+          <th class="quantity">Quantity</th>
+          <th class="recipient">Recipient</th>
+          <th class="purchased_on">Purchased</th>
+          <th class="expires">Expires</th>
+          <th class="status"></th>
+        </tr>
+        <%= render(@daily_deal_purchases) %>
+      </table>
+    </div><!-- /normal_screen -->
+    <div class="small_screen">
+    	<%= render :partial => with_theme("daily_deal_purchases/daily_deal_purchase.mobile"), :collection => @daily_deal_purchases %>
+    </div><!-- /mobile_screen -->
+      
+    <% end %>
+  </div>
+</div>

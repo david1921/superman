@@ -1,0 +1,336 @@
+<style type="text/css">
+
+    .navarrow, .navarrow2
+        {
+        margin-left: 3px;
+        padding: 0 2px 0 2px;
+        }
+    .navarrow:hover
+        {
+        background-color: #995;
+        }
+    .navarrow2:hover
+        {
+        background-color: #69C;
+        }
+    .navmain_current .navarrow:hover
+        {
+        background-color: #69C;
+        }
+    .navarrow img, .navarrow2 img
+        {
+        border: 0;
+        }
+    .navmain_regular, .navmain_current
+        {
+        padding: 3px 6px 3px 10px !important;
+        }
+    .navsub_regular
+        {
+        /*padding: 2px 6px 2px 10px !important;*/
+        }
+    
+    #head            
+        {
+        position: relative;
+        width: 945px;
+        height: 81px;
+        background: transparent url(/themes/watertowndailytimes/images/backgrounds/bg_blueblackstripes.gif) repeat;
+        margin-top: 10px;
+        overflow: hidden;
+        }
+    
+    #nav0
+        {
+        clear: both;
+        width: 945px;
+        /*height: 35px;*/
+        }
+    
+    #nav1
+        {
+        width: 945px;
+        height: 20px;
+        background-color: #89896F;
+        overflow: hidden;
+        }
+    
+    #nav2
+        {
+        width: 945px;
+        height: 15px;
+        background-color: #036;
+        overflow: hidden;
+        }
+    
+    #nav3
+        {
+        width: 945px;
+        height: 15px;
+        background-color: #69C;
+        overflow: hidden;
+        }
+    .navmain_current
+        {
+        float: left;
+        display: block;
+        background-color: #036;
+        height: 14px;
+        color: #FFF;
+        font: bold 12px verdana, sans-serif;
+        text-decoration: none;
+        text-align: center;
+        padding: 3px 20px 3px 20px;
+        }
+    
+    .navmain_current:hover
+        {
+        background-color: #369;
+        }
+    
+    .navmain_regular
+        {
+        float: left;
+        display: block;
+        background-color: transparent;
+        height: 14px;
+        color: #FFF;
+        font: bold 12px verdana, sans-serif;
+        text-decoration: none;
+        text-align: center;
+        padding: 3px 20px 3px 20px;
+        }
+    
+    .navmain_regular:hover
+        {
+        background-color: #60624F;
+        }
+    
+    .navsub_current
+        {
+        float: left;
+        display: block;
+        background-color: transparent;
+        color: #9CF;
+        font: bold 10px arial, sans-serif;
+        text-decoration: none;
+        text-align: center;
+        padding: 2px 10px 2px 10px;
+        }
+    
+    .navsub_current:hover
+        {
+        background-color: #369;
+        color: #FFF;
+        }
+    
+    .navsub_regular
+        {
+        float: left;
+        display: block;
+        background-color: transparent;
+        color: #FFF;
+        font: bold 10px arial, sans-serif;
+        text-decoration: none;
+        text-align: center;
+        padding: 2px 10px 2px 10px;
+        }
+    
+    .navsub_regular:hover
+        {
+        background-color: #369;
+        }
+    
+    #wdtlogo
+        {
+        float: left;
+        margin: 3px 0px 0px 3px;
+        width: 505px;
+        height: 77px;
+        }
+    
+    .break
+        {
+        clear: both;
+        padding-bottom: 1px;
+        }
+
+</style>
+
+<div id="head" style="overflow: visible; margin-top: 0 !important;">
+    <div id="wdtlogo"><a href="http://www.watertowndailytimes.com"><img src="/themes/watertowndailytimes/images/backgrounds/wdt_logo_head.png" width="506" height="78" alt="Watertown Daily Times: Serving Jefferson, Lewis, & St. Lawrence Counties" style="border: 0;"></a></div>
+    
+    <div style="position: absolute; top: -10px; left: 642px; width: 300px;">
+        <div style="float: left; width: 300px; height: 75px; margin-top: 13px; position: relative; background: #69C;">
+        
+            <ul style="color: #FFF; list-style-type: square; margin: 0; padding: 0; text-indent: 0; font: bold 12px arial, sans-serif; line-height: 150%; margin-left: 25px; letter-spacing: 1px;">
+                <li><a href="http://cmo.watertowndailytimes.com/" target="_blank" style="color: #FFF; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">HOME DELIVERY</a></li>
+                <li><a href="http://jobs.nnyads.com/" target="_blank" style="color: #FFF; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">JOB SEARCH</a></li>
+                <li><a href="http://www.watertowndailytimes.com/section/mls" style="color: #FFF; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">REAL ESTATE SEARCH</a></li>
+                <li><a href="http://water.interest.com/" target="_blank" style="color: #FFF; text-decoration: none;" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">PERSONAL FINANCE</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="break"></div>
+</div>
+<div class="break"></div>
+
+<div id="nav0">
+    <div id="nav1">
+        <a href="http://www.watertowndailytimes.com/" id="nav_wdthome" class="navmain_current">HOME<span class="navarrow" onclick="set_subnav('home',1); set_subnav('localnews',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://watertown.dotphoto.com/" id="nav_dotphoto" class="navmain_regular" target="_blank">PHOTOS &amp; PRINTS<span class="navarrow" onclick="set_subnav('prints',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.thejobnetwork.com/home.asp?AffiliateID=1506" id="nav_tnj" target="_blank" class="navmain_regular">JOBS<span class="navarrow" onclick="set_subnav('jobs',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.nnyads.com/" id="nav_nnyads" class="navmain_regular">CLASSIFIEDS<span class="navarrow" onclick="set_subnav('classifieds',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/events" id="nav_events" class="navmain_regular">EVENTS<span class="navarrow" onclick="set_subnav('events',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/archive" id="nav_archive" class="navmain_regular">ARCHIVES<span class="navarrow" onclick="set_subnav('archive',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/contact" id="nav_contact" class="navmain_regular">CONTACT<span class="navarrow" onclick="set_subnav('contact',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/help" id="nav_help" class="navmain_regular">HELP<span class="navarrow" onclick="set_subnav('help',1); set_subnav('',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+    </div>
+    <div id="nav2">
+        <a href="http://www.watertowndailytimes.com/section/news" class="navsub_regular">LOCAL NEWS<span class="navarrow2" onclick="set_subnav('localnews',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/ap_main" class="navsub_regular">AP NEWS<span class="navarrow2" onclick="set_subnav('apnews',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/sports" class="navsub_regular">LOCAL SPORTS<span class="navarrow2" onclick="set_subnav('localsports',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/obit" class="navsub_regular">OBITUARIES</a>
+        <a href="http://www.watertowndailytimes.com/section/features" class="navsub_regular">FEATURES<span class="navarrow2" onclick="set_subnav('features',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/opinion" class="navsub_regular">OPINION<span class="navarrow2" onclick="set_subnav('opinion',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/multimedia" class="navsub_regular">MULTIMEDIA<span class="navarrow2" onclick="set_subnav('multimedia',2); return false;"><img src="/themes/watertowndailytimes/images/backgrounds/navarrow.gif" width="8" height="8"></span></a>
+        <a href="http://www.watertowndailytimes.com/section/weather" class="navsub_regular">WEATHER</a>
+        <a href="http://www.watertowndailytimes.com/section/stockmarket" class="navsub_regular">STOCK MARKET</a>
+    </div>
+    <div id="nav3">
+        <a href="http://www.watertowndailytimes.com/section/news" class="navsub_regular">DAILY NEWS</a>
+        <a href="http://www.watertowndailytimes.com/section/breakingnews" class="navsub_regular">BREAKING NEWS</a>
+        <a href="http://www.watertowndailytimes.com/section/feeds" class="navsub_regular">NEWS FEEDS</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function set_subnav(cat, tier)
+        {
+        var newcontent = '';
+        
+        switch(tier)
+            {
+            case 1:
+                        
+                document.getElementById('nav_wdthome').className = "navmain_regular";
+                document.getElementById('nav_dotphoto').className = "navmain_regular";
+                document.getElementById('nav_tnj').className = "navmain_regular";
+                document.getElementById('nav_nnyads').className = "navmain_regular";
+                document.getElementById('nav_events').className = "navmain_regular";
+                document.getElementById('nav_archive').className = "navmain_regular";
+                document.getElementById('nav_contact').className = "navmain_regular";
+                document.getElementById('nav_help').className = "navmain_regular";
+                        
+                switch(cat)
+                    {
+                    case 'prints':
+                        newcontent += '<a href="http:\/\/watertown.dotphoto.com\/" target="_blank" class="navsub_regular">PHOTO GALLERIES &amp; PROFESSIONAL PRINTS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/gallery" class="navsub_regular">DAILY PHOTOS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/plogs" class="navsub_regular">PHOTOGRAPHER PAGES<\/a>';
+                        document.getElementById('nav_dotphoto').className = "navmain_current";
+                        break;
+                    case 'jobs':
+                        newcontent += '<a href="http:\/\/www.thejobnetwork.com\/home.asp?AffiliateID=1506" target="_blank" class="navsub_regular">JOB SEARCH<\/a>';
+                        document.getElementById('nav_tnj').className = "navmain_current";
+                        break;
+                    case 'classifieds':
+                        newcontent += '<a href="http:\/\/www.nnyads.com\/" class="navsub_regular">NNY ADS<\/a>';
+                        newcontent += '<a href="http:\/\/www.thejobnetwork.com\/home.asp?AffiliateID=1506" target="_blank" class="navsub_regular">JOB SEARCH<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/mls" class="navsub_regular">REAL ESTATE SEARCH<\/a>';
+                        newcontent += '<a href="http:\/\/www.nnyads.com/section\/classifieds_submit" class="navsub_regular">SUBMIT AN AD<\/a>';
+                        newcontent += '<a href="http:\/\/user.classifiedguys.com\/wdt" class="navsub_regular" target="_blank">THE CLASSIFIED GUYS<\/a>';
+                        document.getElementById('nav_nnyads').className = "navmain_current";
+                        break;
+                    case 'events':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/events" class="navsub_regular">CALENDAR OF EVENTS<\/a>';
+                        document.getElementById('nav_events').className = "navmain_current";
+                        break;
+                    case 'archive':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/archive" class="navsub_regular">ARCHIVE (1988 &ndash; PRESENT)<\/a>';
+                        document.getElementById('nav_archive').className = "navmain_current";
+                        break;
+                    case 'contact':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/contact" class="navsub_regular">CONTACT INFO<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/submissions" class="navsub_regular">SUBMIT NEWS ITEMS<\/a>';
+                        document.getElementById('nav_contact').className = "navmain_current";
+                        break;
+                    case 'help':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/faq" class="navsub_regular">FREQEUENTLY ASKED QUESTIONS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/libraryfaq" class="navsub_regular">LIBRARY &amp; ARCHIVE HELP<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/contact" class="navsub_regular">CONTACT INFO<\/a>';
+                        document.getElementById('nav_help').className = "navmain_current";
+                        break;
+                    case 'home':
+                    default:
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/news" class="navsub_regular">LOCAL NEWS<span class="navarrow2" onclick="set_subnav(\'localnews\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/ap_main" class="navsub_regular">AP NEWS<span class="navarrow2" onclick="set_subnav(\'apnews\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/sports" class="navsub_regular">LOCAL SPORTS<span class="navarrow2" onclick="set_subnav(\'localsports\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/obit" class="navsub_regular">OBITUARIES<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/features" class="navsub_regular">FEATURES<span class="navarrow2" onclick="set_subnav(\'features\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/opinion" class="navsub_regular">OPINION<span class="navarrow2" onclick="set_subnav(\'opinion\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/multimedia" class="navsub_regular">MULTIMEDIA<span class="navarrow2" onclick="set_subnav(\'multimedia\',2); return false;"><img src="images\/navarrow.gif" width="8" height="8"><\/span><\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/weather" class="navsub_regular">WEATHER<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section/stockmarket" class="navsub_regular">STOCK MARKET<\/a>';
+                        document.getElementById('nav_wdthome').className = "navmain_current";
+                        break;
+                    }
+                document.getElementById('nav2').innerHTML = newcontent;
+                break;
+            case 2:
+                switch(cat)
+                    {
+                    case 'localnews':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/news" class="navsub_regular">DAILY NEWS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/breakingnews" class="navsub_regular">BREAKING NEWS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/feeds" class="navsub_regular">NEWS FEEDS<\/a>';
+                        break;
+                    case 'apnews':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_main" class="navsub_regular">OVERVIEW<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_us" class="navsub_regular">US NEWS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_ny" class="navsub_regular">NEW YORK<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_dc" class="navsub_regular">WASHINGTON<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_international" class="navsub_regular">WORLD NEWS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_sports" class="navsub_regular">SPORTS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_entertainment" class="navsub_regular">ENTERTAINMENT<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/ap_financial" class="navsub_regular">FINANCIAL<\/a>';
+                        newcontent += '<a href="http:\/\/video.ap.org\/?f=NYWAT" target="_blank" class="navsub_regular">AP VIDEO NEWS<\/a>';
+                        break;
+                    case 'localsports':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/sports" class="navsub_regular">DAILY SPORTS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/hssportsresults" class="navsub_regular">LOCAL SPORTS RESULTS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/100greatestathletes" class="navsub_regular">100 GREATEST ATHLETES<\/a>';
+                        break;
+                    case 'obituaries':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/obits" class="navsub_regular">DAILY OBITUARIES<\/a>';
+                        break;
+                    case 'features':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/features" class="navsub_regular">DAILY FEATURES<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/comics" class="navsub_regular">COMICS<\/a>';
+                        break;
+                    case 'opinion':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/opinion" class="navsub_regular">DAILY EDITORIALS &amp; LETTERS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/columns" class="navsub_regular">COLUMNS &amp; BLOGS<\/a>';
+                        break;
+                    case 'multimedia':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/multimedia" class="navsub_regular">SLIDESHOWS<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/video" class="navsub_regular">VIDEO<\/a>';
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/gallery" class="navsub_regular">DAILY PHOTOS<\/a>';
+                        break;
+                    case 'weather':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/weather" class="navsub_regular">CURRENT CONDITIONS &amp; 5-DAY WEATHER FORECAST<\/a>';
+                        break;
+                    case 'market':
+                        newcontent += '<a href="http:\/\/www.watertowndailytimes.com\/section\/stockmarket" class="navsub_regular">STOCK QUOTES &amp; MARKET PERFORMANCE<\/a>';
+                        break;
+                    default:
+                        break;
+                    }
+                document.getElementById('nav3').innerHTML = newcontent;
+                break;
+            
+            }
+        }
+
+</script>

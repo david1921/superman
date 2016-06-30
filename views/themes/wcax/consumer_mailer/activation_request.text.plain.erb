@@ -1,0 +1,12 @@
+<%= t :dear %> <%= @consumer.first_name %>,
+
+To activate your new jumponit account, please verify your email address by following this link:
+
+  <%= activate_consumer_url(@consumer) %>
+
+If clicking on the link doesn't work, you can also copy and paste the following code into the activation screen during signup:
+
+  <%= @consumer.activation_code %>
+
+Thanks,
+<%= @consumer.publisher.brand_name_or_name %> Customer Support

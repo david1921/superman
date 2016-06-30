@@ -1,0 +1,19 @@
+<% @page_title = "Syndication Agreement" %>
+
+
+<h2>Agreement Number: <%= @agreement.serial_number %></h2>
+
+<%= "Source Publisher<br/>".html_safe if @agreement.source_publisher? -%>
+<%= "Distribution Publisher<br/>".html_safe if @agreement.distribution_publisher? -%>
+<%= "Affiliate Publisher<br/>".html_safe if @agreement.affiliate_publisher? -%>
+
+Title: <%= @agreement.title %><br/>
+Contact Name: <%= @agreement.contact_name %><br/>
+Company Name: <%= @agreement.company_name %><br/>
+Telephone Number: <%= @agreement.telephone_number %><br/>
+Email: <%= @agreement.email %><br/>
+Websites: <%= @agreement.websites %><br/>
+Mobile Applications: <%= @agreement.mobile_applications %><br/>
+Other Delivery Mechanisms: <%= @agreement.other_delivery_mechanisms %><br/>
+
+<h3>You will receive a confirmation email with terms and unique contract number</h3>

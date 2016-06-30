@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+</head>
+
+<body>
+	<table cellspacing="0" border="0" align="center" style="margin-top: 10px;" cellpadding="0" width="600">
+		<tr>
+			<td colspan="2">
+				<a href="{{ daily_deal.url_for_email }}" style="text-decoration:none;"><img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/header.png" style="border:none;" alt="{{ publisher.city | capitalize }} Perks (Please enable images)" height="147" width="600" /></a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<table style="border:1px solid #9f9f9e;padding:10px;" width="580">
+					<tr>
+					
+						<td colspan="2" style="padding-top:15px; padding-bottom:15px;">
+							<h1 style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 25px; margin: 0; padding: 0;">{{ daily_deal.value_proposition }}</h1> 			
+						</td>
+					</tr>
+					<tr>
+						<td style="width:245px;">
+							<table id="dashboard" cellpadding="0" cellspacing="0">
+								<tr>
+			                    	<td colspan="2" style="font-family: 'Franklin Gothic Heavy', 'Arial Black', 'Century Gothic', Helvetica, sans-serif; font-size: 50px; text-align:center; color:black;"><strong>{{ daily_deal.price | currency: 2 }}</strong></td>
+								</tr>
+								<tr>
+									<td colspan="2" style="text-align:center;"><a href="{{ daily_deal.url_for_email }}" style="color: #165286; text-decoration: none;"><img style="border:none; padding:0;" src="http://{{ publisher.daily_deal_host }}/themes/entercom/images/email/buy_button.png" height="117" width="241" alt="buy_now" /></a></td>
+								</tr>
+								
+								<tr>
+									<td style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 24px; margin: 0; padding: 0; text-align:center">{{ daily_deal.value | currency: 2 }}</td>
+									<td style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 24px; margin: 0; padding: 0; text-align:center">{{ daily_deal.savings | currency: 2 }}</td>
+								</tr>
+								<tr>
+									<td style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 12px; margin: 0; padding: 0; text-align:center">VALUE</td>
+									<td style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 12px; margin: 0; padding: 0; text-align:center">YOU SAVE</td>
+								</tr>
+							</table><!-- end dashboard -->
+						</td>
+						<td>
+							<table cellpadding="0" cellspacing="0" style="padding-left:10px;"> <!-- photo and share links -->
+								<tr>
+									<td><img src="{{ daily_deal.photo.url }}" width="312" style="border:1px solid  #515458;" alt="" /></td>
+								</tr>
+								<tr>
+									<td>
+										<table id="share" cellpadding="0" cellspacing="0" style="background-color:black; font-family: Arial, Helvetica, sans-serif; color: white; font-size: 12px; margin: 0; padding: 0; padding-left:5px; text-align:left; height:44px; width:314px;">
+										  <tr><td colspan="10" style="text-align:center; padding: 10px 0; font-size: 16px">Share this deal!</td></tr>
+											<tr>
+												<td><a href="{{ daily_deal.facebook_url }}" title="Share coupon on Facebook"><img alt="facebook" src="http://{{ publisher.daily_deal_host }}/themes/entercom/images/icons/facebook.png" width="37" height="36" style="border: none;padding-right:5px" /></a></td>
+												<td>Post on <br />Facebook</td>
+												<td><a href="{{ daily_deal.twitter_url }}" title="Share coupon on Twitter"><img alt="Twitter" src="http://{{ publisher.daily_deal_host }}/themes/entercom/images/icons/twitter.png" width="37" height="37" style="padding-right:5px;border: none;" /></a></td>
+												<td>Tweet <br /> this</td>
+												<td><a href="{{ daily_deal.email_url }}"><img alt="Email" src="http://{{ publisher.daily_deal_host }}/themes/entercom/images/icons/email.png" width="36" height="37" style="border: none;padding-right:5px" /></a></td>
+												<td>E-mail <br />this</td>
+											</tr>
+											<tr><td style="padding-bottom: 1px">&nbsp;</td></tr>
+										</table><!-- end table share -->
+									</td>
+								</tr>
+							</table><!-- end photo and share links -->
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 13px; font-weight:normal;">
+							<h2 style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 18px; font-weight:bold;">HIGHLIGHTS</h2>
+							<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #515458;">{{ daily_deal.highlights }}</p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 13px; font-weight:normal;">
+							<h2 style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 18px; font-weight:bold;">ABOUT THE DEAL</h2>
+							<h4 style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 14px; font-weight:normal; margin: 0; padding: 0;"><strong>{{ advertiser.name }}</strong>: {{ daily_deal.value_proposition }}</h4> 
+							<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #515458;">{{ daily_deal.description }}</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align:top; padding-top:0px;">
+							<h2 style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 18px; font-weight:bold;">LOCATION</h2>
+							<img src="{{ advertiser.logo.standard_url }}" style="max-width: 110; max-height: 55" alt="" style="display: block;" />
+			              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #515458;"><strong>{{ advertiser.name }}</strong><br />
+				              {{ advertiser.address_line_1 }}<br />
+				              {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+				              {{ advertiser.phone_number }}<br />
+			              <a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.website_url | truncate:"40" }}</a>
+			              </p>
+						</td>
+						<td>
+					      {% if advertiser.stores.size > 0 %}
+					      <a href="{{ advertiser.map_url }}" style="border:none;text-decoration:none;"><img src="{{ daily_deal.multi_loc_map_image_url }}" style="border:1px solid #9f9f9e;" id="map" target="_blank" alt="map" /></a>
+					      {% endif %}
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 13px; font-weight:normal;">
+							<h2 style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 18px; font-weight:bold;">REVIEWS</h2>
+							{{ daily_deal.reviews }}
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-family: Arial, Helvetica, sans-serif; color: #515458; font-size: 13px; font-weight:normal;">
+							<h2 style="font-family: Arial, Helvetica, sans-serif; color: red; font-size: 18px; font-weight:bold;">THE FINE PRINT</h2>
+							{{ daily_deal.terms }}
+							
+							{% case publisher.label %}
+							  {% when "entercom-buffalo" %}
+    							<p id="buffalo" style="text-align:center">
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/lake.jpg" alt="The Lake 107.7" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wben.jpg" alt="WBEN 930AM" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wgr.jpg" alt="WGR 550" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wkse.jpg" alt="KISS 98.5" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wtss.jpg" alt="WTSS 102.5" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wwkb.jpg" alt="WWKB 1520AM" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wwws.jpg" alt="WWWS 1400AM" />
+    							</p>
+							  {% when "entercom-madison" %}
+    						 	<p id="madison" style="text-align:center">
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wchy_500w.jpg" alt="Charlie 105.1" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wmmm_500w.jpg" alt="Triple MMM 105.5" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/wolx_500w.jpg" alt="94.5 WOLX" />
+    							</p>
+    						{% when "entercom-milwaukee" %}
+    						 	<p id="milwaukee" style="text-align:center">
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/MKE_991.jpg" alt="99.1 WMYX" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/MKE_1250.jpg" alt="1250 WSSP" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/MKE_KISS.jpg" alt="103.7 KISS FM" />
+    							</p>
+    						{% when "entercom-sacramento" %}
+    						 	<p id="sacramento" style="text-align:center">
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/espn.jpg" alt="ESPN Radio 1320" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/buzz1065.jpg" alt="106.5 The Buzz" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/98rock.jpg" alt="98 Rock" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/radio947.jpg" alt="Radio 94.7" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/969eagle.jpg" alt="96.9 Eagle" />
+    							<img src="http://{{ publisher.daily_deal_host }}/themes/{{ publisher.label }}/images/email/stations/the-end1079.jpg" alt="107.9 The End" />
+    							</p>																					
+						 	{% endcase %}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

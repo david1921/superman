@@ -1,0 +1,26 @@
+<div class="message"><%= @message.html_safe if @message %></div>
+<% form_for :subscriber, :url => upload_publisher_subscribers_path(@publisher.id) do |f| %>
+  <div class="row">
+  <%= f.text_area_div :email_addresses, "Email Addresse(s):", :cols => 50 %>
+  </div>
+  <div class="row">
+  <%= f.submit "Upload" %> <%= link_to("cancel", :back) %>
+  </div>
+<% end -%>
+
+<% if @new_entries || @already_exists || @invalid_entries -%>
+  <table>
+    <tr>
+      <td>New Entries:</td>
+      <td><%= @new_entries.join(", ")%></td>
+    </tr>
+    <tr>
+      <td>Already Subscribed:</td>
+      <td><%= @already_exists.join(", ") %></td>
+    </tr>
+    <tr>
+      <td>Invalid Emails:</td>
+      <td><%= @invalid_entries.join(", ")%></td>
+    </tr>
+  </table>
+<% end -%>

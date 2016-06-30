@@ -1,0 +1,24 @@
+<div class="wrapper" id="deal_<%= daily_deal.id %>_wrapper">
+  <div class="daily_deal" id="deal_<%= daily_deal.id %>">
+    <div class="body" id="deal_<%= daily_deal.id %>_body">
+      <h3 class="value_proposition"><%= daily_deal.value_proposition %></h3>
+      <div class="logo" id="daily_deal_<%= daily_deal.id %>_logo">
+        <%= image_tag daily_deal.photo.url(:thumbnail) %>
+      </div>
+      <div class="footer">
+        <% if daily_deal.syndicated? %>
+        <div>Syndicated: <%= daily_deal.publisher.name %></div>
+        <% else %>
+        <div class="edit"><%= link_to "Edit", edit_advertiser_daily_deal_path(@advertiser, daily_deal) %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if !daily_deal.syndicated? %>
+  <div class="links">
+    <%= link_to("View", daily_deal_path(daily_deal), :target => "_blank") %><br />
+    <%= link_to("New", new_advertiser_daily_deal_path(daily_deal.advertiser) ) %>
+    <%= link_to("Delete", advertiser_daily_deal_path(daily_deal.advertiser, daily_deal), :method => :delete, :confirm => "Are you sure you want to delete this Daily Deal?") %>
+  </div>
+  <% end %>
+</div>

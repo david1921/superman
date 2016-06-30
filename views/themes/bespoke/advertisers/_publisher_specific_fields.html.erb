@@ -1,0 +1,37 @@
+<%= f.select_div :size, [""] + Advertiser::SIZES %>
+<%= f.text_field_div(:gross_annual_turnover, "Gross Annual Turnover") %>
+<%= f.check_box_div(:registered_with_companies_house, "Are you registered with Companies House?", :type => :label_left, :class=> 'toggle-box') %>
+<%= f.text_field_div(:company_registration_number, "Company Registration Number") %>
+<%= f.text_field_div(:business_trading_name, "Trading Name") %>
+<%= f.text_field_div(:registered_company_name, "Registered Company Name") %>
+
+<%= f.select_div(:primary_business_category, [["", ""]] + I18n.options_for_select_from_scope('options.business_categories')) %>
+<% secondary_business_category_options = @advertiser.primary_business_category.present? ?
+   I18n.options_for_select_from_scope("options.secondary_business_categories.#{@advertiser.primary_business_category}") : [] %>
+<%= f.select_div(:secondary_business_category, secondary_business_category_options, :include_blank => true) %>
+
+<%= f.text_field_div(:active_coupon_limit) %>
+
+<script type="text/javascript">
+  (function($) {
+    secondaryCategories = <%= I18n.t('options.secondary_business_categories').to_json.html_safe %>;
+    $("#advertiser_primary_business_category").change(function() {
+      html = "";
+      values = secondaryCategories[$(this).val()];
+      html += "<option></option>";
+      if(values) {
+        for(var key in values) {
+          html += "<option value='" + key + "'>" + values[key] + "</option>";
+        }
+        $("#advertiser_secondary_business_category").removeAttr("disabled");
+      } else {
+        $("#advertiser_secondary_business_category").attr("disabled", "disabled");
+      }
+      $("#advertiser_secondary_business_category").html(html);
+    });
+  })(jQuery);
+</script>
+
+<% unless @advertiser.new_record? %>
+  <%= render :partial => with_theme('advertiser_owners') %>
+<% end %>

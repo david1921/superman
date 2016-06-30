@@ -1,0 +1,21 @@
+<% benchmark "View offers/_categories", :silence => true do -%>
+  <div id="categories">
+    <h3>Categories</h3>
+    <ul class="<%= "many " if @publisher_categories.size > 24 %><%= "with_subcategories" if @publisher.subcategories? %>">
+      <li><%= link_to "All",
+              render_public_advertisers_path(@publisher,
+              {
+                :background_color => @background_color, 
+                :category_id      => nil,
+                :city             => @city, 
+                :foreground_color => @foreground_color, 
+                :iframe_height    => params[:iframe_height],
+                :iframe_width     => params[:iframe_width],
+                :layout           => @layout,
+                :page_size        => params[:page_size],
+                :state            => @state                
+              }) %> (<%=  @offers_count %> unique)</li>
+  <%= render :partial => "advertisers/category", :collection => @publisher_categories.sort_by(&:name) %>
+    </ul>
+  </div>
+<% end -%>

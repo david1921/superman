@@ -1,0 +1,23 @@
+<div id="dd_nav">
+	{% if publisher.launched? %}
+	<div class="right_nav">
+		{% if publisher.current_user_belongs_to? %}
+		<a href="{{ publisher.my_account_path }}">My Account</a>
+		<a href="{{ publisher.my_deals_path }}">My Deals</a>
+		<a class="last" href="{{ publisher.logout_path }}">Sign Out</a>
+		
+		{% else %}
+		<a href="{{ publisher.facebook_connect_path }}" id="fb" ><img src="/themes/freedom/images/buttons/log-in-with-facebook.png" alt="" /></a>
+		<a class="last" href="{{ publisher.login_path }}">Sign In</a>
+		{% endif %}
+		</div>
+	{% endif %}
+	
+	<div class="left_nav">
+		<a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> 
+		<!-- <a href="#">Recent Deals</a>  -->
+		<a href="{{ publisher.faq_path }}">FAQ</a>
+		<a href="{{ publisher.contact_path }}">Contact Us</a>
+		<a class="app" href="http://itunes.apple.com/us/app/oc-register-deal-of-the-day/id452839933?ls=1&mt=8">Download the App</a>
+	</div>
+</div><!-- /dd_nav -->

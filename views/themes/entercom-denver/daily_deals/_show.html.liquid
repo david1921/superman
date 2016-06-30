@@ -1,0 +1,158 @@
+{% This file is not currently being used. Is there a need for a show override? 03/30/12 Scott Greenwald %}
+		<div id="deal_info" class="container top">
+			<h1 id="value_proposition">{{ daily_deal.value_proposition }}</h1>
+		<div class="rightcol">
+			<div class="content">
+				<div id="deal_photo"><img src="{{ daily_deal.photo.standard_url }}" width="440" height="265" alt="" /></div>
+				<div id="shortdesc">
+					<div id="fine_print">
+					  <h2>The Fine Print</h2>
+					  {{ daily_deal.terms }}
+					</div>
+					<div id="highlights">
+					  <h2>Highlights</h2>
+					  {{ daily_deal.highlights }}
+					</div>
+				</div>
+			    <div id="share">
+                    <div class="email_button">
+                        <span class="st_email_button share_button_mail" st_title="{{ daily_deal.value_proposition_escaped }}" displayText="Email"></span>
+                    </div>
+					<div class="share_button">
+						<span class="st_twitter_hcount share_button_twitter" st_title="{{ daily_deal.twitter_status }}" displayText="Tweet"></span>
+						<span class="st_facebook_hcount share_button_facebook" st_title="{{ daily_deal.facebook_title | uri_escape }}"  displayText="Share"></span>
+					</div>
+					<div class="fb_like_button">
+						<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+						<fb:like href="{{ daily_deal.url }}" layout="button_count" show_faces="false" width="130"></fb:like>
+					</div>
+				</div>
+			</div>
+		</div><!--END rightcol-->
+		<div class="leftcol">
+			<div id="deal_price">
+				
+				<strong>{{ daily_deal.price | currency: 2 }}</strong>
+				{% if daily_deal.sold_out? %}
+				<span>SOLD OUT</span>
+				{% elsif daily_deal.over? %}
+				<span>DEAL OVER</span>
+				{% elsif daily_deal.active? %}
+				<a href="{{ daily_deal.buy_now_path }}" id="buy_now_button"><img src="/themes/entercomnew/images/buttons/buy.png" width="113" height="48" alt="BUY" /></a>
+				<span class="unavailable" style="display:none;">DEAL OVER</span>
+				{% else %}
+				<span>COMING SOON</span>
+				{% endif %}
+		  </div>
+			<div class="content shade">
+				<div class="savings">
+					Value
+					<span>{{ daily_deal.value | currency: 2 }}</span>
+				</div>
+				<div class="savings">
+					You Save
+					<span>{{ daily_deal.savings | currency: 2 }}</span>
+				</div>
+			</div>
+            {% if publisher.enable_daily_deal_referral %}
+			<div class="content refer">
+            <div class="refer">
+                <a href="/publishers/{{ publisher.id }}/consumers/refer_a_friend" class="refer_a_friend_tracking">Refer Friends, Get $10 </a>
+            </div>
+			</div>
+            {% endif %}
+			<div class="content timer">
+              <div class="inset">
+				<img src="/themes/entercomnew/images/icons/clock.png" width="44" height="42" alt="" />
+				<span id="time_left_to_buy"></span>
+				Time left to buy
+              </div>
+			</div>
+			<div class="content shade">
+			  {% if daily_deal.number_sold > 24 %}
+			    <div id="deals_sold_container">
+    			  <div id="deals_sold">{{ daily_deal.number_sold }}</div>&nbsp;bought  
+    			</div>
+				{% endif %}
+				<div id="limited-qty">Limited Quantity Available</div>
+			</div>
+		</div><!--END leftcol-->
+	</div><!--END deal_info-->
+	<div id="deal_details" class="container">
+		<div class="leftcol">
+			<div class="content">
+				
+				<a name="location" id="location"><h3>Location</h3></a>
+				<div class="shade">
+			    {% if advertiser.address? %}
+  					{% for store in advertiser.stores %}
+					
+  					<p class="location" style="{% if forloop.index > 3 %}display:none{% endif %}">
+  					  <strong>{{ advertiser.name }}</strong><br />
+  					  {{ store.address_line_1 }}<br />
+  					  {% if store.address_line_2 != empty %}
+  					    {{ store.address_line_2 }}<br />
+  					  {% endif %}
+  					  {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+  					  {% if store.formatted_phone_number != empty %}
+  					    phone:{{ store.formatted_phone_number }}
+  					  {% endif %}<br />
+  					  {% if advertiser.website_url %}
+  					    <a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.website_url }}</a>
+  				      {% endif %}
+  					</p>
+  					{% endfor %}
+				  {% endif %}
+                    {% if advertiser.num_stores > 3 %}
+					  <a id="see_all_locations" href="#" onclick="javascript:$$('p.location').each(Element.show); $('see_all_locations').hide(); return false">See all locations...</a>
+                    {% endif %}
+					{% if advertiser.address? %}
+                      <br /><br />
+					  <a href="{{ advertiser.map_url }}" target="_blank">
+					    {% if advertiser.num_stores > 1 %}
+					      <img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="_blank" alt="map" />
+					    {% else %}
+					      <img src="{{ daily_deal.map_image_url }}" id="map" target="_blank" alt="map" />
+					    {% endif %}
+					  </a>
+					{% elsif advertiser.website_url %}
+					  <a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.website_url | truncate: 40 }}</a>
+					  {% if advertiser.formatted_phone_number != empty %}
+					    <div>{{ advertiser.formatted_phone_number }}</div>
+					  {% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="rightcol">
+			<div class="content">
+				<h2>About the deal</h2>
+				  {{ daily_deal.description }}
+				<!--<div id="reviews">
+                    <h2>Reviews</h2>
+                </div>-->
+			</div>
+		</div>
+	</div><!--END deal_details-->
+</div><!--END Inner-->
+{% include with_theme "shared/affiliate_link_form_popup" %}
+<div id="sidebar">
+
+
+	{% if publisher.show_special_deal? %}
+	  <div id="oas" onclick="_gaq.push(['_trackEvent', 'OAS', 'Click', '{{ publisher.name | replace: "'", "\\'" | replace: ' ', '_' }}'])">
+		{% include with_theme "shared/oas" %}
+	  </div>
+    {% endif %}
+
+
+	
+	<div id="container">
+		
+        {% include with_theme 'shared/side_deals' %}
+		<div class="content" id="facebookbox">
+			{% include with_theme 'shared/facebook_likebox' %}
+		</div>
+	</div>
+</div>
+

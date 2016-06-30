@@ -1,0 +1,23 @@
+<% set_daily_deal_page_title_slug t('.title') %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners consumers_thank_you">
+    <h1 class="content"><%=t '.title' %></h1>
+    <p>
+      <%= raw purchase_thank_you_message(@daily_deal_purchase) %>
+    </p>
+    <h3 class="further_action_message"><%=t '.further_actions_title' %></h3>
+      <ul>
+        <li><%= link_to t('.view_your_orders'), daily_deal_download_url(@daily_deal_purchase) %></li>
+        <li> <a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:continue_shopping) %></a></li>
+        <li><a href="<%= new_publisher_support_contact_request_path(@publisher) %>"><%= t(:contact_blue365) %></a></li>
+        <% if @publisher.enable_daily_deal_referral? && 
+          !(@publisher.daily_deal_referral_message.blank? || @publisher.daily_deal_referral_message_head.empty?) %>
+        <li><%= link_to @publisher.daily_deal_referral_message, "/publishers/#{ @publisher.id }/consumers/refer_a_friend" %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% if File.exists?("#{Rails.root}/app/views/themes/#{@publisher.label}/daily_deal_purchases/_conversion.html.erb") -%>
+    <%= render :partial => "themes/#{@publisher.label}/daily_deal_purchases/conversion" %>
+  <% end -%>
+</div>

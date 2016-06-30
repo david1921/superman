@@ -1,0 +1,17 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>1.0</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Fail</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>137</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Product is sold out.</ErrorText>
+      <UserCanFix>false</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues/>
+  <PaymentStatus>Fail</PaymentStatus>
+  <TransactionDate>2012-03-05T08:13:04.993</TransactionDate>
+  <TransactionID>208</TransactionID>
+</BookTransaction>

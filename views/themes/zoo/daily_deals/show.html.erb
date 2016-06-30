@@ -1,0 +1,63 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div id="subnav">
+		<div id="share">
+			<h4><%= t(:share_this_deal) %>:</h4>
+			<p>
+			<a href="<%= facebook_daily_deal_path(@daily_deal) %>" class="share_button share_button_facebook" id="facebook_link"  target="_blank" title="<%= t(:share_it_on_facebook) %>"><%= t(:share_it_on_facebook) %></a>
+			<a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_button share_button_twitter" target="_blank"><%= t(:twitter_share_title) %></a>
+			<a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=<%= t(:check_out_this_deal_at) %> <%= daily_deal_url(@daily_deal) %>" class="share_button share_button_mail last"><%= t(:email_share_alt) %></a>
+			</p>
+		</div>
+	</div>
+	<div class="content_box"><!-- deal info top row -->
+		<h1 id="value_prop"><%= @daily_deal.value_proposition %></h1>
+		<div id="dashboard"><!--dashboard -->
+			
+			<div id="deal_specs">
+				<div id="value">
+					<%= t(:value) %>:  <span><%= formatted_price_for(@daily_deal.value, @daily_deal.currency_symbol) %></span>
+				</div>
+				<div id="savings">
+					<%= t(:savings) %>: <span><%= formatted_price_for(@daily_deal.savings, @daily_deal.currency_symbol) %></span>
+				</div>
+				<div id="price">
+					<%= t(:cost) %>: <span><%= formatted_price_for(@daily_deal.price, @daily_deal.currency_symbol) %></span>
+				</div>
+				<div id="timer">
+					<span><%= t(:ends_at) %>:</span>
+					<span id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></span>
+					Ωρες Λεπτά Δευτ.
+				</div>
+				<div id="number_sold"><%= t(:deals_sold) %>: <span id="deals_sold">112</span></div>
+				<div id="action">
+					<% if @daily_deal.sold_out? -%>
+					  <div id="sold_out" class="status"><%= t(:sold_out) %></div>
+					<% elsif @daily_deal.over? -%>
+					  <div id="deal_over" class="status"><%= t(:deal_over) %></div>
+					<% elsif @daily_deal.active? -%>
+					  <a id="buy_now_button" class="gradient" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><%= t(:buy_now) %></a>
+					<% else -%>
+					  <div id="not_yet" class="status"><%= t(:not_yet_available) %></div>
+					<% end -%>
+				</div><!-- /price_tag -->
+
+			</div><!-- /deal_specs -->
+
+			
+		</div><!-- /dashboard -->
+		<div id="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.advertiser.name %>" /></div>
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	<div><!-- deal info bottom row -->
+		
+	<%= render :partial => with_theme("shared/deal_tab_content") %>
+		
+	</div><!-- /deal info bottom row -->
+</div><!-- /main_column -->
+
+<%= render :partial => with_theme("shared/sidebar") %>
+
+</div>
+

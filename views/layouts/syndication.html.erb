@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Syndication</title>
+  <%= stylesheet_link_tag( "jquery/jquery-ui.custom.css", "syndication/reset.css", "syndication/syndication.css", "syndication/fullcalendar.css", "syndication/map.css" ) %>
+  <%= javascript_include_tag( "jquery/jquery.min.js", 
+                              "jquery/jquery-ui.custom.min.js",
+                              "jquery/plugins/jquery.slidePanel.min.js",
+                              "jquery/plugins/jquery.cookie.js",
+                              "jquery/plugins/jquery.qtip-1.0.0-rc3.min",
+                              "jquery/plugins/jquery.ui.timepicker.js",
+                              "app/syndication/calendar/fullcalendar.min.js",
+                              "app/syndication/calendar/calendar_display.js"                              
+                               ) %>
+<%= raw render :partial => "/shared/tracking_syndication" %>
+</head>
+<body>
+<div class="wrapper">
+<div id="header">
+	<div id="header_content">
+		<div id="banner_nav">
+			<a href="<%= list_syndication_deals_path %>"><img id="syndication-logo-header" src="/images/syndication/graphics/site_logo.png" height="53" width="337" align="Analog Analytics Bigger Better Deals"></a>
+		  <% if current_user.present? %>
+				<div class="pubname_box">
+		  	Hello, <span class="user_name"><%= current_user.try(:name).try(:capitalize) %></span> | <span class="pub_name">Publisher: <%= @publisher.try(:name).try(:capitalize) %></span>
+		  </div><!-- end .pubname_box -->
+      <% end %>
+			<div id="site_nav_wrap">
+        <% if current_user && controller_name != 'sessions' %>
+  				<ul id="site_nav">
+  				  <% if @publishing_group.present? %>
+  					  <%= syndication_site_navigation(:browse_deals, @publisher) %>
+  					  <%= syndication_site_navigation(:my_account, @publisher) %>
+  					<% else %>
+    					<%= syndication_site_navigation(:browse_deals) %>
+    				  <%= syndication_site_navigation(:my_account) %>
+  					<% end %>
+  					<%= syndication_site_navigation(:logout) %>
+  					<li><%= link_to "Manage Deals", root_path, :id => "manage_deals" %></li>
+  				</ul>
+        <% end %>
+			</div><!-- /site_nav_wrap -->
+		</div><!-- /banner_nav -->
+		<!--<div id="account_info">
+			<p class="sourced_info">DEALS SOURCED THIS PERIOD: <span class="deals_sourced">3</span></p>
+			<p class="status_info">At least <span class="deals_needed">3</span> more needed</p>
+		</div>-->
+	</div><!-- /header_content -->
+</div><!-- /header -->
+<div class="clear"></div>
+<% if show_key? %>
+  <%= render :partial => "syndication/shared/key" %>
+<% end %>
+<div id="content">
+  <div class="notice rounded_corners" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+    <%= flash[:notice] %>
+  </div>
+  <div class="error rounded_corners" id="flash_error" style="display: <%= flash[:error].present? ? "visible" : "none" %>;">
+    <%= flash[:error] %>
+  </div>
+  <%= yield %>	
+</div><!-- /content -->
+<div class="clear"></div>
+<div class="push"></div>
+</div><!-- /wrapper -->
+<div class="clear"></div>
+<div id="footer">
+	<img src="/images/powered_by_analog_analytics.png" height="20" width="169" alt="Powered by Analog Analytics">
+</div><!-- /footer -->
+
+</body>
+<script type="text/javascript">  
+jQuery(function() {
+    if (jQuery('.datetime').length > 0) {
+      jQuery('.datetime').datetimepicker({
+      	ampm: true,
+      	dateFormat: 'yy-mm-dd'
+      });      
+    }
+});
+</script>
+</html>
+

@@ -1,0 +1,49 @@
+<tr class="bbd">
+  <td colspan="3">
+    <span class="retail">
+      <strong>RETAIL PRICE</strong> <%= number_to_currency( featured_gift_certificate.value, :unit => featured_gift_certificate.currency_symbol ) %>
+    </span>
+    <span class="price">
+      <strong>YOUR PRICE</strong> <%= number_to_currency( featured_gift_certificate.price, :unit => featured_gift_certificate.currency_symbol )%>
+    </span>
+    <span class="remaining">
+      <strong>REMAINING</strong> <%= featured_gift_certificate.available_count %>
+    </span>
+  </td>
+</tr>
+<tr class="featured_gift_certificate">
+  <td></td>
+  <td class="content" colspan="2">
+    <h3>
+      <%= featured_gift_certificate.advertiser_name %>
+    </h3>
+    <p class="address"><%= featured_gift_certificate.address.join(", ") %></p>
+    <div class='share'>
+      <%= link_to( image_tag("icons/facebook.png"), facebook_gift_certificate_path( featured_gift_certificate ), :target => "_blank" ) %>
+      <%= link_to( image_tag("icons/twitter.png" ), twitter_gift_certificate_path( featured_gift_certificate ), :target => "_blank" ) %>
+    </div>
+  </td>
+</tr>
+<tr class="featured_gift_certificate continued">
+  <td class="image" valign="top">
+    <%= image_tag( featured_gift_certificate.logo.url(:normal) ) %>
+  </td>
+  <td class="content" colspan="2">
+    <%= featured_gift_certificate.description.html_safe unless featured_gift_certificate.description.blank? %>
+    <div class="terms">
+      <h3>The Fine Print</h3>
+      <%= featured_gift_certificate.terms.html_safe unless featured_gift_certificate.terms.blank? %>
+    </div>
+    <div class="purchase">
+      <%= render(:partial => "paypal_buy_now_form", :locals => {
+        :target => "_blank",
+        :gift_certificate => featured_gift_certificate,
+        :return_url => @return_url
+      }) -%>
+    </div>
+    <% if featured_gift_certificate.handling_fee? %>
+      <p class='handling_fee'>There is a <%= number_to_currency( featured_gift_certificate.handling_fee, :unit => featured_gift_certificate.currency_symbol ) %> handling fee.</p>
+    <% end %>
+    <div class="onsale"><%# render_sale_opens_at( featured_gift_certificate ) %></div>
+  </td>
+</tr>

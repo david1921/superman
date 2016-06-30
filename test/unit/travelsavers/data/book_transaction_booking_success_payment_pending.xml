@@ -1,0 +1,314 @@
+<?xml version="1.0"?>
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>1.1</Version>
+  <Booking>
+    <BookedProducts>
+      <Product>
+        <Description>
+          <Advisories>
+            <ProductAdvisory>
+              <Format>Text</Format>
+              <Message>
+                <Text>Next Steps:</Text>
+                <Text>Go to the cruise line website using your name, confirmation number and sailing date and:</Text>
+                <Text>1.Register in the cruise line website</Text>
+                <Text>2.View your current reservation</Text>
+                <Text>3.Prepare for your vacation with cruising FAQs</Text>
+                <Text>4.Look for more exciting information</Text>
+                <Text/>
+              </Message>
+              <Type>NextSteps</Type>
+            </ProductAdvisory>
+            <ProductAdvisory>
+              <Format>HTML</Format>
+              <Message>
+                <Text>&lt;div id="wide"&gt;&lt;p&gt;&lt;strong&gt;Next Steps:&lt;/strong&gt;</Text>
+                <Text>Go to the &lt;a href="www.royalcaribbean.com"&gt;cruise line website&lt;/a&gt; using your name, confirmation number and sailing date and: </Text>
+                <Text>&lt;strong&gt;1.&lt;/strong&gt;Register in the cruise line website</Text>
+                <Text>&lt;strong&gt;2.&lt;/strong&gt;View your current reservation</Text>
+                <Text>&lt;strong&gt;3.&lt;/strong&gt;Prepare for your vacation with cruising FAQs</Text>
+                <Text>&lt;strong&gt;4.&lt;/strong&gt;Look for more exciting information</Text>
+                <Text>&lt;/p&gt;&lt;/div&gt;</Text>
+              </Message>
+              <Type>NextSteps</Type>
+            </ProductAdvisory>
+          </Advisories>
+          <MoreDetail i:nil="true"/>
+          <Name>6 Day Caribbean/Bahamas on the Carnival Breeze</Name>
+          <Summary>Miami, Florida, Grand Turks, Falmouth, Nassau</Summary>
+        </Description>
+        <ProductID>3261</ProductID>
+        <ServiceEndDate>2012-12-22T00:00:00</ServiceEndDate>
+        <ServiceStartDate>2012-12-16T00:00:00</ServiceStartDate>
+        <SubProducts>
+          <SubProduct>
+            <Description>
+              <Advisories i:nil="true"/>
+              <MoreDetail i:nil="true"/>
+              <Name>Category: IS</Name>
+              <Summary>Inside Cabin</Summary>
+            </Description>
+            <SubProductID>IS</SubProductID>
+            <Travelers>
+              <Person>
+                <Action i:nil="true"/>
+                <Age>42</Age>
+                <BirthDate>1970-10-15T00:00:00</BirthDate>
+                <Citizenship>US</Citizenship>
+                <DepartureCity>DEN</DepartureCity>
+                <Email i:nil="true"/>
+                <FirstName>Bob</FirstName>
+                <Gender>M</Gender>
+                <LastName>Jones</LastName>
+                <MiddleName i:nil="true"/>
+                <PersonAddress>
+                  <Address1>100 Test Drive</Address1>
+                  <Address2/>
+                  <City>
+                    <Code i:nil="true"/>
+                    <Name>Testville</Name>
+                  </City>
+                  <Country>
+                    <Code>US</Code>
+                    <Name i:nil="true"/>
+                  </Country>
+                  <PostalCode>90210</PostalCode>
+                  <State>
+                    <Code>CA</Code>
+                    <Name i:nil="true"/>
+                  </State>
+                </PersonAddress>
+                <PersonID>1</PersonID>
+                <Phone>
+                  <InternationalCode i:nil="true"/>
+                  <Number>5554443333</Number>
+                  <PhoneType i:nil="true"/>
+                </Phone>
+                <PrimaryContact>false</PrimaryContact>
+                <StatusCode i:nil="true"/>
+                <Title>Mr</Title>
+                <UsingDefaultValues>false</UsingDefaultValues>
+              </Person>
+              <Person>
+                <Action i:nil="true"/>
+                <Age>52</Age>
+                <BirthDate>1960-12-09T00:00:00</BirthDate>
+                <Citizenship>US</Citizenship>
+                <DepartureCity>DEN</DepartureCity>
+                <Email i:nil="true"/>
+                <FirstName>Alice</FirstName>
+                <Gender>F</Gender>
+                <LastName>Jones</LastName>
+                <MiddleName i:nil="true"/>
+                <PersonAddress>
+                  <Address1>100 Test Drive</Address1>
+                  <Address2/>
+                  <City>
+                    <Code i:nil="true"/>
+                    <Name>Testville</Name>
+                  </City>
+                  <Country>
+                    <Code>US</Code>
+                    <Name i:nil="true"/>
+                  </Country>
+                  <PostalCode>90210</PostalCode>
+                  <State>
+                    <Code>CA</Code>
+                    <Name i:nil="true"/>
+                  </State>
+                </PersonAddress>
+                <PersonID>2</PersonID>
+                <Phone>
+                  <InternationalCode i:nil="true"/>
+                  <Number>5554443333</Number>
+                  <PhoneType i:nil="true"/>
+                </Phone>
+                <PrimaryContact>true</PrimaryContact>
+                <StatusCode i:nil="true"/>
+                <Title>Mrs</Title>
+                <UsingDefaultValues>false</UsingDefaultValues>
+              </Person>
+            </Travelers>
+          </SubProduct>
+        </SubProducts>
+        <TotalCharges>$1237.42</TotalCharges>
+        <VendorCode>CCL</VendorCode>
+        <VendorConfirmationNumber>39444596</VendorConfirmationNumber>
+        <VendorName>Carnival Cruise Lines</VendorName>
+      </Product>
+    </BookedProducts>
+    <BookingID>1</BookingID>
+    <LastUpdated>2012-04-18T14:16:36.6091889+00:00</LastUpdated>
+  </Booking>
+  <BookingStatus>Success</BookingStatus>
+  <Errors/>
+  <FormValues>
+    <SubmittedForm>
+      <Field>credit_card[billing][address_line_1]</Field>
+      <Value>100 Test Drive</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[billing][address_line_2]</Field>
+      <Value/>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[billing][country_code]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[billing][locality]</Field>
+      <Value>Testville</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[billing][postal_code]</Field>
+      <Value>90210</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[billing][region]</Field>
+      <Value>CA</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[cardholder_firstname]</Field>
+      <Value>Bob</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[cardholder_lastname]</Field>
+      <Value>Jones</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[expiration_date]</Field>
+      <Value>12/2014</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[number]</Field>
+      <Value>555555XXXXXX4444</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>credit_card[vendor_code]</Field>
+      <Value>VI</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][address_line_1]</Field>
+      <Value>100 Test Drive</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][address_line_2]</Field>
+      <Value/>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][birth_date]</Field>
+      <Value>10/15/1970</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][citizenship]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][country_code]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][email]</Field>
+      <Value>hwang@travelsavers.com</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][first_name]</Field>
+      <Value>Bob</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][gender]</Field>
+      <Value>M</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][last_name]</Field>
+      <Value>Jones</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][locality]</Field>
+      <Value>Testville</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][phone_number]</Field>
+      <Value>5554443333</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][postal_code]</Field>
+      <Value>90210</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][region]</Field>
+      <Value>CA</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][terms_accepted]</Field>
+      <Value>1</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][title]</Field>
+      <Value>Mr</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][address_line_1]</Field>
+      <Value>100 Test Drive</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][address_line_2]</Field>
+      <Value/>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][birth_date]</Field>
+      <Value>12/09/1960</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][citizenship]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][country_code]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][email]</Field>
+      <Value>hwang@travelsavers.com</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][first_name]</Field>
+      <Value>Alice</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][gender]</Field>
+      <Value>F</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][last_name]</Field>
+      <Value>Jones</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][locality]</Field>
+      <Value>Testville</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][phone_number]</Field>
+      <Value>5554443333</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][postal_code]</Field>
+      <Value>90210</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][region]</Field>
+      <Value>CA</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][terms_accepted]</Field>
+      <Value>1</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][title]</Field>
+      <Value>Mrs</Value>
+    </SubmittedForm>
+  </FormValues>
+  <PaymentStatus>Pending</PaymentStatus>
+  <TransactionDate>2012-04-18T14:16:33.42</TransactionDate>
+  <TransactionID>688</TransactionID>
+</BookTransaction>

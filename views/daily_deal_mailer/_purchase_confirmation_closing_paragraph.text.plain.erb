@@ -1,0 +1,7 @@
+<%= t "daily_deal.purchase_confirmation.kindly_note", :paypal_fragment => !@daily_deal_purchase.braintree? ? "#{t 'daily_deal.purchase_confirmation.paypal_or'} " : "", :publisher_name => @daily_deal_purchase.publisher.brand_name_or_name %>
+
+<%= t "daily_deal.purchase_confirmation.support_label" %>
+
+<%= t "daily_deal.purchase_confirmation.please_contact_us_if", :support_url => daily_deal_support_url(@daily_deal_purchase) %>
+
+<%= t "daily_deal.purchase_confirmation.valediction" %>

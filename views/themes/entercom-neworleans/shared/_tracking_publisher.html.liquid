@@ -1,0 +1,23 @@
+<script type="text/javascript">
+adroll_adv_id = "ASFPDPUYQFAE3BF6TBNSKT";
+adroll_pix_id = "I4B7HBUXXZGT5LENFZL5KB";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   document.documentElement.firstChild.appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+
+<!-- START AdRoll Purchase Tag -->
+<script type="text/javascript">
+{% analytics_tag sale %}
+	adroll_conversion_value_in_dollars = "{{ daily_deal.price }}"
+{% endanalytics_tag %}
+</script>

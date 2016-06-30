@@ -1,0 +1,13 @@
+<%- publisher.find_braintree_credentials! -%>
+<% form_for :transaction, :builder => BraintreeFormBuilder, :url => Braintree::TransparentRedirect.url, :html => { :id => "one_click_braintree_form" } do |f| -%>
+  <%= hidden_field_tag :tr_data, Braintree::TransparentRedirect.transaction_data(
+    :redirect_url => redirect_url,
+    :transaction => {
+      :type => "sale",
+      :amount => "%.2f" % daily_deal_purchase.total_price,
+      :order_id =>  daily_deal_purchase.analog_purchase_id,
+      :payment_method_token => credit_card.token,
+      :options => { :submit_for_settlement => AppConfig.capture_on_purchase }
+    }.merge(braintree_merchant_account_attrs(publisher)).merge(braintree_custom_field_attrs(daily_deal.item_code, publisher))
+  ) %>
+<% end -%>

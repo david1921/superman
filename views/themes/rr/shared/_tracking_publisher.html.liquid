@@ -1,0 +1,226 @@
+<script src="/themes/rr/javascripts/s_code.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+//*** TWC Omniture Variables ***/
+s.products = "{{ daily_deal.id }}";
+
+if (/\/daily_deal_purchases\/new$/.test(document.location.pathname)) {
+  s.events ="scAdd"
+} else if (/\/daily_deal_purchases\/.*?\/confirm$/.test(document.location.pathname)) {
+  s.events ="scCheckout"
+} else if (/(\/daily_deal\/login)|(\/consumers\/new)$/.test(document.location.pathname)) {
+  s.events = "event4";
+} else if (/\/consumers$/.test(document.location.pathname)) {
+  s.events = "event5";
+}
+
+{% analytics_tag landing %}s.events ="prodView,event1";{% endanalytics_tag %}
+{% analytics_tag signup %}s.events = "event13";{% endanalytics_tag %}
+{% analytics_tag sale %}
+s.events     = "purchase";
+s.products   = ";{% analytics_tag_data item_id %};{% analytics_tag_data quantity %};{% analytics_tag_data value %}";
+s.purchaseID = "{% analytics_tag_data sale_id %}";
+s.price = "{{ daily_deal.price }}";
+{% endanalytics_tag %}
+
+s.prop6 = "twc";
+{% show_twc_logo %}s.prop6 = "rr";{% endshow_twc_logo %}
+
+// Whether it was a normal registration or a Facebook connect registration.
+// s.eVar7  = "";
+//*** End TWC Omniture Variables ***/
+</script>
+
+<!-- Add knotice tracking tags to all pages -->
+<script type="text/javascript">
+    if (typeof (__kcv) === 'undefined') {
+        __kcv = { w: 0, o: '', a: '', h: 'deals.clickedin.com', t:false,e:3 }; 	
+    }	
+    {% analytics_tag sale %}
+        __kcv.PRICE = "{{ daily_deal.price }}";
+    {% endanalytics_tag %}
+</script>
+
+<script type="text/javascript">
+    if (typeof (Knotice) === 'undefined') { 
+        document.write(unescape('%3Cscript src="' + (document.location.protocol === 'https:' ? 'https://' : 'http://') + 'deals.clickedin.com/knotice.cas-2.js" type="text/javascript"%3E%3C/script%3E')); 
+    }
+    // this must be last!
+    if (typeof (__ktr) === 'undefined') {
+        __ktr = { h: 'deals.clickedin.com', t: false, e:3 };
+    }
+</script>
+
+{% analytics_tag signup %}
+<!-- Add knotice tracking tags to signup page -->
+<script type="text/javascript">
+    if (typeof (__kcv) === 'undefined') {
+        __kcv = { w: 0, o: '', a: 'purchase_subtotal_value', h: 'deals.clickedin.com', t:false,e:3 };
+    }
+</script>
+
+<script type="text/javascript">
+  if (typeof (Knotice) === 'undefined') {
+      document.write(unescape('%3Cscript src="' + (document.location.protocol === 'https:' ? 'https://' : 'http://') + 'deals.clickedin.com/knotice.cas-2.js" type="text/javascript"%3E%3C/script%3E')); 
+  }
+</script>
+{% endanalytics_tag %}
+
+
+{% analytics_tag presignup %}
+    <!-- Lightbox Page -->
+	{% http %}
+		<!-- Segment Pixel - ClickedIn_Lightbox_Visitor - DO NOT MODIFY -->
+		<script src="http://go.accmgr.com/seg?add=233840&t=1" type="text/javascript"></script>
+		<!-- End of Segment Pixel -->
+	{% endhttp %}
+	{% https %}
+		<!-- Segment Pixel - ClickedIn_Lightbox_Visitor - DO NOT MODIFY -->
+		<script src="https://secure.adnxs.com/seg?add=233840&t=1" type="text/javascript"></script>
+		<!-- End of Segment Pixel -->
+	{% endhttps %}
+{% endanalytics_tag %}
+	
+{% analytics_tag landing %}
+	{% if publisher.label == 'clickedin-austin' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_Austin_Visitor - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=233841&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_Austin_Visitor - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=233841&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+		
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-dallas' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_Dallas_Visitor - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=233842&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_Dallas_Visitor - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=233842&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-sanantonio' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_SA_Visitor - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=233843&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_SA_Visitor - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=233843&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+	{% endif %}
+{% endanalytics_tag %}
+{% analytics_tag sale %}
+	{% if publisher.label == 'clickedin-austin' %}
+		{% http %}
+			<!-- Conversion Pixel - ClickedIn_Austin_Conv - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/px?id=27032&seg=218544&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Conversion Pixel - ClickedIn_Austin_Conv - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/px?id=27032&seg=218544&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttps %}
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-dallas' %}
+		{% http %}
+			<!-- Conversion Pixel - ClickedIn_Dallas_Conv - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/px?id=27034&seg=218546&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Conversion Pixel - ClickedIn_Dallas_Conv - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/px?id=27034&seg=218546&t=1" type="text/javascript"></script>
+		{% endhttps %}
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-sanantonio' %}
+		{% http %}
+			<!-- Conversion Pixel - ClickedIn_SA_Conv - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/px?id=27033&seg=218545&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Conversion Pixel - ClickedIn_SA_Conv - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/px?id=27033&seg=218545&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttps %}
+	{% endif %}
+	{% if publisher.label == 'clickedin-charlotte' %}
+		{% http %}
+			<!-- Conversion Pixel - ClickedIn_SA_Conv - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/px?id=27033&seg=218545&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Conversion Pixel - ClickedIn_SA_Conv - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/px?id=27033&seg=218545&t=1" type="text/javascript"></script>
+			<!-- End of Conversion Pixel -->
+		{% endhttps %}
+	{% endif %}
+	
+{% endanalytics_tag %}
+{% analytics_tag sweepstakes_signup %}
+	{% if publisher.label == 'clickedin-austin' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_Austin_Sweeps - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=218547&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_Austin_Sweeps - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=218547&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-dallas' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_Dallas_Sweeps - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=218551&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_Dallas_Sweeps - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=218551&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+	{% endif %}
+
+	{% if publisher.label == 'clickedin-sanantonio' %}
+		{% http %}
+			<!-- Segment Pixel - ClickedIn_SA_Sweeps - DO NOT MODIFY -->
+			<script src="http://go.accmgr.com/seg?add=218549&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttp %}
+		{% https %}
+			<!-- Segment Pixel - ClickedIn_SA_Sweeps - DO NOT MODIFY -->
+			<script src="https://secure.adnxs.com/seg?add=218549&t=1" type="text/javascript"></script>
+			<!-- End of Segment Pixel -->
+		{% endhttps %}
+	{% endif %}
+
+{% endanalytics_tag %}
+{% analytics_tag presale %}
+  {% if daily_deal.id == 55569 %}
+    <img src="http://www.e-miles.com/autocredit.do?pc=5GXB878AKAHP26S&icampaignID=5UA88N" width=1 height=1>
+  {% endif %}
+  {% if daily_deal.id == 59275 %}
+    <img src="https://www.e-miles.com/autocredit.do?pc=5GXB878AKAHP26S&icampaignID=5TFR9N" width=1 height=1>
+  {% endif %}
+{% endanalytics_tag %}
+

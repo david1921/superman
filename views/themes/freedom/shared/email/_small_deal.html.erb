@@ -1,0 +1,34 @@
+<td>
+	<table style="<%= cycle("border-right: 1px solid #a4a6a5; padding-left: 0; padding-right:20px", "border: none; padding-left: 20px; padding-right: 0", :name => "small_deal_borders") %>; padding-top: 0; padding-bottom: 0; margin: 10px 0;" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="color: #0082c8; display: block; height: 28px; font-size: 12px; font-weight: bold;"><a style="color: #0082c8; font-size: 12px; font-weight: bold; text-decoration: none;" href="http://<%= small_deal.publisher.daily_deal_host + daily_deal_path(small_deal) %>"><%= truncate(small_deal.value_proposition, :length => 50).html_safe %></a></td>
+			<td style="padding-left: 10px;" rowspan="2" align="right" valign="middle"><%= link_to(image_tag("http://#{small_deal.publisher.daily_deal_host}/themes/freedom/images/buttons/email_see_it.png", :style => "display:block;", :alt => "See it", :border => 0), "http://#{small_deal.publisher.daily_deal_host}" + daily_deal_path(small_deal)) %></td>
+		</tr>
+		<tr>
+			<td style="color: #989A99; font-size: 12px; font-weight: bold;">
+				<% if small_deal.publishers_category %>
+					<% if small_deal.custom_1.present? %>
+		    		 	<span class="store_city"><%= small_deal.custom_1 %></span>
+		            <% elsif small_deal.advertiser.store.present? %> 
+		                <% if  small_deal.advertiser.stores.size > 1 %>
+		                	<span class="store_city">Multiple Locations</span>
+		                <% else %> 
+		                    <span class="store_city"><% unless small_deal.advertiser.store.city.blank? %><%= small_deal.advertiser.store.city %><% end %>, <% unless small_deal.advertiser.store.state.blank? %><%= small_deal.advertiser.store.state %><% end %></span>
+		                <% end %>
+		        	<% end %>
+		        <% elsif small_deal.advertiser.store.present? %>
+					<span class="store_city"><% unless small_deal.advertiser.store.city.blank? %><%= small_deal.advertiser.store.city %><% end %>, <% unless small_deal.advertiser.store.state.blank? %><%= small_deal.advertiser.store.state %><% end %></span>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-top: 10px;" colspan="2">
+				<% if small_deal.publishers_category.present? %>
+				<a href="http://<%= small_deal.publisher.daily_deal_host + daily_deal_path(small_deal) %>"><%= image_tag(small_deal.photo.url(:alternate_standard), :width => "260", :style => "box-shadow: 0 0 11px #7c7c7c;") %></a>
+				<% else %>
+				<a href="http://<%= small_deal.publisher.daily_deal_host + daily_deal_path(small_deal) %>"><%= image_tag(small_deal.photo.url, :width => "260", :style => "box-shadow: 0 0 11px #7c7c7c;") %></a>
+				<% end %>
+			</td>			
+		</tr>
+	</table>
+</td>

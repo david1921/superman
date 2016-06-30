@@ -1,0 +1,63 @@
+<% set_daily_deal_page_title_slug t(:register) %>
+
+<% if params[:layout] == "popup" -%>
+ <a href="#" class="lbAction" rel="deactivate"><span><%= t(:close) %></span></a>
+ <% elsif @publisher.label != 'bcbsa-national' -%>
+	 <!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	  <ul>
+	    <li>
+	      <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+	    </li>
+	    <li class="no_underline">></li>
+	    <li class="no_underline">          
+	      <%= t(:register) %>
+	    </li>
+	  </ul>
+	  </div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+<% end -%>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:register) %></h1>
+	<div id="register_content">
+		
+		<div id="left_column">
+			<p><%= t(:register_header_message) %></p>
+      <%= render :partial => with_theme("consumers/consumer_form"), :locals => { :show_terms => true, :use_reset_password_link => false, :signup_button => true } %>
+		</div>
+		<div class="right_column_2">
+			<div class="content">
+				<div class="top">
+					<h5><%= t(:member_benifits) %></h5>
+					<p><%= t(:why_sign_up) %></p>
+				</div>
+			
+				<div class="middle">
+					<img src="/themes/bcbsa/images/icons/money.png">
+					<h6><%= t(:benifit_1) %><h6>
+					<p><%= t(:benifit_1_message) %></p>
+				
+					<img src="/themes/bcbsa/images/icons/healthy_living.png">
+					<h6><%= t(:benifit_2) %><h6>
+					<p><%= t(:benifit_2_message) %></p>
+
+					<img src="/themes/bcbsa/images/icons/family.png">
+					<h6><%= t(:benifit_3) %><h6>
+					<p><%= t(:benifit_3_message) %></p>
+
+					<img src="/themes/bcbsa/images/icons/easy.png">
+					<h6><%= t(:benifit_4) %><h6>
+					<p><%= t(:benifit_4_message) %></p>
+					
+				</div>
+				<div class="bottom_img"></div>			
+			</div>
+		</div>
+		
+  	</div>
+  </div>
+</div>
+
+<%= render :partial => with_theme("shared/lightboxes/card_prefix") %>

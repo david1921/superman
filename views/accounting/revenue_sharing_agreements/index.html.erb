@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <th>Publishing Group</th>
+    <th>Current Platform Agreement</th>
+    <th>Platform</th>
+    <th>Current Syndication Agreement</th>
+    <th>Syndication</th>
+  </thead>
+  <% @publishing_groups.each do |publishing_group| -%>
+  <% current_platform_agreement = publishing_group.platform_revenue_sharing_agreements.current %>
+  <% current_syndication_agreement = publishing_group.syndication_revenue_sharing_agreements.current %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= publishing_group.name %></td>
+    <td><%= link_to(current_platform_agreement.try(:effective_date), edit_publishing_group_platform_revenue_sharing_agreement_path(publishing_group, current_platform_agreement)) if current_platform_agreement.present? %></td>
+    <td><%= link_to("New", new_publishing_group_platform_revenue_sharing_agreement_path(publishing_group)) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to("History", publishing_group_platform_revenue_sharing_agreements_path(publishing_group)) %></td>
+        <td><%= link_to(current_syndication_agreement.try(:effective_date), edit_publishing_group_syndication_revenue_sharing_agreement_path(publishing_group, current_syndication_agreement)) if current_syndication_agreement.present? %></td>
+    <td><%= link_to("New", new_publishing_group_syndication_revenue_sharing_agreement_path(publishing_group)) %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to("History", publishing_group_syndication_revenue_sharing_agreements_path(publishing_group)) %></td>
+  </tr>
+  <% end -%>
+</table>
+

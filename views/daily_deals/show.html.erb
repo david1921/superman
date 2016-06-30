@@ -1,0 +1,112 @@
+<h1><span id="todays_deal">Today's Deal: </span><span class="value_proposition"><%= @daily_deal.value_proposition %></span></h1>
+
+  <div class="last" id="dashboard">
+    <div class="top">
+      <table cellspacing="0">
+        <tr>
+          <td>
+            <% if !@daily_deal.daily_deal_variations.blank? -%><br /><%= t("up_to") %><% end %>
+            <span id="daily_deal_value"><%= number_to_currency @daily_deal.value_to_display, :precision => 0, :unit => @publisher.currency_symbol %></span>
+          </td>
+          <td class="todays_deal">
+            <% if !@daily_deal.daily_deal_variations.blank? -%><%= t("from") %><br /><% end %>
+            <span id="daily_deal_price"><%= number_to_currency @daily_deal.price_to_display, :precision => 0, :unit => @publisher.currency_symbol %></span>
+          </td>
+          <td>
+            <% if !@daily_deal.daily_deal_variations.blank? -%><br /><%= t("up_to") %><% end %>
+            <span id="daily_deal_savings"><%= number_to_currency @daily_deal.savings_to_display, :precision => 0, :unit => @publisher.currency_symbol %></span>
+          </td>
+        </tr>
+        <tr>
+          <th>Value</th>
+          <th class="todays_deal">Today's Deal</th>
+          <th id="you_save">You Save</th>
+        </tr>
+      </table>
+      <% if @daily_deal.over? -%>
+        <div id="soldout"><%= image_tag("/themes/daily_deals/images/buttons/unavailable.png") %></div>
+      <% elsif @daily_deal.active? -%>
+        <div id="dd_price" <%= "class=variation" if !@daily_deal.daily_deal_variations.blank? %>>
+          <% if !@daily_deal.daily_deal_variations.blank? -%>From<br /><% end %>
+          <%= formatted_price_for(@daily_deal.price_to_display) %>
+        </div>        
+        <% if !@daily_deal.daily_deal_variations.blank? -%>
+          <a id="buy_now_button" class="dd_button dd_variations_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+          <div id="deal_over" class="dd_button unavailable" style="display:none;">
+            Over
+          </div>
+          <a id="dd_variations_button" class="buy_now dd_variations_button" href="#">
+            <span class="arrow">&gt;</span>
+          </a>
+          <div id="dd_variations" class="dd_variations_menu" style="display:none;">
+            <table class="dd_variations_data">
+              <thead>
+                <tr>
+                  <th colspan="3"><%= t("choose_your_deal") %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @daily_deal.daily_deal_variations.each do |variation| %>
+                  <%= render :partial => "/daily_deals/dd_variation", :locals => { :dd_variation => variation, :daily_deal => @daily_deal } %>
+                <% end %>
+              </tbody>
+              </table>
+          </div>
+        <% else -%>
+          <a id="buy_now_button" class="dd_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+          <div id="deal_over" class="dd_button unavailable" style="display:none;">
+            Over
+          </div>
+        <% end -%>
+      <% else -%>
+        <div id="unavailable"><%= image_tag("/themes/daily_deals/images/buttons/not_available_yet.png") %></div>
+      <% end -%>
+
+      <table cellspacing="0">
+        <tr>
+          <td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+          <td id="deals_sold"><%= @daily_deal.number_sold %></td>
+        </tr>
+        <tr>
+          <th id="time_left_to_buy_label">Time Left to Buy</th>
+          <th id="deals_sold_label">Deals Sold</th>
+        </tr>
+      </table>
+      
+      <% if @daily_deal.over? -%>
+        <div id="deal_is_on"><span>THE DEAL IS OVER</span></div>
+      <% elsif @daily_deal.active? %> 
+        <div id="deal_is_on"><%= image_tag("/themes/daily_deals/images/icons/ribbon.png")%><span>THE DEAL IS ON!</span></div>
+      <% end %>                
+    </div>
+    <div id="share">
+      <h4>Share with a friend</h4>
+      <%= render :partial => "daily_deals/share" %>
+    </div>
+  </div>
+
+  <div id="deal">
+    <%= image_tag(@daily_deal.photo.url(:standard)) %>
+    <div class="description"><%= @daily_deal.description.try :html_safe %></div>
+  </div>
+
+  <div id="advertiser">
+    <%= image_tag(@daily_deal.advertiser.logo.url(:standard), :id => "advertiser_logo") if @daily_deal.advertiser.logo.file? %>
+    <h2><%= @daily_deal.advertiser_name %></h2>
+    <div class="address">
+      <% @daily_deal.address do |line| -%>
+        <%= line -%><br/>
+      <% end -%>
+      <%= @daily_deal.formatted_phone_number %>
+    </div>
+    <%= link_to( @daily_deal.sanitized_website_url, @daily_deal.website_url, :class => "advertiser_website" ) %>
+
+    <% if @daily_deal.highlights.present? -%>
+    <h3>Highlights:</h3>
+    <%= @daily_deal.highlights.html_safe %>
+    <% end -%>
+
+    <%= render :partial => "daily_deals/deal_credit" %>
+    <%= render :partial => "daily_deals/side_deals", :locals => { :side_deals => @daily_deal.side_deals } %>
+  </div>
+</div>

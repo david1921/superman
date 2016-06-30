@@ -1,0 +1,34 @@
+<% set_page_title "Reports: Advertisers with Online Coupons" -%>
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+   
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => reports_publisher_advertisers_url(@publisher, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "reports/publishers/navigation", :locals => {:page => :coupon_summary, :url_options => url_options}) %>
+
+<%-
+web_data_columns = []
+web_data_columns << [:advertiser_name, { :label => "Advertiser", :class_name => "left", :formatter => "formatUrl('advertiser_href')" }]
+web_data_columns << [:advertiser_listing, { :label => "Listing" }] if @publisher.advertiser_has_listing?
+web_data_columns << [:advertiser_href, { :display => false }]
+web_data_columns << [:coupons_count, { :label => "Coupons", :parser => "number" }]
+web_data_columns << [:impressions_count, { :label => "Impressions", :parser => "number" }]
+web_data_columns << [:clicks_count, { :label => "Clicks", :parser => "number" }]
+web_data_columns << [:click_through_rate, { :label => "CTR", :parser => "number", :formatter => "formatRate" }]
+web_data_columns << [:prints_count, { :label => "Prints", :parser => "number" }]
+web_data_columns << [:txts_count, { :label => "Texts", :parser => "number" }]
+web_data_columns << [:emails_count, { :label => "Emails", :parser => "number" }]
+web_data_columns << [:calls_count, { :label => "Calls", :parser => "number" }]
+web_data_columns << [:facebooks_count, { :label => "Facebook", :parser => "number" }] if @publisher.show_facebook_button
+web_data_columns << [:twitters_count,  { :label => "Twitter",  :parser => "number" }] if @publisher.show_twitter_button
+-%>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "advertisers_with_web_offers",
+  :data_source => reports_publisher_advertisers_path(@publisher, :format => "xml"),
+  :data_params => { :summary => @summary },
+  :result_node => :advertiser,
+  :data_columns => web_data_columns
+}) %>

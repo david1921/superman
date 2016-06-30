@@ -1,0 +1,5 @@
+<h2> Create A New Owner</h2>
+<%- form_for [@advertiser, @owner || @advertiser.advertiser_owners.build] do |f| -%>
+	<%= render :partial => "form", :object => f %>
+	<%= f.submit "Save Changes" %>
+<% end -%>

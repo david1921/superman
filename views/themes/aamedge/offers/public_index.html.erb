@@ -1,0 +1,28 @@
+<div class="free_offers">
+<%= public_index_notice(@publisher) %>
+<div class="left_column">
+    <%= render :partial => "search" %>
+	<h3 class="manufacturer_coupons"><a href="http://www.aamedge.com/coupons">Manufacturers Coupons</a></h3>
+    <%= render :partial => "offers/categories", :object => @publisher_categories %>
+</div><!-- /left_column -->
+
+<div class="right_column">
+	<div class='top_navigation'>
+    <h1>Coupon Directory</h1>
+		<!--Grid/Map/List Controls go here-->
+		<div class="pagesize">
+		  <%= render :partial => with_theme('offers/shared/pagination'), :locals => { :position => "top" } %>
+		</div>
+  </div>
+	 
+  <div class="<%= @publisher.theme %>" id="offers">
+      <%= render :partial => with_theme('offers/shared/offer'), :collection => @offers %>
+    <% if @offers.empty? -%>
+      Sorry, no coupons found
+    <%- end -%>
+    <%= render :partial => with_theme('offers/shared/pagination'), :locals => { :position => "bottom" } %>
+  </div>
+<!-- <%= render :partial => 'shared/terms_and_conditions' %> -->
+</div><!-- /right_column -->
+<div class="clear"></div>
+</div><!-- /free_offers  -->

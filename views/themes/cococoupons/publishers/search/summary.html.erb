@@ -1,0 +1,48 @@
+<div id="offers_wrapper">
+	<div id="left_column">
+        <div id="categories">
+            <h3>Categories</h3>
+            <ul id='category_list'>
+                <li><a href="<%= public_offers_path @publisher.id %>?featured=true">Featured Offers</a></li>
+                <li><a href="<%= public_offers_path @publisher.id %>">All</a></li>
+            </ul>
+        </div><!-- /categories -->
+        
+        <!-- search box -->
+        <div id="search" class="box_wrapper">
+       <form action="<%= publisher_search_path(@publisher.label) %>" id="search_form" method="get">
+           <input class="ghostie" id="text" name="q" title="Search Coupons" type="text"/><br/> 
+           <input id="search_button" type="submit" value="Search"/> 
+       </form> <br>
+   </div><!-- /search -->
+        <!-- /search box -->
+    </div><!-- /left_column -->
+
+  <div id="center_column">
+    <h1 class="page_title">Search Results</h1>
+    <%- if @offers or @sweepstakes %>
+      <%- if @offers.size == 0 and @sweepstakes.size == 0 %>
+        <p class="notice">Sorry, no results found for <strong>{{ query | escape }}</strong>.</p>
+      <%- else %>
+      <div class="offers">
+        <%- if @offers.size == 0 %>
+        <p>Sorry, no offers were found for <strong>{{ query | escape }}</strong>.</p>
+        <%- else %>
+        <div class="column_gradient"><%= render :partial => with_theme('offers/offer'), :collection => @offers %>		</div>
+
+        <%- end %>
+      </div><!-- /offers -->
+
+      <%- end %>
+      <%- else %>
+      <p class="notice">Please enter a search value.</p>
+    <%- end %>
+  </div><!-- /center_column -->
+
+	<div id="right_column">
+	  	
+	</div><!--right_column-->
+	    
+	<div class="clear"></div>
+	
+</div><!-- /search_results_summary -->

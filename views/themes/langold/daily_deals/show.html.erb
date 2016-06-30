@@ -1,0 +1,119 @@
+<div class="page_row rounded_corners" style="overflow:hidden">
+  <div class="page_column_7 first" id="deal">
+    <h2>Today's Deal</h2>
+    <div id="value_proposition"><%= @daily_deal.value_proposition %></div>
+    <div id="highlights"><%= @daily_deal.highlights.html_safe %></div>
+
+    <div id="value_and_button">
+      <div id="value">
+        <span id="dollar_sign">$</span>
+        <%= @daily_deal.price.to_i %>
+      </div>
+      <% if @daily_deal.over? -%>
+        <div id="soldout"><%= image_tag("/themes/lang/images/buttons/unavailable.png") %></div>
+      <% elsif @daily_deal.active? -%>
+        <%= link_to(
+              image_tag("/themes/lang/images/buttons/buy_now.png"), 
+              new_daily_deal_daily_deal_purchase_path(@daily_deal), 
+              :method => "get",
+              :id => "buy_now_button").html_safe
+        %>
+        <div id="soldout" style="display: none"><%= image_tag("/themes/lang/images/buttons/unavailable.png") %></div>
+      <% else -%>
+        <div id="unavailable"><%= image_tag("/themes/lang/images/buttons/not_available_yet.png") %></div>
+      <% end -%>
+    </div>
+    <div class="clear"></div>
+    
+    <table cellspacing="0" id="dashboard">
+      <tr>
+        <td>
+          <% if @daily_deal.over? -%>
+            <div id="deal_is_over"><span>The deal is over</span></div>
+          <% elsif @daily_deal.active? %> 
+            <div id="deal_is_on">The deal is on!</div>
+          <% end %>                
+        </td>
+        <td id="deals_sold"><%= @daily_deal.number_sold %></td>
+        <td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+      </tr>
+      <tr>
+        <th>
+        </th>
+        <th id="deals_sold_label">Deals Sold</th>
+        <th id="time_left_to_buy_label">Time Left to Buy</th>
+      </tr>
+    </table>
+    <div id="share_this_deal">
+      <span class="label">share this deal:</span>
+      <%# TODO Parameterize partial this isn't duplicated. Did not want to interfere with Freedom refactoring %>
+      <%= link_to( 
+            image_tag("/themes/lang/images/icons/facebook.png"),
+            facebook_daily_deal_url(@daily_deal),
+            :onclick => "return facebook_popup('#{facebook_daily_deal_url(@daily_deal, :popup => true)}')",
+            :class => "facebook share_button_facebook",
+            :id => "facebook_link",
+            :title => "Share coupon on Facebook",
+            :target => "_blank") %>
+      <%= link_to(
+            image_tag("/themes/lang/images/icons/twitter.png"), 
+            twitter_daily_deal_url(@daily_deal),
+            :class => "twitter share_button_twitter",
+            :target => "_blank",
+            :id => "twitter_link",
+            :title => "Share coupon on Twitter"
+          ) %>
+      <%= mail_to(
+            "", 
+            image_tag("/themes/lang/images/icons/email.png"), 
+            :subject => "#{@daily_deal.publisher_prefix} #{@daily_deal.value_proposition}",
+            :body => "Check out this deal at #{daily_deal_url(@daily_deal)}",
+            :class => "share_button_mail"
+      ) %>
+    </div>    
+  </div>
+  
+  <div class="page_column_5 last" id="photo">
+    <%= image_tag(@daily_deal.photo.url(:portrait)) %>
+  </div>
+</div>
+
+<div class="page_row top_margin rounded_corners" style="padding-bottom: 10px; width: 668px;">
+  <div class="page_column_5 first" id="advertiser">
+    <h2><%= @daily_deal.advertiser_name %></h2>
+    <div class="address">
+      <% @daily_deal.address do |line| -%>
+        <%= line -%><br/>
+      <% end -%>
+      <%= @daily_deal.formatted_phone_number %>
+    </div>
+    <% if @daily_deal.advertiser.map_url.present? %>
+    <%= link_to(image_tag(map_image_url_for(@daily_deal, "242x181"), :id => "map"), @daily_deal.advertiser.map_url, :target => "_blank") %>
+    <% end -%>
+    <%= link_to( @daily_deal.sanitized_website_url, @daily_deal.website_url, :class => "advertiser_website" ) %>
+    <h4>The Details</h4>
+    <%= @daily_deal.terms.html_safe %>
+  </div>
+  <div class="page_column_7 last" id="description">
+    <h3>Description:</h3>
+    <%= @daily_deal.description.html_safe %>
+    <% link_to deal_credit_publisher_consumers_url(@publisher, :protocol => https_unless_development), :method => :post do %>
+    <hr noshade size="1" width="100%" align="center" style="color: #d6d6d6;"/>
+    <div id="deal_credit">
+      <h3>
+        Sign up now and get 
+        a $10 Deal Credit!
+      </h3>
+      <p>Sign up now for a free account
+      and receive a $10 credit towards
+      your first deal purchase.</p>
+      <ul>
+        <li>Valid one per person</li>
+        <li>Offer ends August 31, 2010</li>
+      </ul>
+      <%= link_to "Sign up now &hellip;", deal_credit_publisher_consumers_url(@publisher, :protocol => https_unless_development), :method => :post, :id => "deal_credit_signup_now" %>
+    </div>
+    <% end if false -%>
+  </div>
+</div>
+

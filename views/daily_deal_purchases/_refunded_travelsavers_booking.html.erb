@@ -1,0 +1,14 @@
+<tr>
+  <% if refunded_travelsavers_booking.daily_deal.present? %>
+  <td class="description">
+    <%= refunded_travelsavers_booking.daily_deal.value_proposition %>
+  </td>
+  <td class="serial_number">#<%= refunded_travelsavers_booking.confirmation_number %></td>
+  <td class="recipient"><%= refunded_travelsavers_booking.passengers.map(&:name).join(", ") %></td>
+  <td class="status">
+	<%= travelsavers_booking_refunded_on(refunded_travelsavers_booking) %>
+  </td>
+  <% else %>
+  <td colspan="4"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

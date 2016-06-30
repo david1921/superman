@@ -1,0 +1,1 @@
+<%= f.select_div :birth_year, options_for_select([""] + (1910..(Time.now.strftime("%Y").to_i)).map(&:to_s)), {:label_text => "Year of Birth:"}, :class => 'floatleft' %>

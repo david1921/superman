@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head id="ctl00_Head1"><title>
+	The Monthly Grapevine Online
+</title><link href="http://www.monthlygrapevine.com/mgrape.css" rel="Stylesheet" type="text/css" />
+
+<%= render :partial => 'layouts/offers/standard/stylesheets_and_javascript' %>
+<%= render :partial => 'layouts/offers/standard/facebook_metadata' %>
+
+<script>
+var menu_ad_flag = 0;
+var menu_ab_flag = 0;
+
+function op(m)
+{
+    m.style.visibility = 'visible'; 
+   if(m.id.indexOf('menu_ad_') != -1)
+   {
+    document.getElementById('menu_ad_frame').style.visibility = 'visible';
+    menu_ad_flag = 1 ;
+   }
+   
+   if(m.id.indexOf('menu_ab') != -1)
+   {
+    document.getElementById('menu_ab_frame').style.visibility = 'visible';
+    menu_ab_flag = 1 ;
+   }
+  
+}
+
+function menuout(e,item)
+{
+	
+	 if (navigator.appName.indexOf('Microsoft')!= -1)
+    { 
+		if (window.event.toElement.id.indexOf('menu') == -1 )
+		{
+		    hideAll();
+             
+		} 
+		 
+    }
+    else if (navigator.userAgent.indexOf('AppleWebKit')!= -1)
+    { 
+
+		if (window.event.toElement.id.indexOf('menu') == -1 )
+		{
+		    hideAll();
+             
+		} 
+		
+		 
+    }    
+    
+    else 
+    { 
+        if (arguments.callee.caller.arguments[0].relatedTarget.id.indexOf('menu') == -1)
+        { 
+            hideAll();
+
+        }
+    }
+	
+}
+
+function hideAll()
+{
+	var divs=window.document.getElementsByTagName('div')
+	
+	for (i=0;i<divs.length;i++)
+	{	
+		if(divs[i].id.indexOf('menu')!=-1 && divs[i].style.visibility=='visible')
+		{
+			window.document.getElementById(divs[i].id).style.visibility='hidden'
+		
+		}
+				
+	}
+	document.getElementById('menu_ab_frame').style.visibility = 'hidden';
+	document.getElementById('menu_ad_frame').style.visibility = 'hidden';
+}
+
+function flip(line,c)
+{
+   line.style.backgroundColor = c ;
+
+}
+function send(url)
+{
+	location.href= 'http://www.monthlygrapevine.com/' + url;
+}
+</script>
+<script>
+    function open_(page) {
+        link = window.open('http://www.monthlygrapevine.com/' + page)
+    }
+</script>
+<%= raw render :partial => "/shared/tracking_offers" %>
+</head>
+<body>
+
+    <div align=center >
+				<table  border=0 cellpadding=0 cellspacing=0 width=1000>
+			<tr>
+				<td colspan="3"><a href=http://www.monthlygrapevine.com/Default2.aspx><img src="/themes/monthlygrapevine/images/tmg-logo.png" border=0 /></a></td>
+			</tr>
+			<tr>
+
+				<td colspan=3 valign=top width=1000 style="background-position-y: top; background-image: url(http://www.monthlygrapevine.com/images/home_cent_back2.jpg); background-repeat: repeat-x; background-color: #c7aed0;">
+
+<div id="analog_analytics_content">
+  <% unless @subscribed -%>
+  <div id="emailsignup"><%= link_to image_tag("/themes/monthlygrapevine/images/hot_deals.png"), new_subscriber_path(:publisher_id => @publisher), :class => "lbOn #{self.controller_name}" %></div>
+  <% end -%>
+  <%= yield %>
+</div>
+</td>
+				
+			</tr>
+
+		</table>
+		
+        <table cellpadding=0 cellspacing=0 border=0 width=100% bgcolor=#634d7b>
+        <tr><td height=150 align=center valign=top><img src="http://www.monthlygrapevine.com/images/bottoma.jpg"   /></td></tr></table>
+		
+    </div>
+    
+<div>
+
+
+</div>
+     <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-5898979-3");
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

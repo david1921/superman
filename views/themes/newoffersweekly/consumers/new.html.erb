@@ -1,0 +1,46 @@
+<% set_daily_deal_page_title_slug t(:sign_up) %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    
+    <% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+        <%= render :partial => "sign_up_message", :locals => {:message => @publisher.account_sign_up_message} %>
+    <% end %>
+
+    <h2><%= t(:sign_up) %></h2>
+    <% if @discount.present? -%>
+	    <p style="padding: 1em 0;"><%= t('.discount_message', :discount_amount => number_to_currency(@discount.amount, :unit => @discount.publisher.currency_symbol), :daily_deal_name => @publisher.daily_deal_name) %> </p>
+    <% end -%>
+
+    <div id="signup_form">
+      <% form_for [@publisher, @consumer] do |f| -%>
+        <%= f.error_messages %>
+
+        <%= f.text_field_div(:name) %>
+        <%= f.text_field_div(:email) %>
+
+        <%- if @publisher.require_billing_address? %>
+          <%= render :partial => 'billing_address', :locals => { :consumer => @consumer, :f => f } %>
+        <% end %>
+		
+		<%= f.text_field_div (:zip_code) %>
+        
+        <%= f.password_field_div(:password) %>
+        <%= f.password_field_div(:password_confirmation) %>
+
+        <%= f.text_field_div(:discount_code, nil, :disabled => @discount.present?) if @publisher.allow_discount_codes? -%>
+        <%= f.hidden_field(:discount_code) if @discount.present? %>
+
+        <%= f.check_box_div(:agree_to_terms,
+            raw(t('.terms_and_privacy_policy_agreement', 
+              :terms_href => daily_deals_terms_link(@publisher), 
+              :privacy_policy_href => daily_deals_privacy_link(@publisher)
+              )) )%>
+
+        <div class="row button_row">
+          <%= submit_tag(t(:sign_up), :name => "sign_up") %> <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

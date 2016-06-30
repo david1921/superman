@@ -1,0 +1,25 @@
+<script type="text/javascript">
+	cookieValue=getCookie('slide.subscribe_form');
+	if (cookieValue == null || cookieValue == "") {
+		document.write("<div id='subscribe_form'>");
+	}
+	else {
+		document.write("<div id='subscribe_form' style='display: none;'>");
+	}
+</script>
+	<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+		<a href="#" id="subscribe_form_hide">Hide</a>
+		<h5>Sign Up for Deal Alerts!</h5>
+		<fieldset>
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+			<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+		</fieldset>
+		<fieldset>
+			<input id="subscriber_email" name="subscriber[email]" size="20" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />	
+			<input name="subscriber[terms]" value="0" type="hidden" />
+			<input type="submit" id="sign_up" class="subscribe_button gradient" value="Submit"/>
+			<span class="subscriber_terms"><input id="subscriber_terms" name="subscriber[terms]" value="1" checked="checked" type="checkbox" /> I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></span>
+		</fieldset>
+	</form>
+</div><!-- /subscribe_form -->
+<div class="clear"></div>

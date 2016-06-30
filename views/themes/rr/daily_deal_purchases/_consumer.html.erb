@@ -1,0 +1,56 @@
+<div id="consumer">
+<% if current_consumer_for_publisher?(publisher) %>
+  <div id="current_consumer">
+    <div class="row">
+      <div class="static"><%= current_consumer.name %></div>
+      <div class="static"><%= current_consumer.email %></div>
+    </div>
+  </div>
+<% elsif (daily_deal_order = current_daily_deal_order(publisher)) && daily_deal_order.consumer %>
+  <div id="current_consumer">
+    <div class="row">
+      <div class="static"><%= daily_deal_order.consumer.name %></div>
+      <div class="static"><%= daily_deal_order.consumer.email %></div>
+    </div>
+  </div>
+<% else %>
+  <div id="sign_up">
+    <div class="row">
+      <p><%=t 'daily_deal_purchases.consumer.already_have_an_account' %>&nbsp;<%= link_to_function(t('daily_deal_purchases.consumer.sign_in'), "showLoginForm()") %></p>
+    </div>
+    <% fields_for consumer do |consumer_form| %>
+    <%= consumer_form.text_field_div(:name, t('daily_deal_purchases.consumer.your_name')) %>
+      <%= consumer_form.text_field_div(:email) %>
+      
+      <%- if @publisher.require_billing_address? %>
+        <%= render :partial => with_theme('consumers/billing_address'), :locals => { :consumer => consumer, :f => consumer_form } %>
+      <% end %>
+      
+      <%= consumer_form.password_field_div(:password) %>
+      <%= consumer_form.password_field_div(:password_confirmation) %>
+      <%= consumer_form.check_box_div(:agree_to_terms, t('daily_deal_purchases.consumer.agree_to_terms',
+                                                         :terms_link => daily_deals_terms_link(publisher).html_safe,
+                                                         :privacy_link => daily_deals_privacy_link(publisher)).html_safe) %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+
+
+  <div id="sign_in" style="display: none;">
+    <div class="row">
+      <p id="session_warning"></p>
+    </div>
+    <% fields_for :session do |session_form| %>
+      <%= hidden_field_tag("consumer_login_url", publisher_daily_deal_sessions_path(publisher)) %>
+      <%= session_form.text_field_div(:email) %>
+      <%= session_form.password_field_div(:password) %><br />
+	  <br /><p class="reset_password">Forgot your password? <a href="<%= new_publisher_consumer_password_reset_path(@publisher) %>">Reset your password</a></p>
+   	<div class="row">
+      <%= button_to_function(t('sign_in'), "loginConsumer()"); %>&nbsp;<%= link_to_function(t('cancel'), "hideLoginForm()"); %>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+<% end %>
+</div>
+

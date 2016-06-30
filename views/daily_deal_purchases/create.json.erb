@@ -1,0 +1,9 @@
+<% @daily_deal_purchase.publisher.find_braintree_credentials! -%>
+<%= {
+  :payment_gateway => Braintree::TransparentRedirect.url,
+  :tr_data => braintree_transaction_data(@daily_deal_purchase, {
+    :redirect_host => AppConfig.api_host,
+    :redirect_format => "json",
+    :payment_method_token => @credit_card_token
+  })
+}.to_json.html_safe -%>

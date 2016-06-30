@@ -1,0 +1,5 @@
+<% unless business.offers.active.empty? -%>
+<li class="business">
+  <%= render :partial => 'themes/aamedge/advertisers/shared/panel', :locals => {:business => business} %>
+</li>
+<% end -%>

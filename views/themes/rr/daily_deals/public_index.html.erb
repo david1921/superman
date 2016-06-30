@@ -1,0 +1,36 @@
+<div class="optimized">
+<div id="all_deals_wrapper" class="box_gradient">
+	<h4 id="all_deals">All Our Great <strong>Deals</strong></h4>
+	<div class="clear"></div>
+
+<div id="certificates">
+
+  <div class="page_column_2">
+
+
+	<div class="clear"></div>
+
+
+	<div id="all_deals_page">
+	
+	<%= render :partial => "themes/rr/daily_deals/daily_deal", :collection => @available_and_recently_finished_deals[0..23] %>
+
+	</div>
+	
+    <br style="clear: both"/>
+    <br/>
+
+  </div>
+  <!-- /page_column_2 -->
+
+</div><!-- /certificates -->
+</div>
+
+
+<div id="right_column">
+
+<%= render :partial => with_theme("shared/search_alt") %>
+<%= render :partial => with_theme("shared/refer_friend_alt") %>
+
+</div>
+</div><!-- /optimized_wrapper -->

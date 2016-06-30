@@ -1,0 +1,16 @@
+<div class="footer">
+	<ul id="footer_nav">
+		<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Deal</a> </li>
+		<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+		<!-- <li><a href="">Past Deals</a></li> -->
+		<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Feature Your Business</a></li>
+		<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+		<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+		<li class="last"><a href="#" target="_blank">Blog</a></li>
+	</ul><!-- /footer_nav -->
+	<div class="clear"></div>
+	<ul id="legal_nav">
+		<li><a href="<%= privacy_policy_publisher_daily_deals_path(@publisher) %>">Privacy Policy</a></li>
+		<li class="last"><a href="<%= terms_publisher_daily_deals_path(@publisher) %>">Terms and Conditions</a></li>
+	</ul><!-- /legal_nav -->
+</div><!-- /footer -->

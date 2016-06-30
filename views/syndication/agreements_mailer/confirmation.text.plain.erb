@@ -1,0 +1,16 @@
+Thank You! We have received your syndication agreement.
+
+Agreement Number: <%= @agreement.serial_number %>
+
+<%= "Source Publisher" if @agreement.source_publisher? -%>
+<%= "Distribution Publisher" if @agreement.distribution_publisher? -%>
+<%= "Affiliate Publisher" if @agreement.affiliate_publisher? -%>
+
+Title: <%= @agreement.title %>
+Contact Name: <%= @agreement.contact_name %>
+Company Name: <%= @agreement.company_name %>
+Telephone Number: <%= @agreement.telephone_number %>
+Email: <%= @agreement.email %>
+Websites: <%= @agreement.websites %>
+Mobile Applications: <%= @agreement.mobile_applications %>
+Other Delivery Mechanisms: <%= @agreement.other_delivery_mechanisms %>

@@ -1,0 +1,23 @@
+<div class="page_column_12">
+	<h1>Feature Your Business</h1>
+	
+	<h2 class="main_office">Main Office</h2>
+    <p>
+    {% if publisher.address_line_1 %}
+      {{ publisher.address_line_1 }}<br />
+      {% if publisher.address_line_2 != empty %}
+        {{ publisher.address_line_2 }}<br />
+      {% endif %}
+      {{ publisher.city }}, {{ publisher.state }} {{ publisher.zip }}
+    {% endif %}
+    </p>
+
+	<h2>Customer Service &amp; Technical Support</h2>
+		<p>Please email <a href="mailto:{{ publisher.support_email_address }}">{{ publisher.support_email_address }}</a> or call {{ publisher.formatted_phone_number }}</p>
+		
+		<h2>To have your business featured</h2>
+		<p>Please email <a href="mailto:{{ publisher.sales_email_address }}">{{ publisher.sales_email_address }}</a></p>
+	
+</div>
+
+		

@@ -1,0 +1,37 @@
+<div id="dd_info_container_inner">
+		<div id="dd_fine_print">
+		<% if @daily_deal.terms.present? %> <h5>The Fine Print</h5>
+		<%= @daily_deal.terms.try :html_safe %>
+		<% end %>
+		</div><!-- END #dd_fine_print -->
+	<div id="dd_location">
+		<h5>Location</h5>
+		<div class="locations_block">
+		<img id="advertiser_logo" src="<%= @advertiser.logo.url %>" alt="<%= @advertiser.name %>" width="200" />		<h4><%= @advertiser.name %></h4>
+		<% if @advertiser.stores.present? %>
+			<% @advertiser.stores.each_with_index do |store, index| %>
+			<div class="location_container">
+				<p>
+					<% unless store.address_line_1.blank? %> <span><%= store.address_line_1 %></span>
+					<% end %>
+					<% unless store.address_line_2.blank? %><br/><span><%= store.address_line_2 %></span>
+					<% end %><br/>
+					<% if !store.city.blank? && !store.state.blank? && !store.zip.blank? %> <span><%= store.city %>, <%= store.state %> <%= store.zip %><br/></span>
+					<% elsif !store.city.blank? && !store.country.name.blank? && !store.zip.blank? %> <span><%= store.city %>, <%= store.country.name %> <%= store.zip %><br/></span>
+					<% end %>
+					<% unless store.formatted_phone_number.blank? %> 
+						<span><%= number_to_phone(store.formatted_phone_number, :area_code => true) %></span>
+					<% end %>
+					<br />
+				</p>
+			</div><!-- /location_container -->
+			
+			<% end %>
+		<% end %>
+
+		<% unless @advertiser.website_url.blank? %> <a class="visit_website_link" target="_blank" href="<%= @advertiser.website_url %>">Visit Website</a>
+		<% end %> 
+		</div><!-- /locations_block -->
+		<a id="map" href="<%= @advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "195x185", true) %>" /></a>
+	</div><!-- END #dd_location -->
+</div><!-- #dd_info_container_inner -->

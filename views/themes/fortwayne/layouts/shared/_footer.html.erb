@@ -1,0 +1,29 @@
+<div id="footer">
+	<div id="footer_content">
+		<ul id="footer_nav">
+			<li><a href="<%= public_deal_of_day_path(:label => @publisher.label) %>">Today's Deal</a></li>
+      <%- if @daily_deal %>
+			  <li><a href="<%= daily_deal_buy_now_path(@daily_deal) %>">Buy Now</a></li>
+      <%- end %>
+			<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How it Works</a></li>
+			<li><a href="<%= faqs_publisher_daily_deals_path(:publisher_id => @publisher.id) %>">FAQ</a></li>
+			<li><a href="<%= contact_publisher_daily_deals_path(:publisher_id => @publisher.id) %>">Contact Us</a></li>
+			<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Feature Your Business</a></li>
+			<%- if @publisher.launched? %>
+				<%- if current_consumer_for_publisher?(@publisher) %>
+			<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+				<%- else %>
+			<li class="last"><a href="<%= daily_deal_login_path(:publisher_id => @publisher.id) %>">Sign In</a></li>
+				<%- end %>
+			<%- end %>
+		</ul><!-- /footer_nav -->
+		
+		<div class="clear"></div>
+		<ul id="legal_nav">
+			<li><a href="<%= privacy_policy_publisher_daily_deals_path(:publisher_id => @publisher.id) %>">Privacy Policy</a></li>
+      <li class="last"><a href="<%= terms_publisher_daily_deals_path(:publisher_id => @publisher.id) %>">Terms and Conditions</a></li>
+		</ul><!-- /legal_nav -->
+	</div>
+    <%= raw render :partial => 'shared/a_a_alt' %>
+
+<%= render :partial => with_theme("layouts/shared/pub_footer") %>

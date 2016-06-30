@@ -1,0 +1,12 @@
+<% if deal_syndication_status.sourced_by_publisher?(@publisher) %>
+<%= image_tag("syndication/graphics/deal_key_sourced_by_publisher.png", :alt => "Sourced By Publisher", :class => "syndication_status" ) %>
+<% end %>
+<% if deal_syndication_status.sourced_by_network?(@publisher) %>
+<%= image_tag("syndication/graphics/deal_key_sourced_by_network.png", :alt => "Sourced By Network", :class => "syndication_status" ) %>
+<% end %>
+<% if deal_syndication_status.distributed_by_publisher?(@publisher) %>
+<%= image_tag( "syndication/graphics/deal_key_distributed_by_publisher.png", :alt => "Distributed By Publisher", :class => "syndication_status" ) %>
+<% end %>
+<% if deal_syndication_status.distributed_by_network?(@publisher) %>
+<%= image_tag("syndication/graphics/deal_key_distributed_by_network.png", :alt => "Distributed By Network", :class => "syndication_status" ) %>
+<% end %>

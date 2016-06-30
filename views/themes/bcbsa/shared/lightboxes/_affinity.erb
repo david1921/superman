@@ -1,0 +1,21 @@
+<div id="affinity_lightbox_info" class="lightbox-affinity lightbox" style="display: none;">
+	<div id="affinity_lightbox">
+		<a href="javascript:;" id="lightbox_close" class="close" onclick="jQuery.fancybox.close()">X</a>
+		<h2><%= raw t(:redeem_now_overlay_heading) %></h2>
+		<br />
+		<p><%= raw t(:redeem_now_overlay_paragraph1) %></p>
+		<br />
+		<p><b><%= raw t(:redeem_now_overlay_paragraph2) %></b><%= raw t(:redeem_now_overlay_paragraph3) %></p>
+		<br />
+
+
+    <%- form_tag  daily_deal_affiliate_redirects_path(:daily_deal_id => daily_deal.id), :id => 'continue_form', :method => :post, :target => "_blank" do %>
+      <%= link_to_function %|<div id="redeem_now_arrow"></div> <span>#{t(:continue)} </span>|.html_safe, "$('continue_form').submit(); jQuery.fancybox.close()",
+                           :id => "continue_button", :class => "dd_button buy gradient", :name => "buy_now_button"%>
+    <%  end %>
+		
+		<br />
+		<p><%= raw t(:redeem_now_overlay_paragraph4) %>  
+		</p>
+	</div>
+</div>

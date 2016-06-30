@@ -1,0 +1,21 @@
+Subject: {{ daily_deal.email_blast_subject }}
+From: "Newsday daily deal"
+
+Today's deal:
+{{ daily_deal.value_proposition }}
+
+Offered by:
+{{ advertiser.name }}
+{% if advertiser.address? %}{{ advertiser.address_line_1 }}
+{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}
+{{ advertiser.formatted_phone_number }}
+{% endif %}
+Click here to find out more about this amazing deal!
+{{ daily_deal.url }}
+
+
+Please do not reply to this e-mail. If you need to contact us please email dailydeal@newsday.com.
+To ensure delivery of Newsday communications, please add newsday@newsday.chtah.com to your address book.
+If you have trouble viewing this e-mail, click here.
+You will continue to receive the Newsday Daily Deal unless you chose not to do so by clicking here.
+http://ebm.cheetahmail.com/r/webunsub?t=%%t%%&email=%%email%%&n=1

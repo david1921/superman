@@ -1,0 +1,19 @@
+	<!-- refer a friend -->
+<% if @publisher.enable_daily_deal_referral %>
+ <div id="refer" class="side_box">
+ 	<a class="refer_a_friend_tracking" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>">
+			<div id="refer_left">
+				<h4><%= formatted_price_for(@publisher.daily_deal_referral_credit_amount) %></h4>
+			</div>
+			
+			<div id="refer_right">
+			  <h3>Refer a friend and get a <%= formatted_price_for(@publisher.daily_deal_referral_credit_amount) %> credit.</h3>
+			  
+		 	  <div id="refer_button" class="dd_button refer_button gradient"><span>MORE INFO</span></div>
+		 	  </a>
+		</div>
+	</a>
+</div>
+<% end %>  
+<!-- /refer_friend -->
+<div class="clear"></div>

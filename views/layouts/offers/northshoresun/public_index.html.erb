@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> 
+	<title>The North Shore Sun</title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+	<meta name="keywords" content="North Fork, The North Shore Sun, Shoreham-Wading River, Shoreham, Wading River, Ridge, Middle Island, Coram, Rocky Point, Miller Place, Sound Beach, Mount Sinai, Port Jefferson, Town of Brookhaven, Route 25A, North Country Road, Longwood, Lions, Mustangs, Panthers, Wildcats, Eagles, Fun in the Sun, Weekend Plus, Word on the Street, wine country, Wine Press, school districts, letters to the editor, columns, editorials, sports, business, real estate, obituaries, senior news, real estate transfers, education, business digest, 
+classifieds, archive, digital edition"/> 
+ 
+ 
+ 
+<%= render :partial => "layouts/offers/#{@publisher.theme}/stylesheets_and_javascript" %>
+<%= render :partial => "layouts/offers/standard/facebook_metadata" %> 
+<%= raw render :partial => "/shared/tracking_offers" %>
+</head> 
+<body>
+  
+  <div id="header">
+    <div class="top-banner">
+      <a href="http://northshoresun.com"><%= image_tag("/themes/northshoresun/images/logo.png", :class => 'logo') %></a>
+      <a href="mailto:jschell@northshoresun.com"><%= image_tag("/themes/northshoresun/images/ad.gif") %></a>
+    </div>
+    <ul class='login-nav'>
+      <li><a href="http://www2.timesreview.com/Authenticator.aspx?requests=www2.timesreview.com/SUN/">Log In</a></li>
+      <li><a href="https://www.trsubscribe.com/ss70/mattin02/sub/newstart/new_start_by_zip.jsp">Subscribe</a></li> 
+      <li><a href="https://www.trsubscribe.com/ss70/mattin02/sub/login/login.jsp">Renew/Account</a></li>
+    </ul>
+    <ul class='nav'>
+      <li><a href="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=89">Top Stories</a></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=77">Business</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=96">Police</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=85">Education</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=84">Editorials</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=80">Columns</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=88">Letters</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=83">Communities</A></li>
+      <li><A HREF="http://www.northshoresun.com/news/articlelist.php?Subcategory_ID=86">Real Estate</A></li>              
+    </ul>    
+  </div>
+  
+  <div id="content">
+    <div id="analog_analytics_content">
+      <%= render :partial => 'layouts/offers/sdcitybeat/hotdeals' %>
+     <%= yield %>
+     </div>
+  </div>
+  
+  <div id="footer">
+    <table width="1030px">
+       <tr>
+         <td width="600px">
+           <ul class='footer-nav'>
+             <li class='first'><a href="http://www.northshoresun.com/contact/advertise.php">Advertise</a></li>
+             <li><a href="http://www.northshoresun.com/contact/about.php">About Us</a></li>
+             <li><a href="http://www.northshoresun.com/contact/privacy.php">Privacy</a></li>
+             <li><a href="http://www.northshoresun.com/contact/termsandconditions.php">Terms And Conditions</a></li>
+             <li><a href="http://www.northshoresun.com/contact/">Contact</a></li>
+             <li class='last'><a href="http://www.timesreview.com/">Times/Review.com</a></li>
+           </ul>
+           <div class="copyright">Copyright 2010 Times/Review. All Right Reserved.</div>
+         </td>
+         <td class='click-advertise'> 
+           To Advertise<br />
+           Click To Email:
+         </td>
+         <td>
+           <ul class='advertise'>
+             <li><a href="mailto:jrobinson@timesreview.com">Janice Robinson</a> (Greenport)</li>
+             <li><a href="mailto:bpeters@timesreview.com">Bill Peters</a> (Southold) &bull; Suffolk Times</li>
+             <li><a href="mailto:jtumminello@timesreview.com">Joseph Tumminello</a> &bull; The News Review</li>
+             <li><a href="mailto:jschell@northshoresun.com">Jerry Schell</a> &bull; The North Shore Sun</li>
+             <li><a href="mailto:sales@sireporter.com">Sales</a> &bull; Shelter Island Reporter</li>                
+           </ul>
+         </td>
+       </tr>
+     </table>    
+  </div>
+</body>  
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"> 
+</script> 
+<script type="text/javascript"> 
+_uacct = "UA-463760-3";
+urchinTracker();
+</script>
+</html> 
+								
+							
+		
+ 
+		

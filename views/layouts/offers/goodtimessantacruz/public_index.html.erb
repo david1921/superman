@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Good Times Santa Cruz Arts, Entertainment, News, Classified</title>
+	<%= render :partial => 'layouts/offers/sdcitybeat/stylesheets_and_javascript' %>
+  <%= render :partial => 'layouts/offers/standard/facebook_metadata' %>
+<%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/template.css", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/goodtimessantacruz/stylesheets/ja.splitmenu.css", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/screen.css", :media => "all" %>
+  <%= raw render :partial => "/shared/tracking_offers" %>
+</head>
+<body>
+	<div id="ja-wrapper">
+
+		<!-- BEGIN: HEADER -->
+		<div id="ja-headerwrap">
+			<div id="ja-header" class="clearfix">
+				<h1 class="logo">
+					<a href="http://www.goodtimessantacruz.com/index.php" title="Santa Cruz Good Times"><span>Santa Cruz Good Times</span></a>
+				</h1>
+			</div>
+		</div>
+
+		<!-- END: HEADER -->
+
+		<!-- BEGIN: MAIN NAVIGATION -->
+		<div id="ja-mainnavwrap" style="font-size: 13px;">
+			<div id="ja-mainnav" class="clearfix">
+				<div id="ja-splitmenu" class="mainlevel clearfix">
+					<ul><li class="menu-item0 active first-item"><a href="http://goodtimessantacruz.com/" class="menu-item0 active first-item" id="menu1" title="GT Home"><span class="menu-title">GT Home</span></a></li><li class="menu-item1"><a href="http://www.goodtimessantacruz.com/santa-cruz-news.html" class="menu-item1" id="menu2" title="News"><span class="menu-title">News</span></a></li><li class="menu-item2"><a href="http://www.goodtimessantacruz.com/good-times-cover-stories.html" class="menu-item2" id="menu152" title="Cover Story"><span class="menu-title">Covers</span></a></li><li class="menu-item3"><a href="http://www.goodtimessantacruz.com/santa-cruz-columns-commentary-oped.html" class="menu-item3" id="menu4" title="Columns"><span class="menu-title">Columns</span></a></li><li class="menu-item4"><a href="http://www.goodtimessantacruz.com/risa-astrology.html" class="menu-item4" id="menu170" title="Risa Astrology"><span class="menu-title">Astrology</span></a></li><li class="menu-item5"><a href="http://www.goodtimessantacruz.com/santa-cruz-arts-entertainment-lifestyles.html" class="menu-item5" id="menu3" title="A&E"><span class="menu-title">A&amp;E</span></a></li><li class="menu-item6"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-music.html" class="menu-item6" id="menu138" title="Music"><span class="menu-title">Music</span></a></li><li class="menu-item7"><a href="http://www.goodtimessantacruz.com/santa-cruz-area-events.html" class="menu-item7" id="menu142" title="Events"><span class="menu-title">Calendar</span></a></li><li class="menu-item8"><a href="http://www.goodtimessantacruz.com/santa-cruz-blogs-commentary.html" class="menu-item8" id="menu27" title="Blogs"><span class="menu-title">Blogs</span></a></li><li class="menu-item9"><a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide.html" class="menu-item9" id="menu5" title="Santa Cruz"><span class="menu-title">Santa Cruz</span></a></li><li class="menu-item10"><a href="http://www.goodtimessantacruz.com/gtv-santa-cruz-videos.html" class="menu-item10" id="menu137" title="GTv"><span class="menu-title">GTV</span></a></li><li class="menu-item11"><a href="http://sb1.analoganalytics.com/publishers/139/offers" class="menu-item11" id="menu178" title="E.Coupons"><span class="menu-title">E.Coupons</span></a></li><li class="menu-item12 last-item"><a href="http://www.goodtimessantacruz.com/santa-cruz-good-times-contacts.html" class="menu-item12 last-item" id="menu7" title="Contact"><span class="menu-title">Contact</span></a></li></ul>
+				</div>
+			</div>
+		</div>
+		<!-- END: MAIN NAVIGATION -->
+	</div>
+	
+	<div id="wrapper">
+    <div id="analog_analytics_content">
+      <%= yield %>
+    </div>
+    <div id="footer">
+      <table width="934" border="0">
+        <tbody>
+          <tr align="left" valign="top">
+            <td width="31">&nbsp;</td>
+            <td width="350"><div align="center"><img src="/themes/goodtimessantacruz/images/logo_gtwsurf_trans.gif" width="350" height="91"></div></td>
+            <td width="522"> <div align="center" class="style2"><span class="style4"><em><strong>Site Navigation</strong></em><br>
+                <span class="style3">| <a href="http://www.goodtimessantacruz.com/">Home</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-news.html">News</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-arts-entertainment-lifestyles.html">A&amp;E</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-area-music.html">Music</a> <a href="http://www.goodtimessantacruz.com/santa-cruz-area-events.html">|</a> <a href="http://www.goodtimessantacruz.com/santa-cruz-area-events.html">Events</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-columns-commentary-oped.html">Columns</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-blogs-commentary.html">Blogs</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-good-times-contacts.html">Contact</a> | <br>
+        | <a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide/santa-cruz-activity-visitor-guide.html">Visitor Guide</a> | <a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide/dilated-pupil-student-guide-.html">Student Guide</a> | <br>
+        | 
+        <a href="http://www.goodtimessantacruz.com/santa-cruz-restaurant-guide.html">Dining Guide</a> | <a href="http://www.goodtimessantacruz.com/all-about-santa-cruz-activities-visitors-guide/santa-cruz-classified-advertising.html">Classified</a> | <a href="http://www.goodtimessantacruz.com/santa-cruz-good-times-contacts/contact-good-times-advertising.html">Advertise</a> | </span></span></div>
+            </td>
+            <td width="31">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

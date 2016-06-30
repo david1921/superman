@@ -1,0 +1,34 @@
+  <% @daily_deal = @featured_deal %>
+<div id="left_column">
+	<div id="all_deals" class="content">
+		<h1>All Deals</h1>
+		<%= render :partial => with_theme('daily_deals/daily_deal'), :collection => @daily_deals.to_a.sort { |x,y| x.hide_at <=> y.hide_at } %>
+		<div class=" pagination_bottom">
+		<%= will_paginate @daily_deals, :per_page => 6 %>
+	  </div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div id="right_column">
+	<%= render :partial => with_theme("shared/facebook_likebox") %>
+	<script type="text/javascript" language="JavaScript">
+	<!-- Hide from old browsers
+	//Modify to reflect site specifics
+	adserver = "http://crtl.aimatch.com/entpromo";
+	target = "/site=EntertainmentDeals/area=AllDeals/size=230x350";
+
+	//Cache-busting and viewid values
+	random = Math.round(Math.random() * 100000000);		
+	if (!pageNum) var pageNum = Math.round(Math.random() * 100000000);
+
+	document.write('<scr');
+	document.write('ipt src="'+ adserver +'/jserver/random='+ random + target + "/viewid=" + pageNum +'">');
+	document.write('</scr');
+	document.write('ipt>');
+
+
+	// End Hide -->
+	</script>
+</div>
+
+

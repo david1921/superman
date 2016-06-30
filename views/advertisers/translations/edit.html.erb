@@ -1,0 +1,30 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+  </script>
+<% end %>
+
+<%= error_messages_for :advertiser %>
+
+<div class="left_column">
+  <%= render :partial => 'shared/locale_selection', :locals => {:model => @advertiser} %>
+
+  <% form_for @advertiser, :url => update_advertiser_translations_for_locale_path(:advertiser_id => @advertiser.to_param, :editing_locale => params[:editing_locale] || I18n.default_locale) do |f| %>
+    <% Advertiser.with_locale params[:editing_locale] do %>
+      <%= f.text_field_div(:name, nil, :required => true)  %>
+      <%= f.text_field_div(:tagline)  %>
+      <%= f.text_field_div(:website_url)  %>
+    <% end %>
+    <div class="row buttons">
+      <div class="label">
+        <%= submit_tag "Save", :id => "save_button", :name => "save" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="related preview" id="edit_translations_preview">
+  <%= link_to "Back To Advertiser", edit_advertiser_path(@advertiser, :locale => I18n.default_locale) %>
+</div>
+

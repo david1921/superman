@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <title>Sweet Deals, the sweetest deals in Knoxville!</title>
+    <meta name="keywords" content="savings, shopping, East Tennessee, Knoxville, Tennessee, coupons" />
+    <meta name="author" content="KnoxNews.com" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+      <link href="http://web.knoxnews.com/static/sweetdeals/css/screen.css" rel="stylesheet" type="text/css" />
+
+      <link href="http://web.knoxnews.com/static/sweetdeals/css/wide-skin.css" rel="stylesheet" type="text/css" />    
+
+      <!--<link href="css/screen.css" rel="stylesheet" type="text/css" />-->
+
+      <!--[if lte IE 6]>
+          <script src="http://web.knoxnews.com/static/sweetdeals/js/supersleight-min.js" type="text/javascript"></script>
+  	<![endif]-->
+
+  	<script src="http://twitterjs.googlecode.com/svn/trunk/src/twitter.min.js" type="text/javascript"></script>
+
+  <%= render :partial => 'layouts/offers/standard/stylesheets_and_javascript' %> 
+  <%= render :partial => 'layouts/offers/standard/facebook_metadata' %>                       
+  <%= raw render :partial => "/shared/tracking_offers" %>
+</head>
+
+<body>
+
+<div id="glow-top"></div>
+
+<div id="glow">
+
+    <div id="wrapper">
+        
+        <div id="content">
+        
+            <div id="primary">
+                
+                <div class="alpha">
+                    
+                    <div class="upper">
+                        <h1>Sweet Deals</h1>                    
+                        <a href="http://www.knoxville.com/" title="Knoxville.com Brings You"><img src="http://web.knoxnews.com/static/sweetdeals/img/elements/logo-top.png" border="0" alt="Knoxville.com Brings You" /></a>
+                    </div>
+                    
+                    <div class="lower">
+                        <a href="http://www.knoxville.com/sweetdeals/" title="Sweet Deals"><img src="http://web.knoxnews.com/static/sweetdeals/img/elements/logo-bottom.png" border="0" alt="Sweet Deals" /></a>
+                    </div>
+                    
+                </div><!-- end alpha -->
+                
+                <div class="beta">
+                	<div class="title">Latest tweet from Kandy Deals:</div>
+                   	<div id="tweets">
+					<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/tomwolber_.json?callback=twitterCallback2&count=1"></script>
+                    </div>
+                </div><!-- end beta -->
+                
+                <div class="gamma">
+                    <ul class="menu">
+                        <li><a href="http://www.knoxville.com/sweetdeals/" title="SWEET DEALS">HOME</a></li>
+                        <li><a href="http://blogs.knoxnews.com/kandydeals/" title="KANDY DEAL’S BLOG">KANDY DEAL’S BLOG</a></li>
+                        <li><a href="http://www.knoxville.com/sweetdeals/about" title="ABOUT SWEET DEALS">ABOUT SWEET DEALS</a></li>
+                        <li><a href="http://www.knoxville.com/sweetdeals/contact" title="ABOUT SWEET DEALS">CONTACT KANDY</a></li>
+                        <li class="last"><a href="http://www.knoxville.com/" title="KNOXVILLE.COM">KNOXVILLE.COM</a></li>
+                    </ul>
+                </div><!-- end gamma -->        
+                                
+            </div><!-- end primary -->
+    
+            <div id="vendor-wrapper">
+
+              <div id="analog_analytics_content">
+                <%= yield %>
+              </div>
+
+            </div><!-- end vendor-wrapper -->
+
+
+
+            <div id="quatenary">
+
+                  <div class="divider"></div>
+
+                  <div class="scripps" style="float:left; width:51px;">
+                      <a href="http://www.scripps.com" title="The E.W. Scripps Co." target="_blank">
+                      <img src="http://media.scrippsnewspapers.com/static/images/corp/network_logos/lighthouse.gif" alt="E.W. Scripps Co." width="51" height="50" vspace="3" border="0" /></a>
+                  </div>
+
+                  <div style="float:left; padding-left:10px; text-align:left; line-height: 18px;"> Scripps Interactive Newspapers Group<br />
+                  &copy;<span id="sweet-date">ert</span> The E.W. Scripps Co.<br />
+
+                  <a href="/privacy/" title="Privacy Policy">Privacy Policy</a> (updated) | <a href="/privacy/#user" title="User Agreement">User Agreement</a> (updated) </div>  <div style="float:right; margin-right: 20px; margin-top: 12px; text-align: left;">
+
+                  <a href="/local-news/partners/" title="More local news and information" target="_blank">More news and information <br />
+                from  our local news partners</a></div>
+                  <div style="font-size: 10px; margin-left: 20px; margin-right: 20px; margin-top:10px; padding-top: 10px;text-align:center; line-height: 18px; clear:both;">
+
+                  <a href="http://www.knoxnews.com" title="knoxnews.com" >knoxnews.com </a>and the Knoxville News Sentinel: <a href="https://knoxnews.wufoo.com/forms/knoxnews-contact-us">Contact Us</a> |<a href="/staff/"> Staff Directory</a> | <a href="/about/">About Us</a> | Advertising Information for <a href="http://online.knoxnews.com" target="_blank">online</a> and <a href="http://addesk.knews.com/AdDesk/Htmlfiles/Home.jsp">print</a></div>
+
+                  <div style="clear: both;"></div>
+
+            </div><!-- end quatenary -->
+
+        </div><!-- end content -->
+
+    </div><!-- end wrapper -->
+
+  </div><!-- end glow -->
+
+  <div id="glow-bottom"></div>
+
+
+  <script type="text/javascript">
+
+  getTwitters('tweets', { 
+    id: 'kandydeals', 
+    count: 1, 
+    enableLinks: true, 
+    ignoreReplies: true, 
+    clearContents: true,
+    template: '"%text%" <a href="http://twitter.com/%user_screen_name%/statuses/%id%/"></a>'
+  });
+
+  function changeText(year){
+  	var currentTime = new Date();
+  	var year = currentTime.getFullYear();
+  	document.getElementById('sweet-date').innerHTML = year;
+  }
+
+  window.onload = changeText; 
+
+  </script>
+  </body>
+
+  </html>
+

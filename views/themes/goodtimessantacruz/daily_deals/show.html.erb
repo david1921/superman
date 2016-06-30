@@ -1,0 +1,106 @@
+<div id="deal_content">
+	<div id="share">
+	  <%= link_to image_tag("/themes/goodtimessantacruz/images/buttons/fb_icon.png" ), facebook_daily_deal_path(@daily_deal), :target => "_blank", :class => "share_button_facebook" %>
+    <%= link_to image_tag("/themes/goodtimessantacruz/images/buttons/twitter_icon.png" ), twitter_daily_deal_path(@daily_deal), :target => "_blank", :class => "share_button_twitter" %>
+    <%= mail_to(
+          "", 
+          image_tag( "/themes/goodtimessantacruz/images/buttons/mail_icon.png" ), 
+          :subject => "#{@daily_deal.publisher_prefix} #{@daily_deal.value_proposition}",
+          :body => "Check out this deal at #{daily_deal_url(@daily_deal)}",
+          :class => "share_button_mail"
+    ) %>
+    </div>
+
+    <div id="column_deal">
+      <div class="deals_price">
+        <%= number_to_currency( @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol ) %>
+      </div>
+     <div id="advertiser"><%= image_tag @daily_deal.photo.url(:standard), :id => "photo" %></div>
+  </div>
+
+        <div id="dashboard">
+        <img src="/themes/goodtimessantacruz/images/display/todays_deal.png" width="261" height="40" alt="buy now" />
+        <h2 id="todays_deal">
+          <strong><%= number_to_percentage( @daily_deal.savings_as_percentage, :precision => 0 ) %> off</strong><br />
+          <%= @daily_deal.value_proposition %>
+        </h2>
+
+        <div id="buy_now"> 
+          <% if @daily_deal.over? -%>
+            <%= image_tag("/themes/goodtimessantacruz/images/buttons/sold_out_large.png", :class => "big_button" ) %>
+          <% elsif @daily_deal.active? -%>
+            <%= link_to(
+                  image_tag("/themes/goodtimessantacruz/images/buttons/buy_now_large.png"), 
+                  new_daily_deal_daily_deal_purchase_path(@daily_deal), 
+                  :id => "buy_now_button", :class => "big_button", :width=>"352", :height=>"61" ).html_safe
+            %>
+            <div id="soldout" style="display:none;"><%= image_tag("/themes/goodtimessantacruz/images/buttons/sold_out_large.png", :class => "big_button" ) %></div>
+          <% else -%>
+            <%= image_tag("/themes/goodtimessantacruz/images/buttons/not_available_large.png", :class => "big_button" ) %>
+          <% end -%>
+          
+        </div>
+        <div id="value">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="100" align="center" valign="top">
+                <div class="price"><%= number_to_currency( @daily_deal.value, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %></div>
+                <div class="tag"><img src="/themes/goodtimessantacruz/images/display/value.png" alt="Value" /></div>
+              </td>
+              <td align="center" valign="top">
+                <div class="price"><%= number_to_currency( @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol)%></div>
+                <div class="tag"><img src="/themes/goodtimessantacruz/images/display/todays-deal.png" alt="Today's Deal" /></div>
+              </td>
+              <td width="100" align="center" valign="top" class="save">
+                <div class="price"><%= number_to_currency( @daily_deal.savings, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %></div>
+                <div class="tag"><img src="/themes/goodtimessantacruz/images/buttons/you-save.png" alt="You Save" /></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+
+<table cellspacing="0" width="250">
+                <tbody><tr>
+                <td rowspan="2"><img src="/themes/goodtimessantacruz/images/display/lil_clock.png" width="38" height="47" alt="" /></td>
+                  <td id="time_left_to_buy" valign="bottom" align="center"><%= @daily_deal.time_remaining_display %></td>
+                  <td id="deals_sold" valign="bottom" align="center"><%= @daily_deal.number_sold %></td>
+                </tr>
+                <tr>
+                  <th id="time_left_to_buy_label" valign="top"><img src="/themes/goodtimessantacruz/images/display/time-left-to-buy.png" alt="Time Left To Buy" /></th>
+
+                  <th id="deals_sold_label" valign="top"><img src="/themes/goodtimessantacruz/images/display/deals-sold.png" alt="Deals Sold" /></th>
+                </tr>
+              </tbody></table>
+
+    </div><!--dashboard-->
+
+
+
+    <div id="deal_info">
+    	<div id="box1">
+    	  <%= image_tag(@daily_deal.advertiser.logo.url(:standard), :id => "advertiser_logo") if @daily_deal.advertiser.logo.file? %>
+          <p><%= render :partial => "/themes/goodtimessantacruz/daily_deals/address" %></p>
+        </div>
+
+        <div id="box2">
+        <h2>Highlights</h2>
+        <%= @daily_deal.highlights.html_safe if @daily_deal.highlights %>
+
+        </div>
+
+        <div id="box2">
+        <h2>The Fine Print</h2>
+        <%= @daily_deal.terms.html_safe if @daily_deal.terms %>
+
+       </div>
+        <div id="description">
+        	<h2>Description</h2>
+          <%= @daily_deal.description.html_safe if @daily_deal.description %>
+        </div>
+
+
+
+    </div><!--deal_info-->
+</div>
+ 

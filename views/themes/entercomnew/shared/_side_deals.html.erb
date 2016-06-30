@@ -1,0 +1,18 @@
+<% if @daily_deal.side_deals.size > 0 %>
+<div class="side_box deal other_deal_tracking">
+    <a href="<%= daily_deals_public_index_path(@publisher.label) %>"><h3>See All Deals</h3></a>
+   
+   <!-- SIDE DEAL CATEGORY 1 -->
+   <% side_deals = @publisher.side_deals_in_custom_entercom_order(@daily_deal) %>
+
+    <% unless side_deals.blank? %> 
+    <%= render :partial => with_theme("shared/side_deal"), :collection => side_deals[0,2] %>
+    <% end -%>
+
+</div><!-- /side_box -->
+<% end %>
+
+
+
+
+

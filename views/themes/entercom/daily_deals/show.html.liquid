@@ -1,0 +1,214 @@
+<div class="page_row">
+			<div id="value_proposition">{{ daily_deal.value_proposition }}</div>
+            
+			<div class="page_column_1">
+				<div id="value_and_button">
+					<div class="discount"><span class="dollar_sign">$</span>{{ daily_deal.price | number: 2 }}</div>
+                    {% if daily_deal.sold_out? %}
+					<div id="not_available_button" class="not_available">Sold Out</div>
+                    {% elsif daily_deal.over? %}
+                    <div id="not_available_button" class="not_available"><img alt="Not Yet Available" src="/themes/entercom/images/buttons/not_yet_available.png" /></div>
+                    {% elsif daily_deal.active? %}
+                    <a href="{{ daily_deal.buy_now_path }}" id="buy_now_button" class="available"><img alt="Buy" src="/themes/entercom/images/buttons/buy.png" /></a>
+					{% else %}
+					<div id="not_available_button" class="not_available"><img alt="Not Yet Available" src="/themes/entercom/images/buttons/not_yet_available.png" /></div>
+                    {% endif %}
+					
+				</div><!-- end value and button -->
+				<table cellspacing="0" id="dashboard">
+					<tr>
+						<td>{{ daily_deal.value | currency: 2 }}</td>
+						<td>{{ daily_deal.savings | currency: 2 }}</td>
+					</tr>
+					<tr>
+						<th id="value">VALUE</th>
+						<th id="you_save">YOU SAVE</th>
+					</tr>
+				</table>
+				{% if daily_deal.active? %}
+				
+				<p id="deals_sold">{{ daily_deal.number_sold }} Bought</p>
+				{% endif %}
+
+				{% if daily_deal.over? %}
+				<div id="coming_soon" class="not_available"><img src="/themes/entercom/images/buttons/coming_soon.png" alt="coming soon" height="67" width="223" /></div>
+				{% endif %}
+				
+				
+				<div id="deal_highlights" class="box">
+					<h3 class="box">Highlights</h3>
+					{{ daily_deal.highlights }}
+				</div>
+
+				<div id="deal_location" class="box">
+					<h3 class="box">Location</h3>
+					
+					<div class="deal_location_details">
+            {% if advertiser.address? %}
+              {% for store in advertiser.stores %}
+              <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">
+                <img class="advertiser_logo"
+                     src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" />
+    					  <div class="advertiser_address">
+    						  <p><span class="advertiser_name">{{ advertiser.name }}</span><br />
+    						  {{ store.address_line_1 }}<br/>
+    						  {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+    						  {% if store.formatted_phone_number != empty %}
+    						  phone:{{ store.formatted_phone_number }}<br />                    
+    						  {% endif %}
+    						  </p>
+      					</div>
+      					<div style="clear:both"></div>
+      				</div>
+    					{% endfor %}
+  					{% endif %}
+  				</div>
+  				
+  				{% if advertiser.num_stores > 3 %}
+  				<a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+  				{% endif %}
+
+          {% if advertiser.website_url != empty %}
+          <p><a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.website_url }}</a></p>
+          {% endif %}
+					  
+				  {% if advertiser.stores.size > 0 %}
+          <a href="{{ advertiser.map_url }}">
+            <img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="_blank" />
+          </a>
+          {% endif %}
+				</div><!-- end deal_location -->
+				<div id="fine_print">
+					<h3>The Fine Print</h3>
+					{{ daily_deal.terms }}
+				</div>
+
+
+			</div><!-- end page_column_1 -->
+					
+			<div class="page_column_2">
+				<img id="photo" alt="Portrait" src="{{ daily_deal.photo.url }}" alt="" />
+				<div id="share_deal">
+					<p class="share"><a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img alt="Facebook" src="/themes/entercom/images/icons/facebook.png" /></a> Post on <br />Facebook</p>
+					<p class="share"><a href="{{ daily_deal.twitter_url }}" class="share_link share_button_twitter" id="twitter_link" target="_blank" title="Share coupon on Twitter"><img alt="Twitter" src="/themes/entercom/images/icons/twitter.png" /></a> Tweet <br />This</p>
+					<p class="share last"><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><img alt="Email" src="/themes/entercom/images/icons/email.png" /></a> Email <br />This</p>
+				</div><!-- end share_deal -->
+				<div id="deal_description">
+					<h3>About the Deal</h3>
+						{{ daily_deal.description }}
+					<h3>Reviews</h3>
+			        <div class="reviews">
+                    	{{ daily_deal.reviews }}
+                    </div>
+				</div><!-- end deal_description -->
+				
+				<div id="facebook_comments">
+                <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+                <fb:comments width="450px" css="http://{{ publisher.daily_deal_host }}/themes/entercom/stylesheets/fb_comments.css?1"></fb:comments>
+				<script type="text/javascript">FB.init("7b2e988c98f5efaa2c3f90cc1bea10a2", "/xd_receiver.htm");</script>
+				</div><!-- end facebook_comments -->
+				
+				
+			</div><!-- end page_column_2 -->
+			
+			<div class="page_column_3">
+
+				{% if daily_deal.side_deals.size > 0 %}
+				<div id="other_deals" class="box other_deal_tracking">
+					<h3 class="box">Other Great Deals</h3>
+					{% for side_deal in daily_deal.side_deals %}
+					<h4>{{ side_deal.value_proposition }}</h4>
+					<div id="other_deal_info">
+						<p class="other_deal_discount">{{ side_deal.savings_as_percentage | percentage }} <br /> OFF</p>
+						<p class="other_deal_value">{{ side_deal.value | currency }} VALUE</p>
+						<a href="{{ side_deal.url }}"><img src="/themes/entercom/images/buttons/view_deal.png" height="27" width="79" alt="view deal" /></a>
+					</div>
+					<img id="other_deal_photo" src="{{ side_deal.photo.facebook_url }}" />
+					<div class="clear"></div>
+					{% endfor %}
+				</div>
+				{% else %}
+  				{% case  publisher.label %}
+  				   {% when "entercom-sacramento" %}
+             <div class="placeholder_sacramento">
+               <img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar1.jpg" alt="" />
+             </div>
+  				   {% when "entercom-madison" %}
+     				<div class="placeholder_madison">
+     				  <a href="http://twitter.com/mymadisonperks" target="_blank"><img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar1.jpg" alt="" /></a>
+     				</div>
+  				   {% when "entercom-milwaukee" %}
+     				<div class="placeholder_milwaukee">
+               <img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar1.jpg" alt="" />
+             </div>
+  				{% endcase %}
+				{% endif %}
+
+				{% case  publisher.label %}
+				   {% when "entercom-sacramento" %}
+           <div class="placeholder_sacramento">
+             <a href="http://howperksworks.com"><img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar2.jpg" alt="" /></a>
+           </div>
+				   {% when "entercom-madison" %}
+   				<div class="placeholder_madison">
+   				  <a href="http://player.streamtheworld.com/_players/entercom/player/?id=WOLX" target="_blank"><img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar2.jpg" alt="" /></a>
+   				</div>
+				   {% when "entercom-milwaukee" %}
+   				<div class="placeholder_milwaukee">
+             <a href="http://howperksworks.com"><img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar2.jpg" alt="" /></a>
+           </div>
+ 				   {% when "entercom-buffalo" %}
+    				<div class="placeholder_buffalo">
+              <a href="http://howperksworks.com"><img class="placeholder" src="/themes/{{ publisher.label }}/images/placeholder/sidebar2.jpg" width="220" alt="" /></a>
+            </div>
+				{% endcase %}
+       
+				<div id="facebook_likebox" class="box">
+				{% case publisher.label %}
+				{% when 'entercom-madison' %}
+				{% assign fb_page = "mymadisonperks" %}
+				{% when 'entercom-sacramento' %}
+				{% assign fb_page = "sacramentoperks" %}
+				{% when 'entercom-milwaukee' %}
+				{% assign fb_page = "pages%2FMilwaukee-Perks%2F113244918742927" %}
+				{% when 'entercom-buffalo' %}
+				{% assign fb_page = "pages%2FBuffalo-Deal-of-the-Day%2F150817868298771" %}
+				{% endcase %}
+				{% if fb_page %}
+				<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2F{{ fb_page }}&amp;width=220&amp;colorscheme=light&amp;connections=20&amp;stream=false&amp;header=false&amp;height=415" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:415px;" allowTransparency="true"></iframe>
+				{% endif %}
+				</div><!-- end facebook_likebox -->
+  			<div class="clear"></div>
+			<div class="clear"></div>
+			</div><!-- end page_column_3 -->
+			</div><!-- end page_row -->
+            
+            <div class="clear"></div>
+			
+            <div id="stations"> 
+              {% if publisher.label == "entercom-sacramento" %}
+            	<div id="sacramento"><a href="http://espn1320.net" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/espn.jpg" alt="ESPN Radio 1320" /></a><a href="http://buzz1065.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/buzz1065.jpg" alt="106.5 The Buzz" /></a><a href="http://krxq.net" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/98rock.jpg" alt="98 Rock" /></a><a href="http://radio947.net" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/radio947.jpg" alt="Radio 94.7" /></a><a href="http://eagle969.com" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/969eagle.jpg" alt="96.9 Eagle" /></a><a href="http://endonline.com" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/the-end1079.jpg" alt="107.9 The End" /></a></div>
+             {% endif %}
+                
+             {% if publisher.label == "entercom-madison" %}
+				<div id="madison"><a href="http://www.1051charliefm.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wchy_500w.jpg" alt="106.4 Charlie FM" /></a><a href="http://www.1055triplem.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wmmm_500w.jpg" alt="105.5 Triple M" /></a><a href="http://www.wolx.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wolx_500w.jpg" alt="94.9 All Christmas Music" /></a></div>
+				     {% endif %}
+                
+            {% if publisher.label == "entercom-milwaukee" %}
+				<div id="milwaukee"><a href="http://www.sportsradio1250.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/MKE_1250.jpg" alt="Sports Radio 1250" /></a><a href="http://www.99wmyx.com/" target="_blank"><img style="width: 131px" src="/themes/{{ publisher.label }}/images/stations/MKE_991.png" alt="99.1 The Mix" /></a><a href="http://www.1037kissfm.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/MKE_KISS.jpg" alt="103.7 KISS FM" /></a></div>
+				    {% endif %}
+				    
+				    {% if publisher.label == "entercom-buffalo" %}
+            <div id="buffalo">
+              <a href="http://www.1077thelake.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/lake.jpg" alt="The Lake 107.7 FM Buffalo" /></a>
+              <a href="http://www.wben.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wben.jpg" alt="WBEN 930 AM" /></a>
+              <a href="http://www.wgr550.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wgr.jpg" alt="WGR 550 sports radio" /></a>
+              <a href="http://www.kiss985.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wkse.jpg" alt="Kiss 98.5" /></a>
+              <br />
+              <a href="http://www.mystar1025.com/" target="_blank" style="position: relative; bottom: 17px"><img src="/themes/{{ publisher.label }}/images/stations/wtss.jpg" alt="Star 102.5" /></a>
+              <a href="http://www.kb1520.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wwkb.jpg" alt="WWKB 1520" /></a>
+              <a href="http://www.am1400solidgoldsoul.com/" target="_blank"><img src="/themes/{{ publisher.label }}/images/stations/wwws.jpg" alt="AM 1400 Solid Gold Soul" /></a>
+            </div>
+				    {% endif %}
+            </div>

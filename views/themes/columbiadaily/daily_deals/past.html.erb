@@ -1,0 +1,15 @@
+<% set_daily_deal_page_title_slug "Recent Deals for #{@publisher.name}" %>
+
+<div class="page_row past">
+  <div class="page_column_12 first">
+    <% filtered_deals = @daily_deals[0,10] %>
+    <% if filtered_deals.size > 5  %>
+      <div class="recent_deals">
+        <h1 class="content">Recent Deals for <%= @publisher.name %></h1>
+        <%= render filtered_deals %>        
+      </div>
+    <% else %>
+      <p class="coming_soon">Coming Soon...</p>
+    <% end %>
+  </div>
+</div>

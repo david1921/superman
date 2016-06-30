@@ -1,0 +1,17 @@
+<div id="subscribe_form">
+	<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+		<fieldset>
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+			<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+		</fieldset>
+		<fieldset>
+			<input id="subscriber_email" name="subscriber[email]" size="25" type="text" value="Enter Your E-Mail Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Enter Your E-Mail Address':this.value;" />	
+			<!-- <input id="subscriber_zip" name="subscriber[zip_code]" size="10" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" /> -->
+			<input name="subscriber[terms]" value="0" type="hidden" />
+			<input type="submit" id="subscribe_sign_up" class="button gradient" value="Send Me Coupons"/>
+			<br />
+			<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></a>
+		</fieldset>
+	</form>
+</div><!-- /subscribe_form -->
+<div class="clear"></div>

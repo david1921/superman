@@ -1,0 +1,20 @@
+ <div id="market_menu_wrapper">
+    <ul id="market_menu">
+       <li><a href="#" class="market_name"><%= @publisher.market_name_or_city %><span class="arrow"></span></a>
+       <%#= offers_market_selection_list(@publisher) %><!--MADE UN-DYNAMIC FOR CUSTOM LI ORDERING-->
+		    <ul class="market_selection_list">
+			   <li><a href="/publishers/1595/offers">Nationwide Deals</a></li>
+			   <li><a href="/publishers/1587/offers">Arizona - East Valley</a></li>
+			   <li><a href="/publishers/1590/offers">AZ Maricopa Casa Grande Pinal</a></li>
+			   <li><a href="/publishers/1591/offers">Arizona - Northern Arizona</a></li>
+			   <li><a href="/publishers/1589/offers">Arizona - Phoenix</a></li>
+			   <li><a href="/publishers/1592/offers">Arizona - Scottsdale</a></li>
+			   <li><a href="/publishers/1593/offers">Arizona - Tucson</a></li>
+			   <li><a href="/publishers/1588/offers">Arizona - West Valley</a></li>
+			   <li><a href="/publishers/1594/offers">New Mexico</a></li>
+			</ul>
+       </li>
+    </ul>
+ </div><!-- /market_menu_wrapper -->
+ 
+ <%= render :partial => with_theme("shared/market_menu_js") %>

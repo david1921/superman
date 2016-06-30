@@ -1,0 +1,28 @@
+<h2>Donation</h2>
+
+<div class="row">
+  <div class="label">
+    <%= f.label :donation_name, "Organization Name" %>
+  </div>
+  <div class="input">
+    <%= f.text_field :donation_name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="label">
+    <%= f.label :donation_city, 'City' %>
+  </div>
+  <div class="input">
+    <%= f.text_field :donation_city %>
+  </div>
+</div>
+
+<div class="row state_select_div">
+  <div class="label">
+    <%= f.label :donation_state, 'State' %>
+  </div>
+  <div class="input">
+    <%= f.select :donation_state, Addresses::Codes::US::STATE_CODES %>
+  </div>
+</div>

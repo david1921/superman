@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Sign up for Daily Deal Alerts!</title>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+ <link rel="image_src" href="http://www.seattlepi.com/art2/logo/logofb.gif" /> 
+ <link href="/themes/hearst-seattlepi/cached/css/main.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="/themes/hearst-seattlepi/cached/apps/adWiz/loadAdWiz.js"></script>
+
+  
+	<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+	<link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" type="text/css" />  	
+  
+	<script src="/javascripts/lib/prototype.js" type="text/javascript"></script> 
+	 
+	<script src="/javascripts/effects.js" type="text/javascript"></script> 
+	<script src="/javascripts/dragdrop.js" type="text/javascript"></script> 
+	<script src="/javascripts/controls.js" type="text/javascript"></script> 
+	<script src="/javascripts/ghostie.js" type="text/javascript"></script>  
+	<script src="/javascripts/lightbox.js" type="text/javascript"></script>
+  
+	{% include "shared/tracking_google_analytics" %}
+</head>
+<body class="presignup">
+ 
+<div id="pub_header_wrap"><!-- added so we can have the presignup page at 100% width -->
+
+	<div class="container">
+		<div class="hst-siteheader">
+			<div class="clearfix" style="width: 100%; height: 90px; margin-bottom: 8px; float: left;">
+				<div style="width: 140px; float: left;">
+					<!-- Ad A120 -->
+					<script type="text/javascript">                        /*<![CDATA[*/try { yld_mgr.place_ad_here("A120"); } catch (e) { } /*]]>*/</script>
+					<!-- /Ad -->
+				</div>
+				<div style="width: 728px; float: left;">
+					<!-- Ad A728 -->
+					<script type="text/javascript">                        /*<![CDATA[*/try { yld_mgr.place_ad_here("A728"); } catch (e) { } /*]]>*/</script>
+					<!-- /Ad -->
+				</div>
+			</div>
+			<div style="clear: both;"> </div>
+			<div class="row2b clearfix" id="row2">
+				<!-- .row2b -->
+				<div id="usertools1" class="usertools"> </div>
+				<script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/sitelinks.js"></script>
+				<div class="halfbanner">
+					<div class="creative">
+					<script type="text/javascript"> /*<![CDATA[*/ try{yld_mgr.place_ad_here("A234");}catch(e){} /*]]>*/ </script>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div id="WeatherSeattle"> </div>
+			<div class="brand"><a href="http://www.seattlepi.com"><img src="/themes/hearst-seattlepi/cached/i/brand.png" alt="Seattle Post-Intelligencer" class="png"/></a></div>
+			<div class="searchtools">
+				<script language="JavaScript" type="text/javascript" src="/themes/hearst-seattlepi/cached/js/searchForm.js"></script>
+				<script language="JavaScript" type="text/javascript" src="/themes/hearst-seattlepi/cached/js/searchRadio.js"></script>
+			</div>
+		</div><!-- /hst-siteheader -->
+		<!--/.row2b -->
+		<!-- /ux/ctpost/templates/hearst/home/header_branding.tpl -->
+		<div class="sitenav clearfix" style="overflow:hidden; width:100%; height:30px;">
+			<script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/mainNav.js"></script>
+		</div>
+	</div><!-- /container -->
+	<!--/.siteheader -->
+</div>
+
+</div><!-- /pub_header_wrap -->
+ 
+<!-- BODY HERE -->
+
+<!-- BEGIN ANALOG ANALYTICS CONTENT -->
+
+	<div class="content" id="content">
+		<div id="analog_analytics">
+			<div id="presignup">
+				
+		
+				  {% include "shared/flash" %}
+				  {{ content_for_layout }} 
+		  
+				</div><!-- /presignup-->			
+			<div class="clear"></div>
+		</div><!-- /analog_analytics -->
+	</div><!-- /content -->
+
+<!-- END ANALOG ANALYTICS CONTENT -->
+<div id="pub_footer_wrap"> 
+
+  <div class="pagecontent faux-21">
+    <div class="faux-21 clearfix">
+      <div style="width: 980px; float: left; margin-left: -9px;">
+        <script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/footer.js"></script>
+      </div>
+    </div>
+  </div>
+  <!--END BOTTOM INFO-->
+</div>
+
+</div><!-- /pub_footer_wrap -->
+
+{% include with_theme "shared/tracking_publisher" %}
+</body>
+</html>

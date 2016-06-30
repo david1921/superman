@@ -1,0 +1,45 @@
+<script src="/javascripts/analog/device.js" type="text/javascript"></script> 
+<script type='text/javascript'>
+  document.observe("dom:loaded", function() {
+    ANALOG.Device({input: ["subscriber[device]", "consumer[device]"]});
+  });
+</script>
+<% if @publisher.launched? %>
+	<% unless current_consumer_for_publisher?(@publisher) %>
+	
+<script type="text/javascript">
+	cookieValue=getCookie('slide.subscribe');
+	if (cookieValue == null || cookieValue == "") {
+		document.write("<div id='subscribe'>");
+	}
+	else {
+		document.write("<div id='subscribe' style='display: none;'>");
+	}
+	<% if subscribed? %>
+		$('subscribe').hide();
+	<% end %>
+</script>	
+<div id="subscribe_form">
+	<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+		<h4>Get deals in your email now:</h4>
+    <input name="subscriber[device]" type="hidden" id="subscriber_device" />
+		<fieldset>
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+      <input type="hidden" name="redirect_to" value="<%= verifiable_url(subscribed_publisher_daily_deals_path(:publisher_id => @publisher.id)) %>" id="redirect_to">
+		</fieldset>
+		<fieldset class="subscribe_email_zip">
+			<input id="subscriber_email" name="subscriber[email]" size="20" type="text" value="Email" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email':this.value;" />	
+			<input id="subscriber_zip" name="subscriber[zip_code]" size="10" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" />
+			<input name="subscriber[terms]" value="0" type="hidden" />
+			<input type="submit" id="subscribe_sign_up" class="button gradient" value="Subscribe"/>
+			<div class="terms_and_privacy"><input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" />
+			 I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></div>
+		</fieldset>
+		<a href="#hide" id="subscribe_form_hide" class="close_link" onclick="hideBtn(); slideUpAndRemember('subscribe'); return false;">Hide <img src="/themes/freedom/images/graphics/hide_graphic.png"></a>
+		<div class="clear"></div>
+	</form>
+</div><!-- /subscribe_form -->
+</div>
+<div class="clear"></div>
+	<% end %>
+<% end %>

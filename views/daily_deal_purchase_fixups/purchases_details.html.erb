@@ -1,0 +1,10 @@
+<table cellspacing="0">
+  <tr>
+    <th>Executed</th>
+    <th>Quantity</th>
+    <th>Credit Used</th>
+    <th>Total Purchase</th>
+    <th>Unit Price</th>
+  </tr>
+  <%= render :partial => "daily_deal_purchase_fixups/other_daily_deal_purchase", :collection => @daily_deal_purchases.sort_by(&:executed_at) %>
+</table>

@@ -1,0 +1,7 @@
+We're sorry!
+
+We were unable to process your booking from <%= @brand_name %>, <%= daily_deal_url(@booking.daily_deal, :host => @booking.publisher.production_daily_deal_host) %>.
+
+<%= @booking.book_transaction.unfixable_errors.map(&:message).join(', ') %>
+
+Your request has not been processed and you have not been billed.

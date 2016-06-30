@@ -1,0 +1,46 @@
+<div class="offer <%= cycle("even", "odd") -%>" id="<%= offer.id %>"> 
+  <div class="img_column_wrapper">
+       <div class="offer_img">
+    	  <img alt="<%= offer.message %>" class="photo" id="photo" src="<%= offer.image.url(:medium) %>" /> 
+       </div><!-- /offer_img -->
+       <div class="clear"></div>
+       <div class="panels">
+            <div class="call_panel" style="display: none;" id="<%= offer.id %>_call_panel"></div> 
+          	<div class="email_panel js_panel" style="display: none;" id="<%= offer.id %>_email_panel"></div> 
+          	<div class="txt_panel js_panel" style="display: none;" id="<%= offer.id %>_txt_panel"></div> 
+        </div><!-- /panels -->
+    </div><!-- /img_column_wrapper -->
+    
+    <div id="offer_<%= offer.id %>_front_panel_moved_aside_to_avoid_js_show_hide"> 
+    	<div class="big_buttons" id="offer_<%= offer.id %>_front_panel">
+    		<a href="/offers/<%= offer.id %>/facebook?publisher_id=<%= @publisher.id %>" class="offer_button btn_facebook" id="offer_<%= offer.id %>_facebook_link" onclick="return facebook_popup('/offers/<%= offer.id %>/facebook?popup=true&amp;publisher_id=<%= @publisher.id %>')" rel="nofollow" target="_blank"><span>Facebook</span></a>
+    		<a href="/offers/<%= offer.id %>/twitter?publisher_id=<%= @publisher.id %>" class="offer_button btn_twitter" target="_blank" title="Share coupon on Twitter"><span>Twitter</span></a>    
+    		<a class="offer_button email btn_email" href="#" onclick="new Ajax.Request('/offers/<%= offer.id %>/email?publisher_id=<%= @publisher.id %>', {asynchronous:true, evalScripts:true}); return false;" rel="nofollow" title="Click to email coupon to you"><span>Email</span></a>    
+    		<a class="offer_button clip btn_print" href="#" id="print_<%= offer.id %>" onclick="clipCoupon(<%= offer.id %>, <%= @publisher.id %>); return false;" rel="nofollow" title="Click to print coupon"><span><%= t(:print)%></span></a> 
+    		<a class="offer_button txt btn_sms" href="#" onclick="new Ajax.Request('/offers/<%= offer.id %>/txt?publisher_id=<%= @publisher.id %>', {asynchronous:true, evalScripts:true}); return false;" rel="nofollow" title="Click to send coupon to you via TXT message"><span><%= t(:text)%></span></a><br />  
+    	</div><!--buttons-->
+
+    	<div class="offer_info">
+            <div class="offer_headlines">
+    			<h5 class="value_proposition"><%= offer.message %></h5>
+    			<div class="message"><%= offer.terms %></div>
+    		</div><!-- /offer_headlines -->
+    		<div class="footer">
+    			<div class="address"> 
+    				<span class="advertiser_name">
+    			    <a href="<%= offer.website_url %>" target="_blank"><%= offer.advertiser_name %></a>
+    			
+                    </span><br/> 
+                    <%= offer.advertiser.store.address_line_1 %> <br/> 
+                    <%= offer.advertiser.store.city %>, <%= offer.advertiser.store.state %> <%= offer.advertiser.store.zip %><br />
+                    <span class="phone_number"><%= offer.advertiser.store.formatted_phone_number %></span> 
+    			</div><!-- /address -->
+    			<div class="offer_links">
+    				<a href="<%= offer.website_url %>" target="_blank">Website</a>
+    			</div> 
+    		</div><!-- /footer -->
+    		<div style="clear: both"></div>
+      	
+    	</div><!-- /offer_info -->
+	</div><!-- /offer_front_panel-->
+</div><!-- /offer -->

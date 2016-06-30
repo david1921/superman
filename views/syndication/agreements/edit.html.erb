@@ -1,0 +1,78 @@
+<% @page_title = "Syndication Agreement" %>
+
+<% form_for @agreement do |f| -%>
+  <%= f.error_messages %>
+
+  <div class="row left">
+    <h2>Business Terms</h2>
+    <p><strong>Term:</strong>  2 Years.  May be terminated by either party upon 90 days written notice.</p>
+
+    <h3 class="left">Gross revenue commission percentage</h3>
+
+    <ul>
+      <li>Distributor: 20%.
+        <ul>
+          <li>Transaction occurs on Distributor site and Distributor owns consumer information.  Distributor may offer promotions to consumers; these will be deducted from commissions.</li>
+        </ul>
+      </li>
+      <li>
+        Affiliate:  20%
+        <ul>
+          <li>Affiliate redirects consumers to Source.  Affiliate does NOT own consumer information and may not offer promotions.</li>
+        </ul>
+      </li>
+      <li>
+        Source:  15% plus 50% Merchant Commission.
+        <ul>
+          <li>Source is responsible for agreement with Merchant, for payment of Merchant commission to Merchant, and for consumer complaints against Merchant.</li>
+        </ul>
+      </li>
+      <li>Analog Analytics:  15%</li>
+      <li>Credit card fees will be charged to Source as a deduction from commissions.</li>
+    </ul>
+    <p class="top_margin">Net Revenue Commissions, if applicable, will be presented on a deal by deal basis.</p>
+
+    <p class="top_margin">Members of the syndication network may opt-out of sharing deals with, or seeing deals from, specific other members of the network.</p>
+
+    <p class="top_margin">Distributor and Affiliate members of the syndication network must agree to distribute a minimum number of National Deals per month, if available.</p>
+
+    <p class="top_margin">Members of the syndication network may not contact other members of the network or their merchants directly, and may not redistribute, resell, or provide access to deals on the network via API or other technology.</p>
+
+  </div>
+
+    <div class="row">
+      <h2>Payment Terms</h2>
+      <ul>
+        <li>Analog Analytics shall remit Commission to Distributor, Affiliate and Source within 30 days.  Source is responsible for payment of Merchant commission to Merchant.</li>
+      </ul>
+    </div>
+
+  <div class="row">
+    <h2>Analog Syndicate Partner</h2>
+  </div>
+  <%= f.text_field_div :company_name %>
+  <%= f.text_field_div :contact_name %>
+  <%= f.text_field_div :title %>
+  <%= f.text_field_div :telephone_number %>
+  <%= f.text_field_div :email %>
+
+  <div class="row">
+    <h3>Type</h3>
+  </div>
+  <%= f.check_box_div :source_publisher %>
+  <%= f.check_box_div :distribution_publisher %>
+  <%= f.check_box_div :affiliate_publisher %>
+
+  <div class="row">
+    <h3>Properties</h3>
+  </div>
+  <%= f.text_field_div :websites %>
+  <%= f.text_field_div :mobile_applications %>
+  <%= f.text_field_div :other_delivery_mechanisms %>
+
+  <%= f.check_box_div :business_terms, "I Agree to Business Terms above" %>
+  <%= f.check_box_div :syndication_terms, "I Agree to #{link_to("Syndication Terms and Conditions", "http://analoganalytics.com/wp-content/themes/AnalogAnalytics/documents/syndication/agreement_terms.5.7.pdf")}".html_safe %>
+  <div class="row button_row">
+    <%= f.submit "Accept" %>
+  </div>
+<% end -%>

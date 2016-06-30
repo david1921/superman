@@ -1,0 +1,64 @@
+<% if position == "top" %>
+<div class="scope <%= position %>">
+  <% if @text.present? %>
+    <%= "You searched for \"#{truncate(@text, :length => 30)}\"" %>
+    <%= " in #{@postal_code}" if @postal_code.present? -%>
+  <% elsif @postal_code.present? && !@publisher.show_zip_code_search_box? -%>
+    ZIP: <%= @postal_code -%>
+  <%- end -%>
+  <% if @category -%>
+    <% if @text.present? %>
+    in
+    <% else %>
+    <% link_label = defined?( coupon_label ) ? coupon_label : "Coupons:" %>
+    <%= link_to "#{link_label} ", public_offers_path(
+      @publisher,
+      :category_id   => nil,
+      :iframe_width  => params[:iframe_width],
+      :iframe_height => params[:iframe_height],
+      :layout        => @layout,
+      :page_size     => @page_size
+    ) -%>
+    <% end -%>
+
+    <% if @category.parent -%>
+      <%= link_to @category.parent.name, 
+                           public_offers_path(@publisher, pagination_link_params(@page).merge!(:category_id => @category.parent.to_param)) %>:
+    <%- end -%>
+
+<%= link_to @category.name, public_offers_path(@publisher, pagination_link_params(@page)) %>
+  <%- end -%>
+  
+</div>
+<% end -%>
+
+<div class="page_numbers <%= position %>">
+  &nbsp;
+  <%- if @pages > 1 -%>
+  Page&nbsp;&nbsp;
+  <% if @page > 1 %>
+    <span class="previous_page"><%= link_to "&larr;".html_safe, public_offers_path(@publisher, pagination_link_params(@page - 1)) %></span>
+  <% end -%>
+  <ul class="pagination">
+<%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+<%- formatter.index_range.each do |page| -%>
+  <% if page == @page -%>
+    <li class="selected"><%= page %></li>
+  <%- else -%>
+    <li><%= link_to(formatter.text_for(page), public_offers_path(@publisher, pagination_link_params(page))) %></li>
+  <%- end -%>
+<%- end -%>
+  </ul>
+<% if @page < formatter.index_range.last %>
+  <span class="next_page"><%= link_to "&rarr;".html_safe, public_offers_path(@publisher, pagination_link_params(@page + 1)) %></span>
+<% end -%>
+<%- end -%>
+<% if @offers.present? && (defined?(show_page_size) ? show_page_size : true) -%>
+&nbsp;&nbsp;&nbsp;<%= "Page " if @pages <= 1 %>Size&nbsp;<%= 
+  select_tag "page_size", 
+    options_for_select([ @page_size, 4, 10, 20, 50, 100 ].compact.uniq.sort, @page_size.to_i), 
+    :id => "#{position}_page_size"
+%>
+<%= observe_field "#{position}_page_size", :function => "page_size_changed('#{position}_page_size', '#{page_size_params_for_pagination.map{|key, value| "#{key}=#{value}"}.join("&")}')"%>
+<% end -%>
+</div>

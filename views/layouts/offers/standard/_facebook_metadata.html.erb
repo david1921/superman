@@ -1,0 +1,16 @@
+<% if @offers && @offers.present? -%>
+<% title = "[#{@publisher.brand_name_or_name} Coupon] #{@offers.first.value_proposition}" -%>
+<meta name="title" content="<%= title %>" />
+<meta name="description" content="<%= @offers.first.facebook_description %>" />
+<meta name="og:image" content="<%= url_for_facebook_image(@offers.first) %>" />
+<meta name="og:image" content="<%= @publisher.logo.url %>" />
+<meta name="og:image" content="<%= @offers.first.advertiser.logo.url %>" />
+
+
+<% elsif @gift_certificates && @gift_certificates.present? -%>
+<% gift_certificate = @gift_certificates.first %>
+<% title = "[#{@publisher.brand_name_or_name} Coupon] #{gift_certificate.message}" -%>
+<meta name="title" content="<%= title %>" />
+<meta name="description" content="<%= gift_certificate.facebook_description %>" />
+<meta name="og:image" content="<%= gift_certificate.logo(:medium) -%>">
+<% end -%>

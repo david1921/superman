@@ -1,0 +1,37 @@
+<% store = @daily_deal_purchase.store || @daily_deal_purchase.advertiser.store -%>
+<%= {
+  :status => @daily_deal_purchase.payment_status,
+  :description => @daily_deal_purchase.value_proposition,
+  :quantity => @daily_deal_purchase.quantity,
+  :total_price => @daily_deal_purchase.actual_purchase_price,
+  :credit_used => @daily_deal_purchase.credit_used,
+  :synopsis => @daily_deal_purchase.line_item_name,
+  :value => @daily_deal_purchase.value,
+  :executed_at => @daily_deal_purchase.executed_at.utc.to_s(:iso8601),
+  :expires_on => @daily_deal_purchase.expires_on.try(:to_s, :db_date),
+  :photo => @daily_deal_purchase.daily_deal.photo.url(:widget),
+  :terms => @daily_deal_purchase.daily_deal.terms,
+  :location => {
+    :name => @daily_deal_purchase.advertiser.name,
+    :address_line_1 => store.address_line_1,
+    :address_line_2 => store.address_line_2,
+    :city => store.city,
+    :state => store.state,
+    :zip => store.zip,
+    :country => store.country.try(:code),
+    :phone_number => store.phone_number,
+    :latitude => store.latitude,
+    :longitude => store.longitude
+  },
+  :vouchers => @daily_deal_purchase.daily_deal_certificates.map do |certificate|
+    voucher = {
+      :serial_number => certificate.serial_number,
+      :redeemer_name => certificate.redeemer_name,
+      :status => certificate.status
+    }
+    voucher.merge!(
+      :bar_code => daily_deal_purchase_bar_code_url(@daily_deal_purchase, certificate.serial_number, :host => AppConfig.api_host, :format => "jpg")
+    )
+    voucher
+  end
+}.to_json.html_safe -%>

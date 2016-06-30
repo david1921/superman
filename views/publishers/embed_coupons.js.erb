@@ -1,0 +1,18 @@
+document.write('<%= raw(escape_javascript(%Q{<iframe 
+  id="analog-analytics-iframe" 
+  frameborder="0" 
+  height="#{iframe_height(@page_size, params[:iframe_height])}" 
+  marginheight="0" 
+  marginwidth="0" 
+  scrolling="no" 
+  width="#{iframe_width(params[:iframe_width])}" 
+  src="#{public_offers_url(
+    @publisher, 
+    :path_only => false,
+    :host => @publisher.host,
+    :page_size => @page_size, 
+    :layout => "iframe",
+    :iframe_width => params[:iframe_width], 
+    :iframe_height => params[:iframe_height], 
+    :text => params[:text], 
+    :category_id => params[:category_id])}"></iframe>})) %>');

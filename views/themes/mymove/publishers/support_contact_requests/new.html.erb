@@ -1,0 +1,94 @@
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners contact">
+
+<% div_for @contact_request do %>
+    <% set_daily_deal_page_title_slug "Contact" %>
+
+    <div id="contact_info">
+
+      <h1 class="content"><%= t(:contact_us) %></h1>
+
+      <h3>Customer Service Inquiries</h3>
+      <p>Email us using the form to the right and we will get back to you as soon as possible.</p>
+      <p>Phone: (877) 538-4617</p>
+      <h3>To have your business featured</h3>
+      <p>Please call: (888) 985-1688</p>
+
+      <h3>Frequently Asked Questions</h3>
+      <p>We may have your answer at the ready! <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Visit our FAQs page</a></p>
+
+
+    </div>
+
+    <div id="contact_content">
+
+      <h4>Email us about MyMove</h4>
+
+      <p>Have a question or just want to give us some feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
+
+      <%= error_messages_for(:contact_request, :header_message =>nil) %>
+
+      <% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+          <% render with_theme("form_options") %>
+
+          <%= f.hidden_field :email_subject_format, :value => @email_subject_format %>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :first_name, "First Name *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :first_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :last_name, "Last Name *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :email, "Email *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :email %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :reason_for_request, "Reason *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.select(:reason_for_request, [["Please select one", nil]] + (@reasons_for_request || ["Question", "Comment"]).map{|reason| [reason, "#{@publisher.name} - #{reason}"]},
+                                     {}, :class => "contact_reason") %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :message, "Message *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_area :message, :class => "message" %>
+            </div>
+          </div>
+
+          <div id="buttons" class="row">
+            <%= f.submit 'Submit', :id => "submit" %>
+
+            <span class="required_fields">* required fields</span>
+          </div>
+      <% end %>
+
+      <div class="after_form"></div>
+    </div>
+<% end %>
+
+  </div>
+</div>

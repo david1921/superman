@@ -1,0 +1,3 @@
+<% unless @publisher.facebook_page_url.blank? %>
+    <iframe id="facebook_likebox" src="http://www.facebook.com/plugins/likebox.php?href=<%= CGI::escape(@publisher.facebook_page_url) %>&amp;width=220&amp;colorscheme=light&amp;connections=9&amp;stream=false&amp;header=false&amp;height=350" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:220px; height:350px;" allowTransparency="true"></iframe>
+<% end %>

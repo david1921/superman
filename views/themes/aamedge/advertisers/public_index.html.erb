@@ -1,0 +1,31 @@
+<div class="free_offers">
+<div class="left_column">
+	<%= render :partial => "offers/businessdirectory/search", :locals => {:search_url => render_public_advertisers_path(@publisher)} %>
+    
+	<h3 class="manufacturer_coupons"><a href="http://www.aamedge.com/coupons">Manufacturers Coupons</a></h3>
+	<%= render :partial => "advertisers/categories", :object => @publisher_categories %>
+</div><!-- /left_column -->
+
+<div class="right_column">
+	<div class='top_navigation'>
+        <h1>Coupon Directory</h1>
+        <%= render_grid_list_controls( {:active_control => :list, :show_sort_by => false, :publisher => @publisher, :postal_code => @postal_code, :radius => @radius, :sort => @sort } ) %>
+		<div class='pagesize'>1 - <%= select_tag "page_size", options_for_select([ @page_size, 10, 20, 50 ].compact.uniq.sort, @page_size), :id => "page_size_select" %> of <%= pluralize( @advertisers_count, "Business" ) %></div>  
+     </div>
+	 
+    <div class='businesses'>
+      <ol id="directory">   
+        <% if @advertisers.empty? %>
+          <li>Sorry, no businesses found.</li>
+        <% else -%>
+          <%= render :partial => "themes/aamedge/advertisers/shared/business", :collection => @advertisers %>
+        <% end -%>
+      </ol>      
+    </div>
+<!-- <%= render :partial => 'shared/terms_and_conditions' %> -->
+</div><!-- /right_column -->
+<div class="clear"></div>
+</div><!-- /free_offers -->
+<%= observe_field "page_size_select", :function => "page_size_changed('page_size_select', '#{page_size_params_for_pagination.map{|key, value| "#{key}=#{value}"}.join("&")}')" %>
+<%= observe_field "page_sort_select", :function => "page_sort_changed('page_sort_select', '#{page_size_params_for_pagination.map{|key, value| key == 'sort' ? "" : "#{key}=#{value}"}.join("&")}')" %>
+<%= javascript_include_tag 'business' %>

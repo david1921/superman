@@ -1,0 +1,448 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+  </script>
+  <%= javascript_include_tag 'admin.js' %>
+<% end %>
+
+<div class="left_column">
+  <% form_for @publisher, :html => { :multipart => true, :class => 'fixed_form' } do |f| -%>
+    <%= error_messages_for :publisher %>
+  
+    <%= f.text_field_div :name, nil, {:required => "true" } %>
+    <%= f.text_field_div :label, nil,{:readonly => !@publisher.new_record?}  %>
+
+
+    <%= f.text_field_div :market_name %>
+    <%= f.text_field_div :listing %>
+    
+    <div class="row">
+      <div class="label"><%= f.label :time_zone, "Time zone:" %></div>
+      <div class="input"><%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :default => "Pacific Time (US & Canada)" %></div>
+    </div>
+    
+    <%= f.check_box_div :launched, "Live?" %>
+    <%= f.check_box_div :used_exclusively_for_testing %>
+    <%= f.check_box_div :enable_fraud_detection, "Enable Fraud Detection?" %>
+    <%= f.check_box_div :show_special_deal, "Show Special Deal?" %>
+    <%= f.check_box_div :require_billing_address, "Require Billing Address?" %>
+    <%= f.check_box_div :exclude_from_market_selection, "Exclude from Market Menu?" %>
+    <div class="row">
+      <div class="label"><%= f.label :publishing_group_id %></div>
+      <% values =  [["New", ""]] + @publishing_groups.sort_by(&:name).collect { |g| [g.name, g.id] } %>
+      <div class="input">
+        <%= f.select(:publishing_group_id, values, { :include_blank => false }, { :onchange => "publishingGroupIdChanged()" }) %>
+        <%= text_field_tag "publisher[publishing_group_name]", nil, :id => "publisher_publishing_group_name"  %>
+        <p class="edit_link" id="edit_publishing_group_link">
+          <% if @publisher.publishing_group && !@publisher.publishing_group.new_record? -%>
+          <%= link_to("Edit", edit_publishing_group_path(@publisher.publishing_group)) %>
+          <% end -%>
+        </p>
+      </div>
+    </div>
+    
+    <% if @publisher.publishing_group.present? -%>
+      <%= f.check_box_div :enable_search_by_publishing_group, "Search By Publishing Group" %>
+      <%= f.check_box_div :place_offers_with_group, "Place Offers Within All Group Publishers" %>
+      <%= f.check_box_div :place_all_group_offers, "Place Offers From Other Group Publishers" %>
+      <%= f.check_box_div :main_publisher, "Main Publisher in Publishing Group" %>
+    <% end -%>
+
+      
+    <%= f.text_field_div :production_subdomain %>
+    <%= f.text_field_div :production_host %>
+    <%= f.text_field_div :production_daily_deal_host %>
+    <%= f.text_field_div :qr_code_host, "QR Code Host", :help => "Defaults to #{Publisher::DEFAULT_QR_CODE_HOST}" %>
+    <%= f.text_field_div :login_url, "Login URL", :help => "Full HTTPS URL" %>
+    <%= f.text_field_div :apple_app_store_url, "Apple App Store URL", :help => "For publishers with iPhone app" %>
+    
+    <div class="row">
+      <div class="label"><%= f.label :country_id %></div>
+      <div class="input"><%= collection_select(:publisher, :country_id, Country.active, :id, :name , {}, :onchange => "setupCountryAwareFields()" ) %></div>
+    </div>
+    <%= f.text_field_div(:address_line_1) -%>
+    <%= f.text_field_div(:address_line_2) -%>
+    <%= f.text_field_div(:city) -%>
+    <span id="country_aware_fields">
+      <span id="region">
+      <%= f.text_field_div(:region) -%>
+      </span>
+      <span id="us_states">
+      <%= f.select_div(:state, Addresses::Codes::US::STATE_CODES) -%>
+      </span>
+      <span id="ca_states">
+      <%= f.select_div(:state, Addresses::Codes::CA::STATE_CODES) -%>
+      </span>
+    </span>
+    <%= f.text_field_div(:zip, "ZIP:", :value => @publisher.zip_as_entered) -%>
+    <%= f.text_field_div(:phone_number, nil, :value => @publisher.phone_number_as_entered) -%>
+    <%= f.text_field_div(:support_phone_number, nil, :value => @publisher.support_phone_number) -%>
+    
+    <%= f.select_div :currency_code, Publisher::ALLOWED_CURRENCY_CODES.map { |k,v| [k, k] }, { :include_blank => false } -%>
+
+    <div class="row">
+      <div class="label"><%= f.label(:country_ids, "Countries:") %></div>
+      <div class="input check_box_list">
+        <% Country.active.each do |country| %>
+          <%= check_box_tag 'publisher[country_ids][]', country.id, @publisher.countries.include?(country),
+            :id => "publisher_country_ids_#{country.id}" %>
+          <label for="publisher_country_ids_<%= country.id %>"><%= country.name %></label>
+          <br />
+        <% end %>
+      </div>
+    </div>
+
+    <% unless @publisher.new_record? || @publisher.label.blank? %>
+      <div class="row">
+        <div class="label"><%= f.label(:enabled_locales, "Enabled Locales:") %></div>
+        <div class="input check_box_list">
+          <% @publisher.enabled_locales_to_display.each do |locale| %>
+            <%= check_box_tag 'publisher[enabled_locales][]', locale, @publisher.enabled_locales.include?(locale),
+              :id => "publisher_enabled_locales_#{locale}" %>
+              <label for="publisher_enabled_locales_<%= locale %>"><%= locale %></label>
+              <br />
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="label"><%= f.label(:logo) %></div>
+      <div class="input">
+        <%= image_tag(@publisher.logo.url(:normal), :class => "thumbnail") %><br />
+        <%= f.file_field(:logo) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label"><%= f.label(:daily_deal_logo) %></div>
+      <div class="input">
+        <%= image_tag(@publisher.daily_deal_logo.url(:normal), :class => "thumbnail") %><br />
+        <%= f.file_field(:daily_deal_logo) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label"><%= f.label(:paypal_checkout_header_image) %></div>
+      <div class="input">
+        <%= image_tag(@publisher.paypal_checkout_header_image.url(:small), :class => "thumbnail") %><br />
+        <%= f.file_field(:paypal_checkout_header_image) %>
+      </div>
+    </div>
+    
+    <%= f.text_field_div :custom_paypal_cancel_return_url, "Paypal Cancel Url" %>
+
+
+    <%= f.text_field_div :brand_name %>
+    <%= f.text_field_div :daily_deal_brand_name %>
+    <%= f.text_field_div :brand_headline %>
+    <%= f.text_field_div :brand_txt_header, "Brand TXT Header:" %>
+    <%= f.text_field_div :brand_twitter_prefix, "Brand Twitter Prefix:" %>
+    <%= f.text_field_div :txt_keyword_prefix, "TXT Keyword Prefix:" %>
+    <%= f.text_field_div :daily_deal_sharing_message_prefix %>
+    <%= f.text_field_div :daily_deal_twitter_message_prefix %>
+    <%= f.check_box_div :require_daily_deal_category %> 
+
+    <%= f.select_div :analytics_service_provider_id, AnalyticsProvider.analytics_providers.map { |provider| [provider[:name], provider[:id]] } %>
+    <%= f.text_field_div :analytics_site_id, "Analytics site id:" %>
+    <%= f.text_field_div :google_analytics_account_ids, "Google Analytics Account IDs:" %>
+
+    <%= f.select_div :theme, Publisher::THEMES.sort_by(&:first).map { |k,v| [ v, k ] } %>
+    <%= f.text_field_div :sub_theme %>
+    <%= f.select_div :page_preference, [ 4, 10, 20, 50, 100 ].compact.uniq.sort %>
+    <%= f.select_div(:coupon_border_type, Publisher::COUPON_BORDER_TYPES) if @publisher.theme_options.include?(:coupon_border_type) %>
+    <%= f.select_div(:payment_method, Publisher::ALLOWED_PAYMENT_METHODS.map { |k,v| [ v, k ] }) %>
+    <%= f.check_box_div :shopping_cart %> 
+    <%= f.check_box_div :send_litle_campaign %>
+    <%= f.text_field_div :coupon_page_url, "Coupon Page URL:", :help => "For testing." %>
+    <%= f.text_field_div :approval_email_address %>
+    <%= f.text_field_div :support_email_address %>
+    <%= f.text_field_div :sales_email_address %>
+    <%= f.text_field_div :suggested_daily_deal_email_address %>
+    <%= f.text_field_div :support_url %>
+    <%= f.text_field_div :subscriber_recipients %>
+    <%= f.text_field_div :categories_recipients %>
+    <%= f.text_field_div :active_coupon_limit %>
+    <%= f.text_field_div :active_txt_coupon_limit, "Active TXT Coupon Limit:" %>
+    <%= f.text_field_div :bit_ly_login, "bit.ly Login:" %>
+    <%= f.text_field_div :bit_ly_api_key, "bit.ly API Key:" %>
+  
+    <%= f.check_box_div :send_intro_txt, "Send Intro TXT" %>
+    <%= f.check_box_div :self_serve %>
+    <%= f.check_box_div :advertiser_self_serve %>
+    <%= f.check_box_div :advertiser_has_listing %>
+    <%= f.check_box_div :enable_sales_agent_id_for_advertisers %>
+    <%= f.check_box_div :offer_has_listing, "Coupon Has Listing" %>
+    <%= f.check_box_div :random_coupon_order %>
+    <%= f.check_box_div :subcategories %>
+    <%= f.check_box_div :search_box %> 
+    <%= f.check_box_div :show_zip_code_search_box %>
+    <%= f.check_box_div(:show_bottom_pagination) if @publisher.theme_options.include?(:show_bottom_pagination) %>
+    <%= f.check_box_div(:coupons_home_link, "Coupons Home Link") if @publisher.theme_options.include?(:coupons_home_link) %> 
+    <%= f.text_field_div(:advanced_search_link_target) if @publisher.theme_options.include?(:advanced_search_link_target) %> 
+    <%= f.text_field_div :default_offer_search_postal_code %>
+    <%= f.text_field_div :default_offer_search_distance %>
+    <%= f.check_box_div :link_to_email %>
+    <%= f.check_box_div :link_to_map %>
+    <%= f.check_box_div :link_to_website %>
+    <%= f.check_box_div(:show_phone_number) if @publisher.theme_options.include?(:show_phone_number) %>
+    <%= f.check_box_div(:show_call_button) if @publisher.theme_options.include?(:show_call_button) %>
+    <%= f.check_box_div :show_twitter_button %>
+    <%= f.check_box_div :show_facebook_button %>
+    <%= f.check_box_div(:show_small_icons) if @publisher.theme_options.include?(:show_small_icons) %>
+    <%= f.check_box_div(:show_gift_certificate_button, "Show Deal Certificate Button") if @publisher.theme_options.include?(:show_gift_certificate_button) %>
+    
+    <%= f.check_box_div :printed_coupon_map %>
+    <%= f.text_field_div :coupon_code_prefix %>
+    <%= f.check_box_div :generate_coupon_code %>
+    <%= f.check_box_div :allow_gift_certificates, "Allow Deal Certificates" %>
+    <%= f.check_box_div :allow_all_deals_page, "Allow All Deals Page" %>
+    <%= f.check_box_div :allow_past_deals_page, "Allow Past Deals Page" %>
+
+
+    <%= f.check_box_div :allow_offers, "Allow Offers (Coupons)" %>
+    <%= f.check_box_div :enable_market_menu  %>
+
+    <%= f.check_box_div :allow_daily_deals %>
+    <%= f.check_box_div :enable_daily_deal_statuses %>
+    <%= f.check_box_div :enable_advertiser_statuses %>
+    <%= f.check_box_div :enable_daily_deal_variations %>
+    <%= f.check_box_div :enable_paypal_buy_now, "Enable PayPal Buy Now" %>
+    <%= f.check_box_div :enable_featured_gift_certificate, "Enable Featured Deal Certificate" %> 
+    <%= f.check_box_div :enable_sweepstakes, "Enable Sweepstakes" %>
+
+    <%= f.check_box_div :send_daily_deal_notification, "Send Sold Out Email" %>
+    <%= f.text_field_div :notification_email_address %>
+
+
+    <%= f.check_box_div :use_production_host_for_facebook_shares %>
+    <%= f.check_box_div :auto_insert_expiration_date %>   
+    <%= f.check_box_div :require_daily_deal_short_description %>   
+    <%= f.check_box_div :ignore_daily_deal_short_description_size %>   
+    <%= f.check_box_div :notify_via_email_on_coupon_changes %>
+    <%= f.check_box_div :allow_discount_codes %>
+    <%= f.check_box_div :allow_admins_to_edit_advertiser_revenue_share_percentage %>
+    <%= f.check_box_div :allow_daily_deal_disclaimer %>
+    <%= f.check_box_div :require_advertiser_revenue_share_percentage %>
+    <%= f.check_box_div :allow_secondary_daily_deal_photo %>
+    <%= f.check_box_div :allow_registration_during_purchase %>
+    <%= f.check_box_div :allow_consumer_show_action %>
+    <%= f.check_box_div :can_preview_daily_deal_certificates %>
+
+    <%= f.text_area_div :gift_certificate_disclaimer, "Deal Certificate Disclaimer", :rows => 4 %>
+    <%= f.text_area_div :daily_deal_email_signature, nil, :rows => 4 %>
+    <%= f.text_area_div :how_it_works, "Daily Deal How It Works", :rows => 4 %>
+    <%= f.text_area_div :daily_deal_universal_terms, nil, :rows => 4 %>
+    
+    <%= f.check_box_div :enable_daily_deal_referral %>
+    <%= f.check_box_div :enable_unlimited_referral_time %>
+    <%= f.check_box_div :enable_daily_deal_voucher_headline %>
+    <%= f.check_box_div :enable_publisher_daily_deal_categories %>
+    <%= f.check_box_div :enable_side_deal_value_proposition_features %>
+    <%= f.check_box_div :offers_available_for_syndication, "Coupons available for syndication" %>
+	<%= f.check_box_div :daily_deals_available_for_syndication_by_default_override, "Daily Deals Available For Syndication By Default" %>
+    <%= f.check_box_div :enable_offer_headline %>
+    <%= f.check_box_div :enable_affiliate_url, "Allow publishers to have affiliate urls" %>
+    <%= f.check_box_div :enable_affiliate_url_popup, "Use a popup to gather user info before redirecting to an affiliate URL?" %>
+    <%= f.check_box_div :in_syndication_network %>
+    <%= f.check_box_div :in_travelsavers_syndication_network %>
+    <%= f.check_box_div :uses_daily_deal_subscribers_presignup %>
+    <%= f.check_box_div :shopping_mall, "Uses shopping mall?" %>
+
+    <%= f.text_field_div :daily_deal_referral_message %>
+    <%= f.text_field_div :daily_deal_referral_message_head %>
+    <%= f.text_field_div :daily_deal_referral_message_body %>
+    <%= f.text_field_div :daily_deal_referral_credit_amount, "Daily Deal Referral Credit:" %>
+    <%= f.text_field_div :custom_cancel_url, "Custom Cancel URL:" %>
+    <%= f.text_field_div :past_daily_deals_number_sold, "Show Past Deals That Sold:" %>
+    <%= f.text_field_div :facebook_page_url, "Facebook Page URL:" %>
+    <%= f.text_field_div :facebook_app_id, "Facebook Application ID:" %>
+    <%= f.text_field_div :facebook_api_key, "Facebook API key:" %>
+    <%= f.text_field_div :facebook_app_secret, "Facebook Application secret:" %>
+    <%= f.check_box_div :enable_daily_deal_yelp_reviews %>
+    <%= f.text_field_div :yelp_consumer_key %>
+    <%= f.text_field_div :yelp_consumer_secret %>
+    <%= f.text_field_div :yelp_token %>
+    <%= f.text_field_div :yelp_token_secret %>
+    <%= f.text_field_div :silverpop_list_identifier, "Silverpop List Id:", :readonly => true %>
+    <%= f.text_field_div :silverpop_template_identifier, "Silverpop Template Id:" %>
+    <%= f.text_field_div :silverpop_seed_database_identifier, "Silverpop Seed Database Id:" %>
+    <%= f.text_field_div :silverpop_seed_template_identifier, "Silverpop Seed Template Id:" %>
+    <%= f.check_box_div :send_weekly_email_blast_to_contact_list %>
+    <%= f.check_box_div :send_weekly_email_blast_to_seed_list %>
+    <%= f.text_area_div :account_sign_up_message, nil, :rows => 4 %>
+
+    <% @publisher.build_third_party_deals_api_config unless @publisher.third_party_deals_api_config %>
+    <% f.fields_for :third_party_deals_api_config do |third_party_api_fields| %>
+      <% third_party_help_text = "For third party deals API" %>
+      <%= third_party_api_fields.text_field_div :api_username, nil, :help => third_party_help_text %>
+      <%= third_party_api_fields.text_field_div :api_password, nil, :help => third_party_help_text %>
+      <%= third_party_api_fields.text_field_div :voucher_serial_numbers_url, "Voucher Serial Numbers URL", :help => third_party_help_text %>
+      <%= third_party_api_fields.text_field_div :voucher_status_change_url, "Voucher Status Change URL", :help => third_party_help_text %>
+      <%= third_party_api_fields.text_field_div :voucher_status_request_url, "Voucher Status Request URL", :help => third_party_help_text %>
+    <% end %>
+
+    <div class="row">
+      <div class="label"><%= f.label(:email_blast_hour, "Send Email Blast At:") %></div>
+      <div class="input"><%= f.select(:email_blast_hour, (0..23).map { |hour| ["%02d" % hour, hour] }) %>&nbsp;<%= f.select(:email_blast_minute, [].tap { |list| (0..55).step(5) { |i| list << i }}.map { |minute| ["%02d" % minute, minute] }) %> <span class="help" style="float:none; padding-left: 5px">(in publisher's time zone)</span></div>
+    </div>
+
+    <div class="row">
+      <div class="label">
+        <%= f.label(:email_blast_day_of_week, "Weekly Email Blast Day:") %>
+      </div>
+      <div class="input">
+        <%= f.select(:email_blast_day_of_week, Publisher::VALID_EMAIL_BLAST_DAY_NAMES) %>
+      </div>
+    </div>
+  
+    <%= f.text_field_div :weekly_email_blast_scheduling_window_start_in_hours, nil, :help => "Number of hours before blast that blast is scheduled (in Silverpop, e.g.)" %>
+    <%= f.text_field_div :number_sold_display_threshold_default, nil, :help => "Used to pre-populate 'Number sold display threshold' for new deal." %>
+    
+    <%= f.select_div :parent_theme, Publisher.ready_made_theme_names, :include_blank => true %>
+    
+    <%= f.check_box_div :enable_loyalty_program_for_new_deals, "Enable Loyalty Program for New Deals" %>
+    <%= f.text_field_div :referrals_required_for_loyalty_credit_for_new_deals, "Referrals for Loyalty Credit", :help => "The default when a new deal is created" %>
+
+    <%= f.text_field_div :federal_tax_id, "Federal Tax ID" %>
+
+    <div class="row date">
+      <div class="label"><%= f.label :started_at, "Start Date of the Business Relationship" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:started_at, :popup => :force, :minute_interval => 1) %>
+      </div>
+    </div>
+    <div class="row date">
+      <div class="label"><%= f.label :launched_at, "Launch Date" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:launched_at, :popup => :force, :minute_interval => 1) %>
+      </div>
+    </div>
+    <div class="row date">
+      <div class="label"><%= f.label :terminated_at, "Termination Date" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:terminated_at, :popup => :force, :minute_interval => 1) %>
+      </div>
+    </div>
+    
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{publishers_url}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<!-- <div class="right_column"> -->
+<% unless @publisher.new_record? %>
+  <div class="related">
+    <h3>Merchant Account ID</h3>
+    <%= @publisher.merchant_account_id || "None" %>
+    <br />
+    <%= link_to "Edit", edit_publisher_merchant_account_ids_path(@publisher) %>
+  </div>
+
+  <div class="related">
+    <h3>Syndication Preferences</h3>
+    <%= link_to "Edit", edit_publisher_syndication_preferences_path(@publisher) %>
+  </div>
+
+  <div class="related preview" id="coupons_preview" >
+    <h3>Discount Codes</h3>
+
+    <%= render @publisher.discounts.not_deleted.all(:limit => 5) %>
+    <%= link_to "View All Discounts", publisher_discounts_path(@publisher) if @publisher.discounts.not_deleted.count > 5 %>
+    <br/>
+
+    <% if @publisher.discounts.not_deleted.empty? %>
+    No discount codes<br />
+    <% end -%>
+    
+    <%= link_to "Add New Discount Code", new_publisher_discount_path(@publisher) %>
+
+  </div>
+
+  <div class="related preview" id="affiliate_deals_preview">
+    <h3>Affiliate Deals</h3>
+    <%= affiliated_deals_for(@publisher).html_safe %>
+  </div>
+
+  <% if @publisher.enable_sweepstakes? -%>
+  <div class="related preview">
+    <h3>Sweepstakes</h3>
+    <%= link_to("New Sweepstake", new_publisher_sweepstake_path(@publisher) ) %><br />
+    <%= link_to("View All", admin_index_publisher_sweepstakes_path(@publisher)) %>
+  </div>
+  <% end -%>
+
+  <% unless Rails.env.production? or @publisher.new_record? %>
+  <div class="related preview">
+    <h3>QA Data</h3>
+    <%= link_to("Generate Advertiser and Deals", generate_qa_data_publisher_path(@publisher), :method => :post) %>
+  </div>
+  <% end %>
+  
+  <% if admin? && @publisher.enable_fraud_detection? %>
+  <div class="related">
+    <h3>Fraud Risks</h3>
+    <%= raw fraud_risks_status_html(@publisher) %>
+  </div>
+  <% end %>
+<% end %>
+<!-- </div> -->
+
+<script type="text/javascript" charset="utf-8">
+    var usStateSelect = $('us_states').remove();
+    var caStateSelect = $('ca_states').remove();
+  	function setupCountryAwareFields() {
+  	  countrySelect = $('publisher_country_id');
+  	  country = countrySelect.options[countrySelect.selectedIndex].innerHTML;
+  	  regionId = 'advertiser_stores_attributes_0_region_panel'
+  	  if (country == "United States") {
+  	    $('region').hide();
+  	    $('country_aware_fields').appendChild(usStateSelect)
+  	    if($('ca_states') != null) {
+  	      caStateSelect = $('ca_states').remove();
+	      }
+  	  }
+  	  else if (country == "Canada") {
+  	    $('region').hide();
+  	    $('country_aware_fields').appendChild(caStateSelect)
+  	    if($('us_states') != null) {
+  	      usStateSelect = $('us_states').remove();
+	      }
+  	  }
+  	  else {
+  	    $('region').show();
+  	    if($('us_states') != null) {
+  	      usStateSelect =  $('us_states').remove();
+	      }
+	      if($('ca_states') != null) {
+	        caStateSelect = $('ca_states').remove();
+	      }
+  	  }
+    }
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    Event.observe(window, 'load', function() {
+      $('publisher_name').focus();
+      setupCountryAwareFields();
+    });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  function publishingGroupIdChanged() {
+    $("publisher_publishing_group_name").value = "";
+    if ($F('publisher_publishing_group_id') == "") {
+      $('publisher_publishing_group_name').show();
+      $('publisher_publishing_group_name').focus();
+      $('publisher_publishing_group_name').select();
+    }
+    else {
+      $('publisher_publishing_group_name').hide();
+    }
+  }
+  publishingGroupIdChanged();
+</script>
+

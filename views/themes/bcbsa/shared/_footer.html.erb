@@ -1,0 +1,131 @@
+<div class="footer">
+  <div id="footer_inner_wrapper">
+	<div id="footer_content">
+		<div class="footer_nav footer_nav_deals">		
+			<h4 id="browse_deals">
+				<%= t(:browse_deals) %>
+			</h4>
+			<div class="footer_links footer_links_browse_deals">
+				<ul>
+          		  <% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending  %>
+          			<% categories.ordered_by_name_ascending.each_with_index do |daily_deal_category, i| %>
+            			<% if daily_deal_category.name.gsub(/\s/, '').downcase == 'living' %>
+            				<!-- / closing a browse deals col and starting a new one -->
+              				</ul>
+            				</div> 
+						
+            				<div class="footer_links">
+              				<ul>
+            			<% end %>
+            			<li>
+							<%= link_to(t(daily_deal_category.name.downcase.gsub(/\s/, '_')), publisher_daily_deal_category_path(@publisher, daily_deal_category)) %>
+                		</li>
+          			<% end %>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="footer_nav">	
+		<h4 id="blue_resources">
+			<%= t(:blue_resources) %>
+		</h4>
+		<div class="footer_links resources_footer_links">
+			<ul>
+				<li><a href="http://www.bcbs.com/"><%= t(:bcbs_com) %></a></li>
+				<li><a href="<%= params[:locale] == "es-MX" ? 'http://esic.jellyvision-conversation.com/?id=blue365deals' : 'http://ic.jellyvision-conversation.com/?id=blue365deals' %>"><%= t(:ask_blue) %></a></li>
+				<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=plans"><%= t(:participating_blue_companies) %></a></li>
+				<% if @publisher.label == "BCBSMA" %>
+					<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=health"><%= t(:health_and_wellness_programs) %></a></li>
+				<% end %>
+			</ul>
+		</div>
+		</div>
+
+		<div class="footer_nav">
+			<h4 id="details">
+				<%= t(:details) %>
+			</h4>	
+			<div class="footer_links details_footer_links">
+				<ul>
+					<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>"><%= t(:how_it_works) %></a></li>
+					<% if current_consumer_for_publisher?(@publisher) %>
+						<li><a href="<%= publisher_consumer_path(@publisher, current_consumer) %>"><%= t(:my_account) %></a></li>
+					<% end %>
+					<li><a href="<%= new_publisher_support_contact_request_path(@publisher) %>"><%= t(:contact_us) %></a></li>
+					<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>"><%= t(:FAQs) %></a></li>
+				</ul>
+			</div>
+
+
+			<div class="footer_links details_footer_links2">
+				<ul>
+					<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=about"><%= t(:about_blue365) %></a></li>
+					<li><a href="<%= new_publisher_sales_contact_request_path(@publisher) %>"><%= t(:feature_your_business) %></a></li>
+					<li><%= daily_deals_privacy_link(@publisher) %></li>
+					<li><a href="<%= terms_publisher_daily_deals_path(@publisher.id) %>" target="_blank"><%= t(:terms_of_use) %> </a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer_nav">	
+		<h4 id="footer_language">
+			<%= t(:language) %>
+		</h4>
+		<div class="footer_links language_footer_links">
+			<ul>
+				<li><%= link_to "English", switch_locale_url("en") %></li>
+				<li><%= link_to "Espa&ntilde;ol".html_safe, switch_locale_url("es-MX") %></a></li>
+			</ul>
+		</div>
+		</div>
+					
+			
+		
+		<% if true %> 
+			<div id="social_links" class="footer_nav">
+      			<a href="http://www.facebook.com/BCBSAssociation" target="_blank"><%= image_tag "/themes/bcbsa/images/buttons/facebook.png" %></a>
+      			<a href="https://twitter.com/BCBSAssociation" target="_blank"><%= image_tag "/themes/bcbsa/images/buttons/twitter.png" %></a>
+			</div>
+		<% end %>
+		
+		<div class="clear"></div>
+		<div id="aa_disclaimer_wrapper">
+      <a href="http://www.analoganalytics.com"><%= image_tag "/themes/bcbsa/images/graphics/aa_logo.png", :id => "aa_logo" %></a>
+			<p id="aa_disclaimer">
+				<%= t(:aa_footer_disclaimer)%>
+			</p>
+		</div>
+		<div class="clear"></div>
+		<div id="footer_terms">
+				
+			 <p>
+		    <!-- footer publisher terms logic -->
+		    <% if @publisher.label == "bcbsa-national" %>
+		    	<%= raw t(:aa_footer_terms_national)%> 
+		    <% else %>
+		    	<%= raw t(:aa_footer_terms)%> 
+		    <% end %>
+		    
+		    <% if @publisher.label == "bcbsa-national" %>
+		    	<%= t(:aa_footer_national_pub_licensee) %>
+		    <% elsif @publisher.label != 'FEP' %>
+					<%= @publisher.name %> <%= t(:aa_footer_pub_licensee)%>      
+				<% end %>
+		  </p>
+		</div>
+		
+		<div class="clear"></div>
+		<% if "#{controller_name}##{action_name}" == "daily_deals#show" %>
+			<div id="other_conditions">
+				<a name="other_conditions" class="other_conditions"></a>
+				<% if daily_deal.disclaimer.present? %>
+					<%= raw daily_deal.disclaimer %>
+				<% end %>
+				
+				<br /><br />
+			</div>
+			<div class="clear"></div>
+		<% end %>	
+	</div>
+  </div> <!-- /footer_inner_wrapper -->	
+</div>

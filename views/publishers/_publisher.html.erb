@@ -1,0 +1,38 @@
+<%- content_tag_for(:tr, publisher, :class => cycle("even", "odd")) do -%>
+  <td class="check">
+    <%= check_box_tag "id[]", publisher.id, false, :class => "checkbox", :id => "publisher_id_#{publisher.id}" %>
+  </td>
+  <td class="name">
+    <%= link_to publisher.name, edit_publisher_path(publisher) %>
+  </td>
+  <td class="label">
+    <%= link_to(truncate(publisher.label, :length => 20), edit_publisher_path(publisher)) if publisher.label.present? %>
+  </td>
+  <td class="unique_subscribers_count right">
+    <%= number_with_delimiter(publisher.unique_subscribers_count) if publisher.unique_subscribers_count > 0 %>
+    <% if admin? %>
+      <div style="text-align:right;"><%= link_to("upload", upload_publisher_subscribers_path(publisher.id), :style => "font-size:10px;") %></div>
+    <% end -%>
+  </td>
+  <td class="public_coupons">
+    <%= link_to "Coupons", public_offers_url(publisher, :host => publisher.daily_deal_host) %>
+  </td>
+  <td class="public_daily_deal">
+    <%= link_to(
+      "Deals", public_deal_of_day_url(:label => publisher.label, :host => publisher.daily_deal_host)
+        ) if publisher.allow_daily_deals? && publisher.label.present? %>
+  </td>
+  <td class="advertisers">
+    <%= link_to "Advertisers", publisher_advertisers_path(publisher) %>
+  </td>
+  <td class="users">
+    <%= link_to "Users", publisher_users_path(publisher) %>
+  </td>
+  <td class="daily_deals">
+    <% deal_count = publisher.daily_deals.count %>
+    <%= link_to("#{pluralize publisher.daily_deals.count, 'Deals'}", publisher_daily_deals_path(publisher)) if deal_count > 0 && publisher.allow_daily_deals? %>
+  </td>
+  <td class="last edit">
+    <%= link_to "Edit", edit_publisher_path(publisher) %>
+  </td>
+<%- end -%>

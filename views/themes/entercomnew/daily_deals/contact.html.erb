@@ -1,0 +1,35 @@
+	<div id="deal_info" class="container top wide">
+		<div class="rightcol_wide">
+			<div class="content">
+			  <h1 id="value_proposition">Contact Us</h1>
+			  
+			  <p class="main_office">
+			    <%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+			    <%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+			    <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}<br/>".html_safe unless @publisher.city.blank? %>
+			  </p>
+			  <p><strong>Customer Service &amp; Technical Support</strong></p>
+			  
+			  <% if @publisher.support_phone_number.present? %>
+		        <%=raw(t('.support_message',
+		            :email_link => link_to(@publisher.support_email_address, "mailto:#{@publisher.support_email_address}", :target => "_blank"),
+		            :support_phone_number => @publisher.formatted_support_phone_number)) %>
+		      <% else %>
+		        <%=raw(t('.support_message_without_support_number',
+		            :email_link => link_to(@publisher.support_email_address, "mailto:#{@publisher.support_email_address}", :target => "_blank"))) %>
+		      <% end %>
+
+				<p>To get your business featured contact us at <a href="http://www.howperksworks.com/contact.php" target="_blank">http://www.howperksworks.com/contact.php</a></p>
+				
+	
+			</div>
+		</div><!--END rightcol-->
+		
+		<div class="leftcol">
+			<div class="content">
+			</div>
+			
+			
+			
+		</div><!--END leftcol-->
+	</div><!--END deal_info-->

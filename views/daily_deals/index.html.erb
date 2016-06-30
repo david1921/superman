@@ -1,0 +1,68 @@
+<div style="margin-bottom: 20px; font-weight: bold">
+  <%= will_paginate @daily_deals %>
+</div>
+
+<table cellspacing="0" summary="daily_deals" class="daily_deals">
+  <thead>
+    <th class="advertiser">Advertiser</th>
+    <th>Value Proposition</th> 
+    <% if @publisher.enable_publisher_daily_deal_categories? %>
+        <th class="publisher_category">Publisher Category</th> 
+    <% end %>
+    <th class="analytics_category">Analytics Category</th> 
+    <th class="right">Sold</th>
+    <th class="date">Starts At / Ends At</th>
+    <th class="date">Side Starts At /<br /> Side Ends At</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </thead>
+  
+  <% @daily_deals.each do |deal| -%>
+    <tr class="<%= cycle('even', 'odd') %>">
+      <td class="advertiser">
+      <% if(current_user.can_manage?(deal.advertiser)) %>
+        <%= link_to deal.advertiser_name, edit_advertiser_path(deal.advertiser) %></td>
+      <% else %>
+        <%= deal.advertiser_name %>
+      <% end %>
+      <td><%= deal.value_proposition %></td>
+    
+    <% if @publisher.enable_publisher_daily_deal_categories? %>
+      <td class="publisher_category category">
+        <% if deal.publishers_category.present? %>
+            <%= deal.publishers_category.name %>
+        <% else %>
+            None
+        <% end %>
+      </td>
+    <% end %>
+      <td class="analytics_category category">
+        <% if deal.analytics_category.present? %>
+            <%= deal.analytics_category.name %>
+        <% else %>
+            None
+        <% end %>
+      </td>
+      <td class="right"><%= link_to deal.number_sold, daily_deal_daily_deal_purchases_admin_index_path(deal) %></td>
+      <td class="date <% if deal.active? %>active_deal_listing<% end %>"><%= deal.humanize_start_at %> /<br /> <%= deal.humanize_hide_at %></td>
+      <td class="date"><%= deal.humanize_side_start_at %> <%- unless deal.side_start_at.blank? %>/<%- end %><br /> <%= deal.humanize_side_end_at %></td>
+ 			<td>
+        <% if(current_user.can_manage?(deal.advertiser)) %>
+        <%= link_to "New", new_advertiser_daily_deal_path(deal.advertiser), :class => "action_link" %>
+        <% end %>
+      
+        <%= link_to "View", daily_deal_path(deal), :class => "action_link" %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_daily_deal_path(deal), :class => "action_link" %>
+
+        <%= link_to("Delete", daily_deal_path(deal), :method => :delete, :confirm => "Are you sure you want to delete this Daily Deal?", :class => "action_link") %>
+      </td>
+  <% end -%>  
+</table>
+
+<div class="buttons">
+  <%= link_to "View Email", publisher_deal_of_day_email_path(:label => @publisher.label) %>
+</div>
+
+<div style="position: relative; bottom: 0px; font-weight: bold"><%= will_paginate @daily_deals %></div>

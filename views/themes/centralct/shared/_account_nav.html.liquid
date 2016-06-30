@@ -1,0 +1,12 @@
+
+<ul id="account_nav">
+	{% if publisher.launched? %}
+		{% if publisher.current_user_belongs_to? %}
+	<li><a href="{{ publisher.my_account_path }}" class="{% if_page_name 'consumers#edit'%}current_page{%endif_page_name%}">My Account</a></li>
+	<li><a href="{{ publisher.my_deals_path }}" class="{% if_page_name 'daily_deal_purchases#index'%}current_page{%endif_page_name%}">My Deals</a></li>
+	<li><a class="last" href="{{ publisher.logout_path }}">Sign Out</a></li>
+		{% else %}
+	<li><a class="last" href="{{ publisher.login_path }}" class="{% if_page_name == 'daily_deal#login'%}current_page{%endif_page_name%}">Sign In</a></li>
+		{% endif %}
+	{% endif %}
+</ul>

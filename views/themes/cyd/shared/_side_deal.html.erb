@@ -1,0 +1,28 @@
+	<% if @daily_deal.side_deals.size > 0 %>
+	<div id="side_deals" class="content_box other_deal_tracking">
+		<div id="side_deal_header">
+			<h4>More Great Deals</h4>
+			<a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=9">View All</a>
+		</div><!-- end side_deal_header -->
+    <% @daily_deal.side_deals[0,2].each do |side_deal| %>
+    <div class="side_deal_wrap">
+	  	<div class="side_photo_price_wrapper">
+	  		<div class="side_deal_thumb">
+					<img src="<%= side_deal.photo.url(:facebook) %>" alt="" />
+				</div><!-- end side_deal_thumb -->
+				<div class="side_value">
+					<p>Value</p>
+					<p class="side_deal_value"><%= number_to_currency side_deal.value.to_i, :precision => 0 %></p>
+				</div><!-- end side_value -->
+				<div class="side_price">
+					<p>Price</p>
+					<p class="side_deal_price"><%= number_to_currency side_deal.price, :precision => 0 %></p>
+				</div><!-- end side_price -->
+			</div><!-- end side_photo_price_wrapper -->
+			<p class="side_deal_value_prop"><%= side_deal.value_proposition %></p>
+			<p class="side_deal_value_prop_subhead"><%= side_deal.value_proposition_subhead %></p>
+	  	<a class="side_deal_view_deal button gradient" href="<%= daily_deal_path(side_deal) %>"><p>View Deal</p></a>
+	  </div><!-- /side_deal_wrap -->
+    <% end -%>
+	</div><!-- /side_deals -->
+	<% end %> 

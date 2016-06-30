@@ -1,0 +1,22 @@
+<% if !@events.blank? %>
+ <table>
+  <tr>
+	<th>Timestamp</th>
+	<th>Visitor Email</th>
+	<th>Deal Value Prop</th>
+	<th>Publisher Label</th>
+	<th>Action</th>
+  </tr>
+  <% for event in @events %>
+  <tr>
+	<td><%= event.created_at.to_formatted_s(:short) %></td>
+	<td><%= event.visitor.email %></td>
+	<td><%= truncate(event.target.value_proposition) %></td>
+	<td><%= event.third_party.publisher.label %></td>
+	<td><%= event.action %></td>
+  </tr>
+  <% end %>
+  </table>
+<% else %>
+  No events to show
+<% end %>

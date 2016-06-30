@@ -1,0 +1,23 @@
+changos:
+  advertiser: changos
+  address_line_1: 3005 South Lamar
+  city: Austin
+  state: TX
+  zip: 78704
+  phone_number: 15124161500
+
+bella_smiles:
+  advertiser: bella_smiles
+  address_line_1: 54 Commerce Drive, Ste. 1
+  city: Riverhead
+  state: NY
+  zip: 11901
+  phone_number: 16315913243
+
+elbow_east:
+  advertiser: elbow_east
+  address_line_1: 50 North Sea Drive
+  city: Shouthold
+  state: NY
+  zip: 11971
+  phone_number: 16317651203

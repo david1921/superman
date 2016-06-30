@@ -1,0 +1,21 @@
+{% if publisher.current_user_belongs_to? %}
+<div id="subscribe_wrapper_login"></div><!-- end subscribe_wrapper_login -->
+{% else %}
+<div id="subscribe_wrapper">
+	<div id="subscribe">
+		<p>Get Press deals delivered to your inbox:</p>
+		<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+				<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+				<input id="redirect_to" name="redirect_to" type="hidden" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" />
+				<div class="maincontent">
+						<input id="subscriber_email" name="subscriber[email]" size="27" type="text" placeholder="Email Address" />
+						<input id="submit_btn" src="/themes/anchoragepress/images/buttons/subscribe.png" type="image" />
+				</div>
+				<div class="terms">
+						<input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;">Privacy Policy</a>
+				</div>                                
+		</form>
+	</div><!-- end subscribe -->
+</div><!-- end subscribe_wrapper -->
+{% endif %}

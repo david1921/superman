@@ -1,0 +1,8 @@
+1_year_at_9_99_monthly:
+  subscription_rate_schedule: sdh_austin_rates
+  regular_price: 9.99
+  regular_period: 1
+  regular_time_unit: month
+  recurs: true
+  recurring_count: 11
+  name: austin

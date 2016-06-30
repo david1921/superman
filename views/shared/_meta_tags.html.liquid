@@ -1,0 +1,23 @@
+{% if daily_deal %}
+    <meta property="fb:app_id" content="{{ daily_deal.publisher.facebook_app_id }}"/>
+
+    <meta property="og:type" content="product"/>
+    <meta property="og:url" content="{{ daily_deal.url }}"/>
+    {% if referral %}
+        <meta property="og:title" content="{{ daily_deal.publisher.daily_deal_referral_message_head }}"/>
+        <meta property="og:description" content="{{ daily_deal.publisher.daily_deal_referral_message_body }}"/>
+        <meta property="og:image" content="{{ daily_deal.facebook_daily_deal_image_url }}"/>
+    {% else %}
+        <meta property="og:title" content="{{ daily_deal.facebook_title }}"/>
+        <meta property="og:description" content="{{ daily_deal.facebook_description }}"/>
+        <meta property="og:image" content="{{ daily_deal.facebook_daily_deal_image_url }}"/>
+    {% endif %}
+{% endif %}
+
+
+{% if daily_deal %}
+<meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+{% else %}
+<meta name="description" content="Daily Deal! Get the best deals in {{ publisher.market_name | titleize }} with a new deal every single day!">
+<meta name="keywords" content="Daily Deal! {{ publisher.market_name | titleize }} Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}

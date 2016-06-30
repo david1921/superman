@@ -1,0 +1,5 @@
+<%= render :partial => with_theme('shared/email/pre_text') %>
+<%= render :partial => with_theme('shared/email/header_unreg') %>
+<%= render :partial => with_theme('shared/email/contenttop_weekly_offer_unreg') %>
+<%= render :partial => with_theme('shared/email/bottom_deals_unreg_weekly_offer') unless params[:bottom] == "false" || params[:bottom] == "0" %>
+<%= render :partial => with_theme('shared/email/footer_unreg') %>

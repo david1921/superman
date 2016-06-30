@@ -1,0 +1,12 @@
+  <%= render :partial => "syndication/shared/filter" %>
+<div id="browse_tabs">
+<%= render( :partial => 'syndication/shared/publisher_select' )%>
+<%= render :partial => "syndication/shared/view_select" %>
+  <%= render :partial => "syndication/shared/sort" %>
+  <div id="list_content" class="browse_content">
+    <%= render :partial => "syndication/shared/results" %>
+  	<%= render :partial => "list_offer", :collection => @search_response.deals %>
+  	<%= will_paginate( @search_response.deals, :id => "deal_pagination", :params => {:status => @search_request.status, :publisher_id => @publisher.id}) %>
+  </div><!-- list_content -->
+</div><!-- /browse_tabs -->
+

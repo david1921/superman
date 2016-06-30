@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Coupon</title>
+</head>
+
+<body style="color: black; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
+  <table cellspacing="0" cellpadding="0" width="600" align="center">              
+    <% border_type = @publisher.simple_or_narrow_layout? ? @publisher.coupon_border_type : "solid" %>
+    <tr><td><table cellspacing="0" cellpadding="0" width="600" style="border: 1px <%= border_type %> #cdcdcd;">
+      <tr><td><table cellspacing="0" cellpadding="0" width="600" align="center" style="border-bottom: 1px solid #e03300;">
+        <tr><td style="padding: 12px 12px 8px;"><table cellspacing="0" cellpadding="0" width="576" align="center">
+          <tr><td align="center" style="color: #808080; padding-bottom: 8px;"><%= @publisher.coupon_headline %></td></tr>
+          <tr><td align="center">
+            <%= image_tag(@lead.offer.image.url(:large), :alt => "#{@lead.offer.advertiser_name} image") %>
+          </td></tr>
+          <tr><td style="padding-top: 12px; color: #e03300; font-weight: bold;"><%= @lead.offer.advertiser_name.upcase %><%= ": #{@lead.offer.advertiser.tagline}" unless @lead.offer.advertiser.tagline.blank? %></td></tr>
+          <tr><td id="offer-message"><%= @lead.offer.message %></td></tr>
+          <tr><td style="color: #808080;"><%= @lead.offer.terms %><%= " Expires #{@lead.offer.expires_on.to_s(:compact)}." if @lead.offer.expires_on.present? && (@lead.offer.publisher.publishing_group.try(:label) != "mcclatchy") %></td></tr>
+          <% if @lead.offer.coupon_code? -%>
+          <tr><td style="padding-top:12px;text-align:right;">Coupon Code: <span style="color: #e03300;"><%= @lead.offer.coupon_code %></span></td></tr>
+          <% end -%>
+        </table></td></tr>
+      </table></td></tr>
+      <tr><td><table cellspacing="0" cellpadding="0" width="600" align="center" style="border-top: 1px solid #e03300; margin-top: 1px;">
+        <tr><td style="padding: 8px 12px 8px;"><table cellspacing="0" cellpadding="0" width="576" align="center">
+        <%- @lead.offer.address do |line| -%>
+          <%= raw "<tr><td>#{h(line)}</td></tr>".html_safe %>
+        <%- end -%>
+          <%= raw "<tr><td>#{h(@lead.offer.formatted_phone_number)}</td></tr>".html_safe unless @lead.offer.formatted_phone_number.blank? %>
+        </table></td></tr>
+        <% if @publisher.label == "sdreader" -%>
+        <tr><td style="text-align: right; margin-bottom: 4px; margin-right: 4px;">
+          <%= image_tag "http://media.sdreader.com/img/main_logo.jpg", :style => "width: 62px;" %>
+        </td></tr>
+        <% end -%>
+      </table></td></tr>
+    </table></td></tr>
+    <tr><td style="padding: 12px 24px;"><table cellspacing="0" cellpadding="0" width="552">
+      <tr>
+        <td align="left">
+          <%= render(:partial => with_theme("coupon_mailer/coupon_footer"), :locals => { :publisher => @publisher }) %>
+        </td>
+      </tr>
+    </table></td></tr>
+    
+    <tr><td style="padding: 12px 24px;"><table cellspacing="0" cellpadding="0" width="552">
+      <tr><td align="center">You are receiving this email because someone visited the <%= @publisher.name %> website and forwarded a coupon to <span class="email"><%= @lead.email %></span>. To opt out of receiving further email from us, 
+      <%= link_to("click here", email_opt_out_url(:random_code => @opt_out_random_code), :id => "email-opt-out") %>.</td></tr>
+      <tr><td align="center" style="padding-top: 6px;">Analog Analytics respects your privacy. <%= link_to "Click here", txt411_privacy_url %> to read our Privacy Policy.</td></tr>
+      <tr><td align="center" style="padding-top: 6px;">Analog Analytics and TXT411 are trademarks of <%= link_to "Analog Analytics Inc", "http://analoganalytics.com" %>. Postal address: 14525&nbsp;SW&nbsp;Millikan&nbsp;Way&nbsp;#34115, Beaverton, Oregon&nbsp;97005-2343.</td></tr>
+    </table></td></tr>
+  </table>
+</body>
+</html>

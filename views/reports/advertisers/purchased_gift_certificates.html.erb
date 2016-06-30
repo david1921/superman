@@ -1,0 +1,27 @@
+<% set_page_title "Reports: Purchased Deal Certificates" %>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => purchased_gift_certificates_reports_advertiser_url(@advertiser, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :purchased_deal_certificates, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "advertiser_purchased_gift_certificates",
+  :data_source => purchased_gift_certificates_reports_advertiser_path(@advertiser.to_param, :format => "xml"),
+  :data_params => {},
+  :result_node => :purchased_gift_certificate,
+  :data_columns => [
+    [:item_number, { :label => "Deal Certificate", :class_name => "left" }],
+    [:value, { :label => "Value", :formatter => "formatCurrency" }],
+    [:paypal_payment_gross, { :label => "Purchase Price", :formatter => "formatCurrency" }],
+    [:paypal_payment_date, { :label => "Purchase Date" }],
+    [:serial_number, { :label => "Serial Number" }],
+    [:recipient_name, { :label => "Name", :class_name => "left" } ],
+    [:paypal_payer_email, { :label => "Email", :class_name => "left" }],
+    [:status, { :label => "Status", :class_name => "left" }]
+  ]
+}) %>
+

@@ -1,0 +1,18 @@
+<div style="margin-bottom: 20px; font-weight: bold">
+  <%= will_paginate @suspected_fraud_purchases %>
+</div>
+
+<table cellspacing="0" summary="suspected_frauds" class="suspected_frauds">
+  <tr>
+    <th class="description">Description</th>
+    <th class="quantity">Quantity</th>
+    <th class="purchase">Purchaser</th>
+    <th class="email">Email</th>
+    <th class="created_at">Created At</th>
+    <th class="ip_address">IP Address</th>
+    <th class="last_4_cc_digits">CC Last 4</th>
+    <th class="status">Status</th>
+    <th class="add_credit"></th>
+  </tr>
+  <%= render :partial => "suspected_fraud_purchase", :collection => @suspected_fraud_purchases %>
+</table>

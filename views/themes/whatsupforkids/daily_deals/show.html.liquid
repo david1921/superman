@@ -1,0 +1,144 @@
+<!-- begin daily deal content -->
+
+<div>
+<div id="left_column">
+	<h1 id="value_proposition">Today's Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!<br /><span class="value_proposition">{{ daily_deal.value_proposition }}</span></h1>
+	<div id="buy_it">{{ daily_deal.price | currency }}</div>
+	<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}"  /></div>
+	<div id="dashboard">
+		<div id="buy_now">
+			  {% if daily_deal.sold_out? %}
+		      <div id="sold_out" class="dd_button"><span></span>Sold Out</div>
+			  {% elsif daily_deal.over? %}
+			  <div id="deal_over" class="dd_button"><span></span>Deal Over</div>
+			  {% elsif daily_deal.active? %}
+			  <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><span></span>Buy Now</a>
+			  <div id="deal_over" class="dd_button unavailable" style="display:none;"><span></span>Deal Over</div>
+			  {% else %}
+		      <div id="not_yet" class="dd_button"><span></span>Not Yet Available</div>
+			  {% endif %}
+		</div><!-- /buy_now -->
+
+		<div id="deal_specs">
+			<table id="value_info">
+				<tr>
+					<td >{{ daily_deal.value | currency }}</td>
+					<td>{{ daily_deal.price | currency }}</td>
+					<td class="you_save">{{ daily_deal.savings | currency }}</td>
+				</tr>
+				
+				<tr>
+					<th>Value</th>
+					<th>Today's Deal</th>
+					<th class="you_save">You Save</th>
+				</tr>
+			</table>
+	      
+			<table id="timer">
+				<tr>
+					<td id="clock" rowspan="2" width="20" ></td>
+					<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+				</tr>
+				<tr>
+					<th id="time_left_to_buy_label">Time Left to Buy</th>
+				</tr>
+			</table><!-- /timer -->
+		</div><!-- /deal_specs -->
+	</div><!--end_dashboard-->
+	<div class="clear"></div>
+    
+	<div id="share">
+		<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/whatsupforkids/images/buttons/facebook.png" width="30" height="35" alt="share on facebook" /></a>
+		<a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/whatsupforkids/images/buttons/twitter.png" width="30" height="35" alt="share this on twitter" /></a>
+		<a href="mailto:?subject={{ daily_deal.publisher_prefix | uri_escape }}:%20{{ daily_deal.value_proposition | uri_escape }}&amp;body=Check%20out%20this%20deal%20at%20{{ daily_deal.url }}" class="share_link share_button_mail"><img src="/themes/whatsupforkids/images/buttons/email.png" width="30" height="35" alt="email this to a freind" /></a>
+	</div><!-- /share -->
+    
+    
+	<div id="deal_details">
+<div id="advertiser">  
+     <img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+     <p>{{ advertiser.name }}</p>
+     <div class="location">
+       {% if advertiser.address? %}
+         {% if advertiser.address_line_1 != '' %}
+           {{ advertiser.address_line_1 }}<br />
+         {% endif %}
+
+         {% if advertiser.address_line_2 != '' %}
+           {{ advertiser.address_line_2 }}<br />
+         {% endif %}
+
+         {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}
+         <br /> 
+       {% endif %}
+       {{ advertiser.formatted_phone_number }}<br />
+     </div><!-- /location -->
+     {% if advertiser.website_url != '' %}
+       <a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+     {% endif %}
+     <br /><br />
+
+     {% if advertiser.address? %}
+          <div class="map">
+          {% if advertiser.stores.size > 0 %}
+          <a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.map_image_url }}" /></a>
+          {% endif %}
+     {% endif %}
+     </div><!-- /map -->
+</div><!-- /advertiser -->
+      	
+      	<div id="description_wrapper">
+			<div id="highlights">
+				{% if daily_deal.highlights != "" %}
+				<h2>Highlights</h2>
+				{{ daily_deal.highlights }}
+				{% endif %}
+			</div>
+			  
+			<div id="fine_print">
+				{% if daily_deal.fine_print != "" %}
+				<h2>Fine Print</h2>
+				{{ daily_deal.terms }}
+				{% endif %}
+			</div>
+	        
+			<div id="description">
+				<h2>Description</h2>
+				{{ daily_deal.description }}
+			</div>
+		</div><!-- /description_wrapper -->
+    	<div class="clear"></div>
+    </div><!-- /deal_details-->
+</div><!--/dd_content_left_column-->
+
+<div id="right_column">
+	
+	{% if daily_deal.side_deals.size > 0 %}
+	<div id="other_deals" class="sidebar_box other_deal_tracking">
+		<h3>Other Local Deals</h3>
+		  {% for side_deal in daily_deal.side_deals %}
+		    <div class="side_deal_wrap">
+				<p><a class="side_deal" href="{{ side_deal.url }}" target="_blank">{{ side_deal.value_proposition }}</a></p>
+				<div class="side_deal_text">
+                    <div class="side_deal_price">{{ side_deal.price | currency }}</div>
+                    <p class="side_deal_value">{{ side_deal.value | currency }} VALUE</p>
+					<a class="view_deal" href="{{ side_deal.url }}" target="_blank"><img src="/themes/whatsupforkids/images/buttons/view_deal.png" width="" height="" alt="view deal" /></a>
+				</div><!-- /side_deal_text -->
+				<div class="side_deal_thumb"><img src="{{ side_deal.photo.facebook_url }}" alt="" /></div>
+				<div class="clear"></div>
+			</div><!-- /side_deal_wrap -->
+		  {% endfor %}
+	</div><!-- /other_deals -->
+	{% endif %}
+	
+	<div id="facebook" class="sidebar_box">
+
+<iframe src="http://www.facebook.com/plugins/likebox.php?id=354637445362&width=230&connections=10&stream=false&header=true&height=360" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:230px; height:360px;" allowTransparency="true"></iframe>
+	</div>
+</div><!--dd_content_right_column-->
+    
+<div class="clear"></div>
+
+</div>
+<!-- end daily deal content -->
+     

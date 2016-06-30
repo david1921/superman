@@ -1,0 +1,11 @@
+<div id="payment_method_credit" class="row">
+
+  <%= render :partial => 'daily_deal_purchases/braintree_credit_card_logos', :locals => { :daily_deal_purchase => daily_deal_purchase } %>
+
+  <%- daily_deal_purchase.publisher.find_braintree_credentials! -%>
+
+  <%=  render :partial => "daily_deal_purchases/braintree_transparent_redirect_form", :locals => { :daily_deal_purchase => daily_deal_purchase, :use_vault => false, :hide_submit_button => false, :result => result } %>
+
+</div>
+
+<%= javascript_include_tag "app/daily_deal_purchases/address", "app/daily_deal_purchases/braintree_buy_now_form" %>

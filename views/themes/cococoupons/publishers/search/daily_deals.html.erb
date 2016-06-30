@@ -1,0 +1,11 @@
+<%- if @daily_deals.size > 0 %>
+  <div class="daily_deals">
+    <%- daily_deals.each do |daily_deal| %>
+      <div class="daily_deal">
+      
+      </div>
+    <%- end %>
+  </div>
+<%- else %>
+  <p>Sorry, no daily deals were found for <strong>{{ query }}</strong>.</p>
+<%- end %>

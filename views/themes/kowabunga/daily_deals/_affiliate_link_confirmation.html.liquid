@@ -1,0 +1,50 @@
+{% if daily_deal.affiliate_url and publisher.enable_affiliate_url_popup and daily_deal.active? %}
+<div id="affiliate_link_confirmation" style="display:none;">
+ <div class="popup-header">
+<a href="{{ publisher.todays_daily_deal_path }}"><img class="popup-pub-logo" src="/themes/kowabunga/images/graphics/kowabunga-header-logo.png" alt="Kowabunga, More Deals, More Places!"/></a>
+<h2>Thanks for Surfing with Kowabunga!</h2>
+</div>
+    <p>You have selected to purchase a deal from one of our partner sites, and will now be leaving Kowabunga.com to complete your purchase.<br/>See you soon!</p>
+
+    <form action="{{ daily_deal.affiliate_url }}" method="get" target="_blank">
+        <input type="submit" id="confirm_redirect" value="Continue"/>
+    </form>
+    
+     <form>
+        <input type="submit" id="cancel_redirect" value="Nevermind"/>
+    </form>
+
+</div>
+
+<script src="/javascripts/AffiliateLinkConfirmation.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+// dynamically include the stylesheet
+var cssElement = $(document.createElement("link"));
+cssElement.writeAttribute({
+    href:  '/stylesheets/popup_form.css',
+    rel:   'stylesheet',
+    type: 'text/css'
+});
+document.getElementsByTagName('head')[0].appendChild(cssElement);
+
+
+// attach the popup window if the deal is ready to buy
+document.observe("dom:loaded", function() {
+    if ($('buy_now_button'))
+        var confirmation_dialog = new AffiliateLinkConfirmation('buy_now_button', 'affiliate_link_confirmation');
+        jQuery('#cancel_redirect').bind('click', function(event){
+            event.preventDefault();
+            confirmation_dialog.hide();
+
+        });
+        jQuery('#confirm_redirect').bind('click', function(){
+	        jQuery.getScript('/javascripts/purchase-confirmation.js');
+            confirmation_dialog.hide();
+            window.open(jQuery(this).closest('form')[0].action, '_blank');
+        });
+});
+
+</script>
+
+{% endif %}

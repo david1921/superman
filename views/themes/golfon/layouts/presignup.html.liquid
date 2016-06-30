@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>{% daily_deal_page_title %}</title>
+  
+  <link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/themes/golfon/stylesheets/preopt.css" type="text/css" media="all" />  
+  
+  <!--[if gt IE 6]>
+  <link rel="stylesheet" href="/themes/golfon/stylesheets/ie.css" type="text/css" media="all" />
+  <![endif]-->
+
+	
+
+  
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script> 
+  <script src="/themes/golfon/javascript/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $.noConflict();
+    // Code that uses other library's $ can follow here.
+  </script>
+     
+  <script src="/javascripts/effects.js" type="text/javascript"></script> 
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script> 
+  <script src="/javascripts/controls.js" type="text/javascript"></script> 
+  <script src="/javascripts/ghostie.js" type="text/javascript"></script>  
+  <script src="/javascripts/lightbox.js" type="text/javascript"></script>
+  
+	<script src="/themes/golfon/javascript/jquery.ez-bg-resize.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">	     	  
+	  var thankYouLightBox = null;
+	
+		jQuery(document).ready(function() {
+        jQuery("#body-background").ezBgResize();
+		});
+		
+		function loadThankYouPopup() {
+		  var thankYouContent  = $('thank-you-content'),
+		      flashNotice      = $('flash_notice');
+	        
+  		if ( flashNotice.visible() ) { 
+  		  thankYouLightBox = new lightbox( thankYouContent );
+  		  flashNotice.hide();
+  		  // overwriting the ajax behaviour since we have the
+  		  // content on the page.
+  		  thankYouLightBox.loadInfo = function() {
+  		    var response = {
+  		      responseText: thankYouContent.innerHTML
+  		    };
+  		    thankYouLightBox.processInfo(response);
+  		  }; // we already have the content 
+  		  activateLightBox(thankYouLightBox);
+  		}		  
+		}
+		function activateLightBox() {		  
+		  var overlay = $('overlay'); 
+		  if (overlay) {
+		    thankYouLightBox.activate(); 
+        document.body.observe('click', function(){
+          thankYouLightBox.deactivate();
+        });
+		  } else {
+        setTimeout( "activateLightBox()", 1000 );
+		  }
+      
+		}
+		
+		Event.observe(window, 'load', loadThankYouPopup);
+		
+	</script>
+  
+  <script type="text/javascript" src="https://use.typekit.com/ctf4zen.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+<body class="preopt">
+
+<div class="content" id="content">
+	<div id="analog_analytics">
+	  {{ content_for_layout }} 
+	</div>
+</div>
+
+{% include with_theme "shared/tracking_publisher" %}
+</body> 
+</html>

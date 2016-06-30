@@ -1,0 +1,40 @@
+<div class="account_nav">
+	<% if current_consumer_for_publisher?(@publisher) %>
+		<p class="welcome">Welcome, <%= current_consumer.first_name %></p>
+		<ul>
+			<li class="first"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+			<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+			<li><a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a></li>
+            <li><a href="#" class="alert_signup" onclick="slideDownAndForget('subscribe_form'); return false;">Subscribe</a></li>
+		</ul>
+	<% else %>
+	   <%= render :partial => with_theme('shared/facebook_connect_erb') %>
+		<ul class="login_buttons">
+			<li class="first"><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+            <li><a href="#" class="alert_signup" onclick="">Subscribe</a></li>
+		</ul>
+	<% end %>
+</div><!-- /account_nav -->
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery('.alert_signup').hide();
+jQuery(document).ready(function($) {
+    var alertbtn = $('.alert_signup')
+    var subform = $('#subscribe_form')
+    if (subform.is(':visible')) {
+        alertbtn.fadeOut(400);
+    }
+    else {
+        alertbtn.fadeIn(400);
+    }
+    alertbtn.click(function() {
+        $(this).fadeOut(400);
+        subform.slideToggle('slow');
+    });
+    $('#subscribe_form_hide').click(function() {
+        alertbtn.fadeIn(400);
+        subform.slideToggle('slow');
+    });
+    return false;
+});
+</script>

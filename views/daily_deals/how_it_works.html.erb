@@ -1,0 +1,14 @@
+<% set_daily_deal_page_title_slug t(:how_it_works) %>
+
+<div class="page_row how_it_works">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:how_it_works) %></h1>
+    <%= daily_deal_how_it_works( @publisher ).html_safe %>
+    
+    <div class="sign_up">
+      <p><%= raw(t('.sign_up_message', :href => link_to(t(:sign_up), new_publisher_consumer_path(@publisher))) )%></p>
+    </div>
+    
+    <p class="questions"><%= raw(t('.more_questions_message', :href => link_to(t('.faq_message'), faqs_publisher_daily_deals_path(@publisher))) )%></p>
+  </div>
+</div>

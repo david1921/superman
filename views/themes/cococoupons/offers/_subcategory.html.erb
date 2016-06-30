@@ -1,0 +1,26 @@
+<% if subcategory.offers.present? -%>
+
+<li style="list-style: none">
+  <%= link_to truncate(subcategory.name, :length => 15), 
+    render_public_offers_path(@publisher, 
+      { 
+        :category_id => subcategory, 
+        :background_color => @background_color,
+        :city             => @city, 
+        :foreground_color => @foreground_color,
+        :iframe_height    => @iframe_height,
+        :iframe_width     => @iframe_width,
+        :layout           => @layout,
+        :order            => @order, 
+        :page_size        => @page_size, 
+        :postal_code      => @postal_code, 
+        :radius           => @radius,
+        :state            => @state, 
+        :text             => @text      
+      }
+    ), 
+    :title => subcategory.name,
+    :alt => subcategory.name -%> (<%= subcategory.offers_count -%>)
+</li>
+
+<%- end -%>

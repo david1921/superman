@@ -1,0 +1,8 @@
+<div class="alldeals_deal_box">
+	<img src="<%= daily_deal.photo.alternate_standard_url %>" alt="<%= daily_deal.advertiser_name %> Claim Your Deal, Deal of the Day!" />
+	<h2 class="alldeals_value_prop"><%= daily_deal.side_deal_value_proposition %></h2>
+	<p><%= daily_deal.side_deal_value_proposition_subhead %></p>
+	<div class="alldeals_view_deal_box">
+		<a class="alldeals_price" href="<%= daily_deal.url %>"><%= number_to_currency(daily_deal.price, :precision => 0) %></a>
+	</div><!-- end .alldeals_view_deal_box -->
+</div><!-- end .alldeals_deal_box -->

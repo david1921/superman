@@ -1,0 +1,16 @@
+<%=t '.complete_now_message' %>
+
+<div id="payment_method_free" class="row">
+  <% form_tag execute_free_daily_deal_purchase_path(daily_deal_purchase), :id => "free_purchase_form" do %>
+    <%= submit_tag(t('.complete_purchase'), :id => "complete_purchase") %> <%= daily_deal_cancel_link(daily_deal_purchase.publisher) %>
+  <% end -%>
+</div>
+
+<% javascript_tag do %>
+  document.observe('dom:loaded', function() {
+    var form = $('free_purchase_form');
+    form.observe('submit', function(event) {
+      this.getInputs('submit').invoke('disable');
+    });
+  });
+<% end %>

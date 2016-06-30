@@ -1,0 +1,166 @@
+<div id="main"><!--MAIN CONTENT-->
+    <div id="deal_content"><!--LEFT COLUMN-->
+        <div id="deal_feature">
+        	<h2 id="todays_deal"><strong>Today's Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!</strong><br />
+        {{ daily_deal.value_proposition }}</h2>
+
+            <div id="dash_container">
+            	<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="" width="300" /></div>
+                <div id="dashboard">
+                   {% if daily_deal.sold_out? %}
+                     <div id="sold_out" class="dd_button"><img src="/themes/vcreporter/images/buttons/sold-out.png" alt="sold out" width="300" /></div>
+                      {% elsif daily_deal.over? %}
+                      <div id="deal_over" class="dd_button"><img src="/themes/vcreporter/images/buttons/deal-over.png" alt="deal over" width="300" /></div>
+                      {% elsif daily_deal.active? %}
+                      <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><img src="/themes/vcreporter/images/buttons/buy_now_large.png" alt="BUY NOW" width="300" height="66" /></a>
+                      <div id="deal_over" class="dd_button unavailable" style="display:none;"><img src="/themes/vcreporter/images/buttons/deal-over.png" alt="deal over" width="300" /></div>
+                      {% else %}
+                     <div id="not_yet" class="dd_button"><img src="/themes/vcreporter/images/buttons/deal-over.png" alt="deal over" width="300" /></div>
+                      {% endif %}
+										 <div id="value">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                        <td align="center" valign="top">
+                        <div class="price">{{ daily_deal.value | currency }}</div>
+                        <div class="tag"><img src="/themes/vcreporter/images/display/value.png" alt="Value" /></div>
+                        </td>
+                        <td align="center" valign="top" width="80">
+                        <div class="price">{{ daily_deal.price | currency }}</div>
+                        <div class="tag"><img src="/themes/vcreporter/images/display/todays-deal.png" alt="Today's Deal" width="78" height="10" /></div>
+                        </td>
+                        <td align="center" valign="top" class="save">
+                        <div class="price">{{ daily_deal.savings | currency }}</div>
+                        <div class="tag"><img src="/themes/vcreporter/images/display/you-save.png" alt="You Save" width="54" height="10" /></div>
+                        </td>
+                        </tr>
+                        </table>
+  										  <table cellspacing="0" width="100%">
+                        <tr>
+                        <td rowspan="2" valign="bottom" id="clock"><img src="/themes/vcreporter/images/display/lil_clock.png" width="38" height="47" alt="" /></td>
+                          <td id="time_left_to_buy" valign="bottom" align="center">{{ daily_deal.time_remaining_display }}</td>
+                          <td rowspan="2" align="center" valign="bottom" id="tip">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <th id="time_left_to_buy_label" valign="bottom" height="11"><img src="/themes/vcreporter/images/display/time-left-to-buy.png" alt="Time Left To Buy" width="104" height="11" /></th>
+                        </tr>
+                        </table>
+                        
+                    </div>
+                	<div style="height: 6px; line-height: 6px;"><img src="/themes/vcreporter/images/backgrounds/value_bg_bottom.png" alt=""/></div>
+                </div><!--DASHBOARD-->
+                
+            </div>
+        </div>
+    
+        <div id="share">
+            <a href="/daily_deals/{{ daily_deal.id }}/facebook" class="facebook share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/vcreporter/images/buttons/facebook.png" alt="Facebook" width="34" height="31" /></a><a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/vcreporter/images/buttons/twitter.png" alt="Twitter" width="34" height="31" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button_mail"><img src="/themes/vcreporter/images/buttons/email.png" alt="Email" width="34" height="31" /></a></div>
+        
+        <div id="deal_info">
+            
+            <div id="box1">
+                <img src="{{ advertiser.logo.url }}" alt="" />
+                {% if advertiser.address? %}
+                  <p>{{ advertiser.name }}<br />
+                  {{ advertiser.address_line_1 }}<br />
+                  {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                  {% if advertiser.formatted_phone_number != empty %}
+                    {{ advertiser.formatted_phone_number }}<br/>
+                  {% endif %}<br/>
+                  </p>
+                {% elsif advertiser.formatted_phone_number != empty %}
+                  <p>
+                    {{ advertiser.formatted_phone_number }}<br/>
+                  </p>
+                {% endif %}
+                
+                {% if advertiser.website_url != empty %}
+                <a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a>
+                {% endif %}
+            </div>
+        
+            <div id="box2">
+              {% unless daily_deal.highlights == "" %}
+                <h2>Highlights</h2>
+                {{ daily_deal.highlights }}
+              {% endunless %}
+            </div>
+            
+            <div id="description">
+                <h2>Description</h2>
+                {{ daily_deal.description }}
+                <h2>The Fine Print</h2>
+                {{ daily_deal.terms }}
+            </div>
+        
+        </div>
+    
+    </div><!--/LEFT COLUMN-->
+
+    <div id="side_bar"><!--SIDE BAR-->
+        <div class="side_content_box logo">
+            <img src="/themes/vcreporter/images/vc_logo.png" alt="$10" height="98" width="234" />
+        </div>
+        
+        <div class="side_content_box">
+            <h2>Print Local Coupons</h2>
+            <p>Get everyday deals from local businesses and save!</p>
+            <a href="{{ publisher.offers_path }}"><img src="/themes/vcreporter/images/buttons/click_here_button.png" width="81" height="21" alt="click here for more details" /></a>
+        </div>
+        
+        {% if daily_deal.side_deals.size > 0 %}
+          <div class="side_content_box other_deal_tracking" class="box other_deal_tracking">
+              <h2>Other Great Deals</h2>
+              {% for side_deal in daily_deal.side_deals %}
+              <div class="side_deal">
+                <p class="side_deal_discount">{{ side_deal.savings_as_percentage | percentage }} OFF</p>
+                <img id="other_deal_photo" src="{{ side_deal.photo.facebook_url }}" />
+                <p class="side_deal_value_prop">{{ side_deal.value_proposition }}</p>
+                <a href="{{ side_deal.url }}"><img src="/themes/vcreporter/images/buttons/click_here_button.png" width="81" height="21" alt="click here for more details" /></a>
+                <div class="clear"></div>
+              </div>
+              {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if advertiser.stores.size > 0 %}
+          <div class="side_content_box">
+            <h2>MAP &amp; Location</h2>
+            <a href="{{ advertiser.map_url }}"><img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="blank"/></a>
+            {% for store in advertiser.stores %}
+              <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">
+                <p>
+                  {{ advertiser.name }}
+                  {% if store.address_line_1 != empty %}
+                    <br/>{{ store.address_line_1 }}
+                  {% endif %}
+                  {% if store.city != empty %}
+                    <br/>{{ store.city }}, {{ store.state }} {{ store.zip }}
+                  {% endif %}
+                  {% if store.formatted_phone_number != empty %}
+                    <br/>phone:{{ store.formatted_phone_number }}
+                  {% endif %}<br/>
+                  {% if advertiser.website_url != empty %}
+                  <a class="link" href="{{ advertiser.website_url }}">Company Website</a>
+                  {% endif %}
+                </p>
+              </div>
+            {% endfor %}
+
+            {% if advertiser.num_stores > 3 %}
+            <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see
+              all locations</a>
+            {% endif %}
+        </div>
+      {% endif %}
+
+   
+        <div class="side_content_box">
+            <h2>Advertise For FREE!</h2>
+            <p>Feature your business here and drive customers through your door!</p>
+            <a href="{{ publisher.feature_your_business_path }}"><img src="/themes/vcreporter/images/buttons/click_here_button.png" width="81" height="21" alt="click here for more details" /></a>
+        </div>
+    </div><!--/SIDE BAR-->
+
+</div><!--/MAIN CONTENT-->
+
+

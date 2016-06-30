@@ -1,0 +1,25 @@
+<%= render :partial => "syndication/shared/filter" %>
+<div id="browse_tabs">
+<%= render( :partial => 'syndication/shared/publisher_select' )%>
+<%= render :partial => "syndication/shared/view_select" %>
+  <%= render :partial => "syndication/shared/sort" %>
+</div>
+
+<div id="map_content" class="browse_content">
+	<div id="results_list">
+    <div class='loading'><span class="loading-text">loading…</span></div>
+	</div><!-- /results_list -->
+	<div id="map"><div id="aa-map" class="aa-map" style="width:569px;height:560px"></div>  </div>
+</div><!-- /map_content -->
+<script type="text/javascript" charset="utf-8">
+    var aaMapConfig = {
+      <% publisher = @publisher || current_user.company %>  
+         dataUrl: "<%= map_syndication_deals_path(:format => 'json')%>",
+      startingZoomLevel: <%= @search_request.zoom_level %>,
+      startingLatitude: <%= @search_request.latitude %>,
+      startingLongitude: <%= @search_request.longitude %>
+    }
+</script>
+<script data-main="/javascripts/app/syndication/map/main.js" src="/javascripts/lib/require-jquery.js"></script>
+<script type='text/javascript'>jQuery.noConflict();</script>
+

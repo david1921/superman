@@ -1,0 +1,82 @@
+<% set_daily_deal_page_title_slug t(:blue365_deals) %>
+
+<div id="landing_page">
+	<div id="landing_page_content">
+		<!-- landing_page Top -->
+		<div id="landing_page_top">
+			<div id="landing_page_top_row1">
+		 		<img src="/themes/bcbsa/images/graphics/tip_swirl_top.png" />
+		 	</div>
+		 	<div id="landing_page_top_row2">
+		 		<h2>Welcome to blue365!</h2>
+		 	</div>
+		 	<div id="landing_page_top_row4">
+		 		<img src="/themes/bcbsa/images/graphics/tip_swirl_bottom.png" />
+		 	</div>
+		</div>
+		<!-- /landing_page Top -->
+		<div class="landing_page_wrapper">
+		<div class="landing_left_side">
+		<h2>What is Blue365?</h2>
+		<p>Blue365 is a program exclusive to members of participating Blue Companies offering health and wellness deals to keep you healthy and happy. Check out some of the deals below that may be available to you once you sign up!</p>
+		
+		<!-- switch from pub_group to pub context for landing page links -->
+		<% if @publishing_group %>
+			<% if national_publisher = @publishing_group.publishers.find_by_label("bcbsa-national") %>
+          		<a href="<%= how_it_works_publisher_daily_deals_path(national_publisher.id) %>">Click here to learn more about Blue365</a>
+        	<% end %>
+		<% else %>
+			<a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">Click here to learn more about Blue365</a>
+		<% end %>
+		
+		<!-- Landing Page Gallery -->
+		<%= render :partial => with_theme('landing_pages/deal_gallery')%>
+		<!-- /Landing Page Gallery -->
+		</div><!--/landing_left_side -->
+		<!-- Landing Page Content -->
+		<div class="page_row"> 
+	 	 	<div class="page_column_12 first">
+	 	 		<!-- FLASH MESSAGES -->
+        <%= render :partial => 'shared/flash_messages' %>
+	 	 			<div id="landing_page_content_col1">
+            <% if national_publisher = @publishing_group.publishers.find_by_label("bcbsa-national") %>
+			<h3>Find deals just for you!</h3>
+			<p>Just enter the first 3 characters on your member ID card and your ZIP code, and we’ll help you find healthy deals in your area and nationwide.</p>	 	 
+            <% end %>
+	 	 			</div>
+	 	 			<div id="landing_page_content_col2">
+	 	 				<form action="<%= publishing_group_landing_page_path(@publishing_group.label) %>" method="GET">
+     		 			 <!-- Plan Prefix: <%= text_field_tag :membership_code %> -->
+     		 			 <input id="membership_code" name="membership_code" type="text" value="Your ID Card Prefix" class="clickblur" maxlength="3">
+     		 			 
+     		 			 <a id="inline" class="fancybox" id="card_prefix" href="#card_prefix_info">What is this?</a>
+     		 			 <br />
+     		 			 <!-- Zip Code: <%= text_field_tag :zip_code %> -->
+     		 			 <input id="zip_code" name="zip_code" type="text" value="Your ZIP Code" maxlength="5" class="clickblur" maxlength="5">
+					
+	 	 			</div>
+	 	 			<div id="landing_page_content_col3">
+	 	 				 <input class="red_go_button" name="commit" type="submit" value="Find Deals">
+	 	 				 
+	 	 				 <% if @publishing_group %>
+			    			<% if national_publisher = @publishing_group.publishers.find_by_label("bcbsa-national") %>
+			    				<a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(national_publisher.id) %>" target="_blank">Terms of Use </a> 
+			    				<span class="terms_policy_spacer">|</span>
+			    				<a id="privacy_policy" href="<%= privacy_policy_publisher_daily_deals_path(national_publisher.id) %>" target="_blank">Privacy Policy</a>
+						   								    			<% end %>
+			    		<% else %>
+			    			<a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank">Terms of Use</a>
+							<a id="privacy_policy" href="<%= privacy_policy_publisher_daily_deals_path(@publisher) %>" target="_blank">Privacy Policy</a>
+						<% end %>
+	 	 				 
+     					 </form>
+	 	 			</div>
+	 		</div>
+	 	</div>
+		</div><!-- /landing_page_wrapper -->
+		<!-- /Landing Page Content -->
+		<!-- <div id="clear"></div> -->
+	</div>
+</div>
+
+<%= render :partial => with_theme("shared/lightboxes/card_prefix") %>

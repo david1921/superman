@@ -1,0 +1,83 @@
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+//<![CDATA[
+
+var sc_project=6140242;
+var sc_invisible=1;
+var sc_security="fcdf4de0";
+//]]>
+</script>
+<script type="text/javascript" src="https://secure.statcounter.com/counter/counter.js"></script>
+<noscript>
+<div class="statcounter">
+<a title="vBulletin stats" href="http://www.statcounter.com/vbulletin/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/6140242/0/fcdf4de0/1/" alt="vBulletin stats" ></a>
+</div>
+</noscript>
+<!-- End of StatCounter Code -->
+
+<script language="JavaScript">
+//<![CDATA[
+var tcdacmd="dt";
+//]]>
+</script>
+
+{% include "themes/freedom/shared/tracking_publisher" %}
+
+{% analytics_tag sale %}
+<!-- Google Code for Offer Purchase Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 964759628;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "Cut0CIyC6QIQzKCEzAM";
+var google_conversion_value = {% analytics_tag_data value %};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/964759628/?label=Cut0CIyC6QIQzKCEzAM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+{% endanalytics_tag %}
+
+{% analytics_tag sale %}
+<!-- INK LA - OC Register Daily Deal - Secure Confirmation Pixel -->
+<img src='https://smp.specificmedia.com/smp/v=5;m=1;t=5497;ts=<timestamp_here>' width='0' height='1' border='0' />
+
+{% endanalytics_tag %}
+
+{% analytics_tag landing %}
+<!-- Add retargeting tracking pixel to deal of the day landing page -->
+{% https %}
+<!-- INK LA - OC Register Daily Deal RET - Secure Landing Pixel -->
+<img src="https://bp.specificclick.net?pixid=99070137" width="0" height="0" border="0" />
+{% endhttps %}
+{% http %}
+<!-- INK LA - OC Register Daily Deal RET - Nonsecure Landing Pixel -->
+<img src="http://bp.specificclick.net?pixid=99070137" width="0" height="0" border="0" />
+{% endhttp %}
+
+{% endanalytics_tag %}
+
+
+{% analytics_tag landing %}
+{% if publisher.label == 'ocrnorthcoastal' %}
+	<script src="http://common.onset.freedom.com/fi/analytics/cms/?scode=ocregister&domain=northcoastal.dealoftheday.ocregister.com&shier=dotd|northcoastal&ghier=dotd|ocr|northcoastal&usetitle=true" type="text/javascript" charset="utf-8"></script>
+{% endif %}
+{% if publisher.label == 'ocrnorthinland' %}
+	<script src="http://common.onset.freedom.com/fi/analytics/cms/?scode=ocregister&domain=northinland.dealoftheday.ocregister.com&shier=dotd|northinland&ghier=dotd|ocr|northinland&usetitle=true"></script>
+{% endif %}
+{% if publisher.label == 'ocrsouth' %}
+	<script src="http://common.onset.freedom.com/fi/analytics/cms/?scode=ocregister&domain=south.dealoftheday.ocregister.com&shier=dotd|south&ghier=dotd|ocr|south&usetitle=true"></script>
+{% endif %}
+{% if publisher.label == 'ocrcentral' %}
+	<script src="http://common.onset.freedom.com/fi/analytics/cms/?scode=ocregister&domain=central.dealoftheday.ocregister.com&shier=dotd|central&ghier=dotd|ocr|central&usetitle=true"></script>
+{% endif %}
+
+
+{% endanalytics_tag %}

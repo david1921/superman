@@ -1,0 +1,146 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div class="content_box" style="min-height: 500px;"><!-- deal info top row -->
+		<h1 id="value_prop"><%= @daily_deal.value_proposition %></h1>
+		<% unless @daily_deal.value_proposition_subhead.blank? %>
+			<h2 id="value_prop_subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+		<% end %>
+		<h3 id="advertiser_name"><%= @advertiser.name %></h3>
+		<div id="dashboard"><!--dashboard -->
+			<div id="price_tag">
+				<div id="buy_now">
+					<h1 id="daily_deal_price"><%= number_to_currency @daily_deal.price, :precision => 0 %></h1>
+					<% if @daily_deal.sold_out? -%>
+					<div id="sold_out" class="dd_button sold_out gradient"><span>Sold Out</span></div>
+					<% elsif @daily_deal.over? -%>
+					<div id="deal_over" class="dd_button deal_over gradient"><span>Deal Over</span></div>
+					<% elsif @daily_deal.active? -%>
+					<a id="buy_now_button" class="dd_button buy gradient" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><span>Buy Now</span></a>
+					<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+					<% else -%>
+					<div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>
+					<% end -%>
+				</div><!-- /buy_now -->
+				<table id="value_summary" cellspacing="0">
+					<tr>
+						<th>Savings</th>
+					</tr>
+					<tr>
+						<td><%= number_to_percentage(100 * (@daily_deal.value.to_i - @daily_deal.price) / @daily_deal.value, :precision => 0) %></td>
+					</tr>
+					<tr>
+						<th>You Save</th>
+					</tr>
+					<tr>
+						<td><%= number_to_currency @daily_deal.savings, :precision => 0 %></td>
+					</tr>
+				</table>
+			</div><!-- /price_tag -->
+			<div id="deal_specs">
+				
+			</div><!-- /deal_specs -->
+			<table id="timer">
+				<tr>
+					<td id="clock"><%= image_tag('/themes/kouponshop/images/graphics/clock.png')%></td>
+					<td id="time_left_to_buy_label">
+						Time Left to Buy:
+						<div id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></div>
+					</td>
+				</tr>
+			</table><!-- /timer -->
+		</div><!-- /dashboard -->
+
+		<div id="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.advertiser.name %>" /></div>
+		<div id="share">
+			<p>Share this deal: <a href="<%= facebook_daily_deal_url(@daily_deal) %>" id="share_facebook" class="share_button">Facebook</a> <a href="<%= twitter_daily_deal_url(@daily_deal) %>" id="share_twitter" class="share_button">Twitter</a></p>
+			<div class="clear"></div>
+		</div><!-- /share -->
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	<div><!-- deal info bottom row -->
+	
+		
+		<div id="deal_tab_content" class="content_box daily_deal"> 
+			<div id="tab_overview_content">
+						<div id="description_sidebar" class="six_col">
+							<div id="tab_location_content">
+								<div id="highlights" class="three_col">
+								     <% if @daily_deal.highlights.present? %>
+								     <h3>Highlights</h3>
+								     <%= @daily_deal.highlights.try :html_safe %>
+								     <% end %>
+								</div><!-- /highlights -->
+								
+								<% if @daily_deal.advertiser.address.present? %>
+								<div class="map">
+									<h3>Location</h3>
+									<% if @daily_deal.advertiser.stores.length > 3 %>
+										<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+									<% else %>
+										<div id="advertiser_map">
+											<a id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "168x147", true) %>" border="0" /></a>
+										</div><!-- /advertiser_map -->
+									<% end %>
+								</div>
+								<% end %>
+
+								<div id="advertiser">
+									<p class="advertiser_name"><%= @daily_deal.advertiser.name %></p>
+
+									<% if @daily_deal.advertiser.website_url.present? %>
+										<a href="<%= @daily_deal.advertiser.website_url %>" target="blank">Visit Website</a>
+									<% end %>
+
+									<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+										<div class="location_container" style="<% if idx > 2 %>display:none<% end %>">                  
+											<p>
+											<% if store.address_line_1.present? %>
+												<%= store.address_line_1 %><br />
+											<% end %>
+											<% if store.address_line_2.present? %>
+												<%= store.address_line_2 %><br />
+											<% end %>
+											<% if store.city.present? and store.state.present? and store.zip.present? %>
+												<%= store.city %>, <%= store.state %> <%= store.zip %><br />
+											<% end %>
+											<% if store.formatted_phone_number.present? %>
+												<%= store.formatted_phone_number %>
+											<% end %><br />
+											</p>
+										</div><!-- /location_container -->
+									<% end %>
+
+									<% if @daily_deal.advertiser.stores.size > 3 %>
+										<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+									<% end %>
+
+								</div><!-- /advertiser -->
+							<div class="clear"></div>
+						</div><!-- /tab_overview_right_col -->
+
+					</div><!--/tab_content_location --> 
+				</div>
+				
+				<h2>About This Koupon</h2>
+				
+				<div id="tab_overview_right_col">
+					<div id="description" class="six_col">
+					     <h3>Description</h3>
+					     <%= @daily_deal.description.try :html_safe %>
+					</div><!-- /description -->
+					<div id="terms" class="six_col">
+					     <% if @daily_deal.terms.present? %>
+					     <h3>Fine Print</h3>
+					     <%= @daily_deal.terms.try :html_safe %>
+					     <% end %>
+					</div><!-- /terms -->
+			<div class="clear"></div>
+		</div><!--/tab content --> 
+	
+	</div><!-- /deal info bottom row -->
+	
+</div><!-- /main_column -->
+</div>
+<%= render :partial => with_theme('shared/sidebar') %>
+</div>

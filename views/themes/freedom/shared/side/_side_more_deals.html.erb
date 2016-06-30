@@ -1,0 +1,25 @@
+<!-- START SIDE More Deals SECTION-->
+<div class="side_section more_deals">
+  <div class="side_more_deals">
+    <a href="<%= daily_deals_public_index_path(@publisher.label) %>"><h2 class="gradient">More Great Deals</h2></a>
+    <div class="side_content .other_deal_tracking">        
+    <% if false %>
+        <% daily_deal.side_deals.reject { |x| x.publishers_category.present? }.shuffle.each_with_index do |side_deal, index| %>
+            <%= render :partial => with_theme('shared/small_deal'), :locals => {:small_deal => side_deal} %>
+            <% if index < daily_deal.side_deals.length-1 %>
+                <div class="small_deal_bottom_seperator"></div>
+            <% end %>
+        <% end %> 
+    <% end %>  
+
+    <% side_deals.shuffle.each_with_index do |side_deal, index| %>
+            <%= render :partial => with_theme('shared/small_deal'), :locals => {:small_deal => side_deal} %>
+            <% if index < daily_deal.side_deals.length-1 %>
+                <div class="small_deal_bottom_seperator"></div>
+            <% end %>
+    <% end %> 
+    </div>
+  </div>
+</div>
+<!-- END SIDE More Deals SECTION-->
+

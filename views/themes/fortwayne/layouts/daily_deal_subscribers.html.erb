@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+  <%- if @daily_deal %>
+    <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+    <meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+    <meta name='keywords' content="<%= @daily_deal.advertiser.name %>, <%= @daily_deal.value_proposition %>">
+
+    <meta property="og:title" content="<%= @daily_deal.facebook_title %>" />
+    <meta property="og:description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+    <meta property="og:image" content="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= publisher_daily_deal_url(:publisher_id => @publisher.label, :host => @publisher.daily_deal_host, :id => @daily_deal.id) %>"/>
+  <%- else %>
+    <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+    <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+  <%- end %>
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/fortwayne/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/fortwayne/stylesheets/past_deals.css" type="text/css" />
+
+  <!--   <link rel="stylesheet" href="/themes/fortwayne/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+
+  <!--[if lte IE 9]>
+  <link href="/themes/fortwayne/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+  <!--[if IE 9]>
+  <link href="/themes/fortwayne/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+  <title><%= daily_deal_page_title %></title>
+
+  <%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+
+<body class="subscribers">
+
+<!--Analog_Analytics_Daily_Deal-->
+<!--Analog_Analytics_Daily_Deal-->
+<%= render :partial => with_theme("layouts/shared/wrapper") %>
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+<%= raw render :partial => 'daily_deals/javascript' %>
+
+</body>
+</html>

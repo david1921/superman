@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+<!--NEED TO COMBINE THIS INTO SOMETHING LESS DUMB AND MESSY-->
+
+{% if_page_name 'daily_deal_purchases#index' %}
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" /><!-- Tells the iPhone not to shrink the page to fit into its tiny window -->
+{%endif_page_name%}
+
+{% if_page_name 'daily_deal_purchases#redeemed' %}
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+{%endif_page_name%}
+
+{% if_page_name 'daily_deal_purchases#refunded' %}
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+{%endif_page_name%}
+
+{% if_page_name 'daily_deal_purchases#expired' %}
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+{%endif_page_name%}
+
+
+    <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/zingindealz/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/zingindealz/stylesheets/media.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/sass/optimized_mydeals.css" type="text/css" />
+
+    <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/effects.js" type="text/javascript"></script>
+    <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+    <script src="/javascripts/controls.js" type="text/javascript"></script>
+    <script src="/javascripts/application.js" type="text/javascript"></script>
+    <script src="/javascripts/ghostie.js" type="text/javascript"></script>
+    
+    <script src="/themes/zingindealz/javascript/customs.js" type="text/javascript"></script>
+  
+  <script type="text/javascript"><!--//--><![CDATA[//><!--
+ 
+     sfHover = function() {
+          var sfEls = document.getElementById("market_menu").getElementsByTagName("LI");
+          for (var i=0; i<sfEls.length; i++) {
+               sfEls[i].onmouseover=function() {
+                    this.className+=" sfhover";
+               }
+               sfEls[i].onmouseout=function() {
+                    this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+               }
+          }
+     }
+     if (window.attachEvent) window.attachEvent("onload", sfHover);
+     //--><!]] ]]]] >  
+     </script>
+
+  
+<!--[if IE]>
+<link href="/themes/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/zingindealz/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .variation_buy_button {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+
+  
+  <title>{% daily_deal_page_title %}</title>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body class="{% controller controller_name %} {% controller action_name %}"> 
+<!--Analog_Analytics_Daily_Deal-->
+
+<div id="analog_analytics">
+	<div id="daily_deal">
+	
+		<div id="masthead">
+			<div id="logo"><img src="/themes/zingindealz/images/graphics/zingin-dealz-logo.png" alt="ZinginDealz.com" /></div>
+			<div id="header">
+				<div id="accountnav">
+					{% if publisher.launched? %}
+          			  {% if publisher.current_user_belongs_to? %}
+					<a href="{{ publisher.my_deals_path }}">MY DEALS</a>
+					<a href="{{ publisher.my_account_path }}">MY ACCOUNT</a>
+					<a href="{{ publisher.logout_path }}">SIGN OUT</a>
+					  {% else %}
+					<a href="{{ publisher.login_path }}">SIGN IN</a>
+					<a href="{{ publisher.new_consumer_path }}">CREATE AN ACCOUNT</a>
+					<a href="{{ publisher.facebook_connect_path }}" title="Log in with your facebook account"><img alt="Facebook Connect" src="/images/buttons/facebook_connect.png" /></a>  
+					  {% endif %}
+     				{% endif %}
+				</div>
+				
+				 
+	    
+				
+			   <div id="market">
+				   <span id="text">GET THE DAILY DEAL FOR:</span>
+				   <!-- market dropdown -->
+				 	 <div id="mobile_market_menu">
+			           {{ publisher | market_selection_dropdown }}
+			     </div>
+				   <div id="market_menu_wrapper">
+					<ul id="market_menu">
+					   <li><a href="#">{{ publisher.market_name_or_city }}</a>
+							  {{ publisher | market_selection_list }}
+						 </li>
+					</ul>
+					<script type="text/javascript">
+						jQuery("#market_menu ul li a").each(function(){
+							var theHref = jQuery(this).attr('href');
+							if(theHref.indexOf('groucher')!= -1){
+								jQuery(this).remove();
+							}
+						});
+					</script>
+				   </div><!-- /market_menu_wrapper -->
+				   <div class="clear"></div>              
+				   <!--/ market dropdown -->
+			   </div>
+			
+			<div id="subscribe_form" class="{% if_page_name 'publishers#deal_of_the_day'%}subscribe_form_mobile{% endif_page_name %}">
+			 <form action="{{ publisher.subscribers_path }}" id="daily_deal_header" method="post">
+				  <p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+				  <p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+				  <p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="ENTER YOUR E-MAIL ADDRESS" onclick="this.value='';" /></p>
+				  <p><input id="subscribe_button" type="image" src="/themes/zingindealz/images/buttons/send-me-dealz.png" /></p>
+				  <p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+					   <input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" checked/> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+				  </p>
+			 </form>
+		   </div>
+			
+			</div><!--/HEADER-->
+			
+			<div id="nav">
+				<ul>
+					<li><a href="{{ publisher.todays_daily_deal_path }}">Today's Zinger</a></li>
+					<li><a href="{{ publisher.how_it_works_path }}">How It Works</a></li>
+					<li id="faq"><a href="{{ publisher.faq_path }}">FAQ</a></li>
+					<li id="feature_your_business"><a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+					<li class="last"><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+				</ul>
+			</div>
+		</div><!--masthead-->   
+		 
+		<div id="dd_content">
+			
+		    {% include "shared/flash" %}
+		    {{ content_for_layout }}
+		
+		</div><!--dd_content-->
+		
+	</div><!--daily_deal-->
+</div><!--analog_analytics-->
+<div id="footer">
+	<a href="{{ publisher.todays_daily_deal_path }}">TODAY'S ZINGER</a> | 
+	<a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a> | 
+	<a href="{{ publisher.faq_path }}">FAQ</a> | 
+	<a href="{{ publisher.feature_your_business_path }}">FEATURE YOUR BUSINESS</a> | 
+	<a href="{{ publisher.login_path }}">SIGN IN / SIGN UP</a> | 
+	<a href="{{ publisher.contact_path }}">CONTACT US</a>
+	<div>
+		<a href="{{ publisher.privacy_path }}">PRIVACY POLICY</a> | <a href="{{ publisher.terms_path }}">TERMS AND CONDITIONS</a>
+	</div>
+	{% include "shared/a_a_alt" %}
+</div>
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>
+
+

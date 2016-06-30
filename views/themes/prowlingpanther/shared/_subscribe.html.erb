@@ -1,0 +1,21 @@
+<h4>Sign Up for Daily Deals</h4>
+<div class="content_box">
+	<div id="subscribe_form">
+		<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<fieldset>
+				<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+				<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+			</fieldset>
+			<fieldset>
+				<input id="subscriber_email" name="subscriber[email]" type="email" size="30" placeholder="Email Address" />	
+				<input id="subscriber_zip" name="subscriber[zip_code]" type="zip_code" size="30" placeholder="Zip Code"  />
+				<input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></a>
+			</fieldset>
+			<fieldset class="sign_up">
+				<input type="submit" class="sign_up button gradient" value="Sign Up Today"/>
+			</fieldset>
+		</form>
+	</div><!-- /subscribe_form -->
+	<div class="clear"></div>
+</div>

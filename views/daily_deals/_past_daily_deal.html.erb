@@ -1,0 +1,39 @@
+<div class="past_deal">
+  <h3><%= past_daily_deal.start_at.to_s(:long_month_and_year) %></h3>
+  <table cellspacing="0" class="deal">
+    <tr>
+      <td rowspan="2">
+        <%= link_to image_tag(past_daily_deal.photo.url(:facebook)), publisher_daily_deal_path(past_daily_deal.publisher, past_daily_deal) %>
+      </td>
+      <td class="value_proposition">
+        <h2><%= link_to past_daily_deal.value_proposition, publisher_daily_deal_path(past_daily_deal.publisher, past_daily_deal) %></h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table cellspacing="0" class="dashboard">
+          <tr>
+            <th class="even">Regular Price</th>
+            <th class="odd">Save</th>
+            <th class="even">Sale Price</th>
+            <th class="odd">Purchased</th>
+          </tr>
+          <tr>
+            <td class="even"><%= number_to_currency past_daily_deal.value, :precision => 0, :unit => past_daily_deal.currency_symbol %></td>
+            <td class="odd"><%= number_to_percentage past_daily_deal.savings_as_percentage, :precision => 0 %></td>
+            <td class="even"><%= number_to_currency past_daily_deal.price, :precision => 0, :unit => past_daily_deal.currency_symbol %></td>
+            <td class="odd"><%= past_daily_deal.number_sold %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </div>
+  </table>
+  <div class="bring_back">
+    <h3>Bring this deal back!</h3>
+    <div class="fb_wrapper">
+      <div class="vote">Vote:</div>
+      <iframe src="http://www.facebook.com/plugins/like.php?href=<%= publisher_daily_deal_url(past_daily_deal.publisher, past_daily_deal) %>&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:20px;" allowTransparency="true"></iframe>
+    </div>
+  </div>
+</div>

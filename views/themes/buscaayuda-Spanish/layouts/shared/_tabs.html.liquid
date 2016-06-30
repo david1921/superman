@@ -1,0 +1,26 @@
+{% comment %}expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals{% endcomment %}
+
+	<div id="main_tabs">
+		<ul class="main_tab">    
+				<li><a href="{{ publisher.todays_daily_deal_path }}" class="{% page_context_is daily_deals %}main_tab_selected{%endpage_context_is%}">OFERTA SEMANAL</a></li>
+				<!-- <li><a href="{{ publisher.offers_path }}" class="{% page_context_is offers %}main_tab_selected{%endpage_context_is%}">CERTIFICADO DE OFERTA</a></li> -->
+		</ul><!-- /main_tabs -->
+		
+	</div>
+		
+	<div class="clear"></div>
+
+
+	<div class='tab_content {{ current_page }}_content'>
+		{% page_context_is daily_deals %}
+			{% include with_theme "layouts/shared/dd_nav" %}
+		{%endpage_context_is%}
+		
+		{{ content_for_layout }}
+	
+		
+		<div class="clear"></div>
+	</div>               
+</div><!-- /main_tabs -->
+
+

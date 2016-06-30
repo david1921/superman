@@ -1,0 +1,36 @@
+<% set_daily_deal_page_title_slug t(:my_account) %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2 class="account"><%= t(:my_account) %> &nbsp;|&nbsp; <a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>"><%= t(:my_deals) %></a></h2>
+	
+	<h1 class="content"><%= t(:my_account) %></h1>
+	
+    <% form_for [@publisher, @consumer] do |f| -%>
+      <%= f.error_messages %>
+
+      <%= f.text_field_div(:email, nil, :disabled => true) %>
+      <%= f.text_field_div(:first_name) %>
+      <%= f.text_field_div(:last_name) %>
+
+      <% if @publisher.publishing_group.try(:require_publisher_membership_codes) %>
+        <%= render :partial => 'membership_code', :locals => { :consumer => @consumer, :f => f } %>
+      <% end %>
+
+      <%- if @publisher.require_billing_address? %>
+        <%= render :partial => 'billing_address', :locals => { :consumer => @consumer, :f => f } %>
+      <% end %>
+        
+      <%= f.password_field_div(:password, t(:new_password) + ":") %>
+      <%= f.password_field_div(:password_confirmation, t(:confirm_new_password) + ":") %>
+
+      <div class="row button_row">
+        <%= submit_tag(t(:update), :name => "update", :class=> "button update") %>  <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+
+      <div class="row account_detail">
+        <p><%= t('.credit_balance_message', :credit_available => number_to_currency(@consumer.credit_available, :unit => @publisher.currency_symbol)) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

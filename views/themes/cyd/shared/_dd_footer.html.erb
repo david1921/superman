@@ -1,0 +1,26 @@
+<div id="dd_footer_wrapper">
+	<div id="dd_footer">
+		<a id="footer-logo" href="<%= public_deal_of_day_path(@publisher.label) %>"><img src="/themes/cyd/images/graphics/cyd-footer-logo.png" alt="claim your deal footer logo"/></a>
+		<div id="footer-nav-wrap">
+			<p>&copy; Claim Your Deal. All Rights Reserved <a class="footer_link" href="<%= public_deal_of_day_path(@publisher.label) %>" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Home']);">Home</a><a class="footer_link" id="back_to_top" href="#" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Back To Top']);">Back to Top</a></p>
+			<ul id="footer_nav">
+				<li><a href="<%= public_deal_of_day_path(@publisher.label) %>" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Today\'s Deals']);">Today's Deals</a></li>
+				<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=9" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'All Deals']);">All Deals</a></li>
+				<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'How It Works']);">How It Works</a></li>
+				<li><a href="<%= privacy_policy_publisher_daily_deals_path(@publisher.id) %>" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Privacy Policy']);">Privacy Policy</a></li>
+				<li class="last"><a href="<%= terms_publisher_daily_deals_path(@publisher.id) %>" onClick="_gaq.push(['_trackEvent', 'Footer', 'Click', 'Terms']);">Terms</a></li>
+			</ul>
+		</div><!-- end footer-nav-wrap -->
+		<%= raw render :partial => 'shared/a_a' %>
+		
+	</div><!-- end dd_footer -->
+</div><!-- end dd_footer_wrapper -->
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery('#back_to_top').click(function(){
+jQuery('html, body').animate( { scrollTop: 0 }, 1250 );
+return false;
+});
+
+
+</script>

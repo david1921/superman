@@ -1,0 +1,183 @@
+
+     <div id="dd_content_left_column">
+       <h1>Today's Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!<br /><span>{{ daily_deal.value_proposition }}</span></h1>
+       <div id="buy_it">{{ daily_deal.price | currency: 2 }}</div>
+       <div id="deal"><img src="{{ daily_deal.photo.url }}" alt="Ten Resuarant Group"  /></div>
+          <div id="dashboard">
+		   
+		   {% if daily_deal.sold_out? %}
+		   <a href="{{ publisher.todays_daily_deal_path }}"><img src="/themes/chicagoreader/images/buttons/sold_out.png" width="300" height="55" alt="sold out" /></a>
+       {% elsif daily_deal.over? %}
+		   <a href="{{ publisher.todays_daily_deal_path }}"><img src="/themes/chicagoreader/images/buttons/deal_is_over.png" width="300" height="55" alt="deal is over" /></a>
+		   {% elsif daily_deal.active? %}
+		   <a href="{{ daily_deal.buy_now_path }}" id="buy_now_button"><img src="/themes/chicagoreader/images/buttons/buy_now.png" width="300" height="55"  alt="buy now" /></a>
+       <a href="{{ publisher.todays_daily_deal_path }}" id="soldout" class="unavailable" style="display:none;"><img src="/themes/chicagoreader/images/buttons/deal_is_over.png" width="300" height="55" alt="deal is over" /></a>
+		   {% else %}
+		   <a href="{{ publisher.todays_daily_deal_path }}"><img src="/themes/chicagoreader/images/buttons/not_yet_available.png" width="300" height="55" alt="not yet available" /></a>
+		   {% endif %}
+            <table cellspacing="0">
+              <tr>
+                <td >{{ daily_deal.value | currency: 2 }}</td>
+                <td class="todays_deal">{{ daily_deal.price | currency: 2 }}</td>
+                <td>{{ daily_deal.savings | currency: 2 }}</td>
+                <td id="deals_sold">{{ daily_deal.number_sold }}</td>
+              </tr>
+              
+              <tr>
+                <th>Value</th>
+                 <th class="todays_deal">Today's Deal</th>
+                 <th id="you_save">You Save</th>
+                 <th id="deals_sold_label">Deals Sold</th>
+              </tr>
+            </table>
+              
+            <table cellspacing="0" cellpadding="0" id="time_clock">
+              <tr>
+              <td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+              </tr>
+              
+              <tr>
+              <th id="time_left_to_buy_label"><img id="clock" src="/themes/chicagoreader/images/graphics/alarm_clock.png" width="16" height="16"  alt="time left to buy" />Time Left to Buy</th>
+              </tr>
+            </table>
+            </div><!--end_dashboard-->
+            
+            <div id="share">
+              <div class="social_icons">
+              <a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/chicagoreader/images/buttons/facebook_icon.png" width="30" height="35" alt="share on facebook" /></a>
+              <a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/chicagoreader/images/buttons/twitter_icon.png" width="30" height="35" alt="share this on twitter" /></a>
+              <a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><img src="/themes/chicagoreader/images/buttons/email_icon.png" width="30" height="35" alt="email this to a friend" /></a>
+              </div>  
+            </div>
+            
+            
+            <div id="bottom_details">
+              
+				<div id="advertiser">
+					<img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+					<p class="advertiser_name">{{ advertiser.name }}</p>
+					
+					{% if advertiser.num_stores == 1 %}
+						{{ store.formatted_phone_number }}
+					{% endif %}
+					
+					{% if advertiser.website_url != empty %}
+						<a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+					{% endif %}
+					
+					{% for store in advertiser.stores %}
+						<div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                  
+							<p>
+							{% if store.address_line_1 != empty %}
+								{{ store.address_line_1 }}<br />
+							{% endif %}
+							{% if store.city != empty and store.state != empty and store.zip != empty %}
+								{{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+							{% endif %}
+							{% if store.formatted_phone_number != empty %}
+								{{ store.formatted_phone_number }}
+							{% endif %}<br />
+							</p>
+						</div><!-- /location_container -->
+					{% endfor %}
+					
+					{% if advertiser.num_stores > 3 %}
+						<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+					{% endif %}
+									
+				</div><!-- /advertiser -->
+
+              
+<!--  OLD ADVERTISER CODE
+			  <div id="advertiser">
+			   
+			   {% if advertiser.address? %}
+			   <img src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+			   <p>{{ advertiser.name }}</p>
+				  
+				{% for store in advertiser.stores %}
+								  
+			    <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">				
+                  <p>
+				  {{ store.address_line_1 }}<br />
+          {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+          {% if store.formatted_phone_number != empty %}
+    			  {{ store.formatted_phone_number }}
+				  {% endif %}<br />
+                  
+				  {% if advertiser.website_url != empty %}
+            <a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+          {% endif %}</p>
+				
+				</div>
+				
+				{% endfor %}
+		      {% endif %}
+
+			  {% if advertiser.num_stores > 3 %}
+  				<a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+  			  {% endif %}
+				
+              </div>
+-->
+                <div id="highlights">
+        					{% if daily_deal.highlights != "" %}
+        					<h2>Highlights</h2>
+      						{{ daily_deal.highlights }}
+                  {% endif %}
+                </div>
+                  
+                <div id="fine_print">
+    					    {% if daily_deal.fine_print != "" %}
+                  <h2>Fine Print</h2>
+                  {{ daily_deal.terms }}
+                  {% endif %}
+                </div>
+                
+             <div id="description">
+              <h2>Description</h2>
+              {{ daily_deal.description }}
+            </div>
+            
+            </div><!-- bottom_details-->
+     </div><!--end dd_content_left_column-->
+     
+     <div id="dd_content_right_column">
+    
+
+      <a href="http://www.chicagoreader.com"><img src="/themes/chicagoreader/images/graphics/left_side_logo1.gif" width="230" height="89" alt="chicago reader" /></a>
+      		{% if publisher.enable_daily_deal_referral %}
+		<div id="sign_up_offer" class="sidebar_box" ><h1>Refer a Friend</h1>
+			<p>When you refer a friend to sign up for deals, you earn a {{ publisher.daily_deal_referral_credit_amount | currency }} Deal Credit when your friend purchases their first deal!</p>
+			<a href="{{ publisher.refer_a_friend_path }}" class="refer_a_friend_tracking">Refer a Friend</a>
+		</div>
+		{% endif %}  
+
+  {% if daily_deal.side_deals.size > 0 %}
+      <div id="side_deals" class="sidebar_box other_deal_tracking">
+     <h1>Other Great Deals</h1>
+       {% for deal in daily_deal.side_deals %}
+         <div class="side_deal_wrap">
+               <p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}">{{ deal.value_proposition }}</a></p>
+               <div class="side_deal_text">
+                <div class="side_deal_price">{{ deal.price | currency }}</div>
+                <p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+                <div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+                <div class="clear"></div>
+                    <a class="view_deal button" href="{{ deal.url }}">View Deal</a>
+               </div><!-- /side_deal_text -->
+               
+               <div class="clear"></div>
+          </div><!-- /side_deal_wrap -->
+       {% endfor %}
+</div><!-- /side_deals -->
+{% endif %}
+
+     
+        <div id="facebook">
+        <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FReader-Real-Deal%2F144757865574886&amp;width=230&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=false&amp;height=255" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:230px; height:255px;" allowTransparency="true"></iframe>
+        </div>
+     </div><!--dd_content_right_column-->
+     
+     

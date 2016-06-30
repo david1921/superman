@@ -1,0 +1,10 @@
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+			<li class="<%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Coupon</a></li>
+			<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>"><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6">All Deals</a></li>
+			<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+			<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+			<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Feature Your Business</a></li>
+			<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#contact" ? 'current_page' : nil %>"><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->

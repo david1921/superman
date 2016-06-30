@@ -1,0 +1,168 @@
+<!-- begin daily deal content -->
+
+<div>
+<div id="left_column">
+	<h1 id="value_proposition">Today's Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!<br /><span class="value_proposition">{{ daily_deal.value_proposition }}</span></h1>
+	<div id="buy_it">{{ daily_deal.price | currency }}</div>
+	<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="Ten Resuarant Group"  /></div>
+	<div id="dashboard">
+		<div id="buy_now">
+			  {% if daily_deal.sold_out? %}
+		      <div id="sold_out" class="dd_button"></div>
+			  {% elsif daily_deal.over? %}
+			  <div id="deal_over" class="dd_button"></div>
+			  {% elsif daily_deal.active? %}
+			  <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button">&nbsp;</a>
+			  <div id="deal_over" class="dd_button unavailable" style="display:none;"></div>
+			  {% else %}
+		      <div id="not_yet" class="dd_button"></div>
+			  {% endif %}
+		</div><!-- /buy_now -->
+
+		<div id="deal_specs">
+			<table id="value_info">
+				<tr>
+					<td >{{ daily_deal.value | currency }}</td>
+					<td>{{ daily_deal.price | currency }}</td>
+					<td class="you_save">{{ daily_deal.savings | currency }}</td>
+				</tr>
+				
+				<tr>
+					<th>Value</th>
+					<th>Today's Deal</th>
+					<th class="you_save">You Save</th>
+				</tr>
+			</table>
+	      
+			<table id="timer">
+				<tr>
+					<td id="clock" rowspan="2" width="20" ></td>
+					<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+				</tr>
+				<tr>
+					<th id="time_left_to_buy_label">Time Left to Buy</th>
+				</tr>
+			</table><!-- /timer -->
+		</div><!-- /deal_specs -->
+	</div><!--end_dashboard-->
+	<div class="clear"></div>
+    
+	<div id="share">
+		<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/bulldogdeals/images/buttons/facebook.png" width="30" height="35" alt="share on facebook" /></a>
+		<a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/bulldogdeals/images/buttons/twitter.png" width="30" height="35" alt="share this on twitter" /></a>
+		<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><img src="/themes/bulldogdeals/images/buttons/email.png" width="30" height="35" alt="email this to a freind" /></a>
+	</div><!-- /share -->
+    
+    
+	<div id="deal_details">
+	
+<div id="advertiser">
+  <img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+  <p class="advertiser_name">{{ advertiser.name }}</p>
+
+  {% if advertiser.num_stores == 1 %}
+  {{ store.formatted_phone_number }}
+  {% endif %}
+
+  {% if advertiser.website_url != empty %}
+  <a href="{{ advertiser.website_url }}">Visit Website</a>
+  {% endif %}
+
+  {% for store in advertiser.stores %}
+  <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                   
+    <p>
+    {% if store.address_line_1 != empty %}
+      {{ store.address_line_1 }}<br />
+    {% endif %}
+     {% if store.address_line_2 != empty %}
+      {{ store.address_line_2 }}<br />
+    {% endif %}
+    {% if store.city != empty and store.state != empty and store.zip != empty %}
+      {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+    {% endif %}
+    {% if store.formatted_phone_number != empty %}
+      {{ store.formatted_phone_number }}
+    {% endif %}<br />
+    </p>
+  </div><!-- /location_container -->
+  {% endfor %}
+
+  {% if advertiser.num_stores > 3 %}
+  <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+  {% endif %}
+
+  {% if advertiser.address? %}
+  <div class="map">
+    {% if advertiser.num_stores > 3 %}
+    <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+    {% else %}
+    <a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" /></a>
+    {% endif %}
+  </div><!-- /map -->
+  {% endif %}
+
+</div><!-- /advertiser -->
+
+      	
+      	<div id="description_wrapper">
+			<div id="highlights">
+				{% if daily_deal.highlights != "" %}
+				<h2>Highlights</h2>
+				{{ daily_deal.highlights }}
+				{% endif %}
+			</div>
+			  
+			<div id="description">
+				<h2>Description</h2>
+				{{ daily_deal.description }}
+			</div>
+			
+			<div id="fine_print">
+				{% if daily_deal.fine_print != "" %}
+				<h2>Fine Print</h2>
+				{{ daily_deal.terms }}
+				{% endif %}
+			</div>
+
+		</div><!-- /description_wrapper -->
+    	<div class="clear"></div>
+    </div><!-- /deal_details-->
+</div><!--/dd_content_left_column-->
+
+<div id="right_column">
+	{% if publisher.enable_daily_deal_referral %}
+	<div id="refer_friend" class="sidebar_box">
+		<h3>Refer A Friend</h3>
+		<p>Refer a friend and receive a {{ publisher.daily_deal_referral_credit_amount | currency }} credit towards your first purchase.</p>
+		<a class="click_button refer_a_friend_tracking" href="{{ publisher.refer_a_friend_path }}"><img src="/themes/bulldogdeals/images/buttons/view_deal.png" width="81" height="21" alt="Refer a Friend" /></a>
+	</div><!-- /refer_friend -->
+	{% endif %}  
+	
+	{% if daily_deal.side_deals.size > 0 %}
+	<div id="other_deals" class="sidebar_box other_deal_tracking">
+		<h3>Other Local Deals</h3>
+		  {% for deal in daily_deal.side_deals %}
+		    <div class="side_deal_wrap">
+				<p><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+				<div class="side_deal_text">
+                    <div class="side_deal_price">{{ deal.price | currency }}</div>
+                    <p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+					<a class="view_deal" href="{{ deal.url }}" target="_blank"><img src="/themes/bulldogdeals/images/buttons/view_deal.png" width="" height="" alt="view deal" /></a>
+				</div><!-- /side_deal_text -->
+				<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+				<div class="clear"></div>
+			</div><!-- /side_deal_wrap -->
+		  {% endfor %}
+	</div><!-- /other_deals -->
+	{% endif %}
+	
+	<div id="facebook" class="sidebar_box">
+		<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/BullDogDeals/#!/pages/BullDogDeals/251624884848689" width="230" show_faces="true" border_color="" stream="false" header="true"></fb:like-box>
+	</div>
+</div><!--dd_content_right_column-->
+    
+<div class="clear"></div>
+
+</div>
+<!-- end daily deal content -->
+     

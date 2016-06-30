@@ -1,0 +1,24 @@
+<% set_daily_deal_page_title_slug "Browse All Deals" %>
+
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div id="all_deals" class="content_box">
+	<h2>Other Great Deals</h2>
+
+	<div class="clear"></div>
+
+    <div class="inner">
+    	<!-- deal category links -->
+        <%= raw render :partial => with_theme("shared/all_deals_category_list") %>
+    </div>
+  
+  <div class="clear"></div>
+
+	</div><!-- /content_box -->
+		
+</div><!-- /main_column -->
+
+<%= render :partial => with_theme("shared/all_deals_sidebar") %>
+
+</div>

@@ -1,0 +1,43 @@
+<%- url_options = { :format => "json", :host => AppConfig.api_host } -%>
+<%=
+
+  response_hash =   {
+      :uuid => @daily_deal.uuid,
+      :ends_at => @daily_deal.hide_at.utc.to_formatted_s(:iso8601),
+      :featured => @daily_deal.featured,
+      :expires_on => @daily_deal.expires_on,
+      :maximum_purchase_quantity => @daily_deal.max_quantity,
+      :minimum_purchase_quantity => @daily_deal.min_quantity,
+      :photo => @daily_deal.photo.url,
+      :starts_at => @daily_deal.start_at.utc.to_formatted_s(:iso8601),
+      :location_required => @daily_deal.location_required.present? && @daily_deal.location_required?,
+      :total_quantity_available => @daily_deal.quantity,
+      :updated_at => @daily_deal.updated_at.utc.to_formatted_s(:iso8601),
+      :sold_out_at => iso8601_or_nil(@daily_deal.sold_out_at),
+      :value => @daily_deal.value_to_display,
+      :price => @daily_deal.price_to_display,
+      :value_proposition => @daily_deal.value_proposition,
+      :description => @daily_deal.description,
+      :highlights => @daily_deal.reviews,
+      :terms => @daily_deal.terms,
+      :shopping_mall => @daily_deal.shopping_mall,
+      :permalink => daily_deal_url(@daily_deal, :host => @daily_deal.publisher.daily_deal_host),
+      :connections => {
+        :status => status_daily_deal_url(@daily_deal, url_options),
+        :advertiser => advertiser_url(@daily_deal.advertiser, url_options),
+        :publisher => publisher_url(@daily_deal.publisher.label, url_options)
+      },
+      :methods => {
+        :purchase => daily_deal_daily_deal_purchases_url(@daily_deal, url_options),
+		:discount => deal_discount_daily_deal_url(@daily_deal, url_options)
+      }
+    }
+  if @daily_deal.pay_using?(:travelsavers)
+    response_hash[:methods][:purchase_url] = new_daily_deal_daily_deal_purchase_url(@daily_deal, :host => @daily_deal.publisher.production_daily_deal_host)
+  end
+
+  if @daily_deal.daily_deal_variations.any?
+    response_hash[:connections][:variations] = daily_deal_daily_deal_variations_url(@daily_deal, :format => "json", :host => AppConfig.api_host)
+  end
+
+  response_hash.to_json.html_safe -%>

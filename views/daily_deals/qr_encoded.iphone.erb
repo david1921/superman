@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=480"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" /><!-- tells phones not to scale down the web page to fit into tiny windows -->
+  
+  <link rel="stylesheet" href="/stylesheets/qr_landing.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @daily_deal.publisher.publishing_group.label || @daily_deal.publisher.label  %>/stylesheets/qr_landing.css" type="text/css" />
+
+  <title>Use the <%= @daily_deal.publisher.name %> App</title>
+</head>
+<body class="<%= @daily_deal.publisher.label %>">
+  
+    <%= image_tag(@daily_deal.publisher.logo.url(:normal)) %>
+  <h1>Use the <%= @daily_deal.publisher.name %> App!</h1>
+  <p>Please open the <%= @daily_deal.publisher.name %> app on your iPhone to scan this QR code.</p>
+  <p>If you don't have the app, you can install it from its <%= link_to("App Store page", apple_app_store_url(@daily_deal.publisher)) %>.</p>
+  <span class="iphone"></span>
+</body>
+</html>

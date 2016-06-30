@@ -1,0 +1,29 @@
+<% set_daily_deal_page_title_slug "Activate Account" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Check Your Email!</h2>
+    <p>Please check your email for a message from Kowabunga and click the link inside to activate your account. If clicking the link doesn't work, you can copy the activation code shown in the message and paste it here, then click the Activate button.</p>
+
+    <p class="small">If you didn't receive the email, please check your spam folder and add Kowabunga Deals 	&lt;email@kowabungadeals.com&gt; to your address book to ensure delivery. If you still haven't received your email, we can send you another one. <%= link_to_remote("Resend email", { :url => send_activation_request_consumer_path(@consumer) }, { :id => "send_activation_request_link" }) %></p>
+    
+    <% if @consumer.signup_discount -%>
+      <p class="small">Your Deal Dollars will be applied to your first daily-deal purchase.</p>
+    <% end -%>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px", :id => "activate_form" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, "Activation Code:") %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons button_row">
+        <%= submit_tag("Activate", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>

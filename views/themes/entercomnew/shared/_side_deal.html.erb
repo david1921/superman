@@ -1,0 +1,33 @@
+<div class="deal">
+	<div class="value_prop">
+		<p><%= side_deal.value_proposition %></p>
+	</div>
+	<div class="image">
+		<img src="<%= side_deal.photo.url(:blast) %>" alt="" width="220" height="133" />
+	</div>
+	<div class="locations">
+	   <p>
+		<% if side_deal.advertiser.store.present? %>
+			<span class="location" style="<% if side_deal.advertiser.stores.size > 1 %>display:none<% end %>"><%= side_deal.advertiser.store.city %> &nbsp;</span>
+	   <% end %>
+	   <% if side_deal.advertiser.stores.size > 1 %>
+		  <a href="<%= daily_deal_path(side_deal) %>#location">See all locations</a>
+	   <% end %>
+	   </p>
+	</div>
+	<% if !side_deal.daily_deal_variations.blank? -%><p class="variation">From:</p><% end %>
+	<div class="price">
+		<span>
+		<% if side_deal.price >= 10000 %>
+			<%= number_to_currency side_deal.price, :precision => 0, :unit => side_deal.publisher.currency_symbol %>
+		<% else %>
+			<%= number_to_currency side_deal.price, :precision => 2, :unit => side_deal.publisher.currency_symbol %>
+		<% end %>
+		</span>
+	</div>
+	<div class="view">
+		<a href="<%= daily_deal_path(side_deal) %>">VIEW DEAL</a>
+	</div>
+	<div class="clear"></div>
+</div>
+<!--END SIDE DEAL-->

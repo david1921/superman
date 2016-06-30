@@ -1,0 +1,220 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div class="content_box"><!-- deal info top row -->
+		<h1 id="value_prop">{{ daily_deal.value_proposition }}</h1>
+		<h2 id="value_prop_subhead">{{ daily_deal.value_proposition_subhead }}</h2>
+		<div class="six_col"><!-- photo and share links -->
+			<div id="deal_photo"><img src="{{ daily_deal.photo.standard_url }}" alt="{{ advertiser.name }}" /></div>
+			<div id="share">
+				<h4 id="share_deal">Share this deal:</h4>
+					<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/dealsforschools/images/buttons/facebook.png" alt="share on facebook" /></a>
+					<a href="{{ daily_deal.twitter_url }}" class="share_button share_button_twitter" target="_blank"><img src="/themes/dealsforschools/images/buttons/twitter.png" alt="share on twitter" /></a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button share_button_mail"><img src="/themes/dealsforschools/images/buttons/mail.png" alt="Email this to a friend" /></a>
+			</div><!-- /share -->
+		</div><!-- /photo and share links -->
+		<div class="three_col"><!--dashboard -->
+			<div id="price_tag">
+				<h1 id="daily_deal_price">{{ daily_deal.price | currency }}</h1>
+				<div id="buy_now">
+					{% if daily_deal.sold_out? %}
+					<div id="sold_out" class="dd_button sold_out gradient">Sold Out</div>
+					{% elsif daily_deal.over? %}
+					<div id="deal_over" class="dd_button deal_over gradient">Deal Over</div>
+					{% elsif daily_deal.active? %}
+					<a id="buy_now_button" class="dd_button buy gradient" href="{{ daily_deal.buy_now_path }}" name="buy_now">Buy</a>
+					<div id="deal_over" class="dd_button deal_over gradient unavailable" style="display:none;">Deal Over</div>
+					{% else %}
+					<div id="not_yet_available" class="dd_button not_yet_available gradient">Not Yet Available</div>
+					{% endif %}
+										
+				</div><!-- /buy_now -->
+			</div><!-- /price_tag -->
+			<div id="deal_specs">
+				<table id="value_summary">
+					<tr>
+						<th>Savings</th>
+						<th>Value</th>
+					</tr>
+					<tr>
+						<td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+						<td >{{ daily_deal.value | currency }}</td>
+					</tr>
+				</table>
+		      
+				<table id="timer">
+					<tr>
+						<th id="clock" rowspan="2"></th>
+						<th id="time_left_to_buy_label">Time Left to Buy</th>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+					</tr>
+				</table><!-- /timer -->
+			</div><!-- /deal_specs -->
+		</div><!-- /dashboard -->
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	<div><!-- deal info bottom row -->
+	
+	
+		<ul id="deal_tabs"> 
+			<li class="current_deal_tab"><a id="tab_overview">Overview</a></li> 
+			<li style="{%unless advertiser.address?%}display:none{%endunless%}"><a id="tab_location">Location</a></li>
+			<li style="{%if daily_deal.reviews == empty %}display:none{%endif%}"><a id="tab_reviews">Reviews</a></li>
+			<li style="display:none"><a id="tab_comments">Comments</a></li>
+		</ul> 
+		
+		<div id="deal_tab_content" class="content_box"> 
+			<div id="tab_overview_content">
+				<div id="description" class="six_col">
+  					<h5 class="advertiser_name">{{ advertiser.name }}</h5>
+				     <h2>Description</h2>
+				     {{ daily_deal.description }}
+				     {% if daily_deal.fine_print != "" %}
+				     <h2>Fine Print</h2>
+				     {{ daily_deal.terms }}
+				     {% endif %}
+				</div>
+				<div id="highlights" class="three_col">
+				     {% if daily_deal.highlights != "" %}
+				     <h2>Highlights</h2>
+				     {{ daily_deal.highlights }}
+				     {% endif %}
+				</div>
+				<div class="clear"></div>
+
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_location_content" class="deal_tab_hidden">
+				<div id="advertiser_map" class="four_col">
+				     {% if advertiser.stores.size > 0 %}
+				     <a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.map_image_url }}" /></a>
+				     {% endif %}
+				</div>
+
+				<div id="advertiser" class="four_col">
+				    <img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+					  <h5 class="advertiser_name">{{ advertiser.name }}</h5>
+					
+					  {% if advertiser.num_stores == 1 %}
+					  {{ store.formatted_phone_number }}
+					  {% endif %}
+					
+					  {% if advertiser.website_url != empty %}
+					  <a href="{{ advertiser.website_url }}">Visit Website</a>
+					  {% endif %}
+					
+					  {% for store in advertiser.stores %}
+					  <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                   
+					    <p>
+					    {% if store.address_line_1 != empty %}
+					      <span>{{ store.address_line_1 }}</span>
+					    {% endif %}
+					     {% if store.address_line_2 != empty %}
+					      <span>{{ store.address_line_2 }}</span>
+					    {% endif %}
+					    {% if store.city != empty and store.state != empty and store.zip != empty %}
+					      <span>{{ store.city }}, {{ store.state }}{{ store.zip }}</span>
+					    {% endif %}
+					    {% if store.formatted_phone_number != empty %}
+					      <span>{{ store.formatted_phone_number }}</span>
+					    {% endif %}
+					    </p>
+					  </div><!-- /location_container -->
+					  {% endfor %}
+					
+					  {% if advertiser.num_stores > 3 %}
+					  <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+					  {% endif %}
+				</div><!-- /advertiser -->
+				<div class="clear"></div>
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_reviews_content" class="deal_tab_hidden"> 
+				 {% if daily_deal.reviews != "" %}
+				 <h2>Reviews</h2>
+				 {{ daily_deal.reviews }}
+				 {% endif %}
+			</div><!-- /tab_content_reviews --> 
+			
+			<div id="tab_comments_content" class="deal_tab_hidden"> 
+				<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=APP_ID&amp;xfbml=1"></script><fb:comments numposts="5" width="660" publish_feed="true"></fb:comments>			
+			</div><!-- /tab_content_notes --> 
+		</div><!--/tab content --> 
+	
+	
+	</div><!-- /deal info bottom row -->
+	
+	
+	
+</div><!-- /main_column -->
+
+
+
+<div id="sidebar">
+	
+	<div id="signupyourschool" class="content_box three_col">
+		<h3>Sign Up Your School!</h3>
+		<div class="client_icon"><img src="/themes/dealsforschools/images/graphics/abc_icon.png"/></div>
+			
+			<p>If you are a PTA officer or Administrator we'd love to start helping your School!</p>
+			<div class="clear"></div>
+			<a href="http://dealsforschools.com/index.php?option=com_content&view=article&id=51&Itemid=64">Click here to learn more!</a>	
+		</div><!--signupyourschool-->
+		
+	<div id="hotelandtraveldeals" class="content_box three_col">
+		<h3>Hotel & Travel Deals</h3>
+		<div class="client_icon"><img src="/themes/dealsforschools/images/graphics/luggage_icon.png"/></div>
+			
+			<p>Book your travel with us and we'll give $5 per room, per night back to your favorite school!</p>
+			<div class="clear"></div>
+			<a href="http://www.traveldealsforschools.com/home/?refid=3919">Click here to Save On Travel!</a>	
+		</div><!--hotelandtraveldeals-->		
+		
+	<div id="onlineshoppingdeals" class="content_box three_col">
+		<h3>Online Shopping Deals</h3>
+		<div class="client_icon"><img src="/themes/dealsforschools/images/graphics/shopping_cart.png"/></div>
+			
+			<p>Save with major retailers every time you shop online and help your school!</p>
+			<div class="clear"></div>
+			<a href="http://www.shopdealsforschools.com/">Click here to Get Started!</a>	
+		</div><!--onlineshoppingdeals-->
+
+
+	{% if publisher.enable_daily_deal_referral %}
+	<div id="refer_friend" class="content_box three_col">
+		<h2 class="refer">Get {{ publisher.daily_deal_referral_credit_amount | currency }}</h1>
+		<p><a id="refer_button" href="{{ publisher.refer_a_friend_path }}" class="button gradient refer_a_friend_tracking">Refer a Friend</a></p>
+	</div><!-- /refer_friend -->
+	{% endif %}  
+	
+	{% if daily_deal.side_deals.size > 0 %}
+	<div id="side_deals" class="content_box three_col other_deal_tracking">
+	     <h4>Other Great Deals</h4>
+	       {% for deal in daily_deal.side_deals %}
+	         <div class="side_deal_wrap">
+				<p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+				<div class="side_deal_text">
+					<div class="side_deal_price">{{ deal.price | currency }}</div>
+					<p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+				</div><!-- /side_deal_text -->
+				<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+				<div class="clear"></div>
+				<a class="view_deal button gradient" href="{{ deal.url }}" target="_blank">View Deal</a>
+				<div class="clear"></div>
+	          </div><!-- /side_deal_wrap -->
+	       {% endfor %}
+	</div><!-- /side_deals -->
+	{% endif %}
+
+	<div class="content_box three_col">
+    {% if fb_page != '' %}
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Ffacebook.com%2Fdealsforschools&amp;width=200&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=true&amp;height=290" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px;height:290px;" allowTransparency="true"></iframe>
+   {% endif %}
+	</div><!-- /facebook like box -->
+	
+</div><!-- /sidebar -->
+</div>
+
+

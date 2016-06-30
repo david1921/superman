@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>{{ daily_deal.value_proposition }}</title>
+</head>
+
+<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" style="margin: 0px; background-color: #FFFFFF; font-family: Helvetica, Arial, sans-serif;">
+<table cellspacing="0" border="0" bgcolor="#ffffff" style="margin: 0; padding: 0; border: 0;" width="100%" cellpadding="0">
+	<tr style="margin: 0; padding: 0; border: 0;">
+		<td align="center" style="margin: 0; padding: 0; border: 0;">
+			<table width="660" align="center" style="text-align:center; padding-top: 10px;" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+					
+					<table border="0" bordercolor="0" style="background-color:0" width="660" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="left" style="padding-left:30px;"><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/graphics/golfon_logo_email.png" height="63" width="249" alt="GolfOn" /></td>
+							<td>
+
+							<table align="right" border="0" bordercolor="0" style="background-color:0" cellpadding="0" cellspacing="0" >
+								<tr>
+									<td align="right" style="color:#455A29; font-family:Arial,sans-serif; font-weight:normal; font-size: 12px; padding-bottom: 10px; padding-right:30px;">{{ "now" | date: "%A, %B %e, %Y" }}</td>
+								</tr>
+								<tr>
+                  <td align="right" valign="top" style="color:#455A29; font-family:Arial,sans-serif; font-weight:bold; font-size: 12px; padding-right:30px; font-style: italic;">
+                    Follow Us 
+                    <a href="http://twitter.com/GetYour_GolfOn" style="padding-left:10px;" ><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/icons/twitter-logo.png" alt="Twitter" border="none" height="20" width="20" /></a> 
+                    <a href="http://www.facebook.com/GetYourGolfOn" style="padding-left:10px;" ><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/icons/facebook-logo.png" alt="Facebook" border="none" height="20" width="20" /></a> 
+                    <a href="http://www.golfon.com/blog/feed/rss/" style="padding-left:10px;"><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/icons/rss.png" alt="RSS" border="none" height="20" width="20" /></a> 
+                    <a href="mailto:deals@golfon.com" style="padding-left:10px;"><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/icons/email-button.png" alt="Email" border="none" height="20" width="20" /></a>
+                  </td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+					</table>
+					
+					</td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_top_bg.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_top_bg.png) no-repeat; background-repeat: no-repeat;" height="6" width="660"></td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_main_bg.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_main_bg.png) repeat-y; background-repeat: y-repeat;" width="660">
+					
+					<table border="0" bordercolor="0" style="padding: 20px 60px 20px 80px" width="660" cellpadding="0" cellspacing="0" >
+						<tr>
+							<td align="left" style="color:#FFFFFF; font-family:Arial,sans-serif; font-weight:bold; font-size: 24px; line-height: 28px; padding-right: 10px;" width="270">{{ daily_deal.value_proposition }}</td>
+							<td>
+								<table border="0" bordercolor="0" style="padding:0px;" width="239" cellpadding="0" cellspacing="0">
+									<tr>
+										<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_top.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_top.png) no-repeat; background-repeat: no-repeat;" height="34" width="239"></td>
+									</tr>
+									<tr>
+										<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_main.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_main.png) repeat-y; background-repeat: repeat-y;" width="239"><a href="{{ daily_deal.url_for_email }}" style="color:#FFFFFF; font-family:Arial,sans-serif; font-weight:bold; font-size: 30px; text-decoration:none; ">{{ daily_deal.price | currency }} | View Deal</a></td>
+									</tr>
+									<tr>
+										<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_bottom.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/view_deal_bottom.png) no-repeat; background-repeat: no-repeat;" height="36" width="239"></td>
+									</tr>
+								</table>							
+							</td>
+						</tr>
+					</table>					
+					</td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_top.png"  style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_top.png) no-repeat; background-repeat: no-repeat; " height="8" width="660"></td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_bg.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_bg.png) repeat-y; background-repeat: y-repeat;" width="660">
+
+					<table border="0" bordercolor="0" style="padding:30px 60px;" width="660" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="right" style="padding-right:8px;" ><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" width="346" style="border: 2px solid #495E69;" /></td>
+							<td align="left" valign="top" style="background-color:#FFFFFF; border:3px solid #5396C2; text-align:left; padding: 20px; width:180px;" width="180">
+								<img src="{{ advertiser.logo.standard_url }}" alt="{{ advertiser.name }}" style="display: block; margin-bottom: 20px;" width="140" />
+								<img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/graphics/contact_text.png" height="14" width="60" alt="CONTACT" />
+								<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 18px; margin-top:4px;">{{ advertiser.name }}<br />
+								{{ advertiser.address_line_1 }}<br />
+								{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+								<span style="font-weight:bold;">Phone:</span>
+{% if advertiser.formatted_phone_number != empty %}
+							              {{ advertiser.formatted_phone_number }}
+							            {% endif %}<br />
+                
+								<a href="{{ advertiser.website_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/buttons/view_website.png" border="none" height="34" width="116" alt="View Website" /></a></p>
+							</td>
+						</tr>
+					</table>
+										
+					</td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_bottom.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_deal_bottom.png) no-repeat; background-repeat: no-repeat;" height="13" width="660"></td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_main_bg.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_main_bg.png) repeat-y; background-repeat: y-repeat;" width="660">
+						<table border="0" bordercolor="0" style="padding-bottom: 30px;" width="660" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="left" style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight:normal; line-height: 18px; padding-left: 80px; padding-right: 80px;">
+									<h3 style="color: #799E07; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight:bold; line-height: 28px; ">Description</h3>
+									<p>{{ daily_deal.description }}</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:20px 0;"><a href="{{ daily_deal.url_for_email }}"><img src="http://{{ publisher.daily_deal_host }}/themes/golfon/images/buttons/email_learn_more.png" alt="Learn More" border="none" height="44" width="266" /></a></td>
+							</tr>
+							<tr>
+								<td style="color: #799E07; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight:bold; line-height: 28px; ">Do you have questions or need support? Please <a href="mailto:deals@golfon.com" style="color: #799E07; font-style:italic; text-decoration:underline;" border="none" >Contact Us</a>.</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td background="http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_foot_bg.png" style="background-image: (url(http://{{ publisher.daily_deal_host }}/themes/golfon/images/backgrounds/email_foot_bg.png) no-repeat; background-repeat: no-repeat;" height="7" width="660"></td>
+				</tr>
+				<tr>
+					<td>
+						<table border="0" bordercolor="0" style="padding-top: 30px; padding-bottom: 30px; " width="660" cellpadding="0" cellspacing="0">
+							<tr>
+                <td style="color: #999999; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight:normal; line-height: 16px; padding-bottom: 10px; text-align: center; ">Your Daily GolfOn   |   <a href="{{ daily_deal.url_for_email }}" border="none" style="color: #006699; text-decoration: underline;">View this email in a browser</a><br />
+Be sure to add <a href="mailto:deals@golfon.com" border="none" style="color: #006699; text-decoration: underline;">deals@golfon.com</a> to your address book or safe sender list so our emails get to your inbox.</td>
+							</tr>
+							<tr>
+								<td style="color: #999999; font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight:normal; line-height: 16px; text-align: center">You are receiving this email because you signed up for the Daily GolfOn alerts.<br />If you prefer not to receive the daily GolfOn email, please feel free to <a href="{{ daily_deal.unsubscribe_url }}" border="none" style="color: #006699; text-decoration: underline;">unsubscribe</a>.</td>
+							</tr>					
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><a style="border: none; text-align: center" href="http://analoganalytics.com"><img style="border:none;" src="http://{{ publisher.daily_deal_host }}/images/powered_by_analog_analytics.png" alt="Powered by Analog Analytics" /></a></td>
+				</tr>				
+			</table>
+		</td>
+	</tr>
+</table><!-- /body-->
+</body>
+</html>

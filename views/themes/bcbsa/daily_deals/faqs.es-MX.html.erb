@@ -1,0 +1,237 @@
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= public_deal_of_day_path(@publisher.label) %>">Inicio</a>
+    </li>
+    <li class="no_underline">></li>
+    <li class="no_underline">
+      <%= case params[:page]
+        when "about"
+          "Quiénes Somos" 
+        when "plans"
+          "Compañías Blue Participantes"
+        else 
+          "Preguntas frecuentes"
+        end
+      %>
+    </li>
+  </ul>
+  </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+
+<!-- end temp case for About and Pan page -->
+<% case params[:page] %>
+    <% when 'about' %>
+      <%= render :partial => with_theme('shared/about') %>
+    <% when 'plans' %>
+      <%= render :partial => with_theme('shared/participating_plans') %>
+  <% else %>
+
+<% set_daily_deal_page_title_slug "Preguntas frecuentes" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+<h1 class="content"><%= @h1 || "Preguntas frecuentes " %></h1>
+
+<div id="faq_content">
+    
+<a class="print_page" href="javascript:window.print()"><img class="print_icon " src="/themes/bcbsa/images/graphics/print_icon.png" />Imprimir esta página </a>
+<div class="clear"></div>
+
+<h6>¿Tiene alguna pregunta sobre...?</h6>
+<h6><a href="#topic_1">Compañías Blue Cross y/o Blue Shield<a></h6>
+<h6><a href="#topic_2">Blue365<sup>&#174;</sup><a></h6>
+<h6><a href="#topic_3">Distribuidores Blue365<a></h6>
+<h6><a href="#topic_4">Cómo buscar, comprar o canjear Oportunidades Destacadas u Oportunidades Continuas Blue365<a></h6>
+<h6><a href="#topic_5">Problemas para canjear una Oportunidad Destacada o una Oportunidad Continua Blue365<a></h6>
+<h6><a href="#topic_6">Recompensas Blue365<a></h6>
+<h6><a href="#topic_7">Intercambio de información en Blue365<a></h6> 
+<h6><a href="#topic_8">Algún otro tema<a></h6>
+
+<h3 class="first question_topic"><a name="topic_1">Tema de la pregunta: Compañías Blue Cross y/o Blue Shield</a></h3>
+<h4><a name="faq_1">¿Qué son las Compañías Blue Cross y/o Blue Shield?</a></h4>
+<p>Son una federación nacional de 38 Compañías Blue Cross y/o Blue Shield independientes, basadas en la comunidad y que operan a nivel local (cada una de ellas, una <a href="http://www.bcbs.com/about-the-companies/">“Compañía Blue”</a>), que proporcionan, en forma conjunta, beneficios de atención de la salud a más de 99 millones de miembros. Es decir, a aproximadamente uno de cada tres estadounidenses.</p>
+<p>¿Desea saber más sobre las Compañías Blue? Aquí le contamos algunos datos curiosos:</p>
+<ul>
+  <li>Las compañías Blue son la familia de compañías de beneficios de seguros de salud más antigua, más grande y más reconocida del país.</li>
+  <li>Durante los últimos 80 años, las 38 Compañías Blue han proporcionado a millones de familias un seguro de salud asequible.</li>
+  <li>El Sistema de Blue Cross y/o Blue Shield pone los beneficios de seguro de salud a disposición en los 50 estados, el Distrito de Columbia y Puerto Rico.</li>
+  <li>A nivel nacional, más del 90% de todos los hospitales y el 80% de todos los médicos son Proveedores Dentro de la Red para las Compañías Blue Cross y/o Blue Shield. Esto implica un alcance más amplio que cualquier otra aseguradora.</li>
+  <li>En su conjunto, las 38 Compañías Blue Cross y/o Blue Shield se encuentran entre los 20 empleadores más importantes en los Estados Unidos.</li>
+</ul>
+
+<h3 class="question_topic"><a name="topic_2">Tema de la pregunta: Blue365</a></h3>
+<h4><a name="faq_2">¿Qué es Blue365<sup>&#174;</sup>?</a></h4>
+<p>Blue365<sup>&#174;</sup> es un programa patrocinado por las Compañías Blue locales participantes que lo ayuda a mantenerse más saludable, por menos dinero. Desde 2007, Blue365 ofrece descuentos a los miembros para ahorrar en productos y servicios, a fin de lograr un estilo de vida bien equilibrado. Estas “Oportunidades Blue365” (que son diferentes de los beneficios de atención de la salud que usted tiene con su Compañía Blue local) pueden ayudarlo a mantener un estilo de vida saludable y, a la vez, gastar menos en algunos de sus Distribuidores favoritos Blue365 a través de todo el país.</p>
+
+<h4><a name="faq_3">¿Puede participar cualquier persona en Blue365?</a></h4>
+<p>Blue365 está actualmente disponible para los miembros de muchas <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=plans">Compañías Blue </a>participantes, y estamos trabajando para extender los ahorros a los miembros de, incluso, más Compañías Blue. Además, Blue365 está disponible para todos los miembros del Plan de Beneficios de Servicio del Programa de Empleados Federales en todos los Estados Unidos.</p>
+
+<h4><a name="faq_4">¿Qué ofertas están disponibles a través de Blue365?</a></h4>
+<p>Blue365 proporciona a los miembros de las Compañías Blue participantes acceso a una amplia gama de ahorros en marcas de salud y bienestar de primer nivel en todo el país, además de en algunas de sus compañías locales favoritas. Usted verá "Ofertas" Destacadas” semanales y "Ofertas" Continuas” a largo plazo en productos relacionados con la salud, junto con descuentos en clubes de salud y centros de acondicionamiento físico, programas de pérdida de peso, experiencias de viajes relacionados con la salud y mucho más.</p>
+
+<h4><a name="faq_5">¿Es Blue365 otro tipo de cobertura de seguro de salud?</a></h4>
+<p>No. Blue365 es independiente de los beneficios de seguro de salud que usted recibe a través de su Compañía Blue local. Vivir bien va más allá del consultorio de su médico, y el objetivo de Blue365 es ayudarlo a ahorrar en las elecciones saludables que realice todos los días.</p>
+
+<h4><a name="faq_6">¿Cómo participo en Blue365?</a></h4>
+<p>Es muy simple. ¡Lo único que tiene que hacer es <a href="<%= new_publisher_consumer_path(@publisher) %>">registrarse</a> en el sitio web y ¡ya está listo para disfrutar de nuestras excelentes ofertas en salud y bienestar!</p>
+
+<h4><a name="faq_7">¿Cuesta dinero participar en Blue365?</a></h4>
+<p>No. Blue365 es gratuito para los miembros de las Compañías Blue participantes. Debido al poder de compra de las Compañías Blue, Blue365 puede ofrecer acceso a importantes ahorros en una amplia gama de emocionantes productos y experiencias de salud y bienestar. ¡Disfrútelo!</p>
+
+<h4><a name="faq_8">¿Cómo me inscribo en la lista de correo electrónico de Blue365?</a></h4>
+<p>Con Blue365, es fácil enterarse de las Ofertas Destacadas semanales, ya que se le envían un aviso de la Oferta Destacada directamente a su correo electrónico. Nuestro servicio de correo electrónico es gratuito para los miembros de las Compañías Blue locales participantes. Si ya se ha registrado en nuestro sitio web de Blue365, entonces comenzará a recibir mensajes de correo electrónico sobre las Ofertas Blue365 automáticamente, a menos que decida solicitar que se lo excluya. Si todavía no se ha registrado, ¿por qué no hacerlo hoy? También puede recibir mensajes de correo electrónico sobre las próximas ofertas antes de registrarse, enviando por correo electrónico su solicitud a <a href="mailto:support@blue365deals.com">support@Blue365deals.com.</a>  ¡Inscríbase ahora y cuénteles a sus amigos que son miembros de Blue Cross Blue Shield!</p>
+
+<h4>¿Recibe Blue365 dinero de los Distribuidores Blue365 o de las Compañías Blue?</h4>
+<p>Blue365 recibe una pequeña tarifa administrativa de los Distribuidores Blue365 participantes y de las Compañías Blue participantes para ayudar a mantener el programa Blue365. Estas tarifas ayudan a mantener el sitio web de Blue365 en funcionamiento y a cubrir los costos internos del programa, de modo que el equipo de Blue 365 pueda seguir trabajando arduamente para conseguir nuevas e increíbles ofertas Blue365 que lo mantendrán saludable y activo.</p>
+
+<h4>¿Qué términos universales se aplican a las Ofertas Blue365?</h4>
+<p>Aquí puede encontrar algunas directrices generales para disfrutar de las Ofertas Blue365:</p>
+<ul>
+  <li>No son válidas para devolución de dinero en efectivo (“cash back”).</li>
+  <li>No se pueden combinar con otras promociones.</li>
+  <li>Se deben usar en una transacción.</li>
+  <li>No cubren impuestos ni propinas.</li>
+</ul>
+<p>Para obtener más detalles, consulte los términos en su Vale o Cupón, así como las <a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank">Condiciones de Uso</a> en el sitio web de Blue365.</p>
+
+<h3 class="question_topic"><a name="topic_3">Tema de la pregunta: Distribuidores Blue365</a></h3>
+<h4>¿Cómo seleccionan a los Distribuidores Blue365?</h4>
+<p>Con mucho cuidado. Los Distribuidores Blue365 ofrecen excelentes marcas de salud y bienestar con ahorros que son buenos para usted y se seleccionan en función de la opinión de los miembros de Blue365 y los investigadores independientes del equipo de Blue365.</p>
+
+<h4>¿Pueden los miembros de Blue365 recomendar productos y servicios relacionados con la salud para futuras Ofertas Blue365?</h4>
+<p>Sí, ¡y lo agradecemos! Usted puede sugerir sus marcas favoritas para futuras Ofertas Blue365 <a id="wish_list" ref="#">aqui</a> y veremos qué podemos hacer para que esto se haga realidad.</p>
+
+<h4>¿Cómo puedo hacer que mi empresa aparezca en Blue365?</h4>
+<p>¿Quiere ofrecer una oportunidad a través del sitio web de Blue365? ¡Estupendo! El equipo de Blue365 siempre está buscando nuevos ahorros relacionados con la salud para compartir con los miembros de las Compañías Blue participantes, de modo que no dude en ponerse en contacto con el <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">Equipo de Blue365.</a></p>
+
+<h3 class="question_topic"><a name="topic_4">Tema de la pregunta: Cómo buscar, comprar o canjear Ofertas Destacadas u Ofertas Continuas Blue365</a></h3>
+<h4>¿Qué es una Ofertas Destacada Blue365?</h4>
+<p>Cada semana, una oferta increíble pasa a ser el centro de atención de Blue365: es nuestra "Oferta Destacada”. A diferencia de nuestras "Ofertas Continuas”, la Oferta Destacada es válida solo por un tiempo limitado, por lo que tendrá que actuar rápido y consultar el sitio web de Blue365 cada semana para ver si hay una nueva Oferta Destacada.</p>
+<p>Si aún no lo ha hecho, simplemente <% if @publisher.launched? %>
+          <a href="<%= new_publisher_consumer_path(@publisher) %>">
+        <% else %>
+          <a href="<%= publisher_daily_deal_subscribers_path(@publisher)%>/presignup">
+        <% end %>
+      inscríbase aquí</a> para recibir nuestros mensajes de correo electrónico semanales, así nunca perderá los ahorros que brindan nuestras Oportunidades Destacadas.</p>
+
+<h4>¿Qué es una Oferta Continua Blue365?</h4>
+<p>Las “Oportunidades Continuas” ofrecen acceso a descuentos en productos y servicios relacionados con la salud de los Distribuidores Blue365, que usted puede comprar durante todo el año, cuando quiera. Usted controla cuándo ahorra.</p>
+
+<h4>¿Cómo compro una Oportunidad Blue365?</h4>
+<p>De una de dos formas fáciles:</p>
+<ul>
+  <li>Si ve el botón “Comprar”, eso significa que podrá adquirir su Oferta directamente en el sitio web de Blue365. Le enviaremos un Vale directamente a su correo electrónico, tan pronto la adquiera.</li>
+  <li>Si ve el botón “Canjear”, será dirigido al sitio web de un Distribuidor Blue365, donde encontrará ahorros especiales ofrecidos solo a los miembros de Blue365. Allí podrá obtener el código de un Cupón para usar en ese sitio web o un Cupón para imprimir, a fin de canjearlo en el local minorista especificado.</li>
+</ul>
+<p>De ambas formas, obtendrá algunos de los mejores ahorros relacionados con la salud que hay disponibles en plaza.</p>
+
+<h4>¿Qué sucede después que hago clic en “Comprar” en una Oferta Blue365?</h4>
+<p>Le enviaremos por correo electrónico un Vale para canjear su Oferta e ingresaremos el cargo en su tarjeta de crédito. Para disfrutar de sus ahorros relacionados con la salud, simplemente imprima el Vale y úselo en cualquier momento antes de su Fecha de Vencimiento. Recuerde que tendrá que imprimir y llevar el Vale (con su código único de 8 dígitos) y una identificación válida del estado cuando reclame su oferta.</p>
+  
+<h4>¿Qué sucede después que hago clic en “Canjear” una Oferta Blue365?</h4>
+<p>Será dirigido al sitio correspondiente del Distribuidor Blue365. Allí podrá obtener el código de un Cupón para usar en ese sitio web o un Cupón para imprimir, a fin de canjearlo en el local minorista especificado.</p>
+
+<h4>¿Qué sucede si compro una oferta en el sitio web de un Distribuidor Blue365?</h4>
+<p>Usará un Cupón directamente en el sitio de ese Distribuidor Blue365. ¡Es muy sencillo!</p>
+
+<h4>¿Cuál es la diferencia entre un Vale y un Cupón?</h4>
+<p>Cuando compre una oferta en el sitio web de Blue365, le enviaremos un Vale por correo electrónico. Tendrá que imprimir y llevar el Vale (con su código único de 8 dígitos) y una identificación válida del estado cuando reclame su oferta.</p>
+<p>Si está aprovechando una oferta en el sitio web de un Distribuidor Blue365, entonces recibirá un Cupón. El Cupón no tiene Valor en Efectivo, pero le permitirá ahorrar en el sitio web de un Distribuidor Blue365 o en el local minorista especificado.</p>
+
+<h4>Compré una oferta en el sitio web de Blue365 e imprimí el Vale. ¿Cuándo lo puedo usar?</h4>
+<p>En cualquier momento antes de la Fecha de Vencimiento que figura en el Vale. Cada Oferta tiene términos diferentes, que están incluidos en su Vale y en el correo electrónico de confirmación de su compra, así como en el sitio web de Blue365.</p>
+
+<h4>¿Puedo comprar una oferta Blue365 que ya haya vencido?</h4>
+<p>Lamentablemente, no. Blue365 no puede cambiar las fechas o los términos de una Oferta Blue365. Sin embargo, hay más ofertas relacionadas con la salud que llegan al sitio web de Blue365 todo el tiempo, ¡así que siga visitándonos!</p>
+
+<h4>¿Puedo usar parte del Vale Blue365 ahora y guardar el resto para más adelante?</h4>
+<p>Lo sentimos, pero tendrá que usar su Vale y recibir todos esos ahorros en una única transacción. Los Distribuidores Blue365 no otorgan créditos parciales por ningún saldo remanente, de modo que téngalo en cuenta cuando use sus Vales.</p>
+
+<h4>¿Por qué Analog Analytics figura en el estado de cuenta de mi tarjeta de crédito?</h4>
+<p>Analog Analytics es la compañía que mantiene en funcionamiento el sitio web de Blue365 y procesa los pagos de las Ofertas Blue365. ¡Disfrute de sus ahorros!</p>
+
+<h4>¿Es seguro usar mi tarjeta de crédito para realizar una compra en Blue365?</h4>
+<p>Sí. Blue365 es un sitio web seguro. La transacción usa una capa de conexión segura (SSL, por sus siglas en inglés), un sistema ampliamente utilizado que ha sido diseñado para mantener la seguridad de su información, junto con otras características de seguridad estándares de la industria. Puede aprovechar las Ofertas Blue365 con confianza.</p>
+
+<h4>Si aparece mi nombre en el Vale, ¿tendrá el Distribuidor Blue365 acceso a la información de mi tarjeta de crédito?</h4>
+<p>No. El sitio web de Blue365 le entrega un Vale para que Blue365 no tenga que dar la información de su tarjeta de crédito a los Distribuidores Blue365. Esa información es conservada de manera segura por Analog Analytics, la compañía que procesa las transacciones realizadas en el sitio web de Blue365.</p>
+
+<h4>Cuando doy Vales Blue365 a mis amigos a modo de obsequio, ¿tendrán ellos acceso a la información de mi tarjeta de crédito?</h4>
+<p>No, no se preocupe. Los Vales Blue365 incluyen un registro de la transacción, el nombre del comprador, el nombre del consumidor que recibió el regalo y un único código de 8 dígitos que los Distribuidores Blue365 necesitan para concretar una Oferta. La información del pago se mantiene segura, y los afortunados que recibieron el vale no pueden acceder a ella.</p>
+
+<h3 class="question_topic"><a name="topic_5">Tema de la pregunta: Problemas para canjear una Oferta Blue365</a></h3>
+<h4>¿Qué sucede si un Distribuidor Blue365 no acepta el Vale?</h4>
+<p>Blue365 hace un gran esfuerzo por asegurarse de que los Distribuidores Blue365 cumplan con nuestros estándares. También compartimos las reseñas y recomendaciones recientes de otros miembros de Blue365 para ayudarlo a conocer a todos nuestros Distribuidores Blue365. Sin embargo, si sucede algo y usted no está satisfecho, le reembolsaremos la cantidad que pagó por la Oferta. Lo único que tiene que hacer es devolver su Vale no usado, antes de su Fecha de Vencimiento, e informarnos sobre el problema a <a href="mailto:support@blue365deals.com">support@Blue365deals.com.</a></p>
+
+<h4>¿Cuál es el proceso de reembolso para los Vales?</h4>
+<p>Le reembolsaremos la cantidad que pagó por la Oferta Blue365, sin objeciones, en cualquier momento antes de la Fecha de Vencimiento del Vale. Lo único que tiene que hacer es devolver su Vale no usado, antes de su Fecha de Vencimiento, e informarnos sobre el problema a <a href="mailto:support@lue365deals.com">support@Blue365deals.com.</a></p>
+
+<h4>¿Qué sucede si me paso de la Fecha de Vencimiento y olvido usar mi Vale a tiempo?</h4>
+<p>No se preocupe: su dinero no está perdido. Si bien no podrá aprovechar el descuento adicional en esa Oferta, aún tiene derecho a los bienes y servicios equivalentes la cantidad que pagó por ese Vale. Por ejemplo, si gastó $25 para comprar un Vale de $50 por sus calzado deportivo favoritos, pero no pudo obtenerlos antes de la Fecha de Vencimiento, de todos modos obtendrá los $25 que pagó por esos calzado deportivo. La única parte que perderá si se pasa de la Fecha de Vencimiento es la diferencia entre la cantidad  que pagó por el Vale (el “Valor en Efectivo”: $25, en nuestro ejemplo) y el valor total de la Oferta (el “Valor Nominal”: en este caso, $50).</p>
+
+<h3 class="question_topic"><a name="topic_6">Tema de la pregunta: Recompensas Blue365</a></h3>
+<h4>¿Qué gano si invito a mis amigos a que se sumen a Blue365?</h4>
+<p>¡Recompensas Blue365! Por cada nuevo miembro de una Compañía Blue participante que, gracias a usted, compra una Oferta en el sitio web de Blue365, usted ganará un crédito de Recompensas Blue365 de $10, canjeable solo a través del programa Blue365, para gastar en una Oferta futura en el sitio web de Blue365. Dado que usted no paga por ellas, las Recompensas Blue365 no tienen Valor en Efectivo. Les puede contar a sus amigos sobre las Ofertas Blue365 enviándoles un enlace a través de Twitter, Facebook o un mensaje de correo electrónico. Su amigo tendrá que registrarse en el sitio web de Blue365 en el término de 72 horas después de hacer clic en ese enlace, y usted recibirá sus Recompensas Blue365 en cuestión de días después de que su amigo realice su primera compra en el sitio web de Blue365. Recuerde que solo los miembros de las Compañías Blue participantes son elegibles para registrarse y sumarse a los ahorros relacionados con la salud de Blue365. Usted recibirá las Recompensas Blue365 solo por la primera compra de cada nuevo miembro de Blue365 que reúna los requisitos que usted haya referido. Puede referir muchos miembros nuevos de Blue365, ¡así que póngase en acción y observe cómo acumula Recompensas Blue365!</p>
+
+<h4>¿Cómo funciona? ¿Qué tengo que hacer para obtener mis Recompensas Blue365?</h4>
+<p>Cuando sus amigos hagan clic en el enlace de referencia, esto nos permitirá saber que fue usted quien los refirió a Blue365. También tendrán que registrarse en Blue365, en nuestro sitio web, en el término de 72 horas de haber hecho clic en ese enlace. Eso significa que tienen que ser miembros de una Compañía Blue que participe en el programa Blue365. A continuación, usted recibirá sus Recompensas Blue365 en cuestión de días después de que su amigo realice su primera compra en el sitio web de Blue365. Usted verá que las Recompensas Blue365 se acumulan en su cuenta, que usted puede consultar.
+<% if current_consumer.present? %>
+<a href="<%= publisher_consumer_path(@publisher, current_consumer) %>">aqui</a>
+<% end %>.
+
+Luego, automáticamente aplicaremos esas Recompensas Blue365 como crédito para la próxima Oferta que compre en el sitio web de Blue365. Si sus Recompensas Blue365 superan el precio de la Oferta, entonces el saldo permanecerá en su cuenta para sus compras futuras.</p>
+
+<h3 class="question_topic"><a name="topic_7">Tema de la pregunta: Intercambio de información en Blue365</a></h3>
+<h4>¿Cuál es la Política de Privacidad de Blue365?</h4>
+<p>Comprendemos la importancia de proteger su información. Puede consultar la <%= daily_deals_privacy_link(@publisher) %> de Blue365 para comprender cómo Blue365 recopila, usa, divulga y gestiona los detalles de los miembros.</p>
+
+<h4>¿Cuáles son las Condiciones de Uso del sitio web de Blue365?</h4>
+<p>Si desea obtener más información sobre los requisitos generales del sitio web de Blue365, no dude en consultar nuestras <a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank">Condiciones de Uso </a> en cualquier momento.</p>
+
+<h4>¿Será mi información compartida con mi Compañía Blue local?</h4>
+<p>Al registrarse en el sitio web de Blue365, usted autoriza a Blue365 a compartir los detalles de su información de usuario de Blue365 (incluidos su nombre, su dirección de correo electrónico y demás información) con su Compañía Blue local y los Distribuidores Blue365. Puede revocar esta autorización en cualquier momento enviando su solicitud por escrito a la siguiente dirección: <strong>Blue365 Member Services, 225 North Michigan Ave., Chicago, IL, 60601-7680,</strong>, o bien puede enviarla por correo electrónico a: <a href="mailto:support@blue365deals.com">support@Blue365deals.com</a>.  La revocación de esta autorización cancelará su registro en el sitio web de Blue365 y deshabilitará su capacidad para acceder a las Ofertas Blue365, hasta que decida volver a registrarse.</p>
+
+<h3 class="question_topic"><a name="topic_8">Tema de la pregunta: Algún otro tema</a></h3>
+<h4>¿Qué sucede si tengo más preguntas?</h4>
+<p>¡Póngase en contacto! Puede enviar un mensaje de correo electrónico a Blue365 a <a href="mailto:support@blue365deals.com">support@Blue365deals.com</a> o llamarnos al (855) 511-BLUE. Con gusto responderemos cualquier pregunta adicional que pueda tener. ¡Le deseamos la mejor salud!</p>
+
+  </div>
+  </div>
+</div>
+
+<% end %>
+
+
+<script type="text/javascript">
+  function wishListLightbox() {
+    <% if consumer? %>
+      jQuery.fancybox(
+        "<%= escape_javascript(render :partial => with_theme("suggested_daily_deals/lightbox")) %>",
+        {
+          'autoDimensions'  : false,
+          'width'           : 980,
+          'height'          : 736,
+          'transitionIn'    : 'none',
+          'transitionOut'   : 'none',
+          'showCloseButton' : false,
+          'centerOnScroll'  : true
+        }
+      );
+    <% else %>
+      window.location = '<%= suggested_daily_deals_login_path %>';
+    <% end %>
+  }
+
+  jQuery(document).ready(function() {
+    jQuery('#wish_list').click(wishListLightbox);
+
+    <% if params[:suggested_daily_deals_lightbox] %>
+      wishListLightbox();
+    <% end %>
+  });
+</script>
+
+<!-- end temp case for About and Pan page -->

@@ -1,0 +1,24 @@
+<% set_daily_deal_page_title_slug t(:title_slug_invalid_act_code) %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2><%= t(:activation_code) %></h2>
+    <p><%= t(:activation_code_header_error) %></p>
+    <p><%= t(:activation_code_error_par1) %> <%= @publisher.brand_name_or_name %> <%= t(:activation_code_error_par2) %></p>
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding: 12px 0 0 21px" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, "#{t(:activation_code_label)}:") %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons">
+        <%= submit_tag("#{t(:activate)}", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

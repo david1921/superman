@@ -1,0 +1,20 @@
+<div id="landing_page" class="not_found">
+	<div id="sorry">
+		<h1>Sorry&hellip;</h1>
+		<h2>We hope to come to your area soon!</h2>
+	</div>
+	<div id="sorry_box">
+		<h1>Would you like to be in <br /> the know upon our arrival?</h1>
+		<p>We'll email you once we're in your neighborhood.</p>
+		<form id="landing_welcome" action="{{ publishing_group.subscribers_path }}" method="POST">
+			<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+			<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />	
+			<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />		
+			<input type="hidden" name="redirect_to" value="{{ publishing_group.landing_page_path | verifiable_url }}" />
+			<input type="hidden" name="subscriber[zip_code]" value="{{ zip_code }}" />	
+			<fieldset class="submit">
+				<input id="submit_button" type="image" src="/themes/rr/images/buttons/submit_landing.png" value="Submit" />	
+			</fieldset>	
+		</form>
+	</div><!-- /welcome_box -->
+</div><!-- /landing_page -->

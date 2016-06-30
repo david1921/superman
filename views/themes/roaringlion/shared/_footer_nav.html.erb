@@ -1,0 +1,19 @@
+<ul id="footer_nav">
+	<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Deal</a></li>
+	<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How it Works</a></li>
+	<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+	<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+	<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Feature Your Business</a></li>
+	<% if @publisher.launched? %>
+		<% if controller.send(:current_consumer_for_publisher?, @publisher) %>
+			<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+		<% else %>
+			<li class="last"><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+		<% end %>
+	<% end %>
+</ul><!-- /footer_nav -->
+<div class="clear"></div>
+<ul id="legal_nav">
+	<li><%= daily_deals_privacy_link(@publisher) %></li>
+	<li class="last"><%= daily_deals_terms_link(@publisher) %></li>
+</ul><!-- /legal_nav -->

@@ -1,0 +1,23 @@
+Hello,
+
+You account at <%= @company_name %> has just been reactivated.
+
+To continue using your account, please visit the following web address and set a new password:
+
+  <%= edit_password_reset_url(@user.perishable_token) %>
+
+After you've set your new password, you can login again at:
+
+  http://reports.analoganalytics.com
+
+with your login name:
+
+  <%= @user.login %>
+
+and the password you set up.
+
+If you have questions about your account or our service, please email <%= @support_email_address %>.
+
+Thanks,
+
+<%= @company_name %> Team

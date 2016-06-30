@@ -1,0 +1,12 @@
+<div id="market_menu_wrapper">
+	      <h3>Check out Awesome deals in</h3>
+	      <h4><a href="{{ publisher.market_name_or_city }}">{{ publisher.market_name_or_city }}</a></h4>
+	      <p class="looking-for-deals">Looking for deals in another area?</p>
+                    <ul id="market_menu">
+                       <li><p class="click-here-menu">Click Here!</p>
+	                         {{ publisher | market_selection_list }}
+	                         </li>
+                    </ul>
+               </div><!-- /market_menu_wrapper -->
+               <div class="clear"></div>              
+               <!--/ market dropdown -->

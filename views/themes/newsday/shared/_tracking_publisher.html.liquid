@@ -1,0 +1,34 @@
+<!-- SiteCatalyst code version: H.20.3.
+Copyright 1997-2009 Omniture, Inc. More info available at
+http://www.omniture.com -->
+<script type="text/javascript" src="https://www.newsday.com/js/s_nd_code.js"></script>
+<script type="text/javascript"><!--
+/* You may give each page an identifying name, server, and channel on the next lines. */
+var label = "Signup - ";
+{% analytics_tag landing %}label = "Deal - "{% endanalytics_tag %}
+{% analytics_tag signup %}label = "Signup - "{% endanalytics_tag %}
+{% analytics_tag sale %}label = "Purchased - "{% endanalytics_tag %}
+s_nd.pageName = "Daily Deals - Newsday - " + label + "3rd Party."
+
+s_nd.server="newsday.com"
+s_nd.hier1="Newsday:Classifieds:Deals"
+s_nd.prop4="Deals"
+s_nd.prop5=
+s_nd.channel="Newsday:Classifieds:Deals"
+/* Conversion Variables */
+s_nd.campaign=""
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s_nd.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('<')+'\!-'+'-')
+//--></script><noscript><a href="http://www.omniture.com" title="Web Analytics"><img
+src="https://newsday.122.2o7.net/b/ss/newsdaydev/1/H.20.3--NS/0"
+height="1" width="1" border="0" alt="" /></a></noscript><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.20.3. -->
+
+{% analytics_tag sale %}
+<!-- start CheetahMail -->
+<img src="https://newsalertsnewsday.com/a/r2084321558/Newsday.gif?id={% analytics_tag_data sale_id %}&amount={% analytics_tag_data value %}">
+<img src="https://newsalertsnewsday.com/a/r2087105761/Cablevision.gif?id={% analytics_tag_data sale_id %}&amount={% analytics_tag_data value %}">
+<!-- end CheetahMail -->
+{% endanalytics_tag %}

@@ -1,0 +1,62 @@
+<div class="opt-in">
+     
+     
+     <div id="opt_in_left_side">
+      <h2>Sign up for FREE today</h2>
+                <h1>We'll send you exceptional deals to your inbox every day.</h1>
+                <p>Get 50% off or more at great places in your neighborhood. Sign up for FREE to receive Entertainment's Daily Deal: 
+                the best, hassle-free, easy-to-use deals with a few surprises each week... to deliver a great new experience!</p>
+                <form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="new_subscriber">
+                 <table width="550" cellpadding="0" cellspacing="0" border="0" >
+                      
+                        <tr id="row" >
+                        <td width="150" class="text" >email address:</td>
+                        <td width="400" colspan="3"><input type="text" name="email" size="55"   id="email"></td>
+                        </tr>
+                        
+                        <tr id="row">
+                        <td width="100" class="text" >choose your city:</td>
+                        <td width="100"><select name="city"> 
+                            <option value="city">Detroit</option>
+                            <option value="city">Cincinatti</option>
+                            <option value="city">Salt Lake City</option>
+                            <option value="city">New York City</option>
+                            <option value="city">Detroit</option>
+                            </select>
+                        </td>
+                        
+                        <td  class="text" width="75">zip:</td>
+                        <td><input type="text" name="zip"  id="zip"></td>
+                        </tr>
+                       
+                       </table>
+                       
+                                  
+                <div class="sign_up"><br />
+                <div style="text-align: center"><input name="submit" id="subscriber_submit" type="image" src="/themes/chicagoreader/images/buttons/sign_up_free_button.gif" value="Submit"> </div> 
+                <p>Don't worry - we won't share your e-mail address with anyone. See our <a href="#" onclick="window.open('{{ daily_deal.privacy_policy_url }}', '_blank'); return false; return false;">privacy policy.</a></p></div>      
+				
+				</form>     
+           
+           
+           <div class="bottom_cta">
+           		<div class="box"><img src="/themes/chicagoreader/images/graphics/restaurant.jpg" width="160" height="127" alt="restaurants" />
+                	<p> Restaurants <br />
+						<span class="box_offer">Up to 70% off</span></p>
+                </div>
+                <div class="box"><img src="/themes/chicagoreader/images/graphics/spas.jpg" width="160" height="127" alt="spas" />
+                	<p> Spas <br />
+						<span class="box_offer">Up to 50% off</span></p>
+                </div>
+                <div class="box"><img src="/themes/chicagoreader/images/graphics/attractions.jpg" width="159" height="126" alt="attractions" />
+                	<p>Attractions <br />
+						<span class="box_offer">Up to 60% off</span></p>
+                </div>
+                
+                
+           </div>
+                
+                
+                
+     </div>           
+     </div><!--opt-in-->

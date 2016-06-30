@@ -1,0 +1,10 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>1.1</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Pending</BookingStatus>
+  <Errors/>
+  <FormValues/>
+  <PaymentStatus>Pending</PaymentStatus>
+  <TransactionDate>2012-03-30T17:43:10.11</TransactionDate>
+  <TransactionID>395</TransactionID>
+</BookTransaction>

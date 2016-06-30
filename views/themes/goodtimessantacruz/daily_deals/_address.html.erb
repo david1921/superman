@@ -1,0 +1,7 @@
+<%= @daily_deal.advertiser_name %><br />
+<% @daily_deal.advertiser.address do |line| -%>
+  <%= line -%><br/>
+<% end -%>
+<%= @daily_deal.formatted_phone_number %><br />
+<% advertiser_url = @daily_deal.advertiser.website_url.try :gsub, "http://", "" %>
+<%= link_to( advertiser_url, "http://#{advertiser_url}", :target => "_blank" ) %>

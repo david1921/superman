@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
+
+<head>
+ 
+<title>{{ page_title }}</title> 
+
+<meta property="og:description" content="" />
+
+<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+<link rel="stylesheet" href="/themes/stylesheets/daily_deals.css" type="text/css" />
+ <link href="/themes/anchoragepress/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+
+<!--[if gt IE 6]>
+<link href="stylesheets/ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<script src="/javascripts/prototype.js" type="text/javascript"></script>
+<script src="/javascripts/effects.js" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+<script src="/javascripts/controls.js" type="text/javascript"></script>
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+{% if daily_deal %}
+<script src="/themes/anchoragepress/javascripts/contentslide.js" type="text/javascript"></script>
+{% endif %}
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body>
+
+
+<div id="analog_analytics">
+    <div id="daily_deal">
+    
+    	<div id="masthead">
+        	<div id="topnav">
+           		<ul>
+                    {% if publisher.launched? %}
+                    {% if publisher.current_user_belongs_to? %}
+                    <li><a href="{{ publisher.my_deals_path }}">MY DEALS</a> | </li>
+                    <li><a href="{{ publisher.my_account_path }}">MY ACCOUNT</a> | </li>
+                    <li><a href="{{ publisher.logout_path }}">SIGNOUT</a></li>
+                    {% else %}
+                  	<li><a href="{{ publisher.login_path }}">LOGIN</a> | </li>
+                  	<li><a href="{{ publisher.new_consumer_path }}">SIGNUP</a> | </li>
+                  	<li><a href="{{ publisher.how_it_works_path }}">WHY SIGN UP?</a></li>
+					{% endif %}
+					{% endif %}
+                </ul>
+            </div>
+            <div id="press-logo"><a href="http://www.anchoragepress.com/"><img src="/themes/anchoragepress/images/display/anchorage-press.png" width="182" height="109" alt="Anchorage PRESS" /></a></div>
+            <div id="leaderboard">
+              <embed src="/themes/anchoragepress/anchoragemuseum-mammothad.swf" width="728" height="90">
+              </embed>
+            </div>
+            <div class="clear"><img src="/themes/anchoragepress/images/display/pressgoodies-head.png" width="960" height="33" alt="" /></div>
+      </div>
+        
+        <div id="navbar">
+        	<div id="mainnav">
+            	<ul>
+                  {% if publisher.launched? %}
+                    {% if publisher.current_user_belongs_to? %}
+                	<li><a href="{{ publisher.todays_daily_deal_path }}">HOME</a></li>
+                    <li><a href="{{ publisher.todays_daily_deal_path }}">DEAL OF THE DAY</a></li>
+                    <li><a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a></li>
+                    <li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+                    <li><a href="{{ publisher.contact_path }}">CONTACT US</a></li>
+                    {% else %}
+                    <li><a href="{{ publisher.todays_daily_deal_path }}">HOME</a></li>
+                    <li><a href="{{ publisher.todays_daily_deal_path }}">DEAL OF THE DAY</a></li>
+                    <li><a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a></li>
+                    <li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+                    <li><a href="{{ publisher.contact_path }}">CONTACT US</a></li>
+                    <li><a href="{{ publisher.login_path }}">SIGN IN</a></li>
+                    <li class="fb"><a href="{{ publisher.facebook_connect_path }}"><img src="/themes/anchoragepress/images/buttons/fbconnect.png" width="97" height="25" alt="facebook Connect" /></a></li>
+                    {% endif %}
+		          {% endif %}
+                </ul>
+            </div>
+            <div id="subscribe">
+                <form action="{{ publisher.subscribers_path }}" id="daily_deal_header" method="post">
+					<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+                    <input id="redirect_to" name="redirect_to" type="hidden" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" />
+                    <div class="maincontent">
+                        <input id="subscriber_email" name="subscriber[email]" size="27" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />
+                        <input id="submit_btn" src="/themes/anchoragepress/images/buttons/subscribe.png" type="image" />
+                    </div>
+                    <div class="terms">
+                        <input name="subscriber[terms]" value="0" type="hidden" />
+                        <input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;">Privacy Policy</a>
+                	</div>                                
+                </form>
+				
+            </div>
+        </div>
+
+        <div id="container">
+		 {% include "shared/flash" %}
+         {{ content_for_layout }}
+		 {% if daily_deal %}
+			<script type="text/javascript"> 
+			//<![CDATA[
+			  Analog.DailyDeal.init(
+				{% now_in_milliseconds %},
+				{{ daily_deal.ending_time_in_milliseconds }},
+				'/daily_deals/{{ daily_deal.id }}.json', 
+				{
+				  displayHour: true,
+				  getTimeRemaining: function(day, hour, min, sec) {
+					return hour + ":" + min + ":" + sec;
+				  }
+				}
+			  );
+			//]]>
+			</script> 
+		  {% endif %}
+
+		</div>
+		
+		
+		
+		<div class="center" style="margin-top: 30px; padding: 8px; background: #ccc; clear: both; display: block; overflow: hidden;">
+			<div style="width: 50%; float: left; text-align: right;">&copy; Copyright 2011, Anchorage Press, Anchorage, AK</div>
+			<div style="width: 50%; float: right; text-align: left;"> &nbsp; <a id="analog_analytics_logo" alt="Powered by Analog Analytics" href="http://www.analoganalytics.com"><img src="/images/powered_by_analog_analytics.png"></a></div>
+			
+	   </div>
+      
+    </div><!--end daily_deal-->
+</div><!--end analog_analytics-->
+</body>
+</html>
+

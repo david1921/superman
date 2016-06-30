@@ -1,0 +1,49 @@
+<% set_daily_deal_page_title_slug "Sign Up" %>
+<div class="page_row" id="prelaunch_new_consumer">
+  <div class="page_column_8 first rounded_corners">
+    <div class="left">
+      <p>Sign up today, deals start July 11th!<br/>
+      Fill out the quick information below to start saving and get $5 off your first deal!</p>
+
+      <p class="note"><font size="1">* Valid one per person. Deal Credit must be used by July 31, 2011.</font></p>
+
+      <% form_for [@publisher, @consumer] do |f| -%>
+        <%= f.error_messages(:header_message => "Errors prevent this account from being created") %>
+        <%= f.text_field_div(:name, "Full Name:") %>
+        <%= f.text_field_div(:email) %>
+        <%= f.password_field_div(:password) %>
+        <%= f.password_field_div(:password_confirmation, "Confirm Password:") %>
+
+
+        <%= f.check_box_div(:agree_to_terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+
+        <div class="row button">
+          <%= image_submit_tag "/themes/daily_deals/images/buttons/subscribe.png", :name => "sign_up" %>
+        </div><!-- end row button -->
+        <div class="clear"></div><!-- end clear -->
+      <% end %>
+    </div><!-- end left -->
+    <div class="right">
+      <%= image_tag "/themes/gastonchamberdeals/images/deal_example_with_text.png" %><br />
+	  <!--<p>When you see something you like, <span class="blue"><em>share it with your friends!</em></span></p>-->
+    </div><!-- end right -->
+  </div><!-- end  page_column_8 first rounded_corners-->
+
+  <div id="widgets">
+    <div class="page_column_4 last rounded_corners deal_how_it_works" id="deal_credit">
+      <div class="copy">
+        
+          <p><strong class="blue">SEE IT</strong> - Every Monday,<br> check your email or GastonChamberDeals.com for a<br> great deal from a local business.</p>
+          <p><strong class="blue">SHARE IT</strong> - Share the deal with your friends. Pass along deals by email or broadcast them to your social networks.</p>
+          <p><strong class="blue">BUY IT</strong> - Print the voucher, then present it at the business and enjoy your deal.</p>
+        
+
+      </div><!-- end copy -->
+    </div><!-- end  deal_credit-->
+    <div class="page_column_4 last rounded_corners" id="send_deal">
+      <%= mail_to(@publisher.sales_email_address, image_tag("/themes/daily_deals/images/open.png")) %>
+      <div id="bottom"><p><%= mail_to(@publisher.sales_email_address, "Learn about how we can help bring tons of customers to your door.") %></p></div>
+    </div><!-- end send_deal -->
+  </div><!-- end widgets -->  
+</div><!-- end prelaunch_new_consumer -->
+

@@ -1,0 +1,31 @@
+<% set_daily_deal_page_title_slug "Sign Up" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_12 suffix_2 first rounded_corners">
+    <h2>Sign Up</h2>
+    <div id="signup_form">
+      <% form_for [@publisher, @consumer] do |f| -%>
+        <%= f.error_messages(:header_message => "Errors prevent this account from being created") %>
+
+        <%= f.text_field_div(:name, "Full Name:") %>
+        <%= f.text_field_div(:email) %>
+
+        <% if @publisher.require_membership_codes? %>
+          <%= render :partial => 'membership_code', :locals => { :consumer => @consumer, :f => f } %>
+        <% end %>
+
+        <%= f.password_field_div(:password) %>
+        <%= f.password_field_div(:password_confirmation, "Confirm Password:") %>
+
+        <%= f.text_field_div(:discount_code, nil, :disabled => @consumer.discount_code.present?) if @publisher.allow_discount_codes? -%>
+        <%= f.hidden_field(:discount_code) if @consumer.discount_code.present? %>
+
+        <%= f.check_box_div(:agree_to_terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+
+        <div class="row button_row">
+          <%= submit_tag("Sign Up", :name => "sign_up") %> <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

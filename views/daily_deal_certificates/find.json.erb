@@ -1,0 +1,31 @@
+<%
+  attrs = { :status => @daily_deal_certificate ? @daily_deal_certificate.status : "invalid" }
+  if @daily_deal_certificate
+    attrs.merge!(
+      :advertiser_name => @daily_deal_certificate.advertiser.name,
+      :value_proposition => @daily_deal_certificate.value_proposition,
+      :price => @daily_deal_certificate.price,
+      :value => @daily_deal_certificate.value,
+      :expires_on => @daily_deal_certificate.expires_on
+    )
+    if @daily_deal_certificate.usable? && (store = @daily_deal_certificate.store || @daily_deal_certificate.advertiser.store)
+      attrs.merge!(:location => {
+        :address_line_1 => store.address_line_1,
+        :address_line_2 => store.address_line_2,
+        :city => store.city,
+        :state => store.state,
+        :zip => store.zip,
+        :country => "US",
+        :latitude => store.latitude,
+        :longitude => store.longitude
+      })
+    end
+    if @daily_deal_certificate.redeemed?
+      attrs.merge!(:redeemed_at => @daily_deal_certificate.redeemed_at.utc.to_s(:iso8601))
+    else
+      url_options = { :protocol => "https", :host => AppConfig.api_host, :format => "json" }
+      attrs.merge!(:methods => { :redeem => api_redeem_daily_deal_certificate_url(@daily_deal_certificate, url_options) })
+    end
+  end
+-%>
+<%= attrs.to_json.html_safe %>

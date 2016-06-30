@@ -1,0 +1,9 @@
+<% set_page_title "Publishers with Purchases Eligible for Loyalty Credit" %>
+<%= render(:partial => "navigation", :locals => { :page => :loyalty_eligible }) %>
+
+<table cellspacing="0" summary="publishers" class="publishers">
+  <tr>
+    <th class="name">Publisher Name</th>
+  </tr>
+  <%= render :partial => "reports/loyalty_program/publisher_with_eligible_purchases", :collection => @publishers %>
+</table>

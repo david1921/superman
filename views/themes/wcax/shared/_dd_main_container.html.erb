@@ -1,0 +1,100 @@
+<h1><%= @daily_deal.value_proposition %></h1>
+<div class="dd_right_panel">
+	<img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.value_proposition %>">
+	<div id="dd_about_the_deal">
+		<h5>About The Deal</h5>
+		<%= @daily_deal.description.try :html_safe %>
+	</div><!-- END #dd_about_the_deal -->
+	<% if @daily_deal.highlights.present? %> 
+	<div id="dd_highlights">
+		<h5>Highlights</h5>
+		<%= @daily_deal.highlights.try :html_safe %>
+		</div><!-- END #dd_highlights -->
+		<% end %>
+</div><!-- END .dd_right_panel -->
+<div class="dd_left_panel">
+	<div id="dd_buy_box">
+		<div id="buy_now">
+			<% if @daily_deal.sold_out? %>
+				<div id="sold_out" class="dd_button">
+					Sold Out
+				</div>
+			<% elsif @daily_deal.over? %>
+				<div id="dd_price" <%= "class=variation" if !@daily_deal.daily_deal_variations.blank? %>>
+				<% if !@daily_deal.daily_deal_variations.blank? -%>From<br /><% end %><%= formatted_price_for(@daily_deal.price_to_display) %>
+				</div>
+				<div id="deal_over" class="dd_button">
+					Over
+				</div>
+			<% elsif @daily_deal.active? %>			
+				<div id="dd_price" <%= "class=variation" if !@daily_deal.daily_deal_variations.blank? %>>
+				<% if !@daily_deal.daily_deal_variations.blank? -%>From<br /><% end %><%= formatted_price_for(@daily_deal.price_to_display) %>
+				</div>				
+				<% if !@daily_deal.daily_deal_variations.blank? -%>
+					<a id="buy_now_button" class="dd_button dd_variations_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+					<div id="deal_over" class="dd_button unavailable" style="display:none;">
+						Over
+					</div>
+					<a id="dd_variations_button" class="buy_now dd_variations_button" href="#">
+					<span class="arrow">&gt;</span>
+					</a>
+
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+				  		<%= render :partial => with_theme("shared/dd_variations_menu") %>
+				  	<% end %>
+
+				<% else -%>
+					<a id="buy_now_button" class="dd_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+					<div id="deal_over" class="dd_button unavailable" style="display:none;">
+						Over
+					</div>
+				<% end -%>
+			<% else %> 
+				<div id="not_yet" class="dd_button">Coming Soon</div>
+			<% end %>
+		</div><!-- END #buy_now -->
+		<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+		<%= render :partial => 'shared/variation_delay.js' %>
+		<%= render :partial => with_theme('shared/button_states') %>
+	</div><!-- END #dd_buy_box -->
+	<div id="deal_dashboard">
+		<div id="dashboard_top">
+			<div class="dashboard_value">
+				<p>Value</p>
+				<span class="dash_value dashboard_bold"><%= formatted_price_for(@daily_deal.value_to_display) %></span>
+			</div>
+			<div class="dashboard_value">
+				<p>Discount</p>
+				<span id="daily_deal_savings_as_percentage" class="dash_value dashboard_bold"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span>
+			</div>
+			<div class="dashboard_value last_value">
+				<p>You Save</p>
+				<span id="daily_deal_savings" class="dash_value dashboard_bold"><%= formatted_price_for(@daily_deal.savings_to_display) %></span>
+			</div>
+		</div><!-- END #dashboard_top -->
+		<div id="timer">
+			<div id="time_left_to_buy">
+				<%= @daily_deal.time_remaining_display %>
+			</div>
+		</div><!-- END #dashboard_bottom -->
+		 <% if @daily_deal.number_sold_meets_or_exceeds_display_threshold? -%>
+			<p id="deals_sold_counter"><%= @daily_deal.number_sold %> Sold</p>
+		<% end -%>
+	</div><!-- END #deal_dashboard -->
+	<div class="dd_share_panel">
+		<h4>Share This Deal</h4>
+		<div class="share_link_wrap">
+            <%= render 'shared/share_deal_link', :type => :facebook %>
+            <%= render 'shared/share_deal_link', :type => :twitter %>
+            <%= render 'shared/share_deal_link', :type => :mailto %>
+		</div><!-- END .share_link_wrap -->
+	</div><!-- END .dd_share_panel-->
+	<div id="get_yours_free">
+	<a id="get_yours_free_btn" href="<%= loyalty_program_daily_deal_path(:id => @daily_deal.id) %>">Get Yours FREE!<span class="small_arrow"></span></a>
+	<p class="get_your_free_text">When 4 of your friends buy this deal you get your money back!*</p>
+	<a id="get_your_free_details" href="#SeeDetails">See Details</a>
+	<div id="get_free_details_text">
+		<p>After you purchase your great myjumponit deal, you'll be given a unique web link that you can share with your friends. If four of your friends buy, your deal is free! Refund can only be earned once per deal. Shipping Not Included.</p>
+	</div><!-- END #get_free_details_copy -->
+	</div>
+</div><!-- END .dd_left_panel -->

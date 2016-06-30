@@ -1,0 +1,18 @@
+<table cellspacing="0">
+  <tr>
+    <th>Consumer</th>
+    <th>Vouchers</th>
+    <th>Curr Price</th>
+    <th>Refunded At</th>
+    <th>Refunded By</th>
+    <th>Refund Amount</th>
+  </tr>
+  <tr>
+    <td><%= @daily_deal_purchase.consumer.email %></td>
+    <td><%= @daily_deal_purchase.daily_deal_certificates.count %></td>
+    <td><%= number_to_currency(@daily_deal_purchase.price) %>&nbsp;<%= link_to("view", edit_daily_deal_path(@daily_deal_purchase.daily_deal), :target => "_blank") %></td>
+    <td><%= @daily_deal_purchase.refunded_at.try(:to_formatted_s, :db) %></td>
+    <td><%= @daily_deal_purchase.refunded_by %></td>
+    <td><%= number_to_currency(@daily_deal_purchase.refund_amount) %></td>
+  </tr>
+</table>

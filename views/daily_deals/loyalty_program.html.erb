@@ -1,0 +1,36 @@
+<% set_daily_deal_page_title_slug t(:loyalty_program) %>
+
+<div class="page_row">
+	<div class="page_column_12 first rounded_corners">
+		<div id="dd_nav" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px;">
+			<%= raw render :partial => with_theme("shared/dd_nav")%>
+		</div><!-- END #dd_nav -->
+		<h1 class="content"><%= t(:loyalty_program) %></h1>
+	  <% if @daily_deal.enable_loyalty_program? %>
+	    <p>Refer <%= pluralize(@daily_deal.referrals_required_for_loyalty_credit, "purchaser") %>
+	    to this deal and get yours for FREE!</p>
+	    <% if current_consumer_for_publisher?(@daily_deal.publisher) %>
+		    <input type="text" name="loyalty_program_url" size="50" value="<%= loyalty_program_url(@daily_deal, current_user) %>" id="loyalty_program_url">
+		  <% else %>
+		     <p id="login-to-access-loyalty-program-url">
+		       To access your loyalty program affiliate URL, please
+	         <%= link_to "log in",
+	             daily_deal_login_path(:publisher_id => @daily_deal.publisher.to_param),
+	             :style => "font-size: 1em" %>.
+		     </p>
+		  <% end %>
+
+          <div class="dd_share_panel">
+              <h4>Share This Deal</h4>
+              <div class="share_link_wrap">
+                  <%= render 'shared/share_deal_link', :type => :facebook %>
+                  <%= render 'shared/share_deal_link', :type => :twitter %>
+                  <%= render 'shared/share_deal_link', :type => :mailto %>
+              </div><!-- END .share_link_wrap -->
+          </div><!-- END .dd_share_panel-->
+		<% else %>
+		  Sorry, the loyalty program is not enabled for this deal.
+		<% end %>
+	</div>
+</div>
+

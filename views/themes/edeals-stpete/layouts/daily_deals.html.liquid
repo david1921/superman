@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/edeals-stpete/stylesheets/daily_deals.css" type="text/css" />
+
+<!--   <link rel="stylesheet" href="/themes/edeals/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+  <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/{{ publisher.publishing_group.label }}.css" type="text/css" />
+
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  
+  
+<!--[if lte IE 9]>
+<link href="/themes/edeals-stpete/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/edeals-stpete/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+  
+    <title>Free Online Coupons &amp; Coupon Codes | Promotional Offers | Printable Coupons | Grocery Coupons | Travel Discounts - Edeals.com</title>
+	 
+{% include "shared/tracking_google_analytics" %}
+
+
+<!--Publisher Header Scripts-->
+<script language=JavaScript><!--
+   zone = 'shopping_edeals'
+//--></script>
+<script language="Javascript" type="text/javascript" src="/themes/edeals-stpete/scripts/doubleclick/doubleclick_ads.js"></script>
+<script language="Javascript" type="text/javascript" src="/themes/edeals-stpete/scripts/doubleclick/ad_manager.js"></script>
+<script type="text/javascript" src="/themes/edeals-stpete/scripts/omniture/latest_tb.js"></script>
+<script language="Javascript" type="text/javascript" src="/themes/edeals-stpete/scripts/omniture/edeals_analytics.js"></script>
+<link rel="stylesheet" type="text/css" href="/themes/edeals-stpete/stylesheets/modules.css" />
+<link rel="stylesheet" type="text/css" href="/themes/edeals-stpete/stylesheets/headnavs.css" />
+<link rel="shortcut icon" type="image/ico" href="/themes/edeals-stpete/images/favicon.ico" />
+<link rel="icon" type="image/gif" href="/themes/edeals-stpete/images/favicon.gif" />
+
+<!--[if lt IE 7]>
+    <script defer type="text/javascript" src="/themes/edeals-stpete/scripts/pngfix.js"></script>
+    <![endif]-->
+  <!--[if IE 7]>
+    <script defer type="text/javascript" src="/themes/edeals-stpete/scripts/pngfix.js"></script>
+    <link rel="stylesheet" type="text/css" href="/themes/edeals-stpete/stylesheets/ie7patch.css" />
+    <![endif]-->
+  <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="/themes/edeals-stpete/stylesheets/ie6patch.css" />
+  <![endif]-->
+<!--END Publisher Header Scripts-->
+
+</head>
+
+<body>
+    {% assign current_page = "deal" %}
+<!--Analog_Analytics_Daily_Deal-->
+  {% include 'themes/edeals-stpete/layouts/shared/header' %}
+
+	<div class="clear"></div>
+	<div id="content_wrapper">
+		<!-- content should start here -->
+			<div id="analog_analytics">
+				<div id="daily_deal">				
+				{% include "shared/flash" %} 			
+		  		{% include with_theme "layouts/shared/tabs" %}
+		  	</div>
+		  </div>
+		<!-- content should end here -->
+		<div class="clear"></div>
+		{% include "shared/a_a_alt" %}
+	</div>
+	
+	
+
+
+  {% include 'themes/edeals-stpete/layouts/shared/footer' %}
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+
+</body>
+</html>
+
+

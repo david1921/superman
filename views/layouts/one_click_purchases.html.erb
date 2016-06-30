@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<% if @daily_deal -%>
+			<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+			<meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+			<meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+			<link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+		<% else -%>
+			<meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>" />
+			<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals" />
+		<% end -%>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" /><!-- Tells the iPhone not to shrink the page to fit into its tiny window -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+        <!-- look for a css file in the publisher theme folder first, if that doesn't exist look in the publishing group folder, if that doesn't exist, use the default stylesheet by itself	-->
+        <%= stylesheet_link_tag_with_theme('one_click_purchase') %>
+		<!--[if lte IE 8]>
+            <%= stylesheet_link_tag 'one_click_ie_lte8' %>
+		<![endif]-->
+        
+        <!--[if gte IE 9]>
+            <%= stylesheet_link_tag 'one_click_ie_gte9' %>
+        <![endif]-->
+		<!-- End Stylesheets -->
+
+		<!-- Javascripts -->
+		<%= javascript_include_tag :defaults, 'cookies', 'jquery/jquery.min.js', 'formvalue-clickblur', 'one_click_effects', 'daily_deal_purchase_one_click','jquery.create.class.js' %>
+
+		<!--[if (gte IE 6) & (lte IE 8)]>
+			<%= javascript_include_tag 'modernizr-2.0.6.min.js' %>
+		<![endif]-->
+		
+		<%= raw render :partial => "/shared/tracking_google_analytics" %>
+		
+		<!-- End Javascripts -->
+		<title><%= daily_deal_page_title %></title>
+	</head>
+	<body>
+		<div id="analog_analytics" class="wrapper">
+			<!-- Analog Analytics Daily Deal -->
+			<div id="daily_deal">
+				<%= render :partial => with_theme('shared/header') %>
+				<div id="dd_content">
+					<%= render :partial => 'shared/flash_messages' %>
+					<%= yield %>
+					<div class="clear"></div>
+				</div> <!-- dd_content -->
+			</div> <!-- daily_deal -->
+			<div class="push"></div>
+		</div> <!-- analog_analytics -->
+		<%= render :partial => with_theme('shared/footer') %>
+		
+		<%= raw render :partial => with_theme('shared/tracking_publisher') %>
+		<%= raw render :partial => 'daily_deals/javascript' %>
+		<%= javascript_include_tag 'ios-zoom-fix' %>
+	</body>
+</html>

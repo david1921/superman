@@ -1,0 +1,20 @@
+<% if refunded_voucher_optimized.daily_deal.present? %>
+    <div class="voucher_title">
+        <h3 class="voucher_item_name"><%= refunded_voucher_optimized.line_item_name %></h3>
+        <span class="view_details_arrow"></span>
+    </div>    
+    <div class="voucher_details">
+        <p class="serial_number"><%= t(:voucher_number) %>: #<%= refunded_voucher_optimized.serial_number %></p>
+        <p class="recipient"><strong><%= t(:recipient) %></strong>:
+            <%- if (redeemer_name = refunded_voucher_optimized.redeemer_name).length > 30 -%>
+                <span title="<%= redeemer_name %>"><%= truncate(redeemer_name, :length => 30) %></span>
+            <%- else -%>
+                <%= redeemer_name %>
+            <%- end -%>
+        </p>
+        <p class="purchased_on"><strong><%= t(:purchased) %></strong>: <%= refunded_voucher_optimized.daily_deal_purchase.humanize_executed_at %></p>
+        <p class="refunded_on"><strong><%= t(:refunded_on) %></strong>: <%= voucher_refunded_on(refunded_voucher_optimized) %></p>
+    </div>
+<% else %>
+    <%= t('.error_message') %>
+<% end %>

@@ -1,0 +1,36 @@
+<!--FOOTER-->
+        <table width="648" border="0" cellspacing="20" cellpadding="0" align="center" bgcolor="#ffffff">    
+          <tr>
+            <td valign="top" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#999;padding-top:20px;border-top-width:1px;border-top-style:solid;border-top-color:#e4e4e4;">
+            	
+                 <% if false %> <!-- only commented out in case design changes again -->
+                <span class="footer_disclaimer">
+                    <%= raw @daily_deal.disclaimer %> 
+                </span>
+                <% end %>
+                        	
+                <p style="margin-top:5px;margin-bottom:10px;text-align:left;"><%= t(:email_footer_disclaimer1) %> %%EMAIL%%. <%= t(:email_footer_disclaimer2) %> <a name="Unsubscribe_1" xt="SPONECLICKOPTOUT" target="_blank" href="#SPONECLICKOPTOUT" style="color:#0094d0;"><%= t(:email_unsubscribe_here) %></a>. <%= t(:see_our) %> 
+                        <% if @publishing_group %>
+                            <% if national_publisher = @publishing_group.publishers.find_by_label("bcbsa-national") %>
+                                <a href="http://<%= @publisher.daily_deal_host %><%= terms_publisher_daily_deals_path(national_publisher.id) %>" style="color:#0094d0;"><%= t(:terms) %></a> <%= t(:and) %>   
+                                <a href=http://<%= @publisher.daily_deal_host %><%= privacy_policy_publisher_daily_deals_path(national_publisher.id) %>" target="_blank" style="color:#0094d0;"><%= t(:privacy_policy) %></a>.
+                                                                        <% end %>
+                        <% else %>
+                            <a href="http://<%= @publisher.daily_deal_host %><%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank" style="color:#0094d0;"><%= t(:terms) %></a> <%= t(:and) %> 
+                            <a href="http://<%= @publisher.daily_deal_host %><%= privacy_policy_publisher_daily_deals_path(@publisher) %>" target="_blank" style="color:#0094d0;"><%= t(:privacy_policy) %></a>.
+                        <% end %>
+                </p>
+                <p style="margin-top:5px;margin-bottom:10px; text-align: left;">
+                        <%= raw t(:email_footer_disclaimer3) %>
+                        <%= raw t(:email_footer_disclaimer4_b) %>
+                </p>
+                <p style="margin-top:5px;margin-bottom:10px; text-align: left;">
+                        <%= t(:email_footer_disclaimer5) %>
+                </p>
+                <p style="margin-top:5px;margin-bottom:10px; text-align: left;">
+                        <%= raw t(:email_footer_disclaimer6) %>
+                </p>
+            </td>
+          </tr>
+        </table>
+<!--/FOOTER-->

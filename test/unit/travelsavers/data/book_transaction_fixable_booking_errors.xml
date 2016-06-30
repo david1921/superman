@@ -1,0 +1,22 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+   <Version>1.0</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Fail</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>132</ErrorCode>
+      <ErrorSourceID>2</ErrorSourceID>
+      <ErrorText>An unhandled error occurred after sending the booking request to the vendor : A credit card was declined. Please verify the credit card information provided or use another credit card &amp; retry. Contact cruise line directly for reasons of denial.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues>
+    <SubmittedForm>
+      <Field>credit_card[billing][address_line_1]</Field>
+      <Value>123 Test Lane</Value>
+    </SubmittedForm>
+  </FormValues>
+  <PaymentStatus>Fail</PaymentStatus>
+  <TransactionDate>2012-03-05T08:13:45.533</TransactionDate>
+  <TransactionID>210</TransactionID>
+</BookTransaction>

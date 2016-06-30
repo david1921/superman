@@ -1,0 +1,23 @@
+	<!-- jQuery Plugin scripts -->
+		<script type="text/javascript" src="/themes/bcbsa/javascript/dealslider/jquery.mousewheel.min.js"></script>
+		
+		<!-- Slider Kit scripts -->
+		<script type="text/javascript" src="/themes/bcbsa/javascript/dealslider/jquery.sliderkit.1.8.js"></script>		
+		<script type="text/javascript" src="/themes/bcbsa/javascript/dealslider/addons/sliderkit.delaycaptions.min.js"></script>
+		<script type="text/javascript" src="/themes/bcbsa/javascript/dealslider/addons/sliderkit.counter.min.js"></script>
+		<script type="text/javascript" src="/themes/bcbsa/javascript/dealslider/addons/sliderkit.timer.min.js"></script>
+
+		<!-- Slider Kit launch -->
+		<script type="text/javascript">
+			jQuery(window).load(function(){ 	
+				jQuery(".photosgallery-vertical").sliderkit({
+					cssprefix:"dealslider",circular:true,mousewheel:true,shownavitems:6,verticalnav:true,navclipcenter:true,navitemshover:true,panelfx:'sliding',auto:true
+				});
+			});	
+		</script>
+		<link rel="stylesheet" type="text/css" href="/themes/bcbsa/stylesheets/dealslider/dealslider.css" media="screen, projection" />
+		
+		<!-- Slider Kit compatibility -->
+		<!--[if IE 6]><link rel="stylesheet" type="text/css" href="/themes/bcbsa/stylesheets/dealslider/dealslider-ie6.css" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/themes/bcbsa/stylesheets/dealslider/dealslider-ie7.css" /><![endif]-->
+		<!--[if IE 8]><link rel="stylesheet" type="text/css" href="/themes/bcbsa/stylesheets/dealslider/dealslider-ie8.css" /><![endif]-->

@@ -1,0 +1,7 @@
+<%= {
+  :name => @user.name,
+  :session => @session,
+  :connections => {
+    :find_daily_deal_certificate => find_daily_deal_certificates_url(:protocol => "https", :host => AppConfig.api_host, :format => "json")
+  }
+}.to_json.html_safe %>

@@ -1,0 +1,40 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div id="all_deals" class="content_box">
+	<h2>Other Great Deals</h2>
+
+		
+	    <%= will_paginate @daily_deals,
+	      :per_page => 12,
+	      :class => "pagination_top" %>
+
+    	<div class="clear"></div>
+
+    	<div class="inner">
+
+	    	<% for daily_deal in @daily_deals %>
+				<%= render "themes/prowlingpanther/daily_deals/daily_deal", :daily_deal => daily_deal %>
+	    	<% end %>
+
+    	</div>
+
+    	<div class="clear"></div>
+
+    	
+		<%= will_paginate @daily_deals,
+		  :per_page => 12,
+		  :class=> "pagination_bottom" %>
+
+		
+	</div><!-- /content_box -->
+		
+</div><!-- /main_column -->
+
+<%= render :partial => with_theme("shared/all_deals_sidebar") %>
+
+</div>
+
+
+
+

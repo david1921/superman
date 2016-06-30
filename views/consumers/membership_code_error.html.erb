@@ -1,0 +1,3 @@
+
+<p>You are attempting to register for <%= @publisher.name %> with an incorrect ID Card Prefix. <%- if @publisher.try(:publishing_group).try(:label) %>Please go to <%= link_to "www.blue365deals.com", publishing_group_landing_page_path(:publishing_group_id => @publisher.publishing_group.label) %> and enter your information again.<%- end %></p>
+

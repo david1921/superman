@@ -1,0 +1,20 @@
+<% @booking = @daily_deal_purchase.travelsavers_booking %>
+
+<div class="page_row" id="travelsavers_thank_you">
+	<div class="page_column_12 first rounded_corners">
+		  <!-- <div id="banner"></div> -->
+
+		  <%= render :partial => with_theme('daily_deal_purchases/thank_you/travelsavers/thank_you.html') %>
+
+		  <%= render :partial => with_theme('daily_deal_purchases/thank_you/travelsavers/summary.html') %>
+
+		  <%= render :partial => with_theme('daily_deal_purchases/thank_you/travelsavers/passengers.html') %>
+
+		  <%= render :partial => with_theme('daily_deal_purchases/thank_you/travelsavers/next_steps.html') %>
+
+		<%# can't use content_for until we aren't using Liquid %>
+		<%#= content_for :head %>
+		<%= stylesheet_link_tag 'daily_deal_purchases/travelsavers_thank_you' %>
+		<%# end %>
+	</div>
+</div>

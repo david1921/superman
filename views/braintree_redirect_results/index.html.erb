@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  <%= stylesheet_link_tag "reset", "application" %>
+  <style type="text/css">
+    .success {
+      color: green;
+    }
+    .failure {
+      color: red;
+    }
+  </style>
+  <%= javascript_include_tag :defaults %>
+</head>
+
+<% results_count = @braintree_redirect_results.size -%>
+<% failure_count = @braintree_redirect_results.select(&:error?).size -%>
+
+<body>
+  <h1>Summary</h1>
+  <p>Failure rate <%= braintree_results_failure_rate_percentage(results_count, failure_count) %>% <%= braintree_nagios_check_status(failure_count) %></p>
+
+  <h1>Details</h1>
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Status</th>
+      <th>When</th>
+      <th>Publisher</th>
+      <th>Consumer</th>
+      <th>Link</th>
+      <th>Error Message</th>
+    </tr>
+    <%= render(:partial => "braintree_redirect_result", :collection => @braintree_redirect_results) %>
+  </table>
+  <p>Page generated at <%= Time.zone.now.to_formatted_s(:long) %>.</p>
+
+<% javascript_tag do -%>
+new PeriodicalExecuter(function(pe) {
+  window.location.reload();
+}, 300);
+<% end -%>
+</body>
+</html>

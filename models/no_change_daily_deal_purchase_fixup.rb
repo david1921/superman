@@ -1,0 +1,2 @@
+class NoChangeDailyDealPurchaseFixup < DailyDealPurchaseFixup
+end

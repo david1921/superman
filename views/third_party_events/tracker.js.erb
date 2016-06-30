@@ -1,0 +1,28 @@
+aa_event_data = { "event": {}, "visitor" : {}, "third_party" : {}, "target" : {}, "purchases" : {} }
+
+AA_EVENT = {
+//	actions = ['<%= ThirdPartyEvent::VALID_ACTIONS.join("','") -%>'],
+	serialize : function(obj, prefix) {
+       var str = [];
+       for(var p in obj) { var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+           str.push(typeof v == "object" ? AA_EVENT.serialize(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v)); }
+       return str.join("&"); },
+	shallow_merge : function(o1, o2) { for(var i in o2) { o1[i] = o2[i]; } return o1; },
+	purchase : function(purchase_object){ var c = aa_event_data.purchases.count; 
+		aa_event_data.purchases.push(purchase_object)
+		},
+	debug_engage : function(){ console.log(unescape(AA_EVENT.build_request_uri())) },
+	
+	set_action : function(action_str){ aa_event_data['event']['action'] = action_str;},
+	set_third_party : function(data_as_json){aa_event_data['third_party'] = data_as_json },
+	set_target : function(data_as_json){aa_event_data['target'] = data_as_json },
+	set_visitor : function(data_as_json){aa_event_data['visitor'] = data_as_json },
+	
+	tracking_url : function(){ return "<%= request.protocol %><%= request.host %>/tpe/create_as_get?" },
+	build_request_uri : function(){ return AA_EVENT.tracking_url().toString() + AA_EVENT.serialize(aa_event_data).toString() },
+	engage : function(args, action){ 
+		if (action !== 'undefined')
+		aa_event_data['event']['url'] = document.location.toString();
+	    aa_event_data['event']['referral_url'] = document.referrer.toString();
+		var p = new Image(); p.src = AA_EVENT.build_request_uri(); }
+}

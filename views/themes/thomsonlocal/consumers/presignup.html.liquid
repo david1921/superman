@@ -1,0 +1,145 @@
+{% set_daily_deal_page_title_slug Sign Up %}
+<div id="opt-in"> 
+
+  <div class="opt-in_sidebar"> 
+    <div class="how_it_works"><img src="/themes/thomsonlocal/images/graphics/how_it_works.png" width="264" height="46" alt="how it works" /></div> 
+    <div class="sidebar_content"> 
+      <img src="/themes/thomsonlocal/images/icons/sign_up.png" width="102" height="30" alt="sign up" /> 
+      <p>Tell us where you live and your contact email address and we'll send you amazing local deals with up to 75% savings!</p>
+      <img src="/themes/thomsonlocal/images/icons/get_the_deal.png" width="177" height="32" alt="get the deal" /> 
+      <p>Buy the deal. Once you buy, check your email for your voucher. It really is that easy.</p>
+      <img src="/themes/thomsonlocal/images/icons/share_it.png" width="176" height="29" alt="share it!" /> 
+      <p class="share_it">Don't forget to tell your friends about Deals of the Day and share the amazing local savings!</p> 
+    </div> 
+    <img src="/themes/thomsonlocal/images/graphics/how_it_works_bottom.png" width="263" height="27" alt="bottom rounded corner" /> 
+  </div> 
+
+  <div class="opt_in_top">
+    <img src="/themes/thomsonlocal/images/graphics/discover_deals.png" width="500" height="63" alt="Discover deals in your local area for FREE" />
+  </div> 
+
+  <div id="opt_in_left_side"> 
+    <p>
+      Everyone loves a great deal don't they? Now you can find fantastic deals
+      on your favourite local restaurants, gyms, retailer and much more all in one
+      place.
+    </p>
+    <p>
+      Receiving Deal of the Day couldn't be easier, simply tell us where
+      you live and your contact email address and we'll find you deals you'll
+      love.
+    </p>
+
+    <form action="{{ publisher.subscribers_path }}" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="optin_form">
+      <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+      <input id="subscriber_zip_code_required" name="subscriber[zip_code_required]" type="hidden" value="true" />
+      <input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+      <input name="redirect_to" type="hidden" value="/publishers/{{ publisher.id }}/consumers/presignup" />
+      <input id="subscriber_other_options_referral_code" name="subscriber[other_options][referral_code]" type="hidden" value="{{ referral_code }}" />
+
+      <table> 
+        <tr>
+          <td width="112" class="text" >Email:</td> 
+          <td width="347" class="opt_input" ><input type="text" id="subscriber_email" name="subscriber[email]" size="35" ></td> 
+        </tr> 
+        <tr>
+          <td class="text" >First Name:</td> 
+          <td class="opt_input"><input type="text" id="subscriber_first_name" name="subscriber[first_name]" size="35"></td> 
+        </tr> 
+        <tr>
+          <td class="text" >Last Name:</td> 
+          <td class="opt_input"><input type="text" id="subscriber_last_name"  name="subscriber[last_name]" size="35"></td> 
+        </tr> 
+        <tr>
+          <td class="text">Postal Code:</td> 
+          <td class="opt_input" valign="top"><input type="text" id="subscriber_zip_code"  name="subscriber[zip_code]" size="35" /></td> 
+        </tr> 
+        <tr>
+          <td class="text">Region:</td> 
+          <td class="opt_input" valign="top">
+            <select id="subscriber_region" name="subscriber[region]">
+              <option>Surrey</option>
+            </select>
+          </td> 
+        </tr> 
+        <tr>
+          <td class="text">Age:</td> 
+          <td class="opt_input" valign="top">
+            <select id="subscriber_age"  name="subscriber[age]">
+              <option value="">Please select</option>
+              <option value="21">21 and Under</option>
+              <option value="22">22 to 34</option>
+              <option value="35">35 to 44</option>
+              <option value="45">45 to 54</option>
+              <option value="55">55 to 64</option>
+              <option value="65">65 and Over</option>
+            </select>
+            <span class="optional_text">(Optional)</span>
+          </td> 
+        </tr> 
+        <tr class="text sign_up">
+          <td>&nbsp;</td>
+          <td>
+            <p>           
+              <input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" />
+              <label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a></label>
+            </p>
+          </td>
+        </tr> 
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <input type="image" src="/themes/thomsonlocal/images/buttons/find_me_deals.png" width="150" height="39"  alt="find me deals" /> 
+          </td>
+        </tr>
+      </table> 
+
+      {% comment %}
+        FIXME: Remove this upon completion of proper international address validation.
+      {% endcomment %}
+      <input type="hidden" name="subscriber[zip_code_required]" value="false" />
+    </form>    
+
+    <div class="bottom_cta"> 
+      <div class="box">
+        <img src="/themes/thomsonlocal/images/graphics/restaurant.jpg" width="172" height="116" alt="restaurants" /> 
+        <p><span class="box_offer">Up to 70% off</span> <br /> Restaurants </p> 
+      </div> 
+      <div class="box">
+        <img src="/themes/thomsonlocal/images/graphics/spas.jpg" width="172" height="116" alt="spas" /> 
+        <p><span class="box_offer">Up to 50% off</span><br /> Spas  </p> 
+      </div> 
+      <div class="box">
+        <img src="/themes/thomsonlocal/images/graphics/attractions.jpg" width="172" height="116" alt="attractions" /> 
+        <p> <span class="box_offer">Up to 60% off</span><br /> Attractions </p> 
+      </div> 
+    </div> 
+
+  </div><!-- /opt_in_left_side" --> 
+
+</div><!--opt_in--> 
+
+<div class="advertising"> 
+  <div class="ad_box"></div> 
+  <div class="ad_box"></div> 
+  <div class="ad_box"></div> 
+</div> 
+<div style="clear:both;"></div> 
+<script src="/javascripts/lib/prototype.js" type="text/javascript"></script> 
+
+{% comment %}
+FIXME: Remove code below upon completion of proper international address validation.
+{% endcomment %}
+<script src="/themes/thomsonlocal/javascripts/jspostcode.js" type="text/javascript"></script> 
+<script>
+$("subscriber_email").focus();
+
+Event.observe('new_subscriber', 'submit', function(event) {
+  if (!checkPostCode($('subscriber_zip_code').value)) {
+    $('flash_warn').innerHTML = 'Invalid UK postal code';
+    Element.show('flash_warn');
+    $('flash_warn').scrollTo();
+    Event.stop(event);
+  }
+});
+</script>

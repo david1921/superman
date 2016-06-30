@@ -1,0 +1,13 @@
+    <h3 class="name"><%= @offer.advertiser_name.upcase %></h3>
+    <% if @lead.errors.present? %><div class="errorExplanation" id="errorExplanation"><%= @lead.errors.full_messages.join(". ") %>.</div><% end -%>
+    <% remote_form_for @lead, :url => offer_leads_path(@offer), :update => "offer_#{@offer.id}_call_panel" do |f| -%>
+      <p class="intro">To be connected to <%= @offer.advertiser_name %> now, please enter your mobile number.</p>
+      <%= f.label :mobile_number, "Mobile Number" %>
+      <%= f.text_field :mobile_number, :id => "offer_#{@offer.id}_lead_mobile_number" %>
+      <%= f.hidden_field :publisher_id, :value => @lead.publisher_id %>
+      <%= f.hidden_field :call_me %>
+      <div class="buttons">
+        <%= link_to_function("Cancel", "cancelClipping(#{@offer.id}, 'call')") %>
+        <%= f.submit "Send", :id => "offer_#{@offer.id}_save" %>
+      </div>
+    <% end -%>

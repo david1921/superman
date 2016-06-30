@@ -1,0 +1,43 @@
+<div class="footer" id="offer_<%= offer.id %>_footer">
+  <div class="buttons">
+    <%= link_to(
+          image_tag("/themes/buscaayuda/images/graphics/deal_certificate.png"), 
+          gift_certificate_path(offer.advertiser.gift_certificates.first), 
+          :class => "lbOn", :title => "Click to purchase deal certificate for #{offer.advertiser_name}"
+        ) if offer.advertiser && offer.advertiser.gift_certificates.present? %>
+  </div>
+  <% if false && publisher.show_call_button? -%>
+  <div class='extrabuttons'>
+    <%= link_to_remote(
+        "&#160;".html_safe,
+        :url => call_offer_path(offer, :publisher_id => publisher.id),
+        :html => { :class => "call btn_call", :title => "Click to call #{offer.advertiser_name}", :rel => "nofollow" }
+    )  -%>
+  </div>
+  <% end -%>
+  <div class="share">
+    <%= link_to(
+          "&#160;".html_safe,
+          twitter_offer_url(offer, :publisher_id => publisher.id),
+          :class => "twitter btn_twitter", :target => "_blank", :title => "Share coupon on Twitter",
+          :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+    ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+    <%= link_to( 
+          "&#160;".html_safe,
+          facebook_offer_url(offer, :publisher_id => publisher.id),
+          :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+          :class => "facebook btn_facebook",
+          :id => "offer_#{offer.id}_facebook_link",
+          :target => "_blank", 
+          :rel => "nofollow"
+      ) if publisher.show_facebook_button? -%>
+  </div>
+  <div class="map_div">
+    <%= link_to("&#160;".html_safe,
+          offer.advertiser.map_url,
+          :target => "_blank", :class => "map btn_map", :title => "Click for driving directions", :rel => "nofollow",
+          :onclick => "trackCouponEvent('Map', #{offer.id})"
+
+    ) if publisher.link_to_map? && offer.address? %>
+  </div>
+</div>

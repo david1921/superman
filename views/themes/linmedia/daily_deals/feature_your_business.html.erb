@@ -1,0 +1,18 @@
+<% set_daily_deal_page_title_slug t(:feature_your_business) %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:contact_us) %></h1>
+
+      <h2 style="margin-top: 18px;"><%= t '.feature_business_header' %></h2>
+      <p>
+      	<% unless @publisher.sales_email_address.blank? %>
+      		<%=raw(t('.feature_business_message', :email_link => link_to(@publisher.sales_email_address, "mailto:#{@publisher.sales_email_address}", :target => "_blank"))) %>
+        <% end %>
+        <% unless @publisher.formatted_phone_number.blank? %>
+        	or call <%= @publisher.formatted_phone_number %>
+        <% end %>
+      </p>
+
+  </div>
+</div>

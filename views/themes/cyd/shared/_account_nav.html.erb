@@ -1,0 +1,18 @@
+<div class="account_nav_wrapper">
+<% if current_consumer_for_publisher?(@publisher) %>
+<div class="logged-in-nav">
+<h4>Welcome, <%= current_consumer.first_name %></h4>
+     <ul class="account_nav">
+          <li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+          <li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+          <li><%= link_to("Contest Details", cyd_contest_link(current_consumer)) %></li>
+          <li class="last_link"><a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a></li>
+     </ul>
+</div>     
+<% else %>
+     <ul class="account_nav">
+          <li class="last_link"><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+          <%= render :partial => with_theme('shared/facebook_connect_erb') %>
+     </ul>
+<% end %>
+</div><!-- /account_nav -->

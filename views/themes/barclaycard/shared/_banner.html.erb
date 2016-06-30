@@ -1,0 +1,11 @@
+<div id="banner">
+	<div class="container">
+	   <div class="market_wrapper">
+            <a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="deal_logo">Barclaycard</h1></a>
+            <%= render :partial => with_theme('shared/market_menu') %>
+	   </div>
+        <%= render :partial => with_theme('shared/account_nav') %>
+		<%= render :partial => with_theme('shared/dd_nav') %>
+		<div class="clear"></div>
+	</div>
+</div>

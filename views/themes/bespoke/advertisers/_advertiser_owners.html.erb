@@ -1,0 +1,28 @@
+<div class="row check_box">
+  <h3>Advertiser Owners</h3>
+</div>
+
+<%= link_to 'Create new owner', new_advertiser_advertiser_owner_path( @advertiser ) %>
+
+<table id='advertiser_owners_table'>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Postal Code</th>
+    <th>Address</th>
+    <th>Actions</th>
+  </tr>
+
+  <%- @advertiser.advertiser_owners.each do |ao| %>
+    <tr>
+      <td><%= ao.first_name %> </td>
+      <td><%= ao.last_name%> </td>
+      <td><%= ao.home_postal_code %> </td>
+      <td><%= ao.home_address%> </td>
+      <td>
+        <%= link_to 'Edit', edit_advertiser_advertiser_owner_path(ao.advertiser, ao) %>
+        <%= link_to 'Delete', advertiser_advertiser_owner_path(ao.advertiser, ao), :method => :delete, :confirm=> "Are you sure?  Remove #{ao.first_name} #{ao.last_name} as an owner?"%>
+      </td>
+    </tr>
+  <%-end%>
+</table>

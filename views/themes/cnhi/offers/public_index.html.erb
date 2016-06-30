@@ -1,0 +1,33 @@
+<%= public_index_notice(@publisher) %>
+<div id="coupon_directory">
+  
+  <div class="left_column">
+    <%= render :partial => 'offers/businessdirectory/search' %>
+
+    <%= render :partial => "offers/categories", :object => @publisher_categories %>    
+  </div>
+  
+  <div class="right_column">
+    <div class='navigation'>
+      <div class='top'>
+        <%= vvm_h1_tag %>
+        <div class='pagesize'>Page Size <%= select_tag "page_size", options_for_select([ @page_size, 4, 10, 20, 50 ].compact.uniq.sort, @page_size), :id => "page_size_select" %></div>
+      </div>
+      <div class='bottom'>
+        <%= render_grid_list_controls( {:active_control => :grid, :show_sort_by => false, :publisher => @publisher, :postal_code => @postal_code, :radius => @radius} ) %>
+        <%= render :partial => 'offers/businessdirectory/pagination' %>
+      </div>
+    </div>
+    <div class="businessdirectory" id="offers">
+      <%= render :partial => "themes/cnhi/offers/shared/offer", :collection => @offers %>
+      <% if @offers.empty? -%>
+        Sorry, no coupons found
+      <%- end -%>      
+    </div>
+    <%= render :partial => 'offers/businessdirectory/pagination' %>
+  </div>
+</div>
+
+<%= render :partial => 'shared/terms_and_conditions' %>
+
+<%= observe_field "page_size_select", :function => "page_size_changed('page_size_select', '#{page_size_params_for_pagination.map{|key, value| "#{key}=#{value}"}.join("&")}')" %>

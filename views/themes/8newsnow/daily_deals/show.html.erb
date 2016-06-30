@@ -1,0 +1,101 @@
+<div id="deal">
+  <div id="left_column">
+    <div id="dashboard">
+      TIME LEFT TO BUY <span id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></span>
+    </div>
+    <%= image_tag(@daily_deal.advertiser.logo.url(:large), :id => "advertiser_logo") if @daily_deal.advertiser.logo.file? %>
+
+    <h1><%= @daily_deal.value_proposition %></h1>
+    <div class="clear"></div>
+
+    <div id="value_and_button">
+      <div id="value">
+        <div>$<%= @daily_deal.value.to_i %></div>
+        <div class="label">VALUE</div>
+      </div>
+      <div id="price">
+        <div class="value"><%= number_to_currency @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></div>
+        <% if @daily_deal.over? -%>
+        <div class="label">PAST DEAL</div>
+          <div id="soldout"><%= image_tag "/themes/8newsnow/images/buttons/unavailable.png" %></div>
+        <% elsif @daily_deal.active? -%>
+          <div class="label">TODAY'S DEAL</div>
+          <%= link_to(
+                image_tag("/themes/8newsnow/images/buttons/buy_now.png"), 
+                new_daily_deal_daily_deal_purchase_path(@daily_deal), 
+                :method => "get",
+                :id => "buy_now_button").html_safe
+          %>
+          <div class="unavailable" style="display: none"><%= image_tag("/themes/8newsnow/images/buttons/unavailable.png") %></div>
+        <% else -%>
+        <div class="label">THE DEAL</div>
+          <div id="unavailable"><%= image_tag("/themes/8newsnow/images/buttons/not_available_yet.png") %></div>
+        <% end -%>
+      </div>
+      <div id="you_save">
+        <div><%= number_to_currency @daily_deal.savings, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></div>
+        <div class="label">YOU SAVE</div>
+      </div>
+    </div>
+    <div class="clear"></div>
+
+    <% if @daily_deal.highlights.present? -%>
+    <div id="highlights">
+      <h3>Highlights</h3>
+      <%= @daily_deal.highlights.html_safe %>
+    </div>
+    <% end -%>
+
+    <h3>Details</h3>
+    <div id="details">
+      <%= @daily_deal.description.html_safe %>
+    </div>
+
+    <h3>The Fine Print</h3>
+    <div id="fine_print">
+        <%= @daily_deal.terms.html_safe %>
+    </div>
+  </div>
+  <div id="right_column">
+    <%= image_tag @daily_deal.photo.url(:standard), :id => "daily_deal_photo" %>
+    <% if @publisher.enable_daily_deal_referral? && @daily_deal.active? && !@daily_deal.sold_out? %>
+    <a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>"><img class="friend" src="/themes/8newsnow/images/buttons/refer_friend.png" width="285" height="98" alt="Tell a friend, get $10" /></a>
+    <% end %>
+    <%= render :partial => "/themes/8newsnow/daily_deals/share", :locals => { :daily_deal => @daily_deal } %>
+    <%= image_tag "/themes/8newsnow/images/type/the_company.png", :title => "The Company", :alt => "The Company", :class => "hanging_head" %>
+    <div id="advertiser">
+      <h2><%= @daily_deal.advertiser_name %></h2>
+      <div class="address">
+        <% @daily_deal.address do |line| -%>
+          <%= line -%><br/>
+        <% end -%>
+        <%= @daily_deal.formatted_phone_number %>
+      </div>
+      <%= link_to @daily_deal.sanitized_website_url, @daily_deal.website_url, :class => "advertiser_website" %>
+    </div>
+    <div class="clear"></div>
+    <% side_deals = @daily_deal.side_deals %>
+    <% if side_deals.present? %>
+      <img alt="Side Deals" class="hanging_head" src="/themes/8newsnow/images/type/side_deals.png" title="Side Deals" />
+      <div id="side_deals_wrap" class="other_deal_tracking">
+        <% side_deals.each do |side_deal| %>
+        <div class="side_deals_row">
+          <div class="thumbnail">
+            <%= image_tag side_deal.photo.url(:thumbnail), :style => "max-width: 56px; max-height: 45px" %>
+          </div>
+          <div class="description">
+            <% link_to daily_deal_path(side_deal) do %>
+              <%= side_deal.value_proposition %>
+              <%= image_tag("/themes/8newsnow/images/buttons/see_it.png", :alt => "SEE IT") %>
+            <% end -%>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+    <% end %>
+  </div>
+    
+  <div class="clear"></div>
+<%= raw render :partial => 'shared/a_a_alt' %>
+</div>

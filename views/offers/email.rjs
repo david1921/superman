@@ -1,0 +1,5 @@
+page.visual_effect :slide_up, "offer_#{@offer.id}_front_panel"
+page.replace_html "offer_#{@offer.id}_email_panel", :partial => "offers/panels/email", :object => @offer
+page.visual_effect :appear, "offer_#{@offer.id}_email_panel", :afterFinish => "function() {
+  $('offer_#{@offer.id}_lead_email').activate();
+}"

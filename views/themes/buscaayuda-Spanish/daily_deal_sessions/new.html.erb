@@ -1,0 +1,38 @@
+<% set_daily_deal_page_title_slug "Sign In" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+
+    <% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+        <%= render :partial => "login_message", :locals => {:message => @publisher.account_sign_up_message} %>
+    <% end %>
+
+    <p>Iniciar sesi&oacute;n o <%= link_to("Crear una cuenta", new_publisher_consumer_path(@publisher)) %></p>
+
+    <p>&iquest;Se le olvid&oacute; tu contrase&ntilde;a? Haz clic aqu&iacute; para  <%= link_to "cambiar tu contrase&ntilde;a", consumer_password_reset_path_or_url(@publisher) %></p>
+ 
+    <div id="login_form">
+      <% form_for :session, :url => { :action => :create } do |f| -%>
+        <%= f.text_field_div (:email, "Correo Electr&oacute;nico:") %>
+        <%= f.password_field_div (:password, "Contrase&ntilde;a:") %>
+        <%= f.check_box_div :remember_me_flag, "Recu&eacute;rdame" %>
+
+        <div class="row button_row">
+          <%= submit_tag "Iniciar sesi&oacute;n", :name => "sign_in", :id => "sign_in_button" %> <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  Event.observe(window, 'load', function() {
+    if ($('session_email') && $F('session_email') == "") {
+      $('session_email').activate();
+    }
+    else {
+      $('session_password').activate();
+    }
+  });
+</script>
+

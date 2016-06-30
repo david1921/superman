@@ -1,0 +1,12 @@
+<% @page_title = "Daily Deals Purchases: #{@daily_deal.advertiser_name}: #{@daily_deal.value_proposition}"%>
+
+<table id="daily_deal_purchases" class="daily_deal_purchases" cellspacing="0">
+  <tr>
+    <th class="name">Name</th>
+    <th class="email">Email</th>
+    <th class="payment_status">Status</th>
+    <th class="allow_execution">Allow Purchase?</th> 
+  </tr>
+  <%  deals = @daily_deal.daily_deal_purchases.reject {|p| p.type == 'OffPlatformDailyDealPurchase'} -%>
+  <%= render :collection => deals, :partial => "admin_daily_deal_purchase" %>
+</table>

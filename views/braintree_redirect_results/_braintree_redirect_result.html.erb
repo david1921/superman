@@ -1,0 +1,16 @@
+<% daily_deal_purchase = braintree_redirect_result.daily_deal_purchase -%>
+<tr>
+  <td><%= braintree_redirect_result.type.sub(/GatewayResult/, "") %></td>
+  <td>
+  <%- if braintree_redirect_result.error? -%>
+    <span class="failure">FAILURE</span>
+  <%- else -%>
+    <span class="success">SUCCESS</span>
+  <%- end -%>
+  </td>
+  <td><%= time_ago_in_words(braintree_redirect_result.created_at) %> ago</td>
+  <td><%= daily_deal_purchase.publisher.label %></td>
+  <td><%= daily_deal_purchase.consumer.email %></td>
+  <td><%= link_to("purchase page", confirm_daily_deal_purchase_path(daily_deal_purchase)) if braintree_redirect_result.error? %></td>
+  <td><%= braintree_redirect_result.error_message %></td>
+</tr>

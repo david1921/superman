@@ -1,0 +1,28 @@
+<div id="certificates">
+
+  <div class="page_column_2">
+
+	<div class=" pagination_top">
+	    <%= will_paginate @daily_deals, :per_page => 6 %>
+    </div>
+
+	<div class="clear"></div>
+
+	
+	
+    <% for daily_deal in @daily_deals %>
+        <%= render "themes/buscaayuda/daily_deals/daily_deal", :daily_deal => Drop::DailyDeal.new(daily_deal) %>
+    <% end %>
+
+	<div class="clear"></div>
+	 
+    <div class=" pagination_bottom">
+	    <%= will_paginate @daily_deals, :per_page => 6 %>
+    </div>
+
+    <div class="clear"></div>
+  </div>
+  <!-- /page_column_2 -->
+
+
+</div><!-- /certificates -->

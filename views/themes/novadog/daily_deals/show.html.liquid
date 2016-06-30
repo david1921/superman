@@ -1,0 +1,132 @@
+<!-- begin daily deal content -->
+<div id="deal_content">
+	<div id="left_col">
+		
+		<div class="dashboard"><!--deal_dashboard-->
+			<h2 class="price">{{ daily_deal.price | currency }}</h2>
+			<div id="buy_now">
+				  {% if daily_deal.sold_out? %}
+		          <div id="sold_out" class="dd_button"><img src="/themes/novadog/images/buttons/sold_out_button.png" /></div>
+				  {% elsif daily_deal.over? %}
+				  <div id="deal_over" class="dd_button"><img src="/themes/novadog/images/buttons/deal_over_button.png" /></div>
+				  {% elsif daily_deal.active? %}
+				    <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><img src="/themes/novadog/images/buttons/buy_now_button.png" /></a>
+            <div id="deal_over" class="dd_button unavailable" style="display:none;"><img src="/themes/novadog/images/buttons/deal_over_button.png" /></div>
+				  {% else %}
+		          <div id="not_yet" class="dd_button"><img src="/themes/novadog/images/buttons/not_yet_available_button.png" /></div>
+				  {% endif %}
+			</div><!-- /buy_now -->
+			<table align="center">
+		        <tr align="center">
+		          <th>Valued At</th>
+		          <th>You Save</th>
+		        </tr>
+		        <tr align="center">
+		          <td>{{ daily_deal.value | currency }}</td>
+		          <td>{{ daily_deal.savings | currency }}</td>
+		        </tr>        
+			</table>
+      
+    	</div><!--/dashboard-->
+
+		<div id="timer" class="info_box">
+			<h2>Time is Ticking:</h2>
+			<h3>(Get the Deal Now)</h3>
+			<h3><span id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</span></h3>
+			<p>Hurry! When Wednesday's gone...so is the deal!<br />Expires at Midnight EST</p>
+		</div><!-- /timer -->
+
+
+		{% if daily_deal.side_deals.size > 0 %}
+		<div id="other_deals" class="info_box other_deal_tracking">
+		  <h3>Other Great Deals</h3>
+		    {% for deal in daily_deal.side_deals %}
+		      <div class="side_deal_wrap">
+		      	<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+		        	<div class="side_deal_text">
+			          	<p><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+			          	<p class="side_deal_advertiser">{{ deal.advertiser_name }}</p>
+			          	<a class="view_deal" href="{{ deal.url }}" target="_blank"><img src="/themes/novadog/images/buttons/view_deal.png" width="79" height="27" alt="view deal" /></a>
+		        </div><!-- /side_deal_text -->
+		      </div><!-- /side_deal_wrap -->
+		    {% endfor %}
+		</div>          
+		{% endif %}
+		
+		<div id="feature">
+			<a href="{{ publisher.feature_your_business_path }}">Offer <br /> a Deal<br />
+			<span>Feature Your<br /> Business</span></a>
+		</div><!-- /feature -->
+		
+		<div id="suggest">
+			<a href="mailto:{{ publisher.sales_email_address }}">Suggest <br />a Deal</a>
+		</div>
+
+	</div><!-- /left_col -->
+	<div id="right_col">
+	
+	    <div id="value_and_photo" class="info_box"><!--deal_intro-->
+			<div class="deal_photo">
+				<img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" width="261" height="330" />
+			</div>
+			<h1>Today's Deal:</h1>
+      		<h2 class="savings">{{ daily_deal.savings_as_percentage | percentage }} OFF</h2>
+			<div id="value_proposition">{{ daily_deal.value_proposition }}</div>
+      		<h2 class="advertiser_name">{{ advertiser.name }}</h2>
+			<div id="highlights">
+			{% if daily_deal.highlights != empty %}
+			  <h4>Highlights</h4>
+			  {{ daily_deal.highlights }}
+			{% endif %}
+			</div>
+			<div class="clear"></div>
+	    </div><!-- /value_and_photo -->
+        
+		<div id="share">
+			<p>Share the deal</p>
+			<a href="{{ daily_deal.facebook_url }}" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook" class="share_button_facebook"><img src="/themes/novadog/images/buttons/facebook.png" width="41" height="41" alt="facebook"  /></a>
+			<a href="{{ daily_deal.twitter_url }}" target="_blank" class="share_button_twitter"><img src="/themes/novadog/images/buttons/twitter.png" width="41" height="41" alt="twitter"  /></a>
+			<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button_mail"><img src="/themes/novadog/images/buttons/email.png" width="41" height="41" alt="email"  /></a>
+			{% if publisher.enable_daily_deal_referral %}
+			<a href="{{ publisher.refer_a_friend_path }}" class="refer_a_friend_tracking"><img src="/themes/novadog/images/buttons/tell_a_friend.png" alt="Tell a Friend" /></a>
+			{% endif %}
+			<div class="clear"></div>
+		</div><!--/share-->
+    
+	    <div id="description" class="info_box"><!--description-->
+			<h3>About the Deal</h3>
+			<p>{{ daily_deal.description }}</p>
+			<h4>Fine Print</h4>
+			<p>{{ daily_deal.fine_print }}</p>      
+		</div><!-- /description -->
+		
+		<div id="map_and_location" class="info_box">
+			<h3>Map &amp; Location</h3>
+		        
+			{% if advertiser.address? %}
+			<div class="advertiser_address">
+				{% if advertiser.name != "" %}
+			<p><span class="advertiser_name">{{ advertiser.name }}</span><br />
+				{% endif %}
+				{{ advertiser.address_line_1 }}<br/>
+				{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br/>
+				{{ advertiser.formatted_phone_number }}<br/>
+				{% endif %}
+				{% if advertiser.website_url != empty %}
+			<a href="{{ advertiser.website_url }}" class="advertiser_website" target="_blank">{{ advertiser.website_url }}</a>
+			{% endif %}
+			</div><!-- /adverstiser_address -->
+			{% if advertiser.stores.size > 0 %}
+			<a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.map_image_url }}" /></a>
+			{% endif %}
+			<div class="clear"></div>
+		</div><!-- map_and_location -->
+        
+	</div><!-- right_col -->
+	<div class="clear"></div>
+</div><!-- /deal_content -->
+
+<div class="clear"></div>
+
+
+<!-- end daily deal content -->

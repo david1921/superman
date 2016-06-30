@@ -1,0 +1,17 @@
+define({
+	dealUrl: "<%=  daily_deal_path( @daily_deal, :format => :json ) %>",
+	dealTickerConfig: {
+		includeDay: true,
+		formatTimeRemaining: function(day, hour, min, sec) {
+			var day = parseInt(day, 10),
+					format = '';
+			// if more than a day, just show # of days, otherwise, show a countdown clock
+			if( day > 0 ) {
+				format += day + ' Day' + (day > 1 ? 's' : '') + '<br />' + hour + ":" + min + ":" + sec;
+			} else {
+			  format += hour + ":" + min + ":" + sec;
+		  }
+			return format;
+	  }
+	}
+});

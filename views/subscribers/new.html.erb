@@ -1,0 +1,30 @@
+<div id="new_subscriber">
+  <h3 id="headline">Discounts &amp; Coupons<br/>In Your Inbox or to Your Phone</h3>
+
+  <% remote_form_for @subscriber do |f| %>
+    <div id="email">
+      <h3>Email Address</h3>
+      <%= f.text_field :email %><br/>
+    </div>
+
+    <div id="mobile_number">
+      <h3>Mobile Phone</h3>
+      <%= f.text_field :mobile_number %><br/>
+    </div>
+
+    <div class="categories_scope">
+      <h3>Send Me Offers For</h3>
+      <%= check_box_tag "everything", "1", true %> <%= label_tag "everything", "Everything", :id => "everything" %>
+      <div class="categories_scope">
+      <%= render :partial => "publishers/categories" %>
+      </div>
+    </div>
+
+    <div class="footer">
+      <%= image_submit_tag "/themes/#{@publisher.label}/images/submit.png", :id => "submit_button" %>
+      <a href="#" class="lbAction" rel="deactivate" id="close">Close</a>
+    </div>
+  
+    <%= hidden_field_tag :publisher_id, @publisher.id %>
+  <% end -%>
+</div>

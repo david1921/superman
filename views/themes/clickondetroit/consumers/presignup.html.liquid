@@ -1,0 +1,88 @@
+<div id="wrapper">
+			 
+  <div id="preopt_wrapper" class="page_row preopt full" style="overflow:hidden;">
+		<h1>Get the Real Deal from your favorite local businesses</h1>
+		<h3 class="red"><strong>Fill out the form below to start getting the daily Real Deal
+		{% if publisher.show_special_deal? %}
+		and  $5 credit
+		{% endif %}
+		</strong></h3>
+		
+	  <form action="{{ publisher.subscribers_path }}" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="new_subscriber" style="float: left; width: 520px">
+
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_zip_code_required" name="subscriber[zip_code_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<input name="redirect_to" type="hidden" value="/publishers/{{ publisher.id }}/consumers/presignup" />
+		<input id="subscriber_other_options_referral_code" name="subscriber[other_options][referral_code]" type="hidden" value="{{ referral_code }}" />
+	  
+		<div class="row">
+		  <div class="label">
+			<label for="subscriber_name">First Name:</label>
+		  </div>
+		  <div class="input">
+			<input id="subscriber_name" name="subscriber[first_name]" size="30" type="text">                              
+		  </div>
+		</div>
+		
+		<div class="row">
+		  <div class="label">
+			<label for="subscriber_name">Last Name:</label>
+		  </div>
+		  <div class="input">
+			<input id="subscriber_name" name="subscriber[first_name]" size="30" type="text">                              
+		  </div>
+		</div>
+		
+		<div class="row">
+			<div class="label">
+			  <label for="subscriber_email">* Email:</label>
+			</div>
+			<div class="input">
+			  <input id="subscriber_email" name="subscriber[email]" size="30" type="text">
+			</div>            
+		</div>
+		
+		<div class="row">
+			<div class="label">
+			  <label for="subscriber_zip_code">* ZIP Code:</label>
+			</div>
+			<div class="input">
+			  <input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text">
+			</div>            
+		</div>   
+	  
+	  <div class="row">
+		<div class="label">
+			<label for="gender">Gender:</label>
+		</div>
+		<div class="input">
+			<input type="radio" name="subscriber[gender]" value="male" /> Male 
+			<input type="radio" name="subscriber[gender]" value="female" /> Female
+		</div>
+	  </div>
+	  
+	  <div class="row" id="terms">
+			
+		  <div class="label">
+			  <label for="subscriber_terms"></label>
+		  </div>
+		  <div class="input">
+				
+			  <input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" />
+			  <label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+				
+		  </div>
+	  </div>
+
+	  <div id="buttons" class="row">
+		<div class="input">
+		  <input name="submit" id="subscriber_submit" type="image" src="/themes/clickondetroit/images/buttons/subscribe.png" value="Submit" class="floatleft">              
+		</div>
+	  </div>
+  
+	</form>	
+	<img style="float: left" src="/themes/clickondetroit/images/deal_preview.jpg" height="262" width="300" alt="Daily Deal Preview" />
+	</div><!-- end preopt_wrapper -->
+		
+</div>

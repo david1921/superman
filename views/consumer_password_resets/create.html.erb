@@ -1,0 +1,21 @@
+<% set_daily_deal_page_title_slug "Password Reset Email" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2><%=t '.title' %></h2>
+
+    <p><%= t '.check_email_message', :publisher_name => @publisher.brand_name_or_name %></p>
+
+    <p class="small"><%=t '.resend_message' %></p>
+
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row">
+        <div class="label"><%= label_tag(:email, t(:email)) %></div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      </div>
+      <div class="full_width buttons">
+        <%= submit_tag(t('.resend_email'), :name => "resend_email") %>
+      </div>
+    <% end %>
+  </div>
+</div>

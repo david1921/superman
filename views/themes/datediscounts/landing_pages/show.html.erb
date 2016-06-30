@@ -1,0 +1,67 @@
+<div id="landing">
+	<div class="content_box">
+		<div id="signup_box">
+			<div id="landing_deal_logo"><a href="http://www.datediscounts.com"></a></div>
+	<h2>Sign Up &amp; See Deals Now!</h2>
+	<div id="market_subscription_form">
+					<form action="<%= publishing_group_subscribers_path %>
+						" method="POST" class="presignup email_subscription_tracking">
+						<input type="hidden" name="redirect_to_deal_page" value="true" />
+						<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+						<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+					
+						<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+
+						<%= market_selection(@publishing_group, :include_blank => true, :use_ids => true, :field_name => "publisher_id") %>
+
+						<input id="subscriber_email" name="subscriber[email]" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />
+
+					<fieldset>
+					<input name="subscriber[terms]" value="0" type="hidden" />
+					<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> I agree to the <%= daily_deals_terms_link(@publishing_group) %> and <%= daily_deals_privacy_link(@publishing_group) %></a>
+					</fieldset>
+
+						<input class="sign_up_button" name="sign_up_button" type="submit" value="Sign Up">
+					</form>
+			</div><!-- END #market_subscription_form -->
+			
+ <div id="market_menu_redirect_wrapper">    
+ <h4>Already subscribed? Skip to:</h4>
+    <ul id="market_menu_redirect">
+       <li><a href="#" id="current_market_menu_redirect_selection">Please Select a Market</a>
+         <%= market_selection_list(@publishing_group.publishers.first) %>
+       </li>
+    </ul>
+ </div><!-- /market_menu_redirect_wrapper -->
+ 
+<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery(document).ready(function($) {
+	jQuery("#market_menu li").hover(function() {
+		var thisitem = jQuery(this);
+		thisitem.find("ul").hide().stop(true,true).slideDown('1000');
+	} , function() {
+			var thisitem = jQuery(this)
+			thisitem.find("ul").stop(true,true).slideUp('1000');
+		});
+	});
+	var setLabel = getCookie('market_label');
+	var currentLabel = document.location.pathname.split('/')[2];
+	if(setLabel != "")
+		window.location.replace("/publishers/" + setLabel + "/deal-of-the-day" );
+	jQuery(function($){
+		$('.market_selection_list a').click(function() {
+			var path = $(this).attr('href');
+			var label = path.split('/')[2];
+			if(label=="datediscounts-national")
+				setCookie('market_label', '');
+			else
+				setCookie('market_label', path.split('/')[2]);
+		});
+	});
+ </script>
+
+			<img src="/themes/datediscounts/images/graphics/icons.png" alt="date icons">
+		</div><!-- END #signup_box -->
+	</div><!-- END .content_box -->
+</div><!-- END #landing -->

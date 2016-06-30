@@ -1,0 +1,84 @@
+<% if @subscriber.errors.present? -%>
+<div id="errors" class="errors">
+  <h2>Please try again after making these changes</h2>
+  <%= content_tag(:ul, @subscriber.errors.full_messages.map { |msg| content_tag(:li, h(msg)) }.join) %>
+</div>
+<% end -%>
+
+<ul id="navbar">
+  <li class="last"><%= link_to("What's the Big Deal (How it Works)", how_it_works_publisher_daily_deals_path(@publisher)) %></li>
+</ul>
+
+<div id='bring-it'>
+  <% form_for @subscriber, :url => publisher_subscribers_path(:publisher_id => @publisher.label) do |f| %>
+    <%= hidden_field_tag("display_thank_you_page", true) %>
+    <%= hidden_field_tag("show_form_errors", true) %>
+    <%= hidden_field_tag("subscriber[email_required]", true) %>
+    <%= f.hidden_field(:require_other_options_city) %>
+    <%= f.hidden_field(:subscriber_referrer_code_id) %>
+    <dl>
+      <dt class='email'><%= f.label(:email, "Email Address") %></dt>
+      <dd class='email'>
+        <%= text_field_tag("subscriber[email]", @subscriber.email, :id => "subscriber_email") %>
+        <button type='submit'><%= image_tag("/themes/udailydeal/images/buttons/bring_it.png") %></button>
+      </dd>
+      <dt class='cities'>Choose Your City</dt>
+      <dd class='city'>
+        <div class='group'>
+          <%= check_box_tag("subscriber[other_options][city][]", "atlanta", @subscriber.other_options && @subscriber.other_options.has_key?("city") && @subscriber.other_options[:city].include?("atlanta"), :id => "subscriber_other_options_city_atlanta", :class => "styled") %> 
+          <label for="subscriber_other_options_city_atlanta">
+            <%= image_tag("/themes/udailydeal/images/buttons/the_atl.png") %>
+          </label> 
+        </div>
+        <div class='group'>
+          <%= check_box_tag("subscriber[other_options][city][]", "boston", @subscriber.other_options && @subscriber.other_options.has_key?("city") && @subscriber.other_options[:city].include?("boston"), :id => "subscriber_other_options_city_boston", :class => "styled") %> 
+          <label for="subscriber_other_options_city_boston">
+            <%= image_tag("/themes/udailydeal/images/buttons/boston.png") %>
+          </label> 
+        </div>
+        <div class='group'>
+          <%= check_box_tag("subscriber[other_options][city][]", "philadelphia", @subscriber.other_options && @subscriber.other_options.has_key?("city") && @subscriber.other_options[:city].include?("philadelphia"), :id => "subscriber_other_options_city_philadelphia", :class => "styled") %> 
+          <label for="subscriber_other_options_city_philadelphia">
+            <%= image_tag("/themes/udailydeal/images/buttons/philly.png") %>
+          </label>          
+        </div>
+        <div class='group other_cities'>
+          <%= f.check_box :zip_code_required, :class => "styled" %> 
+          <label for="subscriber_zip_code_required">
+            <%= image_tag("/themes/udailydeal/images/buttons/other_cities.png") %>
+          </label>
+          <%= text_field_tag("subscriber[zip_code]", @subscriber.zip_code, :id => "subscriber_zip_code", :class => "zip_code") %>
+          <div id='zip_code_info'>
+            Enter your ZIP Code here
+          </div>
+        </div>
+      </dd>
+    </dl>
+  <% end %>
+</div>
+
+<% javascript_tag do %>
+  document.observe("dom:loaded", function() {
+    var _checkZipCodeRequired = function() {
+      var zipCodeRequired = $('subscriber_zip_code_required');
+      var zipCode = $('subscriber_zip_code');
+      var zipCodeInfo = $('zip_code_info');
+      var requireCity = $('subscriber_require_other_options_city');
+
+      if (zipCodeRequired.checked) {
+        zipCode.enable();
+        [zipCode, zipCodeInfo].invoke("removeClassName", "disabled");
+        requireCity.value = "false";
+      } else {
+        zipCode.clear().disable();
+        [zipCode, zipCodeInfo].invoke("addClassName", "disabled");
+        requireCity.value = "true";
+      }
+    };
+    var _customCheck = Custom.check; Custom.check = function() {
+      _customCheck.call(this);
+      _checkZipCodeRequired();
+    };
+    _checkZipCodeRequired();
+  });
+<% end %>

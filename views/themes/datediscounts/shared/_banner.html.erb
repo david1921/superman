@@ -1,0 +1,35 @@
+<div id="banner">
+	<div class="container">
+		<div id="toprow">
+			<a href="http://www.datediscounts.com"><h1 id="deal_logo">DateDiscounts</h1></a>
+			<%= render :partial => with_theme('shared/account_nav') %>
+			<div class="clear"></div>
+			<div id="market_menu_wrapper">
+				<h4>Select location:</h4>
+				<ul id="market_menu">
+					<li><a href="#" id="current_market_menu_selection"><%= @publisher.market_name_or_city %></a>
+						<%= market_selection_list(@publisher) %>
+					</li>
+				</ul>
+			</div><!-- /market_menu_wrapper -->
+		</div>
+		<%= render :partial => with_theme('shared/dd_nav') %>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	var setLabel = getCookie('market_label');
+	var currentLabel = document.location.pathname.split('/')[2];
+	if(setLabel != "" && currentLabel == "datediscounts-national")
+		window.location.replace("/publishers/" + setLabel + "/deal-of-the-day" );
+	jQuery(function($){
+		$('.market_selection_list a').click(function() {
+					var path = $(this).attr('href');
+					var label = path.split('/')[2];
+					if(label=="datediscounts-national")
+						setCookie('market_label', '');
+					else
+						setCookie('market_label', path.split('/')[2]);
+				});
+	});
+</script>

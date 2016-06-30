@@ -1,0 +1,66 @@
+<tr style="background-color:<%= cycle('#e0e0e0', '#f0f0f0', :name => "one") %>">
+  <td><%= daily_deal_purchase.daily_deal_id %></td>
+  <td><%= daily_deal_purchase.id %></td>
+  <td><%= daily_deal_purchase.executed_at.to_date.to_formatted_s(:db) %></td>
+  <td><%= daily_deal_purchase.payment_status %></td>
+  <td><%= daily_deal_purchase.quantity %></td>
+  <td><%= daily_deal_purchase.current_discount_code %></td>
+  <td><%= daily_deal_purchase.current_discount_value %></td>
+  <td><%= number_to_currency(daily_deal_purchase.credit_used) %></td>
+  <td><%= number_to_currency(daily_deal_purchase.actual_purchase_price) %></td>
+  <td><%= number_to_currency(daily_deal_purchase.calculated_gross_price.to_f) %><%= hidden_field_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][calculated_gross_price]", daily_deal_purchase.calculated_gross_price) %></td>
+  <td><%= number_to_currency(daily_deal_purchase.gross_price) %></td>
+  <td><%= radio_button_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][fixup_type]", nil, daily_deal_purchase.fixup_type.nil?, :class => "radio", :hide => "detail_#{daily_deal_purchase.id}") %></td>
+  <td><%= radio_button_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][fixup_type]", "nochange", "NoChangeDailyDealPurchaseFixup" == daily_deal_purchase.fixup_type, :class => "radio", :hide => "detail_#{daily_deal_purchase.id}") %></td>
+  <td><%= radio_button_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][fixup_type]", "badgross", "BadGrossDailyDealPurchaseFixup" == daily_deal_purchase.fixup_type, :class => "radio", :show => "detail_#{daily_deal_purchase.id}") %></td>
+  <td><%= radio_button_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][fixup_type]", "refunded", "RefundedDailyDealPurchaseFixup" == daily_deal_purchase.fixup_type, :class => "radio", :show => "detail_#{daily_deal_purchase.id}") %></td>
+</tr>
+<tr style="background-color:<%= cycle('#e0e0e0', '#f0f0f0', :name => "two") %>">
+  <td colspan="15">
+    <div id="<%= %{detail_#{daily_deal_purchase.id}} %>" style="float:right;<%= ' display:none' unless %w{ BadGrossDailyDealPurchaseFixup RefundedDailyDealPurchaseFixup }.include?(daily_deal_purchase.fixup_type) %>">
+      <%= label_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][new_gross_price]", "Gross Price:") %>
+      <%= text_field_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][new_gross_price]", daily_deal_purchase.new_gross_price && ("%0.02f" % daily_deal_purchase.new_gross_price), :style => "width: 5em") %>
+      &nbsp;&nbsp;
+      <%= label_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][refund_txn_id]", "Refund TXN ID:") %>
+      <%= text_field_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][refund_txn_id]", daily_deal_purchase.refund_txn_id, :style => "width: 7em") %>
+      &nbsp;&nbsp;
+      <%= label_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][refund_count]", "Refund Count:") %>
+      <%= text_field_tag("daily_deal_purchase_fixups[#{daily_deal_purchase.id}][refund_count]", daily_deal_purchase.refund_count, :style => "width: 3em") %>
+    </div>
+    <%= link_to_remote("details", :update => "daily_deal_purchase_detail_#{daily_deal_purchase.id}", :url => purchase_details_daily_deal_purchase_fixup_path(daily_deal_purchase.to_param), :loading => "show_spinner(#{daily_deal_purchase.id})", :complete => "hide_spinner(#{daily_deal_purchase.id})") %>
+    &nbsp;&nbsp;<%= link_to_remote("braintree", :update => "daily_deal_purchase_detail_#{daily_deal_purchase.id}", :url => braintree_details_daily_deal_purchase_fixup_path(daily_deal_purchase.to_param), :loading => "show_spinner(#{daily_deal_purchase.id})", :complete => "hide_spinner(#{daily_deal_purchase.id})") %>
+    &nbsp;&nbsp;<%= link_to_remote("purchases", :update => "daily_deal_purchase_detail_#{daily_deal_purchase.id}", :url => purchases_details_daily_deal_purchase_fixup_path(daily_deal_purchase.to_param), :loading => "show_spinner(#{daily_deal_purchase.id})", :complete => "hide_spinner(#{daily_deal_purchase.id})") %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_function("[close]") { |page| page["daily_deal_purchase_detail_#{daily_deal_purchase.id}"].replace_html("") } %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= image_tag("/images/ajax-loader.gif", :id => "spinner_#{daily_deal_purchase.id}", :style => "display: none; margin-bottom:-6px;") %>
+    <div id="<%= %{daily_deal_purchase_detail_#{daily_deal_purchase.id}} %>" style="margin:15px 5% 5px; padding-left:5%; padding-right:5%">
+  </td>
+</tr>
+
+<% javascript_tag do %>
+  function show_spinner(id) {
+    $('spinner_' + id).show();
+  }
+  function hide_spinner(id) {
+    $('spinner_' + id).hide();
+  }
+<% end %>
+
+<% javascript_tag do %>
+  var radioClicked = function (event) {
+    var checkedElem = $('daily_deal_purchase_fixups').getInputs('radio', event.element().name).find(function(elem) {
+      return elem.checked;
+    });
+    if ((id = checkedElem.getAttribute('hide'))) {
+      $(id).hide();
+    }
+    if ((id = checkedElem.getAttribute('show'))) {
+      $(id).show();
+    }
+  };
+  document.observe("dom:loaded", function() {
+    $$('.radio').each(function(elem) {
+      elem.observe('click', radioClicked);
+    });
+  });
+<% end %>
+

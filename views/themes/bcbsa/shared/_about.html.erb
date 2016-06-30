@@ -1,0 +1,30 @@
+<% set_daily_deal_page_title_slug "About Blue365" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+	<h1 class="content"><%= @h1 || "About Blue365" %></h1>
+
+	<div id="faq_content">
+		<div id="about_content">
+		
+			<a class="print_page" href="javascript:window.print()"><img class="print_icon" src="/themes/bcbsa/images/graphics/print_icon.png" />Print this page</a>
+			<div class="clear"></div>
+			
+			<h4>The Blue Cross and Blue Shield System</h4>
+			<p>The Blue Cross and Blue Shield System consists of 38 independently operated Blue Cross and Blue Shield member Companies, a Federal Employee Program and an Association that serves the collective needs of the 99 million Americans on Blue Cross and Blue Shield health insurance plans.  Providing local solutions that improve access to affordable, quality healthcare, each of the 38 independent and locally operated Blue Cross and Blue Shield Companies deliver health insurance coverage for 99 million members across all 50 states, the District of Columbia and Puerto Rico. Check our <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQs</a> for more information.</p>
+			
+			<p>To find your local Blue Cross and Blue Shield Company, just <a href="http://www.bcbs.com/about-the-companies/">click here</a>.</p>
+			<a href="http://www.bcbs.com/about-the-companies/">
+				<img id="about_map" src="/themes/bcbsa/images/graphics/about_map.png">
+			</a>
+			
+			<h4>The Blue365 Program</h4>
+			<p>Blue365 is a great way to make living well more affordable.  For members of participating Blue Cross and Blue Shield Companies, Blue365 offers discounts on fitness gear, gym memberships, healthy eating options and more.  Blue365 offers access to savings on items that members purchase right on the Blue365 website or on the healthy-living Vendor's websites.  These items are different from those covered under policies with local Blue Cross and Blue Shield Companies, Blue Plan contracts with Medicare, or any other applicable federal healthcare program.
+			</p>
+			<p>Want to get started? Blue365 is currently available in select locations for Blue Cross and Blue Shield members and nationwide for those in the Federal Employee Program.  For a list of all participating Blue Companies, <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=plans">click here</a>. To learn how Blue365 works, here's <a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">more info</a>.
+			</p>
+		</div>
+	</div><!-- /faq content -->
+  </div>
+</div>

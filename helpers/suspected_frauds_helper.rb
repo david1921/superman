@@ -1,0 +1,2 @@
+module SuspectedFraudsHelper
+end

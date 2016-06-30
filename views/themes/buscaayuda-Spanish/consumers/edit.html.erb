@@ -1,0 +1,29 @@
+<% set_daily_deal_page_title_slug "My Account" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>MI CUENTA</h2>
+    <% form_for [@publisher, @consumer] do |f| -%>
+      <%= f.error_messages(:header_message => "Errors prevent this account from being updated") %>
+
+      <%= f.text_field_div(:email, nil, :disabled => true) %>
+      <%= f.text_field_div(:first_name, "Nombre:") %>
+      <%= f.text_field_div(:last_name, "Apellido:") %>
+      
+      <%- if @publisher.require_billing_address? %>
+        <%= render :partial => 'billing_address', :locals => { :consumer => @consumer, :f => f } %>
+      <% end %>
+        
+      <%= f.password_field_div(:password, "Nueva Contrase&ntilde;a:") %>
+      <%= f.password_field_div(:password_confirmation, "Confirmar nueva contrase&ntilde;a:") %>
+
+      <div class="row button_row">
+        <%= submit_tag("Actualizaci&oacute;n", :name => "update") %>  <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+
+      <div class="row account_detail">
+        <p>Your Deal Credit balance is <%= number_to_currency(@consumer.credit_available, :unit => @publisher.currency_symbol) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+{% for offer in offers %}
+{% assign advertiser = offer.advertiser %}
+
+<div class="offer" id="offer_{{ offer.id }}">
+    <div class="offer_headlines">
+        <h5 class="value_proposition">{{ offer.message }}</h5>
+    </div><!-- /offer_headlines -->
+
+    <div class="offer_info" id="offer_{{ offer.id }}_front_panel">
+        <div class="offer-left-panel">
+            <div class="offer_image"><img alt="photo" class="photo" id="photo" src="{{ offer.offer_image.medium_url }}"></div><!-- /offer_image -->
+
+            <div class="address">
+                <span class="advertiser_name">
+                {% if advertiser.name != empty %}
+     				<span>{{ advertiser.name }}</span>
+                {% else %}
+                	<!-- <span><a href="{{ advertiser.website_url }}" target="_blank">Visit Website</a></span>  -->     		
+                {% endif %}
+                </span>
+                {% if advertiser.address? %}
+                <p>
+        		  {% if advertiser.address_line_1 != empty %}
+        		  <span>{{ advertiser.address_line_1 }}</span>
+        		  {% endif %}
+        		  {% if advertiser.address_line_2 != empty %}
+        		  <span>{{ advertiser.address_line_2 }}</span>
+        		  {% endif %}
+				
+        		  {% if advertiser.city != empty and advertiser.state != empty and advertiser.zip != empty %}
+        		  <span>{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}</span>
+        		  {% endif %}
+        		  
+        		  {% if advertiser.formatted_phone_number != empty %}
+        		  <span>{{ advertiser.formatted_phone_number }}</span>
+        		  {% endif %}         
+        		  </p>
+        		 {% endif %} 
+            </div><!-- /address -->
+        </div><!--  end .offer-left-panel -->
+
+        <div class="offer-right-panel">
+            <div class="coupon-advertiser-logo"><img src="{{ advertiser.logo.square_url }}" alt="{{ advertiser.name }} coupon logo"></div><!--  end .coupon-advertiser-logo --><a href="{{ advertiser.website_url }}" target="_blank">Visit Website</a>
+
+            <div class="message">
+                {{ offer.terms }}
+            </div><!--  end .message -->
+        </div><!--  .offer-right-panel -->
+    </div><!-- /offer_info-->
+
+    <div class="footer">
+        <div class="buttons">
+            <a class="offer_button clip btn_print" href="#" id="print_{{ offer.id }}" onclick="clipCoupon({{ offer.id }}, {{ publisher.id }}); return false;" rel="nofollow" title="Click to print coupon"><span>Print</span></a> <a class="offer_button txt btn_sms" href="#" onclick="new Ajax.Request('/offers/{{ offer.id }}/txt?publisher_id={{ publisher.id }}', {asynchronous:true, evalScripts:true}); return false;" rel="nofollow" title="Click to send coupon to you via TXT message"><span>Text</span></a> <a href="/offers/{{ offer.id }}/twitter?publisher_id={{ publisher.id }}" class="offer_button btn_twitter" target="_blank" title="Share coupon on Twitter"><span>Twitter</span></a> <a href="/offers/{{ offer.id }}/facebook?publisher_id={{ publisher.id }}" class="offer_button btn_facebook" id="offer_{{ offer.id }}_facebook_link" onclick="return facebook_popup('/offers/{{ offer.id }}/facebook?popup=true&amp;publisher_id={{ publisher.id }}')" rel="nofollow" target="_blank"><span>Facebook</span></a> <a href="{{ advertiser.google_map_url }}" class="offer_button btn_map" target="_blank" title="Find thid deal with google maps"><span>Google Map</span></a>
+        </div><!-- /buttons -->
+    </div><!-- /footer -->
+
+    <div class="call_panel" style="display: none;" id="offer_{{ offer.id }}_call_panel"></div>
+
+    <div class="email_panel" style="display: none;" id="offer_{{ offer.id }}_email_panel"></div>
+
+    <div class="txt_panel" style="display: none;" id="offer_{{ offer.id }}_txt_panel"></div>
+</div><!-- /offer -->
+{% endfor %}

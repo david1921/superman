@@ -1,0 +1,2 @@
+class BraintreeGatewayResult < BraintreeRedirectResult
+end

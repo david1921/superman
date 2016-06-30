@@ -1,0 +1,106 @@
+<% form_for [@publisher, @consumer], :html => { :id => 'register_form' } do |f| %>
+<%=  f.error_messages(:header_message =>nil)%>
+
+  <span class="consumer_name"><label for="consumer_first_name"><%= t(:name) %>:</label><span class="required">*</span>
+    <%= f.text_field(:first_name, :class => "first") %>
+    <%= f.text_field(:last_name, :class => "last") %></span><br />
+	<label class="first" for="consumer_first_name"><%= t(:first_name) %></label>
+	<label class="last" for="consumer_last_name"><%= t(:last_name) %></label>
+  <span><label for="consumer_email"><%= t(:email) %>:</label><span class="required">*</span><%= f.text_field(:email, :class => "email") %></span>
+  <% unless use_reset_password_link %>
+    <span><label for="consumer_password"><%= t(:create_password) %>:</label><span class="required">*</span><%= f.password_field(:password, :class => "password") %></span>
+    <span><label for="consumer_password_confirmation"><%= t(:confirm_password) %>:</label><span class="required">*</span><%= f.password_field(:password_confirmation, :class => "password_confirmation") %></span>
+  <% else %>
+    <span id="reset_password">
+      <%= link_to t(:reset_password), consumer_password_reset_path_or_url(@publisher) %>
+    </span>
+  <% end %>
+  <span id="id_card_prefix">
+    <label for="consumer_publisher_membership_code_as_text"><%= t(:id_prefix) %>:<span><a id="inline" class="fancybox" id="card_prefix" href="#card_prefix_info"><%= t(:what_is_this) %></a></span></label>
+    <div id="id_prefix_error" class="info" style="display:none"><span>Must use a valid ID Card Prefix</span></div>
+    <span class="required">*</span>
+    <%= f.text_field(:publisher_membership_code_as_text, :maxlength => "3", :class => "id_card_prefix", :value => @consumer.publisher_membership_code_as_text || cookies["publisher_membership_code"]) %>
+  </span>
+  <span class="zip-field-wrap">
+    <label for="consumer_zip_code"><%= t(:zip_code) %>:</label>
+    <span class="required">*</span>
+    <%= f.text_field(:zip_code, :maxlength => "5", :class => "zip_code", :value => @consumer.zip_code || cookies["zip_code"]) %>
+  </span>
+  <span><label for="consumer_birth_year"><%= t(:birth_year) %>:</label><%= f.select(:birth_year, (1910..(Date.today.year - 13)).map .reverse  { |year| [year, year] }, :include_blank => true) %></span>
+  <span><label for="consumer_gender_male"><%= t(:gender) %>:</label>
+    <span class="gender"><%= f.radio_button :gender, "Male", :checked => @consumer.gender == 'M' ? 'checked' : '' %><label for="consumer_gender_male"><%= t(:male) %></label></span>
+    <span class="gender"><%= f.radio_button :gender, "Female", :checked => @consumer.gender == 'F' ? 'checked' : '' %><label for="consumer_gender_female"><%= t(:female) %></label></span></span>
+  <span><label for="consumer_daily_deal_category_ids"><%= t(:preferred_categories) %>:</label>
+    <p><%= t(:select_all_apply) %>:</p>
+    <div class="categories">
+      <% @publisher.allowable_daily_deal_categories.ordered_by_name_ascending.each do |daily_deal_category| %>
+        		<span>
+        		  <input type="checkbox" name="consumer[daily_deal_category_ids][]" value="<%= daily_deal_category.id %>" class="category_title"
+        		  <%= @consumer.daily_deal_category_ids.include?(daily_deal_category.id) ? 'checked="checked"' : "" %>
+        		  id="daily_deal_category_id_<%= daily_deal_category.id %>" />
+        		  <label for="daily_deal_category_id_<%= daily_deal_category.id %>"><%= t(daily_deal_category.name.downcase.gsub(/\s/, '_')) %></label>
+        		</span>
+      <% end %>
+    </div>
+  </span>
+
+  <!-- Added preferred locales code here from default view-->
+  <% if (locales = options_for_locale_select(@publisher)) && !locales.blank? %>
+    <span>
+      <label for="consumer_language"><%= t(:language) %>:</label>
+      <% locales.each do |locale| %>
+        <span class="language">
+          <%= f.radio_button(:preferred_locale, locale[1], :checked => locale[1] == @consumer.preferred_locale) %> <label for="consumer_language_selection"><%= locale[0].sub("(México)", " ") %></label>
+        </span>
+      <% end %>
+    </span>
+  <% end %>
+
+  <% if show_terms %>
+      <span><label for="consumer_daily_deal_category_ids"><%= t(:member_email_auth) %>:</label><span class="required">*</span>
+       <div class="terms_and_conditions">
+        <p><%= t(:scroll_down_read) %>:</p>
+        <div class="member_authorization">
+  		    <p>
+            <%= t(:member_email_auth_par1) %>
+            <br />
+            <%= t(:member_email_auth_par2) %>
+            <br />
+            <%= t(:member_email_auth_par3) %>
+            <br />
+            <%= t(:member_email_auth_par4) %>
+      	  </p>
+        </div>
+        <span>
+          <%= f.check_box(:member_authorization, :class => "category_title") %>
+          <%= f.label(:member_authorization, %{#{t(:member_email_auth_par5)} }.html_safe) %>
+          <%= f.hidden_field(:member_authorization_required, :value => "true") %>
+        </span>
+       </div>
+      </span>
+
+      <span class="last"><label for="consumer_daily_deal_category_ids"><%= t(:terms_and_conditions) %>:</label><span class="required">*</span>
+       <div class="terms_and_conditions">
+        <span>
+		  <span class="required">*</span>
+        <%= f.check_box(:agree_to_terms, :class => "category_title") %>
+		    <%= f.label(:agree_to_terms, %{#{t(:terms_and_conditions_par1)} <a href="#{terms_publisher_daily_deals_path(@publisher)}" target="_blank">#{t(:terms_and_conditions_par2)}</a> #{t(:terms_and_conditions_par3)} <a href="#{privacy_policy_publisher_daily_deals_path(@publisher)}" target="_blank"> #{t(:terms_and_conditions_par4)}</a>}.html_safe,:class => "regester_agree_terms_label") %>
+        </span>
+      </div>
+    </span>
+  <% end %>
+
+  <div class="clear"></div>
+  <div class="submit_field">
+    <% if signup_button %>
+      <%= submit_tag(t(:sign_up), :id => "register_sign_up", :class => "blue_button", :name => "sign_up") %>
+    <% else %>
+      <%= submit_tag(t(:submit), :id => "register_sign_up", :class => "blue_button", :name => "submit") %>
+    <% end %>
+    <span class="required_fields">* <%= t(:required_fields) %></span>
+  </div>
+
+  <%= f.hidden_field :zip_code_required, :value => "true" %>
+  <%= f.hidden_field :first_name_required, :value => "true" %>
+  <%= f.hidden_field :last_name_required, :value => "true" %>
+<% end %>

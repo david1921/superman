@@ -1,0 +1,38 @@
+<%= {
+  :request      => map_syndication_deals_url(:with_map => true, :format => "json"),
+  :page         => @search_request.paging.current_page,
+  :page_size    => @search_request.paging.page_size,
+  :page_count   => @search_response.deals.total_pages,
+  :total_count  => @search_response.deals.total_entries,  
+  :bounds       => {
+    :ne => @search_request.bounds.ne,
+    :sw => @search_request.bounds.sw,
+    :zoom => @search_request.bounds.zoom,
+    :center => @search_request.bounds.center
+  },
+  :daily_deals  => @search_response.deals.to_enum(:each_with_index).map do |deal, index|
+    {
+      :daily_deal => {
+        :id                           => deal.id,
+        :on_current_page              => @search_request.on_current_page?(deal, index+1),
+        :value_proposition            => deal.value_proposition,
+        :start_at                     => deal.start_at.strftime("%m/%d/%Y"),
+        :hide_at                      => deal.hide_at.strftime("%m/%d/%Y"),
+        :price                        => number_to_currency( deal.price, :unit => deal.currency_code ),
+        :image                        => deal.photo.url(:syndication),
+        :sourced_by_publisher         => deal.sourced_by_publisher?(@publisher),
+        :sourced_by_network           => deal.sourced_by_network?(@publisher),
+        :distributed_by_publisher     => deal.distributed_by_publisher?(@publisher),
+        :distributed_by_network       => deal.distributed_by_network?(@publisher),
+        :national_deal                => deal.national_deal?,
+        :syndication_path             => syndication_show_deal_path(deal, :from_view => 'map'),
+        :stores                       => deal.advertiser.stores.map do |store|
+          {
+            :latitude  => store.latitude.to_s, 
+            :longitude => store.longitude.to_s              
+          }
+        end        
+      }
+    }
+  end
+}.to_json.html_safe %>

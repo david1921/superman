@@ -1,0 +1,163 @@
+<% content_for :javascripts do %>
+<script type="text/javascript" charset="utf-8">
+Event.observe(window, 'load', function() {
+  $('refund-this-purchase').observe('click', function(event) {
+    $(this).hide();
+    $('refund-form-container').show();
+    Event.stop(event);
+  });
+  
+  $('cancel-refund').observe('click', function() {  
+    $('refund-form-container').hide();
+    $('refund-this-purchase').show();
+  });
+  
+  $('refund-form').observe('submit', function(event) {
+    if (!confirm("Refund this purchase for the full amount?")) {
+      Event.stop(event);
+    }
+  })
+});
+</script>
+<% end %>
+
+<div class="left_column">
+  <% form_for(@daily_deal_purchase, :url => { :action => "consumers_admin_update", :id => @daily_deal_purchase.id, :method => :post }) do |f| %>
+    <%= f.text_field_div(:analog_purchase_id, "Purchase:", :disabled => true) %>
+    <div class="row">
+      <div class="label">
+        <label for="daily_deal_purchase_consumer_name">Customer:</label>
+      </div>
+      <div class="input">
+        <input type="text" id="daily_deal_purchase_consumer_name" value="<%= @daily_deal_purchase.consumer.name %>" disabled="disabled">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="label">
+        <label for="daily_deal_purchase_line_item_name">Description:</label>
+      </div>
+      <div class="input">
+        <input type="text" id="daily_deal_purchase_line_item_name" value="<%= @daily_deal_purchase.line_item_name %>" disabled="disabled">
+      </div>
+    </div>
+    <%= f.text_field_div(:payment_status, nil, :value => @daily_deal_purchase.payment_status.capitalize, :disabled => true) %>
+    <% unless @daily_deal_purchase.travelsavers? %>
+      <%= f.text_field_div(:quantity, nil, :disabled => true) %>
+    <% end %>
+    <%= f.text_field_div(:total_paid, nil, :value => "%0.2f" % @daily_deal_purchase.total_paid, :disabled => true) %>
+    <%= f.text_field_div(:refund_amount, "Amount Refunded:", :value => "%0.2f" % (@daily_deal_purchase.refund_amount || 0), :disabled => true) %>
+    <%= f.text_field_div(:loyalty_refund_amount, "Loyalty Refund Amount:", :value => "%0.2f" % (@daily_deal_purchase.loyalty_refund_amount || 0), :disabled => true) %>
+
+    <% if @daily_deal_purchase.travelsavers? %>
+      <%= f.text_field_div(:confirmation_number, "TS Booking Reference:", :disabled => true) %>
+      <%= f.text_field_div(:ts_booking_status, "TS Booking Status:", :value => @daily_deal_purchase.ts_booking_status.capitalize, :disabled => true) %>
+      <%= f.text_field_div(:ts_payment_status, "TS Payment Status:", :value => @daily_deal_purchase.ts_payment_status.capitalize, :disabled => true) %>
+    <% else %>
+      <%- @daily_deal_purchase.daily_deal_certificates.each_with_index do |ddc, index| -%>
+        <%- id = "daily_deal_purchase_certificate_serial_number_#{index}" -%>
+        <div class="row">
+          <div class="label">
+            <label for="<%= id %>">Certificate Number:</label>
+          </div>
+          <div class="input">
+            <input type="text" id="<%= id %>" value="<%= ddc.serial_number %>" disabled="disabled">
+          </div>
+        </div>
+      <%- end -%>
+    <% end %>
+
+    <%- editable = @daily_deal_purchase.authorized? || @daily_deal_purchase.captured? -%>
+
+    <% unless @daily_deal_purchase.travelsavers? %>
+      <%= f.check_box_div(:gift, nil, { :disabled => !editable }) %>
+    <% end %>
+    <div id="daily_deal_purchase_recipient_names" style="<%= 'display: none;' unless @daily_deal_purchase.gift %>">
+      <%- @daily_deal_purchase.gift_expected_number_of_recipients.times do |index| -%>
+        <%- id = "daily_deal_purchase_recipient_name_#{index}" -%>
+        <%- recipient_name = @daily_deal_purchase.recipient_names[index] rescue nil -%>
+        <%- disabled = 'disabled="disabled"' unless editable && @daily_deal_purchase.gift -%>
+        <div class="row">
+          <div class="label">
+            <label for="<%= id %>">Recipient Name:</label>
+          </div>
+          <div class="input">
+            <input type="text" name="daily_deal_purchase[recipient_names][]" id="<%= id %>" value="<%= recipient_name %>" <%= disabled %>>
+          </div>
+        </div>
+      <%- end -%>
+    </div>
+
+    <%- if @daily_deal_purchase.location_required? -%>
+      <%= f.select_div(:store_id, options_from_collection_for_select(@daily_deal_purchase.daily_deal.advertiser.stores, :id, :summary, @daily_deal_purchase.store.try(:id)), { :include_blank => true }, :disabled => !editable) %>
+    <%- end -%>
+
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{consumers_daily_deal_purchases_admin_index_path(@daily_deal_purchase.consumer)}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") if editable %>
+    </div>
+  <% end %>
+</div>
+
+<div class="related refund">
+  <% if @daily_deal_purchase.voidable_or_refundable? %>
+    <a href="#" id="refund-this-purchase">Refund this purchase...</a>
+    <%# link_to_remote("Refund this purchase", :url => admin_void_or_full_refund_daily_deal_purchase_url(@daily_deal_purchase), :confirm => "Are you sure you want to refund the full #{number_to_currency(@daily_deal_purchase.total_paid, :unit => @daily_deal_purchase.currency_symbol)} and destroy all vouchers?") if @daily_deal_purchase.voidable_or_refundable? %>
+  
+    <div id="refund-form-container" style="display:none">
+      <% form_tag(admin_void_or_full_refund_daily_deal_purchase_url(@daily_deal_purchase), :id => "refund-form", :method => "POST") do %>
+        <div style="margin-top: 10px">
+          <input type="submit" value="Submit Void or Full Refund">
+        </div>
+      <% end %>
+      <br/>
+      <% if @daily_deal_purchase.quantity > 1 %>
+        <a href="<%= admin_partial_refund_index_daily_deal_purchase_url(@daily_deal_purchase) %>" id="partial-refund" style="color: blue">Partial Refund...</a><br/>
+      <% end %>
+      <a href="#" id="cancel-refund" style="color: blue">Cancel</a>
+    </div>
+  <% end %>
+</div>
+
+<% if @daily_deal_purchase.eligible_for_loyalty_refund? %>
+<div class="related loyalty-refund" style="width: 150px">
+  <% loyalty_refund_amount = number_to_currency(@daily_deal_purchase.amount_to_refund_for_loyalty_program, :unit => @daily_deal_purchase.currency_symbol) %>
+  <% if @daily_deal_purchase.daily_deal_payment.refundable? %>
+    <p>
+      This purchase is eligible for a loyalty refund of <%= loyalty_refund_amount %>.
+    </p>
+    <form id="frm-loyalty-refund" style="margin-top: 10px" method="POST" action="<%= loyalty_refund_daily_deal_purchase_path(:id => @daily_deal_purchase.id) %>">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" name="loyalty_refund" value="Submit <%= loyalty_refund_amount %> Loyalty Refund" id="loyalty_refund">
+    </form>
+  <% else %>
+    <p id="eligible-for-refund-but-must-wait-for-settlement">
+      This purchase is eligible for a loyalty refund of <%= loyalty_refund_amount %>, but
+      the payment must first be settled by the payment processor before the refund is granted.
+    </p>
+    <p style="margin-top: 1em">
+      Settlement usually happens within 24 hours of the purchase. Please check this
+      page later to issue the loyalty refund.
+    </p>
+  <% end %>
+</div>
+<% end %>
+
+<% javascript_tag do %>
+(function() {
+  $('daily_deal_purchase_gift').observe('click', function(event) {
+    var div = $('daily_deal_purchase_recipient_names');
+    if ("1" == $F(event.element())) {
+      div.select('input').each(function(elem) {
+        elem.writeAttribute("disabled", false);
+      });
+      div.show();
+    } else {
+      div.select('input').each(function(elem) {
+        elem.writeAttribute("disabled", true);
+      });
+      div.hide();
+    }
+  });
+})();
+<% end %>

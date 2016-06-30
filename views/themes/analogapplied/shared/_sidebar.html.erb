@@ -1,0 +1,5 @@
+<div class="sidebar">
+    <%= render :partial => with_theme("shared/signup"), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+	<%= render :partial => with_theme("shared/side_deals"), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+	<%= render :partial => with_theme("shared/future_deals"), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+</div><!-- /sidebar -->

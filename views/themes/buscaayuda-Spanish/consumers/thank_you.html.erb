@@ -1,0 +1,12 @@
+<% set_daily_deal_page_title_slug "Thank you for signing up!" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+	  <p>Thank you for signing up to receive the <%= @publisher.label %> <%= @publisher.daily_deal_name %> email! 
+	  <% if @publisher.show_special_deal? && @publisher.signup_discount %>You will automatically receive <%= @publisher.currency_symbol %><%= "%.2f" % @publisher.signup_discount_amount %> off your first <%= @publisher.daily_deal_name %> purchase.<% end %>
+    </p>
+
+    <p>See it. Share it. Buy it.<br/>
+    Every day, we'll offer a new deal at a savings of up to 70%. When you find something you like&mdash;share it with your friends too!</p>
+  </div>
+</div>

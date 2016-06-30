@@ -1,0 +1,196 @@
+<div id="container">
+	<div id="leftcol">
+		<div class="boxed">
+			<h1 id="value_prop" class="main-value">{{ daily_deal.value_proposition }}</h1>
+			<div id="deal_photo">
+				<img src="{{ daily_deal.photo.standard_url }}" width="380" alt="{{ advertiser.name }}" />
+			</div>
+			<div id="tag">
+				<span>{{ daily_deal.price | currency }}</span>
+				{% if daily_deal.sold_out? %}
+				<img src="/themes/newsday/images/buttons/sold-out.png" width="135" height="70" alt="Sold Out" />
+				{% elsif daily_deal.over? %}
+				<img src="/themes/newsday/images/buttons/deal-over.png" width="135" height="70" alt="Deal Over" />
+				{% elsif daily_deal.active? %}
+				<a href="{{ daily_deal.buy_now_path }}" id="buy_now_button"><img src="/themes/newsday/images/buttons/buy.png" width="135" height="70" alt="BUY!" /></a>
+				<img src="/themes/newsday/images/buttons/deal-over.png" width="135" height="70" alt="Deal Over" style="display: none;" class="unavailable"/>
+				{% else %}
+				<img src="/themes/newsday/images/buttons/coming-soon.png" width="135" height="70" alt="Coming Soon" />
+				{% endif %}
+			</div>
+			<div class="statusboxed" id="dashboard">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<th>Value</th>
+					<th>Discount</th>
+					<th>You Save</th>
+				  </tr>
+				  <tr>
+					<td>{{ daily_deal.value | currency }}</td>
+					<td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+					<td><span class="red">{{ daily_deal.savings | currency }}</span></td>
+				  </tr>
+				</table>
+			</div>
+			<div class="statusboxed">
+				<h4>Share This Deal</h4>
+				<div id="share">
+					<a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/newsday/images/buttons/twitter.png" width="17" height="18" alt="" /></a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button_mail"><img src="/themes/newsday/images/buttons/email.png" width="17" height="18" alt="" /></a>
+					<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="{{ daily_deal.url }}" layout="button_count" show_faces="false" width="80" font="arial"></fb:like>
+				</div>
+		  </div>
+			<div class="statusboxed" id="clock">
+				<span>Time Left To Buy</span>
+				<span id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</span>
+			</div>
+			
+			{% unless daily_deal.affiliate_url %}
+			<div class="statusboxed">
+				<span id="sold"><span id="deals_sold">{{ daily_deal.number_sold }}</span> Sold</span>
+			</div>
+            {% endunless %}
+			
+			
+			<div class="clear"></div>
+			<div class="text">
+				<div id="advertiser_row">
+					<div id="advertiser">
+						<p class="name">{{ advertiser.name }}</p>
+						
+						{% if advertiser.address? %}
+							{% for store in advertiser.stores %}
+							  <p class="locations" style="{% if forloop.index > 1 %}display:none{% endif %}">
+								 {% if store.address_line_1 != empty %}
+									{{ store.address_line_1 }}<br />
+								 {% endif %}
+								 {% if store.address_line_2 != empty %}
+									{{ store.address_line_2 }}<br />
+								 {% endif %}
+								{{ store.city }}, {{ store.state }} {{ store.zip }}
+								  {% if store.formatted_phone_number != empty %}
+									<br />{{ store.formatted_phone_number }}
+								  {% endif %}
+							  </p>
+							{% endfor %}
+							  {% if advertiser.website_url != empty %}
+								<p class="website"><a href="{{ advertiser.website_url }}">Visit Website</a></p>
+							  {% endif %}
+							{% else %}
+							  <p class="website">
+								{% if advertiser.website_url != empty %}
+								  <a href="{{ advertiser.website_url }}">Visit Website</a><br />
+								 {% endif %}
+								{% if store.formatted_phone_number != empty %}
+									{{ store.formatted_phone_number }}
+								{% endif %}
+							  </p>
+						  {% endif %}
+					  
+						
+						{% if advertiser.num_stores > 1 %}					
+						<p class="all"><a id="see_all_locations" href="#"
+		   onclick="javascript:$$('p.locations').each(Element.show); $('see_all_locations').hide(); return false">See all locations</a></p>
+		    			{% endif %}
+						
+					</div>
+					<div id="logomap">
+						{% if advertiser.logo != empty %}
+						<img class="logo" src="{{ advertiser.logo.url }}" width="165" alt="" />
+						{% endif %}
+						
+						{% if advertiser.address? %}
+						{% if advertiser.stores.size > 0 %}
+						<div id="map">
+							<a href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" alt="" /></a>
+						</div>
+						{% endif %}
+						{% endif %}
+					</div>                                
+				</div> 
+			 
+			 {% if daily_deal.highlights != "" %}
+			 <h2>Highlights</h2>
+			 {{ daily_deal.highlights }}
+			 {% endif %}
+			 
+			 <h3>Description</h3>
+			 {{ daily_deal.description }}
+			 
+			 {% if daily_deal.fine_print != "" %}
+			 <h3>Restrictions</h3>
+			 {{ daily_deal.terms }}
+			 {% endif %}
+			 
+			 </div>
+
+		</div>
+		<iframe frameBorder="0" src="http://www.newsday.com/cmlink/1.2790830" width="655" height="280"></iframe>
+	</div>
+	<div id="rightcol">
+		{% if publisher.enable_daily_deal_referral %}
+		<div class="boxed refer">
+			<h3>Refer a Friend</h3>
+			<div id="credit">
+				<a href="{{ publisher.refer_a_friend_path }}" class="refer_a_friend_tracking">Earn<span>{{ publisher.daily_deal_referral_credit_amount | currency }}</span>Credit</a>
+			</div>
+			<p>When someone you refer purchases their first deal.</p>
+			<p class="lesspad"><a href="{{ publisher.refer_a_friend_path }}" class="refer_a_friend_tracking"><strong>CLICK HERE</strong></a></p>
+		</div>
+		{% endif %}
+		
+		{% if daily_deal.side_deals.size > 0 %}
+		<div class="boxed other_deal_tracking" id="side_deals">
+			<h3 class="side">Other Great Long Island Deals</h3>
+			{% for deal in daily_deal.side_deals %}
+			<div class="side_deal"><!--Start Side Deal -->                     
+				<h4><a href="{{ deal.url }}">
+						{% if deal.advertiser.num_stores == 1 and deal.advertiser.city != empty %} 
+							<span>{{ deal.advertiser.city }}: </span>
+						{% else %}  
+						{% if deal.advertiser.num_stores > 1 %}
+							<span>Multiple Locations: </span>
+							{% endif %}
+							{% endif %}
+							{{ deal.value_proposition }}</a></h4>
+				<div class="split">
+					<div class="info">
+						<div class="price">{{ deal.price | currency }}</div>
+						<div class="value">{{ deal.value | currency }} Value</div>
+						<a href="{{ deal.url }}"><img src="/themes/newsday/images/buttons/view-deal.png" width="83" height="21" alt="View Deal" /></a>
+					</div>
+					<div class="photo"><img src="{{ deal.photo.facebook_url }}" width="110" alt="" /></div>
+				</div>
+			</div><!--End Side Deal --> 
+			{% endfor %}
+		</div>
+		{% endif %}
+		
+		<div class="boxed" id="facebookboxed">
+			<iframe scrolling="no" frameborder="0" allowtransparency="false" style="border: none ; background: rgb(255, 255, 255) none repeat scroll 0% 0%; overflow: hidden; width: 240px; height: 265px; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" src="http://www.facebook.com/plugins/likebox.php?id=117026385023298&amp;width=240&amp;connections=10&amp;stream=false&amp;header=false&amp;height=265"></iframe>
+		</div>
+		
+		{% if daily_deal.reviews != "" %}
+		<div class="boxed" id="reviews">
+			<h3>REVIEWS:</h3>
+			{{ daily_deal.reviews }}
+		</div>
+		{% endif %}
+		
+		<div class="boxed" id="feature">
+			<div class="center">
+				<h3 class="orange">ADVERTISE YOUR<br /> DAILY DEAL</h3>
+				<p class="larger black">Learn how we can drive customers to your door.</p>
+				<p class="click"><a href="{{ publisher.feature_your_business_path }}">CLICK HERE</a></p>
+			</div>
+		</div>
+		
+		<div class="boxed" id="donation">
+			<div class="center">
+				<a href="http://www.newsdayinteractive.com/specials/Help_a_fam_nov2011/" target="_blank"><img src="/themes/newsday/images/graphics/donation2.png" alt="Show LI Kids you Care. We'll match your donation 50%" width="254" height="186" /></a>
+			</div>
+		</div>
+	
+	</div>
+	
+</div>

@@ -1,0 +1,22 @@
+    <div id="social_share">
+        <p>Share this deal!</p>
+        <div class="social_buttons">
+            
+            <a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_link share_link_twitter share_button_twitter" target="_blank"><img src="/themes/freedom/images/buttons/twitter.png" alt="share this on twitter"/></a>
+            <a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" class="share_link share_link_email share_button_mail"><img src="/themes/freedom/images/buttons/email.png" alt="Email this to a friend"/></a>
+ 
+           <!--  <a href="<%= facebook_daily_deal_path(@daily_deal, :referral_code => current_consumer.try(:referrer_code)) %>" class="share_button" id="facebook_link" target="_blank"><img src="/themes/bcbsa/images/graphics/square_facebook.png" alt="share on facebook"/></a> -->
+        
+            <% unless @publisher.facebook_page_url.blank? %>
+                <iframe src="//www.facebook.com/plugins/like.php?href=<%= market_aware_daily_deal_url(@daily_deal) %>&amp;send=false&amp;layout=button_count&amp;width=75&amp;height=21&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:75px; height:21px;" allowTransparency="true"></iframe>
+            <% end %>
+            
+            <%= render 'shared/share_deal_link', :type => :facebook %>
+
+
+        <div class="clear"></div>
+
+        </div>
+        <div class="clear"></div>
+
+    </div><!-- /share -->

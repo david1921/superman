@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Subject: {{ daily_deal.email_blast_subject }} -->
+<!-- From: "Queens Courier Daily Deal" -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<table width="95%" cellpadding="0" cellspacing="0" border="0" align="center">
+<tr>
+<td>
+<table width="650" cellpadding="0" cellspacing="0" align="center" border="0" bgcolor="#0fb1ef">
+ 
+          <tr>
+             <td><a href="{{ daily_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/header.jpg" width="650" height="128" alt="Queens Courier Deal of the day"></a></td>    
+          </tr>
+<!-- share--><tr><td><br>
+             <table cellpadding="0" cellspacing="0" width="247" border="0" style="margin-left:50px;">
+                <tr><td colspan="3"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/share_top_round_corner.gif" width="246" height="9" alt=""></td></tr>
+                <tr><td bgcolor="#ffffff" width="72" valign="middle" style="padding-left:10px;font-family:Arial, Helvetica, sans-serif;"><p style="font-size:14px;">Share:</p></td><td width="175" bgcolor="#ffffff">
+                  <a href="{{ daily_deal.facebook_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/facebook_icon.gif" width="30" height="30" alt="facebook" border="0" style="padding:5px;"></a>&nbsp;
+                  <a href="{{ daily_deal.twitter_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/twitter_icon.gif" width="32" height="31" alt="facebook" border="0" style="padding:5px;"></a>&nbsp;
+                  <a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/email_icon.gif" width="30" height="31" alt="facebook" border="0" style="padding:5px;"></a></td>
+                </tr>        
+              </table>
+<!-- share--></td></tr>
+<!-- deal--><tr><td valign="top" align="center"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/deal_top_round_corner.gif" width="600" height="12" alt=""></td></tr>
+			<tr><td valign="top">
+              <table width="600" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" border="0"  style="font-family:Arial, Helvetica, sans-serif; border-left-width:3px; border-left-style:solid; border-left-color: #e2e43d; border-right-width:3px; border-right-style:solid; border-right-color: #e2e43d; border-bottom-width:3px; border-bottom-style:solid; border-bottom-color: #e2e43d; font-size:12px;">
+                <tr>
+                <td colspan="2"><h1 style="font-size:28px; padding:10px 15px;">{{ daily_deal.value_proposition }}</h1></td>
+                </tr>
+                <tr>
+                  <td valign="bottom">
+                  
+                  <table width="280" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td valign="bottom" rowspan="2" height="92" width="49"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/tag-left.gif" width="49" height="92" alt="$"></td>
+                        <td height="79" bgcolor="#6accdf" style="color:#ffffff; font-weight:bold; font-size: 50px; font-family:Arial, Helvetica, sans-serif;">{{ daily_deal.price | currency | remove_first:"$"}}</td>
+                        <td valign="bottom" rowspan="2" height="92" width="157"><a href="{{ daily_deal.url_for_email }}"><img style="display: block;" border="0" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/buy-now.gif" width="157" height="92" alt="See the Deal"></a></td>
+                      </tr>
+                      <tr>
+                        <td valign="bottom"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/queenscourier/images/email/tag-bottom.gif" width="74" height="13" alt=""></td>
+                      </tr>
+                    </table>
+
+                  
+                  <td rowspan="4" valign="top" width="313"><img src="{{ daily_deal.photo.url }}" width="290" alt="Massage Envy">
+				  
+				  
+				  </td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" style="font-family:Arial, Helvetica, sans-serif;">
+                  
+                      <table width="212" cellpadding="0" cellspacing="0" align="center">
+                        <tr>
+                            <td valign="top" style="font-size:12px; font-family: Arial, Helvetica, sans-serif; border-left-width:3px; border-left-style:solid; border-left-color: #0fb1ef; border-right-width:3px; border-right-style:solid; border-right-color: #0fb1ef; border-bottom-width:3px; border-bottom-style:solid; border-bottom-color: #0fb1ef; background-color:#fafad8;">
+                            	<table align="center" width="206" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif;">
+                                	<tr>
+                                        <td align="center" style="font-size:11px;">VALUE</td>
+                                        <td align="center"><strong style="font-size:14px;"> DISCOUNT</strong></td>
+                                        <td align="center" style="font-size:11px;">YOU SAVE</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">{{ daily_deal.value | currency }}</td>
+                                        <td align="center"><strong style="font-size:22px;">{{daily_deal.savings_as_percentage | percentage}}</strong></td>
+                                        <td align="center">{{ daily_deal.savings | currency }}</td>
+                                    </tr>
+                                </table>
+                            
+                            </td>
+                        </tr>                     
+                      </table>
+                  
+                  </td>
+                  
+                </tr>
+                
+                <tr>
+                  <td valign="top" align="center" height="10">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                  	<table width="212" align="center" bgcolor="#fafad8" cellspacing="0" cellpadding="10">
+                      <tr>
+                        <td style="font-size: 12px; font-family:Arial, Helvetica, sans-serif; border-width: 3px; border-color: #e2e43d; border-style: solid;"><strong>THE COMPANY</strong><br />
+                        {{ advertiser.name }}<br />
+                        {% if advertiser.website_url != "" %}
+                          <a href="{{ advertiser.website_url }}" style="color: #009bd5">Company Website</a><br />
+                        {% endif %}
+                        {{ advertiser.address_line_1 }}<br />
+				        {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                        {{ advertiser.phone_number }}<br />
+                        
+                        
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                  
+                </tr>
+                
+                
+              <tr>
+              <td colspan="2" style="padding: 30px">{{ daily_deal.description }}</td>
+              </tr>
+          
+              
+              </table><br>
+<!-- deal--></td></tr>
+
+
+        </table>
+        
+         
+  
+</td>
+</tr>
+<tr><td style="font-size: 11px;" align="center">If you no longer wish to receive this mailing, <a href="{{ daily_deal.unsubscribe_url }}">click here to unsubscribe</a></td></tr>
+</table>
+
+</body>
+</html>

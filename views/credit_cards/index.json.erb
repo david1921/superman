@@ -1,0 +1,7 @@
+<%= @credit_cards.map { |credit_card| {
+  :token => credit_card.token,
+  :descriptor => credit_card.descriptor,
+  :methods => {
+    :destroy => consumer_credit_card_url(@consumer, credit_card, { :protocol => "https", :host => AppConfig.api_host, :format => "json" }),
+  }
+}}.to_json.html_safe -%>

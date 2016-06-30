@@ -1,0 +1,104 @@
+<% set_daily_deal_page_title_slug t(:feature_your_business) %>
+
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= public_deal_of_day_path(@publisher.label) %>">Inicio</a>
+    </li>
+    <li class="no_underline">></li>
+    <li class="no_underline">          
+      Incluya a su empresa
+    </li>
+  </ul>
+  </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:feature_your_business) %></h1>
+  <div id="feature_your_business_content">
+    
+    <div id="left_column">
+      <p>Blue365 es un recurso integral para millones de estadounidenses que buscan vivir vidas más saludables por menos dinero. Si tiene excelentes ofertas para compartir con los miembros de Blue365, ¡simplemente infórmenos la mejor manera para contactarlos!</p>
+      
+      <%= error_messages_for :sales_contact_request, :header_message =>nil %>
+      <% form_for [@publisher, @sales_contact_request], :html => {:id => "feature_form"}  do |f| %>
+        <div>
+          <span>
+            <h5>Nombre:</h5><span class="required">*</span>
+            <%= f.text_field :first_name, :class => "first" %> <%= f.text_field :last_name, :class => "last" %>
+          <label id="name_first" for="first_name">Nombre</label><label id="name_last" for="last_name">Apellido</label>
+            <!-- <p class="first_name_label">First</p><p class="last_name_label">Last</p> -->
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5>Cargo:</h5>
+            <%= f.text_field :title, :class => "title" %>
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5>Compañía:</h5><span class="required">*</span>
+            <%= f.text_field :company, :class => "company" %>
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5>Correo electrónico:</h5><span class="required">*</span>
+            <%= f.text_field :email, :class => "email" %>
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5>Número telefónico:</h5> 
+            <%= f.text_field :phone_number, :class => "phone_number" %>
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5>Sitio web:</h5>
+            <%= f.text_field :website, :class => "website" %>
+          </span>
+        </div>
+        <div>
+          <span class="fyb-textbox">
+            <h5>Mensaje:</h5><span class="required">*</span>
+            <%= f.text_area :message, :class => "message" %>
+          </span>
+        </div>
+        <div class="clear"></div>
+         <div class="submit_field">
+          <%= f.submit t(:submit), :id => "submit", :class => "blue_button" %>
+          <span class="required_fields">* Campo obligatorio</span>
+        </div>
+      <% end %>
+    </div>
+    <div class="right_column_2">
+      <div class="content">
+        <div class="top">
+          <h5>¿Por qué participar en Blue365?</h5>
+          <p>Ayudar a otros a vivir vidas más saludables debería ayudar también a su empresa.</p>
+        </div>
+      
+        <div class="middle">
+          <img src="/themes/bcbsa/images/graphics/reach_icon.png">
+          <h6>Tener acceso a nuevos clientes:</h6>
+          <p>Los miembros de Blue365 verán sus últimas ofertas a través de mensajes de correo electrónico semanales y actividades promocionales dirigidas.</p>
+        
+          <img src="/themes/bcbsa/images/graphics/share_icon.png">
+          <h6>Hacer correr la voz:</h6>
+          <p>Los miembros de Blue365 cuentan con opciones para compartir las ofertas por Facebook, Twitter y correo electrónico, lo que lo ayudará a encontrar más clientes más rápido.</p>
+          
+          <img src="/themes/bcbsa/images/graphics/earn_icon.png">
+          <h6>Hacer crecer su empresa:</h6>
+          <p>No hay una tarifa inicial para presentar una oferta, y le pagaremos por cada oferta comprada poco después de que termine su promoción de la oferta. Parece simple &#8212; y lo es.</p>
+        </div>
+        <div class="bottom_img"></div>      
+      </div>
+    </div>
+    
+    </div>
+  </div>
+</div>

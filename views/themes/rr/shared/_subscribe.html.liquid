@@ -1,0 +1,40 @@
+<!--  
+<div class="subscribe_area_wrapper">
+<div id="get_deals">
+	<h4 class="account"><a class="get_deals_link" href="#">Get Deals by Email <img src="/themes/rr/images/graphics/down_arrow.png" /></a></h4>
+</div>
+
+<div id='subscriber_form_errors'></div>
+	<div id="subscribe_box" style="display: none;">
+		<div id="subscribe_wrap">
+    		<h4 class="account">Get Deals:</h4>
+    		<div id="subscribe_form">
+    			<form action="/publishers/{{ publisher.id }}/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+    				<fieldset>
+    					<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+    					<input name="redirect_to" value="{{ publisher.subscribers_thank_you_path | verifiable_url }}" type="hidden" />
+    				</fieldset>
+    				<fieldset>
+    					<input id="subscriber_email" name="subscriber[email]" size="30" type="text" placeholder="Email Address" />	
+    					<input id="subscriber_zip" name="subscriber[zip_code]" size="30" type="text" placeholder="Zip Code" />
+    				</fieldset>
+    
+    				<fieldset class="sign_up">
+    					<input type="submit" id="subscribe" value="Sign Up"/><div class="clear"></div>
+    				</fieldset>
+    				<div class="clear"></div>
+    				<fieldset id="terms">
+    					<input name="subscriber[terms]" value="0" type="hidden" />
+    					<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the <a href="{{ publisher.terms_path }}" target="_blank">Terms</a> and <a href="{{ publisher.privacy_path }}" target="_blank">Privacy Policy</a>
+    				</fieldset>
+        		<div class="clear"></div>
+    		</form>
+    		</div><!-- /subscribe_form	
+		</div><!--/subscribe_wrap
+        <div id="close">
+        	<a class="close_link" href="#">Close</a>
+        </div>
+	</div><!-- /subscribe_box
+<div class="clear"></div>
+
+</div><!-- /subscribe_area_wrapper -->

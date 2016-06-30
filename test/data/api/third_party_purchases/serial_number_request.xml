@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<daily_deal_purchase xmlns="http://analoganalytics.com/api/third_party_purchases/serial_numbers"
+                     uuid="22096013-7206-4aba-8f7e-bb73866b8c8c">
+  <daily_deal_listing>BBD-24233</daily_deal_listing>
+  <executed_at>2011-09-12T06:00:00Z</executed_at>
+  <gross_price>30.00</gross_price>
+  <actual_purchase_price>25.00</actual_purchase_price>
+  <location_listing>LOC-98765</location_listing>
+  <voucher_requests>
+    <voucher_request sequence="1">
+      <redeemer_name>John Galt</redeemer_name>
+    </voucher_request>
+    <voucher_request sequence="2">
+      <redeemer_name>Huck Finn</redeemer_name>
+    </voucher_request>
+  </voucher_requests>
+</daily_deal_purchase>

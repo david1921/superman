@@ -1,0 +1,20 @@
+Dear <%= @purchased_gift_certificate.recipient_name %>,
+
+Thank you for your recent purchase of a <%= @purchased_gift_certificate.advertiser.name %> deal certificate at the <%= @purchased_gift_certificate.publisher.brand_name_or_name %> web site.
+
+Your purchase will appear in your PayPal or credit card account statement as a payment of <%= number_to_currency(@purchased_gift_certificate.paypal_payment_gross, :unit => @purchased_gift_certificate.currency_symbol) %> to Analog Analytics Incorporated, who are technology partners for the deal certificate program at <%= @purchased_gift_certificate.publisher.brand_name_or_name %>.
+
+Your deal certificate will be delivered by US Postal Service Registered Mail to your address on file:
+
+<%- @purchased_gift_certificate.recipient_name_and_address_lines.each do |line| -%> 
+  <%= line %>
+<%- end -%> 
+
+Please bring your deal certificate as well as valid photo ID when you go to redeem your certificate at <%= @purchased_gift_certificate.advertiser.name %>.
+
+Thank you again for your business.
+
+----
+Analog Analytics respects your privacy. <%= txt411_privacy_url %> to read our Privacy Policy.
+
+Analog Analytics and TXT411 are trademarks of Analog Analytics Inc, http://analoganalytics.com. Postal address: 11455 El Camino Real, Suite #390, San Diego, CA 92130.

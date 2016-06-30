@@ -1,0 +1,104 @@
+<% remote = defined?(remote) ? remote : false %>
+<div class="wrapper_panel" id="business_<%= business.id %>_wrapper_panel">
+  <div class='logo_list'>
+    <%= raw(
+      if business.logo.file?
+       advertiser_logo_image_tag(business)
+      else
+       "&nbsp;"
+      end
+    ) %>
+  </div>
+	<div class='content'>
+    <h3><%= link_to( business.name, render_public_offers_path( @publisher, {:advertiser_id => business.id, :advertiser_label => business.label} ) ) %></h3>
+    <div class='address'><%= business.formatted_phone_number %> | <%= business.address.join(", ") %> | <%= link_to("Map", business.map_url, :target => "_blank", :class => "map", :title => "Click for driving directions" )%></div> 
+  <div class="clear"></div>
+
+    <ul class='offers'>
+      <% business.offers.active.each do |offer| %>   
+        <% publisher = offer.publisher %>
+        <li>
+          <div class="coupon_deals">
+            <%= link_to( offer.message, render_public_offers_path( publisher, :offer_id => offer.id ), :class => "proposition" ) %>
+            <div class="info">
+              <span class="expiration">
+                <%= (offer.expiration.blank? ? "&nbsp;" : "Expires: #{offer.expires_on.strftime('%m/%d/%y')}").html_safe %>
+              </span><br />
+              <span class="share">
+                <% if remote %>
+                
+                  <%= link_to( 
+                        image_tag("http://#{request.host_with_port}/themes/sdcitybeat/images/business/facebook.png"),
+                        facebook_offer_url(offer, :publisher_id => publisher.id),
+                        :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+                        :class => "facebook",
+                        :id => "offer_#{offer.id}_facebook_link",
+                        :target => "_blank",
+                        :rel => "nofollow"
+                    ) if publisher.show_facebook_button? -%>
+                    <%= link_to(
+                          image_tag("http://#{request.host_with_port}/themes/sdcitybeat/images/business/twitter.png"), 
+                          twitter_offer_url(offer, :publisher_id => publisher.id),
+                          :class => "twitter", :target => "_blank", :title => "Share coupon on Twitter", :rel => "nofollow",
+                          :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+                    ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+                    <%= link_to_function( image_tag("http://#{request.host_with_port}/themes/sdcitybeat/images/business/print.png"),
+                    "clipCoupon(#{offer.id}, #{publisher.id}, #{business.id}); trackCouponEvent('Print', #{offer.id})",
+                    :id => "print_#{offer.id}", :class => "clip", :title => "Click to print coupon") %>
+                    <%= link_to_function(
+                          image_tag("http://#{request.host_with_port}/themes/sdcitybeat/images/business/email.png"), 
+                          "Analog.Business.emailCoupon(#{offer.id}, #{publisher.id}, #{business.id}); trackCouponEvent('Email', #{offer.id})",
+                          :class => "email", :title => "Click to email coupon to you", :rel => "nofollow" 
+                    ) if offer.advertiser.allows_clipping_via(:email) -%>                                      
+                    <%= link_to_function(
+                          image_tag("http://#{request.host_with_port}/themes/sdcitybeat/images/business/phone.png"), 
+                          "Analog.Business.txtCoupon(#{offer.id}, #{publisher.id}, #{business.id}); trackCouponEvent('TXTMessage', #{offer.id})",
+                          :class => "txt", :title => "Click to send coupon to you via TXT message", :rel => "nofollow"
+                    ) if offer.advertiser.allows_clipping_via(:txt) -%>
+                  
+                 <% else -%>
+
+                 <%= link_to( 
+                   image_tag('/themes/sdcitybeat/images/business/facebook.png'),
+                       facebook_offer_url(offer, :publisher_id => publisher.id),
+                       :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+                       :class => "facebook",
+                       :id => "offer_#{offer.id}_facebook_link",
+                       :target => "_blank",
+                       :rel => "nofollow"
+                   ) if publisher.show_facebook_button? -%>
+                   <%= link_to(
+                         image_tag('/themes/sdcitybeat/images/business/twitter.png'), 
+                         twitter_offer_url(offer, :publisher_id => publisher.id),
+                         :class => "twitter", :target => "_blank", :title => "Share coupon on Twitter", :rel => "nofollow",
+                         :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+                   ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+                   <%= link_to_function( image_tag('/themes/sdcitybeat/images/business/print.png'),
+                   "clipCoupon(#{offer.id}, #{publisher.id}); trackCouponEvent('Print', #{offer.id})",
+                   :id => "print_#{offer.id}", :class => "clip", :title => "Click to print coupon") %>
+                   <%= link_to_remote(
+                         image_tag('/themes/sdcitybeat/images/business/email.png'), 
+                         :url => email_advertiser_offer_path(business, offer),
+                         :html => { :class => "email", :title => "Click to email coupon to you", :rel => "nofollow" }
+                   ) if offer.advertiser.allows_clipping_via(:email) -%>                                      
+                   <%= link_to_remote(
+                         image_tag('/themes/sdcitybeat/images/business/phone.png'), 
+                         :url => txt_advertiser_offer_path(business, offer),
+                         :html => { :class => "txt", :title => "Click to send coupon to you via TXT message", :rel => "nofollow" }
+                   ) if offer.advertiser.allows_clipping_via(:txt) -%>
+                 
+                 <% end -%>
+              </span>
+            </div>            
+          </div>
+          <div class="bottom"><%= offer.terms %></div>
+        </li>
+      <% end %>
+    </ul>    
+  </div>
+</div>
+<div class="lead_panel" id="business_<%= business.id %>_lead_panel_container" style="display:none;"></div>
+
+
+
+

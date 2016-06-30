@@ -1,0 +1,20 @@
+<% if featured_deal.publishers_category.present? %>
+
+    <% if featured_deal.publishers_category.name == "Do" %>
+        <h3>Fun to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "Go" -%>
+        <h3>Places to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "See" -%>
+        <h3>People to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "Indulge" -%>
+        <h3>Ways to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "Buy" -%>
+        <h3>Goods to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "Eat" -%>
+        <h3>Things to <br><strong><%= featured_deal.publishers_category.name %></strong>
+    <% elsif featured_deal.publishers_category.name == "Help" -%>
+        <h3>Ways to<br> <strong><%= featured_deal.publishers_category.name %></strong>
+    <% end %>
+    <span class="category_icon <%= featured_deal.publishers_category.name.downcase %>_category_icon"></span></h3>
+    
+<% end %>    	

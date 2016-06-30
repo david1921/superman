@@ -1,0 +1,28 @@
+<div class="small_deal<%= " variation" if !small_deal.daily_deal_variations.blank? -%>">
+    <a href="<%= daily_deal_path(small_deal) %>"><h3><%= truncate(small_deal.value_proposition, 56) %></h3></a>
+    <% if small_deal.advertiser.store.present? %>
+        <h4><%= small_deal.advertiser.store.city %></h4>
+    <% else %>
+        <h4>&nbsp;</h4>
+    <% end %>
+    <table class="small_deal_dashboard" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="small_deal_tag">
+                <a href="<%= daily_deal_path(small_deal) %>" name="view_now_button">
+                    <p>See it</p>
+                </a>
+                <!-- <img class="" src="/themes/freedom/images/graphics/side_tag_full.png" alt=""/> -->
+            </td>
+
+            <td class="small_deal_price <%= formatted_price_for(small_deal.price).to_s.length > 5 ? 'long_price' : "normal_price" %>"><p><% if !small_deal.daily_deal_variations.blank? -%><span class="variation">from<% end %></span><%= formatted_price_for(small_deal.price) %></p></td>
+            <!-- <td rowspan="2"><span class="small_deal_side_seperator"></span></td> -->
+
+            <td class="small_deal_side_seperator">
+                Value<% if !small_deal.daily_deal_variations.blank? -%><br />from<% end %><br /><%= formatted_price_for(small_deal.value) %>
+            </td>
+        </tr>
+    </table>
+		<div class="small_deal_image_wrapper">
+    	<a href="<%= daily_deal_path(small_deal) %>"><img class="small_deal_image" src="<%=  protocol_relative_url(small_deal.photo.url) %>" alt=""/></a>
+		</div>
+</div>

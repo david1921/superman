@@ -1,0 +1,7 @@
+<tr>
+  <td><%= braintree_transaction.created_at %></td>
+  <td><%= braintree_transaction.id %></td>
+  <td><%= braintree_transaction.type %></td>
+  <td><%= braintree_transaction.credit_card_details.cardholder_name %></td>
+  <td><%= number_to_currency(braintree_transaction.amount) %></td>
+  </tr>

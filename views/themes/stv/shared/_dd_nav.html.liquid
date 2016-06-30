@@ -1,0 +1,17 @@
+<ul id="dd_nav">
+	<li><a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a></li>
+	<li><a href="{{ publisher.how_it_works_path }}">How it Works</a></li>
+	<li><a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+	<li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+	<li><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+	
+	{% if publisher.launched? %}
+		{% if publisher.current_user_belongs_to? %}
+	<li class="account"><a href="{{ publisher.my_account_path }}">My Account</a></li>
+	<li class="account"><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+	<li class="account"><a class="last" href="{{ publisher.logout_path }}">Sign Out</a></li>
+		{% else %}
+	<li class="account"><a href="{{ publisher.login_path }}">Sign In</a></li>
+		{% endif %}
+	{% endif %}
+</ul><!-- /dd_nav -->

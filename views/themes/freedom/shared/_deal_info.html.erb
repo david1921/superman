@@ -1,0 +1,48 @@
+<div class="clear"></div>
+<div id="deal_info">
+	<div id="deal_left_info">
+		<h3>Description</h3>
+		<%= daily_deal.description.try :html_safe %>
+		<h3>Fine Print:</h3>
+		<%= daily_deal.terms.try :html_safe %>
+		<% if FacebookApp.facebook_configured?(@publisher) %> 
+			<div class="facebook_comments">
+			<h3>Comments</h3>
+      	 		<%= facebook_comments_div(@daily_deal, 350) %>
+			</div>
+		<% end %>        
+	</div>
+	<img src="/themes/freedom/images/graphics/description_shadow.png" alt="Description Shadow" id="shadow">
+	<div id="deal_right_info">
+		<h3>Highlights:</h3>
+		<%= daily_deal.highlights.try :html_safe %>
+		<div id="dd_location">
+			<h4><%= advertiser.name %></h4>
+			<% unless advertiser.website_url.blank? %> <a class="visit_website_link" target="_blank" href="<%= advertiser.website_url %>">Visit Website</a><% end %>
+			<img id="advertiser_logo" src="<%= advertiser.logo.url %>" alt="<%= advertiser.name %>" width="200" />		
+			<a id="map" href="<%= advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(daily_deal, "195x185", true) %>" /></a>
+			<% if advertiser.stores.present? %>
+				<% advertiser.stores.each_with_index do |store, index| %>
+				<div class="location_container" style="<% if index > 2 %>display:none<% end %>">
+					<p>
+						<% unless store.address_line_1.blank? %> <span><%= store.address_line_1 %></span>
+						<% end %>
+						<% unless store.address_line_2.blank? %> <span><%= store.address_line_2 %></span>
+						<% end %>
+						<% unless store.city.blank? or store.state.blank? or store.zip.blank? %> <span><%= store.city %>, <%= store.state %> <%= store.zip %><br/></span>
+						<% end %>
+						<% unless store.formatted_phone_number.blank? %> <span><%= store.formatted_phone_number %></span>
+						<% end %>
+												
+						<br />
+					</p>
+				</div><!-- /location_container -->
+				<% end %>
+				<% if advertiser.stores.size > 3 %>
+				<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">See All Locations<img src="/themes/freedom/images/icons/arrow_right.png"></a>
+				<% end %>
+			<% end %> 
+		</div><!-- END #dd_location -->
+	</div>
+	<div class="clear"></div>
+</div>

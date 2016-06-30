@@ -1,0 +1,17 @@
+<%- content_tag_for(:tr, publishing_group, :class => "headline") do -%>
+  <td>GROUP</td>
+  <td class="name">
+    <%= link_to publishing_group.name, edit_publishing_group_path(publishing_group) %>
+  </td>
+  <td class="label">
+    <%= link_to(truncate(publishing_group.label, :length => 20), edit_publishing_group_path(publishing_group)) if publishing_group.label.present? %>
+  </td>
+  <td colspan="4"></td>
+  <td class="users">
+    <%= link_to "Users", publishing_group_users_path(publishing_group) %>
+  </td>
+  <td></td>
+  <td class="last edit">
+    <%= link_to "Edit", edit_publishing_group_path(publishing_group) %>
+  </td>
+<%- end -%>

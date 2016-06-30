@@ -1,0 +1,9 @@
+<div id="header">
+		<div id="banner">
+				<%= render :partial => with_theme("shared/publisher_logo") %>
+				<%= render :partial => with_theme("shared/account_nav") %>
+				<div class="clear"></div>
+				<%= render :partial => with_theme("shared/subscriber_form") %>
+				<%= render :partial => with_theme('shared/market_menu') if @publisher.enable_market_menu %>
+		</div><!--/banner-->   
+</div><!-- /header -->

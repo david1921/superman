@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/themes/allconnect/stylesheets/daily_deal_overrides.css" type="text/css" />
+
+<link rel="stylesheet" href="/themes/allconnect/stylesheets/media_overrides.css" type="text/css" />
+
+<!--[if lte IE 9]>
+<link href="/themes/allconnect/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/allconnect/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lte IE 7]>
+<link href="/themes/allconnect/stylesheets/ie7.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	if( navigator.platform === 'iPad' ){
+		$logo = $('#logo_wrap #deal_logo');
+		$logo.unwrap();
+	}
+});
+</script>

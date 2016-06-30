@@ -1,0 +1,152 @@
+quentin:
+  login:                     quentin
+  name:                      Quentin
+  email:                     quentin@example.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bb
+  # company:                   my_space (Publisher)
+      
+aaron:
+  login:                     aaron
+  name:                      Aaron
+  email:                     aaron@example.com
+  salt:                      da4b9237bacccdf19c0760cab7aec4a8359010b0 # SHA1('1')
+  crypted_password:          e7d67cc8d2f0aa3f7834e3894ac809b086d7116c # 'monkey'
+  created_at:                <%= 1.days.ago.to_s :db %>
+  remember_token_expires_at: 
+  remember_token:            
+  admin_privilege:           <%= User::FULL_ADMIN %>
+
+old_password_holder:
+  login:                     salty_dog
+  email:                     salty_dog@example.com
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   my_space (Publisher)
+
+guest:
+  login:                     guest
+  name:                      Guest User
+  email:                     guest@example.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  remember_token:            77de68daecd823babbb58edb1c8e14d7106e83bc
+  # company:                   my_space (Publisher)
+  session_timeout:           300
+
+greg:
+  login:                     greg
+  name:                      Greg Haralam
+  email:                     gharalam@moreyinteractive.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  # company:                   li_press (Publisher)
+      
+pam:
+  login:                     pmox
+  name:                      Pam Mox
+  email:                     pmox@gvnews.com
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   gvnews (Publisher)
+
+scott:
+  login:                     scott
+  name:                      Scott Pullo
+  email:                     scott@firstclasscreations.com
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   student_discount_handbook (PublishingGroup)
+
+gary:
+  login:                     gary
+  name:                      Gary Bernard
+  email:                     gbernard@local.com
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   locm (PublishingGroup)
+
+mickey:
+  login:                     mickey
+  name:                      Michael Mouse
+  email:                     mickey@sdhaustin.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   sdh_austin (Publisher)
+
+jimmy:
+  login:                     jimmy
+  name:                      Jimmy Chango
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   changos (Advertiser)
+
+jorge:
+  login:                     jorge
+  name:                      Jorge Bonito
+  email:                     jorgeb@dimilles.com
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   di_milles (Advertiser)
+
+zorba:
+  login:                     zorba
+  name:                      Zorba Greco
+  salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at:                <%= 1.days.ago.to_s :db %>
+  # company:                   el_greco (Advertiser)
+
+robert:
+  login:                     robert.mcdaniel@villagevoicemedia.com
+  name:                      Robert McDaniel
+  email:                     robert.mcdaniel@villagevoicemedia.com
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  # company:                   vvm (PublishingGroup)
+
+john_public:
+  type:                      Consumer
+  publisher:                 sdh_austin
+  first_name:                John
+  last_name:                 Public
+  email:                     john@public.com
+  login:                     john@public.com
+  agree_to_terms:            true
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  activated_at:               <%= 4.days.ago.to_s :db %>
+  activation_code:            ABCD1234
+
+jane_public:
+  type:                      Consumer
+  publisher:                 sdh_austin
+  first_name:                Jane
+  last_name:                 Public
+  email:                     jane@public.com
+  login:                     jane@public.com
+  agree_to_terms:            true
+  salt:                      356a192b7913b04c54574d18c28d46e6395428ab # SHA1('0')
+  crypted_password:          cb2aa0fc45aff5295a4ec8612193a62f8f4216f6 # 'monkey'
+  created_at:                <%= 5.days.ago.to_s :db  %>
+  remember_token_expires_at: <%= 1.days.from_now.to_s %>
+  activated_at:               <%= 4.days.ago.to_s :db %>
+  activation_code:            ZYXW9876

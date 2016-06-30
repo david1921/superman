@@ -1,0 +1,62 @@
+<!--SIDE DEAL-->
+<td width="267" height="356" align="center" valign="top"><table border="0" cellspacing="0" cellpadding="0" width="257" height="356" bgcolor="#ffffff">
+  <tbody>
+    <tr>
+      <td align="center"><div style="width: 100%;">&nbsp;</div>
+        <table border="0" cellspacing="0" cellpadding="1" width="235" align="center" height="141">
+          <tbody>
+            <tr>
+              <td bgcolor="#cccccc" height="141"><a href="{{ side_deal.url_for_email }}"><img border="0" name="Cont_7" alt="{{ side_deal.advertiser.name }}" height="141" width="233" src="{{ side_deal.photo.blast_url }}" /></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="width: 100%;">&nbsp;</div></td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" height="70"><p style="margin-bottom: 5px; margin-left: 10px; padding-right: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #b41d2a; text-align: left;"><a style="color: #b41d2a; text-decoration: none;" href="{{ side_deal.url_for_email }}"><span style="color: #b41d2a;">{{ side_deal.value_proposition }}</span></a></p></td>
+    </tr>
+    <tr>
+      <td align="left">
+	  	<p style="margin-bottom: 5px; margin-left: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+		{% if side_deal.advertiser.stores.size > 0 %}
+			{% if side_deal.advertiser.stores.size == 1 %}
+				{{ side_deal.advertiser.stores[0].city}}
+			{% else %}
+				Multiple Locations
+			{% endif %}
+		{% else %}
+		  Online Deal
+		{% endif %}
+		</p>
+	  </td>
+    </tr>
+    <tr>
+      <td>
+      
+      <table border="0" cellspacing="0" cellpadding="0" width="206" align="center" style="margin-bottom: 10px">
+        <tbody>
+          <tr>
+            <td width="102" height="48" align="left" valign="top" name="Cont_5"><table width="102" height-"48" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td colspan="2" align="left" valign="bottom"><img src="http://{{ publisher.daily_deal_host }}/themes/entercomnew/images/email/moneyFlagTop.jpg" style="display: block; line-height: 0;" /></td>
+              </tr>
+              <tr>
+                <td width="11" align="right" valign="top"><img src="http://{{ publisher.daily_deal_host }}/themes/entercomnew/images/email/moneyFlagLeft.jpg" style="display: block; line-height:0;" /></td>
+                <td width="91" align="center"><p style="margin-top: 0px; font-family: Arial, Helvetica, sans-serif; margin-bottom: 0px; color: #b41d2a; font-size: 16px">{{ side_deal.price | currency: 2 }}</p></td>
+              </tr>
+              <tr>
+                <td colspan="2" align="left" valign="top"><img src="http://{{ publisher.daily_deal_host }}/themes/entercomnew/images/email/moneyFlagBottom.jpg" style="display: block; line-height: 0;" /></td>
+              </tr>
+            </table></td>
+            <td height="48" valign="middle" width="106"><a href="{{ side_deal.url_for_email }}" name="none"><img border="0" name="Cont_6" alt="View Deal" src="http://{{ publisher.daily_deal_host }}/themes/entercomnew/images/email/viewDealButton.jpg" /></a></td>
+          </tr>
+        </tbody>
+      </table>                                                    
+      <div style="width: 100%;">&nbsp;</div>                                                 
+      </td>
+    </tr>
+  </tbody>
+</table>                                              
+<div style="width: 100%;">&nbsp;</div>                                   
+</td>
+<!--/SIDE DEAL-->

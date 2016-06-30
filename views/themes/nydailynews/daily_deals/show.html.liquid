@@ -1,0 +1,159 @@
+<div class="content_box"><!-- deal info top row -->
+		<div id="top">
+			<h3 >Today's Deal</h3>
+			<div id="share">
+				<span>Share this Deal</span>
+				<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/nydailynews/images/buttons/facebook.png" alt="share on facebook" /></a>
+			<a href="{{ daily_deal.twitter_url }}" class="share_button share_button_twitter" target="_blank"><img src="/themes/nydailynews/images/buttons/twitter.png" alt="share on twitter" /></a>
+			<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button last share_button_mail"><img src="/themes/nydailynews/images/buttons/mail.png" alt="Email this to a friend" /></a>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<h1 id="value_prop">{{ daily_deal.value_proposition }}</h1>
+		<div id="dashboard"><!--dashboard -->
+			<div id="price_tag">
+				<h1 id="daily_deal_price"{% if daily_deal.price >999 %} class="bigmoney"{% endif %}>
+				  {{ daily_deal.price | currency }}
+				</h1>
+				<div id="buy_now">
+				       {% if daily_deal.sold_out? %}
+				      <div id="sold_out" class="dd_button"><span>Sold Out</span></div>
+				       {% elsif daily_deal.over? %}
+				       <div id="deal_over" class="dd_button"><span>Deal Over</span></div>
+				       {% elsif daily_deal.active? %}
+				       <div id="sold_out" class="dd_button" style="display:none"><span>Sold Out</span></div>
+				       <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><span>Buy Now</span></a>
+               <img src="/themes/nydailynews/images/buttons/buy_now_ov.png" style="display:none"></img>
+               <div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+				       {% else %}
+				      <div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>
+				       {% endif %}
+				</div><!-- /buy_now -->
+			</div><!-- /price_tag -->
+			<div id="deal_specs">
+				<table id="value_summary" cellpadding="0" cellspacing="0">
+					<tr>
+						<th class="brder" style="border-right: 2px solid #c2c2c2">Value</th>
+						<th class="brder" style="border-right: 2px solid #c2c2c2">Cost</th>
+						<th class="savings">Savings</th>
+					</tr>
+					<tr>
+						<td class="brder" style="border-right: 2px solid #c2c2c2"><span{% if daily_deal.price >999 %} class="bigmoney"{% endif %}>{{ daily_deal.value | currency }}</span></td>
+						<td class="brder" style="border-right: 2px solid #c2c2c2"><span{% if daily_deal.price >999 %} class="bigmoney"{% endif %}>{{ daily_deal.price | currency }}</span></td>
+						<td class="savings">{{ daily_deal.savings_as_percentage | percentage }}</td>
+					</tr>
+				</table>
+		      
+				<table cellpadding="0" cellspacing="0" id="deal_status">
+					<tr>
+						<th class="label">Time Left to Buy</th>
+						<th class="label">Deals Sold</th>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+						<td id="deals_sold">{{ daily_deal.number_sold }}</td>
+					</tr>
+				</table><!-- /timer -->
+			</div><!-- /deal_specs -->
+		</div><!-- /dashboard -->
+
+		<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" width="340" /></div>
+		<div class="clear"></div>
+		
+		<div id="tabbox"><!-- deal info tab box -->
+	
+	
+			<ul id="deal_tabs"> 
+				<li class="current_deal_tab"><a id="tab_overview">Deal Overview</a></li> 
+				<li style="{%if daily_deal.reviews == empty %}display:none{%endif%}"><a id="tab_reviews">Reviews</a></li>
+				<li style="{%unless advertiser.address?%}display:none{%endunless%}"><a id="tab_location">Map &amp; Directions</a></li>
+			</ul> 
+			
+			<div id="deal_tab_content" class="content_box"> 
+				<div id="tab_overview_content">
+					<div id="description" class="six_col">
+						 {{ daily_deal.description }}
+					</div>
+					<div id="fineprint" class="three_col">
+						 {% if daily_deal.fine_print != "" %}
+						 <h2>The Fine Print</h2>
+						 {{ daily_deal.terms }}
+						 <p><a href="{{ publisher.faq_path }}">See rules that apply to all deals.</a></p>
+						 {% endif %}
+					</div>
+					<div id="highlights" class="three_col">
+						 {% if daily_deal.highlights != "" %}
+						 <h2>Highlights</h2>
+						 {{ daily_deal.highlights }}
+						 {% endif %}
+					</div>
+					<div class="clear"></div>
+	
+				</div><!--/tab_overview_content --> 
+				
+				
+				<div id="tab_reviews_content" class="deal_tab_hidden"> 
+					 {% if daily_deal.reviews != "" %}
+					 <h2>Reviews</h2>
+					 {{ daily_deal.reviews }}
+					 {% endif %}
+				</div><!-- /tab_reviews_content --> 
+				
+				
+				<div id="tab_location_content" class="deal_tab_hidden">
+					{% if advertiser.address? %}
+					  <div id="advertiser_map_container">
+					   	<div id="advertiser_map">
+    						<a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" /></a>
+    					</div><!-- /map -->
+    					{{ advertiser | nydn_get_transit_directions advertiser }}
+					  </div>
+					{% endif %}
+	
+					<div id="advertiser">
+						<img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+						<p class="advertiser_name"><strong>{{ advertiser.name }}</strong></p>
+						
+						{% if advertiser.num_stores == 1 %}
+							{{ store.formatted_phone_number }}
+						{% endif %}
+						
+						{% if advertiser.website_url != empty %}
+							<a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+						{% endif %}
+						
+						{% for store in advertiser.stores %}
+							<div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                  
+								<p>
+								{% if store.address_line_1 != empty %}
+									{{ store.address_line_1 }}<br />
+								{% endif %}
+								{% if store.city != empty and store.state != empty and store.zip != empty %}
+									{{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+								{% endif %}
+								{% if store.formatted_phone_number != empty %}
+									{{ store.formatted_phone_number }}
+								{% endif %}<br />
+								</p>
+							</div><!-- /location_container -->
+						{% endfor %}
+						
+						{% if advertiser.num_stores > 3 %}
+							<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+						{% endif %}
+										
+					</div><!-- /advertiser -->
+	
+					<div class="clear"></div>
+				</div><!--/tab_location_content -->
+				
+				
+			</div><!--/tab content --> 
+			
+	
+	  </div><!-- /deal info tab box -->
+		
+		
+	</div><!-- /deal info top row -->
+	
+	

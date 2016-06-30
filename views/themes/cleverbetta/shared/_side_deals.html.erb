@@ -1,0 +1,15 @@
+<div id="other_deals" class="sidebar_box other_deal_tracking">
+	<h3>Other Local Deals</h3>
+	  <% @daily_deal.side_deals.each do |deal| %>
+		<div class="side_deal_wrap">
+			<p><a class="side_deal" href="<%= market_aware_daily_deal_url(deal) %>" target="_blank"><%= deal.value_proposition %></a></p>
+			<div class="side_deal_text">
+				<div class="side_deal_price<%= " variation" if !deal.daily_deal_variations.blank? %>"><% if !deal.daily_deal_variations.blank? -%><span class="variation">From</span><br /><% end %><%= formatted_price_for(deal.price_to_display) %></div>
+				<p class="side_deal_value"><%= formatted_price_for(deal.value_to_display) %> VALUE</p>
+				<a class="view_deal" href="<%= market_aware_daily_deal_url(deal) %>" target="_blank"><span>View Deal</span></a>
+			</div><!-- /side_deal_text -->
+			<div class="side_deal_thumb"><img src="<%= deal.photo.url(:facebook) %>" alt="" /></div>
+			<div class="clear"></div>
+		</div><!-- /side_deal_wrap -->
+	  <% end %>
+</div><!-- /other_deals -->

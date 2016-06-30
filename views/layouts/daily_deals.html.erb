@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  
+<% if @daily_deal -%>
+  <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+  <meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+  <meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+  <link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+<% else -%>
+  <meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+<% end -%>
+
+  <%= tag :link, :rel => "icon", :type => "image/x-icon", :href => "/themes/#{@publisher.label}/images/favicon.ico" %>
+  <%= tag :link, :rel => "shortcut icon", :type => "image/x-icon", :href => "/themes/#{@publisher.label}/images/favicon.ico" %>
+  
+  <%= stylesheet_link_tag "scoped_reset", "application", "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.publishing_group.try(:label)}/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/daily_deals", :media => "all" %>
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery/jquery.min" %>
+  <%= javascript_tag "$.noConflict();" %>
+
+  <%= yield :head %>
+
+  <title><%= daily_deal_page_title %></title>
+
+</head>
+
+<% content_tag :body, :class => "#{controller_name} #{action_name}" do %>
+
+<div id="analog_analytics">
+  <div id="daily_deal">
+    <%= render(:partial => "daily_deals/navbar", :locals => { :publisher => @publisher }) if @publisher %>
+
+    <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+      <%= flash[:warn] %>
+    </div>
+    <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+      <%= flash[:notice] %>
+    </div>
+
+    <div id="header">
+      <%= render :partial => "daily_deals/signup", :locals => { :daily_deal => @daily_deal } %>
+    </div>
+
+    <div id="content">
+    <%= raw yield %>
+    <div class="clear"></div>
+    </div>
+
+    <div id="inside_footer">&nbsp;</div>
+    <div class="clear"></div>
+  </div>
+
+  <div id="outside_footer">&nbsp;</div>
+  <div class="clear"></div>
+</div>
+<%= raw render :partial => "daily_deals/javascript" %>
+<% end %>
+</html>

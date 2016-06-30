@@ -1,0 +1,54 @@
+<!-- commented out basic code for reference -->
+<% if false %>
+<div class="content_box daily_deal">
+	<a href="<%= Drop::DailyDeal.new(daily_deal).url %>" name="View Deal"><%= image_tag daily_deal.photo.url(:thumbnail), :class => 'deal_image' %></a>
+	<table width="100%" cellspacing="0" cellpadding="0" class="deal_info">
+		<tr>
+			<td width="70">
+				<a class="all_deals_view_deal dd_button" href="<%= Drop::DailyDeal.new(daily_deal).url %>" name="View Deal">View<br />deal</a>
+			</td>
+			<td>
+				<h2><%= truncate(daily_deal.value_proposition, :length => 40) %></h2>
+				<% if daily_deal.value_proposition_subhead.present? %>
+					<h3><%= daily_deal.value_proposition_subhead %></h3>
+				<% end %>
+				<p class="daily_deal_price"><%= number_to_percentage(100 * (daily_deal.value.to_i - daily_deal.price) / daily_deal.value, :precision => 0) %> Off - Save <%= number_to_currency(daily_deal.value.to_i - daily_deal.price,  :precision => 0) %>!</p>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>
+<!-- /commented out basic code for reference -->
+
+<div class="bottom_deal_box">			         			
+	<div class="bottom_deal_photo">
+	    <% if daily_deal.secondary_photo.file? %>
+	    	<img src="<%=  protocol_relative_url(daily_deal.secondary_photo.url(:optimized)) %>" alt="" />
+	    <% else %>
+	    	<img src="<%=  protocol_relative_url(daily_deal.photo.url(:facebook)) %>" alt="" />
+
+	    <% end %>
+	</div>
+	<div class="bottom_deal_by_facet_category">
+	    
+	</div>
+	<div class="bottom_deal_info">
+	     <% if daily_deal.custom_2.present? %>
+	     	<h2><%= daily_deal.custom_2 %></h2>
+	     <% else %>
+	     	<h2><%= daily_deal.advertiser.name %></h2>
+	     <% end %>
+	    
+	
+	    <h3><%= number_to_percentage(100 * (daily_deal.value.to_i - daily_deal.price) / daily_deal.value, :precision => 0) %> off</h3>
+	    
+	    <div class="bottom_deal_timer_button">
+	    	<div id="time_left">
+	    		<%= distance_of_time_in_words_to_now(daily_deal.hide_at) %>
+	    		<br>
+	    		<span>REMAINING</span>
+	    	</div>
+	    	<a id="view_now_button" class="dd_button buy gradient" href="<%= daily_deal_path(daily_deal) %>" name="view_now_button">View Now</a>
+	    </div>
+	</div>
+</div><!-- /bottom_deal_box -->

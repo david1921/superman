@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import_request xmlns="http://analoganalytics.com/api/daily_deals" publisher_label="kowabunga" timestamp="20110721105503">
+ <daily_deal>
+   <providerid>13</providerid>
+   <listing>2451</listing>
+   <category>MS</category>
+   <value_proposition>Save over 50% On Movie Posters</value_proposition>
+   <value_proposition_subhead>Save over 50% On Movie Posters</value_proposition_subhead>
+   <description>This deal is another effort in our relentless pursuit to rid America's homes of bare walls. A Picasso may not be in your budget, but movie posters from DLM Entertainment will fit just about any budget. &lt;br&gt;&lt;br&gt;DLM Entertainment has the largest selection of movie posters from a wide range of Hollywood blockbuster films. Prefer Broadway over Hollywood? No problem. DLM Entertainment stocks a full selection of the most famous Broadway posters around.&lt;br&gt;&lt;br&gt;These posters will remind you of the ones that you see outside of your local theater.&lt;br&gt;&lt;br&gt;Spend your DiscountCoupon on the posters of your choice. Mix and match to create a collection of your own.&lt;br&gt;&lt;br&gt;Act fast, this deal wont last. </description>
+   <short_description/>
+   <highlights/>
+   <reviews/>
+   <terms>
+     <term>Only one DiscountCoupon per transaction&lt;br&gt;Cannot be combined with any other offers&lt;br&gt;Entire value must be used in one transaction&lt;br&gt;Shipping not included&lt;br&gt;Offer not valid on framing options</term>
+   </terms>
+   <photo_url>http://www.discountcoupons.com/images/advertisers/536/coupons/large/DC-DLM-PHOTO-2.png</photo_url>
+   <currency>USD</currency>
+   <value>30.00</value>
+   <price>12.00</price>
+   <starts_at>2011-02-25T20:33:37</starts_at>
+   <ends_at>2012-07-08T20:33:37</ends_at>
+   <expires_on>2020-12-31T20:33:37</expires_on>
+   <facebook_title_text/>
+   <twitter_status_text/>
+   <featured>false</featured>
+   <alternate_deal_rank>0</alternate_deal_rank>
+   <upcoming>false</upcoming>
+   <enable_email_blast>true</enable_email_blast>
+   <affiliate_url>http://www.discountcoupons.com/deal.htm?couponid=736&amp;aid=1213</affiliate_url>
+   <quantity_available>1000</quantity_available>
+   <min_purchase_quantity>1</min_purchase_quantity>
+   <max_purchase_quantity>10</max_purchase_quantity>
+   <location_required>false</location_required>
+   <merchant>
+     <listing>283</listing>
+     <brand_name>DLM Entertainment</brand_name>
+     <logo_url>not blank, do AdvertiserImporter.any_instance.stubs(:photo).returns(test_image_file)</logo_url>
+     <website_url/>
+     <locations>
+       <location>
+         <listing>1</listing>
+         <address_line_1>PO BOX 99056    3545 - 32 Avenue NE</address_line_1>
+         <city>Calgary</city>
+         <state>AB</state>
+         <zip>T1Y6M6</zip>
+         <phone_number>7073404231</phone_number>
+       </location>
+     </locations>
+   </merchant>
+   <markets>
+     <market>National</market>
+   </markets>
+ </daily_deal>
+</import_request>

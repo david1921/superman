@@ -1,0 +1,45 @@
+<!--FOOTER-->
+        <table width="648" border="0" cellspacing="20" cellpadding="0" align="center" bgcolor="#ffffff">    
+          <tr>
+            <td valign="top" align="center" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;color:#999;padding-top:20px;border-top-width:1px;border-top-style:solid;border-top-color:#e4e4e4;">
+ 
+                <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                    <%= t(:purchase_conf_footer_message) %> 
+                    <% if @publishing_group %>
+                        <% if national_publisher = @publishing_group.publishers.find_by_label("bcbsa-national") %>
+                            <a href="http://<%= @publisher.daily_deal_host %><%= terms_publisher_daily_deals_path(national_publisher.id) %>" style="color:#0094d0;"><%= t(:terms) %></a> <%= t(:and) %> 
+                            <a href=http://<%= @publisher.daily_deal_host %><%= privacy_policy_publisher_daily_deals_path(national_publisher.id) %>" target="_blank" style="color:#0094d0;"><%= t(:privacy_policy) %></a>.
+                        <% end %>
+                    <% else %>
+                        <a href="http://<%= @publisher.daily_deal_host %><%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank" style="color:#0094d0;"><%= t(:terms_of_use) %> </a>and 
+                        <a href="http://<%= @publisher.daily_deal_host %><%= privacy_policy_publisher_daily_deals_path(@publisher) %>" target="_blank" style="color:#0094d0;"><%= t(:privacy_policy) %></a>.
+                    <% end %>
+                </p>
+                <% if @publisher.label == 'FEP' %>
+
+                    <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                        <%= raw t(:email_footer_fep_disclaimer1) %>
+                    </p>
+                    <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                        <%= raw t(:email_footer_fep_disclaimer2) %>
+                    </p>
+
+            	<% else %>
+                    <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                        <%= raw t(:email_footer_disclaimer3) %>
+                        <%= @publisher.name %> <%= raw t(:email_footer_disclaimer4) %>
+                    </p>
+
+                    <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                        <%= t(:email_footer_disclaimer5) %>
+
+                    <p style="margin-top:5px;margin-bottom:10px;text-align:left;">
+                        <%= raw t(:email_footer_disclaimer6) %>
+                    </p>
+
+                <% end %>
+            	
+            </td>
+          </tr>
+        </table>
+<!--/FOOTER-->

@@ -1,0 +1,36 @@
+<%#
+	
+	Define a module for configuring the javascript on the public index page.
+	The page can contain the following javascript elements:
+		
+		- dealsTickers 	- responsible for updating the side deals countdown values
+		
+	The default module only needs to define dealUrl. If you want to use the side deals
+	tickers then you need to include sideDealsUrl.
+		
+	========================   Deals Ticker   ===============================
+
+	To customize the side deals tickers or public_index tickers, you need to provide a dealsTickerConfig 
+	object.  If you wanted to use a different css selector for the timer, then you can do the
+	following:
+
+		define({
+			dealsUrl: "....",
+			dealsTickerConfig: {
+				selectorPrefix: "my-new-selector-prefix"
+			}
+		});
+
+	The avaliable configuration options are:
+
+		- selectorPrefix 			- this is the css selector for the timer (default: '#time_left_to_buy_')
+		- includeDay 					- if true, the timer will include the day (default will no include day)
+		- formatTimeRemaining - is a function that accepts day, hour, min, sec.  The default is:  hh:mm:ss
+
+
+%>
+define({
+	variationsConfig: {
+		deal_selectors: "#daily_deal_content_box .daily_deal"
+	}
+});

@@ -1,0 +1,62 @@
+<!-- begin sweepstakes -->
+<div id="sweepstakes_tab" class="sweepstakes_tab optimized">
+
+{% unless publisher.label == "clickedin-charlotte" %}
+<div id="left_column">
+
+{% include with_theme 'shared/community_box' %}
+
+</div><!-- /left_column -->
+{% endunless %}
+
+<div id="center_column">
+	{% if featured %}
+    <div class="sweepstakes_wrapper featured">
+  		<h1 class="sweepstakes_title">{{ featured.value_proposition }}</h1>
+  		<div class="sweepstakes_content">
+  			<div class="sweepstakes_photo">
+					<a href="{{ featured.public_url }}">
+						<img src="{{ featured.medium_photo_url }}" alt="{{ featured.value_proposition }}"/>
+						<div class="orange rounded button enter_now"><span>Enter Now</span></div>
+					</a>
+				</div>
+				{% if featured.short_description != "" %}
+ 	 			<div class="sweepstakes_info">
+	  			  	{{ featured.short_description }}
+	  				<div class="clear"></div>
+	  			</div>
+				{% endif %}
+  		</div>
+  	</div><!-- /sweepstakes_wrapper -->  
+  {% endif %}
+  {% for sweepstake in sweepstakes %}
+    <div class="sweepstakes_wrapper">
+    	<h1 class="sweepstakes_title">{{ sweepstake.value_proposition }}</h1>
+    	<div class="sweepstakes_content">
+    		<div class="sweepstakes_photo">
+					<a href="{{ sweepstake.public_url }}">
+						<img src="{{ sweepstake.medium_photo_url }}" alt="{{ sweepstake.value_proposition }}"/>
+						<div class="orange rounded button enter_now"><span>Enter Now</span></div>
+					</a>
+				</div>
+				{% if sweepstake.value_proposition_subhead != "" %}
+    		<div class="sweepstakes_info">
+    			{{ sweepstake.value_proposition_subhead }}
+    		</div>
+				{% endif %}
+    	</div>
+    </div><!-- /sweepstakes_wrapper -->
+	{% endfor %}
+</div><!-- /center_column -->
+
+{% unless publisher.label == "clickedin-charlotte" %}
+<div id="right_column">
+     {% include with_theme "shared/search" %}
+     {% include with_theme "shared/counter" %}
+</div><!--right_column-->
+{% endunless %}
+
+</div><!-- /sweepstakes -->
+     
+
+

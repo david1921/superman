@@ -1,0 +1,22 @@
+<% if @daily_deal.side_deals.size > 0 %>
+<div id="side_deals" class="other_deal_tracking">
+	<h5 class="boxed">Side Deals</h5>
+	<% @daily_deal.side_deals.each do |side_deal| %>
+	<!--SIDE DEAL-->
+	<div class="box">
+		<h6><%= side_deal.value_proposition %></h6>
+		<div class="side_deal_text">
+			<div class="side_deal_price"><% if !side_deal.daily_deal_variations.blank? -%><em>From</em><% end %><%= number_to_currency(side_deal.price_to_display, :precision => 2, :unit => side_deal.publisher.currency_symbol) %></div>
+			<a class="button" href="<%= market_aware_daily_deal_url(side_deal) %>">VIEW DEAL! </a>
+			<p>VALUE: <%= number_to_currency(side_deal.value_to_display, :precision => 2, :unit => side_deal.publisher.currency_symbol) %></p>
+			<p>TODAY'S DEAL: <%= number_to_currency(side_deal.price, :precision => 2, :unit => side_deal.publisher.currency_symbol) %></p>
+			<p class="red">YOU SAVE: <%= number_to_currency(side_deal.savings_to_display, :precision => 2, :unit => side_deal.publisher.currency_symbol) %></p>
+	   </div><!-- /side_deal_text -->
+	   <div class="side_deal_thumb"><img src="<%= side_deal.photo.url(:facebook) %>" alt="" /></div>
+	   <p class="side_deal_subhead"><%= side_deal.value_proposition_subhead %></p>
+
+	</div>
+	<!--/SIDE DEAL-->
+	<% end %>
+</div>
+<% end %>

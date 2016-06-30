@@ -1,0 +1,10 @@
+<script type="text/javascript" charset="utf-8">
+    var aaMapConfig = {
+      dataUrl: "{{ publisher.map_businesses_path_as_json }}",
+      startingZoomLevel: {{ publisher.google_map_zoom_level }},
+      startingLatitude: {{ publisher.google_map_latitude }},
+      startingLongitude: {{ publisher.google_map_longitude }}      
+    }
+</script>
+<script data-main="/javascripts/app/offers/main.js" src="/javascripts/lib/require-jquery.js"></script>
+<script type='text/javascript'>jQuery.noConflict();</script>

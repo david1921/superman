@@ -1,0 +1,172 @@
+<!-- START HEADER -->
+
+<div id="header">
+    <div id="logoWrap">
+        <div class="logo fl mB5">
+            <a href="http://www.local.com?cid=710"  ></a>
+        </div>
+        
+        <div class="headLoc clear">
+            <div style="position: relative; display: none;" class="dialog" id="locPO">
+                <div class="content da">
+                    <div class="chgLocLeft mR10 mB15 fl">
+                        <div style="overflow: hidden; height: 293px; width: 300px; position: relative;" class="typeAhead">
+                            <form action="javascript:void(0);" id="locPOfrm" autocomplete="off">
+                            <input type="text" class="cityStateInput" name="locInputPO" id="locInputPO">
+                            <div id="locm-autocomplete-locInputPO-container" class="cityStateInputListing"><ul id="locm-autocomplete-locInputPO-list" class="locm-autocomplete-list"><li class="mB10"></li></ul></div></form>
+                            <div style="width: 200px; margin: 30px; display: none;" class="cityAcctTip" id="locErrBox">
+                                <div class="roundGreyTL">
+                                </div>
+                                <div class="roundGreyTR">
+                                </div>
+                                <p style="color: #d00;" class="bold">
+                                    Sorry, but we were unable to find that location.<br><br>
+                                    Please use the following formats when searching:<br><br>
+                                    City, State (Example: Irvine, CA)<br>
+                                    ZIP Code (Example: 92618)<br><br>
+                                </p>
+                                <p class="bold">
+                                    We are resetting you back to your previous location</p>
+                                <div class="roundGreyBL">
+                                </div>
+                                <div class="roundGreyBR">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<a class="fl createActBtn" id="locUseThis">Set Your Location</a>-->
+                    <div style="padding: 7px; margin: 0 0 0 15px;" class="fl createActPop">
+                        <p>
+                            Please begin typing, and select your location from the list</p>
+                        <div style="top: 6px;" class="theBeak">
+                        </div>
+                        <div class="roundAllWhiteTL">
+                        </div>
+                        <div class="roundAllWhiteTR">
+                        </div>
+                        <div class="roundAllWhiteBL">
+                        </div>
+                        <div class="roundAllWhiteBR">
+                        </div>
+                    </div>
+                    <div class="chLocRight mT10 fl">
+                        <div id="quickLocations">
+                <div class="bbGray pB5">
+                    <p class="bold txtUP">
+                        Popular locations</p>
+                </div>
+                <ul id="locPopularList" class="left bold mTB10">
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Los Angeles, CA</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">New York, NY</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Chicago, IL</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Atlanta, GA</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Miami, FL</a></li>
+                </ul>
+            </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                    <a class="blueLink txtUP txt11 bold locCancel" id="locCancelLink" href="javascript:void(0);">
+                        Cancel</a>
+                </div>
+                <div class="closeBtn tr locPOclose" id="locPOCloseBtn">
+                </div>
+                <div class="dl">
+                    <div class="tl">
+                    </div>
+                    <div class="bl">
+                    </div>
+                </div>
+                <div class="dr">
+                    <div class="tr">
+                    </div>
+                    <div class="br">
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="locMsgOUT">
+                <p class="mB10">
+                    Get better results and save time by saving your locations. Home, Office, Favorite
+                    vacation spot, Grandmas House and more...</p>
+                <a href="#" class="blueLink bold txtUP mR5" id="locCreateAccount">Create an account</a>
+                | <a class="blueLink bold txtUP mL5 locLogin" href="javascript:void(0);">Log In</a>
+            </div>
+            <div style="display: none;" id="recentLocations">
+                <div class="bbGray pB5">
+                    <p class="bold txtUP">
+                        Recently Searched locations</p>
+                </div>
+                <ul id="locRecentList" class="left bold mTB10">
+                    
+                            <li class="mT10"><a href="javascript:void(0);" class="blueLink">
+                                Los Angeles, CA</a></li>
+                        
+                </ul>
+            </div>
+            <div style="display: none;" id="popularLocations">
+                <div class="bbGray pB5">
+                    <p class="bold txtUP">
+                        Popular locations</p>
+                </div>
+                <ul id="locPopularList" class="left bold mTB10">
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Los Angeles, CA</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">New York, NY</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Chicago, IL</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Atlanta, GA</a></li>
+                    <li class="mT10"><a href="javascript:void(0);" class="blueLink">Miami, FL</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <div class="mainNav">
+        <p style="margin-bottom: -3px" class="txt11">
+            <strong>FIND LOCAL:</strong></p>
+        <div class="bizNav">
+            <a   href="http://www.local.com/business/" title="businesses" >
+            </a>
+        </div>
+        <div class="couponNav">
+            <a  href="{{ publisher.todays_daily_deal_path }}" title="coupons"></a>
+        </div>
+        <div class="eventsNav">
+            <a   href="http://www.local.com/events/" title="events"></a>
+        </div>
+        <div class="activitiesNav">
+            <a   href="http://activities.local.com" title="activities"></a>
+        </div>
+    </div>
+    <div class="secondaryNav">
+        <ul class="fl">
+            <li class="articles"></li>
+            
+            <li class="food"><a   href="http://www.local.com/topics/?topic=food&amp;keyword=food" title="food">
+            </a></li>
+            
+            <li class="wellness"><a   href="http://www.local.com/topics/?topic=wellness&amp;keyword=wellness" title="wellness">
+            </a></li>
+            
+            <li class="fun"><a   href="http://entertainmentguide.local.com/" title="fun">
+            </a></li>
+            
+            <li class="household"><a   href="http://www.local.com/topics/?topic=household&amp;keyword=household" title="household">
+            </a></li>
+            
+            <li class="shopping"><a   href="http://www.local.com/topics/?topic=shopping&amp;keyword=shopping" title="shopping">
+            </a></li>
+            
+            <li class="finance"><a   href="http://www.local.com/topics/?topic=finance&amp;keyword=finance" title="finance">
+            </a></li>
+        </ul>
+    </div>
+    
+    <div class="clear">
+    </div>
+    
+</div>
+<!-- END HEADER -->
+
+<div id="pencil_ad" style="width:1000px;margin-left: auto;margin-right: auto;margin-bottom:10px; margin-top: 10px;">
+
+<!-- Iframe Dynamic Tag --> <script language="JavaScript" type="text/javascript"> window.dctile = Number(window.dctile) + 1 || 1; window.ord = Number(window.ord) || Math.floor(Math.random() * 1E10); var dcsize = "990x30"; var dwidth = (dcsize.split("x")[0]); var dheight = (dcsize.split("x")[1]); if (17>dctile) document.write('<iframe src="https://ad.doubleclick.net/adi/ldan.analoganalytics/default;;tile=' + dctile + ';sz=' + dcsize + ';ord=' + ord + '?" width="' + dwidth + '" height="' + dheight + '" marginwidth="0" marginheight="0" frameborder="0" scrolling="no">'); if (navigator.userAgent.indexOf("Gecko")==-1) {document.write('<script language="JavaScript" src="https://ad.doubleclick.net/adj/ldan.analoganalytics/default;;tile=' + dctile + ';sz=' + dcsize + ';abr=!ie;ord=' + ord + '?" type="text/javascript"><\/script>'); } document.write('</iframe>'); </script> <!-- End ad tag -->
+</div>

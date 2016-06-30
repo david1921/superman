@@ -1,0 +1,18 @@
+<% value_prop = (@publisher.enable_side_deal_value_proposition_features and daily_deal.side_deal_value_proposition.present?) ? daily_deal.side_deal_value_proposition : daily_deal.value_proposition
+	value_sub_prop = (@publisher.enable_side_deal_value_proposition_features and daily_deal.side_deal_value_proposition_subhead.present?) ? daily_deal.side_deal_value_proposition_subhead : daily_deal.value_proposition_subhead
+ %>
+<div class="content_box daily_deal">
+	<a href="<%= Drop::DailyDeal.new(daily_deal).url %>" title="<%= value_prop %>" name="View Deal"><%= image_tag daily_deal.photo.url(:thumbnail), :alt => daily_deal.value_proposition, :class => 'deal_image', :width => 310 %></a>
+	<table height="135" width="100%" cellspacing="0" cellpadding="0" class="deal_info">
+		<tr>
+			<td width="70">
+				<a class="all_deals_view_deal dd_button" href="<%= daily_deal_path(daily_deal) %>" name="View Deal">View<br />deal</a>
+			</td>
+			<td>
+				<h2><%= truncate(value_prop, :length => 65) %></h2>
+				<h3><%= value_sub_prop %></h3>
+				<p class="daily_deal_price"><%= number_to_percentage(100 * (daily_deal.value.to_i - daily_deal.price) / daily_deal.value, :precision => 0) %> Off - Save <%= number_to_currency(daily_deal.value.to_i - daily_deal.price,  :precision => 0) %>!</p>
+			</td>
+		</tr>
+	</table>
+</div>

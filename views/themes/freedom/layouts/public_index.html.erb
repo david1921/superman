@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<% if @daily_deal %>
+		<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+		<meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+		<meta name='keywords' content="<%= @daily_deal.value_proposition %>">
+		<link rel="image_src" href="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+		<% else %>
+		<meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+		<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end %>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" /><!-- tells phones not to scale down the web page to fit into tiny windows -->
+		
+		<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+		<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/daily_deals.css" type="text/css" />
+		<!--   <link rel="stylesheet" href="/themes/roaringlion/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+		<link rel="stylesheet" href="/themes/freedom/stylesheets/daily_deals.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/freedom/stylesheets/freedom.css" type="text/css" />
+		<link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />		
+		<link rel="stylesheet" href="/themes/freedom/stylesheets/coupon-offers.css" type="text/css" />
+
+		<%= render :partial => with_theme("head/head_items") %>	
+		
+		<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+		<script src="/javascripts/effects.js" type="text/javascript"></script>
+		<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+		<script src="/javascripts/controls.js" type="text/javascript"></script>
+		<script src="/javascripts/application.js" type="text/javascript"></script>
+		<script src="/themes/offto-sixseats/javascript/cookies.js" type="text/javascript"></script>
+		<script src="/javascripts/coupons.js" type="text/javascript"></script>
+		<script src="/javascripts/ghostie.js" type="text/javascript"></script>
+		  
+		<!--[if lte IE 9]>
+		<link href="/themes/freedom/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<!--[if IE 9]>
+		<link href="/themes/freedom/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<title><%= daily_deal_page_title %></title>
+		<%= raw render :partial => "shared/tracking_google_analytics" %>
+		<%= render :partial => with_theme("daily_deals/custom_stylesheet_includes") %>
+</head>
+<body>
+		<% @current_page = "deal" %>
+
+		<%= render :partial => with_theme("shared/pub_header") %>
+		<div class="clear"></div>	
+
+
+		<!--Analog_Analytics_Daily_Deal-->
+		<div id="analog_analytics">
+				<div id="daily_deal">
+				<img src="/themes/freedom/images/graphics/shadow.png" id="shadow" alt="Shadow Graphic">
+
+						<%= render :partial => with_theme("shared/subscribe") %>
+						<%= render :partial => with_theme("shared/banner_header") %>
+						<%= render :partial => with_theme("shared/dd_nav") %>
+						<%= render :partial => "shared/flash_messages" %>
+						
+						<div id="page_content">		
+							<%= yield %>
+							<div class="clear"></div>	
+						</div><!--page_content-->
+						
+				<img src="/themes/freedom/images/graphics/shadow.png" id="shadow" alt="Shadow Graphic">		
+				</div><!--daily_deal-->
+				<div class="push"></div>
+		</div><!--analog_analytics-->
+		<%= render :partial => with_theme("shared/footer") %>
+		<%= raw render :partial => 'shared/a_a_alt' %>
+
+		<%= render :partial => with_theme("shared/pub_footer") %>
+		
+		<% if false %>
+		  <%= render :partial => with_theme("shared/tracking_publisher") %>
+		<% end %>
+		<%= render :partial => "daily_deals/javascript.html.erb" %>
+</body>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($){
+	jQuery('.get_deals_link').click(function(){
+    jQuery('#subscribe_form').show();
+    jQuery('#get_deals').hide();
+  });
+  jQuery('.close_link').click(function(){
+    jQuery('#subscribe_form').hide();
+    jQuery('#get_deals').show();
+  });  
+});
+</script>
+
+</html>

@@ -1,0 +1,7 @@
+<% unless @publisher.facebook_page_url.blank? %>
+	<div id="fb" class="content_box facbeook_likebox">
+			
+			<fb:like-box href="<%= @publisher.facebook_page_url %>" width="220" border_color="#ffffff" show_faces="true" stream="false" header="true" class="the-box"></fb:like-box>
+
+	</div><!-- /facebook like box -->
+<% end %>

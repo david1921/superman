@@ -1,0 +1,112 @@
+<div id="offers_wrapper">
+<div id="left_column">
+  {% include with_theme 'shared/sweepstakes_box' %}
+  {% include with_theme 'shared/community_box' %}
+	<div id="categories"> 
+		<h3>Coupons</h3> 
+		<ul id='category_list'>
+		  <!-- TODO: need to handle featured only view of coupons -->
+		  {% if showing_featured %}
+		    <li class="current_category">
+		  {% else %}
+		    <li>
+		  {% endif %}
+  <a href="{{ publisher.offers_path}}?featured=true">Featured Offers</a></li>
+			{% if showing_featured %}
+			  <li>
+			{% elsif category %}
+			  <li>
+			{% else %}
+			  <li class="current_category">
+			{% endif %}
+			<a href="{{ publisher.offers_path }}">All <span class="offers_count"> ({{ offers_count }})</span></a></li> 				 
+			{% for publisher_category in publisher_categories %}					  
+			  {% if forloop.last %}
+			    {% if category.id == publisher_category.id %}
+			      <li class='last current_category'>
+			    {% else %}
+			      <li class='last'>
+			    {% endif %}
+			  {% else %}
+			    {% if category.id == publisher_category.id %}
+			      <li class='current_category'>
+			    {% else %}
+			      <li> 
+			    {% endif %}
+			  {% endif %}	
+			  <!-- TODO: we need to attach page_size, order, etc to the link -->
+			  				  
+			  <a href="{{ publisher.offers_path }}?category_id={{ publisher_category.id }}">{{ publisher_category.name | titleize }}</a> <span class="offers_count"> ({{ publisher_category.offers_count }})</span></li> 				 
+			{% endfor %}				
+		</ul> 
+	</div><!-- /categories -->
+</div><!-- /left_column -->
+
+<div id="center_column">
+	<div class="page_numbers top"> 
+		&nbsp;
+		Page&nbsp;&nbsp;
+		<ul class="pagination"> 
+			<li class="selected">1</li> 
+			<li><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">2</a></li> 
+		</ul> 
+		<span class="next_page"><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">&rarr;</a></span> 
+		&nbsp;&nbsp;&nbsp;Size&nbsp;<select id="top_page_size" name="page_size"><option value="4" selected="selected">4</option> 
+		<option value="10">10</option> 
+		<option value="20">20</option> 
+		<option value="50">50</option> 
+		<option value="100">100</option></select> 
+		<script type="text/javascript"> 
+		//<![CDATA[
+		new Form.Element.EventObserver('top_page_size', function(element, value) {page_size_changed('top_page_size', 'iframe_height=&page_size=4&order=3496430341&layout=&iframe_width=&city=&text=&radius=&background_color=&sort=&foreground_color=&postal_code=&state=')})
+		//]]>
+		</script> 
+	</div><!-- /page_numbers -->
+
+	  <!-- TODO: need notion of featured offers vs normal offers -->
+		<h1 class="page_title">
+		  {% capture flash_keys %}{% all_flash %}{% endcapture %}
+  {% if flash_keys contains 'header' %}
+    {% flash header %}
+		  {% elsif showing_featured %}
+		    Featured Offers
+		  {% else %}
+		    Offers for {{ "now" | date: "%B" }}
+		  {% endif %}
+		</h1>
+		<div id="offers"> 
+			<div class="map aa-map" id="analog-analytics-map" style="width: 508px; height: 400px;"></div> 
+			<div class="page_numbers bottom"> 
+			  &nbsp;
+			  Page&nbsp;&nbsp;
+				<ul class="pagination"> 
+					<li class="selected">1</li> 
+					<li><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">2</a></li> 
+				</ul> 
+				<span class="next_page"><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">&rarr;</a></span> 
+				&nbsp;&nbsp;&nbsp;Size&nbsp;<select id="bottom_page_size" name="page_size"><option value="4" selected="selected">4</option> 
+				<option value="10">10</option> 
+				<option value="20">20</option> 
+				<option value="50">50</option> 
+				<option value="100">100</option></select> 
+				<script type="text/javascript"> 
+				//<![CDATA[
+				new Form.Element.EventObserver('bottom_page_size', function(element, value) {page_size_changed('bottom_page_size', 'iframe_height=&page_size=4&order=3496430341&layout=&iframe_width=&city=&text=&radius=&background_color=&sort=&foreground_color=&postal_code=&state=')})
+				//]]>
+				</script> 
+			</div><!-- page_numbers -->
+		 
+		</div><!-- /offers  -->
+		<div class="clear"></div>
+</div><!-- /center_column -->
+<div id="right_column">
+</div><!-- /right_column -->
+	<div class="clear"></div>
+
+<div id="terms_and_conditions"> 
+  Use of any offer is subject to the <a href="/txt411/terms_and_conditions" target="_blank">Terms &amp; Conditions</a> which constitutes a legal agreement between you and Analog Analytics, Inc. View our <a href="/txt411/privacy_policy" target="_blank">Privacy Policy</a>.<br/> All materials, coupons, and offers are intended for the U.S. market only and each coupon/offer has its own restrictions.
+</div><!-- /terms_and_conditions -->
+		<div class="clear"></div>
+
+</div><!-- /offers_wrapper -->
+<script src="/javascripts/business.js" type="text/javascript"></script>

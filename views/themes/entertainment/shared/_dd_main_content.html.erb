@@ -1,0 +1,93 @@
+	<div class="daily_deal content">
+		<h1><%= @daily_deal.value_proposition %></h1>
+		<% if @daily_deal.value_proposition_subhead.present? -%>
+		<h2><%= @daily_deal.value_proposition_subhead %></h2>
+		<% end %>
+		<div class="content_wrap">
+		<div class="dd_left_column">
+			<div id="buy_tag">
+				<p><%= number_to_currency @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></p>
+				<div id="buy_now">
+					<% if @daily_deal.sold_out? -%>
+					<div id="sold_out" class="dd_button sold_out gradient"><span>Sold<br />Out!</span></div>
+					<% elsif @daily_deal.over? -%>
+					<div id="deal_over" class="dd_button deal_over gradient"><span>Deal<br /> Over</span></div>
+					<% elsif @daily_deal.active? -%>
+					<a id="buy_now_button" class="dd_button buy gradient" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><span>Buy<br />Now</span></a>
+					<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal<br />Over</span></div>
+					<% else -%>
+					<div id="not_yet" class="dd_button"><span>Coming<br /> Soon!</span></div>
+					<% end -%>
+				</div><!-- END BUY NOW -->
+			</div><!-- END BUY TAG -->
+				<div class="clear"></div>
+				<div class="left_content">
+					<div class="dashboard">
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="first"> 
+									Value
+									<span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display) %></span>
+								</td>	
+								<td>
+									Discount
+									<span id="daily_deal_savings_as_percentage"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span>
+								</td>	
+								<td class="last">
+									You Save
+									<span id="daily_deal_savings"><%= formatted_price_for(@daily_deal.savings_to_display) %></span>
+								</td>	
+							</tr>
+						</table>
+						<div class="timer">
+							<h4>Time Left:</h4>
+							<h5 id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></h5>
+						</div>
+					</div><!-- END DASHBOARD -->
+					<div id="share_links">
+						<h4>Share This:</h4>
+						<a href="<%= facebook_daily_deal_path(@daily_deal) %>" target="_blank" title="Share coupon on Facebook"><img src="/themes/entertainment/images/icons/facebook_share.png"></a>
+						<a href="<%= twitter_daily_deal_path(@daily_deal) %>" target="_blank"><img src="/themes/entertainment/images/icons/twitter_share.png"></a>
+						<a href="mailto:?subject=<%= @daily_deal.publisher_prefix %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= market_aware_daily_deal_url(@daily_deal, :referral_code => current_consumer.try(:referrer_code)) %>" class="share_link share_link_mail"><img src="/themes/entertainment/images/icons/email_share.png"></a>
+					</div>
+					<div id="refer_a_friend">
+						<a href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>"><h4>Refer Friends, Get $10!</h4>
+						<img src="/themes/entertainment/images/buttons/refer_a_friend.png"></a>
+						<p>Share this deal with friends and family and get a $10 credit after their first purchase.* 
+						<a href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>">See Details</a></p>
+					</div>
+				</div><!-- END LEFT CONTENT -->
+	</div><!-- END DD LEFT COLUMN -->
+	<div class="dd_right_column">
+		<div class="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.advertiser.name %>" width="400"/></div>
+		<% if @daily_deal.terms.present? %>
+		<div class="fine_print details">
+			<h4>The Fine Print</h4>
+			 <%= @daily_deal.terms.try :html_safe %>
+
+			 <a id="showterms" href="#">See rules that apply to all deals</a>
+			 <div id="termspopup">
+			 	<h3>What are the Universal Terms?</h3>
+			 	<ul>
+			 		<li>Offers may exclude tax, tip, and alcohol, where applicable.</li>
+					<li>May not be combined in multiple visits or with any other discount or advertising promotion.</li>
+					<li>Must be used in one visit.</li>
+					<li>Not valid until the day after purchase.</li>
+					<li>No Cash Value or Cash Back.</li>
+			 	</ul>
+			 	<a id="close_x" class="close" href="#">close</a>
+			 </div>
+
+		</div>
+		<% end %>
+		<% if @daily_deal.highlights.present? %>
+		<div class="highlights details">
+			<h4>Highlights</h4>
+			 <%= @daily_deal.highlights.try :html_safe %>
+		</div>
+    <% end %>
+	</div>
+	<div class="clear"></div>
+	</div>
+</div><!-- END DAILY DEAL -->
+<div class="shadow_main"></div>

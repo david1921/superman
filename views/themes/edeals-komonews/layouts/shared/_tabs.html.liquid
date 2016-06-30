@@ -1,0 +1,26 @@
+{% comment %}expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals{% endcomment %}
+
+<ul id="account_nav">			
+    <li class="facebook_connect" style="display:none"><a href="{{ publisher.facebook_connect_path }}" title="Log in with your facebook account"><img alt="Facebook Connect" src="/images/buttons/facebook_connect.png" /></a></li>
+    {% if publisher.launched? %}
+    	{% if publisher.current_user_belongs_to? %}
+    <li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+    <li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+    <li class="last"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+    	{% else %}
+    <li class="last"><a href="{{ publisher.login_path }}">Sign In</a></li>
+    	{% endif %}
+    {% endif %}
+</ul><!-- /account_nav -->
+
+<div class="clear"></div>
+
+<div id="main_tabs">
+	<div class='tab_content {{ current_page }}_content'>
+		{% include with_theme "layouts/shared/dd_nav" %}
+			{{ content_for_layout }}
+		<div class="clear"></div>
+	</div>               
+</div><!-- /main_tabs -->
+
+

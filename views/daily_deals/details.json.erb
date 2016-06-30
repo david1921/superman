@@ -1,0 +1,22 @@
+<%=
+# these field names match active.json.erb
+# used from the iphone app
+{
+    "uuid" => @daily_deal.uuid,
+    "description" => @daily_deal.description,
+    "terms" => @daily_deal.terms,
+    "photo" => @daily_deal.photo.url,
+    "highlights" => @daily_deal.reviews,
+    "maximum_purchase_quantity" => @daily_deal.max_quantity,
+    "minimum_purchase_quantity" => @daily_deal.min_quantity,
+    "total_quantity_available" => @daily_deal.quantity,
+    "value_proposition" => @daily_deal.value_proposition,
+    "featured" => @daily_deal.featured?,
+    "updated_at" => @daily_deal.updated_at.utc.to_formatted_s(:iso8601),
+    "starts_at" => @daily_deal.start_at.utc.to_formatted_s(:iso8601),
+    "ends_at" => @daily_deal.hide_at.utc.to_formatted_s(:iso8601),
+    "expires_on" => @daily_deal.expires_on,
+    "sold_out" => @daily_deal.sold_out?,
+    "value" => @daily_deal.value,
+    "price" => @daily_deal.price,
+}.to_json.html_safe -%>

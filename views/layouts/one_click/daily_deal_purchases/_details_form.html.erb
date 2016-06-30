@@ -1,0 +1,122 @@
+<%- metadata = {
+        :apply_discount_url => apply_publisher_discounts_url(publisher),
+        :unit_price => daily_deal_purchase.price,
+        :credit_available => 0.0,
+        :discount_amount => daily_deal_purchase.discount_amount,
+        :currency_symbol => daily_deal_purchase.currency_symbol,
+        :min_quantity => daily_deal.min_quantity,
+        :max_quantity => daily_deal.max_quantity
+} -%>
+
+<% form_for [:one_click, daily_deal, daily_deal_purchase], :html => { :id => "daily_deal_purchase_details" }.merge(metadata) do |f| %>
+    <%= f.hidden_field(:discount_uuid) %>
+    <%= f.hidden_field(:credit_used) %>
+    <%= f.hidden_field(:made_via_qr_code) %>
+    <%= hidden_field_tag :daily_deal_id, daily_deal.id %>
+
+    <%= error_messages_for(
+          :object => [daily_deal_purchase, daily_deal_purchase.consumer],
+          :header_message => t('daily_deal_purchases.review_and_buy_form.error_header_message')
+        ) %>
+
+    <section class="purchase_details">
+        <h2>Your Purchase</h2>
+        <div class="purchase_details_content section_content">
+            <h1 class="value_prop"><%= daily_deal_purchase.line_item_name %></h1>
+            <a href="#viewdetails" class="view_details_link" onclick="view_detail()">View Details</a>
+            <div class="deal_details">
+                <h3>Highlights</h3>
+                <%= daily_deal.highlights.try :html_safe %>
+                <h3>Description</h3>
+                <%= daily_deal.description.try :html_safe %>
+                <h3>Fine Print</h3>
+                <%= daily_deal.terms.try :html_safe %>
+
+            </div><!-- /deal_details -->
+            
+            <p class="cost_of_unit">Quantity at <%= number_to_currency(daily_deal_purchase.price, :unit => publisher.currency_symbol) %>
+                <!-- select menu for deals with a purchase limit of 10 or lower -->
+                <%- if daily_deal.max_quantity < 11 %>
+                    <%= f.select(:quantity, (daily_deal.min_quantity..daily_deal.max_quantity).to_a.map(&:to_s)) %>
+                <% else %>
+                    <%= f.text_field(:quantity, :type => "number") %>
+                <% end %>
+            </p>
+            
+            <p>Total Price: <span id="purchase_total_value"><%= number_to_currency(daily_deal_purchase.total_price_without_discount, :unit => publisher.currency_symbol) %></span></p>
+        </div><!-- /purchase_details_content -->
+    </section><!-- /purchase_details -->
+    
+    <section id="consumer">
+            <% if (consumer = current_consumer_for_publisher?(publisher) && current_consumer) %>
+                <h2>Account</h2>
+            <% else %>
+            <nav>
+                <%= link_to_function(t('.sign_up'), "hideLoginForm()",:class => 'purchase_sign_up current'); %>
+                <%= link_to_function(t('.sign_in'), "showLoginForm()",:class => 'purchase_sign_in' ) -%>
+            </nav>
+            <% end %>
+        <div class="section_content">
+            <% if (consumer = current_consumer_for_publisher?(publisher) && current_consumer) %>
+                <div id="current_consumer" class="section_content">
+                    <div class="static"><%= consumer.name %></div>
+                    <div class="static"><%= consumer.email %></div>
+                  <%- if publisher.require_billing_address && (!consumer.billing_address_present?) -%>
+                    <% fields_for consumer do |consumer_form| %>
+                      <%= render :partial => with_theme('consumers/billing_address'), :locals => { :consumer => consumer, :f => consumer_form } %>
+                    <% end %>
+                  <% end %>
+                </div><!-- /current_consumer -->
+            <% elsif (daily_deal_order = current_daily_deal_order(publisher)) && daily_deal_order.consumer %>
+                <div id="current_consumer" class="section_content">
+                  <div class="static"><%= daily_deal_order.consumer.name %></div>
+                  <div class="static"><%= daily_deal_order.consumer.email %></div>
+                  <%- if publisher.require_billing_address && (!consumer.billing_address_present?) -%>
+                    <% fields_for consumer do |consumer_form| %>
+                      <%= render :partial => with_theme('consumers/billing_address'), :locals => { :consumer => consumer, :f => consumer_form } %>
+                    <% end %>
+                  <% end %>
+                </div><!-- /current_consumer -->
+            <% else %>
+                <div id="sign_up">
+    <!--                <p><%=t '.already_have_an_account' %><%= link_to_function(t('.sign_in'), "showLoginForm()") %></p>-->
+                    <% fields_for (consumer = daily_deal_purchase.consumer) do |c| %>
+                        <fieldset><%= c.text_field(:name, :placeholder => "Your Name") %></fieldset>
+                        <fieldset><%= c.text_field(:email, :placeholder => "Email") %></fieldset>
+                    
+                        <% if publisher.require_membership_codes? %>
+                            <%= consumer_form.text_field_div(:publisher_membership_code_as_text, "Plan Alpha Prefix") %>
+                        <% end %>
+                    
+                        <%- if publisher.require_billing_address? %>
+                            <%= render :partial => with_theme('consumers/billing_address'), :locals => { :consumer => consumer, :f => c } %>
+                        <% end %>
+                    
+                        <fieldset><%= c.password_field(:password, :placeholder => "Password") %></fieldset>
+                        <fieldset><%= c.password_field(:password_confirmation, :placeholder => "Confirm Password") %></fieldset>
+                        
+                        <%= c.check_box_div(:agree_to_terms, t('.agree_to_terms', :terms_link => daily_deals_terms_link(publisher), :privacy_link => daily_deals_privacy_link(publisher)), :class=> "term_check") %>
+                    <% end %>
+                </div><!-- /sign_up--> 
+        
+                <div id="sign_in" style="display: none;">
+                        <p id="session_warning"></p>
+                        <% fields_for :session do |session_form| %>
+                            <%= hidden_field_tag("consumer_login_url", publisher_daily_deal_sessions_path(publisher)) %>
+                            <input id="session_email" name="session[email]" type="email" placeholder="Email" />
+                            <input id="session_password" name="session[password]" type="password" placeholder="Password" />
+    <!--                        <%= link_to_function(t('cancel'), "hideLoginForm()"); %> -->
+                            <%= button_to_function(t('sign_in'), "loginConsumer()"); %>
+                            <%= link_to t('daily_deal_sessions.new.reset_password_message', :href => ""), new_publisher_consumer_password_reset_path(publisher) %>
+                        <% end %>
+                </div><!-- sign_in -->
+            <% end %>
+        </div><!-- /section_content -->
+    </section><!-- /consumer -->
+    
+    <% if daily_deal.requires_shipping_address? %>
+        <section id="shipping_address" class="shipping">
+            <%= render(:partial => "consumers/shipping_address", :locals => { :consumer => current_consumer }) %>
+        </section><!-- /shipping -->
+    <% end %>
+<% end %>

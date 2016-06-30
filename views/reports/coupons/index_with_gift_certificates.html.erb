@@ -1,0 +1,26 @@
+<% set_page_title "Reports: Deal Certificate Summary" -%>
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => reports_advertiser_coupons_url(@advertiser, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "reports/advertisers/navigation", :locals => {:page => :deal_certificate_summary, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "gift_certificates_summary",
+  :data_source => reports_advertiser_coupons_path(@advertiser, :format => "xml"),
+  :data_params => { :summary => @summary },
+  :result_node => :gift_certificate,
+  :data_columns => [
+    [:item_number, { :label => "Deal Certificate", :class_name => "left" }],
+    [:available_count_begin, { :label => "Initial Count" }],
+    [:available_revenue_begin, { :label => "Initial #{@advertiser.currency_symbol} Inventory", :formatter => "formatCurrency" }],
+    [:currency_symbol, { :display => false }],
+    [:purchased_count, { :label => "Number Sold" }],
+    [:purchased_revenue, { :label => "Revenue" }],
+    [:available_count_end, { :label => "Final Count" }],
+    [:available_revenue_end, { :label => "Final #{@advertiser.currency_symbol} Inventory", :formatter => "formatCurrency" }]
+  ]
+}) %>

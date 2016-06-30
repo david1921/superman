@@ -1,0 +1,48 @@
+<div class="clear"></div>
+<div class="all_deals">
+<% if @featured_deal.present? %>
+    <div class="featured_deal content_box">
+        <div class="featured_wrapper">
+    		<div class="deal_photo"><img src="<%= @featured_deal.photo.url(:alternate_standard) %>" alt="<%= @featured_deal.advertiser.name %>" /></div>
+    			<%= render :partial => with_theme('daily_deals/categories_featured'), :locals => { :featured_deal => @featured_deal } %>
+    		<div class="featured_deal_info info_overlay">
+    		<h2>
+    			 <%= @featured_deal.value_proposition %> 
+                <% if @featured_deal.advertiser.store.present? %> 
+    			 <% if @featured_deal.advertiser.store.city.present? %> 
+    			     in <span class="store_city"><%= @featured_deal.advertiser.store.city %></span>
+    			 <% end %>
+    			 <% end %>
+    			</h2>
+    			<a class="featured_view_deal" href="<%= Drop::DailyDeal.new(@featured_deal).url %>" name="View Deal">View Deal<span class="arrow">&#9002;</span></a>
+    			<div class="clear"></div>
+    		</div><!-- /featured_deal_info -->
+		</div><!-- /featured_wrapper -->
+    </div><!-- /featured_deal -->
+<% end %>
+	<%= render :partial => with_theme("shared/iphone") %>
+<div class="clear"></div>
+<% unless @side_deals.blank? %>
+    <h2 class="more_deals">More <strong>Awesome</strong> Deals</h2>
+    <div class="more_deals_wrap content_box">
+        <ul class="inner_wrapper">
+    		<% @side_deals.each do |daily_deal| %>
+    			<%= render :partial => with_theme('daily_deals/daily_deal'), :locals => {:daily_deal => daily_deal} %>
+    		<% end %>
+    		
+            <% unless @publisher.daily_deals.upcoming.blank? %>
+                <% @publisher.daily_deals.upcoming.each do |future_deal| %>
+                    <%= render :partial => with_theme('daily_deals/future_deal'), :locals => {:future_deal => future_deal} %>
+                <% end %>
+            <% end %>
+    		
+    		<div class="clear"></div>
+        </ul><!-- /inner_wrapper -->   	
+        <% if @publisher.daily_deals.side.length > 6 %>
+    		<div id="paginate_top">
+    			<%= will_paginate @side_deals, :per_page => 6 %>
+    		</div><!-- /paginate_top -->
+        <% end %>
+    </div><!-- /more_deals_wrap -->
+<% end %>
+</div><!-- /all_deals -->

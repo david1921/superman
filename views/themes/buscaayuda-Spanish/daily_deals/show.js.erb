@@ -1,0 +1,14 @@
+define({
+	dealUrl: "<%=  daily_deal_path( @daily_deal, :format => :json ) %>",
+	dealTickerConfig: {
+		includeDay: true,
+		formatTimeRemaining: function(day, hour, min, sec) {
+			var day = parseInt(day, 10);
+			if (day > 0) {
+			  return day + " d&iacute;as <br>" + hour + ":" + min + ":" + sec;
+			} else {
+			  return hour + ":" + min + ":" + sec;
+			}
+	  }
+	}
+});

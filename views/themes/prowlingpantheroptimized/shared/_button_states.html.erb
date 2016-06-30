@@ -1,0 +1,26 @@
+<% if deal_state_access? %>
+	<%= javascript_include_tag "adminToolbar_dealState.js" %>
+	<div class='admin_toolbar_button_states' style="display: none;">
+		<div id="buy_now">		
+			<div class="sold_out_state">
+				<div id="sold_out" class="dd_button sold_out gradient"><span>Sold Out</span></div>
+			</div><!-- END .sold_out_state -->
+			<div class="over_state">
+				<div id="deal_over" class="dd_button deal_over gradient"><span>Deal Over</span></div>
+			</div><!-- END .over_state -->
+			<div class="active_state">
+				<a id="buy_now_button" class="dd_button buy gradient" href="#" name="buy_now_button"><span>Buy!</span><span style="display:none; font-size:50%; position:absolute; width: 100%">Close</span></a>
+			</div><!-- END .active_state -->
+			<div class="active_variation_state">
+				<a id="buy_now_button" class="dd_button buy gradient dd_variations_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><span>Buy!</span><span style="display:none; font-size:50%; position:absolute; width: 100%">Close</span></a>
+			  	<%= render :partial => with_theme("shared/dd_variations_menu") %>
+			</div><!-- END .active_variation_state -->
+			<div class="not_yet_available_state">
+				<div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>
+			</div><!-- END .not_yet_available_state -->
+		</div><!-- /buy_now -->
+	</div><!-- END .admin_toolbar_button_states -->
+	<script type="text/javascript">
+		jQuery('.admin_toolbar_button_states').dealState();
+	</script>
+<% end %>

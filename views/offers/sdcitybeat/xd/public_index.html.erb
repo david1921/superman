@@ -1,0 +1,6 @@
+<div class="<%= @publisher.theme %>" id="offers">
+  <%= render :partial => "offers/panels/sdcitybeat/xd/offer", :collection => @offers %>
+  <% if @offers.empty? -%>
+    Sorry, no coupons found
+  <%- end -%>
+</div>

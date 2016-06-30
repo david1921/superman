@@ -1,0 +1,53 @@
+<div class="bottom_deal_box">
+
+    <div class="bottom_deal_photo">
+    	<a href="<%= daily_deal_path(bottom_deal) %>">
+    		<% if bottom_deal.secondary_photo.file? %>
+    			<img src="<%=  protocol_relative_url(bottom_deal.secondary_photo.url(:optimized)) %>" alt="" />
+    		<% else %>
+    			<img src="<%=  protocol_relative_url(bottom_deal.photo.url(:facebook)) %>" alt="" />
+			
+    		<% end %>
+    	</a>
+    </div>
+    <div class="bottom_deal_category">
+    	<% if bottom_deal.publishers_category %>
+    		<span class="category_icon <%= bottom_deal.publishers_category.name.gsub(/\s/, '').downcase %>_category_icon"></span>
+    		<h3 class="<%= bottom_deal.publishers_category.name.gsub(/\s/, '').downcase %>_category_name"><%= t(bottom_deal.publishers_category.name.gsub(/\s/, '_').downcase) %></h3>
+    	<% end %>
+    </div>
+    <div class="bottom_deal_info">
+    	<a href="<%= daily_deal_path(bottom_deal) %>">
+    		 <% if bottom_deal.custom_2.present? %>
+    		 	<h2><%= bottom_deal.custom_2 %></h2>
+    		 <% else %>
+    		 	<h2><%= bottom_deal.advertiser.name %></h2>
+    		 <% end %>
+    	</a>
+    	<!-- bottom deal value prop -->
+    	<% if bottom_deal.side_deal_value_proposition.present? %>
+    		<h3><%= bottom_deal.side_deal_value_proposition %></h3>
+    	<% else %>
+    		<h3><%= bottom_deal.value_proposition %>
+    		</h3>
+    	<% end %>
+    	
+    	<div class="bottom_deal_timer_button">
+    		<% if !bottom_deal.affiliate_url && !bottom_deal.non_voucher_deal %>
+    			<div class="time_left">
+    				<%= hours_or_days_remaining_from_now(bottom_deal.hide_at) %>
+    				<br>
+    				<span><%= t(:REMAINING) %></span>
+    			</div>
+    		<% else %>
+    			<div class="time_left time_left_spacer">
+    				<br /><br />
+    			</div>
+    		<% end %>
+    		<a id="view_now_button" class="dd_button buy gradient" href="<%= daily_deal_path(bottom_deal) %>" name="view_now_button"><%= t(:view_now) %></a>
+    	
+    	</div>
+    </div><!-- /bottom_deal_info -->
+    
+    
+ </div><!-- /bottom_deal_box -->

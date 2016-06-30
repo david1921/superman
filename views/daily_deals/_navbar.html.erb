@@ -1,0 +1,12 @@
+<div id="nav">
+  <%= navbar_link("Today's Deal", public_deal_of_day_path(publisher.label)) %>
+  <%= navbar_link("Contact Us", contact_publisher_daily_deals_path(publisher)) %>
+  <%= navbar_link("FAQ", faqs_publisher_daily_deals_path(publisher)) %>
+  <% if current_consumer_for_publisher?(publisher) -%>
+    <%= navbar_link("My Deals", publisher_consumer_daily_deal_purchases_path(publisher, current_consumer)) %>
+    <%= navbar_link("My Account", edit_publisher_consumer_path(publisher, current_consumer)) %>
+    <%= navbar_link("Sign Out", daily_deal_logout_path(publisher)) %>
+  <% else -%>
+    <%= navbar_link("Sign In", daily_deal_login_path(publisher)) %>
+  <% end -%>
+</div>

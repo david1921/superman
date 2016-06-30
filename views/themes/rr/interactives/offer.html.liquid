@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.rr.com/assets/dtd/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>                                                                                                           
+<link href="/stylesheets/offers.css" media="all" rel="stylesheet" type="text/css" /> 
+<link href="/themes/rr/stylesheets/interactive.css" media="all" rel="stylesheet" type="text/css" /> 
+{% if offer %}
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/coupons.js" type="text/javascript"></script> 
+  {% include "shared/tracking_offers" %}
+{% endif %}
+</head> 
+ 
+<body> 
+	<div id="analog_analytics_content"> 
+	  {% if offer %}
+	    {% assign advertiser = offer.advertiser %}
+	    {% assign publisher  = offer.publisher %}
+	    <h1>Thanks for entering your code. Here's your {{ advertiser.name }} coupon.</h1>
+	    {% include "themes/rr/offers/offer" %}
+	  {% else %}	  
+		<div id="landing_container"> 
+		<h2 class="landing">X.Com/bojangles</h2> 
+		<form action="/publishing_groups/{{ publishing_group.label }}/interactives/create_offer" id="daily_deal_header" method="post"> 
+		  <input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}">
+      <p><input name="redirect_to" value="{{ 'coupon.html' | verifiable_url }}" type="hidden" /></p> 
+			<p><input id="code" name="code" size="30" type="text" value="Code" onclick="this.value='';" /></p> 
+			<p><input id="submit_button" type="submit" value="Submit" /></p> 
+			<p class="warn">{% flash error %}</p>			
+		</form> 
+		</div><!-- /landing_container --> 
+		{% endif %}
+	</div><!-- /analog_analytics_content	 -->			 
+{% include with_theme "shared/tracking_publisher" %}
+</body> 
+</html>

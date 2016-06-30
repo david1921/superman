@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<% if @daily_deal %>
+		<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+		<meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+		<meta name='keywords' content="<%= @daily_deal.value_proposition %>">
+		<link rel="image_src" href="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+		<% else %>
+		<meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+		<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end %>
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/entertainment/stylesheets/entertainment.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/entertainment/stylesheets/header_footer.css" type="text/css" />
+ 	<link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+  <%= javascript_include_tag "lib/prototype" %>
+        <%= javascript_include_tag "jquery/jquery.min" %>
+		<%= javascript_tag "$.noConflict();" %>
+
+		<script src="/javascripts/effects.js" type="text/javascript"></script>
+		<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+		<script src="/javascripts/controls.js" type="text/javascript"></script>
+		<script src="/javascripts/application.js" type="text/javascript"></script>
+		<script src="/themes/entertainment/javascript/autocolumn.min.js" type="text/javascript"></script>
+		<script src="/themes/entertainment/javascript/cookies.js" type="text/javascript"></script>
+		<script src="/themes/entertainment/javascript/css_browser_selector.js" type="text/javascript"></script>
+
+		<% if @daily_deal %>
+		<!-- Terms Popup -->
+		<script src="/themes/entertainment/javascript/jquery.lightbox_me.js" type="text/javascript"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			jQuery(document).ready(function($) {
+
+				$('a#showterms').click(function(e) {
+				    $('#termspopup').lightbox_me({
+				    	centered: true
+				    });
+				    e.preventDefault();
+				});
+
+			});
+		</script>
+		<!-- /Terms Popup -->
+		<% end %>
+
+	
+    
+
+	<!--[if IE]>
+		<link rel="stylesheet" type="text/css" href="/themes/entertainment/stylesheets/ie.css">
+	<![endif]-->
+		
+
+	<!--[if IE 7]>
+		<link rel="stylesheet" type="text/css" href="/themes/entertainment/stylesheets/ie7.css">
+	<![endif]-->
+	
+	<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="/themes/entertainment/stylesheets/ie8.css">
+	<![endif]-->
+	
+	<!--[if IE]>
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+			$('.market_selection_list').columnize({ columns: 3 });
+			$('.footer_market_columns').columnize({ columns: 3 });
+		});
+	</script>
+	<!endif]-->
+	
+		
+	
+	<!-- Subscribe Bar -->
+	<script type="text/javascript">
+	function hideBtn() {
+	    jQuery("#subscribe").animate({
+	        "margin-top": "-38px"
+	    }, 200, function () {
+	        jQuery(this).remove();
+	    });
+	};
+	
+	function slideUpAndRemember(element) {
+    new Effect.SlideUp(element);
+    setCookie('slide.'+element, 'up', 1);
+  }
+
+  function slideDownAndForget(element) {
+    new Effect.SlideDown(element);
+    setCookie('slide.'+element, 'down', -1);
+  } 
+	</script>
+		
+	  
+	<title><%= daily_deal_page_title %></title>
+	<%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+	<body>
+		<%= render :partial => 'shared/flash_messages' %>
+		<%= render :partial => with_theme("shared/subscribe") %>
+		<div id="analog_analytics">
+			<div id="daily_deal">
+				<%= render :partial => with_theme("shared/header") %>
+				<div id="dd_content">
+					<div id="dd_container">
+						<div id="dd_content_container">
+						<%= raw yield %>	
+						</div><!-- dd_content_container -->
+						<div class="clear"></div>
+					</div><!--dd_container--> 
+					<a id="aa_logo" href="http://analoganalytics.com/">
+						<img src="/images/powered_by_analog_analytics_220_alt.png" width="220" height="23" alt="Powered by Analog Analytics">
+						<p>US Patent 8090613, Additional Patents Pending</p>
+					</a>
+				</div><!--dd_content-->
+				<%= render :partial => with_theme("shared/footer") %>
+			</div><!--daily_deal-->
+		</div><!--analog_analytics-->
+		<%= raw render :partial => "daily_deals/javascript" %> 
+	</body>
+</html>

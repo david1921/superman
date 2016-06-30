@@ -1,0 +1,75 @@
+<% set_daily_deal_page_title_slug t(:browse_all_deals) %>
+
+	<div class="breadcrumbs">
+		<ul>
+			<li>
+				<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+			</li>
+			<li class="no_underline">></li>
+			<li class="no_underline">          
+				<a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:all_deals) %></a>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+
+<div id="browse_deals">
+	<div class="page_row"> 
+	  <h1 class="content"><%= t(:browse_all_deals) %></h1> 
+	  <div class="page_column_12 first rounded_corners">  
+	  
+	  	<div id="browse_content_row1">
+			<!-- Browse by time links-->
+			   <!--
+ <ul>
+			    	<li><a href="">Newest</a></li>
+			    	<li><a href="">Most Popular</a></li>
+			    	<li class="last"><a href="">Most Shared</a></li>
+			    </ul>
+-->
+			<!-- /Browse by time links-->
+			<div class="clear"></div>
+			<p><%= t(:browse_header_message) %></p>
+		</div><!-- /browse_content_row1 -->
+			
+		<!-- deal category loop -->
+		<% @daily_deal_categories.each_with_index do |daily_deal_category, index| %>
+			<%= raw '<div id="browse_content_row2">' if index % 2 == 0 %>
+
+			<div class="browse_category_box">      			
+					<div class="browse_category_photo">
+						<a href="<%= publisher_daily_deal_category_path(@publisher, daily_deal_category) %>">
+					    	<img src="/themes/bcbsa/images/graphics/categories/<%= daily_deal_category.name.gsub(/\s/, '').downcase %>_category_image.jpg">
+						</a>
+				    </div>
+				    <div class="clear"></div>
+				    <div class="browse_category_label <%= daily_deal_category.name.gsub(/\s/, '').downcase %>_label">			
+				    		<span class="category_icon <%= daily_deal_category.name.gsub(/\s/, '').downcase %>_category_icon"></span>
+				    		<h3><%= t(daily_deal_category.name.downcase.gsub(/\s/, '_')) %></h3>	    	
+				    </div>
+						
+
+					<div class="browse_category_info">
+						<p><%= t(daily_deal_category.name.downcase.gsub(/\s/, '_') + "_message") %></p>
+						
+						<!-- display view all link -->
+						<%= link_to t(:view_all) + t(daily_deal_category.name.downcase.gsub(/\s/, '_')) + ' ' + t(:view_all_offers), publisher_daily_deal_category_path(@publisher, daily_deal_category) %>
+						
+					</div> <!-- /browse_category_info -->
+				</div><!-- /browse_category_box -->
+				<%= raw '</div><div class="clear"></div>' if index % 2 == 1 or index == @daily_deal_categories.size - 1 %>
+		<% end %>
+		<!-- /deal category loop -->
+		
+	  </div><!-- /page_column_12 -->
+	</div><!-- /page_row	-->
+</div>
+
+<% if false %>
+<ul>
+  <% @daily_deal_categories.each do |daily_deal_category| %>
+    <li><%= link_to "View all #{daily_deal_category.name} offers", publisher_daily_deal_category_path(@publisher, daily_deal_category) %></li>
+  <% end %>
+</ul>
+
+<% end %>

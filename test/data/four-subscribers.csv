@@ -1,0 +1,5 @@
+Email,Last Name,First Name,Address,City,State,Zip Code
+foo@example.com,Smith,Bob,123 Foo Drive,Seattle,WA,98585
+bar@example.com,Jung,Jan,845 Foo Blvd,Seattle,WA,98573
+baz@example.com,Johnson,William,455 Foo Rd,Seattle,WA,98582
+dummy@example.com,Bird,Jim,562 Foo St,Portland,OR,94857

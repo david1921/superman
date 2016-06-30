@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <% if @daily_deal -%>
+  <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+  <meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+  <meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+  <link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+  <% else -%>
+    <meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+    <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+  <% end -%>
+  
+  <%= stylesheet_link_tag "scoped_reset", "application", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/8newsnow/stylesheets/daily_deals", :media => "all" %>
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+
+  <%= javascript_include_tag :defaults %>  
+  <title><%= daily_deal_page_title %></title>
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+
+<body>
+<div class="content" id="content">
+  <div id="analog_analytics">
+    <div id="daily_deal">
+      <%= render(:partial => "themes/8newsnow/daily_deals/navbar", :locals => { :publisher => @publisher }) if @publisher %>
+
+      <div id="flash">
+        <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+          <%= flash[:warn] %>
+        </div>
+        <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+      
+      <div id="header">
+        <%= render :partial => "/themes/8newsnow/daily_deals/signup", :locals => { :daily_deal => @daily_deal } %>
+      </div>
+      <div id="frame">
+      <%= yield %>
+      </div>
+      <div id="footer">&nbsp;</div>
+      <div id="publisher_links">
+        <a href="http://www.8newsnow.com" id="home_button"><img border="0" src="/themes/8newsnow/images/buttons/home.png"  alt="Home" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=5548&amp;nav=menu102_2"><img src="/themes/8newsnow/images/buttons/news.png" alt="News" name="news"  border="0" id="news" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=5547&amp;nav=menu102_3"><img src="/themes/8newsnow/images/buttons/weather.png" alt="Weather" name="weather"  border="0" id="weather" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=29972&amp;nav=menu102_4"><img src="/themes/8newsnow/images/buttons/traffic.png" alt="Traffic" name="traffic"  border="0" id="traffic" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=8026&amp;nav=menu102_6"><img src="/themes/8newsnow/images/buttons/health.png" alt="Health" name="health"  border="0" id="health" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=5549&amp;nav=menu102_8"><img src="/themes/8newsnow/images/buttons/sports.png" alt="Sports" name="sports"  border="0" id="sports" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=5550&amp;nav=menu102_7"><img src="/themes/8newsnow/images/buttons/community.png" alt="Community" name="community"  border="0" id="community" /></a>
+        <a href="http://www.8newsnow.com/Global/category.asp?C=28259&amp;nav=menu102_5"><img src="/themes/8newsnow/images/buttons/video.png" alt="Multimedia" name="video"  border="0" id="video" /></a>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<%= raw render :partial => "themes/8newsnow/shared/tracking_publisher" %>
+<%= raw render :partial => "daily_deals/javascript" %>
+</body>
+</html>

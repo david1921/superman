@@ -1,0 +1,56 @@
+<div class="footer">
+	<div class="footer_content">
+		<div class="footer_column follow_us">
+			<p>Follow Groucher:</p>
+<% current_path = request.fullpath %>
+	<% all_deals_path = daily_deals_public_index_path(@publisher.label).to_s + '?per_page=6'%>
+		<ul class="social_follow">
+<% if current_path == all_deals_path && @featured_deal.present? %>
+<% if @publisher.show_facebook_button? %>
+<li><a href="<%= @publisher.facebook_page_url %>" target="_blank" class="follow_facebook"><span>Facebook</span></a></li>
+<% end %>
+<% if @publisher.show_twitter_button? %>
+<li><a href="http://twitter.com/#!/groucher" target="_blank" class="follow_twitter"><span>Twitter</span></a></li>
+<% end %>
+<% elsif current_path == public_deal_of_day_path(@publisher.label) %>
+<% if @publisher.show_facebook_button? %>
+<li><a href="<%= @publisher.facebook_page_url %>" target="_blank" class="follow_facebook"><span>Facebook</span></a></li>
+<% end %>
+<% if @publisher.show_twitter_button? %>
+<li><a href="http://twitter.com/#!/groucher" target="_blank" class="follow_twitter"><span>Twitter</span></a></li>
+<% end %>
+<% else %>
+<% if @publisher.show_facebook_button? %>
+<li><a href="<%= @publisher.facebook_page_url %>" class="follow_facebook"><span>Facebook</span></a></li>
+<% end %>
+<% if @publisher.show_twitter_button? %>
+<li><a href="http://twitter.com/#!/groucher" class="follow_twitter"><span>Twitter</span></a></li>
+<% end %>
+<% end %>
+</ul>			
+
+<a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" class="button gradient refer_a_friend_tracking">Refer A Friend</a>		
+		</div><!-- /follow_us -->
+
+		<% if @publisher.sales_email_address.present? -%>
+    		<div class="footer_column feature_business">
+    			<p>Want to feature your business?<br /> Email us at: <a href="mailto:<%= @publisher.sales_email_address %>?subject=Feature my business on <%= @publisher.sales_email_address %>"><%= @publisher.sales_email_address %></a></p>
+    			<p>For Customer Service and Technical Support, please email: <a href="mailto:<%= @publisher.support_email_address %>?subject=Customer Service and Technical Support on <%= @publisher.support_email_address %>"><%= @publisher.support_email_address %></a></p>
+    		</div><!-- /feature_business -->
+		<% end %>
+		
+		<div class="footer_column nav_lists">
+			<ul class="footer_nav">
+        		<li><a href="<%= about_us_publisher_daily_deals_path(@publisher) %>">About Us</a></li>
+                <li><%= daily_deals_terms_link(@publisher) %></li>
+                <li><%= daily_deals_privacy_link(@publisher) %></li>
+			</ul><!-- /footer_nav 1 -->
+			<ul class="footer_nav">
+        		<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+        		<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+        		<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+			</ul><!-- /footer_nav 2-->
+		</div><!-- /nav_lists -->
+		<div class="clear"></div>
+	</div><!-- /footer_content -->
+</div><!-- footer -->

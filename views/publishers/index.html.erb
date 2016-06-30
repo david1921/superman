@@ -1,0 +1,58 @@
+<% if full_admin? -%>
+  <%= link_to "Configure HTTPS Hosts...", https_hosts_publishers_path, :style => "float: right" %>
+<% end %>
+
+<% if admin? -%>
+  <% form_tag publishers_path, :method => :get do %>
+    <div class="row publishers">
+      <div class="label"><%= label_tag :text, "Search", :class => "publisher_search" %></div>
+      <%= button_to_function "New Publisher", "window.location.href = '#{new_publisher_url}'", :class => "add_new_publisher" %>
+      <div class="input"><%= text_field_tag :text, @text, :autocomplete => "false", :class => "publisher_search" %></div>
+      <div class="help"></div>
+    </div>  
+  <% end -%>
+  <div class="clear" />
+<% end -%>
+
+<% if @publishers.present? || @publishing_group.present? || @publishing_groups.present? %>
+  <% form_tag(:action => "delete") do %>
+    <table cellspacing="0" summary="publishers" class="publishers">
+      <tr>
+        <th>&nbsp;</th>
+        <th class="name">Name</th>
+        <th class="label">Label</th>
+        <th class="unique_subscribers_count right" >Subs</th>
+        <th class="public_pages" colspan="2">Public Pages</th>
+        <th class="associations" colspan="3">Associations</th>
+        <th class="edit">&nbsp;</th>
+      </tr>
+
+      <%= render @publishers.sort_by(&:name) %>
+
+      <% @publishing_groups.sort_by(&:name).each do |publishing_group| %>
+        <%= render publishing_group %>
+        <%= render publishing_group.publishers.manageable_by(current_user).sort_by(&:name) %>
+      <% end %>
+
+      <% if @publishers.try(:empty?) && @publishing_group.nil? && @publishing_groups.try(:empty?) -%>
+      <tr>
+        <td colspan="8" style="text-align: center">Click New Publisher to add a publisher</td>
+      </tr>
+      <% end -%>
+
+    </table>
+
+    <div class="full_width buttons">
+      <%= submit_tag("Delete", :confirm => "Really delete?", :class => "left") %>
+      <%= button_to_function "New Publisher", "window.location.href = '#{new_publisher_url}'", :class => "add_new_publisher" %>
+    </div> 
+  <% end -%>
+<% elsif @text.blank? -%>
+<p class="search_message">Search for publishers and publishing groups by name</p>
+<% elsif !@text.valid_length? -%>
+<p class="search_message">Search text must be at least two characters</p>
+<% else %>
+<p class="search_message">Did not find any publishers or publishing groups. Search for <strong>*</strong> (star) to see all publishers.</p>
+<% end -%>
+
+<%= focus "text" %>

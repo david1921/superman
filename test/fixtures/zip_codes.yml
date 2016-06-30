@@ -1,0 +1,31 @@
+san_diego_beach:
+  zip: 92101
+  city: SAN DIEGO
+  state: CA
+  latitude: +32.721100
+  longitude: -117.174366
+  zip_class: SAN DIEGO
+
+san_diego_downtown:
+  zip: 92106
+  city: SAN DIEGO
+  state: CA
+  latitude: +32.709355
+  longitude: -117.232764
+  zip_class: SAN DIEGO
+
+san_diego_suburb:
+  zip: 92040
+  city: LAKESIDE
+  state: CA
+  latitude: +32.893498
+  longitude: -116.898945
+  zip_class: SAN DIEGO
+
+upstate_new_york:
+  zip: 13035
+  city: CAZENOVIA
+  state: NY
+  latitude: +42.939422
+  longitude: -075.775568
+  zip_class: MADISON

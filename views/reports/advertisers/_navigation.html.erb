@@ -1,0 +1,36 @@
+<div id="summary_links">
+  <%- url_options.merge!(:market_id => params[:market_id]) if params[:market_id].present? %>
+
+  <% if current_user.can_manage?(@advertiser) || current_user.company == @advertiser %>
+    <%= nav_link page, :coupon_summary, "Online Coupon Summary",
+          reports_advertiser_coupons_url(@advertiser, url_options.merge(:summary => "web_offers")) %>
+
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :txt_coupon_summary, "Newsprint TXT Coupon Summary",
+          reports_advertiser_coupons_url(@advertiser, url_options.merge(:summary => "txt_offers")) %>
+  <% end %>
+
+  <% if @advertiser.publisher.allow_gift_certificates? %>
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :deal_certificate_summary, "Deal Certificate Summary",
+          reports_advertiser_coupons_url(@advertiser, url_options.merge(:summary => "gift_certificates")) %>
+
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :purchased_deal_certificates, "Purchased Deal Certificates",
+          purchased_gift_certificates_reports_advertiser_url(@advertiser, url_options.except(:summary)) %>
+  <% end %>
+
+  <% if @advertiser.publisher.allow_daily_deals? %>
+    &nbsp;&brvbar;&nbsp;
+    <% purchased_daily_deal = params[:market_id].present? ? market_purchased_daily_deals_reports_advertiser_url(@advertiser, url_options) : purchased_daily_deals_reports_advertiser_url(@advertiser, url_options)%>
+    <%= nav_link page, :purchased_daily_deals, "Purchased Daily Deals", purchased_daily_deal %>
+
+    &nbsp;&brvbar;&nbsp;
+    <% refunded_daily_deal = params[:market_id].present? ? market_refunded_daily_deals_reports_advertiser_url(@advertiser, url_options) : refunded_daily_deals_reports_advertiser_url(@advertiser, url_options)%>
+    <%= nav_link page, :refunded_daily_deals, "Refunded Daily Deals", refunded_daily_deal %>
+
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :affiliated_daily_deals, "Affiliated Daily Deals",
+          affiliated_daily_deals_reports_advertiser_url(@advertiser, url_options) %>
+  <% end %>
+</div>

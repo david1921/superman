@@ -1,0 +1,25 @@
+<h4><%= t(".title") %></h4>
+<div class="content_box subscribe">
+	<div id="subscribe_form">
+    <form action="<%= publisher_subscribers_path(@publisher) %>" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+					<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+					<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+				 
+					<div>
+						<label class="label">e-mail</label>
+						<input id="subscriber_email" name="subscriber[email]" title="Email" type="text" value="" class="input name gradient"> 
+					</div>
+					
+										
+					<div><input type="submit" class="submitbutton" value="<%= t(:submit) %>"/></div>
+					
+					<div class="terms">
+						<input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /><%= t("i_agree_to_the") %> <%= daily_deals_terms_link(@publisher) %> <%= t("and") %> <%= daily_deals_privacy_link(@publisher) %></a>
+					</div>
+		</form>
+	</div><!-- /subscribe_form -->
+	<div class="clear"></div>
+</div>

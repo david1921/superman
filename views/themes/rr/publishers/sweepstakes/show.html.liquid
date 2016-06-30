@@ -1,0 +1,135 @@
+<div id="sweepstakes_enter" class="sweepstakes_tab optimized">
+<div id="left_column_wide">
+	<h1 class="sweepstakes_title">{{ sweepstake.value_proposition }}</h1>
+	<div class="sweepstakes_content">
+		<div class="sweepstakes_photo"><img src="{{ sweepstake.full_photo_url }}" alt="{{ sweepstake.value_proposition }}"/>
+    
+		</div>
+		{% if sweepstake.description_exists? %}
+		<div class="sweepstakes_info">
+			{{ sweepstake.description }}
+		</div>
+		{% endif %}
+		
+		<div class="clear"></div>
+	</div><!-- /sweepstakes_content -->
+	<form id="sweepstakes_entry_form" action="{{ sweepstake.entries_path }}" method="POST">
+	  <div id="sweepstakes_share">
+		<div id="share_icons">
+		<a href="https://twitter.com/share" id="twitter_button" class="share_button share_button_twitter" data-count="none"><span>Share on Twitter</span></a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+		<a href="mailto:?subject={{ publisher.brand_name | uri_escape }}:%20{{ sweepstake.value_proposition | uri_escape }}&amp;body=Check%20out%20this%20great%20contest%20at%20{{ sweepstake.public_url }}" id="email_button" target="_blank" class="share_button share_button_mail"><span>Email to a friend</span></a>
+            <a name="fb_share" type="button" class="share_button share_button_facebook" id="fbshare"><span>Email to a friend</span></a> 
+				<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" 
+						type="text/javascript">
+				</script>
+		</div>
+	</div><!-- /sweepstakes_share -->
+	
+	<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}"/> 
+  {% if errors %}
+      <p class='warn'>
+      {% for error in errors %}
+        {{ error }}<br />
+      {% endfor %}
+      </p>
+  {% endif %}
+	
+	{% if publisher.current_user_belongs_to? %}
+			<h1 class="logged_in">Please submit to enter:</h1>
+	 {% else %}
+
+		<div id="entry_sign_in">
+			<h1>Already a member?</h1>
+				<p id="session_warning"></p> 
+			<fieldset class="floater">
+				<input id="consumer_login_url" name="consumer_login_url" type="hidden" value="/publishers/306/daily_deal_sessions" /> 
+				<label for="session_email">Email:</label>
+				<input id="session_email" class="email_input" name="session[email]" type="text" />
+				<div class="help"></div> 
+			</fieldset>
+			<fieldset class="floater">
+				<label for="session_password">Password:</label>
+				<input id="session_password" name="session[password]" type="password" />
+				<div class="help"></div>       				
+			</fieldset>
+		</div><!-- /entry_sign_in -->
+		
+		<div id="entry_sign_up">
+			<h1>New member?</h1>
+			<fieldset id="firstname" class="floater">
+				<label for="consumer_first_name">First Name:</label>
+				<input id="consumer_first_name" name="consumer[first_name]" type="text" value="" />
+	 			<div class="help"></div> 
+			</fieldset>
+			<fieldset id="lastname" class="floater">
+				<label for="consumer_last_name">Last Name:</label>
+				<input id="consumer_last_name" name="consumer[last_name]" type="text" value="" />
+	 			<div class="help"></div> 				
+			</fieldset>
+			<fieldset class="floater">
+				<label for="consumer_email" class="floater">Email:</label>
+				<input id="consumer_email" class="email_input" name="consumer[email]" type="text" />
+				<div class="help"></div> 
+			</fieldset>
+            <fieldset class="floater">
+				<label for="consumer_zip_code" class="floater">Zip Code:</label>
+				<input id="consumer_zip_code" class="email_zip_code" name="consumer[zip_code]" type="text" />
+				<div class="help"></div> 
+			</fieldset>
+			<fieldset id="password" class="floater">
+				<label for="consumer_password">Password:</label>
+				<input id="consumer_password" name="consumer[password]" type="password" />
+				<div class="help"></div> 
+			</fieldset>
+			<fieldset id="confirm_password" class="floater">
+				<label for="consumer_password_confirmation">Confirm Password:</label>
+				<input id="consumer_password_confirmation" name="consumer[password_confirmation]"  type="password" />
+				<div class="help"></div>
+			</fieldset>
+		</div><!-- /entry_sign_up -->
+		<div class="clear"></div>
+		{% endif %}
+		
+		<div id="submit_entry">
+			<fieldset id="phone_number">
+				<label for="consumer_phone_number">Phone:</label>
+				<input id="consumer_phone_number" name="sweepstake_entry[phone_number]" type="text" value="" />
+	 			<div class="help"></div> 
+			</fieldset>
+			<fieldset class="terms">
+				<input id="consumer_agree_to_terms" name="sweepstake_entry[agree_to_terms]" type="checkbox" value="1" /> 
+				<label for="consumer_agree_to_terms">I have read, understand, and agree to the <a href="{{ sweepstake.official_rules_path }}" class="lbOn">Official Rules</a></label> 
+			</fieldset>
+			<fieldset class="terms">
+				<input id="consumer_is_adult" name="sweepstake_entry[is_an_adult]" type="checkbox" value="1" /> 
+				<label for="consumer_is_adult">I acknowledge that I am 18 years of age or older and eligible to enter in accordance with the <a href="{{ sweepstake.official_rules_path }}" class="lbOn">Official Rules</a></label> 
+			</fieldset>
+			{% if sweepstake.show_promotional_opt_in_checkbox? %}
+			<fieldset class="terms">
+				<input id="consumer_receive_promotional_emails" name="sweepstake_entry[receive_promotional_emails]" type="checkbox" value="1" /> 
+				<label for="consumer_receive_promotional_emails">{{ sweepstake | sweepstake_promo_email_checkbox_text }}</label> 
+			</fieldset>
+			{% endif %}
+			<fieldset class="submit">
+				<button type="submit" class="orange rounded button"><span>Enter Now</span></button>
+			</fieldset>
+        
+            <div class="clear"></div>
+		</div>
+		
+	</form><!-- entry_form -->
+	<div class="sweepstakes_fine_print">{{ sweepstake.terms }}</div>
+</div><!-- /left_column_wide -->
+
+<div id="right_column">
+  {% if publisher.label == "clickedin-charlotte" %}
+     {% if sweepstake.featured? %}
+       {% include with_theme "shared/counter" %}
+     {% endif %}
+  {% else %}
+  	{% include with_theme "shared/search" %}
+    {% include with_theme "shared/counter" %}
+  {% endif %}
+</div><!--right_column-->
+
+</div><!-- sweepstakes_enter -->

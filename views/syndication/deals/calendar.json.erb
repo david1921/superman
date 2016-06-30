@@ -1,0 +1,25 @@
+<%= 
+{
+  :page         => @search_request.paging.current_page,
+  :page_size    => @search_request.paging.page_size,
+  :page_count   => @search_response.deals.total_pages,
+  :total_count  => @search_response.deals.total_entries,
+  :daily_deals  => 
+    @search_response.deals.collect do |deal, index|
+      {
+        :daily_deal => {
+          :id                       => deal.id,
+          :value_proposition        => deal.value_proposition,
+          :start_at_date_only       => deal.start_at_date_only,
+          :sourceable_by_publisher  => deal.sourceable_by_publisher?(@publisher),
+          :sourced_by_publisher     => deal.sourced_by_publisher?(@publisher),
+          :sourced_by_network       => deal.sourced_by_network?(@publisher),
+          :distributed_by_publisher => deal.distributed_by_publisher?(@publisher),
+          :distributed_by_network   => deal.distributed_by_network?(@publisher),
+          :syndication_deal_url     => syndication_deal_path(deal, Syndication::RequestParameters.collect(request)),
+          :show_on_calendar_url     => show_on_calendar_syndication_deal_path(deal)        
+        }
+      }
+    end    
+}.to_json.html_safe 
+%>

@@ -1,0 +1,18 @@
+<div id="presignup">
+	<div id="deal_logos"><img src="/themes/howlingwolf/images/graphics/deal_logos.png" height="63" width="764" alt=""></div>
+	<h1>Never miss a deal!</h1>
+	<h2>Sign up now to receive Daily Deal alerts.</h2>
+	
+	
+	<form action="{{ publisher.daily_deal_subscribers_path }}" method="POST" class="presignup email_subscription_tracking">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input name="redirect_to" type="hidden" value="{{ publisher.presignup_consumers_url | verifiable_url }}" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<p><label for="Email">Enter your email address:</label></p>
+		<p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></p>
+		<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+		<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+		<p><input id="subscribe_button" type="submit" value="Sign Up" /></p>
+	</form>
+</div><!-- /background -->

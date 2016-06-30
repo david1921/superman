@@ -1,0 +1,9 @@
+<div class="offer_drop_shadow">
+  <div class="offer" id="offer_<%= offer.id %>">
+    <%= render :partial => "offers/panels/studentinsider/front", 
+               :locals => { :offer => offer, :publisher => (@publisher || publisher) } %>
+    <div class="call_panel" style="display: none;" id="offer_<%= offer.id %>_call_panel"></div>
+    <div class="email_panel" style="display: none;" id="offer_<%= offer.id %>_email_panel"></div>
+    <div class="txt_panel" style="display: none;" id="offer_<%= offer.id %>_txt_panel"></div>
+  </div>
+</div>

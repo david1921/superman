@@ -1,0 +1,17 @@
+<div class="page_row single_column">
+	<h2>Contact Us</h2>
+	{% if publisher.address_line_1 %}
+  	{{ publisher.address_line_1 }}<br />
+  	{% if publisher.address_line_2 != empty %}
+      {{ publisher.address_line_2 }}<br />
+    {% endif %}
+    {{ publisher.city }}, {{ publisher.state }} {{ publisher.zip }}
+  {% endif %}
+
+  <p><strong>Customer Service &amp; Technical Support</strong></p>
+  <p>Please email <a href="mailto:{{ publisher.support_email_address }}">{{ publisher.support_email_address }}</a> or call {{ publisher.formatted_phone_number }}.</p>
+
+	<p>To get your business featured contact us at <a href="http://howperksworks.com/contactus.php" target="_blank">http://howperksworks.com/contactus.php</a></p>
+	
+	
+</div><!-- end page_row -->

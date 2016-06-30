@@ -1,0 +1,21 @@
+<!-- this is to be placed on the landing & thank you page/s -->
+<script type="text/javascript" src="/tpe/tracker.js"></script>
+<script type="text/javascript">
+if (typeof aa_event_data === 'object') {
+	AA_EVENT.set_action("lightbox");
+	AA_EVENT.set_visitor({"email" : "<%= @visitor.email %>","zip_code" : "<%= @visitor.zip_code %>"});
+	AA_EVENT.set_third_party({"id": "<%= @deal.advertiser.id %>", "type" : "Advertiser"});
+	AA_EVENT.set_target({"id": "<%= @deal.id %>", "type":"DailyDeal"});
+    AA_EVENT.engage();				
+}
+</script>
+<a onclick="AA_EVENT.add_purchase_item( '20', 2, 'd78ads978ads', 9324632)">Add a purchase</a><br />
+<a onclick="console.log(aa_event_data)">Check out the event data object in the console</a><br />
+<a onclick="AA_EVENT.debug_engage()">Captain Says Debuggy Engage </a><br />
+<a onclick="AA_EVENT.engage()">Captain Says Engage!</a><br />
+
+
+
+
+
+

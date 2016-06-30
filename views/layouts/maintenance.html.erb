@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>System Maintenance</title>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+<body style="background-color: #666666;">
+  
+    <div style="-moz-box-shadow: 0px 0px 8px #ffffff; -webkit-box-shadow: 0px 0px 8px #ffffff;  box-shadow: 0px 0px 8px #ffffff; -moz-border-radius: 12px; -webkit-border-radius: 12px; border-radius: 12px;background-color:white; margin: 100px auto 0; padding: 40px 20px; text-align: center; width:60%;">
+      <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size: 30px;">We're sorry! The site is down for <%= reason ? reason : "maintenance" %> as of <%= Time.now.strftime("%H:%M %Z") %>.</h1>
+      <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">Service will resume <%= deadline ? "by #{deadline}" : "shortly" %>. Thank you for your patience.</p>
+      <img style="margin-top: 20px;" src="http://analoganalytics.com/wp-content/themes/AnalogAnalytics/img/powered_by_analog_analytics.png" height="20" width="169" align="Powered by Analog Analytics"/>
+    </div>
+
+</body>
+</html>

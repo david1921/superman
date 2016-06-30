@@ -1,0 +1,74 @@
+<div id="banner"></div>
+<h1>Thank you for subscribing!</h1>
+<p class="thank_you">Tell us a little more about what types of deals you are most interested in receiving, and where you spend your time, so we can tailor your deals in the future!</p>
+
+<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers/{{ subscriber.hashed_id | cgi_escape }}" method="post" class="presignup thankyou email_subscription_tracking">
+  <input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+  <input type="hidden" name="redirect_to" value="{{ publisher.thank_you_2_daily_deal_subscribers_path | verifiable_url }}" id="redirect_to">
+  <input name="_method" type="hidden" value="put" />
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td>
+        <label for="First Name">First Name:</label>
+        <input class="dd_input name" id="subscriber_first_name" name="subscriber[first_name]" title="First Name" type="text"  />
+      </td>
+      <td>
+        <label for="Last Name">Last Name:</label>
+        <input class="dd_input name" id="subscriber_last_name" name="subscriber[last_name]" title="Last Name" type="text"  />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h3>Send Me Offers in the Following Locations:</h3>
+        {% for location in publisher.subscription_locations %}
+          <input type="checkbox" name="subscriber[subscription_location_ids][]"
+            value="{{ location.id }}" id="subscription_location_{{ location.id }}"
+            class="location_checkbox" checked="checked" />
+          <label for="subscription_location_{{ location.id }}" class="checkbox_label">{{ location.name }}</label>
+          <br />
+        {% endfor %}
+
+        <div class="selection_checkboxes">
+          <a href="javascript:;" onclick="setChecked('.location_checkbox', 1)">Select All</a>
+          <a href="javascript:;" onclick="setChecked('.location_checkbox', 0)">Select None</a>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td colspan="3">
+        <h3>Send Me Offers For:</h3>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {% for daily_deal_category in publisher.default_daily_deal_categories %}
+          <div class="category_list_item">
+            <input type="checkbox" name="subscriber[daily_deal_category_ids][]"
+              value="{{ daily_deal_category.id }}" id="daily_deal_category_{{ daily_deal_category.id }}"
+              checked="checked" class="category_checkbox" />
+            <label for="daily_deal_category_{{ daily_deal_category.id }}"
+              class="checkbox_label">{{ daily_deal_category.name }}</label>
+            <br />
+          </div>
+        {% endfor %}
+        <div class="selection_checkboxes">
+          <a href="javascript:;" onclick="setChecked('.category_checkbox', 1)">Select All</a>
+          <a href="javascript:;" onclick="setChecked('.category_checkbox', 0)">Select None</a>
+        </div>
+      </td>
+    </tr> 
+  </table>
+  <p class="submit_row"><input id="submit_button" class="button" type="submit" value="Submit" /><a href="{{ publisher.todays_daily_deal_path }}">No Thanks</a>
+  </p>
+</form>
+<div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div>
+
+<script type="text/javascript">
+  function setChecked(checkboxSelector, state) {
+    $$(checkboxSelector).each(function(checkbox) {
+      checkbox.checked = state;
+    });
+  }
+</script>

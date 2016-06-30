@@ -1,0 +1,136 @@
+<% set_daily_deal_page_title_slug "#{t(@daily_deal_category.name.downcase.gsub(/\s/, '_'))} #{t(:title_slug_deals)}" %>
+
+<% if @publisher.launched %>
+<div class="breadcrumbs">
+	<ul>
+		<li>
+			<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+		</li>
+		<li class="no_underline">></li>
+		<li>          
+			<a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:all_deals) %></a>
+		</li>
+		<li class="no_underline">></li>
+		<li class="no_underline"><%= t(@daily_deal_category.name.downcase.gsub(/\s/, '_')) %></li>
+	</ul>
+</div>
+
+<div id="browse_deals_by_facet">
+	<div class="clear"></div>
+	<div id="browse_deals_by_facet_header">
+    <h1 class="content"> <%= t(@daily_deal_category.name.downcase.gsub(/\s/, '_') + "_facet_message") %>  <%= t(:youre_viewing) %> <%= t(@daily_deal_category.name.downcase.gsub(/\s/, '_')) %> <%= t(:deals) %>.</h1>
+		
+		<a class="past_deals_header_link" href="<%= past_deals_of_day_path(@publisher.label) %>"><%= t(:view_past) %> <%= t(@daily_deal_category.name.downcase.gsub(/\s/, '_')) %> <%= t(:deals) %></a>
+	</div>
+  <div>
+	
+	  <div class="clear"></div>
+	  <div id="main_column">
+	    
+		<!-- Bottom Facet Deals -->
+	      
+	    <!-- big facet deal / need to make this a specific deal but not sure which one?-->
+		<% if @featured_deal.present? %>
+      <% if @publisher.main_publisher? %>
+        <% if current_consumer.try(:has_master_membership_code?) || admin? || @featured_deal.show_on_landing_page? %>
+          <div class="clear"></div>
+            <div class="facet_deal_overview"> <!--strange bug casused by adding the expected facet_deal_overview class here -->
+            <%= render :partial => with_theme('daily_deals/daily_deal_big'), :locals => {:daily_deal => @featured_deal} %>
+          </div>
+        <% end %>
+      <% else %>   
+			 <div class="clear"></div>
+	      	<div class="facet_deal_overview"> <!--strange bug casused by adding the expected facet_deal_overview class here -->
+	          <%= render :partial => with_theme('daily_deals/daily_deal_big'), :locals => {:daily_deal => @featured_deal} %>
+	       </div>
+		  <% end %> 
+    <% end %> 
+	    <div class="clear"></div>
+	    <!-- /big facet deal -->
+	
+	     
+	      
+	  <!-- bottom deals -->
+
+    <%
+       side_deals =  @side_deals
+       side_deals.reject!{|deal| !deal.show_on_landing_page? if @publisher.main_publisher?  && !current_consumer.try(:has_master_membership_code?) && !admin?}
+    %>
+
+	  <div id="bottom_deals_wrapper">
+	  	<div id="bottom_deal_nav_wrapper">
+	   		<!-- bottom_deals slider widget --> 
+			<div class="clear"></div>
+			<!-- "previous page" action --> 
+			<a class="prev browse left"></a>
+			<% unless side_deals.size <= 0 %>
+				<!-- root element for scrollable --> 
+				<div class="scrollable" id="browsable">   
+	    			<!-- root element for the items -->		
+	    			<div class="items"> <!-- <div class="items"> -->
+	       		 	<% side_deals.shuffle.each_with_index do |bottom_deal, index| %>
+ 		 			    <%= raw '<div id="side_deals" class="other_deal_tracking">' if index % 3 == 0 %>
+ 		   		    		<%= render :partial => with_theme('daily_deals/bottom_deal'), :locals => {:bottom_deal => bottom_deal} %>
+ 		 			    <%= raw '</div>' if index % 3 == 2 or index == side_deals.size - 1 %>
+ 		 			<% end %>		
+	        		</div> <!-- /items -->
+				</div><!-- /scrollable --> 
+				<!-- "next page" action --> 
+				<a class="next browse right"></a> 
+				<div class="navi"></div> <!-- wrapper for navigator elements --> 
+	  		<% end %>
+	    </div><!-- /bottom_deal_nav_wrapper -->
+	
+		<!-- javascript coding 
+		<script> 
+		$(document).ready(function() {
+		
+		$("#browsable").scrollable().navigator();	
+		});
+		</script> 
+		--> 	
+	
+	  <a id="wish_list" href="#"></a>
+	
+	  </div><!-- bottom deals -->      
+	  <div class="clear"></div>
+	 <!-- /Bottom Facet Deals -->
+	    
+	</div><!-- /main_column -->
+  </div>
+</div> <!-- /browse_deals_by_facet -->
+
+<% content_for :bottom_scripts do %>
+  <script type="text/javascript">
+    function wishListLightbox() {
+        jQuery.fancybox(
+          "<%= escape_javascript(render :partial => with_theme("suggested_daily_deals/lightbox")) %>",
+          {
+            'autoDimensions'  : false,
+            'width'           : 980,
+            'height'        	: 800,
+            'transitionIn'		: 'none',
+            'transitionOut'		: 'none',
+            'showCloseButton' : false,
+            'centerOnScroll'  : true
+          }
+        );
+    }
+
+    jQuery(document).ready(function() {
+      <% if consumer? %>
+        jQuery('#wish_list').click(wishListLightbox);
+      <% else %>
+        jQuery('#wish_list').click(function() {
+          window.location = '<%= suggested_daily_deals_login_path %>';
+        });
+      <% end %>
+
+      <% if params[:suggested_daily_deals_lightbox] %>
+        wishListLightbox();
+      <% end %>
+    });
+  </script>
+<% end %>
+
+<% end %> <!-- end only show if launched and not bcbsa-national --> 

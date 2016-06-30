@@ -1,0 +1,16 @@
+<footer>
+	<div class="footer_content">	
+        <nav class="footer account"	
+            <% if current_consumer_for_publisher?(@publisher) %>
+        		<a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a>
+        		<a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a>
+        		<a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a>
+            <% end %>   
+        </nav>  
+		<nav class="footer legal">
+            <%= daily_deals_privacy_link(@publisher) %>
+            <%= daily_deals_terms_link(@publisher) %>
+		</nav><!-- /footer legal -->
+		<%= raw render :partial => 'shared/a_a_syndication_lt' %>
+	</div><!-- /footer_content -->
+</footer><!-- footer -->

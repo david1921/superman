@@ -1,0 +1,7 @@
+Thank you for opting in to receive coupons at <%= @email_recipient.email_address %>.
+
+To complete the email opt-in process, please visit the following location in your web browser:
+
+  <%= confirm_email_opt_in_url(:random_code => @email_recipient.random_code, :host => service_host) %>
+
+If you need help or have questions about the opt-in process, please contact <%= support_email_address %>.

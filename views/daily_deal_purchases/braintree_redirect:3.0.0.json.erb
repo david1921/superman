@@ -1,0 +1,6 @@
+<%= {
+  :consumer => @consumer,
+  :connections => {
+    :details => status_daily_deal_purchase_url(@daily_deal_purchase.uuid, :protocol => "https", :host => AppConfig.api_host, :format => "json")
+  }
+}.to_json.html_safe -%>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<import_request publisher_label="import-test-publisher" timestamp="20110826162850">
+  <daily_deal>
+    <listing>deal-listing</listing>
+    <listing>deal-listing2</listing>
+    <category/>
+    <value_proposition>$35 for a $70 Luxurious Basic Facial</value_proposition>
+    <value_proposition>Second proposition</value_proposition>
+    <value_proposition_subhead/>
+    <description> Is your complexion in need of help? Revolutionize your skin with a $70 Basic Facial from Maple Skin Care Center for $35.
+     </description>
+    <highlights>
+      <highlight> Show off an illustrious complexion courtesy of a $70 Basic Facial from Maple Skin Care Center for $35.  </highlight>
+    </highlights>
+    <terms>
+      <term> * No Cash Value or Cash Back.  </term>
+    </terms>
+    <photo_url>https://eric.entertainment.com/daily_deals/maya-photo.jpg</photo_url>
+    <photo_url>https://eric.entertainment.com/daily_deals/maya-photo2.jpg</photo_url>
+    <currency>USD</currency>
+    <currency>CAD</currency>
+    <value>70</value>
+    <value>90</value>
+    <price>35.00</price>
+    <price>40.00</price>
+    <starts_at>2011-08-02T06:00:00Z</starts_at>
+    <starts_at></starts_at>
+    <ends_at>2011-08-03T05:55:00Z</ends_at>
+    <ends_at></ends_at>
+    <expires_on>2011-08-21</expires_on>
+    <facebook_title_text>$35 for a Basic Facial from Maple Skin Care Center</facebook_title_text>
+    <facebook_title_text>Second Facebook title</facebook_title_text>
+    <twitter_status_text>$35 for a Basic Facial from Maple Skin Care Center</twitter_status_text>
+    <twitter_status_text>Second Twitter status</twitter_status_text>
+    <quantity_available/>
+    <quantity_available>10</quantity_available>
+    <max_purchase_quantity>2</max_purchase_quantity>
+    <max_purchase_quantity>20</max_purchase_quantity>
+    <min_purchase_quantity>1</min_purchase_quantity>
+    <min_purchase_quantity>2</min_purchase_quantity>
+    <merchant>
+      <listing>merchant-listing</listing>
+      <brand_name> Maple Skin Care Center Inc.</brand_name>
+      <logo_url>https://eric.entertainment.com/daily_deals/maya-logo.jpg</logo_url>
+      <website_url/>
+      <locations>
+        <location>
+          <listing>location-listing</listing>
+          <address_line_1>2913 Maple Lake Rd.</address_line_1>
+          <address_line_2/>
+          <city> West Bloomfield </city>
+          <state>MI</state>
+          <zip>48322</zip>
+          <phone_number>1234567890</phone_number>
+        </location>
+      </locations>
+    </merchant>
+    <value_proposition_subhead/>
+  </daily_deal>
+</import_request>

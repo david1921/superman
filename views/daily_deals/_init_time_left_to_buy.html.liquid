@@ -1,0 +1,9 @@
+<script type="text/javascript"> 
+//<![CDATA[
+  Analog.DailyDeal.init(
+    {% now_in_milliseconds %},
+    {{ daily_deal.ending_time_in_milliseconds }},
+    '/daily_deals/{{ daily_deal.id }}.json'
+  );
+//]]>
+</script> 

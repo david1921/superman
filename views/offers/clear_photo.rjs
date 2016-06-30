@@ -1,0 +1,3 @@
+page.visual_effect "puff", "offer_photo_image"
+page.hide "offer_photo_delete_link"
+page.show "offer_photo"

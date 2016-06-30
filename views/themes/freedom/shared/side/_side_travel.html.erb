@@ -1,0 +1,20 @@
+<!-- START SIDE Travel SECTION-->
+<% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending  %>
+<% travel_category = categories.find_by_name("Travel Deal") %>
+<% unless travel_category.blank? %>
+<div class="side_section side_travel">
+  <div class="side_travel">
+    <!-- getting travel deals link -->
+
+    <a class="" href="<%= publisher_daily_deal_category_path(@publisher, travel_category) %>">
+      <h2 class="gradient">Travel Deals</h2>
+      <div class="side_content">
+        <img src="/themes/freedom/images/graphics/travel.png"/>
+        <p>Plan your next adventure! Deals on travel across the globe &amp; around the corner.</p>
+      </div>
+    </a>
+    <div class="clear"></div>   
+  </div>
+</div>
+<% end %>
+<!-- END SIDE Travel SECTION-->

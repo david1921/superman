@@ -1,0 +1,3 @@
+page.visual_effect "puff", "daily_deal_secondary_photo_image"
+page.hide "daily_deal_secondary_photo_delete_link"
+page.show "daily_deal_secondary_photo"

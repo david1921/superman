@@ -1,0 +1,23 @@
+<div id="presignup">	
+	<div id="arrowBanner">		
+		<h1><span>Sign Up for Free Today. We'll send you <br />exceptional deals to your inbox every day.</span></h1>
+	</div><!-- end arrowBanner -->
+	
+	<form action="<%= publisher_daily_deal_subscribers_path(@publisher) %>" method="POST" class="presignup">
+    <input type="hidden" name="redirect_to" value="<%= verifiable_url(thank_you_publisher_daily_deal_subscribers_url(:publisher_id => @publisher.id)) %>" id="redirect_to">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input name="subscriber[zip_code_required]" value="true" type="hidden" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<p><label for="Name">Name</label></p>
+		<p><input class="dd_input" id="subscriber_name" name="subscriber[name]" size="30" title="Name" type="text" /></p>
+		<p><label for="Email">Email address</label></p>
+		<p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></p>
+		<p><label for="ZipCode">ZIP Code</label></p>
+		<p><input id="subscriber_zip_code" class="dd_input" name="subscriber[zip_code]" size="10" type="text" /></p>
+		<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+		<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false;">Privacy Policy</a></label>
+		<p><input id="subscribe_button" type="submit" value="Sign Up!" /></p>
+	</form>
+	<div class="clear"></div>
+ </div><!--end presignup-->

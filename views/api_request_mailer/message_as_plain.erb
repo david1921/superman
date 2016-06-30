@@ -1,0 +1,6 @@
+<%= @email_api_request.text_plain_content %>
+
+You are receiving this email because a coupon was forwarded from the <%= @email_api_request.publisher.name %> website to <%= @email_api_request.destination_email_address %>. To opt out of receiving further email from us, visit <%= email_opt_out_url(:random_code => @opt_out_random_code) %>.
+
+Analog Analytics respects your privacy. <%= txt411_privacy_url %> to read our Privacy Policy.
+Analog Analytics and TXT411 are trademarks of Analog Analytics Inc, http://analoganalytics.com. Postal address: 11455 El Camino Real, Suite #390, San Diego, CA 92130.

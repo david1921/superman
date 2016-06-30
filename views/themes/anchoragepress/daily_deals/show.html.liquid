@@ -1,0 +1,108 @@
+<div id="page-leftcol">
+    <div class="deal-leftcol">
+        <h3><img src="/themes/anchoragepress/images/display/deal-of-the-day.png" width="192" height="30" alt="DEAL OF THE DAY -&gt;" /></h3>
+        <div class="content">
+            <div class="advertiser">
+			  <img src="{{ daily_deal.photo.url }}" />
+			  <p class="name">{{ advertiser.name }}</p>
+			  
+			  {% if advertiser.address? %}
+			    {% for store in advertiser.stores %}
+				  <p class="locations" style="{% if forloop.index > 3 %}display:none{% endif %}">
+					{{ store.address_line_1 }}<br />
+					{{ store.city }}, {{ store.state }} {{ store.zip }}
+					  {% if store.formatted_phone_number != empty %}
+					    <br />Phone:{{ store.formatted_phone_number }}
+					  {% endif %}
+				  </p>
+			    {% endfor %}
+				  {% if advertiser.website_url != empty %}
+				    <p><a href="{{ advertiser.website_url }}">visit website</a></p>
+				  {% endif %}
+				{% else %}
+				  <p>
+				  	{% if advertiser.website_url != empty %}
+					  <a href="{{ advertiser.website_url }}">website</a><br />
+					 {% endif %}
+				    {% if store.formatted_phone_number != empty %}
+					    Phone:{{ store.formatted_phone_number }}
+					{% endif %}
+				  </p>
+			  {% endif %}
+			  
+			  {% if advertiser.num_stores > 3 %}
+  				<a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('p.locations').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+  			  {% endif %}	  
+			  
+			</div>
+            <div class="map">
+			{% if advertiser.address? %}
+			  {% if advertiser.stores.size > 0 %}
+                <a href="{{ advertiser.map_url }}" target="_blank">
+                  <img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" width="183" />
+                </a>
+              {% endif %}
+			{% endif %}
+			</div>
+        </div>
+    </div>
+    <div class="deal-rightcol">
+        <h1>{{ daily_deal.value_proposition }}</h1>
+        <h2>Highlights</h2>
+        {{ daily_deal.highlights }}
+        
+        <div id="dashboard">
+            <div>
+                Value<span>{{ daily_deal.value | currency }}</span>
+            </div>
+            <div class="dark">
+                Today's Deal<span>{{ daily_deal.price | currency }}</span>
+            </div>
+            <div>
+                You Save<span>{{ daily_deal.savings | currency }}</span>
+            </div>
+            <div id="status">
+                TIME LEFT: <span id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</span> WITH <span id="deals_sold">{{ daily_deal.number_sold }}</span> BOUGHT
+            </div>
+        </div>
+        
+        <div class="buy-buttons">
+			
+			{% if daily_deal.sold_out? %}
+			<p class="center"><strong style="float: left; display: block; padding-top: 20px; text-align: right; width: 200px;">This Deal is Sold Out!</strong>
+			<img src="/themes/anchoragepress/images/buttons/buy-now-off.png" width="158" height="48" alt="Buy Now" /></p>
+			{% elsif daily_deal.over? %}
+			<img src="/themes/anchoragepress/images/buttons/deal-over-on.png" width="158" height="48" alt="DEAL OVER" />
+			{% elsif daily_deal.active? %}		
+            <a href="{{ daily_deal.buy_now_path }}" id="buy_now_button"><img src="/themes/anchoragepress/images/buttons/buy-now.png" width="158" height="48" alt="BUY NOW" /></a>
+            <img src="/themes/anchoragepress/images/buttons/deal-over-on.png" width="158" height="48" alt="DEAL OVER" style="display:none;" class="unavailable" />
+			{% else %}
+			<p class="center"><strong style="float: left; display: block; padding-top: 20px; text-align: right; width: 200px;">This Deal is Coming Soon!</strong>
+			<img src="/themes/anchoragepress/images/buttons/buy-now-off.png" width="158" height="48" alt="BUY NOW" /></p>
+			{% endif %}
+        </div>
+        
+    <div class="share">
+        Share with friends
+        <div><a class="share_button_twitter" href="{{ daily_deal.twitter_url }}"><img src="/themes/anchoragepress/images/buttons/twitter.png" width="30" height="30" alt="Twitter" /></a><a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share on Facebook"><img src="/themes/anchoragepress/images/buttons/facebook.png" width="30" height="30" alt="facebook" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><img src="/themes/anchoragepress/images/buttons/email.png" width="30" height="30" alt="Email" /></a></div>
+        </div>
+        
+    </div>
+    <div class="deal-info">
+        <h2>Description</h2>
+		{{ daily_deal.description }}
+		<h2>Fine Print</h2>
+		{{ daily_deal.terms }}
+		
+		<div id="fbcomments" style="width: 580px">
+		  <!--INSERT FB CODE HERE-->
+		</div>
+    </div>
+    
+</div>
+<div id="page-rightcol">
+    
+	{% include "themes/anchoragepress/shared/rightcol" %}
+	
+</div>

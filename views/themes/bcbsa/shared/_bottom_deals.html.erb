@@ -1,0 +1,63 @@
+<div id="bottom_deals_wrapper">
+    <%
+       side_deals =  @daily_deal.side_deals
+       side_deals.reject!{|deal| !deal.show_on_landing_page? if @publisher.main_publisher?  && !current_consumer.try(:has_master_membership_code?) && !admin?}
+    %>
+	<% if @daily_deal && side_deals.size > 0 %>
+		<!-- dont show bottom deals header on home page -->
+		<% if "#{controller_name}##{action_name}" != "publishers#deal_of_the_day" %>
+			<h4><%= t(:bottom_deal_header_message) %></h4>
+		<% end %>
+				 
+ 		<!-- bottom_deal_nav_wrapper -->
+ 		<div id="bottom_deal_nav_wrapper">
+ 		  <!-- bottom_deals slider widget --> 
+ 		   <div class="clear"></div>
+ 		   <!-- "previous page" action --> 
+ 		   <a class="prev browse left"></a>
+ 		   <!-- root element for scrollable --> 
+ 		   <div class="scrollable" id=browsable>   
+ 		  	<!-- root element for the items -->
+ 		  	<div class="items"> <!-- <div class="items"> -->
+ 		 			<% side_deals.shuffle.each_with_index do |bottom_deal, index| %>
+ 		 			    <%= raw '<div id="side_deals" class="other_deal_tracking">' if index % 3 == 0 %>
+ 		   		    		<%= render :partial => with_theme('daily_deals/bottom_deal'), :locals => {:bottom_deal => bottom_deal} %>
+ 		 			    <%= raw '</div>' if index % 3 == 2 or index == side_deals.size - 1 %>
+ 		 			<% end %>		
+ 		  	</div> <!-- /items -->
+ 		   </div><!-- /scrollable --> 
+ 		   <!-- "next page" action --> 
+ 		   <a class="next browse right"></a> 
+ 		    
+ 		   <!-- wrapper for navigator elements --> 
+ 		   <div class="navi"></div>  
+ 		<!-- bottom_deal_nav_wrapper -->
+ 		</div>
+ 		   	
+ 		   <!-- javascript coding 
+ 		   <script> 
+ 		   $(document).ready(function() {
+ 		   
+ 		   $("#browsable").scrollable().navigator();	
+ 		   });
+ 		   </script> 
+ 		   --> 
+
+	<% end %> <!-- /if side deals -->
+
+
+	<a id="wish_list" href="#">
+		<!--
+<p id="text_style_1">Is there</p>
+		<p id="text_style_2">a deal you</p>
+		<p id="text_style_3">wish</p>
+		<p id="text_style_4">was on</p>
+		<p id="text_style_5">this page?</p>
+		<p id="text_style_6">Let us</p>
+		<p id="text_style_7">know</p>
+		<p id="text_style_8">and we'll see</p>
+		<p id="text_style_9">what we can do.</p>
+-->
+	</a>
+	<div id="clear"></div>
+</div>

@@ -1,0 +1,30 @@
+<% set_page_title "Reports: Online Coupon Summary" %>
+
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => { :csv_url => reports_publishers_url(url_options.merge(:format => "csv")) }) %>
+
+<%= render(:partial => "reports/navigation", :locals => {:page => :coupon_summary, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publishers_summary",
+  :data_source => reports_publishers_path(:format => "xml"),
+  :data_params => { :summary => @summary },
+  :result_node => :publisher,
+  :data_columns => [
+    [:publisher_name, { :label => "Publisher", :class_name => "left", :formatter => "formatUrl('publisher_href')" }],
+    [:publisher_href, { :display => false }],
+    [:advertisers_count, { :label => "Advertisers", :parser => "number" }],
+    [:coupons_count, {:label => "Coupons", :parser => "number"}],
+    [:impressions_count, { :label => "Impressions", :parser => "number" }],
+    [:clicks_count, { :label => "Clicks", :parser => "number" }],
+    [:click_through_rate, { :label => "CTR", :parser => "number", :formatter => "formatRate" }],
+    [:prints_count, { :label => "Prints", :parser => "number" }],
+    [:txts_count, { :label => "Texts", :parser => "number" }],
+    [:emails_count, { :label => "Emails", :parser => "number" }],
+    [:calls_count, { :label => "Calls", :parser => "number" }],
+    [:facebooks_count, { :label => "Facebook", :parser => "number" }],
+    [:twitters_count, { :label => "Twitter", :parser => "number" }]
+  ]
+}) %>

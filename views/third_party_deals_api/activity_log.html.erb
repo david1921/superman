@@ -1,0 +1,62 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "activity-log" %>
+<% end %>
+
+<% @recent_activity_logs.each do |log_item| %>
+<table class="activity-log">
+  <tbody>
+    <tr>
+      <td class="label">Log Id:</td>
+      <td class="content"><%= log_item.id %></td>
+    </tr>
+    <tr>
+      <td class="label">Logged At:</td>
+      <td class="content"><%= log_item.created_at %> (<%= time_ago_in_words log_item.created_at %> ago)</td>
+    </tr>
+    <tr>
+      <td class="label">Api Call:</td>
+      <td class="content"><%= log_item.api_name %> &rarr; <%= log_item.api_activity_label %></td>
+    </tr>
+    <tr>
+      <td class="label">Related To:</td>
+      <td class="content"><%= log_item.loggable.present? ? "#{log_item.loggable.class.name} #{log_item.loggable.id}" : "" %></td>
+    </tr>
+    <tr>
+      <td class="label">Request URL:</td>
+      <td class="content"><%= log_item.request_url %></td>
+    </tr>
+    <tr>
+      <td class="label">Initiated by us?</td>
+      <td class="content"><%= log_item.request_initiated_by_us? ? "Yes" : "No" %></td>
+    </tr>
+    <tr>
+      <td class="label">Request Body:</td>
+      <td class="content"><pre><%= log_item.request_body %></pre></td>
+    </tr>
+    <tr>
+      <td class="label">Response HTTP Status:</td>
+      <td class="content"><%= log_item.http_status_code %></td>
+    </tr>
+    <tr>
+      <td class="label">Response Body:</td>
+      <td class="content"><pre><%= log_item.response_body %></pre></td>
+    </tr>
+    <tr>
+      <td class="label">Response Time:</td>
+      <td class="content"><%= log_item.response_time %>s</td>
+    </tr>
+    <tr>
+      <td class="label">Api Status Code:</td>
+      <td class="content"><%= log_item.api_status_code %></td>
+    </tr>
+    <tr>
+      <td class="label">Api Status Message:</td>
+      <td class="content"><%= log_item.api_status_message %></td>
+    </tr>
+    <tr>
+      <td class="label">Internal Status Message:</td>
+      <td class="content"><%= log_item.internal_status_message %></td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

@@ -1,0 +1,20 @@
+<% set_daily_deal_page_title_slug "Feature Your Business" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">Contact Us</h1>
+
+    <h2>Main Office</h2>
+    <p>
+		<%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+		<%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+		<%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}<br/>".html_safe unless @publisher.city.blank? %> 
+		<%= "#{@publisher.formatted_phone_number}<br/>".html_safe unless @publisher.support_phone_number.blank? %>    </p>
+    </p>
+
+    <% unless @publisher.sales_email_address.blank? %>
+    <h2 style="margin-top: 18px;">TO HAVE YOUR BUSINESS FEATURED ON DAILY DEAL OR COUPONS</h2>
+    <p>Please email Julie Morrison at <a href="mailto:jmorrison@fortwayne.com">jmorrison@fortwayne.com</a> or Gordon Given at <a href="mailto:ggiven@fwn.fortwayne.com">ggiven@fwn.fortwayne.com</a>. Or call 260-461-8775.</p>
+    <% end %>
+  </div>
+</div>

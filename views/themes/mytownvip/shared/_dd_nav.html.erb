@@ -1,0 +1,16 @@
+<% publisher_national = Publisher.find_by_label("mytownvip-national") %>
+<% publisher_vipescapes = Publisher.find_by_label("mytownvip-vipescapes") %>
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+		<li class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="deal first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><%= t("todays_deal") %></a></li>
+
+		<li><a class="marketplace" href="<%= public_deal_of_day_path(publisher_national.label) %>">Marketplace</a></li>
+
+		<li><a class="escapes" href="<%= public_deal_of_day_path(publisher_vipescapes.label) %>">VIP Escapes</a></li>
+
+	    <% if @publisher.allow_all_deals_page %>
+	      <li class="last <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>"><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6" class="alldeals all_deals_tracking <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals<span></span></a> </li>
+	    <% end %>
+
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->

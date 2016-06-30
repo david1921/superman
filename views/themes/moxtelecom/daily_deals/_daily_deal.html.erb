@@ -1,0 +1,37 @@
+<div class="content_box deal_listing">
+	<img src="<%= daily_deal.photo.url(:alternate_standard) %>" alt="<%= daily_deal.advertiser.name %>" class="deal_photo" />
+	<div class="discount">
+		<span>Discount</span>
+		<%= number_to_percentage(100 * daily_deal.savings / daily_deal.value, :precision => 0) %>
+	</div>
+	<div class="deal_info">
+		<h3><%= daily_deal.value_proposition %></h3>
+		<% unless daily_deal.value_proposition_subhead.blank? %>
+			<h4><%= daily_deal.value_proposition_subhead %></h4>
+		<% end %>
+		<div class="highlights">
+			<%= raw daily_deal.highlights %>
+		</div>
+		<div class="deal_specs">
+			<div class="value">
+				<span>Value</span>
+				<%= formatted_price_for(daily_deal.value) %>
+			</div>
+			<div class="savings">
+				<span>Savings</span>
+				<%= formatted_price_for(daily_deal.savings)%>
+			</div>
+				<% if daily_deal.active? %>
+					<a class="view" href="<%= daily_deal_path(daily_deal) %>">View</a>
+				<% else %>
+					<a class="view" href="#">Over</a>
+				<% end %>
+			<div class="price">
+				<span>Price</span>
+				<%= formatted_price_for(daily_deal.price) %>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

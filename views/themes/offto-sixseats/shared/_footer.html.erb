@@ -1,0 +1,26 @@
+<div id="dd_footer">
+	<%= raw render :partial => 'shared/a_a_alt' %>
+	<div id="dd_footer_links">
+		<ul>
+			<li><a href="#">About us</a></li>
+			<li><a href="#">Affiliates</a></li>
+			<li><a href="#">Advertise with us</a></li>
+			<li><a href="#">Jobs</a></li>
+		</ul>
+		<ul>
+			<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Deal</a></li>
+			<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+			<!-- <li><a href="">Past Deals</a></li> -->
+			<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Feature Your Business</a></li>
+			<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+			<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+		</ul> <!-- footer_nav -->
+		<ul id="legal_nav">
+			<li><%= daily_deals_privacy_link(@publisher) %></li>
+			<li><%= daily_deals_terms_link(@publisher) %></li>
+			<li>Copyright 2011</li>
+			<li>OffTo</li>
+		</ul> <!-- legal_nav -->
+	</div>
+	<div class="clear"></div>
+</div><!-- dd_footer -->

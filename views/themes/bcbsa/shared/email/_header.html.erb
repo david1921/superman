@@ -1,0 +1,24 @@
+<!--BLUE LOGO HEADER-->
+         <table width="648" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" style="margin-top:20px;">
+          <tr>
+            <td valign="top" align="left" width="183" bgcolor="#0083bb" style="background-color:#0083bb;">
+            
+            	<% case true %>
+					<% when true %>
+						<a href="http://<%= @publisher.daily_deal_host %><%= public_deal_of_day_path(@publisher.label) %>"><img style="display:block; margin-left: 0px;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/logos/blue365_bar.png" width="183" height="78" alt="Blue365" border="0"/></a>
+					<% else %>
+						<a href="http://<%= @publisher.daily_deal_host %><%= public_deal_of_day_path(@publisher.label) %>"><img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/logos/blue365_bar_cross.png" width="215" height="78" alt="Blue365" border="0"/></a>
+				<% end %>
+				
+            </td>
+			<td valign="middle" align="left" bgcolor="#0083bb" style="background-color:#0083bb;" width="170">
+				<img style="display:block; margin-top: 12px; margin-left: 7px;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/graphics/branding/<%=@publisher.label.downcase %>_logo.png" alt="" />&nbsp;</td>          
+            <td bgcolor="#0083bb" style="background-color:#0083bb;" height="78" align="right" valign="bottom">
+                <%= render :partial => with_theme('shared/email/share') %>
+            </td>
+          </tr>
+		  <tr>
+		    <td colspan="3"><img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/spacer-white.gif" width="11" height="23" alt="" /></td>
+		  </tr>
+        </table>
+<!--/BLUE LOGO HEADER-->

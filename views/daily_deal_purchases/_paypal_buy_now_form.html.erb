@@ -1,0 +1,9 @@
+<%=t '.pay_with_cred_card' %>
+
+<div id="payment_method_paypal" class="row">
+  <% form_tag(@paypal_configuration.ipn_url) do -%>
+    <%= paypal_buy_now_form_inputs(daily_deal_purchase, @paypal_configuration).html_safe %>
+
+    <input type="image" src="<%= %Q(#{request.protocol}www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif) %>" border="0" name="submit" alt="<%=t '.buy_button_alt_text' %>">
+  <% end -%>
+</div>

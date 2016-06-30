@@ -1,0 +1,9 @@
+<%= {
+  :captured => @daily_deal_purchase.captured? ? "true" : "false",
+  :vouchers => @daily_deal_purchase.daily_deal_certificates.collect do |certificate|
+    { 
+      :name => certificate.redeemer_name,
+      :serial_number => certificate.serial_number
+    }
+  end
+}.to_json.html_safe -%>

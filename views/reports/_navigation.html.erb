@@ -1,0 +1,30 @@
+<div id="summary_links">
+  <%= nav_link page, :coupon_summary, "Online Coupon Summary",
+        reports_publishers_url(url_options.merge(:summary => "web_offers")) %>
+
+  <% if admin? %>
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :billing_summary, "Billing Summary",
+          reports_publishers_url(url_options.merge(:summary => "billing")) %>
+
+    &nbsp;&brvbar;&nbsp;
+    <%= nav_link page, :purchased_deal_certificates, "Purchased Deal Certificates",
+          purchased_gift_certificates_reports_url(url_options) %>
+  <% end %>
+
+  &nbsp;&brvbar;&nbsp;
+  <%= nav_link page, :purchased_daily_deals, "Purchased Daily Deals",
+        purchased_daily_deals_reports_path(url_options) %>
+
+  &nbsp;&brvbar;&nbsp;
+  <%= nav_link page, :refunded_daily_deals, "Refunded Daily Deals",
+        refunded_daily_deals_reports_url(url_options) %>
+
+  &nbsp;&brvbar;&nbsp;
+  <%= nav_link page, :daily_deals_social_media, "Daily Deals Social Media",
+        daily_deals_reports_publishers_url(url_options) %>
+
+  &nbsp;&brvbar;&nbsp;
+  <%= nav_link page, :affiliated_daily_deals, "Affiliate Daily Deals",
+        affiliated_daily_deals_reports_path(url_options) %>
+</div>

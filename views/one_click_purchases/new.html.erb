@@ -1,0 +1,57 @@
+<%- set_daily_deal_page_title_slug "Buy Now" -%>
+
+<div id="one_click_wrap" class="one_click_purchase content_wrap">
+  <!-- The details form is replaced via AJAX when there are purchase-setup errors -->
+  <%= render(:partial => with_theme("details_form"), :locals => {
+        :publisher => @publisher,
+        :daily_deal => @daily_deal,
+        :daily_deal_purchase => @daily_deal_purchase
+      }) %>
+
+  <form id="daily_deal_purchase_payment" autocomplete="off">
+      <section class="payment">
+          <h2>Payment<span class="payment_options"></span></h2>
+          <div class="section_content">
+
+              <%= braintree_error_messages(@result) %>
+    
+              <div id="credit_card_selection">
+                <!-- The credit-card section is replaced via AJAX when the user signs in -->
+                  <%= render(:partial => "consumers/credit_card_selection", :locals => { :publisher => @publisher }) %>
+              </div>
+
+              <% if @daily_deal.requires_shipping_address? -%>
+                <fieldset id="use_shipping_address_as_billing_address">
+                  <%= check_box_tag "transaction[custom_fields][use_shipping_address_as_billing_address]", "true", true, :onchange => "javascript:toggleBillingInfo();" %> <%= label "transaction_custom_fields_use_shipping_address_as_billing_address", "Use Shipping Address for Billing" %>
+                </fieldset>
+              <% end -%>
+
+              <div id="billing_details" class="billing_details"<%= " style='display:none;'" if @daily_deal.requires_shipping_address? %>>
+                <%= render :partial => "consumers/billing_details", :locals => {:daily_deal_purchase => @daily_deal_purchase} %>
+              </div>
+          </div><!--/section_content-->
+      </section><!-- payment -->
+
+      <div id="buttons">
+          <ul class="input_errors"></ul>
+          <button id="buy_now_button" type="submit">Buy Now</button>
+          <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+  </form>
+</div><!-- one_click_wrap -->
+
+<%= javascript_include_tag "translations" %>
+<% javascript_tag do %>
+  I18n.locale = '<%= I18n.locale.to_s %>';
+<% end %>
+
+<%= javascript_include_tag "daily_deal_purchase_one_click", "jquery.validation", "app/daily_deal_purchases/single_page_checkout" %>
+<% javascript_tag do %>
+  Analog.SinglePageCheckout.attach('#one_click_wrap');
+<% end %>
+
+<% javascript_tag do %>
+function toggleBillingInfo() {
+    $('billing_details').toggle();
+  }
+<% end %>

@@ -1,0 +1,32 @@
+<div class="left_column">
+  <% form_for [@publisher, @discount] do |f| -%>
+    <%= error_messages_for :discount %>
+  
+    <%= f.text_field_div :code, nil, :required => "true" %>
+    <%= f.text_field_div :amount, nil, :required => "true" %>
+
+    <div class="row date">
+      <div class="label"><%= f.label :first_usable_at %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:first_usable_at, :popup => :force) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+    
+    <div class="row date">
+      <div class="label"><%= f.label :last_usable_at %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:last_usable_at, :popup => :force) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+
+    <%= f.check_box_div :usable_at_checkout %>
+    <%= f.check_box_div :usable_only_once %>
+    
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{edit_publisher_url(@publisher)}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>

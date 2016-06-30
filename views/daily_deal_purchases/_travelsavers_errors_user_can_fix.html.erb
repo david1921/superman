@@ -1,0 +1,15 @@
+<% if flash[:travelsavers_errors_user_can_fix].present? %>
+<div class="errorExplanation travelsavers" id="errorExplanation">
+  <h2>
+    Errors prevent this purchase from proceeding
+  </h2>
+  <p>
+    There were problems with the following fields:
+  </p>
+  <ul>
+    <% flash[:travelsavers_errors_user_can_fix].each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

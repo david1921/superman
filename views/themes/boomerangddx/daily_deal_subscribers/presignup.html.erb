@@ -1,0 +1,22 @@
+<h1>Hop on the <strong>DDX, DailyDealXPRESS.com,</strong> Central Wisconsin's 24/7 super daily deals.<br />
+<em>On the air, Online, On your mobile phone!</em></h1>
+<h2>Enter your email address and zip code to receive Free Daily Deal alerts:</h2>
+
+<form action="/publishers/<%= @publisher.id %>/daily_deal_subscribers" method="POST" class="presignup">
+  <input type="hidden" name="redirect_to" value="<%= verifiable_url("/publishers/#{@publisher.id}/daily_deal_subscribers/thank_you") %>" id="redirect_to">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+	<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+	<input id="subscriber_zip_required" name="subscriber[zip_code_required]" type="hidden" value="true" />
+	<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+	<fieldset>
+		<input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" placeholder="Email Address" />
+		<input class="dd_input" id="subscriber_zip" name="subscriber[zip_code]" size="5" title="Zip Code" type="text" placeholder="Zip Code" />	
+	</fieldset>
+	<fieldset>
+		<input name="subscriber[terms]" type="hidden" value="0" />
+		<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+		<label id="subscriber_terms" for="subscriber_terms">I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></label>
+	</fieldset>
+	<p><input id="subscribe_button" class="button" type="submit" value="Sign Up" /></p>
+</form>
+<p>Save 50-90% off Central Wisconsin Deals. DailyDealXpress.com is coming soon - All Aboard!</p>

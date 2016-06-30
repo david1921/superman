@@ -1,0 +1,14 @@
+        <div class="footer">
+          <% @offer.address do |line| %><%= line %><br /><% end %>
+          <span class="phone_number"><%= raw "#{h(@offer.formatted_phone_number)}<br />" unless @offer.formatted_phone_number.blank? %></span>
+        </div>
+        <% if @offer.publisher.label == "sdreader" -%>
+        <div class="publisher_logo">
+          <%= image_tag "sdreader/get1free.png", :alt => "Get 1 Free" %>
+          <%= image_tag "http://media.sdreader.com/img/main_logo.jpg", :alt => "SD Reader" %>
+        </div>
+        <% elsif @offer.publisher.label == "vcreporter" -%>
+        <div class="publisher_logo">
+          <%= image_tag "vcreporter/print_logo.jpg", :alt => "VC Reporter Coupons Online", :style => "height: 72px; width: 108px;" %>
+        </div>
+        <% end -%>

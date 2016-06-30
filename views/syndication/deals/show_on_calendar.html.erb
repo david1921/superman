@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Syndication</title>
+</head>
+<body>
+<div class="month-day-hover-content">
+  <div class="hover-tool-arrow"></div>
+  <h2><%= @deal.value_proposition %></h2>
+  <%= image_tag(@deal.photo.url(:syndication)) %>
+  <p>Price:<span><%= @deal.humanize_price %></span></p>
+  <p>Date:<span><%= @deal.start_at_date_only %>-<%= @deal.hide_at_date_only %></span></p>
+  <% if @deal.national_deal? %>
+    <div class="national-tag"></div>
+  <% end %>
+  <%= link_to( "View Detail", syndication_deal_path(@deal, collect_request_parameters.merge!({:from_view => 'calendar'})), :id => "view-details", :class => "" ) %>
+ </div>
+</body>
+</html>

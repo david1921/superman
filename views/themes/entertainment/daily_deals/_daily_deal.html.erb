@@ -1,0 +1,50 @@
+<div class="all_deals_row">
+	<div class="left_col">
+		<img class="deal_photo" src="<%= daily_deal.photo.url %>" alt="" width="200" />
+		<div class="deal_text">
+			<h2><%= daily_deal.advertiser_name %></h2>
+			<h3><%= daily_deal.value_proposition %></h3>
+			
+			<% if daily_deal.advertiser.store.present? %>
+				<% if daily_deal.advertiser.stores.size > 1 %>				
+				<h4>Multiple Locations</h4>
+				<% else  %>
+				<h4><%= daily_deal.advertiser.store.city %></h4>
+				<% end %>
+			<% end %>
+			
+			<a href="<%= daily_deal_url(daily_deal) %>"><img class="view_details" src="/themes/entertainment/images/buttons/view_details.png"></a>
+		</div>
+	</div>
+	<div class="right_col">
+		<div class="dashboard">
+			<div class="all_deals_buy_tag">
+				<div class="buy_now">
+					<h3 class="price"><%= formatted_price_for(daily_deal.price) %></h3>
+					<a href="<%= new_daily_deal_daily_deal_purchase_path(daily_deal) %>"><span>BUY NOW</span></a>
+				</div>
+			</div>
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td class="first"> 
+						Value
+						<span><%= formatted_price_for(daily_deal.value) %></span>
+					</td>	
+					<td>
+						Discount
+						<span><%= number_to_percentage(daily_deal.savings_as_percentage, :precision => 0) %></span>
+					</td>	
+					<td class="last">
+						You Save
+						<span><%= formatted_price_for(daily_deal.savings) %></span>
+					</td>	
+				</tr>
+			</table>
+			<div class="timer">
+				<h4>Time Left:</h4>
+				<h5><%= hours_or_days_remaining_from_now(daily_deal.hide_at) %></h5>
+			</div>
+		</div><!-- END DASHBOARD -->
+	</div>
+	<div class="clear"></div>
+</div>	

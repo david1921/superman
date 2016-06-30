@@ -1,0 +1,12 @@
+<div id="subscribe_form">
+	<p class="subscribe">ENTER YOUR EMAIL FOR DEAL ALERTS!</p>
+	<form action="/publishers/{{ publisher.id }}/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+		<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+		<p><input id="subscriber_email" name="subscriber[email]" size="30" class="ghostie" type="text" value="Email Address" title="Email Address"/></p>
+		<p><input id="subscribe_button" type="submit" /></p>
+		<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+			<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+		</p>
+	</form>
+</div>

@@ -1,0 +1,14 @@
+          <% @publisher_categories.sort_by(&:name).each_slice((@publisher_categories.size / 2.0).ceil) do |categories_slice| %>
+            <div class="column">
+              <% categories_slice.each do |category| %>
+              <div class="publisher_category">
+                <%= check_box_tag(
+                      "category_id[]", 
+                      category.id, 
+                      @categories.include?(category)
+                ) %>
+                <%= label_tag category.name, category.name %>
+              </div>
+              <% end -%>
+            </div>
+          <% end if @publisher_categories.present? -%>

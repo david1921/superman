@@ -1,0 +1,5 @@
+<div id="next_steps">
+  <% if @daily_deal_purchase.travelsavers_booking.next_steps.try(:html).present? %>
+    <%= @daily_deal_purchase.travelsavers_booking.next_steps.html.html_safe %>
+  <% end %>
+</div>

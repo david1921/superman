@@ -1,0 +1,78 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+      
+  <title>rubberdollar.com | Coupons, Discounts, and Deals</title>
+  
+  <%= render :partial => 'layouts/offers/sdcitybeat/stylesheets_and_javascript' %>
+  <%= render :partial => 'layouts/offers/standard/facebook_metadata' %>
+  <%= raw render :partial => "/shared/tracking_offers" %>
+</head>
+
+<body>
+
+<div class="content" id="content">
+  <div id="analog_analytics">
+       
+      <div id="header">
+        <div id="left">
+          <a href="http://www.facebook.com/rubberdollar"><img src="/themes/rubberdollar/images/facebook.png" width="45" height="40" alt="Facebook" /></a><a href="https://twitter.com/RubberDollar"><img src="/themes/rubberdollar/images/twitter.png" width="45" height="40" alt="Twitter" /></a>
+        </div>   
+        <h1 id="center"><%= link_to "", public_deal_of_day_url(:label => @publisher.label, :host => @publisher.daily_deal_host), 
+          :title => "Rubber Dollar. Making Life Affordable" %></h1>
+        <div id="right">
+          <!--<a href="#"><img src="/themes/rubberdollar/images/buttons/optimal-use.png" width="238" height="46" alt="For optimal use click here:" /></a>
+          -->
+        </div>
+      </div><!--end header-->
+       
+       <div id="nav">
+         <div id="topnav">
+           <ul>
+           	 <li><a href="http://my719deals.net/index.html">Home</a></li>
+			<li><a href="http://my719deals.net/about.html">About Us</a></li>
+			<li><a href="http://my719deals.net/advertise.html">Advertise with Us</a></li>
+			<li><a href="http://my719deals.net/reviews.html">Reviews</a></li>
+			<li><a href="http://my719deals.net/franchise.html">Employment</a></li>
+			<li><a href="http://my719deals.net/faq.html">F.A.Q.</a></li>
+			<li><a href="http://my719deals.net/contact.html">Contact Us</a></li>
+		 
+            <li><a href="/publishers/156/daily_deal/login">Sign In</a></li>
+			
+		 
+		 
+           </ul>
+         </div>
+       </div><!--end nav-->
+       <div id="ribbonlinks">
+          <a id="first" href="http://coupons.rubberdollar.net"><span class="top">Deal Certificates</span><span class="bottom"> &amp; Coupons</span></a>
+          <% link_to public_deal_of_day_url(:label => @publisher.label, :host => @publisher.daily_deal_host), :id => "second" do %><span class="top">Daily Indulgence</span><span class="bottom"> Colorado Springs</span><% end -%>
+          <a id="third" href="http://coupons.rubberdollar.net"><span class="top">Daily Indulgence</span><span class="bottom"> Pueblo (Coming Soon!)</span></a>
+        </div>
+        <div id="mainbody"> 
+          <div id="analog_analytics_content">
+             <%= yield %>
+          </div>
+        </div>
+          		
+  </div><!-- end analog_analytics -->
+  <div id="footerbar">
+   <p>&copy; 2010 RubberDollar.com</p>
+  </div>
+</div><!-- end content -->
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9909023-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+{% if daily_deal %}
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <meta name='keywords' content="{{ daily_deal.advertiser.name }}, {{ daily_deal.value_proposition }}">
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+  <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  <meta name="topicname" content="home">
+  <meta name="WT.cg_s" content="Partner">
+  <meta name="WT.cg_n" content="Home">
+  <meta name="WT.ti" content="Partner">
+  <meta name="DCSext.mtype" content="interactive">
+
+  <title>Creative Loafing Deals - Deal of the Day - Tampa Bay</title>
+  
+  <link href="/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/daily_deals/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/tampa/certificates.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+
+  <!--[if IE]>
+  <link href="/stylesheets/ie.css?1287550047" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if IE 7]>
+  <link href="/themes/tampa/stylesheets/ie7.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  
+
+  <script src="/javascripts/lib/prototype.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/effects.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/controls.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/application.js?1287550047" type="text/javascript"></script>
+
+  <meta name="sectionname" content="partner">
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body class="{{ controller.controller_name }} {{ controller.action_name }}">
+
+<div class="content" id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+			<div id="header">
+				<div class="header_row_1">
+					<div id="branding"><a target="_blank" href="http://cltampa.com/"><img src="/themes/tampa/images/backgrounds/cl_header.png" width="265" height="94" alt="Creative Loafing" /></a></div>
+					<div id="horizontal_banner_ad">
+					  <!-- begin ad tag (tile=1) -->
+            <script type="text/javascript">
+            //<![CDATA[
+            ord=Math.random()*10000000000000000;
+            document.write('<script type="text/javascript" src="https://ad.doubleclick.net/adj/tampa.creativeloafing/cldeals;tile=1;dcopt=ist;sz=728x90;ord=' + ord + '?"><\/script>');
+            //]]>
+            </script>
+            <noscript><a href="https://ad.doubleclick.net/jump/tampa.creativeloafing/cldeals;tile=1;sz=728x90;ord=123456789?" target="_blank" ><img src="https://ad.doubleclick.net/ad/tampa.creativeloafing/cldeals;tile=1;sz=728x90;ord=123456789?" border="0" alt="" /></a></noscript>
+            <!-- end ad tag -->
+					</div>
+				</div>
+				<div class="header_row_2">
+					<div id="masthead"><a href="/publishers/tampa/deal-of-the-day"><img src="/themes/tampa/images/backgrounds/cl_deals.png" width="364" height="91" alt="CL Deals" /></a></div>
+					<div id="site_nav">
+						<ul class="nav">
+							<li><a target="_blank" href="http://cltampa.com/news">NEWS</a></li>
+							<li><a target="_blank" href="http://cltampa.com/food">FOOD</a></li>
+							<li><a target="_blank" href="http://cltampa.com/music">MUSIC</a></li>
+							<li><a target="_blank" href="http://cltampa.com/arts">ARTS</a></li>
+							<li><a target="_blank" href="http://cltampa.com/movies">MOVIES</a></li>
+							<li><a target="_blank" href="http://cltampa.com/green">GREEN</a></li>
+							<li><a target="_blank" href="http://cltampa.com/sexandlove">SEX</a></li>
+							<li><a target="_blank" href="http://cltampa.com/CLGBT">CLGBT</a></li>
+							<li><a target="_blank" href="http://cltampa.com/sports">SPORTS</a></li>
+							<li><a target="_blank" href="http://blogs.creativeloafing.com/dailyloaf/">DAILY LOAF</a></li>
+						</ul>
+					</div>
+				</div><!-- /header_row_2 -->
+				<div class="header_row_3">
+					<ul id="deal_nav" class="nav">
+						<li id="todays_deal"><a href="{{ publisher.todays_daily_deal_path }}"><span id="current_navbar_link">Deal of the Day</span></a></li>
+						<li id="how_it_works"><a href="{{ publisher.how_it_works_path }}">How it Works</a></li>
+						<li id="contact"><a href="{{ publisher.faq_path }}">FAQ</a></li>
+						<li id="contact"><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+						<li id="cart"><a href="{{ publisher.cart_path }}">My Cart</a></li>
+						  {% if publisher.launched? %}
+			              	{% if publisher.current_user_belongs_to? %}
+						<li id="my_deals"><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+						<li id="my_account"><a href="{{ publisher.my_account_path }}">My Account</a></li>
+						<li id="sign_out"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+			              	{% else %}
+						<li id="sign_in_nav"><a href="{{ publisher.login_path }}">Sign In</a></li>
+						{% include with_theme "shared/facebook_connect_liquid" %}
+	              			{% endif %}
+	            		{% endif %}
+					</ul>
+					<div id="deal_signup">
+					   {% if publisher.current_user_belongs_to? != true %}
+						<form id="signup" action="{{ publisher.subscribers_path }}" class="email_subscription_tracking" method="post">
+							<div>
+						  		<input id="redirect_to" name="redirect_to" type="hidden" value="/publishers/{{ publisher.id }}/daily_deals/subscribed" />
+						  	</div>
+							<div>
+								<span class="email"><input id="subscriber_email" class="text" name="subscriber[email]" size="30" type="text" title="Enter email for free Real Deal alerts" value="Enter email for free Real Deal alerts" /></span>
+		      					<input id="subscriber_submit" name="commit" type="image" src="/themes/tampa/images/buttons/subscribe.png" value="SUBSCRIBE" />
+							</div>
+							<div class="terms">
+		  						<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" /> I agree to the &nbsp;<a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and &nbsp;<a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a>
+							</div>
+						</form>
+						{% endif %}
+						<script type="text/javascript">
+						//<![CDATA[
+						  (function() {   
+						    var input = $('subscriber_email');
+						    var placeholderText = "";
+						    if (input) {
+						      input.value = placeholderText;
+						      input.observe('click', function(event){
+						        var element = event.element();
+						        if(placeholderText === element.value) {
+						          element.value = '';
+						          element.activate();
+						        }
+						      });
+						      input.observe('blur', function(event) {
+						        var element = event.element();    
+						        if (element.value.length == 0) {
+						          element.value = placeholderText;
+						        }
+						      });
+						    }
+						  })();
+						
+						//]]>
+						</script>
+					</div><!-- end deal_signup -->
+
+				</div><!-- /header_row_3 -->
+			</div><!-- end header  -->
+
+			<div class="page_container">
+				<div class="page_column_1">
+				  {% include "themes/tampa/daily_deals/side_nav" %}
+					<div id="vertical_banner_ad">
+					  <!-- begin ad tag (tile=3) -->
+            <script type="text/javascript">
+            //<![CDATA[
+            ord=Math.random()*10000000000000000;
+            document.write('<script type="text/javascript" src="https://ad.doubleclick.net/adj/tampa.creativeloafing/cldeals;tile=3;sz=160x600;ord=' + ord + '?"><\/script>');
+            //]]>
+            </script>
+            <noscript><a href="https://ad.doubleclick.net/jump/tampa.creativeloafing/cldeals;tile=3;sz=160x600;ord=123456789?" target="_blank" ><img src="https://ad.doubleclick.net/ad/tampa.creativeloafing/cldeals;tile=3;sz=160x600;ord=123456789?" border="0" alt="" /></a></noscript>
+            <!-- end ad tag -->
+					</div>
+				</div><!-- /page_column_1 -->
+				    {% include "shared/flash" %}
+						{{ content_for_layout }}
+			</div>
+
+			<div class="clear"></div>
+
+			<div id="footer">
+			  <p id="navbar_bottom">
+			    <span><a href="http://tampa.creativeloafing.com/gyrobase/AboutUs">About Us</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deals/contact">Contact Us</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deals/how_it_works">How it Works</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deals/privacy_policy">Privacy Policy</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deals/terms">Terms of Use</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deals/faqs">FAQ</a></span>
+			    <span><a href="/publishers/{{ publisher.id }}/daily_deal/login">Log in/Register</a></span>
+			    <span class="last"><a href="{{ publisher.contact_path }}" class="last">Feature Your Business</a></span>
+			  </p> 
+			
+			{% include "shared/a_a_alt" %}
+			</div><!-- end footer -->
+
+		</div><!-- end daily_deal -->
+	</div><!-- end analog_analytics -->
+</div><!-- end content -->
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>

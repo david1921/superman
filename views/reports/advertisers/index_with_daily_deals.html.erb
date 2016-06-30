@@ -1,0 +1,22 @@
+<% set_page_title "Reports: Advertisers with Daily Deals" %>
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => reports_publisher_advertisers_url(@publisher, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "reports/publishers/navigation", :locals => {:page => :daily_deal_summary, :url_options => url_options}) %>
+
+<%= render :partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "advertisers_with_daily_deals",
+  :data_source => reports_publisher_advertisers_path(@publisher, :format => "xml"),
+  :data_params => { :summary => @summary },
+  :result_node => :advertiser,
+  :data_columns => [
+    [:advertiser_name, { :label => "Advertiser", :class_name => "left",  :formatter => "formatUrl('advertiser_href')" }],
+    [:advertiser_href, { :display => false }],
+    [:facebook_count, { :label => "Facebook" }],
+    [:twitter_count, { :label => "Twitter" }]
+  ]
+} %>

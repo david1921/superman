@@ -1,0 +1,9 @@
+<div id="notification">
+  <%= link_to_function "NOTIFY ME ABOUT<br/> NEW COUPONS", nil, :id => "show_notification" do |page|
+    page[:notification_form].show
+    page[:notification_email].focus
+  end -%>
+  <% form_remote_tag :html => { :style => "display: none;", :id => "notification_form" } do %>
+    <div><%= text_field_tag :email, "Email Address", :id => "notification_email" %></div>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+<% set_page_title "Reports: Refunded Daily Deals" %>
+
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => { :csv_url => refunded_daily_deals_by_market_reports_publisher_url( url_options.merge(:format => "csv")) }) %>
+                                                                              
+<%= render(:partial => "navigation", :locals => {:page => :refunded_daily_deals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publishers_refunded_daily_deals",
+  :data_source => refunded_daily_deals_by_market_reports_publisher_path(:format => "xml"),
+  :data_params => {},
+  :result_node => :market,
+  :data_columns => [
+    [:market_name, { :label => "Market", :class_name => "left", :formatter => "formatUrl('market_href', false)" }],
+    [:currency_symbol, { :display => false }],
+    [:market_href, { :display => false }],
+    [:deals_count, { :label => "Deals w/ Refunds", :parser => "number" }],
+    [:refunded_vouchers_count, {:label => "Refunded Vouchers", :parser => "number"}],
+    [:deal_purchasers_count, { :label => "Purchasers", :parser => "number" }],
+    [:currency_code, { :display => true, :label => "Currency" }],
+    [:refunded_deals_gross, { :label => "Gross Refunded", :formatter => "formatCurrency" }],
+    [:refunded_deals_discount, { :label => "Discount", :formatter => "formatCurrency" }],
+    [:refunded_deals_amount, {:label => "Total Refunded", :formatter => "formatCurrency"}]
+  ]
+}) %>

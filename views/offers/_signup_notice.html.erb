@@ -1,0 +1,6 @@
+<% if !admin? && !publisher? && !advertiser.new_record? && advertiser.paid? && !advertiser.offers.present? -%>
+<div class="signup_notice">
+  <h2>Create your first coupon</h2>
+  <p>Please fill in the information below for your first coupon and click the Save button.</p>
+</div>
+<% end -%>

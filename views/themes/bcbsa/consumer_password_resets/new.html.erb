@@ -1,0 +1,40 @@
+<% set_daily_deal_page_title_slug t(:reset_password) %>
+
+<% unless @publisher.label == 'bcbsa-national' %>
+	<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	<ul>
+  <li>
+    <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+  </li>
+  <li class="no_underline">></li>
+		<li>
+			<a href="<%= daily_deal_login_path(@publisher) %>"><%= t(:log_in) %></a>
+		</li>
+		<li class="no_underline">></li>
+		<li class="no_underline">          
+			<%= t(:forgot_password) %>
+		</li>
+	</ul>
+	</div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+<% end %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_12 suffix_2 first rounded_corners">
+    <h1 class="content"><%= t(:forgot_password_title) %></h1>
+    <p><span id="forgot_pasword_question"><%= t(:forgot_password) %></span> <%= t(:forgot_password_enter_password) %></p>
+    <div id="password_reset_form">
+	<%= raw render :partial => '/themes/bcbsa/shared/flash', :locals => { :flash => flash } %>
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row">
+        <div class="label"><%= label_tag(:email, "#{t(:email)}:") %></div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      	<div class="row button_row">
+        	<%= submit_tag(t(:reset_password), :name => "reset_password", :class => 'blue_button') %> 
+      	</div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

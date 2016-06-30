@@ -1,0 +1,4 @@
+<div class="<%= @publisher.theme %>">
+  <%= render :partial => "offers/panels/sdcitybeat/offer", :object => @offer %>
+  <div class="more_coupons"><%= link_to( "view more coupons and deal certificates", "/publishers/#{@publisher.id}/offers", :target => "_blank" )%></div>
+</div>

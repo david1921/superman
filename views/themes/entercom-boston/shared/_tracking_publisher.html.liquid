@@ -1,0 +1,52 @@
+<script type="text/javascript">
+adroll_adv_id = "ASFPDPUYQFAE3BF6TBNSKT";
+adroll_pix_id = "I4B7HBUXXZGT5LENFZL5KB";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+   __adroll_loaded=true;
+   var scr = document.createElement("script");
+   var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+   scr.setAttribute('async', 'true');
+   scr.type = "text/javascript";
+   scr.src = host + "/j/roundtrip.js";
+   document.documentElement.firstChild.appendChild(scr);
+   if(oldonload){oldonload()}};
+}());
+</script>
+
+<!-- START AdRoll Purchase Tag -->
+<script type="text/javascript">
+{% analytics_tag sale %}
+	adroll_conversion_value_in_dollars = "{{ daily_deal.price }}"
+{% endanalytics_tag %}
+</script>
+
+{% analytics_tag sale %}
+<!-- Begin purchase tracking -->
+	{% https %}
+		<img src="https://secure.ace-tag.advertising.com/action/type=689277297/bins=1/rich=0/mnum=1516/xssale={% analytics_tag_data value %}/xsmemid=value_2/logs=0" height=1 width=1 border=0>
+	{% endhttps %}
+	{% http %}
+		<img src="http://ace-tag.advertising.com/action/type=689277297/bins=1/rich=0/mnum=1516/xssale={% analytics_tag_data value %}/xsmemid=value_2/logs=0" height=1 width=1 border=0>
+	{% endhttp %}
+<!-- End purchase tracking -->
+{% endanalytics_tag %}
+
+{% analytics_tag signup %} 
+	{% https %}
+		<img src="https://secure.leadback.advertising.com/adcedge/lb?site=695501&betr=entercom_com_ltlb_cs=[+]1[720],3[8760]" width="1" height="1" border="0">
+	{% endhttps %}
+	{% http %}
+		<img src="http://leadback.advertising.com/adcedge/lb?site=695501&betr=entercom_com_ltlb_cs=[+]1[720],3[8760]" width="1" height="1" border="0">
+	{% endhttp %}
+{% endanalytics_tag %}
+
+{% analytics_tag landing %} 
+	{% https %}
+		<img src="https://secure.leadback.advertising.com/adcedge/lb?site=695501&betr=entercom_com_ltlb_cs=[+]1[720],3[8760]" width="1" height="1" border="0">
+	{% endhttps %}
+	{% http %}
+		<img src="http://leadback.advertising.com/adcedge/lb?site=695501&betr=entercom_com_ltlb_cs=[+]1[720],3[8760]" width="1" height="1" border="0">
+	{% endhttp %}
+{% endanalytics_tag %}

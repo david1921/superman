@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="label"><label>Select Locale:</label></div>
+  <div class="input">
+    <select id="advertiser_locale">
+      <%= options_for_select(I18n.available_locales, params[:editing_locale].try(:to_sym)) %>
+    </select>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  jQuery(function() {
+    (function($) {
+      var redirects = <%= raw locale_paths_json(model) %>;
+      $('#advertiser_locale').change(function() {
+        var selected_locale = $(this).val();
+        if(redirects[selected_locale] != '') {
+          window.location = redirects[selected_locale];
+        }
+      });
+    })(jQuery);
+  })
+</script>

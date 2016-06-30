@@ -1,0 +1,18 @@
+<div id="market_menu_wrapper">
+
+	<p>Location:</p>
+  <ul id="market_menu">
+     <li><a href="#" id="current_market_menu_selection"><span><%= @publisher.market_name_or_city %></span></a>
+       <%= market_selection_list(@publisher) %>
+     </li>
+	<script type="text/javascript">
+			jQuery("#market_menu ul li a").each(function(){
+					var theHref = jQuery(this).attr('href');
+					if(theHref.indexOf('zingin')!= -1){
+							jQuery(this).parent().remove();
+					}
+			});
+	</script>  
+  </ul>
+
+</div><!-- /market_menu_wrapper -->

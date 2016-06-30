@@ -1,0 +1,985 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
+
+<head>
+ 
+<title>{% daily_deal_page_title %}</title> 
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+<link rel="stylesheet" href="/themes/clickondetroit/stylesheets/daily_deals.css" type="text/css" />
+
+<!--[if gt IE 6]>
+<link href="/stylesheets/ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 7]>
+<link href="/themes/clickondetroit/stylesheets/ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+
+<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+<script src="/javascripts/effects.js" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+<script src="/javascripts/controls.js" type="text/javascript"></script>
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<style type="text/css"> 
+.site-header {
+    background:url(/themes/clickondetroit/images/structures/misc/bkgd_lines.gif);
+    font:13px verdana;
+    margin: 0 auto;
+    width:1000px;
+}
+.site-header a {
+    color:#ffffff;
+    text-decoration:none;
+}
+.site-header a img { border:none; }
+.site-header ul, .site-header ul li {
+    margin:0;
+    padding:0;
+}
+.level-one{ color:#ffffff; background:#000000; height:30px; display:block; font-size:108%; margin:0; }
+.level-one li { list-style:none; }
+.level-one a{ 
+    color:#ffffff; 
+    font-weight:bold; 
+    display:block; 
+    font-size:98%; 
+    padding:5px 14px 0;
+    text-decoration:none;
+}
+.level-one  a:hover { color:#ffcc00; }
+.level-one .selected, .level-one li:hover a { background:#303030; text-decoration:none; }
+.level-one li { 
+    float:left; 
+    border-right:2px #ffffff solid; 
+    margin:0;
+    white-space:nowrap;
+}
+.level-one li ul { 
+    display:none; 
+    background:#303030; 
+    border:3px #000000 solid; 
+    position:absolute;
+    width:200px;
+    text-align:left;
+    font-size:80%;
+    margin:0;
+    z-index:100;
+}
+.level-one li:hover ul{ 
+    display:block;
+}
+.level-one li ul li { 
+    display:block; 
+    border-right:none; 
+    border-bottom:1px solid #565656;  
+    float:none;
+    margin:0 2px;
+    padding:0;
+    height:25px;
+    line-height:25px;
+}
+.level-one li ul li a { margin:0; padding:0; }
+#header_search_selector a {
+    color:#fc0; font-weight:normal;
+}
+</style> 
+
+<script type="text/javascript">
+IBSYS = window.IBSYS || {};
+IBSYS.originHost = 'www.clickondetroit.com';</script><script src="/themes/clickondetroit/javascripts/adinf/script.js" type="text/javascript"></script><script type="text/javascript" src="/themes/clickondetroit/javascripts/_public/js/det-min.js"></script><script type="text/javascript" src="/themes/clickondetroit/javascripts/javascript/script.js"></script>
+
+<!-- set ad zone  -->
+<script type="text/javascript" src="/themes/clickondetroit/javascripts/js/6807715/script.js"></script>
+
+<script type="text/javascript">
+var rnd = new Date();
+rnd = rnd.getTime();
+</script>
+<script type="text/javascript">
+var pageProps= {
+time: {hr:"12",hr_p:"12",hr24:"12",hr24_p:"12",min:"46",sec:"22",mer:"pm",tz:"EST",mon:"11",mon_p:"11",date:"24",date_p:"24",yr:"2010",day:"4"},
+envhost:"www.clickondetroit.com",
+sectionname:"Real Deal",
+sectiontag:"sponsors",
+sectionpath:"/realdeal/"
+};
+var adZone = 'local';
+
+IBSYS.application.Application.mergeConfig({
+
+"pageID": "145341",
+"pageTopicPath": "sponsors"
+});
+</script><script type="text/javascript" src="/themes/clickondetroit/javascripts/js/9404305/script.js"></script>
+<script type="text/javascript" src="https://nexus.ensighten.com/IB/Bootstrap.js"></script>
+
+{% include "shared/tracking_google_analytics" %}
+</head> 
+
+
+
+<body>
+
+
+
+
+ 
+<div class="site-header"> 
+    <div class="row1" style="clear:both;"> 
+        <div class="logo" style="float:left;"> 
+            <a href="http://clickondetroit.com"> 
+                <img src="/themes/clickondetroit/images/site_header_logo.jpg" alt="Click on Detroit" title="Click on Detroit"> 
+            </a> 
+        </div> 
+        <div class="header_ad" style="float:left;"> 
+            <a href="http://detroit.justweather.com/haircast/?default=true"> 
+            <img src="/themes/clickondetroit/images/haircast_ad.jpg"> 
+            </a> 
+        </div> 
+    </div> 
+    
+    <div class="row2" style="clear:both; text-align: left;
+    font-weight: bold;
+    height: 65px;
+    background: url(/themes/clickondetroit/images/structures/headers/header_slice_c.jpg) no-repeat;
+    color: white;"> 
+        <div style="width:235px; height:50px; float:left; padding:5px 10px;"> 
+            <a href="http://clickondetroit.edeals.com/"> 
+                <img src="/themes/clickondetroit/images/shop-and-save.jpg" width="90" height="50" alt="Shop And Save" style="float:left;" hspace="10"> 
+                <span style="color:#fc0;">SHOPPING:</span><br /> 
+                Find Deals &amp;<br /> 
+                Coupons
+            </a> 
+        </div> 
+        
+        <div style="float:left; width:305px; height:53px; font-size:14px; font-weight:bold; margin:7px 10px 0;"> 
+            <a href="http://detroit.justweather.com/?default=true" style="float:left;"> 
+                <img src="" alt="" height="50px" width="50px" id="pns_weather_icon"> 
+            </a> 
+            <div style="float:left; margin-left:4px;"> 
+                <div style="float:left; font-family:Arial; margin:-7px 0; font-size:42px;"> 
+                    <a style="color:#FC0;" href="http://detroit.justweather.com/?default=true"> 
+                        <span id="pns_weather_temp"></span><sup style="vertical-align:super; font-size:45%">&deg;</sup> 
+                    </a> 
+                </div> 
+                <div class="header_weather" style="margin-left:7px; float:left;"> 
+                    <a href="http://detroit.justweather.com/?default=true"> 
+                        Detroit <br> 
+                        <span style="font-size:12px;" id="pns_weather_sky"></span> 
+                    </a> 
+                </div> 
+                <a href="http://detroit.justweather.com/?default=true" style="font-size:18px; clear:both; display:block;"> 
+                    <span style="color:#FC0; font-size:10px; font-weight:bold; font-family:verdana;">Click for more&nbsp;&nbsp;</span> 
+                    <span style="font-family:Helvetica; font-weight:normal; font-size:18px;"> 
+                        <span style="color:#ccc;">Just</span>Weather.com
+                    </span> 
+                </a> 
+            </div> 
+        </div> 
+        <div style="float:left;
+            font-size: 11px;
+            color: #CCC;
+            width: 270px;
+            margin-left: 18px;
+            height:51px;
+            margin-top:9px;"> 
+                <div id="header_search_selector"> 
+                    <a class="selected" href="/search/" rel="site">Site</a> 
+                </div> 
+                <form id="header_search_bar" action="http://www.clickondetroit.com/search/form.html" method="get" style="margin:0;"> 
+                    <input id="qt" name="qt" class="textInput" type="text" value="Search" onfocus="this.value = ''" style="width:208px; font-size:13px; border:2px inset #d9d9d9; color:#999999; padding:1px 4px 2px; display:block; float:left; margin:0 5px 0 0;"> 
+                    <input type="hidden" name="cof" value="FORID:11"><input type="hidden" name="client" value="pub-9218467875002671"> 
+                    <input type="hidden" name="channel" value="7354913046"> 
+                    <input class="goButton" type="image" src="/themes/clickondetroit/images/buttons/goButton.gif"> 
+                </form> 
+        </div> 
+        <div style="float:left; width:100px; height:50px; padding:5px 15px; text-align:center;"> 
+            <a href="http://wdiv.cityvoter.com/community/4-the-best-guide"> 
+                Your Guide
+                <img src="/themes/clickondetroit/images/4thebest-widget.jpg" height="34" width="100"> 
+            </a> 
+        </div> 
+    </div> 
+    
+    <ul class="level-one"> 
+        <li class="selected"> 
+            <a href="http://www.clickondetroit.com/index.html" title=""> 
+                Home
+            </a> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/news/index.html" title=""> 
+                News
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/news/index.html" title=""> 
+                        Local News
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/nationalnews/index.html" title=""> 
+                        U.S./World
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/politics/index.html" title=""> 
+                        Decision 2012/Politics
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/emailnewsletters/index.html" title=""> 
+                        Alerts EMail/Mobile
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/automotive/index.html" title=""> 
+                        Auto Biz/Cars
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/money/index.html" title=""> 
+                        Business
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/gas-prices/index.html" title=""> 
+                        Gas Prices 
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/ishotnews/index.html" title=""> 
+                        iShotNews
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/ishotnews/index.html" title=""> 
+                        Live Video
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/lottery/index.html" title=""> 
+                        Lottery
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/mostpopular/index.html" title=""> 
+                        Most Popular
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/traffic/index.html" title=""> 
+                        Traffic
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/videoarchive/index.html" title=""> 
+                        Video Archive
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/irresistible/index.html" title=""> 
+                        Weird News
+                    </a> 
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://detroit.justweather.com/" title=""> 
+                Weather
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://detroit.justweather.com/?default=true" title=""> 
+                        JustWeather.com Home
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/ask-andrew/index.html" title=""> 
+                        Ask Andrew
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/emailnewsletters/index.html" title=""> 
+                        Alerts E-mail/Mobile
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/emailnewsletters/index.html" title=""> 
+                        Alerts EMail/Mobile
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/boating/?default=true" title=""> 
+                        Beach and Boats
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/outdoors/?default=true" title=""> 
+                        Golf Forecast
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/radar/?default=true" title=""> 
+                        Rader Page
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/radar/?default=true#lightbox=p171&tab=w22lb" title=""> 
+                        Radar Loop
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/radar/?default=true#lightbox=p171&tab=w22lb" title=""> 
+                        School Closings
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/temperatures/?default=true" title=""> 
+                        Temperatures               
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/travel/?default=true" title=""> 
+                        Travel Weather
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/weathernews/index.html" title=""> 
+                        Video Forecast
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/weathernews/index.html" title=""> 
+                        Weather News
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.justweather.com/world/?default=true" title=""> 
+                        World Weather
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/4castersclub/index.html" title=""> 
+                        4Casters Club
+                    </a> 
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/entertainment/index.html" title=""> 
+                Entertainment
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/atthemovies/index.html" title=""> 
+                        At The Movies
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/columnists/index.html" title=""> 
+                        Columnists
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/contests/index.html" title=""> 
+                        Contests
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/slideshows/index.html" title=""> 
+                        Hot Shots Slideshows
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/mylife/index.html" title=""> 
+                        My Life
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/mylife/index.html" title=""> 
+                        My Weekend
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/national-slideshows/index.html" title=""> 
+                        Top 10 Slideshows
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/top10videos/index.html" title=""> 
+                        Top 10 Videos
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/quizzes/index.html" title=""> 
+                        Quizzes
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/your-favorite-shows/index.html" title=""> 
+                        Shows On Local 4               
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/nbcvideo/index.html" title=""> 
+                        Shows On NBC
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/tvlistings/index.html" title=""> 
+                        TV Listings
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://detroit.thistv.com/" title=""> 
+                        This TV Listings
+                    </a> 
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/sports/index.html" title=""> 
+                Sports
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/4frenzy/index.html" title=""> 
+                       4Frenzy!
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/berniesarcade/index.html" title=""> 
+                        Bernie's Video Arcade
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/big-ten-basketball/index.html" title=""> 
+                        Big Ten Basketball
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/big-ten/index.html" title=""> 
+                        Big Ten Football
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/football/nfl-teams.aspx?page=/data/nfl/teams/team1.html" title=""> 
+                        Detroit Lions
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/basketball/nba-teams.aspx?page=/data/nba/teams/team404153.html" title=""> 
+                        Detroit Pistons
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/hockey/nhl-teams.aspx?page=/data/nhl/teams/team2.html" title=""> 
+                        Detroit Red Wings
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/baseball/mlb-teams.aspx?page=/data/mlb/teams/team2978.html" title=""> 
+                        Detroit Tigers
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/highschool/index.html" title=""> 
+                        High School Football
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/basketball/ncaab-teams.aspx?page=/data/ncaab/teams/team2180.html" title=""> 
+                        Michigan State - Basketball               
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/football/ncaaf-teams.aspx?page=/data/ncaaf/teams/team113.html" title=""> 
+                        Michigan State - Football
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.plymouthwhalers.com/" title=""> 
+                        Plymouth Whalers
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/parkersconfidential/index.html" title=""> 
+                        Rob Parker: Confidential
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/sportsblog/index.html" title=""> 
+                        Sports Blogs
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/basketball/ncaab-teams.aspx?page=/data/ncaab/teams/team2323.html" title=""> 
+                        University Of Michigan - Basketball
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://sportsdata.clickondetroit.com/football/ncaaf-teams.aspx?page=/data/ncaaf/teams/team103.html" title=""> 
+                        University Of Michigan - Football
+                    </a> 
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/lifestyle/index.html" title=""> 
+                Lifestyle
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/sponsors/26286325/detail.html" title=""> 
+                       Ask Florine
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://wdiv.cityvoter.com/community/4-the-best-guide" title=""> 
+                        4 The Best Guide
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/community/index.html" title=""> 
+                        Community
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/consumer/index.html" title=""> 
+                        Consumer
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/dating/index.html" title=""> 
+                        Dating
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/jobs/index.html" title=""> 
+                        Detroit Jobs
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/education/index.html" title=""> 
+                        Education
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/family/index.html" title=""> 
+                        Family
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/food/index.html" title=""> 
+                        Food
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/good4you/index.html" title=""> 
+                        Good 4 You               
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/health/index.html" title=""> 
+                        Health
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/houseandhome/index.html" title=""> 
+                        Homes
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://iamdetroit.com/" title=""> 
+                        I Am Detroit
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/money/index.html" title=""> 
+                        Money
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/pets/index.html" title=""> 
+                        Pets
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/technology/index.html" title=""> 
+                        Technology
+                    </a>              
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/great-lakes-travel/index.html" title=""> 
+                        Travel
+                    </a>              
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/great-lakes-travel/index.html" title=""> 
+                        Travel Locally
+                    </a>              
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/contests/index.html" title=""> 
+                Contests
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/contests/index.html" title=""> 
+                       Contests
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/slideshows/index.html" title=""> 
+                        Hot Shots Slideshows
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/quizzes/index.html" title=""> 
+                        Quizzes
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://wdiv.cityvoter.com/community/4-the-best-guide" title=""> 
+                        Vote 4 The Best
+                    </a> 
+                </li> 
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/marketplace/index.html" title=""> 
+                Shopping
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://realdeal.clickondetroit.com/publishers/clickondetroit/deal-of-the-day" title=""> 
+                       ClickOn Real Deal
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://clickondetroit.edeals.com/" title=""> 
+                        Coupons And Coupon Codes
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/automotive/index.html" title=""> 
+                        Automotive
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.wdivstore.com/" title=""> 
+                        Local 4 Store
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/realestate/index.html" title=""> 
+                        Real Estate
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://yellowpages.clickondetroit.com/detroit+mi.z.html" title=""> 
+                        Detroit Yellow Pages
+                    </a> 
+                </li>                      
+            </ul> 
+        </li> 
+        <li> 
+            <a href="http://obits.clickondetroit.com/" title=""> 
+                Obituaries
+            </a> 
+        </li> 
+        <li> 
+            <a href="http://www.clickondetroit.com/seenon4/index.html" title=""> 
+                Seen On 4
+            </a> 
+            <ul class="level-two"> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/seenon4/index.html" title=""> 
+                       Seen On Local 4 News
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/flashpoint/index.html" title=""> 
+                        Flashpoint
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/health/index.html" title=""> 
+                        Good Health
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/ishotnews/index.html" title=""> 
+                        iShotNews
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/newsteam/index.html" title=""> 
+                        Local 4 News Team
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/crimetracker/index.html" title=""> 
+                        Neighborhood Crime Trends
+                    </a> 
+                </li> 
+                <li> 
+                    <a href="http://www.clickondetroit.com/nbcvideo/index.html" title=""> 
+                        NBC On Local 4
+                    </a> 
+                </li>                      
+                <li> 
+                    <a href="http://www.clickondetroit.com/investigations/index.html" title=""> 
+                        Local 4 Defenders
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/consumer/index.html" title=""> 
+                        Ruth To The Rescue
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/sunshineawards/index.html" title=""> 
+                        Sunshine Awards
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/tvlistings/index.html" title=""> 
+                        TV Listings
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/news/18925446/detail.html" title=""> 
+                        Twitter @local4news
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/station/index.html" title=""> 
+                        WDIV Local 4
+                    </a> 
+                </li>     
+                <li> 
+                    <a href="http://www.clickondetroit.com/contact/index.html" title=""> 
+                        Contact Us
+                    </a> 
+                </li>   
+            </ul> 
+        </li> 
+    </ul> 
+</div> 
+<script type="text/javascript"> 
+    function PNS_populate_weather (obj) {
+        var icon = document.getElementById("pns_weather_icon");
+        icon.src="/themes/clickondetroit/images/icons/weather/Icon" + obj.current_conditions.CurrentObservation.IconCode + ".png";
+        var temp = document.getElementById('pns_weather_temp');
+        temp.innerHTML = obj.current_conditions.CurrentObservation.TempF;
+        var sky = document.getElementById('pns_weather_sky');
+        sky.innerHTML = obj.current_conditions.CurrentObservation.Weather || obj.current_conditions.CurrentObservation.Sky || "";
+    }
+</script> 
+<script src="https://admin.pnsdigital.com/api/wx/widget/detroit?callback=PNS_populate_weather"></script>
+
+
+<div id="analog_analytics">
+    <div id="daily_deal">
+
+
+        <div id="container">
+        	<div id="topnav">
+            	<ul>
+                	<li{% if_page_name 'publishers#deal_of_the_day'%} class="selected"{%endif_page_name%}><a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a></li>
+                    <li{% if_page_name == 'daily_deals#how_it_works'%} class="selected"{%endif_page_name%}><a href="{{ publisher.how_it_works_path }}">How it Works</a></li>
+                    <li{% if_page_name == 'daily_deals#faqs'%} class="selected"{%endif_page_name%}><a href="{{ publisher.faq_path }}">FAQ</a></li>
+                    <li{% if_page_name == 'daily_deals#contact'%} class="selected"{%endif_page_name%}><a href="{{ publisher.contact_path }}">Contact Us</a></li>                    
+                    {% if publisher.launched? %}
+					  {% if publisher.current_user_belongs_to? %}                    
+                    <li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+                    <li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+					<li><a href="{{ publisher.logout_path }}">Sign Out</a></li>				
+					  {% else %}					
+					{% include with_theme "shared/facebook_connect_liquid" %}
+					<li><a href="{{ publisher.login_path }}">Sign In</a></li>					
+					  {% endif %}
+			       {% endif %}				   
+                </ul>
+            </div>
+            <div id="masthead">
+            	<img src="/themes/clickondetroit/images/backgrounds/real-deal-of-the-day.png" width="525" height="137" alt="Today's Click on Detroit Real Deal of the Day" />
+            </div>
+            
+          {% include "shared/flash" %}
+		  {{ content_for_layout }}
+            
+            
+        </div>
+        
+  
+  
+  
+<div class="clear"></div>
+<div id="footer">
+  <p id="navbar_bottom">
+    <span><a href="http://www.clickondetroit.com/">About Us</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deals/privacy_policy">Privacy Policy</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deals/terms">Terms of Use</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deals/contact">Contact Us</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deals/how_it_works">How it Works</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deals/faqs">FAQ</a></span>
+    <span><a href="/publishers/{{ publisher.id }}/daily_deal/login">Log in/Register</a></span>
+    <span class="last"><a href="{{ publisher.contact_path }}" class="last">Feature Your Business</a></span>
+  </p> 
+
+	{% include "shared/a_a_alt" %}
+</div><!-- end footer -->
+	
+  
+      
+  </div><!--end daily_deal-->
+</div><!--end analog_analytics-->
+
+<!-- Added Back the fullpathed domain for search bug pts 43483 -->
+<!-- Restored fullpath 5/6/08 : mwolfe : PTS 138706 -->
+<script type="text/javascript" src="/themes/clickondetroit/javascripts/js/5271885/script.js"></script>
+
+
+<SCRIPT LANGUAGE="Javascript"><!--
+gVersion="1.0";
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="Javascript1.1"><!--
+gVersion="1.1";
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="Javascript1.2"><!--
+gVersion="1.2";
+var RE={"%09":/\t/g,"%20":/ /g,"%23":/\#/g,"%26":/\&/g,"%2B":/\+/g,"%3F":/\?/g,"%5C":/\\/g};
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="Javascript1.3"><!--
+gVersion="1.3";
+if (window.ActiveXObject){
+	var gFV="";
+	for (var gVer=2;gVer<=10;gVer++){
+		try{
+			var gFlash = eval("new ActiveXObject('ShockwaveFlash.ShockwaveFlash."+gVer+"');");
+			if (gFlash){
+				gFV=gVer+".0";
+				break;
+			}
+		}
+		catch(e){
+		}
+	}
+}
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="Javascript1.4"><!--
+gVersion="1.4";
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="Javascript1.5"><!--
+gVersion="1.5";
+//-->
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript"><!--
+var gImages=new Array;
+var gIndex=0;
+var DCS=new Object();
+var WT=new Object();
+var DCSext=new Object();
+var gQP=new Array();
+
+var gDomain="statse.webtrendslive.com";
+var gDcsId=siteinfo.thirdparty_info.WT_info.id;
+if (siteinfo.callletters.uc)
+    DCSext.ib_station=siteinfo.callletters.uc;
+else
+    DCSext.ib_station=siteinfo.sitekey.uc;
+if (siteinfo.owner)
+    DCSext.ib_partner=siteinfo.owner;
+else
+    DCSext.ib_partner=siteinfo.sitename.mx;
+
+if (siteinfo.distribution) {
+  DCSext.ib_ntwk = siteinfo.distribution;
+}
+
+(function() {
+  if (IBSYS.ad.getDartNulls) {
+    var nullAds = IBSYS.ad.getDartNulls();
+    if (nullAds) {
+      DCSext.ib_null_ads = nullAds;
+    }
+  }
+})();
+
+
+//DCSext.ib_partner=siteinfo.owner;
+//var gDcsId="dcskoovmr01e5h6qlnsvvv4ea_334h"; -- Example
+
+if ((typeof(gConvert)!="undefined")&&gConvert&&(typeof gWtId == 'undefined')&&(typeof gTempWtId == 'undefined')&&(document.cookie.indexOf(gFpc+"=")==-1)){
+	document.write("<SCR"+"IPT Language='JavaScript' SRC='"+"http"+(window.location.protocol.indexOf('https:')==0?'s':'')+"://"+gDomain+"/"+gDcsId+"/wti"+"d."+"js"+"'></SCR"+"IPT>");
+}
+//-->
+</SCRIPT>
+<!-- call DCS functions -->
+<script type="text/javascript">
+IBSYS.using('WebTrends');
+if (typeof ib_WTCustomTags == "function") ib_WTCustomTags();
+if (typeof IBSYS.WebTrends.collectUserData == 'function') IBSYS.WebTrends.collectUserData();
+if (typeof dcsVar == "function") dcsVar();
+
+if (IBSYS.application.Application.getProperty('tracking.remapReferrer') && document.referrer && IBSYS.propPath('siteinfo.distribution') == 'ext') {
+  (function() {
+    var ref = document.referrer.match(/(?:[^:]+:\/\/)?([^\/]+)([^\?]*)\??(.*)/);
+    window.DCS.dcssip = ref[1];
+    window.DCS.dcsuri = ref[2];
+    window.DCS.dcsqry = ref[3];
+  })();
+}
+
+if (IBSYS.propPath('IBSYS.widgets.LinksWeLike')) {
+  IBSYS.widgets.LinksWeLike.prepLegacyWT();
+}
+
+if (typeof dcsMeta == "function")  dcsMeta();
+if (typeof dcsFunc == "function") dcsFunc("dcsAdv");
+if (IBSYS && IBSYS.event) {
+  (function() {
+    var e = new IBSYS.event.GlobalEvent('beforeDcsTag');
+    try {
+      IBSYS.application.Application.announceEvent(e);
+    } catch (ex) {}
+  })();
+}
+if (typeof dcsTag == "function") {
+  if (window.location.hostname.indexOf('channel4000.com') < 0) {
+    if (IBSYS.qs('noWTPageView') != 'true' && !IBSYS.noLegacyTracking) {
+      dcsTag();
+    }
+  } else {
+    setTimeout(function() {
+      dcsTag();
+    }, 2000);
+  }
+}
+</script>
+
+<script>
+IBSYS.post.disclaimertext="Comments are strictly the views of individual site users and not those of "+siteinfo.callletters.uc+" <a style='color:#ffffff; text-decoration:underline;' href=\"http://"+window.location.host+"\">"+siteinfo.sitename.mx+".com</a> or any associated companies."+"This is a community moderated forum. Please note the 'Like' and 'Report' tabs."+"By posting your comments you agree to accept our <a style='color:#ffffff; text-decoration:underline;' href=\""+siteinfo.storysettings.discussion.disclaimerlink+"\">Terms of Use</a>.";
+</script>
+
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>

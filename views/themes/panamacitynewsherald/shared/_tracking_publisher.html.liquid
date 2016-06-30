@@ -1,0 +1,48 @@
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+//<![CDATA[
+
+var sc_project=6140242;
+var sc_invisible=1;
+var sc_security="fcdf4de0";
+//]]>
+</script>
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript>
+<div class="statcounter">
+<a title="vBulletin stats" href="http://www.statcounter.com/vbulletin/" target="_blank"><img class="statcounter" src="http://c.statcounter.com/6140242/0/fcdf4de0/1/" alt="vBulletin stats" ></a>
+</div>
+</noscript>
+<!-- End of StatCounter Code -->
+
+<script language="JavaScript">
+//<![CDATA[
+var tcdacmd="dt";
+//]]>
+</script>
+
+{% include "themes/freedom/shared/tracking_publisher" %}
+
+{% analytics_tag sale %}
+<!-- Google Code for Offer Purchase Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 964759628;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "Cut0CIyC6QIQzKCEzAM";
+var google_conversion_value = {% analytics_tag_data value %};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/964759628/?label=Cut0CIyC6QIQzKCEzAM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<img src="http://tracking.inuvo.com/t/2491?oid={% analytics_tag_data sale_id %}&a={% analytics_tag_data value %}" />
+
+{% endanalytics_tag %}

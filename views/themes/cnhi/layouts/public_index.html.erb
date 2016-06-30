@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <%= render :partial => "/themes/cnhi/shared/headers/#{@publisher.label.gsub("cnhi-","")}"%>
+	<script type="text/javascript" src="/themes/yumasun/cached/tools/load.js"></script>
+    <script type="text/javascript" src="/themes/yumasun/cached/tools/load2.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/themes/yumasun/cached/tools/load.css" />
+    <link rel="stylesheet" type="text/css" href="/themes/yumasun/cached/tools/load2.css" />
+	
+	<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/offers.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/businessdirectory/offers.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/businesses.css" type="text/css" />
+	<link rel="stylesheet" href="/themes/cnhi/stylesheets/cnhi-coupon-offers.css" type="text/css" />
+	<%= raw render :partial => "shared/tracking_google_analytics" %>
+	<%= raw render :partial => "shared/facebook_metadata" %>
+
+	<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+	<script src="/javascripts/effects.js" type="text/javascript"></script>
+	<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+	<script src="/javascripts/controls.js" type="text/javascript"></script>
+	<script src="/javascripts/application.js" type="text/javascript"></script>
+	<script src="/themes/freedom/javascript/cookies.js" type="text/javascript"></script>
+	<script src="/javascripts/coupons.js" type="text/javascript"></script>
+	<script src="/javascripts/ghostie.js" type="text/javascript"></script>
+</head>
+<body class="<%= "#{@publisher.sub_theme}" if @publisher.sub_theme %> <%=@publisher.label.gsub('cnhi-','')%>">
+
+<!-- PUBLISHER HEADER -->
+ 
+<!-- Start Quantcast tag --> 
+<script type="text/javascript"> 
+_qoptions={
+qacct:"p-eb6rW8CarLDWY"
+};
+</script> 
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script> 
+<noscript> 
+<img src="http://pixel.quantserve.com/pixel/p-eb6rW8CarLDWY.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast" />
+</noscript> 
+<!-- End Quantcast tag --> 
+ 
+<div id="wrap" class="coupons_cnhi"> 
+  <a href="#content" id="skip" class="noprint" accesskey="2">Skip to Main Content</a> 
+  
+  <%= render :partial => "/themes/cnhi/shared/headers/#{@publisher.label.gsub("cnhi-","")}_menu"%>
+
+  <div id="masthead"> 
+    <h1 id="logo"> 
+      <a accesskey="1" href="http://<%= @publisher.production_host.gsub("coupons.", "") %>"
+         title="<%= @publisher.name %>"><img src='/themes/cnhi/images/logos/<%=@publisher.label%>_logo.jpg' alt='<%= @publisher.name %>' /></a> 
+    </h1> 
+    <div id="leaderboard" class="noprint"> 
+
+<% unless @publisher.label == "cnhi-itzmag" %>
+<script type="text/javascript"> 
+SOVA.fill('leaderboard');
+</script> 
+<% end %>
+ 
+    </div> 
+  </div> 
+  <div id="pencil_ad"> 
+</div> 
+  
+  <div id="highlights"> 
+    
+    
+  </div> 
+  
+  <div id="content"> 
+  
+    
+    
+      <h2 id="section_header"> 
+        
+        <a href="#"><% case @publisher.label 
+						when "cnhi-thejaspernews" -%>
+						Jasper News Coupons
+					<% when "cnhi-themayofreepress" -%>
+						Mayo Free Press Coupons
+					<% else -%>
+						Coupons
+					<% end -%></a> 
+      </h2> 
+    
+    <div id="web_search_form"> 
+      <form id="search" method="get" name="searchform"
+            class="noprint"
+            onsubmit="return CNHI.API.google.submit_search()"
+            action="http://<%= @publisher.production_host.gsub("coupons.", "")%>/search"> 
+        <fieldset> 
+          <legend accesskey="4">Search</legend> 
+          <input id="stext" tabindex="-1" type="text" name="SearchableText" maxlength="255" value="Search Site" onfocus="if(this.value=='Search Site'){this.value=''};this.style.width='300px'" onblur="if(this.value==''){this.value='Search Site'};this.style.width=''" /> 
+                <input type="submit" name="sa" value="Go" id="sbb" /> 
+                <input type="hidden" name="sitesearch"
+                       id="ss1"
+                       value="<%= @publisher.production_host.gsub("coupons.", "")%>" /> 
+                <input type="hidden" name="client" value="pub-4648602590429272" /> 
+                <input type="hidden" name="forid" value="1" /> 
+                <input type="hidden" name="q" value="" id="sbi" /> 
+                <input type="hidden" name="stores" value="local" /> 
+                <input type="hidden" name="filter" value="0" /> 
+                <input type="hidden" name="ie" value="ISO-8859-1" /> 
+                <input type="hidden" name="oe" value="ISO-8859-1" /> 
+                <input type="hidden" name="flav" value="0000" /> 
+                <input type="hidden" name="sig" value="cK_Ze8nEuuDj9suv" /> 
+                <input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#FFFFFF;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:11" /> 
+                <input type="hidden" name="hl" value="en" /> 
+        </fieldset> 
+      </form> 
+    </div>
+
+<!-- /PUBLISHER HEADER -->
+
+<!--Analog_Analytics_Daily_Deal-->
+
+<div id="analog_analytics" style="padding-top: 10px;">
+	<div id="daily_deal">
+
+	
+		<%= render :partial => 'shared/flash_messages' %>
+		<div id="analog_analytics_content">
+		<%= yield %>
+		</div>
+		</div><!-- /dd_content -->
+	
+	</div><!--daily_deal-->
+</div><!--analog_analytics-->
+
+<!-- PUBLISHER FOOTER -->
+
+
+<!-- #content --> 
+  
+<%= render :partial => "themes/cnhi/shared/footers/#{@publisher.label.gsub("cnhi-", "")}"%>
+
+</div><!-- #wrap --> 
+ 
+ 
+ 
+<script type="text/javascript" src="http://widget-exec.helium.com/execute/widget_info_gatherer.js"></script> 
+ 
+<script type="text/javascript"
+        src="http://s3.amazonaws.com/cnhi-peel-ads-json/<%=@publisher.label.gsub("cnhi-", "")%>_coupons_cnhi.js"></script> 
+<script type="text/javascript" src="http://static.cnhi.zope.net/cwible/peel/pagecurl.js"></script>
+
+</body>
+</html>

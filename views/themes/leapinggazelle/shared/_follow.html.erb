@@ -1,0 +1,9 @@
+<!-- follow -->
+<div id="follow" class="side_box">
+	<!-- <h2>FOLLOW US</h2> -->
+		<a id="social_follow" class="last" href="http://twitter.com/analoganalytics"><img src="/themes/leapinggazelle/images/buttons/twitter_follow.png" alt="Follow Us on Twitter" /></a>
+	<% unless @publisher.facebook_page_url.blank? %>
+		<a id="social_follow" class="last" href="<%= @publisher.facebook_page_url %>"><img src="/themes/leapinggazelle/images/buttons/facebook_find.png" alt="Follow Us on Facebook" /></a>
+	<% end %>
+</div>
+<!-- /follow -->

@@ -1,0 +1,54 @@
+{% if publisher.current_user_belongs_to? %}
+<h4 id="share_deal">Welcome, {{ publisher.current_consumer.first_name }}</h4>
+<div class="content_box">
+	<img src="/themes/northjerseymediagroup/images/graphics/njd_logo.png" alt="" />
+	<ul id="account_nav">
+		<li><a href="{{ publisher.my_account_path }}">Go to My Account</a></li>
+		<li><a href="{{ publisher.my_deals_path }}">View My Deals</a></li>
+	</ul>
+	<div class="alignright"><a href="{{ publisher.logout_path }}"><img src="/themes/nydailynews/images/buttons/log_out.png" alt="Log Out" /></a></div>
+</div>
+
+{% else %}
+
+<h4 id="share_deal">Sign Up for Daily Deals</h4>
+<div class="content_box">
+	<img src="/themes/northjerseymediagroup/images/graphics/njd_logo.png" alt="" />
+	<div id="subscribe_form">
+		<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+			<input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" />
+			<p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" /></p>			
+			<p><input id="subscriber_zip" name="subscriber[zip_code]" size="30" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" /></p>
+			<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" /></p>
+			<p class="terms"><input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;">Privacy Policy</a></p>
+			<p><input id="subscribe_button" type="submit" value="Sign Up" /></p>
+			<p class="center"><a href="{{ publisher.facebook_connect_path }}"><img src="/themes/nydailynews/images/buttons/fbconnect.png" alt="facebook Connect" /></a></p>
+			
+		</form>
+	</div><!-- /subscribe_form -->
+</div>
+
+{% endif %}
+
+{% if daily_deal.side_deals.size > 0 %}
+<h4>Other Great Deals</h4>
+<div id="side_deals" class="content_box other_deal_tracking">
+       {% for deal in daily_deal.side_deals %}
+         <div class="side_deal_wrap">
+			<p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+			<div class="side_deal_text">
+				<div class="side_deal_price">{{ deal.price | currency }}</div>
+				<p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+			</div><!-- /side_deal_text -->
+			<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+			<div class="clear"></div>
+			<a class="view_deal" href="{{ deal.url }}" target="_blank"><span>View Deal</span></a>
+			<div class="clear"></div>
+          </div><!-- /side_deal_wrap -->
+       {% endfor %}
+</div><!-- /side_deals -->
+{% endif %}
+
+<!-- insert facebook like box partial here -->
+

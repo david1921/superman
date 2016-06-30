@@ -1,0 +1,67 @@
+<ul id="deal_tabs"> 
+	<li class="current_deal_tab"><a id="tab_overview"><%= t(:description) %></a></li> 
+	<li style="<% if @daily_deal.advertiser.address.blank? %>display:none<% end %>"><a id="tab_location"><%= t("location.one") %></a></li>
+	<li style="<% if @daily_deal.reviews.blank? %>display:none<% end %>"><a id="tab_reviews"><%= t(:reviews) %></a></li>
+</ul> 	
+<div id="deal_tab_content" class="content_box"> 
+	<div id="tab_overview_content">
+		<div id="description" class="six_col">
+			 <h2><%= t(:description_2) %></h2>
+			 <%=raw @daily_deal.description.try :html_safe %>
+		</div><!-- /description -->
+		 <div id="highlights" class="three_col">
+			 <% if @daily_deal.highlights.present? %>
+			 <h2><%= t(:highlights) %></h2>
+			 <%=raw @daily_deal.highlights.try :html_safe %>
+			 <% end %>
+		</div><!-- /highlights -->
+		<div id="terms">
+			 <% if @daily_deal.terms.present? %>
+			 <h2><%= t(:fine_print) %></h2>
+			 <%=raw @daily_deal.terms.try :html_safe %>
+			 <% end %>
+		</div><!-- /terms -->
+		<div class="clear"></div>
+	</div><!--/tab_content_location --> 		
+	<div id="tab_location_content" class="deal_tab_hidden">
+		<% if @daily_deal.advertiser.address.present? %>
+		<div id="advertiser_map">
+			<a  id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "290x290") %>" /></a>
+		</div><!-- /map -->
+		<% end %>
+		<div id="advertiser">
+			<img id="advertiser_logo" src="<%= @advertiser.logo.url %>" alt="<%= @daily_deal.advertiser.name %>" /><br />
+			<p class="advertiser_name"><%= @daily_deal.advertiser.name %></p>					
+			<% if @daily_deal.advertiser.website_url.present? %>
+				<a href="<%= @daily_deal.advertiser.website_url %>" target="blank"><%=t(:visit_website) %></a>
+			<% end %>
+			<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+				<div class="location_container" style="<% if idx > 2 %>display:none<% end %>">                  
+					<p>
+					<% if @daily_deal.advertiser.store.address_line_1.present? %>
+						<%= store.address_line_1 %><br />
+					<% end %>
+					<% if @daily_deal.advertiser.store.address_line_2.present? %>
+						<%= store.address_line_2 %><br />
+					<% end %>
+					<% if @daily_deal.advertiser.store.city.present? and @daily_deal.advertiser.store.state.present? and @daily_deal.advertiser.store.zip.present? %>
+						<%= store.city %>, <%= store.state %> <%= store.zip %><br />
+					<% end %>
+					<% if @daily_deal.advertiser.store.formatted_phone_number.present? %>
+						<%= @daily_deal.advertiser.formatted_phone_number %>
+					<% end %><br />
+					</p>
+				</div><!-- /location_container -->
+			<% end %>					
+			<% if @daily_deal.advertiser.stores.size > 3 %>
+				<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+			<% end %>					
+		</div><!-- /advertiser -->
+		<div class="clear"></div>
+	</div><!--/tab_content_location --> 		
+	<div id="tab_reviews_content" class="deal_tab_hidden"> 
+		 <% if @daily_deal.reviews.present? %>
+		 <%=raw @daily_deal.reviews %>
+		 <% end %>
+	</div><!-- /tab_content_reviews --> 		
+</div><!--/tab content --> 

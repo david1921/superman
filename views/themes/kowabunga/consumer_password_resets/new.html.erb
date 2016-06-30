@@ -1,0 +1,19 @@
+<% set_daily_deal_page_title_slug "Reset Password" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Reset Your Password</h2>
+    <p>Enter your email address and we'll send you a link to reset your password.</p>
+    <div id="password_reset_form">
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row">
+        <div class="label"><%= label_tag(:email) %></div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      </div>
+      <div class="row button_row">
+        <%= submit_tag("Reset Password", :name => "reset_password") %> <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

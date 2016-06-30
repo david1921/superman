@@ -1,0 +1,11 @@
+A <%= @exception.class %> occurred in <%= @reporter.class.name %>:
+
+  <%= @exception.message %>
+  <%= @backtrace.first if @backtrace %>
+
+-------------------------------
+Daemon Exception
+-------------------------------
+<%= @backtrace.join "\n" if @backtrace %>
+* Process: <%= $$ %>
+* Server : <%= `uname -n`.chomp %>

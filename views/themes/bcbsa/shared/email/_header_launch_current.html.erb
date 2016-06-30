@@ -1,0 +1,27 @@
+<!--BLUE LOGO HEADER-->
+   <table width="648" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff">
+    <tr>
+      
+        <% case true %>
+         <% when true %>
+          <td rowspan="3" valign="top" width="260" bgcolor="#0083bb">
+            <a href="http://<%= @publisher.daily_deal_host %><%= publishing_group_landing_page_path('bcbsa') %>"><img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/logos/<%= params[:locale] == "es-MX" ? 'blue365_save-more-es.png' : 'blue365_save-more.png' %>" width="281" height="116" alt="" border="0" /></a>
+          </td>
+        <% else %>
+          <td rowspan="3" valign="top" width="304" bgcolor="#0083bb">
+            <a href="http://<%= @publisher.daily_deal_host %><%= publishing_group_landing_page_path('bcbsa') %>"><img style="display:block; " src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/logos/<%= params[:locale] == "es-MX" ? 'blue365_save-more-cross.png' : 'blue365_save-more-cross.png' %>" width="304" height="116" alt="" border="0" /></a>
+          </td>
+        <% end %>
+      <td colspan="2" bgcolor="#d4d9dd" style="background-color:#d4d9dd;"><img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/spacer.gif" width="12" height="15" alt="" /></td>
+    </tr>
+    <tr>
+      <td valign="middle" align="left" bgcolor="#0083bb" style="background-color:#0083bb;"><!--MARKET LOGO-->&nbsp;</td>
+      <td bgcolor="#0083bb" style="background-color:#0083bb;" height="78" align="right" valign="bottom">
+          <%= render :partial => with_theme('shared/email/share') %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/spacer-white.gif" width="11" height="23" alt="" /></td>
+    </tr>
+  </table>
+<!--/BLUE LOGO HEADER-->

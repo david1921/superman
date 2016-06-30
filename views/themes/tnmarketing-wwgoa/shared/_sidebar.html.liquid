@@ -1,0 +1,11 @@
+{% if publisher.enable_daily_deal_referral %}
+	{% include with_theme "shared/refer_friend" %}
+{% endif %}  
+	
+{% if daily_deal.side_deals.size > 0 %}
+	{% include with_theme "shared/side_deals" %}
+{% endif %}
+	
+{% if fb_page != '' %}
+	{% include with_theme "shared/facebook_likebox" %}
+{% endif %}

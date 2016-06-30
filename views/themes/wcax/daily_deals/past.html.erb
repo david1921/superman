@@ -1,0 +1,15 @@
+<div id="deal_page_left_column">
+	<div id="daily_deal_container" class="daily_deal_box">
+		<div id="dd_nav">
+			<%= raw render :partial => with_theme("shared/dd_nav")%>
+		</div><!-- END #dd_nav -->
+		<div id="daily_deal_content_box">
+			<%= render :partial => with_theme('daily_deals/daily_deal'), :collection => @daily_deals[0..20] %>
+		</div>
+	</div><!--END #daily_deal_container-->
+	<!-- END #dd_info_container -->
+</div><!-- END #deal_page_left_column -->
+<div id="daily_deal_right_rail">
+	<%= raw render :partial => with_theme("shared/side_deals")%>
+	<%= raw render :partial => with_theme("shared/facebook_likebox")%>
+</div><!-- END #daily_deal_right_rail -->

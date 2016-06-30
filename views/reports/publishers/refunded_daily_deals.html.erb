@@ -1,0 +1,33 @@
+<% set_page_title "Reports: Publisher Refunded Daily Deals" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => publisher_refunded_daily_deals_data_source_url(@publisher, @market, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :refunded_daily_deals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publisher_refunded_daily_deals",
+  :data_source => publisher_refunded_daily_deals_data_source_path(@publisher, @market, :format => "xml"),
+  :data_params => {},
+  :result_node => :daily_deal,
+  :data_columns => [
+    [:started_at, {:label => "Started At"}],
+    [:advertiser_name, { :label => "Advertiser", :class_name => 'left', :formatter => "formatUrl('advertiser_href')" }],         
+    [:advertiser_href, { :display => false }],
+    [:currency_symbol, { :display => false }],
+    [:accounting_id, {:label => "Accounting ID"}],
+    [:listing, {:label => "Listing"}],
+    [:value_proposition, { :label => "Value Proposition", :class_name => 'left' }],
+    [:refunded_purchasers_count, { :label => "Purchasers Refunded", :parser => "number" }],
+    [:refunded_purchases_count, {:label => "Purchases Refunded", :parser => "number"}],
+    [:refunded_vouchers_count, {:label => "Vouchers Refunded", :parser => "number"}],
+    [:refunds_gross, { :label => "Gross Refunded", :formatter => "formatCurrency" }],
+    [:refunds_discount, { :label => "Discount", :formatter => "formatCurrency" }],
+    [:refunds_amount, {:label => "Total Refunded", :formatter => "formatCurrency"}],
+  ]
+}) %>
+
+

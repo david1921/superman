@@ -1,0 +1,114 @@
+<% set_daily_deal_page_title_slug t(:title_slug_contact) %>
+
+<% if params[:layout] == "popup" -%>
+ <a href="#" class="lbAction" rel="deactivate"><span>Close</span></a>
+ <% else -%>
+	 <!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	  <ul>
+	    <li>
+	      <a href="<%= public_deal_of_day_path(@publisher.label) %>">Home</a>
+	    </li>
+	    <li class="no_underline">></li>
+	    <li class="no_underline">          
+	      Contact Us
+	    </li>
+	  </ul>
+	  </div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+<% end -%>
+
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%= t(:contact_us) %></h1>
+	<div id="contact_content">
+		
+		<div id="left_column">
+			<p>Have a question or comment about Blue365? Tell us how we can help, and our Customer Service team will be in touch soon.</p>
+			
+			<%=  error_messages_for(:contact_request, :header_message =>nil)%>
+			
+			<% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+			  <div>
+			    <span>
+			    	<h5>Name:</h5><span class="required">*</span>
+			    	<%= f.text_field :first_name, :id => "first_name" %> <%= f.text_field :last_name, :id => "last_name" %>
+					<label id="name_first" for="first_name">First</label><label id="name_last" for="last_name">Last</label>
+			    </span>
+			  </div>
+			  <div>
+			    <span>
+			    	<h5>Email:</h5><span class="required">*</span>
+			    	<%= f.text_field :email %>
+			    </span>
+			  </div>
+			  <div>
+			    <span class="reason_dropdown">
+			    	
+			    	<%= f.collection_select(:reason_for_request, 
+			    	["I have a question about a Deal or a Vendor", 
+			    	"I have a question about my account",
+			    	"I need help with login/registration",
+			    	"I have a question about payment or a voucher",
+			    	"I would like to recommend a Vendor",
+			    	"I would like to report a Technical Problem",
+			    	"I have a question about my insurance or a claim",
+			    	"Other (please specify)"
+			    	], 
+			    	:to_s, :to_s, :class => "contact_reason", :prompt => 'Reason for contacting us')%>
+			    </span>
+			  </div>
+			  <div>
+			    <span class="message_block">
+			    	<h5>Message:</h5><span class="required">*</span>
+			    	<%= f.text_area :message, :class => "message" %>
+			    </span>
+			  </div>
+			  <div class="clear"></div>
+			  <div class="submit_field">
+			  	<%= f.submit 'Submit', :id => "submit", :class => "blue_button" %>
+			  	<span class="required_fields">* required fields</span>
+			  </div>
+			<% end %>			
+			
+		</div>
+		<div class="right_column_2">
+			<div class="content">
+				<div class="top">
+					<h5>Other Ways to Contact Blue365</h5>
+					<p>Got an idea? Be sure to let us know.</p>
+				</div>
+			
+				<div class="middle">
+					
+						<a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+							<img class="contact_icon" src="/themes/bcbsa/images/graphics/feature_your_business_icon_white.png" />
+						</a>
+						<a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+							<h6>Feature your Business</h6>
+						</a>
+						<a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+							<p>Share your health and wellness deals, and build your business at the same time.</p>
+						</a>
+					
+					<a href="#">
+					<span>
+						<img class="contact_icon" src="/themes/bcbsa/images/graphics/wishlist_icon_white.png" />
+						<h6 id="recommend"><a id="wish_list">Is there a deal you wish was on Blue365?</a></h6>
+						<p>Help us find the offers that are best for you and your lifestyle.</p>
+					</span>
+					</a>
+					
+				</div>
+				<div class="bottom_img"></div>			
+			</div>
+		</div>
+		
+  	</div>
+  </div>
+</div>
+
+
+
+

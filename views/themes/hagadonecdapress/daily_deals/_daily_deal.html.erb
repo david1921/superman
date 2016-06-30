@@ -1,0 +1,18 @@
+<div class="deal">
+
+  <div class="image"><a href="<%= Drop::DailyDeal.new(daily_deal).url %>"><img src="<%= daily_deal.photo.url(:email) %>" alt="" /></a></div>
+
+  <h4><a href="<%= Drop::DailyDeal.new(daily_deal).url %>"><%= truncate(daily_deal.value_proposition, 60) %></a></h4>
+
+
+
+ <div class="summary<%= " variation" if daily_deal.daily_deal_variations.present? %>">
+    <p class="price <%= daily_deal.price.to_s.length > 5 ? 'deal_long_price' : '' %>"><% if daily_deal.daily_deal_variations.present? -%><span class="from">From</span><% end %><a href="<%= Drop::DailyDeal.new(daily_deal).url %>"><%= formatted_price_for(daily_deal.price_to_display, "$") %></a></p>
+    <p class="value <%= daily_deal.price.to_s.length > 5 ? 'deal_long_value' : '' %>"><strong>Value</strong> <span><%= formatted_price_for(daily_deal.value_to_display, "$") %></span></p>
+    <p class="savings <%= daily_deal.price.to_s.length > 5 ? 'deal_long_savings' : '' %>"><strong>Savings</strong> <span><%= formatted_price_for(daily_deal.savings_to_display, "$") %></span></p>
+  </div>
+
+	<p class="view_details">
+		 	<a class="gradient button" href="<%= Drop::DailyDeal.new(daily_deal).url %>" name="buy_now_button">View Deal</a>
+	</p>
+</div><!-- /deal -->

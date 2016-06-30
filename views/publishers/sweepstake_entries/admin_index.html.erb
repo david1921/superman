@@ -1,0 +1,27 @@
+<table cellspacing="0" summary="sweepstake_entries" class="sweepstake_entries">
+  <tr>    
+    <th class="name">Name</th>
+    <th class="name">Email</th>
+    <th class="name">Phone Number</th>
+    <th class="entered_at">Entered At</th>
+    <th class="receive_promotional_emails">Third Party Opt-In?</th>
+    <th class="zipcode">Zip Code</th>
+  </tr>
+  
+  <% @sweepstake_entries.each do |sweepstake_entry| -%>
+    <tr>
+      <td><%= sweepstake_entry.name -%></td>
+      <td><%= sweepstake_entry.email -%></td>
+      <td><%= number_to_phone(sweepstake_entry.phone_number.try(:gsub, "-", "")) -%></td>
+      <td><%= sweepstake_entry.created_at %></td>
+      <td><%= third_party_opt_in_display_value(sweepstake_entry) %></td>
+	  <td><%= sweepstake_entry.consumer.zip_code %></td>
+    </tr>
+  <% end -%>
+<% if @sweepstake_entries.empty? -%>
+  <tr>
+    <td colspan="4" style="text-align: center;">There are currently no entries.</td>
+  </tr>
+<% end -%>
+
+</table>

@@ -1,0 +1,17 @@
+<tr>
+  <th>&nbsp;</th>
+  <th class="name">Name</th>
+  <th class="users right" colspan="2">Users</th>
+  <% if @publisher.allow_offers? -%>
+  <th class="total_coupons right" colspan="2">Coupons</th>
+  <th class="active_coupons right">Active Coupons</th>
+  <% end -%>
+  <% if @publisher.allow_gift_certificates? -%>
+  <th class="total_certificates right" colspan="2">Deal Certificates</th>
+  <th class="active_certificates right">Active Deal Certificates</th>
+  <% end -%>
+  <% if @publisher.allow_daily_deals? -%>
+  <th class="daily_deals right" colspan="2">Daily Deals</th>
+  <% end -%>
+  <th>&nbsp;</th>
+</tr>

@@ -1,0 +1,59 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+  </script>
+<% end %>
+
+<%= error_messages_for :daily_deal %>
+
+<div class="left_column">
+  <%= render :partial => 'shared/locale_selection', :locals => {:model => @daily_deal} %>
+
+  <% form_for @daily_deal, :url => update_daily_deal_translations_for_locale_path(@daily_deal.to_param, :editing_locale => params[:editing_locale] || I18n.default_locale) do |f| %>
+    <% DailyDeal.with_locale params[:editing_locale] do %>
+      <%= f.text_field_div(:value_proposition, nil, :required => true)  %>
+      <%= f.text_field_div(:value_proposition_subhead, nil)  %>
+
+      <% if @daily_deal.publisher.enable_side_deal_value_proposition_features? -%>
+        <%= f.text_field_div(:side_deal_value_proposition, nil)  %>
+        <%= f.text_field_div(:side_deal_value_proposition_subhead, nil)  %>
+      <% end -%>
+
+      <div class="row">
+        <div class="label"><%= f.label(:description, "Description:", {}) %></div>
+        <div class="input"><%= f.text_area(:description, {:rows => 4}) %></div>
+        <div class="help">Required.<br/>
+          <%= @daily_deal.description? ? "#{@daily_deal.description.size} characters including markup." : ""%>
+        </div>
+      </div>
+      <%= f.text_area_div :highlights, nil, :rows => 4 %>
+      <%= f.text_area_div :terms, "Terms", :rows => 4, :required => true %>
+      <%= f.text_area_div :reviews, "Reviews", :row => 4 %>  
+      <%= f.text_area_div :voucher_steps, "Voucher Steps", :row => 4, :required => true %>
+      <% if @daily_deal.publisher.allow_daily_deal_disclaimer %>
+        <%= f.text_area_div :disclaimer, nil, :rows => 4 %>
+      <% end %>
+      <% if @daily_deal.publisher.try(:publishing_group).try(:allow_non_voucher_deals) %>
+        <%= f.text_area_div(:redemption_page_description, nil, :rows => 4) %>
+      <% end %>
+      <%= f.text_area_div :email_voucher_redemption_message, "Confirmation Email Voucher Redemption Message", :row => 4 %>
+      <%= f.text_area_div(:twitter_status_text, nil, :rows => 2, :help => %q{<span id="twitter_status_text_character_count"></span>}) %>
+      <%= f.text_area_div(:facebook_title_text, nil, :rows => 2, :help => %q{<span id="facebook_title_text_character_count"></span>}) %>
+      <%= f.text_area_div(:short_description, nil, :rows => 2) %>
+      <%= f.text_field_div(:custom_1) %>
+      <%= f.text_field_div(:custom_2) %>
+      <%= f.text_field_div(:custom_3) %>
+
+    <% end %>
+    <div class="row buttons">
+      <div class="label">
+        <%= submit_tag "Save", :id => "save_button", :name => "save" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="related preview" id="edit_translations_preview">
+  <%= link_to "Back To Daily Deal", edit_daily_deal_path(@daily_deal, :locale => I18n.default_locale) %>
+</div>

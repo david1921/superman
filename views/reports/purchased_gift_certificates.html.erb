@@ -1,0 +1,37 @@
+<% set_page_title "Reports: Purchased Deal Certificates" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => purchased_gift_certificates_reports_url(url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :purchased_deal_certificates, :url_options => url_options}) %>
+
+<% form_tag purchased_gift_certificates_path(:format => :pdf), :method => :get do %>
+  <%= render(:partial => "reports/data_table", :locals => {
+    :dates => @dates,
+    :table_name => "purchased_gift_certificates",
+    :data_source => purchased_gift_certificates_reports_path(:format => "xml"),
+    :data_params => {},
+    :result_node => :purchased_gift_certificate,
+    :data_columns => [
+      [:id, { :label => "", :sortable => false, :formatter => "formatCheckbox('id[]')" }],
+      [:publisher_name, { :label => "Publisher", :class_name => 'left' }],
+      [:paypal_payment_date, { :label => "Purchased" }],
+      [:item_number, { :label => "Deal Certificate", :class_name => 'left' }],
+      [:currency_code, {:label => "Currency"} ],
+      [:currency_symbol, { :display => false } ],
+      [:value, { :label => "Value", :formatter => "formatCurrency" }],
+      [:paypal_payment_gross, { :label => "Payment", :formatter => "formatCurrency" }],
+      [:paypal_txn_id, { :label => "PayPal Transaction ID" }],
+      [:serial_number, { :label => "Serial Number" }],
+      [:paypal_payer_email, { :label => "Email", :class_name => 'left' }],
+      [:status, { :label => "Status", :class_name => "left" }]
+    ]
+  }) %>
+  <div class="full_width buttons">
+    <%= submit_tag("Download PDF", :class => "left") %>
+  </div> 
+<% end -%>
+
+

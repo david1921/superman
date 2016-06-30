@@ -1,0 +1,15 @@
+<% if @publisher.daily_deals.upcoming.present? and @publisher.daily_deals.upcoming.size > 0 %>
+<div class="future_deals content_box other_deal_tracking">
+	<h4>Deals Coming <strong>Soon</strong></h4>
+       <% @publisher.daily_deals.upcoming[0,1].each do |future_deal| %>
+         <div class="side_deal_wrap">
+               <p class="side_deal_value_prop"><%= future_deal.value_proposition %></p>
+            <div class="side_deal_thumb"><img src="<%= future_deal.photo.url(:facebook) %>" alt="" /></div>
+            <div class="side_deal_info info_overlay">
+                <div class="side_deal_price"><%= number_to_currency future_deal.price, :precision => 0 %></div>
+            </div><!-- /side_deal_info -->
+               <div class="clear"></div>
+          </div><!-- /side_deal_wrap -->
+        <% end -%>
+</div><!-- /side_deals -->
+<% end %>

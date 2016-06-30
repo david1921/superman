@@ -1,0 +1,26 @@
+<div id="footer">
+	<div id="footer_content">
+		<ul id="footer_nav">
+      <li><a href="{{ publisher.todays_daily_deal_path }}">{% t this_weeks_deal %}</a></li>
+      <li><a href="{{ daily_deal.buy_now_path }}">{% t buy_now %}</a></li>
+      <li><a href="{{ publisher.how_it_works_path }}">{% t how_it_works %}</a></li>
+      <li><a href="{{ publisher.faq_path }}">{% t faq %}</a></li>
+      <li><a href="{{ publisher.contact_path }}">{% t contact_us %}</a></li>
+      <li><a href="{{ publisher.feature_your_business_path }}">{% t feature_your_business %}</a></li>
+			{% if publisher.launched? %}
+				{% if publisher.current_user_belongs_to? %}
+          <li class="last"><a href="{{ publisher.logout_path }}">{% t sign_out %}</a></li>
+				{% else %}
+          <li class="last"><a href="{{ publisher.login_path }}">{% t sign_in %}</a></li>
+				{% endif %}
+			{% endif %}
+		</ul><!-- /footer_nav -->
+		
+		<div class="clear"></div>
+		<ul id="legal_nav">
+      <li><a href="{{ publisher.privacy_path }}">{% t privacy_policy %}</a></li>
+      <li class="last"><a href="{{ publisher.terms_path }}">{% t terms_and_conditions %}</a></li>
+		</ul><!-- /legal_nav -->
+	</div>
+</div>
+

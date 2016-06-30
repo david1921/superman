@@ -1,0 +1,55 @@
+  <div class="voucher-container <%= 'new_page' if page_break %>">
+
+    <div class="voucher-container" style="height: 770px">
+    	<div class="voucher">
+    	  <img alt="<%= certificate.publisher.name %>" width="300" src="<%= Rails.root %>/public/themes/entertainment/images/graphics/voucher_logo.png">
+    		<span class="voucher_number"><%= certificate.serial_number unless certificate.daily_deal.hide_serial_number_if_bar_code_is_present? && certificate.bar_code.present? %></span>
+    		<h1>
+    		  <%= certificate.voucher_headline.present? ? certificate.voucher_headline : certificate.value_proposition %>
+    		</h1>
+    		<div id="left_column">
+    			<h2>Recipient</h2>
+    			<p><%= certificate.redeemer_name %></p>
+    			<% if certificate.expires_on.present? %>
+    			<h2>Expires On:</h2>
+    			<p><%= certificate.expires_on.to_s(:simple) %></p>
+    			<% end %>
+    			<h2>Fine Print:</h2>
+    			<p class="fine_print"><%= certificate.plain_text_terms %></p>
+					<h2>Universal Terms:</h2>
+					<ul>
+						<li>Offers may exclude tax, tip, and alcohol, where applicable.</li>
+						<li>May not be combined in multiple visits or with any other discount or advertising promotion.</li>
+						<li>Must be used in one visit.</li>
+						<li>No Cash Value or Cash Back.</li>
+					</ul>
+    		</div><!-- /left_column -->
+    		<div id="right_column">
+    			<h2>Redeem at:</h2>
+    			<p><%= certificate.advertiser.name %> <br />
+    			<% location = certificate.store.present? ? certificate.store : certificate.advertiser %>
+    			<% location.address do |line| %>
+  			    <%= line %><br />
+  			  <% end %>
+  			  <%= location.formatted_phone_number %>
+          </p>
+          <% if certificate.bar_code.present? %>
+          <div class='barcode'><img id="imgBarCode" src="<%= bar_code_file_path %>"></div>
+          <% end %>
+          <% if certificate.voucher_has_qr_code? %>
+          <div class='qrcode'><img id="imgQRCode" src="<%= certificate.qr_code_data_uri %>"></div>
+          <% end %>
+    		</div><!-- /right_column -->
+    		<div class="clear"></div>
+    	</div><!-- /voucher -->
+    	<p class="terms">Redemption of this certificate is subject to the Terms published at the following web address: <%= certificate.terms_url %></p>
+    	<div class="voucher_steps">
+    	<h1>How to use this:</h1>  	
+    	<%= certificate.html_voucher_steps %>
+    	</div>
+    </div>
+  </div>
+  <div class="logos">
+	  <img src="http://<%= daily_deal_purchase.daily_deal.publisher.daily_deal_host %>/images/powered_by_analog_analytics.png" />
+  </div><!-- /logos -->
+	

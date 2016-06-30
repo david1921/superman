@@ -1,0 +1,29 @@
+	<div class="signup_form">
+		<form action="/publishers/<%= @publisher.id %>/subscribers" method="POST" class="email_subscription_tracking">
+			<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+      <input type="hidden" name="redirect_to" value="<%= verifiable_url(thank_you_publisher_daily_deal_subscribers_path(:publisher_id => @publisher.id)) %>" id="redirect_to">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+			<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		 
+			<div>
+				<label class="label">e-mail</label>
+				<input id="subscriber_email" name="subscriber[email]" title="Email" type="text" value="" class="input name gradient"> 
+			</div>
+			<div>
+				<label class="label">Πόλη</label>
+				<input id="subscriber_city" name="subscriber[city]" title="Πόλη" type="text" value="" class="input city gradient"> 
+			</div>
+			
+			<div class="gender">
+				<%= t(:male) %> <input type="radio" id="subscriber_gender" name="subscriber[gender]" value="Άνδρας">
+				<%= t(:female) %> <input type="radio" id="subscriber_gender" name="subscriber[gender]" value="Γυναίκα">
+			</div>
+			
+			<div><input type="submit" class="submitbutton" value="<%= t(:submit) %>"/></div>
+			
+			<div class="terms">
+				<input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> Αποδέχομαι τους όρους</a>
+			</div>
+		</form>
+	</div>

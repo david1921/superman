@@ -1,0 +1,6 @@
+<div id="all_deals">
+	<%= render :partial => with_theme('daily_deals/daily_deal'), :collection => @daily_deals %>
+	<div class=" pagination_bottom">
+	    <%= will_paginate @daily_deals, :per_page => 9 %>
+    </div>
+</div>

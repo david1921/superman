@@ -1,0 +1,9 @@
+<%= render :partial => with_theme('shared/subscribe') %>
+<header class="main">
+  <div class="header_content">
+        <%= render :partial => with_theme('shared/pub_header') %>
+    <a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="deal_logo"><%= @publisher.label %></h1></a>
+        <%= render :partial => with_theme('shared/account_nav') %>
+    <%= render :partial => with_theme('shared/dd_nav') %>
+  </div>
+</header>

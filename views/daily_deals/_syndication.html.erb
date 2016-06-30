@@ -1,0 +1,81 @@
+<% if @daily_deal.syndicated? %>
+
+  <div class="row">
+    <div class="label"><label>Source Daily Deal:</label></div>
+    <div class="input">
+      <%= link_to @daily_deal.source.publisher.name, edit_daily_deal_path(@daily_deal.source) %><br>
+    </div>
+  </div>
+
+<% elsif @daily_deal.publisher.publishing_group.try(:restrict_syndication_to_publishing_group) %>
+
+  <div class="row">
+    <div class="label"><label>Syndicated to:</label></div>
+    <div class="input">
+      <div class="scrollable_check_boxes" id="syndicated_deal_publisher_list">
+        <% @daily_deal.all_publishers_available_for_syndication(true, true).sort_by(&:name).each do |publisher| %>
+          <div>
+            <%= check_box_tag "daily_deal[syndicated_deal_publisher_ids][]",
+                publisher.id,
+                @daily_deal.syndicated_deal_publisher_ids.include?(publisher.id),
+                :id => "daily_deal_syndicated_deal_publisher_ids_#{publisher.id}" %>
+            <label for="<%= "daily_deal_syndicated_deal_publisher_ids_#{publisher.id}" %>">
+              <%= publisher.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <a href="javascript:;" onclick="jQuery('#syndicated_deal_publisher_list input').attr('checked', 'checked')">Check All</a> /
+        <a href="javascript:;" onclick="jQuery('#syndicated_deal_publisher_list input').attr('checked', '')">Uncheck All</a>
+      </div>
+
+      <% unless @daily_deal.new_record? %>
+        <%= link_to "Advanced Syndication Options", daily_deal_syndicated_deals_path(@daily_deal) %>
+      <% end %>
+    </div>
+  </div>
+
+<% elsif !@daily_deal.new_record? && !@daily_deal.syndicated? %>
+
+  <% if current_user.has_admin_privilege? %>
+
+    <div class="row">
+      <div class="label"><label>Syndicated to Publishers:</label></div>
+      <% if @daily_deal.syndicated_deals.empty? %>
+        <div class="input">
+          "None" 
+          <br>
+          [<%= link_to "Syndicate", daily_deal_syndicated_deals_path(@daily_deal) %>]
+        </div>
+      <% else %>
+        <div class="input">
+          <% @daily_deal.syndicated_deals.not_deleted.each  do |p| %>
+            <% if p.publisher %>
+            <%= link_to p.publisher.name, edit_daily_deal_path(p) %><br>
+            <% else %>
+            <em><%= "Publisher #{p.publisher_id} for deal #{p.id} deleted" %></em><br/>
+            <% end %>
+          <% end %>
+          [<%= link_to "Edit", daily_deal_syndicated_deals_path(@daily_deal) %>]
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <div class="label"><label>Syndicated to Publishers:</label></div>
+    <div class="input">
+      <% @daily_deal.syndicated_deals.not_deleted.each  do |p| %>
+        <% if p.publisher %>
+        <%= p.publisher.name %><br>
+        <% else %>
+        <em><%= "Publisher #{p.publisher_id} for deal #{p.id} deleted" %></em><br/>
+        <% end %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+<% end %>

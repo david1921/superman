@@ -1,0 +1,40 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "jquery/jquery-ui.custom.css" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <%= javascript_include_tag "jquery/jquery-ui.custom.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();  
+    jQuery(function() {
+      jQuery("input#https_only_host_host").autocomplete({
+        source: [<%= all_daily_deal_hosts_as_autocomplete_source.html_safe %>]
+      });
+      jQuery("input#https_only_host_host").focus();
+    })
+  </script>
+<% end %>
+
+<% form_for :https_only_host do |f| %>
+  <%= f.text_field :host, :style => "width: 250px" %>
+  <%= f.submit "Require HTTPS for all pages" %>
+<% end %>
+
+<h2 style="color: #464548; margin-top: 2em">Hosts Requiring HTTPS On All Pages</h2>
+<p class="help" style="float: none; width: 100%; padding: 0">
+  The following hosts will use secure sessions, and redirect all http:// requests
+  to their https:// equivalent.
+</p>
+
+
+<% if @https_hosts.present? %>
+  <ul class="https-hosts">
+    <% @https_hosts.each do |https_host| %>
+      <li><%= link_to "[x]", https_hosts_publishers_path(:https_only_host => { :host => https_host }), :class => "delete", :method => :delete %> <span class="host"><%= https_host %></span></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p style="margin-top: 1em">No hosts configured.</p>
+<% end %>
+

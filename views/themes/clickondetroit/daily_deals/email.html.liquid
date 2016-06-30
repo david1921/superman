@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% daily_deal_page_title %}</title>
+<style type="text/css">
+	ul {
+		margin: 0;
+		padding-left: 15px;
+	}
+	li {
+		padding-bottom: 5px;
+	}
+	p {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		padding: 0;
+	}
+</style>
+</head>
+
+<body style="margin: 0; padding: 0;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#cc2229">
+  <tr>
+    <td valign="top" bgcolor="#cc2229" height="18" style="font-family: Arial, Helvetica, sans-serif;">
+    	<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redtop.gif" width="5" height="18" alt="" />
+    </td> 
+     <td width="612" rowspan="4" valign="top" bgcolor="#ffffff">
+     
+         <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="18" colspan="2" valign="top" bgcolor="#cc2229">
+    			<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redtop.gif" width="5" height="18" alt="" />
+            </td>
+            <td width="250" rowspan="4" align="right"><a href="{{ daily_deal.url_for_email }}"><img border="0" style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/todays-real-deal.gif" width="250" height="134" alt="" /></a></td>
+          </tr>
+          <tr>
+            <td valign="top" bgcolor="#ffffff" height="58">
+    			<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-whitetop.gif" width="6" height="58" alt="" />
+                
+            </td>
+            <td valign="middle" width="356" align="right" bgcolor="#ffffff" style="font-family: Arial, Helvetica, sans-serif; font-size: 30px; line-height: 30px; font-weight: bold;">
+              <!--TODAY'S-->
+            </td>
+          </tr>
+          <tr>
+            <td height="35" colspan="2" valign="top" bgcolor="#cc2229">
+        		<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redbot.gif" width="5" height="35" alt="" />
+            </td>
+           </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+           </tr>
+          <tr>
+            <td colspan="3" valign="top" style="padding-bottom: 10px;">
+            
+            <!--START CONTENT-->
+            
+            <table width="580" border="0" cellspacing="0" cellpadding="0" align="center">
+              <tr>
+                <td valign="top" align="left">
+                	<h1 style="font-size: 30px; line-height: 30px; letter-spacing: -1px; padding: 0; margin: 0; font-family:'Arial Black', Gadget, sans-serif;"><strong>{{ daily_deal.value_proposition }}</strong><br />
+<span style="color:#cc2229">A {{ daily_deal.value | currency }} value. You pay only {{ daily_deal.price | currency }}!</span></h1>
+                </td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" style="font-size: 17px; line-height: 18px; font-weight: bold; padding-top: 5px; padding-bottom: 20px; font-family: Arial, Helvetica, sans-serif;">
+                	{{ daily_deal.value_proposition_subhead }}
+                </td>
+              </tr>
+            </table>
+            
+            <table width="592" border="0" cellspacing="0" cellpadding="0" align="center">
+              <tr>
+                <td valign="top" width="200">
+                	<table width="100%" border="0" cellspacing="6" cellpadding="0">
+                      <tr>
+                        <td style="padding-bottom: 30px; font-weight: bold; font-size: 20px; color: #cc2229;"><a href="{{ daily_deal.url_for_email }}"><img border="0" style="display: block" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/go-to-the-deal.gif" width="200" height="48" alt="Go to the Deal" /></a></td>
+                      </tr>
+                      <tr>
+                        <td style="border-width: 1px; border-color: #dddddd; border-style: solid">
+                          <table width="100%" border="0" cellspacing="10" cellpadding="0">
+                              <tr>
+                                <td style="color: #666; font-size: 11px; line-height:15px; font-family: Arial, Helvetica, sans-serif;">
+                                  <img src="{{ advertiser.logo.standard_url }}" alt="" /><br />
+                                  <p>
+                                  {{ advertiser.name }}<br />
+                                    {% if advertiser.address? %}
+                                      {{ advertiser.address_line_1 }}<br />
+                                      {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                                        {% if advertiser.formatted_phone_number != empty %}
+							              {{ advertiser.formatted_phone_number }}
+							            {% endif %}<br />
+                                       {% if advertiser.website_url != empty %}
+							              <a href="{{ advertiser.website_url }}" style="color: #008dd1">visit website</a>
+							           {% endif %}
+                                     {% else %} 
+                                       {% if advertiser.formatted_phone_number != empty %}
+							             {{ advertiser.formatted_phone_number }}
+							           {% endif %}
+                                       {% if advertiser.website_url != empty %}
+                                          <br /><a href="{{ advertiser.website_url }}" style="color: #008dd1">visit website</a>
+                                       {% endif %}
+                                    {% endif %}
+                                  </p>
+                                  
+                                  {% if advertiser.address? %}
+                                     {% if advertiser.stores.size > 0 %}
+									   <a href="{{ advertiser.map_url }}"><img border="0" src="{{ daily_deal.map_image_url }}" id="map" target="_blank" alt="map" width="175" /></a>
+									 {% endif %}
+                                {% endif %}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td valign="top" style="font-size: 16px; font-family: 'Arial Black', Gadget, sans-serif;">
+                                  <h2 style="font-size: 16px; font-family: 'Arial Black', Gadget, sans-serif; margin: 0; padding-top: 0; padding-bottom: 8px;"><strong>Share This</strong></h2>
+                                  <a href="{{ daily_deal.facebook_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/facebook.gif" width="38" height="32" alt="Facebook" /></a><a href="{{ daily_deal.twitter_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/twitter.gif" width="38" height="32" alt="Twitter" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/email.gif" width="38" height="32" alt="Email" /></a>
+                                </td>
+                              </tr>
+                            </table>
+                        </td>
+                      </tr>
+                    </table>
+                </td>
+                <td valign="top">
+                	<table width="100%" border="0" cellspacing="6" cellpadding="0">
+                      <tr>
+                        <td valign="top" colspan="2"><img src="{{ daily_deal.photo.email_url }}" width="368" alt="clickondetroit Real Deal of the day" /></td>
+                      </tr>
+                      <tr>
+                        <td valign="top" colspan="2" style="font-size: 16px; font-family: 'Arial Black', Gadget, sans-serif;"><strong>Deal Information</strong></td>
+                      </tr>
+                      <tr>
+                        <td valign="top" colspan="2" style="padding-bottom: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                         {{ daily_deal.description }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td valign="top" width="50%" style="font-size: 16px; font-family: 'Arial Black', Gadget, sans-serif;"><strong>Highlights</strong></td>
+                        <td valign="top" width="50%" style="font-size: 16px; font-family: 'Arial Black', Gadget, sans-serif;"><strong>Fine Print</strong></td>
+                      </tr>
+                      <tr>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                          {{ daily_deal.highlights }}  
+                        </td>
+                        <td valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">
+                          {{ daily_deal.terms }}
+                        </td>
+                      </tr>
+                    </table>
+                </td>
+              </tr>
+            </table>
+            
+            <!--END CONTENT-->           
+            
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" bgcolor="#cc2229"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redtop.gif" width="5" height="18" alt="" /></td>
+           </tr>
+        </table>    	
+   </td> 
+     <td valign="top" bgcolor="#cc2229" height="18">
+    	<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redtop.gif" width="5" height="18" alt="" />
+    </td>    
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="#ffffff" height="58">
+    	<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-whitetop.gif" width="6" height="58" alt="" />
+    </td> 
+    <td valign="top" bgcolor="#ffffff" height="58">
+    	<img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-whitetop.gif" width="6" height="58" alt="" />
+    </td>   
+  </tr>
+  <tr>
+    <td valign="top" height="35" bgcolor="#cc2229">
+        <img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redbot.gif" width="5" height="35" alt="" />
+    </td>
+    <td valign="top" height="35" bgcolor="#cc2229">
+        <img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/clickondetroit/images/email/spacer-redbot.gif" width="5" height="35" alt="" />
+    </td>   
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="#cc2229">&nbsp;</td>
+    <td valign="top" bgcolor="#cc2229">&nbsp;</td>    
+  </tr>
+</table>
+
+
+</body>
+</html>

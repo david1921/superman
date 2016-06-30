@@ -1,0 +1,46 @@
+<%= render :partial => with_theme("shared/head") %>
+
+
+<body>
+
+
+<div id="analog_analytics">
+    <div id="daily_deal" class="deals">
+		
+		<div id="topbanner">
+		  <%= render :partial => with_theme("shared/masthead") %>
+		</div>
+		
+		<div id="topnavbar">
+			<div id="nav">
+				 <%= render :partial => with_theme("shared/topnav") %>
+			</div>
+			<div id="subscription">
+				<%= render :partial => with_theme("shared/subscribe") %>
+			</div>
+		</div>
+		
+		
+		<%= render :partial => with_theme("shared/flash_messages") %>
+		
+		<div id="container">
+		
+		<!--START BODY CONTENT-->
+			
+			<%=raw yield %>
+	
+		<!--END BODY CONTENT-->
+		 
+		 </div>
+		 
+		 
+		 <%= render :partial => with_theme("shared/footer") %>
+
+
+    </div><!--end daily_deal-->
+</div><!--end analog_analytics-->
+
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+<%= raw render :partial => 'daily_deals/javascript' %>
+</body>
+</html>

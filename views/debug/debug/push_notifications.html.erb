@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>iPhone Push Notification Test</title>
+  </head>
+  <body>
+    <div>
+      <%= flash[:notice] %>
+    </div>
+    <form action="/debug/push_notifications" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" value="Send Test Push Notifications">
+    </form>
+  </body>
+</html>

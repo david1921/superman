@@ -1,0 +1,60 @@
+<%- set_daily_deal_page_title_slug "Buy Now" -%>
+
+<div class="page_row confirm_payment">
+  <div class="page_column_8 first rounded_corners">
+    <h1>My Cart</h1>
+    <% if @daily_deal_order.daily_deal_purchases.present? -%>
+      <% content_tag_for :table, @daily_deal_order  do %>
+        <tr>
+          <th>Item</th>
+          <th class="quantity">Quantity</th>
+          <th class="price">Price</th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <%= render(:partial => "daily_deal_orders/daily_deal_purchase", :collection => @daily_deal_order.daily_deal_purchases) %>
+
+        <tr>
+          <th colspan="2">Total</th>
+          <td class="price"><%= number_to_currency(@daily_deal_order.total_price, :unit => @daily_deal_order.currency_symbol) %></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+      <% end %>
+      <% if @daily_deal_order.total_price == 0 %>
+        <h2 class="buy_now_proposition">
+          Get a <%= number_to_currency(@daily_deal_order.total_value, :unit => @daily_deal_order.currency_symbol) %> Value
+          for Free Now
+        </h2>
+        
+        <p>Click the Complete Purchase button to get this deal for free now! Any discounts applied to this purchase will be used in
+          their entirety and will not be available for use on future purchases.</p>
+        <div id="payment_method_free" class="row">
+          <% form_tag execute_free_daily_deal_order_path(@daily_deal_order), :id => "free_purchase_form" do %>
+            <%= submit_tag("Complete Purchase", :id => "complete_purchase") %>
+            <%= link_to "Continue Shopping", public_deal_of_day_path(@daily_deal_order.publisher.label) %> |
+            <%= daily_deal_cancel_link(@daily_deal_order.publisher) %>
+          <% end -%>
+        </div>
+        
+      <% else %>
+        <h2 class="buy_now_proposition">
+          Buy a <%= number_to_currency(@daily_deal_order.total_value, :unit => @daily_deal_order.currency_symbol) %>
+          Value for <%= number_to_currency(@daily_deal_order.total_price, :unit => @daily_deal_order.currency_symbol) %> Now
+        </h2>
+        <%= render :partial => "daily_deal_purchases/braintree_buy_now_form",
+                    :locals => {
+                      :daily_deal_purchase => @daily_deal_order,
+                      :result => @result,
+                      :consumer => @daily_deal_order.consumer,
+                      :item_code => @daily_deal_order.item_code,
+                      :redirect_url => braintree_redirect_daily_deal_order_url(@daily_deal_order, :host => @daily_deal_order.publisher.daily_deal_host)
+                    } %>
+      <% end %>
+    <% else -%>
+      <p>There are currently no items in your cart.</p>
+    <% end -%>
+  </div>
+</div>

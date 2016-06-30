@@ -1,0 +1,2 @@
+page["flash_warn"].replace_html escape_once(exception.message)
+page["flash_warn"].show

@@ -1,0 +1,18 @@
+define({
+	dealUrl: "<%=  daily_deal_path( @daily_deal, :format => :json ) %>",
+  buyNowConfig: {
+		buyNowButtonSelector: "#buy_now_button_div"
+	},
+	dealTickerConfig: {
+		includeDay: true,
+		formatTimeRemaining: function(day, hour, min, sec) {
+			var day = parseInt(day, 10),
+					format = '';
+			if( day > 0 ) {
+				format += day + ' Day' + (day > 1 ? 's' : '') + ' ';
+			}
+			format += hour + ":" + min + ":" + sec;
+			return format;
+	  }
+	}
+});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QUnit : Super Banner</title>
+    <link rel="stylesheet" href="lib/quint.css" type="text/css" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script src="lib/qunit.js"></script>
+    <script src="../../public/javascripts/lib/require.js"></script>
+    <script src="../../public/javascripts/lib/underscore.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+    <!-- the test cases -->
+    <script type="text/javascript">
+      QUnit.config.autostart = false;
+          
+      require([
+        "unit/deal_notifier_test.js",
+        "unit/deal_test.js",
+        "unit/deal_ticker_test.js",
+        "unit/buy_now_test.js",
+        "unit/number_sold_test.js",
+        "unit/deals_test.js",
+        "unit/deals_tickers_test.js",
+        "unit/translations_test.js",
+        "unit/variations_test.js"],
+      function(dealNotifierTest, dealTest, dealTickerTest, buyNowTest, numberSoldTest, dealsTest, dealsTickersTest, translationsTest, variationsTest) {
+        QUnit.start();
+        dealNotifierTest.runTests();
+        dealTest.runTests();
+        dealTickerTest.runTests();
+        buyNowTest.runTests();       
+        numberSoldTest.runTests();
+        dealsTest.runTests();
+        dealsTickersTest.runTests();
+        translationsTest.runTests();
+        variationsTest.runTests();
+      });
+    </script>
+
+  </head>
+  <body>
+    <h1 id="qunit-header">QUnit example</h1>  
+    <h2 id="qunit-banner"></h2>  
+    <h2 id="qunit-userAgent"></h2>  
+    <ol id="qunit-tests">   
+    </ol>
+    
+    <!-- where to add test fixtures for js tests -->
+    <div id="qunit-fixture"></div> 
+    
+  </body>
+
+</html>

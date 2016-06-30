@@ -1,0 +1,41 @@
+<% set_daily_deal_page_title_slug "#{t(:title_slug_expired_deals)} #{@publisher.name}" %>
+
+<% unless @publisher.label == 'bcbsa-national' %>
+	<div class="breadcrumbs">
+		<ul>
+			<li>
+				<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+			</li>
+			<li class="no_underline">></li>
+			<li>          
+				<a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:all_deals) %></a>
+			</li>
+			<li class="no_underline">></li>
+			<li class="no_underline"><%= t(:expired_deals) %></li>
+		</ul>
+	</div>
+<% end %>
+
+<div id="past_deals">
+<div class="page_row past">
+  
+  
+  	<h1 class="content"><%= t(:expired_deals) %></h1>
+	
+	<div id="past_deals_content">  
+		
+		<p id="past_deals_lead_text"><%= t(:expired_deals_message_par1) %> <a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:expired_deals_message_par2) %></a> <%= t(:expired_deals_message_par3) %></p>
+	
+   		<% filtered_deals = @daily_deals[0..20] %>
+   		<% if filtered_deals.size > 0  %>
+   		   <% filtered_deals.each_with_index do |filtered_deal, index| %>
+   		   	<%= render :partial => with_theme("daily_deal_past"), :locals => {:daily_deal => filtered_deal} %>     		   
+   		   <% end %>
+   		<% else %>
+   		  <p class="coming_soon"><%= t(:expired_deals_no_deals) %></p>
+   		<% end %>
+    </div>
+  
+</div>
+</div>
+

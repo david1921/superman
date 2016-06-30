@@ -1,0 +1,33 @@
+<div id="sign_up_box">
+	<%= render :partial => 'shared/flash_messages' %>
+  
+	<div class="landing_logo">
+		<h1>Sign Up for</h1>
+	</div>
+	<div class="sign_up_form">
+    <form action="<%= publishing_group_subscribers_path %>" method="POST" class="presignup email_subscription_tracking">
+		  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+		  <input type="hidden" name="redirect_to_deal_page" value="true" />
+		  <input type="hidden" name="publisher_not_found_redirect_to" value="<%= verifiable_url(not_found_publishing_group_markets_url) %>" />
+		  <input type="hidden" name="assign_subscriber_to_publisher_by_zip_code" value="true" />
+		  <input type="hidden" name="subscriber[must_accept_terms]" value="true" />
+		  <input type="hidden" name="subscriber[email_required]" value="true" id="subscriber_email_required" />
+
+      <div class="sign_up_info">
+				<div class="row"><label for="subscriber_email">Email:</label><input id="subscriber_email" name="subscriber[email]" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" /></div>
+        <div class="row market_row"><label class="subscriber_zipcode" for="subscriber_zipcode">Zipcode:</label><input id="subscriber_zipcode" name="subscriber[zip_code]" type="text" value="Zipcode"  onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zipcode':this.value;"/></div>
+
+
+    		<fieldset>
+    			<div class="row"><input name="subscriber[terms]" value="0" type="hidden" />
+    			<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /> I agree to the  
+					<a href="http://admin.analoganalytics.com/publishers/175/daily_deals/terms" target="_blank">Terms of Use </a> and <a href="http://admin.analoganalytics.com/publishers/175/daily_deals/privacy_policy" target="blank">Privacy Policy</a></a></div>
+    		</fieldset>
+			</div>
+         
+			<input src="/themes/entertainment/images/buttons/landing_submit.png" class="sign_up_button" name="sign_up_button" type="image" value="Continue">
+ 
+		</form>
+	</div>
+<div class="clear"></div>
+</div>

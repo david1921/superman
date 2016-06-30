@@ -1,0 +1,30 @@
+<% set_daily_deal_page_title_slug t(:refunded_vouchers) %>
+
+<div class="page_row my_deals_page refunded">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <div id="dd_nav" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px;">
+      <%= raw render :partial => with_theme("shared/dd_nav")%>
+    </div><!-- END #dd_nav --> 
+    <%= render :partial => "daily_deal_purchases/navigation" %>
+    <h1 class="content"><%= t(:refunded_vouchers) %></h1>
+    
+    <% if @refunded_certificates.blank? && @refunded_travelsavers_bookings.blank? %>
+      <p><%= t('.no_refunded_vouchers_message') %></p>
+    <% else %>
+      <div class="mydeals_unoptimized">
+      <table id="<%= %Q(consumer_#{@consumer.id}_refunded_daily_deal_certificates) %>" class="daily_deal_purchase my_deals" cellspacing="0">
+        <tr>
+          <th class="description"><%= t(:description) %></th>
+          <th class="advertiser"><%= t(:advertiser) %></th>
+          <th class="serial_number"><%= t(:voucher_number) %></th>
+          <th class="refunded_on"><%= t(:refunded_on) %></th>
+          <th class="status"></th>
+        </tr>
+        <%= render(:partial => with_theme("refunded_voucher"), :collection => @refunded_certificates) %>
+        <%= render(:partial => with_theme("refunded_travelsavers_booking"), :collection => @refunded_travelsavers_bookings) %>
+      </table>
+      </div>
+    <% end %>
+  </div>
+</div>
+

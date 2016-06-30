@@ -1,0 +1,4 @@
+<% form_for :note, @note, :url => advertiser_note_path(@advertiser,@note), :html => {:multipart => true, :method => :put, :id => "note"} do |f| -%>
+	<%= render :partial => "advertisers/notes/form", :object => f %>
+	<%= f.submit "Save Changes" %>
+<% end -%>

@@ -1,0 +1,26 @@
+<div id="footer">
+	<div id="footer_content">
+		<ul id="footer_nav">
+			<li><a href="{{ publisher.todays_daily_deal_path }}">oferta semanal</a></li>
+			<li><a href="{{ daily_deal.buy_now_path }}">&iexcl;Compre ya!</a></li>
+			<li><a href="{{ publisher.how_it_works_path }}">como funciona</a></li>
+			<li><a href="{{ publisher.faq_path }}">PMF</a></li>
+			<li><a href="{{ publisher.contact_path }}">Comuniquese con nosotros</a></li>
+			<li><a href="{{ publisher.feature_your_business_path }}">an&uacute;nciese con nosotros</a></li>
+			{% if publisher.launched? %}
+				{% if publisher.current_user_belongs_to? %}
+			<li class="last"><a href="{{ publisher.logout_path }}">Terminar sesi&oacute;n</a></li>
+				{% else %}
+			<li class="last"><a href="{{ publisher.login_path }}">Iniciar sesi&oacute;n</a></li>
+				{% endif %}
+			{% endif %}
+		</ul><!-- /footer_nav -->
+		
+		<div class="clear"></div>
+		<ul id="legal_nav">
+			<li><a href="{{ publisher.privacy_path }}">Pol&iacute;tica De Privacidad</a></li>
+      <li class="last"><a href="{{ publisher.terms_path }}">T&eacute;rminos y condiciones</a></li>
+		</ul><!-- /legal_nav -->
+	</div>
+</div>
+

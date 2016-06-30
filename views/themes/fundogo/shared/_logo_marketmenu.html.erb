@@ -1,0 +1,17 @@
+<div id="logo_and_market">
+	<% if @publisher.enable_market_menu? %>
+	  <a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="deal_logo" class="market_menu">FunDoGo</h1></a>
+	  <div id="market_menu_wrapper">
+	      <ul id="market_menu">
+	         <li class="current"><a class="parent" href="#"><%= @publisher.market_name_or_city %> <span>change city</span></a>
+	           <%= market_selection_list(@publisher) %>
+	         </li>
+	      </ul>
+	   </div><!-- END #market_menu_wrapper -->
+	   
+	   <script type="text/javascript" src="/themes/fundogo/javascript/market_menu.js"></script>
+
+	 <% else -%>
+	   <a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="deal_logo">FunDoGo</h1></a>
+	 <% end -%>
+</div><!-- END #logo_and_market-->

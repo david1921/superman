@@ -1,0 +1,7 @@
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+		<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">Getaways</a></li>
+		<li><a href="<%= about_us_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#about_us" ? 'current_page' : nil %>">Who We Are</a></li>
+		<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>">Feature Your Business</a></li>
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->

@@ -1,0 +1,27 @@
+<div id="market_nav" style="display:none;">
+<a class="close-market-menu" href="#close-nav">Hide</a>
+  <span class="market-nav-main-title">Find deals in other areas:</span>
+
+  <span class="searchby-us">Search by U.S. State</span> {% markets_by_state kowabunga %}
+</div>
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function() {
+
+    jQuery('#states_letter_nav a').bind('click', function(eventObject){
+      state_letter = jQuery(this).text();
+      div_to_show = jQuery('#' + state_letter + '_states');
+      div_to_hide = jQuery('.active_state_div').first();
+
+      div_to_hide.toggleClass("active_state_div");
+      div_to_hide.stop().slideToggle();
+      div_to_show.slideToggle();
+      div_to_show.toggleClass("active_state_div");
+    });
+    jQuery('#states_letter_nav a').click(function(){
+    jQuery('#states_letter_nav a').removeClass("active-state");
+    jQuery(this).toggleClass("active-state");
+    });
+  });
+</script>

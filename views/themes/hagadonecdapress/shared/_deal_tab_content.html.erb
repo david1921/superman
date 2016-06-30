@@ -1,0 +1,96 @@
+	<ul id="deal_tabs"> 
+			<li class="current_deal_tab"><a id="tab_overview">Overview</a></li> 
+			<li style="<%= "display:none" if @advertiser.address.blank? %>"><a id="tab_location">Location</a></li>
+			<li style="<%= "display:none" if @daily_deal.reviews.blank? %>"><a id="tab_reviews">Reviews</a></li>
+		</ul> 
+		
+		<div id="deal_tab_content" class="content_box"> 
+			<div id="tab_overview_content">
+				<div id="description" class="six_col">
+				     <h2>Description</h2>
+				     <%= @daily_deal.description.try :html_safe %>
+				</div>
+				<div id="highlights" class="three_col">
+				     <% unless @daily_deal.highlights.blank? %>
+				     	<h2>Highlights</h2>
+				     	<%= @daily_deal.highlights.try :html_safe %>
+				     <% end %>
+				     <% unless @daily_deal.terms.blank? %>
+				     	<h2>Fine Print</h2>
+				     	<%= @daily_deal.terms.try :html_safe %>
+					<% end %>
+				</div>
+				
+				<div class="clear"></div>
+
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_location_content" class="deal_tab_hidden">
+				<% if @daily_deal.advertiser.address.present? %>
+				<div id="advertiser_map">
+					<a  id="map" href="<%= @advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "290x290", true) %>" /></a>
+				</div><!-- /map -->
+				<% end %>
+
+				<div id="advertiser">
+					<img id="advertiser_logo" src="<%= @advertiser.logo.url %>" alt="<%= @advertiser.name %>" /><br />
+					<p class="advertiser_name"><%= @advertiser.name %></p>
+					
+					<% if @daily_deal.advertiser.address.present? %>
+  					<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+	  					<p class="location_container" style="<% if idx > 2 %>display:none<% end %>">
+	  					  <% if store.address_line_1.present? %>
+							<%= store.address_line_1 %><br />
+						  <% end %>
+	  					  <% if store.address_line_2.present? %>
+							<%= store.address_line_2 %><br />
+						  <% end %>
+	  					  <% if store.city.present? and store.state.present? and store.zip.present? %>
+							<%= store.city %>, <%= store.state %> <%= store.zip %><br />
+						  <% end %>
+						  <% if store.formatted_phone_number.present? %>
+					        <%= store.formatted_phone_number %>
+					      <% end %>
+						</p>
+					<% end %>
+					<% if @daily_deal.advertiser.website_url.present? %>
+					  	<p><a href="<%= @daily_deal.advertiser.website_url %>" target="_blank"><%= raw HtmlTruncator.truncate_html(@daily_deal.advertiser.website_url, 45).gsub("http://", "") %></a></p>
+					<% end %>	
+  				<% end %>
+
+  				<% unless @daily_deal.advertiser.address.present? %>
+  					<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+				  	  <% if store.formatted_phone_number.present? %>
+					      <p class="phone"><%= store.formatted_phone_number %></p>
+					  <% end %>
+				  	<% end %>
+					<p class="website">
+	  					<% if @daily_deal.advertiser.website_url.present? %>
+					  	<a href="<%= @daily_deal.advertiser.website_url %>" target="_blank"><%= raw HtmlTruncator.truncate_html(@daily_deal.advertiser.website_url, 45).gsub("http://", "") %></a>
+				  	</p>
+				  	<% end %>
+  				<% end %>
+					
+				  <% if @advertiser.stores.size > 3 %>
+				  <a id="see_all_locations" href="#" onclick="javascript:$$('p.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+				  <% end %>
+									
+				</div><!-- /advertiser -->
+
+				<div class="clear"></div>
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_reviews_content" class="deal_tab_hidden"> 
+				 <% unless @daily_deal.reviews.blank? %>
+					 <h2>Reviews</h2>
+					 <%= @daily_deal.reviews.try :html_safe %>
+				 <% end %>
+			</div><!-- /tab_content_reviews --> 
+			
+			<div id="tab_comments_content" class="deal_tab_hidden"> 
+			  <% if FacebookApp.facebook_configured?(@publisher) %>
+          <h2>Comments</h2>
+          <%= facebook_comments_div(@daily_deal, 630) %>
+        <% end %>        
+			</div><!-- /tab_content_notes --> 
+		</div><!--/tab content --> 

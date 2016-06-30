@@ -1,0 +1,40 @@
+my_space_burger_king_free_fries:
+  advertiser: burger_king
+  message: Use coupon code COKESWAY for $1.00 off on your next six-pack purchase at Safeway
+  txt_message: "Code COKESWAY: $1 off a 6-pack purchase @ Safeway. 1 per customer."
+  categories: restaurants
+  terms: Limit one per customer
+  bit_ly_url: http://bit.ly/qwerty
+
+changos_buy_two_tacos:
+  advertiser: changos
+  message: But two tacos, get one FREE
+  terms: "Expires 12/15/09"
+  txt_message: "Changos: Buy two tacos & get one FREE. Expires 12/15/09."
+  categories: restaurants
+  offer_image_file_name: tacos.png
+  offer_image_content_type: image/png
+  bit_ly_url: http://bit.ly/56256
+
+bella_smiles_free_toothbrush:
+  advertiser: bella_smiles
+  message: "Free Sonicare Toothbrush"
+  txt_message: "Bella Smiles: Free Sonicare Toothbrush w/ comp. new patient exam, x-ray, cleaning."
+  categories: [health, dental]
+  bit_ly_url: http://bit.ly/5UKVSt"
+
+elbow_east_happy_hour:
+  advertiser: elbow_east
+  message: "Happy Hour"
+  txt_message: "Elbow East: Happy hour, M-F, 4-7pm."
+  terms: "Open at noon, year round"
+  categories: restaurants
+  bit_ly_url: http://bit.ly/68SJ2E
+
+elbow_east_free_nachos:
+  advertiser: elbow_east
+  message: "Free nachos with your drink"
+  txt_message: "Elbow East: Free nachos with your drink, M-F, 4-7pm."
+  terms: "Open at noon, year round"
+  categories: restaurants
+  bit_ly_url: http://bit.ly/68SJ2F

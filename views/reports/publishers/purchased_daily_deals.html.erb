@@ -1,0 +1,41 @@
+<% set_page_title "Reports: Publisher Daily Deals" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => publisher_purchased_daily_deals_data_source_url(@publisher, @market, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :purchased_daily_deals, :url_options => url_options}) %>
+<%
+   data_columns = []
+   data_columns << [:started_at, {:label => "Started At"}]
+   data_columns << [:ended_at, {:label => "Ended At"}]
+   if admin?
+    data_columns << [:source_publisher, {:label => "Source Publisher"}]
+   end
+   data_columns << [:advertiser_name, { :label => "Advertiser", :class_name => 'left', :formatter => "formatUrl('advertiser_href')" }]
+   data_columns << [:publisher_advertiser_id, { :label => "Pub. Adv. ID" }]
+   data_columns << [:advertiser_href, { :display => false }]
+   data_columns << [:currency_symbol, { :display => false }]
+   data_columns << [:accounting_id, {:label => "Accounting ID"}]
+   data_columns << [:listing, {:label => "Listing ID"}]
+   data_columns << [:value_proposition, { :label => "Value", :class_name => 'left' }]
+   data_columns << [:purchases_count, {:label => "# Purchased", :parser => "number"}]
+   data_columns << [:purchasers_count, { :label => "Purchasers", :parser => "number" }]
+   data_columns << [:purchases_gross, { :label => "Gross #{@publisher.currency_symbol}", :parser => "number", :formatter => "formatCurrency" }]
+   data_columns << [:purchases_discount, { :label => "Discount #{@publisher.currency_symbol}", :parser => "number", :formatter => "formatCurrency" }]
+   data_columns << [:refunds_total_quantity, { :label => "# Refunded", :parser => "number" }]
+   data_columns << [:refunds_total_amount, { :label => "Refunds #{@publisher.currency_symbol}", :parser => "number", :formatter => "formatCurrency" }]
+   data_columns << [:purchases_amount, {:label => "Total", :parser => "number", :formatter => "formatCurrency"}]
+   data_columns << [:account_executive, { :label => "Account Executive" }]
+   data_columns << [:advertiser_revenue_share_percentage, {:label => "Adv. Rev. %", :formatter => "formatPercentage"}]
+   data_columns << [:advertiser_credit_percentage, {:label => "Adv. Credit %", :formatter => "formatPercentage"}]
+
+%>
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publisher_purchased_daily_deals",
+  :data_source => publisher_purchased_daily_deals_data_source_path(@publisher, @market, :format => "xml"),
+  :data_params => {},
+  :result_node => :daily_deal,
+  :data_columns => data_columns
+}) %>

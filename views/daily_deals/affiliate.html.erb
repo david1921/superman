@@ -1,0 +1,4 @@
+<% if @daily_deal %>
+<%= @daily_deal.value_proposition %> <br /> <br />
+Share this deal: <%= link_to current_user.url_for_daily_deal(@daily_deal), current_user.url_for_daily_deal(@daily_deal) %>
+<% end %>

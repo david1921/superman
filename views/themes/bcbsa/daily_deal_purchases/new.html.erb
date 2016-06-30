@@ -1,0 +1,31 @@
+<%- set_daily_deal_page_title_slug t(:title_slug_purchase_page) -%>
+
+<div class="page_row daily_deal_payment">
+  <div class="page_column_8 first rounded_corners" id="new_daily_deal_purchase_column">
+    <% unless @publisher.pay_using?(:optimal) -%>
+    <div id="review_and_buy_form">
+      <%= render :partial => "daily_deal_purchases/review_and_buy_form" %>
+    </div>
+    <% else -%>
+      <%# rendering optimal iframe %>
+      <%= content_tag(:iframe, "", :src => optimal_daily_deal_daily_deal_purchases_path(@daily_deal), :scrolling => :no, :frameborder => "0", :class => "optimal") %>
+    <% end -%>
+  </div>
+
+  <%= render :partial => with_theme("payment_sidebar"), :locals => { :daily_deal => @daily_deal } %>
+</div>
+
+<%= javascript_include_tag "translations"  %>
+<script>
+  I18n.locale = '<%= I18n.locale.to_s %>';
+</script>
+<%= javascript_include_tag "daily_deal_purchase" unless @publisher.pay_using?(:optimal) %>
+
+<%= stylesheet_link_tag 'daily_deal_purchase' %>
+
+<% content_for :head do %>
+    <% if @publisher.allow_voucher_shipping? %>
+        <%= javascript_include_tag "app/daily_deal_purchases/fulfillment_options" %>
+    <% end %>
+<% end %>
+

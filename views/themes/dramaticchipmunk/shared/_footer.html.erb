@@ -1,0 +1,58 @@
+<div class="footer">
+	<div class="footer_content">
+        <div id="a_a">
+			<a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics_250.png" width="264" height="36" border="0" alt="Powered by Analog Analytics" /></a>
+			<a href="http://analoganalytics.com/clients/"><img src="/images/syndication_network_light_250.png" width="250" height="37" border="0" alt="Member of the Analog Analytics Syndication Network" /></a>
+		</div>
+		
+		<div class="clear"></div>
+		<div class="footer_column follow_us">
+			<p>Follow Us:</p>
+			<% current_path = request.fullpath %>
+			<% all_deals_path = daily_deals_public_index_path(@publisher.label).to_s + '?per_page=6'%>
+			<ul class="social_follow">
+			<% if current_path == all_deals_path && @featured_deal.present? %>
+				<% if @publisher.show_facebook_button? %>
+					<li><a href="<%= @publisher.facebook_page_url %>" target="_blank" class="follow_facebook"><span>Facebook</span></a></li>
+				<% end %>
+				<% if @publisher.show_twitter_button? %>
+					<li><a href="<%= twitter_daily_deal_path(@featured_deal) %>" target="_blank" class="follow_twitter"><span>Twitter</span></a></li>
+				<% end %>	
+			<% elsif current_path == public_deal_of_day_path(@publisher.label) %>
+				<% if @publisher.show_facebook_button? %>
+					<li><a href="<%= @publisher.facebook_page_url %>" target="_blank" class="follow_facebook"><span>Facebook</span></a></li>
+				<% end %>	
+				<% if @publisher.show_twitter_button? %>
+					<li><a href="<%= twitter_daily_deal_path(@daily_deal) %>" target="_blank" class="follow_twitter"><span>Twitter</span></a></li>
+				<% end %>	
+			<% else %>
+				<% if @publisher.show_facebook_button? %>
+					<li><a href="<%= @publisher.facebook_page_url %>" class="follow_facebook"><span>Facebook</span></a></li>
+				<% end %>	
+				<% if @publisher.show_twitter_button? %>
+					<li><a href="#" class="follow_twitter"><span>Twitter</span></a></li>
+				<% end %>
+			<% end %>	
+			</ul>
+		</div><!-- /follow_us -->
+		
+		<% if @publisher.sales_email_address.present? -%>
+    		<div class="footer_column feature_business">
+    			<p>Want to feature your business?<br /> Email us at <a href="mailto:<%= @publisher.sales_email_address %>?subject=Feature my business on <%= @publisher.sales_email_address %>"><%= @publisher.sales_email_address %></a></p>
+    		</div><!-- /feature_business -->
+		<% end %>
+		<div class="footer_column nav_lists">
+			<ul class="footer_nav">
+                <li><%= daily_deals_privacy_link(@publisher) %></li>
+                <li><%= daily_deals_terms_link(@publisher) %></li>
+			</ul><!-- /footer_nav 1 -->
+			<ul class="footer_nav">
+        		<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+        		<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+        		<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+			</ul><!-- /footer_nav 2-->
+		</div><!-- /nav_lists -->
+		<div class="clear"></div>
+		<p class="copyright">Copyright <%= Time.zone.now.strftime("%Y") %> <%= @publisher.name %>. <br />US Patent 8090613, Additional Patents Pending</p>
+	</div><!-- /footer_content -->
+</div><!-- footer -->

@@ -1,0 +1,22 @@
+<div id="dd_nav_wrapper">
+	<div id="dd_nav_inner_wrapper">
+	<ul id="dd_nav">
+		<li class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><%= t("todays_deal") %></a></li>
+
+    <% if @publisher.allow_all_deals_page %>
+      <li class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>"><a href="<%= daily_deals_public_index_path('movegurunational') %>?per_page=12" class="all_deals_tracking <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals<span></span></a> </li>
+    <% end %>
+
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>"><%= t(:how_it_works) %></a></li>
+
+    <!-- commenting out Feature Your Business link in dd_nav -->
+    <% if false %>
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>"><%= t(:feature_your_business) %></a></li>
+    <% end %>
+
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><%= t(:faq) %></a></li>
+
+		<li class="last <%= "#{controller_name}##{action_name}" == "support_contact_requests#new" ? 'current_page' : nil %>"><a href="<%= publisher_support_contact_requests_path(@publisher) %>" class="last <%= "#{controller_name}##{action_name}" == "support_contact_requests#new" ? 'current_page' : nil %>"><%= t(:contact_us) %></a></li>
+	</ul><!-- /dd_nav -->
+	</div>
+</div><!-- /dd_nav_wrapper -->

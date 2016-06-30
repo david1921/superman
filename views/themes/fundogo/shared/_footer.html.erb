@@ -1,0 +1,30 @@
+<div class="footer">
+	<div class="footer_content">
+        <%= raw render :partial => 'shared/a_a_syndication_lt' %>		
+		<div class="clear"></div>
+		<div class="footer_column follow_us">
+			<p>Follow Us:</p>
+			<ul class="social_follow">
+				<li><a href="https://www.facebook.com/pages/FunDoGo/188781147857815" target="_blank" class="follow_facebook"><span>Facebook</span></a></li>
+				<li><a href="http://twitter.com/#!/fundogo" target="_blank" class="follow_twitter"><span>Twitter</span></a></li>
+			</ul>
+		</div><!-- /follow_us -->
+		<div class="footer_column feature_business">
+			<p>Want to feature your business?<br /> Email us at <a href="mailto:sales@fundogo.com?subject=Feature my business on Fundogo">sales@fundogo.com</a></p>
+		</div><!-- /feature_business -->
+		<div class="footer_column nav_lists">
+			<ul class="footer_nav">
+                <li><a href="<%= about_us_publisher_daily_deals_path(@publisher) %>">About Us</a></li>
+                <li><%= daily_deals_privacy_link(@publisher) %></li>
+                <li><%= daily_deals_terms_link(@publisher) %></li>
+			</ul><!-- /footer_nav 1 -->
+			<ul class="footer_nav">
+        		<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+        		<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+        		<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+			</ul><!-- /footer_nav 2-->
+		</div><!-- /nav_lists -->
+		<div class="clear"></div>
+		<p class="copyright">Copyright 2012 <span class="fun">fun</span><span class="do">do</span><span class="go">go</span>. <br />US Patent 8090613, Additional Patents Pending</p>
+	</div><!-- /footer_content -->
+</div><!-- footer -->

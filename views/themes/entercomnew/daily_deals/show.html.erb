@@ -1,0 +1,25 @@
+<%#= render :partial => with_theme("daily_deals/main_daily_deal_content") %>
+
+<% cache([@daily_deal, "main_content"], :expires_in => 5.minutes) do %>
+	<%= render :partial => with_theme("daily_deals/main_daily_deal_content") %>
+<% end %>
+	
+	<% if @publisher.show_special_deal %>
+		<div id="oas" onclick="_gaq.push(['_trackEvent', 'OAS', 'Click', '<%= @publisher.name.gsub(" ", "_").gsub("'", "\\'") %>'])">
+	    	<%=raw render :partial => with_theme("shared/oas") %>
+	  </div>
+	<% end %>
+
+	<%= render :partial => with_theme("shared/side_banners") %>
+	
+	<div id="container">
+
+		<% cache([@daily_deal, "side_deal"], :expires_in => 5.minutes) do %>
+			<%= render :partial => with_theme("shared/side_deals") %>
+		<% end %>
+
+    	<div class="content" id="facebookbox">
+    		<%= render :partial => with_theme("shared/facebook_likebox") %>
+    	</div>
+	</div><!-- /container -->
+</div><!-- /sidebar--> <%# opening div is inside daily_deals/main_daily_deal_content %>

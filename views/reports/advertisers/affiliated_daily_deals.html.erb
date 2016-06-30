@@ -1,0 +1,34 @@
+<% set_page_title "Reports: Affiliated Daily Deals" %>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => affiliated_daily_deals_reports_advertiser_url(@advertiser, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :affiliated_daily_deals, :url_options => url_options}) %>
+<%= render(:partial => "market_navigation", :locals => {:page => :affiliated_daily_deals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "advertiser_affiliated_daily_deal_certificates",
+  :data_source => affiliated_daily_deals_reports_advertiser_path(@advertiser.to_param, :format => "xml"),
+  :data_params => {},
+  :result_node => :daily_deal_certificate,
+  :data_columns => [
+    [:customer_name, { :label => "Purchaser", :class_name => "left"} ],
+    [:recipient_name, { :label => "Recipient", :class_name => "left" } ], 
+    [:affiliate_name, { :label => "Affiliate", :class_name => "left" } ], 
+    [:serial_number, {:label => "Serial #", :class_name => "left"} ],
+    [:value_proposition, { :label => "Deal", :class_name => "left" }],
+    [:accounting_id, { :label => "Accounting ID", :class_name => "left"}],
+    [:listing, { :label => "Listing", :class_name => "left" }],
+    [:currency_symbol, { :display => false }],
+    [:price, { :label => "Price", :formatter => "formatCurrency" }],
+    [:purchased_price, { :label => "Pur. Price", :formatter => "formatCurrency"}],
+    [:affiliate_rev_share, { :label => "Affiliate Rev. Share", :formatter => "formatPercentage"}],
+    [:affiliate_payout, { :label => "Payout", :formatter => "formatCurrency"}],
+    [:affiliate_total, { :label => "Total", :formatter => "formatCurrency"}],
+    [:purchased_date, { :label => "Pur. Date" }]
+  ]
+}) %>
+

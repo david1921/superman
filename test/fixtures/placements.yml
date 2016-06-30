@@ -1,0 +1,27 @@
+my_space_burger_king_free_fries:
+  offer: my_space_burger_king_free_fries
+  publisher: my_space
+
+bella_smiles_free_toothbrush_north_shore_sun:
+  offer: bella_smiles_free_toothbrush
+  publisher: north_shore_sun
+
+elbow_east_happy_hour_north_shore_sun:
+  offer: elbow_east_happy_hour
+  publisher: north_shore_sun
+
+elbow_east_free_nachos_north_shore_sun:
+  offer: elbow_east_free_nachos
+  publisher: north_shore_sun
+
+bella_smiles_free_toothbrush_suffolk_times:
+  offer: bella_smiles_free_toothbrush
+  publisher: suffolk_times
+
+elbow_east_happy_hour_suffolk_times:
+  offer: elbow_east_happy_hour
+  publisher: suffolk_times
+
+elbow_east_free_nachos_suffolk_times:
+  offer: elbow_east_free_nachos
+  publisher: suffolk_times

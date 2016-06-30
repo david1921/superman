@@ -1,0 +1,69 @@
+<div <%= 'class="new_page"' if page_break %>>
+	<div id="container">
+		<img src="<%= Rails.root %>/public/themes/bcbsa/images/vouchers/<%= Analog::Themes::I18n.t(publisher, "voucher_heading_bg") %>" height="100" id="heading_bg" width="143" />
+		<h1 id="heading"><%= Analog::Themes::I18n.t(publisher, "voucher_header_message") %></h1>
+		<img src="<%= Rails.root %>/public/themes/bcbsa/images/vouchers/banner_left.png" height="127" id="banner_left" width="52" />
+		<img src="<%= Rails.root %>/public/themes/bcbsa/images/vouchers/banner_right.png" height="127" id="banner_right" width="52" />
+		<div id="content_container">
+			<div id="header">
+				<img id="advertiser_logo" src="<%= certificate.advertiser.logo(:standard) %>">
+
+				<% if !(certificate.hide_serial_number? and certificate.bar_code.present?) %>
+					<div id="serial_number"><%= certificate.serial_number %></div>
+				<% end %>
+			</div>
+			<div id="content">
+				<div id="border">
+					<h2><%= certificate.advertiser.name %></h2>
+					<h3 id="value_prop"><%= daily_deal_purchase.value_proposition %></h3>
+					<h4>at <%= daily_deal_purchase.daily_deal.custom_2.present? ? daily_deal_purchase.daily_deal.custom_2 : certificate.advertiser.name %></h4>
+
+					<div id="right_column">
+						<% store = daily_deal_purchase.daily_deal.advertiser %>
+						<% if store and store.address.present? and !certificate.advertiser.do_not_show_map %>
+							<h3><%= Analog::Themes::I18n.t(publisher, "redeem_at") %>:</h3>
+							<p>
+	                          <% store.address do |line| %>
+	                            <%= line %><br/>
+	                          <% end %>
+	                          <%= store.formatted_phone_number unless store.formatted_phone_number.blank? %><br/>
+							</p>
+						<% end %>
+						<% if certificate.bar_code.present? %>
+							<img src="<%= bar_code_file_path %>" alt="Bar Code" id="bar_code" width="245" />
+						<% end %>
+					</div>
+
+					<h3><%= Analog::Themes::I18n.t(publisher, "recipient") %>:</h3>
+					<p><%= certificate.redeemer_name %></p>
+					
+					<% if daily_deal_purchase.daily_deal.expires_on.present? %>
+						<h3><%= Analog::Themes::I18n.t(publisher, "expiration_date_voucher") %></h3>
+						<p><%= daily_deal_purchase.daily_deal.expires_on.strftime("%B %e, %Y") %></p>
+					<% end %>
+					<h3 id="fine_print"><%= Analog::Themes::I18n.t(publisher, "the_terms") %></h3>
+					<div id="terms_lists">
+						<p>
+							<%= daily_deal_purchase.daily_deal.terms.try :html_safe %>
+						</p>
+						<ul id="redemption_term"><li>
+									<%= Analog::Themes::I18n.t(publisher, "redemption_terms_message_1") %>
+		  				</li></ul>
+	  				</div>
+	  				<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="terms">
+			<%= Analog::Themes::I18n.t(publisher, "redemption_terms_message_2") %><br />
+			<%= terms_publisher_daily_deals_url(daily_deal_purchase.publisher, :host => daily_deal_purchase.publisher.daily_deal_host) %>
+		</div>
+
+		<div id="how_to_use">
+			<h3><%= Analog::Themes::I18n.t(publisher, "redemption_how_to_use") %>:</h3>
+			<%= textilize daily_deal_purchase.daily_deal.voucher_steps %>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

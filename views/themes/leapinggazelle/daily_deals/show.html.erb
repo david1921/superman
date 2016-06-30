@@ -1,0 +1,168 @@
+<div class="clear"></div>
+
+
+  	<!-- /deal_wrapper -->
+  	<div id="deal_wrapper">
+	<!-- Main Deal Row -->
+	<div id="deal_box">
+
+		<!--dashboard -->
+		<div id="dashboard"<%= " class=variation" if !@daily_deal.daily_deal_variations.blank? %>>
+			<div id="price_tag">
+					<div id="buy_now" class="">
+					       <% if @daily_deal.sold_out? %>
+					      <div id="sold_out" class="dd_button sold_out gradient"><span>Sold Out</span></div>
+					       <% elsif @daily_deal.over? %>
+					       <div id="deal_over" class="dd_button deal_over gradient"><span>Deal Over</span></div>
+					       <% elsif @daily_deal.active? %>
+					       <a id="buy_now_button" class="dd_button buy_now_button gradient<%= " dd_variations_button" if !@daily_deal.daily_deal_variations.blank? %>" href="<%= daily_deal_buy_now_path(@daily_deal) %>" name="buy_now_button"><span>BUY!</span></a>
+					       <div id="deal_over" class="dd_button deal_over gradient unavailable" style="display:none;"><span>Deal Over</span></div>
+
+					       	<% if !@daily_deal.daily_deal_variations.blank? -%>
+					  			<%= render :partial => with_theme("shared/dd_variations_menu") %>
+					  		<% end %>
+
+					       <% else %>
+					      <div id="not_yet" class="dd_button not_yet gradient"><span>Not Yet Available</span></div>
+					       <% end %>
+					</div><!-- /buy_now -->
+					<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+					<%= render :partial => 'shared/variation_delay.js' %>
+					<%= render :partial => with_theme('shared/button_states') %>
+					<h1 id="daily_deal_price"><% if !@daily_deal.daily_deal_variations.blank? -%><em>From</em> <% end %><%= formatted_price_for(@daily_deal.price_to_display)%></h1>
+				</div><!-- /price_tag -->
+				<div id="deal_specs">
+					<table id="value_summary">
+						<tr>
+							<th>Value</th>
+							<th id="discount">Discount</th>
+							<th id="savings">You Save</th>
+						</tr>
+						<tr>
+							<td class="<%= 'smallfont' if @daily_deal.value > 999 or @daily_deal.value.is_fractional? %>"><%= formatted_price_for(@daily_deal.value_to_display) %></td>
+							<td class="<%= 'smallfont' if @daily_deal.value > 999 or @daily_deal.value.is_fractional? %>" id="discount"><%= number_to_percentage(@daily_deal.savings_as_percentage, :precision => 0) %></td>
+							<td class="<%= 'smallfont' if @daily_deal.value > 999 or @daily_deal.value.is_fractional? %>" id="savings"><%= formatted_price_for(@daily_deal.savings_to_display) %></td>
+						</tr>
+					</table>
+			      	<div class="clear"></div>
+					<table id="timer">
+						<tr><td id="clock"></td>
+						<td>
+						<table>
+							<tr><td id="time_left_to_buy_label">TIME LEFT TO BUY</td></tr>
+							<tr><td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td></tr>
+						</td>
+						</tr>
+						</table>
+						<% if @daily_deal.number_sold_meets_or_exceeds_display_threshold? -%>
+						<tr>
+							<td colspan="3"><span id="deals_sold"><%= @daily_deal.number_sold %></span> <span>Bought</span></td>
+						</tr>
+						<% end -%>
+					</table><!-- /timer -->
+				</div><!-- /deal_specs -->
+				<div class="clear"></div>
+		</div><!--/dashboard -->
+
+		<!--photo_deal_wrapper -->
+		<div id="prop_photo_wrapper">
+			<h1 id="value_prop"><%= @daily_deal.value_proposition %></h1>
+			<% if @daily_deal.value_proposition_subhead.present? %>
+				<h2 id="value_prop_subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+			<% end %>
+	  		<div id="deal_photo">
+	  			<img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @advertiser.name %>" width="400"/>
+	  		</div>
+	  		<div class="clear"></div>
+	  		<div id="share">
+	  			<h4>Share this deal</h4>
+	  			<a href="mailto:?subject=<%= CGI::escape(@daily_deal.publisher_prefix) %>:%20<%= CGI::escape(@daily_deal.value_proposition) %>&amp;body=Check%20out%20this%20Real%20Deal%20at%20<%= daily_deal_url(@daily_deal) %>" class="share_button share_button_mail last"><img src="/themes/leapinggazelle/images/buttons/email.png" alt="Email this to a friend" /></a>
+				<a href="<%= twitter_daily_deal_url(@daily_deal) %>" class="share_button share_button_twitter" target="_blank"><img src="/themes/leapinggazelle/images/buttons/twitter.png" alt="share on twitter" /></a>
+				<a href="/daily_deals/<%= @daily_deal.id %>/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/<%= @daily_deal.id %>/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/leapinggazelle/images/buttons/facebook.png" alt="share on facebook" /></a>
+				<div class="clear"></div>
+	  		</div>
+		</div>
+		<!--/phoot_deal_wrapper -->
+		<div class="clear"></div>
+	</div>
+	<!-- /Main Deal Row -->
+
+    <!-- INFO -->
+  	<div id="info_box">
+  		<div id="info_left">
+  			<div id="description">
+	 	   		<h2>Description</h2>
+     			<%= raw @daily_deal.description %>
+			</div>
+			<div id="terms">
+  				<% if @daily_deal.terms.present? %>
+  				<h2>Fine Print</h2>
+  				<%= raw @daily_deal.terms %>
+  				<% end %>
+  			</div>
+
+  		</div><!-- /info_left -->
+  		<div id="info_right">
+  			<!-- highlights -->
+  	  		<div id="highlights">
+  			   <% if @daily_deal.highlights.present? %>
+  	   	  	  <h2>Highlights</h2>
+  	   	  	  <%= raw @daily_deal.highlights %>
+  	   	  	  <% end %>
+  	  		</div>
+  	  		<!-- /highlights -->
+  	  		<!-- location -->
+  		   	<div id="location">
+  		   		<h2>Location</h2>
+                <div id="advertiser">
+  		     	   <img id="advertiser_logo" src="<%= @daily_deal.advertiser.logo.url(:normal) %>" alt="<%= @daily_deal.advertiser.name %>" width="100"/><br />
+				   <p class="advertiser_name"><%= @daily_deal.advertiser.name %></p>
+
+				    <% if @daily_deal.advertiser.website_url.present? %>
+						<p><a href="<%= @daily_deal.advertiser.website_url %>" target="_blank">Visit Website</a></p><br />
+					<% end %>
+
+				   <% if @daily_deal.advertiser.stores.length == 1 %>
+				   	<%= @daily_deal.advertiser.store.formatted_phone_number %>
+				   <% end %>
+
+
+						<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+							<div class="location_container" style="<% if idx > 2 %>display:none<% end %>">
+								<p>
+								<% if store.address_line_1.present? %>
+									<span><%= store.address_line_1 %></span>
+								<% end %>
+								<% if store.address_line_2.present? %>
+									<span><%= store.address_line_2 %></span><br />
+								<% end %>
+								<% if store.city.present? and store.state.present? and store.zip.present? %>
+									<span><%= store.city %>, <%= store.state %> <%= store.zip %></span>
+								<% end %>
+								<% if store.formatted_phone_number.present? %>
+									<span><%= store.formatted_phone_number %></span>
+								<% end %><br />
+								</p>
+
+							</div><!-- /location_container -->
+						<% end %>
+
+				   <% if @daily_deal.advertiser.stores.length > 3 %>
+				   <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+				   <% end %>
+
+				   <% if @daily_deal.advertiser.address? %>
+				   <div class="map">
+				     <a id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "168x147", true) %>" border="0" /></a>
+				   </div><!-- /map -->
+				   <% end %>
+				 </div><!-- /advertiser -->
+  		   </div> <!-- /location -->
+  	   </div> <!-- /info_right -->
+  	   <div class="clear"></div>
+  	</div>
+  	<!-- /INFO -->
+  	</div>
+  	<!-- /deal_wrapper -->
+
+    <%= render :partial => with_theme("shared/sidebar") %>

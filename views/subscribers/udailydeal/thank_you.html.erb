@@ -1,0 +1,16 @@
+<ul id="navbar">
+  <li class="last"><%= link_to("What's the Big Deal (How it Works)", how_it_works_publisher_daily_deals_path(@publisher)) %></li>
+</ul>
+
+<div id='thank-you'>
+<% cities = (@subscriber && @subscriber.other_options ? @subscriber.other_options['city'] || [] : []).map(&:capitalize) -%>
+<% cities << "WDC" if cities.delete("Dc") -%>
+<% cities.sort! -%>
+<p>Congrats&hellip; You’re In!  Now share the love with your classmates &amp; friends so they can SAVE BIG &amp; LIVE LARGE too!</p>
+<p>Be sure to add <%= (cities.empty? ? ["<strong>UDailyDeals@UDailyDeal.com</strong>".html_safe] : cities.collect{ |city| "<strong>#{city}@UDailyDeal.com</strong>".html_safe}).to_sentence.html_safe %> to your safe senders list so your exclusive deals don’t end up in the trash.</p>
+<% if cities.include?("Atlanta") %>
+  <p><%= link_to "Check out today's deal now!!", "http://atlanta.udailydeal.com/" %></p>
+<% else -%>
+  <p>You&rsquo;ll receive your first glimpse of what’s to come with the official U Daily Deal launch via email in just a few short days!!</p>
+<% end -%>
+</div>

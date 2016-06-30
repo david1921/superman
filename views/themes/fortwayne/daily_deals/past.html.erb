@@ -1,0 +1,18 @@
+<% set_daily_deal_page_title_slug "Recent Deals for #{@publisher.name}" %>
+
+<div id="past_deals">
+<div class="page_row past">
+  <div class=" first">
+  
+    <% filtered_deals = @daily_deals[0..9] %>
+    <% if filtered_deals.size > 0  %>
+      <div class="recent_deals">
+        <h1 class="past_deal_header">Past Deals for <%= @publisher.name %></h1>
+        <%= render :partial => with_theme("daily_deal"), :collection => filtered_deals %>     
+      </div>
+    <% else %>
+      <p class="coming_soon">Sorry, there are no recent deals available at this time.</p>
+    <% end %>
+  </div>
+</div>
+</div>

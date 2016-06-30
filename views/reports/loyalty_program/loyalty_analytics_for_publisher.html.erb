@@ -1,0 +1,22 @@
+<% set_page_title "Loyalty Referrals: #{@publisher.name}" %>
+
+<%= render(:partial => "reports/dates") %>
+
+<%= render(:partial => "navigation", :locals => { :page => :loyalty_analytics }) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publishers_loyalty_referrals",
+  :data_source => loyalty_analytics_reports_publisher_path(@publisher, :format => "xml"),
+  :data_params => {},
+  :result_node => :purchase,
+  :data_columns => [
+    [:value_proposition, { :label => "Description", :class_name => "left" }],
+    [:quantity, { :label => "Quantity" }],
+    [:purchaser_name, { :label => "Referrer" }],
+    [:executed_at, { :label => "Purchased" }],
+    [:payment_status, { :label => "Status" }],
+    [:loyalty_referrals_count, { :label => "Referrals", :class_name => "left" }],
+    [:refunded_at, { :label => "Loyalty Program Refund Date", :class_name => "left" }]
+  ]
+}) %>

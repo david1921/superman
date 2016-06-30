@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<voucher_statuses xmlns="http://analoganalytics.com/api/third_party_purchases/voucher_statuses">
+  <voucher_status serial_number="1111-1111">active</voucher_status>
+  <voucher_status serial_number="2111-1111">active</voucher_status>
+  <voucher_status serial_number="3111-1111">active</voucher_status>
+  <voucher_status serial_number="4111-1111">redeemed</voucher_status>
+  <voucher_status serial_number="5111-1111">refunded</voucher_status>
+  <voucher_status serial_number="6111-1111">voided</voucher_status>
+</voucher_statuses>

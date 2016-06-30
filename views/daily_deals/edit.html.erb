@@ -1,0 +1,469 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "jquery/jquery-ui.custom.css" %>
+<% end %>
+
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <%= javascript_include_tag "jquery/jquery-ui.custom.min.js" %>
+  <%= javascript_include_tag "jquery/plugins/jquery.qtip-1.0.0-rc3.min" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    jQuery(function() {
+      (function($) {
+        var deleteAffiliatePlacement = function(ap_id) {
+          $.post("/affiliate_placements/" + ap_id + ".json", { "_method": "delete", id: ap_id }, function(data) {
+            $("li[publisher-label=" + data["publisher_label"] + "]").remove();
+          })
+        };
+
+        var initDeleteButtons = function() {
+          $("li a.delete-ap").click(function() {
+            var publisher_label = $(this).parent().find("a.publisher-label").text();
+
+            if(confirm("Are you sure you want to remove " + publisher_label + " as an affiliate for this deal?")) {
+              deleteAffiliatePlacement($(this).parent().attr("ap-id"));
+            }
+
+            return false;
+          });
+        }
+
+        $("form#add-affiliate-placement input#publisher_label").autocomplete({
+          source: [<%= all_publisher_labels_as_autocomplete_source.html_safe %>]
+        });
+
+        $("form#add-affiliate-placement").submit(function() {
+          var label = $("#publisher_label").val();
+          var form = $("#add-affiliate-placement");
+
+          $.post('/publishers/' + label + '/affiliate_deals', form.serialize(), function(data) {
+            $("input#publisher_label").val("");
+            var daily_deal_id = data["affiliate_placement"]["placeable_id"];
+            $.get('/daily_deals/' + daily_deal_id + '/affiliated_publisher_list', function(data) {
+              $("div#affiliate-placements-container").html(data);
+              initDeleteButtons();
+            });
+          })
+          return false;
+        });
+
+        initDeleteButtons();
+      })(jQuery);
+    })
+  </script>
+  <%= javascript_include_tag 'admin.js' %>
+<% end %>
+
+<div class="left_column">
+    <% url = @daily_deal.new_record? ? advertiser_daily_deals_path(@advertiser) : daily_deal_path(@daily_deal) %>
+    <% html = {:multipart => true, :class => 'fixed_form'} %>
+    <% html.merge!({:method => :put}) unless @daily_deal.new_record? %>
+    <% form_for :daily_deal, @daily_deal, :url => url, :html => html do |f| -%>
+    <%= f.error_messages %>
+    <% if @daily_deal.pay_using?(:travelsavers) %>
+      <%= f.text_field_div :travelsavers_product_code, "Travelsavers Product ID:", :required => true, :disabled => !@daily_deal.travelsavers_product_code_is_editable? %>
+    <% end %>
+    <%= f.text_field_div(:value_proposition, nil, :required => true)  %>
+    <%= f.text_field_div(:value_proposition_subhead, nil)  %>
+    <% if @daily_deal.publisher.enable_daily_deal_voucher_headline? -%>
+      <%= f.text_field_div(:voucher_headline)  %>
+    <% end -%>
+    <% if @daily_deal.publisher.enable_side_deal_value_proposition_features? -%>
+      <%= f.text_field_div(:side_deal_value_proposition, nil)  %>
+      <%= f.text_field_div(:side_deal_value_proposition_subhead, nil)  %>
+    <% end -%>
+
+    <% if @daily_deal.publisher.enable_daily_deal_statuses? -%>
+      <%= f.select_div :status, DailyDeal::STATUSES %>
+    <% end -%>
+
+    <% if admin? %>
+      <%= f.select_div :source_channel, DailyDeal::SOURCES %>
+    <% end -%>
+
+    <div class="row">
+      <div class="label"><%= f.label(:description, "Description:", {}) %></div>
+      <div class="input"><%= f.text_area(:description, {:rows => 4}) %></div>
+      <div class="help">Required.<br/>
+        <%= @daily_deal.description? ? "#{@daily_deal.description.size} characters including markup." : ""%>
+      </div>
+    </div>
+
+    <%= f.text_field_div(:price, nil, :value => @daily_deal.price, :required => true, :disabled => @daily_deal.syndicated?)  %>
+    <%= f.text_field_div(:value, nil, :value => @daily_deal.value, :disabled => @daily_deal.syndicated?)  %>
+    <% if author = @daily_deal.last_author_for(:price) %>
+      <div class="row last_edited">
+        <div class="label">&nbsp;</div>
+        <div class="input">Last edited by <%= author.name %></div>
+      </div>
+    <% end %>
+
+    <%= f.select_div :certificates_to_generate_per_unit_quantity,
+        6.times.map { |i| [pluralize(i + 1, "voucher"), i + 1] },
+        { :label_text => "Arrives as:" },
+        { :disabled => !@daily_deal.certificates_to_generate_per_unit_quantity_can_be_edited? } %>
+
+    <%= f.select_div :analytics_category_id,
+      DailyDealCategory.analytics.map { |cat| [ cat.name_with_abbreviation, cat.id ] },
+          :include_blank => true,
+          :label_text => "Analytics Category" %>
+
+    <% unless @daily_deal.publisher.markets.empty? %>
+      <div class="row">
+        <div class="label"><%= f.label(:market_ids, "Markets:") %></div>
+        <div class="scrolling">
+          <div class="input check_box_list">
+            <% @daily_deal.publisher.markets.all.each do |market| %>
+              <%= check_box_tag 'daily_deal[market_ids][]', market.id, @daily_deal.market_ids.include?(market.id),
+                                :id => "daily_deal_market_ids_#{market.id}" %>
+              <label for="daily_deals_market_ids_<%= market.id %>"><%= market.name %></label>
+              <br />
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @daily_deal.publisher.enable_publisher_daily_deal_categories? -%>
+    <%= f.select_div :publishers_category_id,
+          @daily_deal.publisher.allowable_daily_deal_categories.map { |cat| [ cat.name_with_abbreviation, cat.id ] },
+          :include_blank => true,
+          :label_text => "Publishers Category" %>
+    <% end -%>
+
+    <%= f.text_field_div(:quantity, "Total Available:", :value => @daily_deal.quantity, :disabled => @daily_deal.bar_coded? || @daily_deal.syndicated?) %>
+    <% if !@daily_deal.syndicated? %>
+      <%= f.file_field_div(:bar_codes_csv, "Bar Codes CSV:") %>
+      <%= f.select_div(:bar_code_encoding_format, DailyDeal.allowed_bar_code_encoding_formats) %>
+      <%= f.check_box_div(:allow_duplicate_bar_codes) %>
+      <%= f.check_box_div(:delete_existing_unassigned_bar_codes) %>
+    <% end %>
+    <%= f.text_field_div(:campaign_code, "Campaign Code", :value => @daily_deal.campaign_code) %>
+    <%= f.text_field_div(:min_quantity, "Minimum Purchase:", :value => @daily_deal.min_quantity, :required => true, :disabled => @daily_deal.syndicated?)  %>
+    <%= f.text_field_div(:max_quantity, "Maximum Purchase:", :value => @daily_deal.max_quantity, :required => true, :disabled => @daily_deal.syndicated?)  %>
+
+    <% disable_terms_and_voucher_steps = !(admin? || accountant?) && @daily_deal.syndicated? %>
+    <%= f.check_box_div   :location_required, nil, :value => @daily_deal.location_required?, :disabled => @daily_deal.syndicated? %>
+    <%= f.text_area_div   :highlights, nil, :rows => 4 %>
+    <%= f.text_area_div   :terms, "Terms", :rows => 4, :required => true, :disabled => disable_terms_and_voucher_steps %>
+    <%= f.text_area_div   :reviews, "Reviews", :row => 4 %>
+    <%= f.text_area_div   :voucher_steps, "Voucher Steps", :row => 4, :required => true, :disabled => disable_terms_and_voucher_steps %>
+
+    <% if @daily_deal.publisher.allow_daily_deal_disclaimer %>
+      <%= f.text_area_div   :disclaimer, nil, :rows => 4 %>
+    <% end %>
+
+    <%= f.text_area_div   :email_voucher_redemption_message, "Confirmation Email Voucher Redemption Message", :row => 4 %>
+    <%= f.select_div :email_voucher_offer_id, options_for_email_voucher_offer(@daily_deal), :include_blank => true %>
+
+    <% disable_business_fine_print = !(admin? || accountant?) %>
+    <% if @daily_deal.business_fine_print.blank? %>
+      <%= f.text_area_div(:business_fine_print, nil, :rows => 4, :value => "Distributor Gross Revenue Commission Percent", :disabled => disable_business_fine_print) %>
+    <% else %>
+      <%= f.text_area_div(:business_fine_print, nil, :rows => 4, :disabled => disable_business_fine_print) %>
+    <% end %>
+
+    <%= f.text_area_div(:twitter_status_text, nil, :rows => 2, :help => %q{<span id="twitter_status_text_character_count"></span>}) %>
+    <%= f.text_area_div(:facebook_title_text, nil, :rows => 2, :help => %q{<span id="facebook_title_text_character_count"></span>}) %>
+    <%= f.text_area_div(:short_description, nil, :rows => 2) %>
+
+    <% if @daily_deal.publisher.try(:publishing_group).try(:allow_non_voucher_deals) %>
+      <%= f.text_area_div(:redemption_page_description, nil, :rows => 4) %>
+    <% end %>
+
+    <div class="row">
+      <div class="label"><%= f.label :photo %></div>
+        <div class="input">
+            <% if @daily_deal.photo.file? && !@daily_deal.new_record? -%>
+              <%= image_tag @daily_deal.photo.url(:standard), :id => "daily_deal_photo_image" %>
+              <p class="delete_link" id="daily_deal_photo_delete_link">
+              <%= link_to_remote "Delete Photo",
+                :url => clear_photo_daily_deal_path(@daily_deal),
+                :confirm => "Really delete this photo?" %>
+              </p>
+            <% end -%>
+            <%= f.file_field(:photo, :style => "display: #{@daily_deal.photo.file? ? "none" : "visible" }") %>
+        </div>
+    </div>
+
+    <% if @daily_deal.publisher.allow_secondary_daily_deal_photo -%>
+      <div class="row">
+        <div class="label"><%= f.label :secondary_photo %></div>
+          <div class="input">
+              <% if @daily_deal.secondary_photo.file? && !@daily_deal.new_record? -%>
+                <%= image_tag @daily_deal.secondary_photo.url(:standard), :id => "daily_deal_secondary_photo_image" %>
+                <p class="delete_link" id="daily_deal_secondary_photo_delete_link">
+                <%= link_to_remote "Delete Secondary Photo",
+                  :url => clear_secondary_photo_daily_deal_path(@daily_deal),
+                  :confirm => "Really delete this photo?" %>
+                </p>
+              <% end -%>
+              <%= f.file_field(:secondary_photo, :style => "display: #{@daily_deal.secondary_photo.file? ? "none" : "visible" }") %>
+          </div>
+      </div>
+    <% end -%>
+
+    <input type="hidden" value="<%= @daily_deal.now.to_s(:calendar) %>" id="daily_deal_now" />
+    <div class="row date">
+      <div class="label"><%= f.label :start_at, "Overall Start At:" %><span id="start_at_tooltip" class="tooltip">&nbsp;</span></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:start_at, :popup => :force, :minute_interval => 1) %>
+      </div>
+      <div class="help" id="start_at_help"><%= @daily_deal.publisher.time_zone %></div>
+    </div>
+
+    <div class="row date">
+      <div class="label"><%= f.label :hide_at, "Overall Hide At:" %><span id="hide_at_tooltip" class="tooltip">&nbsp;</span></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:hide_at, :popup => :force, :minute_interval => 1) %>
+      </div>
+      <div class="help" id="hide_at_help"><%= @daily_deal.publisher.time_zone %></div>
+    </div>
+
+    <div id="side_deal_fields" style="display: <%= @daily_deal.featured_for_entire_lifespan? ? "none" : "block" %>">
+      <div class="row date">
+        <div class="label"><%= f.label :side_start_at, "Side Start At:" %><span id="side_start_at_tooltip" class="tooltip">&nbsp;</span></div>
+        <div class="input">
+          <%= raw f.calendar_date_select(:side_start_at, :popup => :force, :minute_interval => 1 ) %>
+        </div>
+        <div class="help" id="side_start_at_help"><%= @daily_deal.publisher.time_zone %><br/><span id="copy_start_at" class="help_function">Copy from deal start</span>&nbsp;|&nbsp;<span id="clear_side_start_at" class="help_function">Clear</span></div>
+      </div>
+
+      <div class="row date">
+        <div class="label"><%= f.label :side_end_at, "Side End At:" %><span id="side_end_at_tooltip" class="tooltip">&nbsp;</span></div>
+        <div class="input">
+          <%= raw f.calendar_date_select(:side_end_at, :popup => :force, :minute_interval => 1 ) %>
+        </div>
+        <div class="help" id="side_end_at_help"><%= @daily_deal.publisher.time_zone %><br/><span id="copy_hide_at" class="help_function">Copy from deal hide</span>&nbsp;|&nbsp;<span id="clear_side_end_at" class="help_function">Clear</span></div>
+      </div>
+    </div>
+
+    <%- if @daily_deal.featured_for_entire_lifespan? %>
+        <div id="enable_side_deal_row" class="row">
+          <div class="label">&nbsp;</div>
+          <div class="input">
+            <div id="enable_side_deal" class="ui-button ui-button-text-only ui-widget ui-state-default ui-corner-all admin_button">
+              <span class="ui-button-text">Enable side deal</span>
+            </div>
+          </div>
+      </div>
+    <%- end %>
+
+    <div class="row date">
+      <div class="label"><%= f.label :expires_on, "Expires On:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:expires_on, :popup => :force, :disabled => @daily_deal.syndicated?, :minute_interval => 1) %>
+      </div>
+      <div class="help" id="expires_on_help"><%= @daily_deal.syndicated? ? @daily_deal.source.publisher.time_zone : @daily_deal.publisher.time_zone %></div>
+    </div>
+
+    <% if @daily_deal.publisher.enable_publisher_daily_deal_categories %>
+      <%= f.check_box_div :featured_in_category, "Featured in Publisher Category?" %>
+    <% end %>
+
+    <%= f.check_box_div(:qr_code_active, "QR Code Active?") %>
+    <%= f.check_box_div :upcoming, "Display as Upcoming Deal?" %>
+    <% if @daily_deal.publisher.shopping_mall? %>
+      <%= f.check_box_div :shopping_mall, "Display in Shopping Mall?" %>
+    <% end %>
+    <% if @daily_deal.publisher.try(:publishing_group).try(:show_daily_deals_on_landing_page) %>
+      <%= f.check_box_div(:show_on_landing_page) %>
+    <% end %>
+    <% unless @daily_deal.syndicated? %>
+      <%= f.text_field_div :advertiser_revenue_share_percentage, "Advertiser Rev. Share %" %>
+      <% if author = @daily_deal.last_author_for(:advertiser_revenue_share_percentage) %>
+        <div class="row last_edited">
+          <div class="label">&nbsp;</div>
+          <div class="input">Last edited by <%= author.name %></div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= f.text_field_div :affiliate_revenue_share_percentage, "Affiliate Rev. Share %" %>
+    <% if @daily_deal.publisher.enable_affiliate_url? %>
+      <%= f.text_field_div :affiliate_url, "Affiliate URL" %>
+    <% end %>
+    <%= f.text_field_div :advertiser_credit_percentage, "Advertiser Credit %" %>
+    <%= f.text_field_div(:listing) %>
+    <%= f.text_field_div(:account_executive) %>
+    <%= f.text_field_div(:sales_agent_id) if show_sales_agent_id_input? -%>
+
+    <%= f.text_field_div(:custom_1) %>
+    <%= f.text_field_div(:custom_2) %>
+    <%= f.text_field_div(:custom_3) %>
+
+    <% if @daily_deal.publisher.try(:publishing_group).try(:allow_non_voucher_deals) %>
+      <%= f.check_box_div(:non_voucher_deal) %>
+    <% end %>
+    <%= f.check_box_div(:enable_daily_email_blast) %>
+    <%= f.check_box_div(:hide_serial_number_if_bar_code_is_present) %>
+    <%= f.check_box_div(:voucher_has_qr_code, "Voucher Has QR Code") %>
+    <%= f.check_box_div(:available_for_syndication, nil, {:checked => (@daily_deal.available_for_syndication || (@daily_deal.available_for_syndication.nil? && @daily_deal.publisher.daily_deals_available_for_syndication_by_default_override))? "checked" : "false" }) if @daily_deal.in_syndication_network? && !@daily_deal.distributed? %>
+    <%= f.check_box_div(:national_deal, "National Deal", :disabled => @daily_deal.syndicated?) %>
+    <% if admin? %>
+      <% if @daily_deal.syndicated? %>
+        <%= f.check_box_div(:cobrand_deal_vouchers, "Cobrand Deal Vouchers",
+                            :name => "cobrand_deal_vouchers_ignored",
+                            :id => "cobrand_deal_vouchers_ignored",
+                            :disabled => true) %>
+      <% else %>
+        <%= f.check_box_div(:cobrand_deal_vouchers, "Cobrand Deal Vouchers") %>
+      <% end %>
+    <% end %>
+    <%= f.check_box_div(:requires_shipping_address, nil, :disabled => !(admin? && !@daily_deal.syndicated?)) %>
+    <%= f.text_field_div :shipping_address_message, nil, :disabled => @daily_deal.syndicated? %>
+
+    <%= f.text_field_div :number_sold_display_threshold, nil, :help => "When to start showing number sold on deal page" %>
+
+    <%= f.check_box_div :enable_publisher_tracking %>
+
+    <% if @daily_deal.publisher.yelp_credentials_present? && @daily_deal.publisher.enable_daily_deal_yelp_reviews? %>
+      <% if @daily_deal.yelp_business %>
+        <div class="row">
+          <div class="label"><label>Yelp Business:</label></div>
+          <div class="input">
+            <%= link_to @daily_deal.yelp_business.name, @daily_deal.yelp_business.url, :target => "_blank" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= f.text_field_div :yelp_api_business_id, "Yelp business ID" %>
+    <% end %>
+
+    <% if admin? %>
+      <%= f.check_box_div(:off_platform, "Yes, this is an off platform deal") %>
+      <% if @daily_deal.off_platform? %>
+        <% f.fields_for :off_platform_purchase_summary do |s| %>
+          <%= s.text_field_div :flat_fee %>
+          <%= s.text_field_div :number_of_purchases, "# of Purchases" %>
+          <%= s.text_field_div :number_of_refunds, "# of Refunds" %>
+          <%= s.text_field_div :analog_analytics_split_percentage, "AA Split %" %>
+          <%= s.select_div :gross_or_net, OffPlatformPurchaseSummary::GROSS_OR_NET, :include_blank => true %>
+          <%= s.text_field_div :paid_to_analog_analytics, "Paid to AA $" %>
+        <% end %>
+      <% end -%>
+
+    <% end %>
+
+    <% @daily_deal.set_loyalty_program_defaults_for_new_deals_from_publisher if @daily_deal.new_record? %>
+    <%= f.check_box_div :enable_loyalty_program %>
+    <%= f.text_field_div :referrals_required_for_loyalty_credit, "Referrals for Loyalty Credit" %>
+
+    <%= render :partial => "daily_deals/syndication" %>
+    <div class="full_width buttons">
+      <% if @referred_through_advertiser %>
+      <%= button_to_function "Cancel", "window.location.href = '#{edit_advertiser_path(@daily_deal.advertiser)}'", :class => "left cancel_deal_button" %>
+      <% else %>
+      <%= button_to_function "Cancel", "window.location.href = '#{publisher_daily_deals_path(@daily_deal.publisher.id)}'", :class => "left cancel_deal_button" %>
+      <% end %>
+      <%= submit_tag("Save Deal", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<div class="right_column">
+  <% if @daily_deal.id %>
+    <div class="related preview" id="edit_translations_preview">
+      <%= link_to "Edit Translations For Deal", edit_daily_deal_translations_for_locale_path(@daily_deal, I18n.default_locale) %>
+    </div>
+    <div style="margin-top: -1em" class="related preview" id="download_qr_image_preview">
+      <%= link_to "Download QR Code Image", daily_deal_qr_code_image_path(@daily_deal, :format => "eps"), :id => "download-qr-code" %>
+    </div>
+    <% if !@daily_deal.non_voucher_deal? && (admin? or @daily_deal.publisher.can_preview_daily_deal_certificates) %>
+      <div style="margin-top: -1em;" class="related preview" id="certificate_preview">
+        <%= link_to "Preview Certificate", preview_pdf_daily_deal_path(@daily_deal.to_param) %>
+      </div>
+    <% end %>
+
+    <div class="related preview" id="view_notes">
+    <%= link_to "View Notes", daily_deal_notes_path(@daily_deal.to_param) %>
+    </div>
+
+  <% if  @daily_deal.non_voucher_deal %>
+      <div style="margin-top: -1em;" class="related preview" id="non_voucher_redemption_preview">
+        <%= link_to "Preview Redemption Page", preview_non_voucher_redemption_daily_deal_path(@daily_deal.to_param) %>
+      </div>
+  <% end %>
+  <% end %>
+  <div class="clear"></div>
+  <div class="related preview" id="view_deal">
+  <%= link_to "View Deal", daily_deal_url(@daily_deal), :target => '_blank' if @daily_deal.id %>
+  </div>
+  <div class="related preview" id="affiliates_preview">
+    <h3>Affiliates for this Deal</h3>
+    <div id="affiliate-placements-container">
+      <%= affiliated_publishers_for(@daily_deal).html_safe %>
+    </div>
+    <form id="add-affiliate-placement" action="#" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" id="authenticity_token">
+      <input type="hidden" name="daily_deal_id" value="<%= @daily_deal.id %>" id="daily_deal_id">
+      <input type="text" name="publisher_label" id="publisher_label">
+      <input type="submit" value="Add" class="add_affiliates">
+    </form>
+  </div>
+
+  <% unless @daily_deal.new_record? %>
+    <% if @daily_deal.publisher && @daily_deal.publisher.enable_daily_deal_variations? %>
+    <div class="related preview" id="variations_preview">
+      <h3>Daily Deal Variations</h3>
+      <ul>
+        <%= render @daily_deal.daily_deal_variations %>
+      </ul>
+      <%= link_to( "New Variation", new_daily_deal_daily_deal_variation_path(@daily_deal) ) %>
+    </div>
+    <% end %>
+  <% end %>
+
+  <div class="clear"></div>
+  <% if @referred_through_advertiser %>
+      <%= button_to_function "Cancel", "window.location.href = '#{edit_advertiser_path(@daily_deal.advertiser)}'" %>
+      <% else %>
+      <%= button_to_function "Cancel", "window.location.href = '#{publisher_daily_deals_path(@daily_deal.publisher.id)}'"%>
+  <% end %>
+  <input value="Save Deal" type="button" id="form_submit" class="save_deal_button" />
+</div>
+
+<%- javascript_tag do -%>
+Event.observe(window, 'load', function() {
+  var showCharacterCount = function(input_elem, status_elem, limit) {
+    function checkCharacterCount() {
+      var remaining = limit - input_elem.value.length;
+      if (remaining >= 0) {
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") + "remaining");
+        status_elem.removeClassName("overflow");
+      } else {
+        remaining = -remaining;
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") +  "too many");
+        status_elem.addClassName("overflow");
+      }
+    }
+    input_elem.observe('keydown', checkCharacterCount);
+    input_elem.observe('keyup', checkCharacterCount);
+    input_elem.observe('mouseout', checkCharacterCount);
+    checkCharacterCount();
+  };
+  showCharacterCount($('daily_deal_facebook_title_text'), $('facebook_title_text_character_count'), <%= @daily_deal.max_facebook_title_text_size %>);
+  showCharacterCount($('daily_deal_twitter_status_text'), $('twitter_status_text_character_count'), <%= @daily_deal.max_twitter_status_text_size %>);
+});
+
+jQuery(document).ready(function($) {
+  $('#copy_start_at').bind('click', function() { $('#daily_deal_side_start_at').val($('#daily_deal_start_at').val()); });
+  $('#copy_hide_at').bind('click', function() { $('#daily_deal_side_end_at').val($('#daily_deal_hide_at').val()); });
+  $('#clear_side_start_at').bind('click', function() { $('#daily_deal_side_start_at').val(""); });
+  $('#clear_side_end_at').bind('click', function() { $('#daily_deal_side_end_at').val(""); });
+  $('#enable_side_deal').bind('click', function() { $('#side_deal_fields').show(); $('#enable_side_deal_row').hide(); });
+
+  function qtipOptions(content) { return { content: content, show: 'mouseover', hide: 'mouseout', style: { name: 'blue' } }; }
+
+  $('#start_at_tooltip').qtip(qtipOptions('Indicates when a deal will go live. Once the deal has a single purchase this field will be locked and will not be editable.'));
+
+  $('#hide_at_tooltip').qtip(qtipOptions('Indicates when a deal will be removed from the site.'));
+
+  $('#side_start_at_tooltip').qtip(qtipOptions('Indicates when a Side Deal will start. If the Side Start At and Overall Start At is the same the deal will start as a side deal. Otherwise, the deal will transition from a Featured Deal to Side Deal at the Side Start time.'));
+
+  $('#side_end_at_tooltip').qtip(qtipOptions('Indicates when a Side Deal will end. If the Side End At and Overall Hide At are the same the deal will be removed from the site. Otherwise the deal will transition from a Side Deal to a Featured Deal.'));
+
+});
+<%- end -%>
+

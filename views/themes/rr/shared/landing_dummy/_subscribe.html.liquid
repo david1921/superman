@@ -1,0 +1,35 @@
+<div class="clear"></div>
+<div id="subscribe_box_top"></div>
+<div id="subscribe_box">
+<div id='subscriber_form_errors'></div>
+	<div id="email_zip_box">
+		<h4 class="sign_up">Sign up for daily deals:</h4>
+		<div id="subscribe_form">
+			<form action="/publishers/{{ publisher.id }}/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+				<fieldset>
+					<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+					<input name="redirect_to" value="{{ publisher.subscribers_thank_you_path | verifiable_url }}" type="hidden" />
+				</fieldset>
+				<fieldset>
+					<input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />	
+					<input id="subscriber_zip" name="subscriber[zip_code]" size="30" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" />
+				</fieldset>
+	</div>
+
+			
+			<div id="terms_box">	
+				<fieldset id="terms">
+					<input name="subscriber[terms]" value="0" type="hidden" />
+					<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the <a href="{{ publisher.terms_path }}" target="_blank">Terms</a> and <a href="{{ publisher.privacy_path }}" target="_blank">Privacy Policy</a>
+				</fieldset>
+				<fieldset class="sign_up">
+					<input type="image" src="/themes/rr/images/buttons/sign_up.png" id="sign_up" value="Sign Up"/><div class="clear"></div>
+				</fieldset>
+			</div>
+			<div class="clear"></div>
+		</form>
+	
+	
+	</div><!-- /subscribe_form -->
+	<div class="clear"></div>
+</div>

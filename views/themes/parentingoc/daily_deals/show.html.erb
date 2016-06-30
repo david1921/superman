@@ -1,0 +1,99 @@
+  <div id="page_row">
+  	<div class="rounded_corner_top">&nbsp; </div>
+      <div class="deal_content">
+        <h1 class="value_proposition"><span>Today’s Deal: <%= number_to_percentage( @daily_deal.savings_as_percentage, :precision => 0 ) %> Off!</span><br>
+        <%= @daily_deal.value_proposition %></h1>
+      <div id="deal"><%= image_tag @daily_deal.photo.url(:standard), :id => "photo", :alt => "#{@publisher.name}" %></div>
+      <div id="dashboard">
+        <% if @daily_deal.over? -%>
+          <%= image_tag("/themes/parentingoc/images/buttons/sold_out.png", :class => "big_button" ) %>
+        <% elsif @daily_deal.active? -%>
+          <%= link_to(
+                image_tag("/themes/parentingoc/images/buttons/buy_now.png"), 
+                new_daily_deal_daily_deal_purchase_path(@daily_deal), 
+                :id => "buy_now_button", :class => "big_button", :width=>"352", :height=>"61" ).html_safe
+          %>
+          <div class="unavailable" style="display:none;"><%= image_tag("/themes/parentingoc/images/buttons/sold_out.png", :class => "big_button" ) %></div>
+        <% else -%>
+          <%= image_tag("/themes/parentingoc/images/buttons/not_available_yet.png", :class => "big_button" ) %>
+        <% end -%>
+        <table cellspacing="0">
+        <tbody><tr>
+          <td><%= number_to_currency( @daily_deal.value, :precision => 0, :unit => @daily_deal.publisher.currency_symbol ) %></td>
+          <td class="todays_deal"><%= number_to_currency( @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol )%></td>
+          <td class="you_save"><%= number_to_currency( @daily_deal.savings, :precision => 0, :unit => @daily_deal.publisher.currency_symbol )%></td>
+          <td id="deals_sold"><%= @daily_deal.number_sold %></td>
+        </tr>
+
+        <tr>
+          <th>Value</th>
+           <th class="todays_deal">Today's Deal</th>
+           <th id="you_save" class="you_save">You Save</th>
+           <th id="deals_sold_label">Deals Sold</th>
+        </tr>
+        </tbody></table>
+
+        <table cellspacing="0" width="190" id="time_clock">
+        <tbody><tr>
+        <td rowspan="2"><%= image_tag("/themes/parentingoc/images/alarm_clock.png", :width => "55", :height => "70", :alt => "time left to buy") %></td>
+        <td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+
+        </tr>
+
+        <tr>
+        <th id="time_left_to_buy_label">Time Left to Buy</th>
+
+        </tr>
+        </tbody></table>
+
+
+      </div>
+      <div id="share">
+        <div class="social_icons">
+        <%= link_to image_tag("/themes/parentingoc/images/icons/facebook.png" ), facebook_daily_deal_path(@daily_deal), :target => "_blank", :class => "share_button_facebook" %>
+        <%= link_to image_tag("/themes/parentingoc/images/icons/twitter.png" ), twitter_daily_deal_path(@daily_deal), :target => "_blank", :class => "share_button_twitter" %>
+        <%= mail_to(
+              "", 
+              image_tag( "/themes/parentingoc/images/icons/mail.png" ), 
+              :subject => "#{@daily_deal.publisher_prefix} #{@daily_deal.value_proposition}",
+              :body => "Check out this deal at #{daily_deal_url(@daily_deal)}",
+              :class => "share_button_mail"
+        ) %>
+        </div>  
+      </div>
+
+      <div id="bottom_details">
+        <div id="advertiser">
+          <%= image_tag(@daily_deal.advertiser.logo.url(:standard), :id => "advertiser_logo") if @daily_deal.advertiser.logo.file? %><br /> 
+
+          <p>
+            <%= @daily_deal.advertiser_name %><br />
+            <% @daily_deal.advertiser.address do |line| -%>
+              <%= line -%><br/>
+            <% end -%>
+            <%= @daily_deal.formatted_phone_number %><br />
+            <% advertiser_url = @daily_deal.advertiser.website_url.try :gsub, "http://", "" %>
+            <%= link_to( advertiser_url, "http://#{advertiser_url}", :target => "_blank" ) %>
+          </p>
+          <% if @daily_deal.advertiser.map_url.present? && !@daily_deal.multi_location? %>
+          <%= link_to(image_tag(map_image_url_for(@daily_deal, "170x169"), :id => "map"), @daily_deal.advertiser.map_url, :target => "_blank") %>
+          <% end -%>
+        </div>
+
+          <div id="description">
+            <h2>Description</h2>
+            <%= @daily_deal.description.html_safe if @daily_deal.description %>
+          </div>
+
+          <div id="highlights">
+            <h2>Highlights</h2>
+            <%= @daily_deal.highlights.html_safe if @daily_deal.highlights %>
+            <h2>Fine Print</h2>
+            <%= @daily_deal.terms.html_safe if @daily_deal.terms %>
+          </div>
+
+      </div><!-- bottom_details-->
+      <div style="clear:both;">&nbsp;</div>
+
+      </div><!--deal_content-->
+</div><!--page_row-->

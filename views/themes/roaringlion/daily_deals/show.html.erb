@@ -1,0 +1,90 @@
+<div>
+		<div class="clear"></div>
+		<div id="main_column">
+				<div class="content_box"><!-- deal info top row -->
+						<h1 id="value_prop"><%= @daily_deal.value_proposition %></h1>
+						<% if @daily_deal.value_proposition_subhead.present? %>
+						  <h2 id="value_prop_subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+						<% end %>
+						<div class="six_col"><!-- photo and share links -->
+								<div id="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @advertiser.name %>" /></div>
+								<%= render :partial => with_theme("shared/share_deal") %>
+						</div><!-- /photo and share links -->
+						
+						<div class="three_col"><!--dashboard -->
+								<div id="price_tag">
+									<h1 <%= " class=variation" if !@daily_deal.daily_deal_variations.blank? %>><% if !@daily_deal.daily_deal_variations.blank? -%>From<br /><% end %><%= formatted_price_for(@daily_deal.price_to_display, @daily_deal.currency_symbol) %></h1>
+										<div id="buy_now">
+											<% if @daily_deal.sold_out? %>
+												<div id="sold_out" class="dd_button sold_out gradient">
+													Sold Out
+												</div>
+											<% elsif @daily_deal.over? %>
+												<div id="deal_over" class="dd_button deal_over gradient">
+													Over
+												</div>
+											<% elsif @daily_deal.active? %>						
+												<% if !@daily_deal.daily_deal_variations.blank? -%>
+													<a id="buy_now_button" class="dd_button buy gradient dd_variations_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+													<div id="deal_over" class="dd_button deal_over gradient unavailable" style="display:none;">
+														Over
+													</div>
+													<a id="dd_variations_button" class="dd_button buy gradient dd_variations_button" href="#">
+													<span class="arrow">&lt;</span>
+													</a>
+
+													<% if !@daily_deal.daily_deal_variations.blank? -%>
+												  		<%= render :partial => with_theme("shared/dd_variations_menu") %>
+												  	<% end %>
+
+												<% else -%>
+													<a id="buy_now_button" class="dd_button buy gradient" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button">Buy</a>
+													<div id="deal_over" class="dd_button not_yet_available gradient" style="display:none;">
+														Not Yet Available
+													</div>
+												<% end -%>
+											<% else %> 
+												<div id="not_yet" class="dd_button not_yet_available">Coming Soon</div>
+											<% end %>
+										</div><!-- /buy_now -->
+										<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+										<%= render :partial => 'shared/variation_delay.js' %>
+										<%= render :partial => with_theme('shared/button_states') %>
+								</div><!-- /price_tag -->
+								<div id="deal_specs">
+								<table id="value_summary">
+										<tr>
+											<th>Savings</th>
+											<th>Value</th>
+										</tr>
+										<tr>
+											<td><span id="daily_deal_savings_as_percentage"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span></td>
+											<td><span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display, @daily_deal.currency_symbol) %></span></td>
+										</tr>
+								</table>
+								<table id="timer">
+										<tr>
+											<th id="clock" rowspan="2"></th>
+											<th id="time_left_to_buy_label">Time Left to Buy</th>
+										</tr>
+										<tr>
+											<td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+										</tr>
+								</table><!-- /timer -->
+								<%= render :partial => with_theme("shared/number_sold") %>
+								</div><!-- /deal_specs -->
+						</div><!-- /dashboard -->
+						
+						<div class="clear"></div>
+				</div><!-- /deal info top row -->
+				
+				<div><!-- deal info bottom row -->
+						<%= render :partial => with_theme("shared/deal_tab_content") %>	
+							<script type="text/javascript" src="/themes/roaringlion/javascripts/daily_deals.js"></script>
+							<script type="text/javascript">
+							setupDealTabs('deal_tabs', 'deal_tab_content');
+						</script>
+				</div><!-- /deal info bottom row -->
+    </div><!-- /main_column -->
+	<%= render :partial => with_theme("shared/sidebar") %>
+</div>

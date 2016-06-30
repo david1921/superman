@@ -1,0 +1,43 @@
+<%- set_daily_deal_page_title_slug "Buy Now" -%>
+
+<div id="one_click_wrap" class="one_click_purchase content_wrap">
+  <!-- The details form is replaced via AJAX when there are purchase-setup errors -->
+  <%= render(:partial => with_theme("details_form"), :locals => {
+        :publisher => @publisher,
+        :daily_deal => @daily_deal,
+        :daily_deal_purchase => @daily_deal_purchase
+      }) %>
+
+  <form id="daily_deal_purchase_payment" autocomplete="off">
+      <section class="payment">
+          <h2>Payment<span class="payment_options"></span></h2>
+          <div class="section_content">
+
+              <%= braintree_error_messages(@result) %>
+    
+              <div id="credit_card_selection">
+                <!-- The credit-card section is replaced via AJAX when the user signs in -->
+                  <%= render(:partial => "consumers/credit_card_selection", :locals => { :publisher => @publisher }) %>
+              </div>
+          </div><!--/section_content-->
+      </section><!-- payment -->
+
+      <div id="buttons">
+          <ul class="input_errors"></ul>
+          <button id="buy_now_button" type="submit">Buy Now</button>
+          <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+  </form>
+</div><!-- one_click_wrap -->
+
+<%= javascript_include_tag "translations" %>
+<% javascript_tag do %>
+  I18n.locale = '<%= I18n.locale.to_s %>';
+<% end %>
+
+<%= javascript_include_tag "/themes/analogapplied/javascript/daily_deal_purchase_one_click.js" %>
+<%= javascript_include_tag "/themes/analogapplied/javascript/jquery.validation.js" %>
+<%= javascript_include_tag "/javascripts/app/daily_deal_purchases/single_page_checkout.js" %>
+<% javascript_tag do %>
+  Analog.SinglePageCheckout.attach('#one_click_wrap');
+<% end %>

@@ -1,0 +1,25 @@
+
+<% set_page_title "Reports: Publisher Referrals" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => referrals_reports_publisher_url(@publisher, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :referrals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publisher_referrals",
+  :data_source => referrals_reports_publisher_path(@publisher.to_param, :format => "xml"),
+  :data_params => {},
+  :result_node => :referrer,
+  :data_columns => [
+    [:email, {:label => "Email", :class_name => "left"}],
+    [:referral_count, {:label => "Referrals", :parser => "number"}],
+    [:credits_given, {:label => "Credits Given", :formatter => "formatCurrency"}],
+    [:credit_used, {:label => "Credit Used", :formatter => "formatCurrency"}]
+  ]
+}) %>
+
+

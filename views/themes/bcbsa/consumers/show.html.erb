@@ -1,0 +1,125 @@
+<% set_daily_deal_page_title_slug t(:my_account) %>
+
+<% if params[:layout] == "popup" -%>
+ <a href="#" class="lbAction" rel="deactivate"><span>Close</span></a>
+ <% elsif @publisher.label != 'bcbsa-national' -%>
+	 <!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	  <ul>
+	    <li>
+	      <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+	    </li>
+	    <li class="no_underline">></li>
+	    <li class="no_underline">          
+	      <%= t(:my_account) %>
+	    </li>
+	  </ul>
+	  </div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+<% end -%>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">
+		<span class="left_header_title"><%= t(:my_account) %></span>
+        <span class="right_header_title_2"><%= t(:my_deal_history) %></span>
+    </h1>
+	
+    	<div id="left_column">
+			<p class="intro"><%= t(:my_account_intro_message) %></p>
+			<p class="edit"><%= link_to t(:my_account_edit), edit_publisher_consumer_path(@publisher, current_consumer) %></p>
+			<div id="account_contents">
+				<div class="account_details">
+					<h5 class="login-settings"><%= t(:login_settings) %></h5>
+
+					<div class="user_information">
+						<p class="user_field"><%= t(:email_address) %>:</p>
+            <p class="user_field_edit"><%= @consumer.email %></p>
+					</div>
+					<div class="user_information">
+						<p class="user_field"><%= t(:password) %>:</p>
+						<p class="user_field_edit">*************</p>
+					</div>
+				</div>
+				<div class="account_details">
+					<h5><%= t(:blue_company_location) %></h5>
+
+					<div class="user_information">
+						<p class="user_field"><%= t(:blue_company_name) %>:</p>
+            <p class="user_field_edit"><%= @publisher.name %></p>
+					</div>
+					<div class="user_information">
+						<p class="user_field"><%= t(:id_prefix) %>:</p>
+						<p class="user_field_edit"><%= @consumer.publisher_membership_code.try(:code)  %></p>
+					</div>
+					<div class="user_information">
+						<p class="user_field"><%= t(:zip_code) %>:</p>
+						<p class="user_field_edit"><%= @consumer.zip_code %></p>
+					</div>
+				</div>
+				<div class="account_details">
+					<h5><%= t(:personal_information) %></h5>
+
+					<div class="user_information">
+						<p class="user_field"><%= t(:name) %>:</p>
+						<p class="user_field_edit"><%= @consumer.name %></p>
+					</div>
+					<div class="user_information">
+						<p class="user_field"><%= t(:birth_year) %>:</p>
+						<p class="user_field_edit"><%= @consumer.birth_year %></p>
+					</div>
+					<div class="user_information">
+						<p class="user_field"><%= t(:gender) %>:</p>
+						<p class="user_field_edit"><%= @consumer.gender %></p>
+					</div>
+				</div>
+				<div class="account_details">
+					<h5><%= t(:preferred_categories) %></h5>
+					  <div class="user_information">
+						<p class="user_field"><%= t(:categories) %>:</p>
+						<% if @consumer.daily_deal_categories.size > 0 %>
+						  <% @consumer.daily_deal_categories.each do |category| %>
+							<p class="user_field_edit"><%= t(category.name.downcase.gsub(/\s/, '_')) %></p>
+						  <% end %>
+						<% else %>
+						  <p class="user_field_edit"><%= t(:none) %></p>
+						<% end %>
+					  </div>
+				</div>
+			
+				<div class="account_details">
+					<h5><%= t(:language) %></h5>
+					  <div class="user_information">
+						<p class="user_field"><%= t(:preferred_language) %>:</p>
+						  <p class="user_field_edit"><%= Locales::Enabled::FULL_NAMES[@consumer.preferred_locale].sub("(México)", " ") %></p>
+					  </div>
+				</div>
+			</div>
+      
+		</div> <!--left_column-->
+		<div class="right_column_1">
+			<div id="top">
+				<div class="deal_history">
+          <%= render :partial => with_theme("consumers/my_deal_history") %>
+				</div>
+				<a class="view_deal_history" href="<%= publisher_consumer_daily_deal_purchases_path(@consumer.publisher, @consumer) %>"><%= t(:view_deal_history) %></a>
+				<div class="clear"></div>
+
+			</div>
+
+
+			<div id="bottom">
+				<h5 class="content_bottom_right"><%= t(:my_rewards) %></h5>
+				<div id="my_rewards">
+					<h6><%= t(:you_earned) %>:<h6>
+					<p class="reward_credit"><%= number_to_currency(current_user.credit_available, :unit => @publisher.currency_symbol) %></p>
+					<a id='inline' class='fancybox' id='refer' href='#refer_lightbox_info'><%= t(:read_details) %>.</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="clear"></div>
+  </div>
+</div>
+
+<%= render :partial => with_theme("shared/lightboxes/refer") %>

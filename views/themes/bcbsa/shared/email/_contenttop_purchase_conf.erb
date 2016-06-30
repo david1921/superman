@@ -1,0 +1,67 @@
+<!--CONTENT TOP -->   
+        <table width="648" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; color:#747474;font-size:14px;">
+          <tr>
+            <td valign="bottom" align="left" style="padding-left:20px;padding-bottom:10px;">
+                <h1 style="font-family:Arial, Helvetica, sans-serif;font-size: 20px;font-weight:bold;color:#0094d0;margin:0;padding:0;">Congratulations! Here's your purchase:</h1>
+            </td>
+		  </tr>
+		  <tr>
+			<td colspan="2" valign="top" align="center" bgcolor="#ecf2f6" style="background-color:#ecf2f6;">
+                <img src="<%= @daily_deal.photo.url %>" width="648" height="280" alt="" />
+            </td>
+		  </tr>
+		  <tr>
+			<td colspan="2" valign="top" align="left">
+                <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+				  <tr>
+					<td valign="top" align="left">
+					 	<h2 style="font-family:Arial, Helvetica, sans-serif;font-size: 28px;line-height:30px;font-weight:bold;color:#464646;margin-top:0;margin-bottom:5px;padding:0;"><%= @daily_deal.advertiser.name %></h2>
+						<h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 20px;font-weight:normal;color:#464646;margin:0;padding:0;"><%= @daily_deal.value_proposition %></h3>
+						<h4 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;font-weight:normal;color:#464646;margin:0;padding:0;"><em>at <% if @daily_deal.custom_2.present? %>
+							<%= @daily_deal.custom_2 %>
+    					<% else %>
+    						<%= @advertiser.name %></em>
+    					<% end %>
+    					</h4>
+					</td>
+					<!-- @daily_deal_purchase.consumer for link to accounts page -->
+					<td rowspan="2" align="right" valign="top"><a href="http://<%= @publisher.daily_deal_host %><%= daily_deal_login_path(@publisher) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/buttons/print-voucher.png" alt="Print Purchase Certificate" width="133" height="36" /></a></td>
+				  </tr>
+				  <tr>
+					<td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;">
+						<h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;padding:0;">The Terms</h3>
+						<%= @daily_deal.terms.try :html_safe %>
+						<% if !@daily_deal.affiliate_url && @daily_deal.expires_on.present? %>  
+	  				      	<ul style="margin-top: -10px;"><li>	
+	  				      			Expiration date of voucher: <%= @daily_deal.expires_on.strftime("%B #{@daily_deal.expires_on.day.ordinalize}, %Y")%>.
+	  				      	</li></ul>
+	  				     <% end %>
+						
+						<p style="font-size:14px;margin-top:10px;padding:0;"><a style="color:#0094d0;" href="http://<%= @publisher.daily_deal_host %><%= daily_deal_login_path(@publisher) %>"><span style="color:#0094d0;">View your account</span></a></p>
+				    </td>
+				  </tr>
+				  <tr>
+					<td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;">
+						<h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;padding:0;">Purchase Summary</h3>
+				    
+				    	<h4 style="font-size: 12px; margin: 5px 0px 0px 0px;">Quantity:</h4>
+				    	<h4 style="font-size: 12px; margin: 5px 0px 5px 0px;">Total Paid:</h4>
+
+				    	<p style="font-size: 12px; margin: 5px 0px 0px 0px;">Your voucher is attached to this email. Please bring your printed voucher and a valid state ID when you redeem your deal at [merchant name].</p>
+
+				    	<p style="font-size: 11px; margin: 5px 0px 0px 0px;">Kindly note that your credit card statement will show a payment to ANA Deal of the Day, an independent company that provides technology for the Weekly Deal program at Blue365 Deals.</p>
+				    </td>
+				    	
+				    <!-- @daily_deal_purchase.quantity and @daily_deal_purchase.actual_purchase_price -->
+				  </tr>
+				  <tr>
+					<td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;">
+						<h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;padding:0;">Support</h3>
+						<p>Please contact us if you have any questions: <a href="mailto:support@blue365deals.com" style="color:#0094d0;">support@Blue365deals.com.</a></p>
+				    </td>
+				  </tr>
+				</table>
+            </td>
+          </tr>
+        </table>
+<!--/CONTENT TOP -->  

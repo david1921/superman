@@ -1,0 +1,21 @@
+<%- content_tag_for(:tr, consumer, :class => cycle("even", "odd")) do -%>
+  <td class="name"><%= link_to consumer.name, edit_admin_consumer_path(consumer) %></td>
+  <td class="login"><%= link_to consumer.login, edit_admin_consumer_path(consumer) %></td>
+  <td class="publisher"><%= link_to consumer.publisher.label, edit_publisher_path(consumer.publisher) %></td>
+  <td class="activation_code"><%= consumer.activation_code %></td>
+  <td class="right created_at"><%= consumer.created_at.to_s(:compact) %></td>
+  <td class="right activated_at">
+    <%= consumer.activated_at.to_s(:compact) if consumer.activated_at %>
+    <%= link_to("Activate", activate_by_administrator_consumer_path(consumer), :method => :post) unless consumer.activated_at %>
+  </td>
+  <td class="right">
+    <%= link_to("Purchases", consumers_daily_deal_purchases_admin_index_path(consumer)) if consumer.daily_deal_purchases.executed.present? %>
+  </td>
+  <td class="credit">
+    <% if admin? %>
+      <%= link_to("Add&nbsp;Credit".html_safe, add_credit_consumer_path(consumer), :method => :post) unless consumer.signup_discount %>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </td>
+<% end -%>

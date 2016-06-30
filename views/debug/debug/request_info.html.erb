@@ -1,0 +1,8 @@
+<h1>Request.remote_ip</h1>
+<hr/>
+<p><%= @remote_ip %></p>
+<h1>HTTP Headers</h1>
+<hr/>
+<% @headers.each_pair do |key, value|%>
+  <%= "#{key}=#{value}" %><br/>
+<% end%>

@@ -1,0 +1,4 @@
+<div class="photo_share_wrapper">
+	<div class="deal_photo"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="<%= @daily_deal.advertiser.name %>" /></div>
+    <%= render :partial => with_theme('shared/share_deal'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+</div><!-- /photo_share_wrapper -->

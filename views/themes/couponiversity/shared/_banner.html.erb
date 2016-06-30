@@ -1,0 +1,17 @@
+<a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="deal_logo">Couponiversity</h1></a>
+<div id="banner">
+	<%= render :partial => with_theme("shared/account_nav")%>
+	
+	<div id="market_menu_wrapper">
+		<h4>Get the daily coupon for</h4>
+    <ul id="market_menu">
+       <li><a href="#" id="current_market_menu_selection"><%= @publisher.market_name_or_city %></a>
+         <%= market_selection_list(@publisher) %>
+       </li>
+    </ul>
+ </div><!-- /market_menu_wrapper -->
+
+	
+	<%= render :partial => with_theme("shared/subscribe") %>
+</div>
+<div class="clear"></div>

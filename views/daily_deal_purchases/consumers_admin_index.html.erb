@@ -1,0 +1,53 @@
+<table class="admin_daily_deal_purchases">
+  <tr>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Deal Arrived As</th>
+    <th>Remaining</th>
+    <th>Recipient</th>
+    <th class="date">Purchased</th>
+    <th class="date">Expires</th>
+    <th>Status</th>
+    <th></th>
+  </tr>           
+  <% @daily_deal_purchases.each  do |daily_deal_purchase| %>
+    <% content_tag_for :tr, daily_deal_purchase, :class => cycle("even", "odd") do %>
+      <!-- OffplatformDailyDealCeritifcates do not have daily deals.  Not sure why OffplatformDailyDealCertificates are even here, but that's what this check is for. -->
+      <% if daily_deal_purchase.respond_to?(:daily_deal) %>
+        <td class="name"><%= link_to daily_deal_purchase.line_item_name, daily_deal_url(daily_deal_purchase.daily_deal) %></td>
+      <% else %>
+        <td class="name"><%= daily_deal_purchase.line_item_name %></td>
+      <% end %>
+	    <td class="deal_arrived_as"><%= daily_deal_purchase.quantity %></td>
+      <td class="certificates_to_generate_per_unit_quantity"><%= daily_deal_purchase.certificates_to_generate_per_unit_quantity %></td>
+      <td class="quantity"><%= daily_deal_purchase.quantity_excluding_refunds %></td>
+      <td class="redeemer_names">
+        <%- if (names = daily_deal_purchase.redeemer_names).length > 30 -%>
+          <span title="<%= names %>"><%= truncate(names, :length => 30) %></span>
+        <%- else -%>
+          <%= names %>
+        <%- end -%>        
+      </td>
+      <td class="date"><%= daily_deal_purchase.humanize_created_on %></td>
+      <td class="date"><%= daily_deal_purchase.humanize_expires_on %></td>
+      <td class="status"><%= admin_daily_deal_purchase_status_link(daily_deal_purchase) %></td>
+      <td class="name">
+        <% if daily_deal_purchase.respond_to?(:download_url) %>
+          <%= link_to(t(:print), daily_deal_purchase.download_url, :target => "_blank") %>
+        <% else %>
+          <%= link_to "#{daily_deal_purchase.store.present? ? daily_deal_purchase.store.summary : "Edit"}", daily_deal_purchases_consumers_admin_edit_path(daily_deal_purchase.id) %>
+          &nbsp;<%= link_to "Print", publisher_consumer_daily_deal_purchase_url(daily_deal_purchase.publisher.to_param, daily_deal_purchase.consumer.to_param, daily_deal_purchase.to_param, :format => :pdf)%>
+        <% end %>
+      </td>
+    <% end %>
+  <% end %>
+</table>                
+
+<div class="full_width buttons">
+  <%= link_to("Purchases as #{@consumer.name} sees them", publisher_consumer_daily_deal_purchases_path(@consumer.publisher, @consumer), :class => "left") if admin? %>
+  <% if admin? -%>
+    <%= link_to("Back to customers search", consumers_path, :class => "right") %> 
+  <% else -%>
+    <%= link_to("Back to customers search", publisher_consumers_path(@consumer.publisher), :class => "right") %>
+  <% end -%>
+</div>

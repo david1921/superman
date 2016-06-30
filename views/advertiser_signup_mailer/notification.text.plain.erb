@@ -1,0 +1,30 @@
+Hello,
+
+Your <%= @user.publisher.name %> online account has been created, which you can use to manage coupons for <%= @user.advertiser.name %>.
+
+To add a new coupon, visit:
+
+  <%= new_advertiser_offer_url @user.advertiser, :host => @user.publisher.host %>
+
+You can manage your coupons online at any time by logging in to:
+
+<%= "http://admin.analoganalytics.com" %>
+
+with your login name:
+
+  <%= @user.login %>
+
+and the password you set up.
+
+If you have questions about your account or the coupon service, please email <%= @support_email_address %>.
+
+Thanks,
+
+<%= @user.publisher.name %> Team
+
+Coupons Powered by Analog Analytics
+http://www.analoganalytics.com/
+11455 El Camino Real, Suite #390, San Diego, CA 92130.
+
+
+

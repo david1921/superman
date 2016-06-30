@@ -1,0 +1,32 @@
+<div id="dd_popup_wrapper">
+  <div id="dd_popup_header">
+      <%= link_to( image_tag("/themes/nydailynews/img/dd_popup_close.png", :border => "0", :class => "close"), "#", :class => "lbAction", :rel => "deactivate", :id => "close") %>
+  </div>
+  <div id="dd_popup_instructions">
+    Enter your information to start receiving unbeatable deals in your inbox 
+  </div>
+  <% remote_form_for @subscriber, :id => 'login' do |f| %>
+    <%= hidden_field_tag :publisher_id, @publisher.id %>
+    <table class="sign_up_form_popup" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td class="signup_l" width="130"><%= f.label :email, "Email:" %></td>
+            <td class="signup_r" width="250"><%= f.text_field :email, :maxlength => "80", :class => "input_txt" %></td>
+          </tr>
+          <tr>
+            <td class="signup_l" width="130"><%= f.label :zip_code, "ZIP Code:" %></td>
+            <td class="signup_r" width="250"><%= f.text_field :zip_code, :maxlength => "5", :class => "input_txt" %></td>
+          </tr>
+          <tr>
+            <td class="signup_l" width="130"></td>
+            <td class="signup_r" width="250"><%= f.check_box :terms, :class => "terms_agree", :checked => true %>
+             <span class="terms_agree_txt">I agree to the <%= link_to( "Terms", terms_publisher_daily_deals_path(@publisher)) %> and <%= link_to( "Privacy Policy", privacy_policy_publisher_daily_deals_path(@publisher)) %></span></td>
+          </tr>
+          <tr>
+            <td class="signup_l" width="130"></td>
+            <td class="signup_r" width="250"><input type="submit" class="sign_up_btn_form2" value=" "> <%= link_to("No Thanks!", "#", :class => "lbAction", :rel => "deactivate", :id => "no_thanks") %></td>
+          </tr>
+        </tbody>
+     </table>
+   <% end %>
+</div>

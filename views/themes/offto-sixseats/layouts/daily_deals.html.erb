@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <% if @daily_deal -%>
+    <title><%= @daily_deal.value_proposition %> - OffTo.com - Great Deals on Fabulous LGBT Getaways</title>
+    <META NAME="keywords" CONTENT="off to,lgbt travel,gay travel,lgbt getaways,gay getaways,gay vacation destinations,gat vacations,lgbt vacations,tag approved hotels,affordable getaways,affordable vacations,discounted vacations,cheap vacations,Gay LGBT Pride New York City,Gay LGBT Pride San Francisco,Gay LGBT Pride Chicago,Gay LGBT Pride Washington DC,Gay LGBT Pride,Capital Gay Pride,Gay LGBT Pride Fort Lauderdale,Gay LGBT Pride San Diego,Gay LGBT Pride Boston,Gay LGBT Pride Philadelphia,Gay LGBT Pride Seattle,Gay LGBT Pride Miami FL,Gay LGBT Pride Columbus OH,Gay LGBT Pride Houston,Gay LGBT Pride Dallas,Gay LGBT Pride Austin,Gay LGBT Pride Denver,Gay Lesbian LGBT Getaways,Gay Lesbian LGBT Marriage,Gay Lesbian LGBT Same Sex Marriage,Gay Lesbian LGBT Marriage Getaway,Gay Lesbian LGBT Vacation,Gay Lesbian LGBT Wedding,Gay Lesbian LGBT Wedding Getaway,Gay Lesbian LGBT Pride,Gay Lesbian LGBT Festival,Gay Lesbian LGBT Pride Festival,Gay Lesbian LGBT Pride Event,Gay Lesbian LGBT Discount Getaway,Gay Lesbian LGBT Discount Vacation,Gay Lesbian LGBT Day Trip,Gay Lesbian LGBT Arts Festival,Gay Lesbian LGBT Culture Festival,Gay Lesbian LGBT Community Getaway,Gay Lesbian LGBT Group Vacation,Gay Lesbian LGBT Group Getaway,Gay Lesbian LGBT Weekend Getaway,Gay Lesbian LGBT Long Weekend Getaway,Gay Lesbian LGBT Holiday Getaway,Gay Lesbian LGBT Travel,Gay Lesbian LGBT Destination,Gay Lesbian LGBT Affordable Vacation,Gay Lesbian LGBT Discounted Vacation,Gay Lesbian LGBT Cheap Vacation,Gay Lesbian LGBT Tag Approved" />
+
+    <META NAME="description" CONTENT="<%= @daily_deal.value_proposition %> <%= @daily_deal.value_proposition_subhead %> OffTo.com - The world's first travel website devoted entirely to Fabulous Deals on Customized LGBT Getaways at 40-90% Off.  All different types of gay &amp; lesbian vacations to fit any budget.  The best gay, lesbian, lgbt/glbt travel deals around." />
+    <META NAME="abstract" CONTENT="<%= @daily_deal.value_proposition %> <%= @daily_deal.value_proposition_subhead %> OffTo.com - The world's first travel website devoted entirely to Fabulous Deals on Customized LGBT Getaways at 40-90% Off.  All different types of gay &amp; lesbian vacations to fit any budget.  The best gay, lesbian, lgbt/glbt travel deals around." />
+    <META NAME="revisit-after" CONTENT="1 day" />
+    <META NAME="author" CONTENT="OffTo LLC" />
+    <META NAME="copyright" CONTENT="Copyright OffTo LLC" />
+  
+    <META property="og:title" content="OffTo.com - <%= @daily_deal.value_proposition %> - Great Deals on Fabulous LGBT Getaways!"/> 
+    <META property="og:type" content="activity"/> 
+    <META property="og:image" content="<%= @daily_deal.photo.url(:facebook) %>"/> 
+    <META property="og:url" content="<%= request.url %>"/> 
+    <META property="og:site_name" content="www.OffTo.com"/> 
+    <META property="og:description" content="<%= @daily_deal.value_proposition %> <%= @daily_deal.value_proposition_subhead %>  The world's first travel website devoted entirely to great deals (save 40% or more) on amazing, super-fabulous gay &amp; lesbian LGBT getaways to incredible locations at prices to fit ANY budget! www.OffTo.com"/> 
+  <% else -%>
+    <title>OffTo.com - Great Deals on Fabulous LGBT Getaways - Save 40-90% On Affordable Gay Travel Vacations</title>
+    <META NAME="keywords" CONTENT="off to,lgbt travel,gay travel,lgbt getaways,gay getaways,gay vacation destinations,gat vacations,lgbt vacations,tag approved hotels,affordable getaways,affordable vacations,discounted vacations,cheap vacations,Gay LGBT Pride New York City,Gay LGBT Pride San Francisco,Gay LGBT Pride Chicago,Gay LGBT Pride Washington DC,Gay LGBT Pride,Capital Gay Pride,Gay LGBT Pride Fort Lauderdale,Gay LGBT Pride San Diego,Gay LGBT Pride Boston,Gay LGBT Pride Philadelphia,Gay LGBT Pride Seattle,Gay LGBT Pride Miami FL,Gay LGBT Pride Columbus OH,Gay LGBT Pride Houston,Gay LGBT Pride Dallas,Gay LGBT Pride Austin,Gay LGBT Pride Denver,Gay Lesbian LGBT Getaways,Gay Lesbian LGBT Marriage,Gay Lesbian LGBT Same Sex Marriage,Gay Lesbian LGBT Marriage Getaway,Gay Lesbian LGBT Vacation,Gay Lesbian LGBT Wedding,Gay Lesbian LGBT Wedding Getaway,Gay Lesbian LGBT Pride,Gay Lesbian LGBT Festival,Gay Lesbian LGBT Pride Festival,Gay Lesbian LGBT Pride Event,Gay Lesbian LGBT Discount Getaway,Gay Lesbian LGBT Discount Vacation,Gay Lesbian LGBT Day Trip,Gay Lesbian LGBT Arts Festival,Gay Lesbian LGBT Culture Festival,Gay Lesbian LGBT Community Getaway,Gay Lesbian LGBT Group Vacation,Gay Lesbian LGBT Group Getaway,Gay Lesbian LGBT Weekend Getaway,Gay Lesbian LGBT Long Weekend Getaway,Gay Lesbian LGBT Holiday Getaway,Gay Lesbian LGBT Travel,Gay Lesbian LGBT Destination,Gay Lesbian LGBT Affordable Vacation,Gay Lesbian LGBT Discounted Vacation,Gay Lesbian LGBT Cheap Vacation,Gay Lesbian LGBT Tag Approved" />
+
+    <META NAME="description" CONTENT="OffTo.com - The world's first travel website devoted entirely to Fabulous Deals on Customized LGBT Getaways at 40-90% Off.  All different types of gay &amp; lesbian vacations to fit any budget.  The best gay, lesbian, lgbt/lgbt travel deals around." />
+    <meta name="abstract" CONTENT="OffTo.com - The world's first travel website devoted entirely to Fabulous Deals on Customized LGBT Getaways at 40-90% Off.  All different types of gay &amp; lesbian vacations to fit any budget.  The best gay, lesbian, lgbt/lgbt travel deals around." />
+    <META NAME="revisit-after" CONTENT="1 day" />
+    <META NAME="author" CONTENT="OffTo LLC" />
+    <META NAME="copyright" CONTENT="Copyright OffTo LLC" />
+    
+    <META property="og:title" content="OffTo.com - Great Deals on Fabulous LGBT Getaways!"/> 
+    <META property="og:type" content="activity"/> 
+    <META property="og:image" content="http://images.offto.com/images/logo/offto100x100tag.jpg"/> 
+    <META property="og:url" content="<%= request.url %>"/> 
+    <META property="og:site_name" content="www.OffTo.com"/> 
+    <META property="og:description" content="<% if @featured_deal.present? %><%= @featured_deal.value_proposition %> <%= @featured_deal.value_proposition_subhead %> <% end %>The world's first travel website devoted entirely to great deals (save 40% or more) on amazing, super-fabulous gay &amp; lesbian LGBT getaways to incredible locations at prices to fit ANY budget! www.OffTo.com"/> 
+  <% end -%>
+    <META property="fb:admins" content="774492551,902425709"/>
+    
+    <!-- Stylesheets -->
+    
+    <link rel="stylesheet" href="/themes/offto-sixseats/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/offto-sixseats/stylesheets/offto-sixseats.css" type="text/css" />
+    
+    <link rel="stylesheet" href="/themes/offto-sixseats/stylesheets/global.css" type="text/css" />
+
+    <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+    
+    <!--[if lte IE 9]>
+    <link href="/themes/<%= @publisher.label %>/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <!--[if IE 9]>
+    <link href="/themes/<%= @publisher.label %>/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    
+    <!-- End Stylesheets -->
+    
+    <!-- Javascripts -->
+    
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag '/themes/offto-sixseats/javascript/jquery-1.3.2.min.js' %>
+    <script type="text/javascript">
+       $.noConflict();
+    </script>
+    <%= javascript_include_tag '/themes/offto-sixseats/javascript/jquery.fullscreenr.js'%>
+    <script src="/themes/offto-sixseats/javascript/cookies.js" type="text/javascript"></script>
+    
+    <!--[if (gte IE 6) & (lte IE 8)]>
+      <script type="text/javascript" src="/javascripts/selectivizr-min.js"></script>
+    <![endif]-->
+    
+    <%= raw render :partial => "/shared/tracking_google_analytics" %>
+    
+    <script type="text/javascript">
+    var FullscreenrOptions = {  width: 1600, height: 1600, bgID: '#background' };
+    jQuery.fn.fullscreenr(FullscreenrOptions);
+    
+    function slideUpAndRemember(element) {
+      new Effect.SlideUp(element);
+      setCookie('slide.'+element, 'up', 1);
+    }
+
+    function slideDownAndForget(element) {
+      new Effect.SlideDown(element);
+      setCookie('slide.'+element, 'down', -1);
+    }
+    </script>
+    
+    <!-- End Javascripts -->
+    
+    <link rel="shortcut icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon">
+      
+    </head>
+  <body>
+    <div id="analog_analytics">
+
+        <img id="background" src="/themes/<%= @publisher.label %>/images/backgrounds/main.jpg" />
+
+      <!-- Analog Analytics Daily Deal -->
+      <div id="daily_deal">
+        <%= render :partial => with_theme('shared/subscribe') %>
+        <%= render :partial => with_theme('shared/banner') %>
+        <div id="dd_content">
+          <%= render :partial => 'shared/flash_messages' %>
+          <%= yield %>
+          <div class="clear"></div>
+        </div> <!-- dd_content -->
+        <div id="push"></div>
+      </div> <!-- daily_deal -->
+      <%= render :partial => with_theme('shared/footer') %>
+    </div> <!-- analog_analytics -->
+    
+    <%= render :partial => with_theme('shared/tracking_publisher') %>
+    <%= raw render :partial => 'daily_deals/javascript' %>
+  </body>
+</html>

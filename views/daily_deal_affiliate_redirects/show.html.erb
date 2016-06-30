@@ -1,0 +1,18 @@
+<script type="text/javascript">
+
+  //define for all browsers
+  function ie_workaround_goto(url) {
+    var referLink;
+    if (navigator.userAgent.indexOf('MSIE') > -1) {
+      referLink = document.createElement('a');
+      referLink.href = url;
+      document.body.appendChild(referLink);
+      referLink.click();
+    } else {
+      window.location.href = url;
+    }
+  }
+
+  ie_workaround_goto('<%= @affiliate_redirect.affiliate_url %>');
+
+</script>

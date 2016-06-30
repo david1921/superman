@@ -1,0 +1,7 @@
+<h2>Advertiser Quick Links: A-Z</h2>
+<ul class="az_advertiser_menu">
+  <% ('A'..'Z').each do |letter| -%>
+  <li class="<%= "first" if letter == 'A' %> <%= "active" if params[:name] == "^#{letter}" %>"><%= link_to letter, "?name=%5E#{letter}" %></li>
+  <% end -%>
+  <li class="last"><%= link_to 'All', 'advertisers' %></li>
+</ul>

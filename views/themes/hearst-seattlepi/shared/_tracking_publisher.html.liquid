@@ -1,0 +1,24 @@
+<!--omni-->
+<script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/omniture/analyticsconfig.js"></script>
+<script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/hdn/omniture/s_code.js"></script>
+<script type="text/javascript" src="/themes/hearst-seattlepi/cached/js/hdn/omniture/analytics3p.js"></script>
+<!--end omni-->
+
+<!-- omniture test -->
+{% http %}
+<script type="text/javascript" src="http://web.timesunion.com/includes/omniture/dailydeal.js"></script>
+{% endhttp %}
+{% https %}
+<script type="text/javascript" src="https://secure.timesunion.com/forms/secure/analytics/seattle/dailydeal.js"></script>
+{% endhttps %}
+<!-- end omniture test -->
+
+<script>
+$$('form.email_subscription_tracking').invoke('observe', 'submit', function () {
+    s.linkTrackVars='events';
+    s.linkTrackEvents='event11';
+    s.events='event11';
+    s.tl(true,'o','DD signup');
+    return false;
+});
+</script>

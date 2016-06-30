@@ -1,0 +1,15 @@
+<% set_page_title "Please choose a password" %>
+
+<%= error_messages_for :user %>
+
+<div class="left_column">
+  <% form_for @user, :url => { :action => :update } do |f| -%>
+    <%= f.text_field_div :email, nil, :disabled => true %>
+    <%= f.password_field_div :password %>
+    <%= f.password_field_div :password_confirmation %>
+
+    <div class="buttons full_width">
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end %>
+</div>

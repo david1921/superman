@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "scoped_reset", "offers", "#{@publisher.theme}/offers", "lightbox", "standard/lightbox", :media => "all" %>
+<%= stylesheet_link_tag "/themes/rr/stylesheets/default.css" %>
+<%= stylesheet_link_tag "/themes/rr/stylesheets/main.css", :media => "all" %>
+<!--[if IE] >
+  <%= stylesheet_link_tag "/themes/rr/stylesheets/ie", :media => "all" %>
+<![endif]-->
+<!--[if IE 6]>
+  <%= stylesheet_link_tag "#{@publisher.theme}/ie6", :media => "all" %>
+<![endif]-->
+
+
+<%= javascript_include_tag "ghostie", "lightbox", "coupons" %>
+
+<% if @publisher.label == "sdcitybeat" %>
+<script type='text/javascript'>
+// Overwritting, since we want a 'get' request instead of a 'post'
+// would be nice if you could specify this as a tag on the link element.
+lightbox.prototype.loadInfo = function () {
+  var myAjax = new Ajax.Request(
+      this.content,
+      {method: 'get', parameters: "", onComplete: this.processInfo.bindAsEventListener(this)}
+	);
+};
+</script>
+<% end -%>

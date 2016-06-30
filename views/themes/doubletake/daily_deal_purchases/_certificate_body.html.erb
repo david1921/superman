@@ -1,0 +1,181 @@
+  <div <%= 'class="new_page"' if page_break %>>
+    <div style="width:665px">
+      <div class="blueBorder">
+        <div class="content">
+          <div class="bottomSep section">
+            <div class="floatRight hugeTitle">
+              <span id="lblCertNumber"><%= certificate.serial_number %></span>
+
+            </div>
+            <div>
+              <img id="imgLogo" src="<%= source_publisher.daily_deal_logo.url(:full_size) %>" style="width:300px;border-width:0;">
+            </div>
+            <div class="clearFloat"></div>
+          </div>
+          <div id="panelGeneralContent1">
+
+            <div class="bottomSep section">
+              <div class="floatRight">
+
+              </div>
+
+              <div>
+                <div class="largeTitle">
+                  <span id="lblTitle"><%= value_proposition %> </span>
+                </div>
+              </div>
+              <div class="clearFloat"></div>
+            </div>
+            <div class="section">
+              <table>
+                <tbody>
+                <tr>
+                  <td style="width:290px;vertical-align:top;">
+                    <div style="padding-right:15px;text-align:left;">
+
+                      <div class="normalTitle">Purchased by:</div>
+                      <div class="labelText">
+                        <span id="lblRecipients"><%= certificate.redeemer_name %></span><br>
+                        <!--<span id="lblAddress">549 Bald Eagle Court<br />Lancaster, PA 17601</span><br />
+                      <span id="lblEmailAddress">dave@markkup.com</span><br />-->
+                      </div>
+                      <br>
+
+                      <div class="labelText">
+                        <span id="lblDetails"><%= deal_description %></span>
+                        <br><br>
+
+                        <div class="legalText">
+                          <span id="lblSmallPrint"><%= daily_deal_purchase.daily_deal.terms(:plain) %></span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="width:312px;">
+                    <div class="normalTitle">Redeem at:</div>
+                    <div class="labelText">
+                      <span id="lblRedeemAt">
+                        <% if certificate.store %>
+                          <% certificate.store.address do |line| %>
+                            <%= line %><br/>
+                          <% end %>
+                          <%= certificate.store.formatted_phone_number unless certificate.store.formatted_phone_number.blank? %><br/>
+                        <% else %>
+                          <% certificate.advertiser.address do |line| %>
+                            <%= line %><br/>
+                          <% end %>
+                          <%= certificate.advertiser.formatted_phone_number unless certificate.advertiser.formatted_phone_number.blank?%><br/>
+                        <% end %></span>
+                    </div>
+                    <br>
+                    <table width="95%" cellpadding="0" cellspacing="0">
+                      <tbody>
+                      <tr>
+                        <td>
+                          <!--<div class="normalTitle">Valid Starting On:</div>-->
+                          <!--<div class="labelText">-->
+                          <!--<span id="lblStartsOn">10/30/2010</span>-->
+                          <!--</div>-->
+                        </td>
+                        <td>
+                          <div class="normalTitle">Expires On:</div>
+                          <div class="labelText">
+                            <span id="lblExpiresOn"><%= daily_deal_purchase.daily_deal.expires_on %></span>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <br>
+
+                    <div class="center">
+                      <img id="imgBarCode" src="<%= bar_code_file_path %>">
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div>
+              </div>
+              <div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+      <div id="panelGeneralContent2">
+
+        <div>
+          <div class="blueBorder floatLeft content" style="width:310px;">
+            <div>
+              <div class="normalTitle">How to use this:</div>
+              <span id="lblInstructions" class="labelText" style="font-size: 12px;">Present certificate to your server. Enjoy!</span>
+              <hr>
+              <div class="labelText"><b>If you are a consumer</b> who has purchased a certificate, do not use either of
+                the services listed below or you risk rendering your certificate invalid.<br><br></div>
+              <div class="normalTitle">Merchants ONLY:</div>
+              <div class="labelText">To redeem or verify this certificate, call<br><b>1-866-509-7123</b> (toll-free) or
+                visit <b>www.doubletakedeals.com/redeem</b>.<br><br> For merchant support, call 1-866-509-7125.
+              </div>
+            </div>
+          </div>
+
+          <div class="floatLeft" style="width:208px; display:none">
+            <div class="section">
+              <div class="sectionLeftSideOnly">
+                <div class="bold">Other Locations:</div>
+                <div class="labelText">
+                  <span id="lblOtherLocations">Currently there are no other locations.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="floatLeft" style="width:312px">
+            <div class="sectionLeftSideOnly">
+              <div>
+               <%= certificate_map_image %>
+              </div>
+            </div>
+          </div>
+          <div class="clearFloat"></div>
+        </div>
+        <br>
+
+        <div class="center blueText labelText grayBack section" style="width:610px;">
+              <span><strong>Customer
+                Support:</strong> <span id="lblSupportPhone">1-877-538-4617</span> <strong>&nbsp;•&nbsp;</strong> <strong>E-Mail
+                Us:</strong> bbdsupport@analoganalytics.com</span>
+        </div>
+        <br>
+
+      </div>
+      <div class="legalTextTiny">
+        <div class="bold">Legal Stuff We Have To Say:</div>
+        <div>This Promotional Certificate is for promotional purposes only. The merchant named above
+          (<span id="lblMerchant"><%= certificate.advertiser.name %></span>),
+          not DoubleTakeDeals, is the issuer of this Promotional Certificate, and the Merchant is solely responsible for
+          redemption. This Promotional Certificate cannot be (i) redeemed for cash or applied as payment to any account
+          unless required by applicable law; (ii) used for taxes, tips, prior balances, or shipping or handling charges;
+          (iii) used for alcoholic beverages except at the Merchant's sole discretion; (iv) combined with any other
+          coupons, discounts, or promotions except at the Merchant's sole discretion; or (v) copied or duplicated (any
+          such copies or duplicates are null and void). The Merchant has the right to substitute goods or services of
+          equal or greater value. Your use of this Promotional Certificate is subject to the DoubleTakeDeals Terms of
+          Service
+          at www.DoubleTakeDeals.com
+        </div>
+        <br>
+
+        <div>This Promotional Certificate Expires On: <span id="lblExpiresOn2">11/9/2011</span>. This Promotional Certificate
+          is
+          null and void if not redeemed by the Expiration Date, meaning that you cannot receive a refund of the amount
+          that you paid for the Promotional Certificate or of the amount for which the Promotional Certificate could have been
+          redeemed at the Merchant prior to the Expiration Date, unless applicable state law prohibits the expiration of
+          your Payment, in which case only the Value will expire on the Expiration Date.
+        </div>
+      </div>
+    </div>
+  </div>

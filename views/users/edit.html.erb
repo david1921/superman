@@ -1,0 +1,121 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+    (function($) {
+      $(function() {
+        $("#allow-for-all").click(function () {
+          $("#selected-pubs-container:visible").slideUp('medium');
+        });
+        
+        $("#allow-for-some").click(function() {
+          $("#selected-pubs-container:hidden").slideDown('medium');
+        })
+      })
+    })(jQuery);
+  </script>
+<% end %>
+
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+
+<div class="left_column">
+  <% form_for @user, :url => @user.new_record? ? parent_users_url : parent_user_url(@user) do |f| -%>
+    <% if !@user.new_record? %>
+      <div class="row">
+        <div class="label">
+          <strong>Status</strong>:
+        </div>
+        <div class="input">
+          <%= @user.status_message %>
+        </div>
+      </div>
+    <% end %>
+    <%= f.text_field_div(:login, nil, :required => true) %>
+    <%= f.text_field_div(:name) %>
+    <%= f.text_field_div(:email) %>
+<% if @user.new_record? -%>
+    <%= f.check_box_div(:email_account_setup_instructions, nil, :checked => true, :onchange => "onSendAccountSetupInstructionsChange();") %>
+<% end -%>
+    <%= f.password_field_div(:password) %>
+    <%= f.password_field_div(:password_confirmation) %>
+<% if admin? -%>
+    <%= f.text_field_div(:label) %>
+    <%= f.text_field_div(:session_timeout) %>
+    <%= f.check_box_div(:allow_syndication_access, "Allow Daily Deal Syndication Access") %>
+    <%= f.check_box_div(:allow_offer_syndication_access, "Allow Coupon Syndication Access") %>
+    <%= f.check_box_div(:can_manage_consumers, "Can Manage Consumers") %>
+    <% if @parent.is_a?(PublishingGroup) %>
+    <div class="row">
+      <div class="label">
+        <label>Access Permissions:</label> 
+      </div>
+      <div class="input">
+        <ul style="list-style:none; margin: 0px">
+          <li>
+            <input style="float:none" type="radio" name="access_perms" value="all" id="allow-for-all" <%= raw('checked="checked"') if @user.has_full_access_to_publishing_group? %>>
+            <label for="allow-for-all" style="font-weight: normal">Can manage all <%= @parent.name %> publishers</label>
+          </li>
+          <li>
+            <input style="float:none" type="radio" name="access_perms" value="restricted" id="allow-for-some" <%= raw('checked="checked"') if @user.has_restricted_access_to_publishing_group? %>>
+            <label for="allow-for-some" style="font-weight: normal">Can manage only selected <%= @parent.name %> publishers</label>
+          </li>
+        </ul>
+        <div id="selected-pubs-container" style="<%= raw('display:none;') if @user.has_full_access_to_publishing_group? %> padding: 5px; height: 135px; overflow: auto; border: 1px solid #A6A6A6">
+          <ul style="list-style: none; margin: 0;" id="selected-pubs">
+            <% @parent.publishers.each do |publisher| %>
+              <li>
+                <label style="font-weight:normal">
+                  <%= check_box_tag "user[manageable_publishers][publisher_id][]", publisher.id, @user.manageable_publisher_ids.include?(publisher.id), :style => "float:none", :style => "float:none", :id => "user_manageable_publishers_#{publisher.id}" %>
+                  <%= publisher.name %>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <% end %>
+<% end -%>
+
+    <div class="buttons full_width">
+      <%= button_to_function("Cancel", "window.location.href = '#{cancel_edit_url}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<% if full_admin? && !@user.new_record? %>
+  <div class="related">
+    <% if @user.access_locked? %>
+      <%= link_to "Unlock Access", unlock_user_lock_path(@user), :method => :put %>
+    <% else %>
+      <%= link_to "Lock Access", lock_user_lock_path(@user), :method => :put %>
+    <% end %>
+  </div>
+<% end %>
+
+<%- javascript_tag do -%>
+  <%= "Form.focusFirstElement('new_user')" %>
+<%- end if @user.new_record? -%>
+
+<%- javascript_tag do -%>
+  function onSendAccountSetupInstructionsChange() {
+    var send = $('user_email_account_setup_instructions');
+    var password = $('user_password');
+    var password_confirmation = $('user_password_confirmation');
+    if (send) {
+      if (send.getValue() == "1") {
+        password.value = "";
+        password.disable();
+        password_confirmation.value = "";
+        password_confirmation.disable();
+      } else {
+        password.enable();
+        password_confirmation.enable();
+      }
+    }
+  }
+  onSendAccountSetupInstructionsChange();
+<%- end -%>

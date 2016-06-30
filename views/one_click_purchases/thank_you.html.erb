@@ -1,0 +1,18 @@
+<% set_daily_deal_page_title_slug t('.title') %>
+
+<div class="thank_you_page content_wrap">
+    <h1 class="content"><%=t '.title' %></h1>
+    <p>Your purchase is complete.</p>
+    <%= link_to("View your voucher", redeemable_daily_deal_purchase_daily_deal_certificates_path(@daily_deal_purchase)) %>
+    <%= link_to t('.view_your_orders'), daily_deal_download_url(@daily_deal_purchase) %>
+    <% if @daily_deal.enable_loyalty_program? %>
+      <h3>Get this deal for free!</h3>
+      <p style="margin-bottom: 0">
+        Share the following link with your friends. Refer
+        <%= pluralize(@daily_deal_purchase.daily_deal.referrals_required_for_loyalty_credit, "purchaser") %>
+        to this deal, and you'll get yours for free!
+      </p>
+      <input type="text" name="loyalty_program_url" id="loyalty_program_url" size="50"
+       value="<%= loyalty_program_url(@daily_deal_purchase.daily_deal, @daily_deal_purchase.consumer) %>">
+    <% end %>
+</div><!-- /thank_you_page -->

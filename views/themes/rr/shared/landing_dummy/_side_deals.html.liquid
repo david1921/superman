@@ -1,0 +1,62 @@
+<div class="clear"></div>
+	<div id="side_deals" class="other_deal_tracking">
+	         <div class="side_deal_wrap">
+	    		<h4>More Great Deals</h4>
+		    	<div id="side_deal_content">
+					{% for side_deal in daily_deal.side_deals_sorted_by_hide_at limit:12 %}            
+                       {% if forloop.last %}
+					
+						<div class="side_deal side_deal_last">
+				 			<div id="time_left_to_buy_{{ side_deal.id }}" class="side_deal_timer">
+						 		<span>{{ side_deal.time_remaining_text_display }} LEFT<span>
+						 	</div>
+						 	
+							<div class="side_deal_advertiser">
+								<h3>{{ side_deal.value_proposition }}<h3>
+							</div>
+
+						 	<div class="side_deal_thumb"><img src="{{ side_deal.photo.facebook_url }}" alt="Side Deal Photo" height="73" /></div>
+						
+							<div class="price_tag">
+								<h6>{{ side_deal.price | currency }}</h6>
+							</div>
+
+							<div class="view_deal">
+								<span><a href="{{ side_deal.url }}">View</a></span>
+							</div>
+						</div>
+
+                     
+                       {% else %}						
+						
+						
+						<div class="side_deal">
+				 			<div id="time_left_to_buy_{{ side_deal.id }}" class="side_deal_timer">
+						 		<span>{{ side_deal.time_remaining_text_display }} LEFT<span>
+						 	</div>
+						 	
+							<div class="side_deal_advertiser">
+								<h3>{{ side_deal.value_proposition }}<h3>
+							</div>
+
+						 	<div class="side_deal_thumb"><img src="{{ side_deal.photo.facebook_url }}" alt="Side Deal Photo" height="73" /></div>
+						
+							<div class="price_tag">
+								<h6>{{ side_deal.price | currency }}</h6>
+							</div>
+
+							<div class="view_deal">
+								<span><a href="{{ side_deal.url }}">View</a></span>
+							</div>
+						</div>
+						<div class="clear"></div>
+
+					{% endif %}
+	        	{% endfor %}
+	
+				<div class="clear"></div>
+	         	</div><!-- /side_deal_content -->
+				<h5><a href="{{ publisher.daily_deals_path }}?per_page=9" class="{% if_page_name == 'daily_deals#public_index'%}current_page{%endif_page_name%}">View All <span>>></span></a></h5>
+	          </div><!-- /side_deal_wrap -->
+	</div><!-- /side_deals -->
+

@@ -1,0 +1,65 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Booking i:nil="true"/>
+  <BookingStatus>Fail</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>105</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Missing or invalid credit card cardholder first name.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+    <Error>
+      <ErrorCode>109</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Missing credit card billing address.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+    <Error>
+      <ErrorCode>110</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Missing credit card billing address locality.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+    <Error>
+      <ErrorCode>111</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Missing credit card billing address region.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+    <Error>
+      <ErrorCode>112</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Missing credit card billing address postal code.</ErrorText>
+      <UserCanFix>true</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues>
+    <SubmittedForm>
+      <Field>credit_card[billing][address_line_1]</Field>
+      <Value>123 Test Lane</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][birth_date]</Field>
+      <Value>30/05/1969</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][citizenship]</Field>
+      <Value>US</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[0][email]</Field>
+      <Value>jtest@test.com</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][first_name]</Field>
+      <Value>Jane</Value>
+    </SubmittedForm>
+    <SubmittedForm>
+      <Field>traveler[1][gender]</Field>
+      <Value>F</Value>
+    </SubmittedForm>
+  </FormValues>
+  <PaymentStatus>Fail</PaymentStatus>
+  <TransactionDate>2012-02-16T02:35:48.49</TransactionDate>
+  <TransactionID>84</TransactionID>
+</BookTransaction>

@@ -1,0 +1,10 @@
+<li>
+	<h4><%= daily_deal_variation.value_proposition %></h4>
+	<div><span>Value: </span><%= number_to_currency(daily_deal_variation.value, :precision => 2, :unit => daily_deal_variation.publisher.currency_symbol) %></div>
+	<div><span>Price: </span><%= number_to_currency(daily_deal_variation.price, :precision => 2, :unit => daily_deal_variation.publisher.currency_symbol) %></div>
+	<div><span>Accounting ID: </span><%= @daily_deal.accounting_id_for_variation(daily_deal_variation) %></div>
+	<div class="actions">
+		<%= link_to("Edit", edit_daily_deal_daily_deal_variation_path(@daily_deal, daily_deal_variation)) %><br/>
+		<%= link_to("Delete", daily_deal_daily_deal_variation_path(@daily_deal, daily_deal_variation), :method => :delete, :confirm => "Are you sure you want to delete this Daily Deal Variation?") %>
+	</div>
+</li>

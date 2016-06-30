@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+</head>
+
+<body>
+
+<table cellspacing="0" border="0" align="center" style="font-family: Arial, Helvetica, sans-serif; padding-top: 10px;" cellpadding="0" width="600">
+  <tr>
+    <td align="center" height="26" valign="middle" style="font-size: 12px; font-family: Arial, Helvetica, sans-serif; color: #ffffff; font-weight: bold; padding: 0; border-left-width: 1px; border-left-style: solid; border-left-color: #cc00cc;" bgcolor="#cc00cc" width="285"><%= @daily_deal.start_at.strftime("%A, %B %d, %Y") %></td>
+    <td align="right" height="31" style="padding: 0;" width="315" bgcolor="#cc00cc"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/date-bg.gif", :height => 31, :width => 315, :style => "display:block;") %></td>
+  </tr>
+  <tr>
+    <td valign="top" style="border-right-width: 1px; border-bottom-width: 5px; border-left-width: 1px; border-right-color: #cc00cc; border-bottom-color: #cc00cc; border-left-color: #cc00cc; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-collapse: collapse; padding: 0;" width="600" bgcolor="#cc00cc" colspan="2"><h1 style="color: #000000; margin: 0; padding: 0; font-size: 20px;"><%= link_to( image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.label}/images/email/publisher/logo.jpg", :height => "111", :alt => "Today's Deal (Please enable images)", :width => "598",  :style => "border: none; display: block;"), public_deal_of_day_url(@publisher.label), :style => "color: #ffffff; text-decoration: none;" )%></h1></td> 
+    
+    <tr>
+      <td style="border-right-width: 1px; border-bottom-width: 5px; border-left-width: 1px; border-right-color: #cc00cc; border-bottom-color: #cc00cc; border-left-color: #cc00cc; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; padding-top: 10px; padding-bottom: 20px;" colspan="2">
+        <table cellspacing="0" border="0" align="center" style="font-family: Arial, Helvetica, sans-serif;" cellpadding="0" width="560">
+          <tr>
+            <td align="left" valign="middle" width="434"><h2 style="font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: bold; padding: 0; margin: 0; color: #000000;"><span style="color: #ff9a00;">Today’s Deal: <%= number_to_percentage( @daily_deal.savings_as_percentage, :precision => 0 ) %> Off!</span><br />
+<%= @daily_deal.value_proposition %></h2></td>
+            <td background="<%= "http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/buy-it-badge.gif" %>" align="center" height="126" valign="middle" style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 40px; color: #ffffff; font-weight: bold; border-bottom-width: 8px; border-bottom-style: solid; border-bottom-color: #ffffff;" bgcolor="#00bade"><%= number_to_currency( @daily_deal.price, :precision => 0 ) %></td>
+          </tr>
+          
+        </table>
+        
+        <table cellspacing="0" border="0" align="center" style="font-family: Arial, Helvetica, sans-serif;" cellpadding="0" width="560">
+          <tr>
+            <td valign="top" width="300">
+              <%= image_tag @daily_deal.photo.url(:email) %>
+            </td>
+            <td width="10"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/spacer10.gif", :height => "10", :alt => "", :width => "10", :style => "display: block;") %></td>
+            <td valign="top" width="250">
+            
+              <table cellspacing="0" border="0" align="center" style="font-family: Arial, Helvetica, sans-serif;" cellpadding="0" width="250">
+                <tr>
+                  <td align="center" height="72" style="font-size: 24px; color: #ffffff; text-align: center; font-weight: bold;" bgcolor="#13ce00" width="250">
+                    <%= link_to( 
+                      image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/buttons/buy-now.gif", :height => "72", :alt => "BUY NOW", :width => "250", :style => "border: none; display: block;" ), 
+                      add_params_to_email_link(new_daily_deal_daily_deal_purchase_url(@daily_deal, :host => @daily_deal.publisher.daily_deal_host)),
+                      :style => "color: #ffffff; display: block; text-decoration: none;" )
+                    %>
+                  </td>
+                </tr>
+                <tr>
+                  <td height="70">
+                <table background="<%= "http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/deal-box.gif" %>" cellspacing="0" border="0" height="70" align="center" style="font-family: Arial, Helvetica, sans-serif;" bgcolor="#ffffff" cellpadding="0" width="250">
+                  <tr>
+                    <td class="prices" align="center" valign="middle" style="font-weight: bold; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 22px; color: #666666; padding-top: 5px; padding-bottom: 0;" width="80"><%= number_to_currency( @daily_deal.value, :precision => 0 ) %></td>
+                    <td class="prices" align="center" valign="middle" style="font-weight: bold; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 22px; color: #666666; padding-top: 5px; padding-bottom: 0;" width="80"><%= number_to_currency( @daily_deal.price, :precision => 0 ) %></td>
+                    <td class="prices" align="center" valign="middle" style="font-weight: bold; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 22px; color: #666666; padding-top: 5px; padding-bottom: 0;" width="80"><span style="color: #ff0000;"><%= number_to_currency( @daily_deal.savings, :precision => 0 ) %></span></td>
+                  </tr>
+                  <tr>
+                    <td align="center" valign="top" style="font-size: 11px; padding-bottom: 5px; padding-top: 0;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/value.gif", :height => "9",  :alt => "VALUE", :width => "38") %></td>
+                    <td align="center" valign="top" style="font-size: 11px; padding-bottom: 5px; padding-top: 0;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/todays-deal.gif", :height => "9", :alt => "TODAY'S DEAL", :width => "80") %></td>
+                    <td align="center" valign="top" style="font-size: 11px; padding-bottom: 5px; padding-top: 0;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/you-save.gif", :height => "9", :alt => "YOU SAVE", :width => "54") %></td>
+                  </tr>
+                </table>
+                  </td>
+                </tr>
+                <tr><td height="8"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/spacer8.gif", :style => "display: block;") %></td></tr>
+                <tr>
+                  <td background="<%= "http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/share-box.gif" %>" height="54" align="center" valign="middle" style="color: #ffffff; font-size: 13px;" width="250" bgcolor="#cc00cc">
+                    <%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/share-it.gif", :height => "31",  :alt => "SHARE IT: ", :width => "96" ) %> 
+                    <%= link_to( 
+                         image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/buttons/facebook.gif", :height => "31", :alt => "Facebook", :style => "border: none;", :width => "34"), 
+                         facebook_daily_deal_url(@daily_deal, :host => @publisher.host), 
+                         :target => "_blank", 
+                         :border => "0" ) %>
+                    <%= link_to( 
+                         image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/buttons/twitter.gif", :height => "31", :alt => "Twitter", :style => "border: none;", :width => "34"), 
+                         twitter_daily_deal_url(@daily_deal, :host => @publisher.host), 
+                         :target => "_blank", 
+                         :border => "0" ) %>
+                    <%= mail_to(
+                          "", 
+                          image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/buttons/email.gif", :height => "31", :alt => "Email", :style => "border: none;", :width => "34"), 
+                          :subject => "#{@publisher.daily_deal_brand_name}: #{@daily_deal.value_proposition}",
+                          :body => "Check out this deal at #{daily_deal_url(@daily_deal, :host => @publisher.host)}"
+                    ) %>
+                  </td>
+                </tr>
+              </table>
+            
+              
+              
+              
+              
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" style="font-weight: bold;" width="310">
+              <div style='padding-top: 6px;'>
+                <%= image_tag(@daily_deal.advertiser.logo.url(:standard), :style => "display:block;", :alt => @daily_deal.advertiser.name) if @daily_deal.advertiser.logo.file? %>
+              </div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;">
+                <%= render :partial => "/themes/goodtimessantacruz/daily_deals/address" %>
+              </p>
+            </td>
+            <td width="10"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/goodtimessantacruz/images/email/backgrounds/spacer10.gif", :height => "10", :alt => "", :width => "10", :style => "display: block;") %></td>
+            <td valign="top">
+              <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #000000;">Highlights</h3>
+              <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; line-height: 1.3em; padding-left: 0; padding-top: 0; padding-bottom: 5px; margin: 0; color: #000000;"><%= @daily_deal.highlights.html_safe %></div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #000000;">Description</h3>
+              <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;"><%= @daily_deal.description.html_safe %></div>
+              <h3 style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #000000;">Fine Print</h3>
+              <div style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;"><%= @daily_deal.terms.html_safe %></div>
+            </td>
+          </tr>
+        </table>
+        
+        
+      
+    </td>
+  </tr>
+  <tr>
+    <td class="footer" style="text-align: center; color: #959595;" colspan="2">
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;">Copyright 2010. All rights reserved.</p>
+    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 12px; color: #000000;">
+      <%= link_to image_tag("http://#{@daily_deal.publisher.daily_deal_host}/images/powered_by_analog_analytics.png"), 
+                   "http://www.analoganalytics.com/", 
+                   :alt => "Powered by Analog Analytics", 
+                   :id => "analog_analytics_logo" %>
+    </p>
+    </td>
+  </tr>
+</tr></table>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div id="business_directory">
+  <div class="left_column">
+    <%= render :partial => "offers/businessdirectory/search", :locals => {:search_url => render_public_advertisers_path(@publisher)} %>
+
+    <%= render :partial => "advertisers/categories", :object => @publisher_categories %>
+  </div>
+  <div class="right_column">
+    <h2>Coupon Directory</h2>
+    <div class='navigation'>
+      <div class='top'>      
+        <%= vvm_h1_tag %>
+        <div class='pagesize'>1 - <%= select_tag "page_size", options_for_select([ @page_size, 10, 20, 50 ].compact.uniq.sort, @page_size), :id => "page_size_select" %> of <%= pluralize( @advertisers_count, "Business" ) %></div>        
+      </div>
+      <div class='bottom'>
+        <%= render_grid_list_controls( {:active_control => :list, :show_sort_by => true, :publisher => @publisher, :postal_code => @postal_code, :radius => @radius, :sort => @sort } ) %>
+        <%= render :partial => 'advertisers/sdcitybeat/pagination'%>
+      </div>
+    </div>
+    <div class='businesses'>
+      <ol id="directory">   
+        <% if @advertisers.empty? %>
+          <li>Sorry, no businesses found.</li>
+        <% else -%>
+          <%= render :partial => "themes/cnhi/advertisers/shared/business", :collection => @advertisers %>
+        <% end -%>
+      </ol>      
+    </div>
+    <%= render :partial => 'advertisers/sdcitybeat/pagination' %>
+  </div>
+</div> 
+<%= render :partial => 'shared/terms_and_conditions' %>
+<%= observe_field "page_size_select", :function => "page_size_changed('page_size_select', '#{page_size_params_for_pagination.map{|key, value| "#{key}=#{value}"}.join("&")}')" %>
+<%= observe_field "page_sort_select", :function => "page_sort_changed('page_sort_select', '#{page_size_params_for_pagination.map{|key, value| key == 'sort' ? "" : "#{key}=#{value}"}.join("&")}')" %>
+<%= javascript_include_tag 'business' %>

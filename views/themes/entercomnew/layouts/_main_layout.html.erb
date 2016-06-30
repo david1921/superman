@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
+
+<head>
+ 
+<title><%= daily_deal_page_title %></title> 
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<% if @daily_deal -%>
+<meta property="og:title" content="<%= @daily_deal.facebook_title %>" />
+<meta property="og:url" content="<%= daily_deal_url(@daily_deal) %>" />
+<meta property="og:image" content="<%= @daily_deal.photo.url(:facebook) %>" />
+<meta property="og:description" content="<%= @daily_deal.facebook_description.html_safe%>" />
+<% end %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="/themes/entercomnew/stylesheets/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+<link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+<link rel="stylesheet" href="/themes/entercomnew/stylesheets/daily_deals.css" type="text/css" />
+<link rel="stylesheet" href="/themes/entercomnew/stylesheets/media.css" media="all" type="text/css">
+
+<% if "#{controller_name}##{action_name}" == "affiliate#show" %>
+<link rel="stylesheet" href="/themes/entercomnew/stylesheets/affiliate.css"
+type="text/css" />
+<link href="/stylesheets/lightbox.css" media="all" rel="stylesheet" type="text/css" /> 
+<% end %>
+
+<link href="/themes/entercomnew/stylesheets/popup_form.css" media="all" rel="stylesheet" type="text/css" />
+
+<% if @publisher.label == 'entercom-milwaukee' %>
+<style type="text/css">
+/* Top nav override */
+#analog_analytics #daily_deal #topnav{
+margin-left: -8px;
+width:780px;
+}
+
+#analog_analytics #daily_deal #topnav a{
+font-size: 10px;
+}
+
+#analog_analytics #daily_deal #account_nav ul{
+margin-top: -70px;
+*margin-top:0px;
+*margin-left: -210px;
+}
+</style>
+<% end %>	
+
+<!--[if gt IE 6]>
+<link href="/stylesheets/ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE]>
+<link href="/themes/entercomnew/stylesheets/ie.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+<script src="/themes/entercomnew/javascript/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">$.noConflict();</script>
+<script src="/javascripts/lib/widgets.js" type="text/javascript"></script>
+<script src="/javascripts/effects.js" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+<script src="/javascripts/controls.js" type="text/javascript"></script>
+<script src="/javascripts/application.js" type="text/javascript"></script>
+<!--<script src="/javascripts/lightbox.js"  type="text/javascript"></script>-->
+
+
+<script src="/themes/entercomnew/javascript/autocolumn.min.js" type="text/javascript"></script>
+<script src="/themes/entercomnew/javascript/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+
+<!--[if IE]>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+		$('.market_selection_list').columnize({ columns: 5 });
+		$('.footer_market_columns').columnize({ columns: 5 });
+	});
+</script>
+<!endif]-->
+
+<script src="/themes/entercomnew/javascript/cookies.js" type="text/javascript"></script>
+<% if @daily_deal -%>
+<script type="text/javascript" src="/javascripts/buttons.js"></script>
+<script type="text/javascript">
+	stLight.options({
+		publisher:'115cb736-1976-465d-920e-9e0407ba5571',
+		st_url: '<%= market_aware_daily_deal_url(@daily_deal, params) %>',
+		onhover: false
+	});
+</script>
+<% end %>
+<script type="text/javascript">
+function slideUpAndRemember(element) {
+	new Effect.SlideUp(element);
+	setCookie('slide.'+element, 'up', 1);
+}
+
+function slideDownAndForget(element) {
+	new Effect.SlideDown(element);
+	setCookie('slide.'+element, 'down', -1);
+}
+function ismobilesafari(){
+	return navigator.userAgent.match(/(iPod|iPhone|iPad)/);
+}
+</script>
+<%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+
+<body>
+
+
+
+<!--START DAILY DEALS CODE-->
+<div id="analog_analytics">
+    <div id="daily_deal">
+		
+		 <%= render :partial => with_theme("shared/regitool") %>
+
+				<div id="flash_content">
+				<%=raw render :partial => with_theme("shared/flash") %>
+				</div>
+				<div id="iphone_mobile_download" style="display:none">
+					<a href="http://itunes.apple.com/app/get-my-perks/id452157776?mt=8" target="_blank"><img src="/themes/entercomnew/images/buttons/app_store.png" width="140" height="46" alt="Available on the iPhone App Store" /></a>
+					<p>Get My PERKS on your phone with our new mobile app! Or text "Perks" to <strong>
+					<% if @publisher.label == 'entercom-sacramento' %>
+					45797
+					<% else %>
+					97107
+					<% end %>
+					</strong> for updates<span class="asterisk">*</span>!</p>	
+				</div>
+				<div id="outer">
+					<div id="dd_content">
+
+					<div id="nav_container">
+						<div id="perks_logo">
+							<a href='<%= public_deal_of_day_path(@publisher.label) %>'><img id='toplogo' src='/themes/entercomnew/images/perks_logo.png' width='227' height='130' alt='Perks Logo' /></a>
+						</div>
+						
+						<div id="topnav">
+							<%= render :partial => with_theme("shared/top_nav") %>
+						</div>
+						<div id="account_nav">
+							<%= render :partial => with_theme("shared/account_nav") %>
+						</div>
+					</div>
+					<div id="inner">
+						<div id="market_menu_wrapper"<% unless %w(daily_deals#public_index daily_deals#show publishers#deal_of_the_day publishers#seo_friendly_deal_of_the_day).include? "#{controller_name}##{action_name}" %> style="display:none;"<% end %>>
+							<ul id="market_menu">
+								<li><a href="#" id="market_selection_tab"><span><%= @publisher.market_name %></span></a>
+									<div id="market_selection_container">
+										<ul id="market_foo" class="market_selection_list">
+											<%= render :partial => with_theme("shared/market_menu_list_items") %>
+										 </ul>
+									</div>
+								</li>
+							</ul>
+						</div><!-- /market_menu_wrapper -->
+						<%= yield %>				
+						
+						<script type="text/javascript"> 
+						//workaround for closing div of #inner for sub pages
+						if(
+						(location.pathname.indexOf("subscribed") > -1) ||
+						(location.pathname.indexOf("login") > -1) ||
+						(location.pathname.indexOf("consumers") > -1) ||
+						(location.pathname.indexOf("daily_deal_sessions") > -1) ||
+						(location.pathname.indexOf("how_it_works") > -1) ||
+						(location.pathname.indexOf("contact") > -1) ||
+						(location.pathname.indexOf("terms") > -1) ||
+						(location.pathname.indexOf("privacy_policy") > -1) ||
+						(location.pathname.indexOf("consumers") > -1) ||
+						(location.pathname.indexOf("consumer_password_resets") > -1) ||
+						(location.pathname.indexOf("daily_deal_purchases") > -1)) {
+						//<![CDATA[
+						document.write("</div>");
+						//]]>
+						}
+						else {
+						//<![CDATA[
+						document.write("<!--Closing div for #inner is inside show.html-->");
+						//]]>	
+						}
+						</script>
+						
+					</div><!--END dd_content-->
+		   
+       
+					<%= render :partial => with_theme("shared/footer") %>
+					
+				</div><!--END outer-->
+       
+    </div>    
+</div>
+
+<!--END DAILY DEALS CODE-->
+<%=raw render :partial => with_theme("shared/tracking_publisher") %>
+<%= raw render :partial => 'daily_deals/javascript' %>
+<script type="text/javascript">
+jQuery.noConflict();
+       jQuery("#market_menu li").hover(function() {
+        var thisitem = jQuery(this);
+        jQuery('.market_selection_list').css('visibility', 'visible')
+            thisitem.find("ul").stop(true,true).show();
+    } , function() {
+        var thisitem = jQuery(this)
+            thisitem.find("ul").stop(true,true).delay('300').fadeOut('200');
+    });
+
+if( ismobilesafari() ) {
+	$("iphone_mobile_download").show();
+}
+</script>
+</body>
+
+</html>

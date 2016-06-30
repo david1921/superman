@@ -1,0 +1,131 @@
+<% set_page_title("#{@offer.advertiser.name} Coupons: New") if @offer.new_record? %>
+<div class="left_column">
+  <%= render :partial => "signup_notice", :locals => { :advertiser => @offer.advertiser } %>
+
+  <% form_for @offer, :html => {:multipart => true} do |f| -%>
+    <%= error_messages_for :offer, :object_name => "coupon" %>
+    <%= hidden_field_tag :advertiser_id, @offer.advertiser_id %>
+    
+    <%- if @offer.advertiser.listing? && !current_user.advertiser? -%>
+    <%= f.text_field_div(:label) %>
+    <%- end -%> 
+        
+    <%- if @offer.listing? && !current_user.advertiser? -%>
+        <%= f.text_field_div(:listing, "Publisher Offer ID", :required => true) %>
+    <%- end -%>
+
+    <%= f.text_field_div :message, "Offer:", :required => true %>
+    <% if %w( enhanced standard sdcitybeat businessdirectory withtheme ).include?( @offer.advertiser.publisher.theme ) -%>
+    <%= f.text_field_div :value_proposition %>
+    <%- end -%>
+    <% if "enhanced" == @offer.advertiser.publisher.theme -%>
+    <%= f.text_field_div :value_proposition_detail %>
+    <% end -%>
+    <% if @offer.advertiser.publisher.enable_offer_headline? -%>
+    <%= f.text_field_div :headline %>
+    <% end -%>
+    <%= f.text_area_div(:txt_message, nil, :rows => 3, :required => true, :help => %q{<p id="character_count"></p>}) %>
+    <%= f.text_area_div :terms, nil, :rows => 4 %>
+
+    <div class="row date">
+      <div class="label"><%= f.label :show_on, "Show On:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:show_on, :popup => :force) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+
+    <div class="row date">
+      <div class="label"><%= f.label :expires_on, "Show Until:" %></div>
+      <div class="input">
+        <%= raw f.calendar_date_select(:expires_on, :popup => :force) %>
+      </div>
+      <div class="help">Pacific Time</div>
+    </div>
+
+    <%= f.text_field_div :account_executive %>
+
+    <div class="row">
+      <div class="label"><%= f.label :offer_image %></div>
+      <div class="input">
+        <% if @offer.offer_image.file? -%>
+        <%= image_tag @offer.offer_image.url(:medium), :id => "offer_offer_image_image" %>
+        <p class="delete_link" id="offer_offer_image_delete_link">
+          <%= link_to_remote "Delete Offer Image",
+            :url => clear_offer_image_offer_path(@offer),
+            :confirm => "Really delete this offer image?"
+         %></p>
+        <% end -%>
+        <%= f.file_field(:offer_image, :style => "display: #{@offer.offer_image.file? ? "none" : "visible" }") %>
+      </div>
+    </div>
+
+    <% if %w( enhanced standard sdcitybeat businessdirectory withtheme ).include?( @offer.advertiser.publisher.theme ) -%><br />
+    <div class="row">
+      <div class="label"><%= f.label :photo %></div>
+      <div class="input">
+        <% if @offer.photo.file? -%>
+        <%= image_tag @offer.photo.url(:standard), :id => "offer_photo_image" %>
+        <p class="delete_link" id="offer_photo_delete_link">
+          <%= link_to_remote "Delete Photo",
+            :url => clear_photo_offer_path(@offer),
+            :confirm => "Really delete this offer photo?"
+         %></p>
+        <% end -%>
+        <%= f.file_field(:photo, :style => "display: #{@offer.photo.file? ? "none" : "visible" }") %>
+      </div>
+    </div>
+    <% end -%>
+
+    <%= 
+      if @offer.advertiser.publisher.theme == "enhanced"
+        f.select_div(:coupon_background, [["Blue", "blue"], ["Green", "green"], ["Orange", "orange"]])
+      end
+    %>
+
+    <% if @offer.advertiser.publisher.try(:publishing_group).try(:categories).present? %>
+      <%= f.category_selection_div :categories, @offer.advertiser.publisher.publishing_group.categories.roots.sort_by(&:name),
+        "Categories", :subcategory_url => url_for(:action => :subcategory_options, :advertiser_id => @offer.advertiser),
+        :help => "Select a category and optionally a subcategory, then press Add." %>
+    <% else %>
+      <%= f.text_field_div :category_names, "Categories:", :help => "Category, Category: Subcategory" %>
+    <% end %>
+
+    <%= if (admin? || publisher?) && (@advertiser.publisher.publishing_group.nil? || @advertiser.publisher.publishing_group.coupon_codes?)
+          f.text_field_div(:coupon_code, "Coupon Code:")
+        end %>
+        
+    <%= f.select_div(:featured, Offer::ALLOWED_FEATURED_VALUES.map { |k| [ k.capitalize, k ] }) unless advertiser? %>
+    
+    <%= f.text_field_div(:bit_ly_url, "bit.ly URL:", :disabled => true) unless advertiser? %>
+  
+    <div class="full_width buttons">
+      <%= button_to_function "Cancel", "window.location.href = '#{edit_advertiser_path(@offer.advertiser)}'", :class => "left" %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<%= focus "offer_text" %>
+                          
+<%- javascript_tag do -%>
+Event.observe(window, 'load', function() {
+  (function(input_elem, status_elem, limit) {
+    function checkCharacterCount() {
+      var remaining = limit - input_elem.value.length;
+      if (remaining >= 0) {
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") +  "remaining");
+        status_elem.removeClassName("overflow");
+      } else {
+        remaining = -remaining;
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") +  "too many");
+        status_elem.addClassName("overflow");
+      }
+    }
+    input_elem.observe('keydown', checkCharacterCount);
+    input_elem.observe('keyup', checkCharacterCount);
+    input_elem.observe('mouseout', checkCharacterCount);
+    checkCharacterCount();
+  })($('offer_txt_message'), $('character_count'), <%= @offer.max_txt_message_length  %>);
+});
+<%- end -%>

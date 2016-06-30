@@ -1,0 +1,184 @@
+<!-- begin daily deal content -->
+
+<div id="leftcol">
+	<div class="boxed">
+		<h1><%= @daily_deal.value_proposition %></h1>
+		<% if @daily_deal.value_proposition_subhead.present? %>
+		<h2 class="subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+		<% end %>
+		<div id="feature">
+			<div id="left">
+				<div id="buy">
+					<strong id="price"<% if !@daily_deal.daily_deal_variations.blank? %> class="variation" <% end %>><% if !@daily_deal.daily_deal_variations.blank? -%><em>From</em><br /><% end %><%= formatted_price_for(@daily_deal.price) %></strong>
+
+					 <% if @daily_deal.sold_out? %>
+					 <span id="soldout" class="status">Sold Out</span>
+					 <% elsif @daily_deal.over? %>
+					 <span class="status">Deal Over</span>
+					 <% elsif @daily_deal.active? %>
+					 <a id="buy_now_button"<% if !@daily_deal.daily_deal_variations.blank? %> class="dd_variations_button" <% end %>href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>">BUY</a>
+					 <span class="unavailable status" style="display:none;">Deal Over</span>
+
+					 	<% if !@daily_deal.daily_deal_variations.blank? -%>
+				  			<%= render :partial => with_theme("shared/dd_variations_menu") %>
+				  		<% end %>
+
+					 <% else %>
+					 <span class="status">Coming Soon</span>
+					 <% end %>
+
+				</div>
+				<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+				<%= render :partial => 'shared/variation_delay.js' %>
+				<div id="dd_price_info">
+				<div id="savings">SAVINGS<br /><span><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span></div>
+				<div id="value">VALUE<br /><span><%= formatted_price_for(@daily_deal.value_to_display) %></span></div>
+				</div>
+				<div class="clear"></div>
+
+				<div id="timer">
+					TIME LEFT<br /> TO BUY
+					<div id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></div>
+				</div>
+				<% if @daily_deal.number_sold_meets_or_exceeds_display_threshold? -%>
+				<span id="sold">
+					Deals Sold: <span id="deals_sold"><%= @daily_deal.number_sold %></span>
+				</span>
+				<% end -%>
+			</div>
+			<div id="right">
+				<img id="deal_photo" src="<%= @daily_deal.photo.url(:standard) %>" alt="" />
+				<div id="share">
+					<span class="share">SHARE THIS DEAL:</span>
+					<span><a class="share_button share_button_facebook" href="<%= facebook_daily_deal_path(@daily_deal) %>"><img src="/themes/zingindealz/images/buttons/facebook.png" width="32" height="33" /></a></span>
+					<span><a class="share_button share_button_twitter" href="<%= twitter_daily_deal_path(@daily_deal) %>"><img src="/themes/zingindealz/images/buttons/twitter.png" width="32" height="33" /></a></span>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="boxed ad">
+		<div id="deal_info">
+			<h3>About the Deal</h3>
+			<%= @daily_deal.description.try :html_safe %>
+
+			<% if @daily_deal.reviews.present? %>
+			<div>
+			<h4>Reviews:</h4>
+			<%=raw @daily_deal.reviews %>
+			</div>
+			<% end %>
+
+			<% if @daily_deal.terms.present? %>
+			<h4>Fine Print:</h4>
+			<%= @daily_deal.terms.try :html_safe %>
+			<% end %>
+		</div>
+		<div id="advertiser">
+			 <% if @daily_deal.highlights.present? %>
+			<h5>Highlights</h5>
+			<div id="highlights">
+			  <% unless @advertiser.website_url.blank? %>
+			  <a href="<%= @advertiser.website_url %>" target="_blank">Visit website</a>
+			  <% end %>
+			  <%= @daily_deal.highlights.try :html_safe %>
+			</div>
+			<% end %>
+
+			<h5>Location</h5>
+			<div id="location">
+
+			 <span><%= @advertiser.name %></span>
+
+			 <% @advertiser.stores.each_with_index do |store, index| %>
+			 <div class="location_container" style="<%= 'display: none;' if index > 3 %>"> 
+				  <p>
+					<% unless store.address_line_1.blank? %>
+						<span><%= store.address_line_1 %></span>
+					<% end %>
+					<% unless store.address_line_2.blank? %>
+						<span><%= store.address_line_2 %></span>
+					<% end %>
+					<% unless store.city.blank? or store.state.blank? or store.zip.blank? %>
+						<span><%= store.city %>, <%= store.state %> <%= store.zip %></span><br />
+					<% end %>
+
+					<% unless store.formatted_phone_number.blank? %>
+						<span><%= store.formatted_phone_number %></span>
+					<% end %>  		
+				  </p>
+			 </div><!-- /location_container -->	 
+		     <% end %>
+
+			 <% if @advertiser.stores.size > 3 %>
+			 <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+			 <% end %>
+
+			 <% if @advertiser.address.present? %>
+				<a id="map" href="<%= @advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "199x169", true) %>" /></a>
+			 <% end %>
+
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<% if @publisher.enable_daily_deal_referral %>
+	<a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" id="refer_friend">
+		<span>GET <%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :precision => 0) %>!<br /> REFER A FRIEND</span>
+	</a>
+	<% end %> 
+
+	<div id="app_store">
+		<a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=461452752" target="_blank"><img src="/themes/zingindealz/images/graphics/app_store.png" width="250" height="90" /></a>
+	</div>
+</div>
+<div id="rightcol">
+	<!--<% if @publisher.enable_daily_deal_referral %>
+	<a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" id="refer_friend">
+		<span>GET <%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :precision => 0) %>!<br /> REFER A FRIEND</span>
+	</a>
+	<% end %> 
+
+	<div id="app_store">
+		<a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=461452752" target="_blank"><img src="/themes/zingindealz/images/graphics/app_store.png" width="245" height="85" /></a>
+	</div>-->
+
+	<% if @daily_deal.side_deals.size > 0 %>
+	<div class="boxed side">
+		<h3>OTHER GREAT ZINGERS</h3>
+		<div class="content">
+		<% @daily_deal.side_deals.each do |deal| %>
+		<div class="side_deal">
+			<h4><a href="<%= market_aware_daily_deal_url(deal, params) %>"><%= deal.value_proposition %></a></h4>
+			<% if deal.value_proposition_subhead.present? %>
+			<h5><a href="<%= market_aware_daily_deal_url(deal, params) %>"><%= deal.value_proposition_subhead %></a></h5>
+			<% end %>
+			<div class="block">
+				<div class="numbers">
+					SAVINGS <span><%= number_to_percentage(deal.savings_as_percentage, :precision => 0) %></span>
+				</div>
+				<div class="image"><a href="<%= market_aware_daily_deal_url(deal, params) %>"><img src="<%= deal.photo.url(:facebook) %>" width="118" alt="" /></a></div>
+			</div>
+			<a class="small_btn" href="<%= market_aware_daily_deal_url(deal, params) %>">View Zinger</a>
+		</div>
+		<% end %>
+		</div>
+	</div>
+	<% end %> 
+
+	<% unless @publisher.facebook_page_url.blank? %>
+	<div class="boxed side">
+		<h3>LIKE THIS PAGE! SHARE DEALS</h3>
+		<div class="content" style="padding-left: 0; padding-right: 0;">
+		    <iframe src="http://www.facebook.com/plugins/likebox.php?href=<%= CGI::escape(@publisher.facebook_page_url) %>&amp;width=240&amp;colorscheme=light&amp;connections=12&amp;border_color=%23ffffff&amp;stream=false&amp;header=false&amp;height=360" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px; height:360px;" allowTransparency="true"></iframe>
+		</div>	
+	</div>
+	<% end %>
+
+</div>	
+
+<div class="clear"></div>
+
+
+<!-- end daily deal content -->

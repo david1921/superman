@@ -1,0 +1,34 @@
+<ul style="color:red; margin-bottom:10px; margin-left:10em">
+<% (flash[:validation_errors] || []).each do |error| %>
+  <li><%= error %></li>
+<% end %>
+</ul>
+
+<% form_tag nil, :id => "daily_deal_purchase_fixups" do %>
+  <table cellspacing="0">
+    <tr>
+      <th>Deal</th>
+      <th>Purchase</th>
+      <th>Executed</th>
+      <th>Status</th>
+      <th>Quantity</th>
+      <th>Discount Code</th>
+      <th>Discount Value</th>
+      <th>Credit Used</th>
+      <th>Purchase Price</th>
+      <th>Calculated Gross</th>
+      <th>Actual Gross</th>
+      <th></th>
+      <th>IGN</th>
+      <th>FIX</th>
+      <th>REF</th>
+    </tr>
+    <%= render :partial => "daily_deal_purchase_fixups/daily_deal_purchase", :collection => @daily_deal_purchases %>
+  </table>
+
+  <div class="full_width buttons">
+    <%= submit_tag("Update") %>
+  </div> 
+<% end -%>
+
+<%= will_paginate @daily_deal_purchases %>

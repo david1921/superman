@@ -1,0 +1,40 @@
+<% set_daily_deal_page_title_slug "Sign Up" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    
+    <% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+        <%= render :partial => "sign_up_message", :locals => {:message => @publisher.account_sign_up_message} %>
+    <% end %>
+
+    <h2>Inscr&iacute;base</h2>   
+    <% if @discount.present? -%>
+	    <p style="padding: 1em 0;">Sign up now and get <%= number_to_currency(@discount.amount, :unit => @discount.publisher.currency_symbol) %> off your first <%= @publisher.daily_deal_name %> purchase.</p>
+    <% end -%>
+
+    <div id="signup_form">
+      <% form_for [@publisher, @consumer] do |f| -%>
+        <%= f.error_messages(:header_message => "LOS SIGUIENTES ERRORES OCURRIERON AL INTENTAR DE ABRIR UNA CUENTA") %>
+
+        <%= f.text_field_div(:name, "Nombre:") %>
+        <%= f.text_field_div(:email, "Correo Electr&oacute;nico:") %>
+        
+        <%- if @publisher.require_billing_address? %>
+          <%= render :partial => 'billing_address', :locals => { :consumer => @consumer, :f => f } %>
+        <% end %>
+        
+        <%= f.password_field_div(:password, "Contrase&ntilde;a:") %>
+        <%= f.password_field_div(:password_confirmation, "Confirma Contrase&ntilde;a:") %>
+
+        <%= f.text_field_div(:discount_code, "C&oacute;digo Promocional:", :disabled => @discount.present?) if @publisher.allow_discount_codes? -%>
+        <%= f.hidden_field(:discount_code) if @discount.present? %>
+
+        <%= f.check_box_div(:agree_to_terms, "Estoy de acuerdo con los &nbsp;#{daily_deals_terms_link(@publisher)} y #{daily_deals_privacy_link(@publisher)}") %>
+
+        <div class="row button_row">
+          <%= submit_tag("Inscr&iacute;base", :name => "sign_up") %> <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title><%= daily_deal_page_title %></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE8=EmulateIE7" /> <!-- this sort of fixes the IE8 Windows XP crashing  --> 
+		<% if @daily_deal -%>
+			<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+			<meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+			<meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>" />
+			<link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+		<% else -%>
+			<meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+			<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end -%>
+		
+		<!-- Stylesheets -->
+		
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/daily_deals.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/global.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/daily_deals.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/main.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/bottom_deals.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/header_footer.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/bcbsa.css" %>
+
+    <%= stylesheet_link_tag "/themes/bcbsa/javascript/fancybox/jquery.fancybox-1.3.4.css" %>
+    <%= stylesheet_link_tag "/themes/bcbsa/stylesheets/lightbox.css" %>
+		
+		<!--[if lte IE 9]>
+		<link href="/themes/bcbsa/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+
+		<!--[if IE 9]>
+		<link href="/themes/bcbsa/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<!--[if IE 7]>
+		<link href="/themes/bcbsa/stylesheets/ie7.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<!-- End Stylesheets -->
+		
+		<!-- Javascripts -->
+    <%= javascript_include_tag "/javascripts/lib/prototype.js" %>
+    <%= javascript_include_tag "/themes/bcbsa/javascript/cookies.js" %>
+		
+		<%= raw render :partial => "/shared/tracking_google_analytics" %>				
+		<!-- End Javascripts -->
+
+
+		<link rel="shortcut icon" href="/themes/bcbsa/images/graphics/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/themes/bcbsa/images/graphics/favicon.ico" type="image/x-icon">
+		
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+	</head>
+	
+	<body id="landing_page_body" class="<%= params[:locale] %>">
+        <%= render :partial => with_theme("shared/tracking/blue365_landing_tracking") %>
+		<div id="analog_analytics" class="wrapper">
+			<!-- Analog Analytics Daily Deal -->
+			<div id="daily_deal">
+				
+				<%= render :partial => with_theme('landing_pages/landingpage_header') %>
+				<!-- <div id="dd_content"> -->
+					<%= yield %>
+					<div class="clear"></div>
+				<!-- </div> --> <!-- dd_content -->				
+			
+			</div> <!-- daily_deal -->
+			<div class="push"></div>
+			<div id="clear"></div>
+		</div> <!-- analog_analytics -->
+		<%= render :partial => with_theme('landing_pages/landingpage_footer') %>
+		<%= render :partial => with_theme('shared/tracking_publisher') %>
+
+	<!-- bottom deals scrollable nav -->
+  <%= javascript_include_tag "/themes/bcbsa/javascript/jquery-1.6.2.min.js" %>
+  <script type="text/javascript">
+  	jQuery.noConflict();
+  </script>	
+  <%= javascript_include_tag "/themes/bcbsa/javascript/jquery.tools.min.js" %>
+  <%= javascript_include_tag "/themes/bcbsa/javascript/fancybox/jquery.fancybox-1.3.4.js" %>
+  <%= javascript_include_tag "/themes/bcbsa/javascript/formvalue-clickblur.js" %>
+	<%= raw render :partial => "themes/bcbsa/landing_pages/dealsliders" %>
+		<script type="text/javascript">
+jQuery(document).ready(function($) {
+$("#browsable").scrollable().navigator();
+if($('#left_column').height() > $('#right_column').height()) {
+	$('#right_column').height($('#left_column').height());
+}
+
+// ID Card Prefix Lightbox
+$("a.fancybox").fancybox(
+	{
+		'onStart'         : function() { $('.lightbox').toggle(); },
+		'onClosed'        : function() { $('.lightbox').toggle(); },
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'showCloseButton' : false
+	}
+);
+
+});
+</script>
+<script type="text/javascript">
+  //this script is for the landing page zip code so that only numbers show
+  jQuery("#zip_code").keyup(function () { 
+  	this.value = this.value.replace(/[^0-9\.]/g,'');
+  });
+</script>
+
+	<!-- /bottom deals scrollable nav -->
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <%= render :partial => "layouts/stylesheets_and_javascript" %>
+  <%= stylesheet_link_tag '/themes/bespoke/stylesheets/application' %>
+  <%= yield :stylesheets %>
+  <%= yield :javascripts %>
+  <title>Bespoke Offers: <%= page_title %></title>
+</head>
+<body class="bespoke">
+
+<%= render with_theme("layouts/header") %>
+
+<div id="content" class="bespoke">
+  <%= render :partial => "layouts/flash_messages" %>
+  <%= render :partial => "layouts/crumbs" %>
+  <%= yield %>
+</div>
+
+<%= render with_theme("layouts/footer") %>
+
+</body>
+</html>

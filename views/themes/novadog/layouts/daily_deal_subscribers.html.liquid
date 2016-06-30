@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <meta name='keywords' content="{{ daily_deal.advertiser.name }}, {{ daily_deal.value_proposition }}">
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+  <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+
+  <meta name="topicname" content="home">
+  <meta name="WT.cg_s" content="Partner">
+  <meta name="WT.cg_n" content="Home">
+  <meta name="WT.ti" content="Partner">
+  <meta name="DCSext.mtype" content="interactive">
+
+  <title>{% daily_deal_page_title %}</title>
+  
+  <link href="/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/daily_deals/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  
+
+  <!--[if IE]>
+  <link href="/stylesheets/ie.css?1287550047" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+  <script src="/javascripts/lib/prototype.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/effects.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/controls.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/application.js?1287550047" type="text/javascript"></script>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body class="{{ controller.controller_name }} {{ controller.action_name }}">
+
+<div id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+      {% include "shared/flash" %}					
+			<img id="header" src="/themes/novadog/images/backgrounds/preopt_header.png" alt="Novadog Magazine Wooftastic Wednesday" height="229" width="1020" />
+			{{ content_for_layout }}
+			
+		</div><!-- /daily_deal -->
+	</div><!-- /analog_analytics -->
+</div><!-- /content -->
+
+{% include with_theme "shared/tracking_publisher" %}
+</body>
+
+</html>

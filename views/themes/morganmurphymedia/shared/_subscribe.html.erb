@@ -1,0 +1,27 @@
+<% if current_consumer_for_publisher?(@publisher) %>
+
+<div id="loggedin">
+	<p>Hello <%= current_consumer.first_name %>!</p>
+	
+	<ul>
+		<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+		<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+		<li><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+	</ul>
+</div>	
+
+<% else %>
+	
+
+
+<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+	<p><input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" /></p>
+	<p><input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" /></p>
+	<p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" /></p>
+	<p><input id="subscribe_button" type="submit" value="sign up" /></p>
+	<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+		<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the <a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(@publisher.id) %>', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(@publisher.id) %>', '_blank'); return false; return false;">Privacy Policy</a>
+	</p>
+</form>
+
+<% end %>

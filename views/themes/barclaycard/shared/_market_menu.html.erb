@@ -1,0 +1,25 @@
+ <div id="market_menu_wrapper">
+    <ul id="market_menu">
+       <li><a href="#" class="market_name"><%= @publisher.market_name_or_city %></a>
+         <%= market_selection_list(@publisher) %>
+       </li>
+    </ul>
+ </div><!-- /market_menu_wrapper -->
+ 
+ 
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+    jQuery("#market_menu li").hover(function() {
+        var thisitem = jQuery(this);
+        thisitem.addClass('open');
+            thisitem.find("ul").hide().stop(true,true).slideDown('1000');
+    } , function() {
+        var thisitem = jQuery(this)
+            thisitem.find("ul").stop(true,true).slideUp('1000');
+        thisitem.removeClass();
+    });
+});
+</script>   
+
+

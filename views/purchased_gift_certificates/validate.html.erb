@@ -1,0 +1,37 @@
+<div class="left_column">
+  <p class="warn"><%= @errors.try(:html_safe) %></p>
+  <p class="notice"><%= @status.try(:html_safe) %></p>
+
+<% if @purchased_gift_certificate -%>
+  <% form_tag redeem_purchased_gift_certificates_path, :method => :put do -%>
+    <%= hidden_field_tag(:serial_number, @purchased_gift_certificate.serial_number) %>
+    <div class="row">
+      <div class="label"><%= label_tag(:serial_number, "Serial Number:") %></div>
+      <div class="input"><%= text_field_tag(:serial_number, @purchased_gift_certificate.serial_number, :disabled => true) %></div>
+    </div>
+    <div class="row">
+      <div class="label"><%= label_tag(:merchant, "Merchant:") %></div>
+      <div class="input"><%= text_field_tag(:merchant, @purchased_gift_certificate.advertiser.name, :disabled => true) %></div>
+    </div>
+    <div class="row">
+      <div class="label"><%= label_tag(:value, "Certificate Value:") %></div>
+      <div class="input"><%= text_field_tag(:value, "%.2f" % @purchased_gift_certificate.value, :disabled => true) %></div>
+    </div>
+    <div class="full_width buttons">
+      <%= button_to_function "Cancel", "window.location.href = '#{validate_purchased_gift_certificates_path}'", :class => "left" %>
+      <%= submit_tag("Redeem", :confirm => "Are you sure you want to mark certificate #{@purchased_gift_certificate.serial_number} redeemed?") %>
+    </div>
+  <% end -%>
+<% else -%>
+  <% form_tag validate_purchased_gift_certificates_path, :method => :get do -%>
+    <div class="row">
+      <div class="label"><%= label_tag(:serial_number, "Serial Number:") %></div>
+      <div class="input"><%= text_field_tag(:serial_number) %></div>
+    </div>
+    <div class="full_width buttons">
+      <%= submit_tag("Validate") %>
+    </div>
+  <% end -%>
+<% end -%>
+</div>
+

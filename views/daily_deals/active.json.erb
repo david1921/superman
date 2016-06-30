@@ -1,0 +1,50 @@
+<%= @daily_deals.inject({}) do |hash, daily_deal|
+  hash[daily_deal.uuid] = {
+    :ends_at => daily_deal.hide_at.utc.to_formatted_s(:iso8601),
+    :featured => daily_deal.featured,
+    :shopping_mall => daily_deal.shopping_mall,
+    :expires_on => daily_deal.expires_on,
+    :maximum_purchase_quantity => daily_deal.max_quantity,
+    :minimum_purchase_quantity => daily_deal.min_quantity,
+    :certificates_to_generate_per_unit_quantity => daily_deal.certificates_to_generate_per_unit_quantity,
+    :permalink => daily_deal_url(daily_deal, :host => daily_deal.publisher.daily_deal_host), 
+    :photo => daily_deal.photo.url,
+    :starts_at => daily_deal.start_at.utc.to_formatted_s(:iso8601),
+    :location_required => daily_deal.location_required.present? && daily_deal.location_required?,
+    :total_quantity_available => daily_deal.quantity,
+    :updated_at => daily_deal.updated_at.utc.to_formatted_s(:iso8601),
+    :value => daily_deal.value,
+    :price => daily_deal.price,
+    :value_proposition => daily_deal.value_proposition,
+    :connections => {
+      :status => status_daily_deal_url(:id => daily_deal, :format => "json", :host => AppConfig.api_host),
+      :advertiser => advertiser_url(:id => daily_deal.advertiser, :format => "json", :host => AppConfig.api_host),
+      :publisher => publisher_url(:id => daily_deal.publisher.label, :format => "json", :host => AppConfig.api_host)
+    },
+    :methods => {
+      :purchase => daily_deal_daily_deal_purchases_url(:daily_deal_id => daily_deal, :format => "json", :host => AppConfig.api_host)
+    }
+  }
+
+  if daily_deal.daily_deal_variations.any?
+    hash[daily_deal.uuid][:connections][:variations] = daily_deal_daily_deal_variations_url(daily_deal, :format => "json", :host => AppConfig.api_host)
+  end
+
+  if daily_deal.affiliate_url.present?
+    hash[daily_deal.uuid][:methods][:affiliate_url] = daily_deal.affiliate_url
+  end
+
+  if @summary
+    hash[daily_deal.uuid][:connections].merge!({
+      :details => details_daily_deal_url(:id => daily_deal, :format => "json", :host => AppConfig.api_host)
+    })
+  else
+    hash[daily_deal.uuid].merge!({
+      :description => daily_deal.description,
+      :highlights => daily_deal.reviews,
+      :terms => daily_deal.terms
+    })
+  end
+
+  hash
+end.to_json.html_safe -%>

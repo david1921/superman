@@ -1,0 +1,58 @@
+<div class="header">
+  <a href="#" class="lbAction close close-button" rel="deactivate">Close</a>
+</div>
+<div class="gift_certificate">
+  <h2><%= "#{number_to_currency( @gift_certificate.value, :unit => @gift_certificate.currency_symbol )} Deal Certificate for #{number_to_currency( @gift_certificate.price, :unit => @gift_certificate.currency_symbol )}" %></h2>
+
+  <div class="row">
+
+<% if @gift_certificate.publisher.link_to_website? && @gift_certificate.advertiser.website_url.present? -%>
+    <a target="_blank" href="<%= @gift_certificate.advertiser.website_url %>">
+      <div class="logo">
+        <%= image_tag(@gift_certificate.advertiser.logo.url(:standard)) if @gift_certificate.advertiser.logo.file? %>
+        <div class="website_link">Visit Website</div>
+      </div>
+    </a>
+<% else -%>
+    <div class="logo">
+      <%= image_tag(@gift_certificate.advertiser.logo.url(:standard)) if @gift_certificate.advertiser.logo.file? %>
+    </div>
+<% end -%>
+
+    <div class="text">
+      <p class="message"><%= @gift_certificate.message %></span>
+      <p class="terms"><%= @gift_certificate.terms_with_expiration %></p>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="context">
+      <li><em>Buy Now</em> using your PayPal&trade; account or a major credit card.
+      <li>Your <%= number_to_currency(@gift_certificate.value, :unit => @gift_certificate.currency_symbol) %> deal certificate is emailed to you as a PDF attachment.
+      <li>Print your deal certificate and bring it with you to <%= @gift_certificate.advertiser_name %>.
+    </ul>
+  </div>
+
+  <div class="row footer">
+    <div class="close">
+      <a href="#" class="lbAction close" rel="deactivate">No, thank you</a>
+    </div>
+    <div class='price'>Only <%= number_to_currency( @gift_certificate.price, :unit => @gift_certificate.currency_symbol ) %></div>
+    <div class="paypal_form">
+      <%= render(:partial => "paypal_buy_now_form", :locals => {
+        :target => "_top",
+        :gift_certificate => @gift_certificate,
+        :return_url => @return_url
+      }) -%>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript' charset="utf-8">
+ // if we are loaded within lightbox content, then
+ // we need to add events to close lightbox on buy now
+ // or close link clicks.
+ if( $('lbContent') ) {
+   Element.removeClassName('lightbox', 'done');
+   $('lbLoadMessage').style.display = 'none';
+ }
+</script>

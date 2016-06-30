@@ -1,0 +1,9 @@
+<% if @publisher.enable_daily_deal_referral %>
+	<div id="refer_friend" class="content_box">
+		<h4>Refer a <strong>Friend</strong></h4>
+		<a class="speech_bubbles" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" class="button gradient refer_a_friend_tracking"><img src="/themes/fundogo/images/graphics/speech_bubbles.png" height="68" width="96" alt="speech bubbles" /></a>
+		<h5>Spread <br />the word!</h5>
+		<p class="refer">Get a <%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :unit => @publisher.currency_symbol) %> deal credit when you refer a friend!</p>
+		<a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" class="button gradient refer_a_friend_tracking">Get Info</a>
+	</div><!-- /refer_friend -->
+<% end %>       

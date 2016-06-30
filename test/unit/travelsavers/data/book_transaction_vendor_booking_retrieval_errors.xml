@@ -1,0 +1,21 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+   <Version>1.0</Version>
+  <Booking>
+    <BookedProducts/>
+    <BookingID>123</BookingID>
+    <LastUpdated>2012-03-06T08:33:45.0255404-07:00</LastUpdated>
+  </Booking>
+  <BookingStatus>Success</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>134</ErrorCode>
+      <ErrorSourceID>4</ErrorSourceID>
+      <ErrorText>An unhandled error occurred while accessing the booking information from the vendor : Unable to communicate with the cruise line.  Please try again later.</ErrorText>
+      <UserCanFix>false</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues/>
+  <PaymentStatus>Unknown</PaymentStatus>
+  <TransactionDate>2012-03-05T08:14:29.147</TransactionDate>
+  <TransactionID>212</TransactionID>
+</BookTransaction>

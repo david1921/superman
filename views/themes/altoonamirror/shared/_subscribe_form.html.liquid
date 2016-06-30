@@ -1,0 +1,15 @@
+{% unless publisher.current_user_belongs_to? %}
+<div id="subscribe_form">
+				<h4 class="subscribe">SIGN UP FOR FREE DEAL OF THE DAY ALERTS!</h4>
+				<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+					<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+					<p><input id="subscriber_email" name="subscriber[email]" size="20" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" /></p>
+					<p><input id="subscriber_zip" name="subscriber[zip_code]" size="10" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" /></p>
+					<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+					</p>
+					<p><input id="subscribe_button" type="submit" value="SIGN UP" /></p>					
+				</form>
+			</div><!-- /subscribe_form -->
+{% endunless %}

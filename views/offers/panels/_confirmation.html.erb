@@ -1,0 +1,14 @@
+  <div class="confirmation_panel" id="offer_<%= @lead.offer.id %>_confirmation_panel">
+    <h2>Thank You!</h2>
+    <% if @lead.txt_me? %>
+      Your coupon is on its way to <%= number_to_phone @lead.mobile_number, :area_code => true %>
+    <% elsif @lead.call_me? -%>
+      <%= @lead.offer.advertiser_name %> will call you shortly
+    <% else -%>
+      Your coupon is on its way to <%= @lead.email %>
+    <% end -%>
+  </div>
+
+  <%= render(:partial => @publisher.analytics_service_provider[:partial]) if @publisher.using_analytics_provider? %>  
+
+  <% javascript_tag do %>finishClipping(<%= @offer.id %>);<% end %>

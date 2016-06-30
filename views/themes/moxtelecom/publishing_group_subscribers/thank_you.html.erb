@@ -1,0 +1,12 @@
+<!-- This page is experimental. It will only show up "redirect_to_deal_page" is not present in the form on landing_pages/show.html.erb -->
+<div id="landing">
+	<h1 id="deal_logo">Mox Deals</h1>
+	<div class="content_box">
+		
+		<div id="signup_box">
+			<h2>Thank You</h2>
+			<div id="market_subscription_form">
+				<a href="<%= public_deal_of_day_path(@publisher.label) %>">Go to <%= @publisher.market_name_or_city %>'s Deal!</a>
+			</div><!-- END .market_subscription_form -->
+		</div>
+	</div>

@@ -1,0 +1,27 @@
+<div id="banner_header">
+	<a id="deal_logo" href="<%= public_deal_of_day_path(@publisher.label) %>"><img src="/themes/freedom/images/graphics/logo.png" alt="Daily Deal Logo"></a>
+
+<!-- Contest promo banner -->
+<%# if @publisher.label == "northwestfloridadailynews" || @publisher.label == "panamacitynewsherald" || @publisher.label == "rgv" || @publisher.label == "vvdailypress" || @publisher.label == "ocregister" || @publisher.label == "yumasun" || @publisher.label == "gazette" %>
+  <%#= render :partial => with_theme("shared/promo_banner") %>
+<%# end %>
+<!-- end Contest promo banner -->
+
+	<div id="banner_right">
+		<div class="icons">
+			<% if @publisher.label.include? "ocr" %>
+			<a id="app" href="http://itunes.apple.com/us/app/oc-register-deal-of-the-day/id452839933?ls=1&mt=8" target="_blank">
+			<% else %>
+			<a href="http://itunes.apple.com/us/app/my-deal-of-the-day/id498375607" target="_blank">
+			<% end %>
+				<img src="/themes/freedom/images/icons/app.png" alt="Download the App"><span>Download the App</span>
+			</a>
+			<% if @publisher.label == "yumasun" || @publisher.label == "vvdailypress" %>
+			<a id="coupons" href="<%= public_offers_path(:publisher_id => @publisher) %>"><img src="/themes/freedom/images/icons/coupon.png" alt="Coupons"><span>Coupons</span></a>
+			<% end %>
+		</div>
+		<div class="clear"></div>
+		<%= render :partial => with_theme("shared/account_nav") %>	
+	</div>
+</div>
+<div class="clear"></div>

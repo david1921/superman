@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd." "http://www.rr.com/assets/dtd/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<% if @publisher.label == "clickedin-charlotte" %>
+<title>Your Daily Deal from Clickedin: Local savings up to 90%</title> 
+<% else %>
+<title>Your <%= @publisher.market_name.titleize if @publisher.market_name.present? %> Daily Deal from Clickedin: Local savings up to 90%</title>
+<% end %>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /> 
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="robots" content="no index"> 
+<meta name="market_name" content="<%= @publisher.market_name %>" /> 
+
+<meta name="description" content="Your exclusive <%= @publisher.market_name.titleize if @publisher.market_name.present? %> daily deal.
+<% if @daily_deal -%>Today’s discount: <%= @daily_deal.facebook_description %><% end %> " />
+<!--[if IE 8]>
+<meta http-equiv="X-UA-Compatible" content="IE=7" /> 
+<![endif]--><!-- this sort of fixes the IE8 Windows XP crashing  -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" /><!-- tells phones not to scale down the web page to fit into tiny windows -->
+<!--<meta name="viewport" content="width=1100px, user-scalable=yes" /> this meta tag should be used when the user clicks the view desktop version button -->
+
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+ 
+<link href="/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" /> 
+<link href="/themes/rr/stylesheets/main.css" media="all" rel="stylesheet" type="text/css" /> 
+<link href="/themes/rr/stylesheets/media.min.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/rr/stylesheets/travelsavers_booking.css" media="all" rel="stylesheet" type="text/css" />  
+<link href="/themes/rr/stylesheets/popup_form.css" media="all" rel="stylesheet" type="text/css" /> 
+
+		
+<!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="/themes/rr/stylesheets/ie.css" />
+<![endif]-->
+<!--[if IE 8]>
+        <link rel="stylesheet" type="text/css" href="/themes/rr/stylesheets/ie8.css" />
+<![endif]-->
+
+<% cache([@daily_deal, "meta_tags"], :expires_in => 1.hour) do %>
+	<%=raw render :partial => with_theme("daily_deals/meta_tags") %>
+	<%= render :partial => with_theme("shared/javascript") %>
+<% end %>
+
+</head>
+ 
+<body> 
+
+<!-- START main --> 
+<div class="main">       
+<div class="content"> 
+  <div id="grey_banner"></div>
+<div id="analog_analytics_content">
+  <%=raw render :partial => with_theme("shared/brand_banner") %>
+  <%=raw render :partial => with_theme("shared/account_nav") %>
+  <%= render :partial => with_theme("shared/banner") %>
+		
+	<div id="main_tab_content">
+		<div id="main_tab_content_wrap">
+	<%= render :partial => "shared/flash_messages" %>
+		<!-- begin daily deal content -->
+		<div id="daily_deal">
+  		<%= raw yield %>
+		</div><!-- /daily_deal -->
+		<!-- end daily deal content -->
+		<div class="clear"></div>
+<% cache([@daily_deal, "logos"], :expires_in => 1.hour) do %>
+	<%= render :partial => with_theme("shared/logos") %>
+<% end %>
+  	<div class="clear"></div>
+	   </div>
+	</div><!-- /main_tab_content -->
+</div><!--  /analog_analytics_content -->
+</div><!-- /content -->
+
+	<%= render :partial => with_theme("shared/footer") %>
+</div><!-- /main -->
+
+
+<a class="desktop-version" href="#view">view desktop version</a>
+
+<%=raw render :partial => "shared/tracking_google_analytics" %>
+<% cache([@daily_deal, "daily_deals_javascript"], :expires_in => 30.seconds) do %>
+	<%=raw render :partial => with_theme("daily_deals/javascript") %>
+<% end %>
+<%=raw render :partial => with_theme("shared/tracking_publisher") if @daily_deal.try(:enable_publisher_tracking) %>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($){
+	jQuery('.desktop-version').bind('click', function(){
+		jQuery('meta[name=viewport]').attr('content', 'width=1100px');
+	});
+	jQuery('.get_deals_link').click(function(){
+    jQuery('#subscribe_box').show();
+    jQuery('#get_deals').hide();
+  });
+  jQuery('.close_link').click(function(){
+    jQuery('#subscribe_box').hide();
+    jQuery('#get_deals').show();
+  });  
+});
+</script>
+<script type="text/javascript" src="/javascripts/lib/formvalue-clickblur.js"></script> 
+</body>
+</html>

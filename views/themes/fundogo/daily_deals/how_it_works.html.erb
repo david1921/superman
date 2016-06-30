@@ -1,0 +1,11 @@
+<div id="how_it_works" class="content_box text_page">
+	<h1>How It Works</h1>
+	<h4>CLICK AND BUY</h4>
+    <p>Every day we’ll announce a new FunDoGo that is 50-90% off of regular prices at restaurants, spas, events and other local goodies. There’s a minimum number of buyers needed to make a deal active, so if enough people buy that day’s offer before it expires, the deal is live.</p>
+    <h4>SHARE</h4>
+    <p>When you find an offer you like, share it with your friends using our Facebook, Twitter or email links. The more people you invite, the greater chance an offer has of becoming activated.</p>
+    <h4>PRINT</h4>
+    <p>After you make a purchase, you’ll receive the Deal of the Day voucher to print out via email. Take the Deal of the Day to the store or merchant any time before the expiration date to enjoy the fruits of your labor.</p>
+    <p><%= raw(t('.sign_up_message', :href => link_to(t(:sign_up), new_publisher_consumer_path(@publisher))) )%></p>
+    <p>Still have questions? <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Check out our FAQ page</a></p>
+</div>

@@ -1,0 +1,12 @@
+<% set_daily_deal_page_title_slug "#{@daily_deal_category.name}s" %>
+
+<%= render :partial => with_theme("shared/travel_page"), :locals => { :daily_deal => @featured_deal, :publisher => @publisher, :advertiser => @advertiser } %>
+
+
+<% if false %>
+<%= render :partial => with_theme("shared/dd_main_content"), :locals => { :daily_deal => @featured_deal, :publisher => @publisher, :advertiser => @advertiser } %>
+<% if true %>
+    <%= render :partial => with_theme("shared/side/sidebar"), :locals => { :daily_deal => @featured_deal, :publisher => @publisher, :advertiser => @advertiser } %>
+<% end %>
+
+<% end %>

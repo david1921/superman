@@ -1,0 +1,5 @@
+<h2> Edit An Owner</h2>
+<%- form_for [@advertiser, @owner] do |f| -%>
+	<%= render :partial => "form", :object => f %>
+	<%= f.submit "Save Changes" %>
+<% end -%>

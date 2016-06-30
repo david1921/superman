@@ -1,0 +1,26 @@
+<%= public_index_notice(@publisher) %>
+<%= render :partial => "offers/standard/pagination", :locals => { :position => "top" } %>
+<div class="left_column">
+  <%= render :partial => "search" %>
+
+  <% if @publisher.coupons_home_link? -%>
+  <div id="coupons_home">
+    <%= link_to_advanced_search "Coupons Home", @publisher, @text, @postal_code, @radius, @category, @categories, @iframe_height, @iframe_width, @layout %>
+  </div>
+  <% end -%>
+
+  <div id="advanced_search">
+    <%= link_to_advanced_search("Advanced Search", @publisher, @text, @postal_code, @radius, @category, @categories, @iframe_height, @iframe_width, @layout) %>
+  </div>
+
+  <%= render :partial => "offers/categories", :object => @publisher_categories %>
+</div>
+<div class="<%= @publisher.theme %>" id="offers">
+  <%= render :partial => "offers/panels/sdcitybeat/offer", :collection => @offers %>
+  <% if @offers.empty? -%>
+    Sorry, no coupons found
+  <%- end -%>
+  <%= render :partial => "offers/standard/pagination", :locals => { :position => "bottom" } %>
+</div>
+
+<%= render :partial => 'shared/terms_and_conditions' %>

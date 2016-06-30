@@ -1,0 +1,8 @@
+<% if @publisher.enable_daily_deal_referral %>
+	<div id="refer_friend" class="content_box">
+		<a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" class="button refer_a_friend_tracking">
+			Get <%= number_to_currency @publisher.daily_deal_referral_credit_amount %><br />
+			Refer a Friend
+		</a>
+	</div><!-- /refer_friend -->
+<% end %>       

@@ -1,0 +1,81 @@
+<div id="certificates">
+
+  <div class="page_column_2">
+    <% if category = @categories.first %>
+        <% header_prefix = category.name %>
+        <img src="/themes/tampa/images/backgrounds/<%= header_prefix.downcase %>_header.png" width="496" height="42" alt="goods"/>
+
+        <% case category.name %>
+        <% when "Goods" %>
+            <p class="intro_text">We know you love to shop. Get half price deal certificates to some of the area's best retailers. Spoil yourself, give a gift or buy something for that special someone. There is always a reason to shop! Certificates are always limited and can only be purchased online or on your mobile.</p>
+        <% when "Eats" %>
+            <p class="intro_text">Let Creative Loafing foot half the bill on fine dining experiences from our participating restaurants. Buy our half-priced deal certificates and get a unique mix of food, atmosphere and culture. Certificates are always limited and can only be purchased from online or your mobile.</p>
+        <% when "Living" %>
+            <p class="intro_text">Let Creative Loafing foot half the bill at Bay Area spas, gyms, salons, parks, events, attractions and more. Certificates are always limited and can only be purchased online or on your mobile.</p>
+        <% end %>
+    <% end %>
+
+    <div style="margin-bottom: 10px">
+      <%= link_to image_tag("https://www.sandbox.paypal.com/en_US/i/btn/btn_viewcart_LG.gif", :width => "107", :height => "26"), publisher_cart_path(@publisher.label) %>
+    </div>
+
+    <%= will_paginate @daily_deals %>
+    <br/>
+
+    <% for daily_deal in @daily_deals %>
+        <%= render "themes/tampa/daily_deals/daily_deal", :daily_deal => Drop::DailyDeal.new(daily_deal) %>
+    <% end %>
+
+    <%= will_paginate @daily_deals %>
+
+    <br style="clear: both"/>
+    <br/>
+
+    <div style="position:relative; bottom: 20px; display:inline-block">
+      <%= link_to image_tag("https://www.sandbox.paypal.com/en_US/i/btn/btn_viewcart_LG.gif", :width => "107", :height => "26"), publisher_cart_path(@publisher.label) %>
+    </div>
+
+  </div>
+  <!-- /page_column_2 -->
+
+  <div class="page_column_3 right_rail">
+    <div id="stay_connected">
+      <h4>STAY CONNECTED TO CL DEALS</h4>
+
+      <div id="connected_box">
+        <div class="connected_column">
+          <p class="connected" id="email"><img alt="Email" src="/themes/tampa/images/icons/certificates_email.png"/>
+            EMAIL - <a href="http://cltampa.com/newsletters">Subscribe to the CL Deals Newsletter</a> and get monthly
+            notifications of our great Half Off Deals at Bay Area restaurants and retailers.</p>
+
+          <p class="connected" id="twitter">
+            <img alt="Twitter" src="/themes/tampa/images/icons/certificates_twitter.png"/> TWITTER - Follow
+            <a href="http://twitter.com/#!/cl_deals">@cldeals on Twitter</a> for updates about our current deals and
+            discounts.</p>
+        </div>
+        <div class="connected_column">
+          <p class="connected" id="sms"><img alt="SMS" src="/themes/tampa/images/icons/certificates_sms.png"/> SMS -
+            Text <em>DEALS</em> to <strong>50618</strong> to get updates on your phone when new deals are uploaded to
+            the site.</p>
+
+          <p class="connected" id="facebook">
+            <img alt="Facebook" src="/themes/tampa/images/icons/certificates_facebook.png"/> FACEBOOK - Become a fan of
+            <a href="http://www.facebook.com/#!/pages/CL-Deals/123431944347787"> CL Deals on Facebook</a>.</p>
+        </div>
+      </div>
+      <!-- /connected_box -->
+    </div>
+    <div id="seen_on_tv">
+      <h4>AS SEEN ON TV</h4>
+      <object type="application/x-shockwave-flash" id="video" width="320" height="280" data="http://www.myfoxtampabay.com/video/videoplayer.swf?dppversion=4747">
+        <param value="http://www.myfoxtampabay.com/video/videoplayer.swf?dppversion=4747" name="movie">
+        <param value="&amp;skin=MP1ExternalAll-MFL.swf&amp;embed=true&amp;adSrc=http%3A%2F%2Fad%2Edoubleclick%2Enet%2Fadx%2Ftsg%2Ewtvt%2Fmoney%2Fmoney%5F2%2Fdetail%3Bdcmt%3Dtext%2Fxml%3Bpos%3D%3Btile%3D2%3Bfname%3D1229%2Dcon%2Dlaw%2Dgift%2Dcertificates%3Bloc%3Dsite%3Bsz%3D320x240%3Bord%3D816156798341444200%3Frand%3D0%2E18343419588440135&amp;flv=http%3A%2F%2Fwww%2Emyfoxtampabay%2Ecom%2Ffeeds%2FoutboundFeed%3FobfType%3DVIDEO%5FPLAYER%5FSMIL%5FFEED%26componentId%3D131331131&amp;img=http%3A%2F%2Fmedia2%2Emyfoxtampabay%2Ecom%2F%2Fphoto%2F2009%2F12%2F29%2F1229ConLaw%5Ftmb0000%5F20091229185304%5F640%5F480%2EJPG&amp;story=http%3A%2F%2Fwww%2Emyfoxtampabay%2Ecom%2Fdpp%2Fconsumer%2Fconlaw%2F1229%2Dcon%2Dlaw%2Dgift%2Dcertificates" name="FlashVars">
+        <param value="all" name="allowNetworking">
+        <param value="always" name="allowScriptAccess">
+      </object>
+    </div>
+
+  </div>
+  <!-- /right_rail -->
+
+</div><!-- /certificates -->

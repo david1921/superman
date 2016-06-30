@@ -1,0 +1,42 @@
+<% if @daily_deal_certificates.length > 1 %>
+	<div id="voucher_navigation">
+		<button class="voucher_prev" onclick="voucherPrev()">Prev</button>
+		<button class="voucher_next" onclick="voucherNext()">Next</button>
+	</div>
+<% end %>
+<% @daily_deal_certificates.each_with_index do |this, i| %>
+	<div class="mobile_optimized_voucher voucher_<%= (i + 1) %>">
+		<h1 class="value_proposition"><%= @daily_deal_purchase.value_proposition %></h1>
+		 <% if @daily_deal_certificates.length != 1 %>
+		<p>Voucher <%= (i + 1) %> of <%= @daily_deal_certificates.length %></p>
+		<% end %> 
+		<div class="voucher_nav_wrapper">
+		<ul class="visual_nav"></ul>
+		</div>
+		<img src="<%= daily_deal_purchase_bar_code_path(:daily_deal_purchase_id => this.daily_deal_purchase.to_param, :id => this.serial_number) %>" width="175" height="175" alt="QR Code for Voucher" />
+		<p class="voucher_number">Voucher Number #<%= this.serial_number %></p>
+		<button type="button" class="mark_as_btn">Mark as Used</button>
+		<% if this.advertiser.stores.present? %>
+			<div class="mobile_see_locations">
+				<h2>See all Locations</h2>	
+				<div class="location_wrap">
+				<%  this.advertiser.stores.each do |location| %>
+					<a href="http://maps.google.com/?q=<%= location.address_line_1 %>,<%= location.city %>, <%= location.state %>, <%= location.zip %>"><address class="location">
+					<% unless location.address_line_1.blank? %>
+						<%= location.address_line_1 %><br />
+					<% end %>
+					<% unless location.address_line_2.blank? %>
+						<%= location.address_line_2 %><br />
+					<% end %>
+					<% unless location.city.blank? or location.state.blank? or location.zip.blank? %>
+						<%= location.city %>, <%= location.state %> <%= location.zip %>
+					<% end %>	
+					</address></a><!--/ .location -->
+				<% end %>
+				</div><!-- / .location_wrap -->
+			</div>
+		<% end %>	
+	</div><!-- /mobile_optimized_voucher -->
+<% end %>
+<a class="back_to_mydeals" href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">Back to My Deals</a>
+<%= javascript_include_tag 'voucher_page' %>

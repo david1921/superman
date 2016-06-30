@@ -1,0 +1,21 @@
+{% comment %} This works, but it pretty bad {% endcomment %}
+
+{% if all_flash != empty %}
+  {% capture flash_keys %}{% all_flash %}{% endcapture %}
+  {% if controller.controller_name != "subscribers" %}
+    {% if flash_keys contains 'warn' %}
+      <div class="warn" id="flash_warn">
+    {% else %}
+      <div class="warn" id="flash_warn" style="display:none">
+    {% endif %}
+      {% flash warn %}
+    </div>
+    {% if flash_keys contains 'notice' %}
+      <div class="notice" id="flash_notice">
+    {% else %}
+      <div class="notice" id="flash_notice" style="display:none">
+    {% endif %}
+      {% flash notice %}
+    </div>
+  {% endif %}
+{% endif %}

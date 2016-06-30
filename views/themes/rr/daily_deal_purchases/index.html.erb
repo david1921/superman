@@ -1,0 +1,51 @@
+<% set_daily_deal_page_title_slug "My Deals" %>
+<% redeemable_certificates =  @consumer.daily_deal_purchases.redeemable_certificates %>
+
+<div id="my_deals">
+<div class="page_row my_deals_page">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <%= render :partial => "daily_deal_purchases/navigation" %>
+    <h1>My Deals</h1>
+    
+    <% if redeemable_certificates.blank? %>
+      <p><%= t('.no_redeemable_certificates') %></p>
+    <% else %>
+      <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase my_deals" cellspacing="0">
+        <tr>
+          <th class="description"><%= t(:description) %></th>
+          <th class="serial_number"><%= t(:voucher_number) %></th>
+          <th class="recipient"><%= t(:recipient) %></th>
+          <th class="purchased_on"><%= t(:purchased) %></th>
+          <th class="expires"><%= t(:expires) %></th>
+          <th class="status"></th>
+        </tr>
+        <%= render(:partial => "unredeemed_voucher", :collection => redeemable_certificates) %>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <h1>My Sweepstakes</h1>    
+    <% if @consumer.sweepstake_entries.present? -%>
+    <table class="sweepstakes">
+      <tr>
+        <th class="name">Name</th>
+        <th class="date">Entered</th>
+      </tr>
+      <% @consumer.sweepstake_entries.each do |sweepstake_entry| -%>
+      <tr>
+        <td class="name"><%= sweepstake_entry.value_proposition %></td>
+        <td class="date"><%= sweepstake_entry.created_at.to_s(:long_month_and_year) %></td>
+      </tr>   
+      <% end -%>
+    </table>
+    <% else -%>
+      <p>You have not entered any sweepstakes.</p>
+    <% end -%>
+  </div>
+</div>
+
+</div><!-- /my_deals -->

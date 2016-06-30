@@ -1,0 +1,14 @@
+<tr class="<%= cycle("even", "odd") -%>">
+  <td class="check">
+    <%= check_box_tag "id[]", user.id, false, :class => "checkbox", :id => "user_id_#{user.id}" %>
+  </td>
+  <td class="name">
+    <%= user.name %>
+  </td>
+  <td>
+    <%= user.email %>
+  </td>
+  <td class="last">
+    <%= link_to "Edit", edit_publication_group_user_path(user.publication_group, user) %>&nbsp;&nbsp;
+  </td>
+</tr>

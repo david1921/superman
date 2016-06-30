@@ -1,0 +1,5 @@
+<%- form_for @user, :url => { :action => :randomize_password }, :html => { :id => "randomize_password_user_#{@user.id}", :class => "randomize_password_user" } do |f| -%>
+  <p class="email"><%= @user.email %></p>
+  <%= raw %{<p class="password">#{@password}</p>} if @password -%>
+  <p class="button"><%= submit_tag("Reset Password", :id => "reset_password_button", :name => "reset_password") unless @user.has_admin_privilege? %></p>
+<%- end -%>

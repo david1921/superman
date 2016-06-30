@@ -1,0 +1,14 @@
+<p>Merchant account IDs should be alphabetic, like "concordmonitor", <strong>not</strong> numeric like 67674.</p>
+<% form_for @publisher, :url => publisher_merchant_account_ids_path(@publisher) do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field_div :merchant_account_id, "Merchant Account ID" %>
+  <% if author = @publisher.last_author_for(:merchant_account_id) %>
+    <div class="row last_edited">
+      <div class="label">&nbsp;</div>
+      <div class="input">Last edited by <%= author.name %></div>
+    </div>
+  <% end %>
+  <div class="buttons">
+    <%= submit_tag("Save", :id => "save_button", :name => "save", :class => "left") %>
+  </div>
+<% end %>

@@ -1,0 +1,79 @@
+<% form_for [@advertiser, @txt_offer] do |f| -%>
+  <%= error_messages_for(:txt_offer, :object_name => "TXT coupon") %>
+
+  <%- if @txt_offer.advertiser.listing? && !current_user.advertiser? -%>
+  <%= f.text_field_div(:label) %>
+  <%- end -%>
+
+  <%- if @txt_offer.new_record? -%>
+  <%= f.select_div(:keyword_prefix, @advertiser.txt_keyword_prefixes) %>
+  <%= f.text_field_div(:keyword_suffix, "Keyword:", :disabled => true) %>
+  <%= f.check_box_div(:assign_keyword, "Auto-assign Keyword", :onchange => "onAssignKeywordChange()") %>
+  <%- else -%>
+  <%= f.text_field_div(:keyword, nil, :disabled => true) %>
+  <%- end -%>
+
+  <%= f.text_area_div(:message, nil, :rows => 3, :required => true, :help => %q{<p id="character_count"></p>}) %>
+
+  <div class="row date">
+    <div class="label"><%= f.label(:appears_on) %></div>
+    <div class="input">
+      <%= raw f.calendar_date_select(:appears_on, :popup => :force) %>
+    </div>
+    <div class="help">Pacific Time</div>
+  </div>
+
+  <div class="row date">
+    <div class="label"><%= f.label(:expires_on) %></div>
+    <div class="input">
+      <%= raw f.calendar_date_select(:expires_on, :popup => :force) %>
+    </div>
+    <div class="help">Pacific Time</div>
+  </div>
+  <div class="full_width buttons">
+    <%= button_to_function "Cancel", "window.location.href = '#{edit_advertiser_path(@txt_offer.advertiser)}'", :class => "left" %>
+    <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+  </div>
+<% end -%>
+
+
+<%= focus("message") %>
+
+<%- javascript_tag do -%>
+Event.observe(window, 'load', function() {
+  (function(input_elem, status_elem, limit) {
+    function checkCharacterCount() {
+      var remaining = limit - input_elem.value.length;
+      if (remaining >= 0) {
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") +  "remaining");
+        status_elem.removeClassName("overflow");
+      } else {
+        remaining = -remaining;
+        status_elem.update(remaining + (1 == remaining ? " character " : " characters ") +  "too many");
+        status_elem.addClassName("overflow");
+      }
+    }
+    input_elem.observe('keydown', checkCharacterCount);
+    input_elem.observe('keyup', checkCharacterCount);
+    input_elem.observe('mouseout', checkCharacterCount);
+    checkCharacterCount();
+  })($('txt_offer_message'), $('character_count'), <%= @txt_offer.max_message_size %>);
+});
+<%- end -%>
+
+<%- javascript_tag do -%>
+  function onAssignKeywordChange() {
+    var assign = $('txt_offer_assign_keyword');
+    var suffix = $('txt_offer_keyword_suffix');
+    if (assign && suffix) {
+      suffix.value = "";
+      if (assign.getValue() == "1") {
+        suffix.disable();
+      } else {
+        suffix.enable();
+      }
+    }
+  }
+  onAssignKeywordChange();
+<%- end -%>
+

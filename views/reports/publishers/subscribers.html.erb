@@ -1,0 +1,22 @@
+<% set_page_title "Reports: Publisher Subscribers" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => subscribers_reports_publisher_url(@publisher, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :subscribers, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publisher_subscribers",
+  :data_source => subscribers_reports_publisher_path(@publisher.to_param, :format => "xml"),
+  :data_params => {},
+  :result_node => :subscriber,
+  :data_columns => [
+    [:email, {:label => "Email", :class_name => "left"}],
+    [:zip_code, {:label => "Zip Code", :parser => "number", :class_name => "left"}],
+    [:first_name, {:label => "First Name", :class_name => "left"}],
+    [:last_name, {:label => "Last Name", :class_name => "left"}]
+  ]
+}) %>

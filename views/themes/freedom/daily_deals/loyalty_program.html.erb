@@ -1,0 +1,35 @@
+<% set_daily_deal_page_title_slug t(:loyalty_program) %>
+
+<div class="page_row loyalty_program">
+	<div class="page_column_12 first rounded_corners">
+		<h1 class="content"><%= t(:loyalty_program) %></h1>
+	  <% if @daily_deal.enable_loyalty_program? %>
+	    <p>Refer <%= pluralize(@daily_deal.referrals_required_for_loyalty_credit, "purchaser") %>
+	    to this deal and get yours for FREE!</p>
+	    <% if current_consumer_for_publisher?(@daily_deal.publisher) %>
+		    <input type="text" name="loyalty_program_url" size="50" value="<%= loyalty_program_url(@daily_deal, current_user) %>" id="loyalty_program_url">
+		  <% else %>
+		     <p id="login-to-access-loyalty-program-url">
+		       To access your loyalty program affiliate URL, please
+	         <%= link_to "log in",
+	             daily_deal_login_path(:publisher_id => @daily_deal.publisher.to_param),
+	             :style => "font-size: 1em" %>.
+		     </p>
+		  <% end %>
+		
+				<p>After you purchase your great <%= @publisher.name %> deal, you'll be given a unique web link that you can share with your friends. If four of your friends buy, your deal is free! Refund can only be earned once per deal. Shipping Not Included.</p>
+
+          <div class="dd_share_panel">
+              <h4>Share This Deal</h4>
+              <div class="share_link_wrap">
+                  <%= render 'shared/share_deal_link', :type => :facebook %>
+                  <%= render 'shared/share_deal_link', :type => :twitter %>
+                  <%= render 'shared/share_deal_link', :type => :mailto %>
+              </div><!-- END .share_link_wrap -->
+          </div><!-- END .dd_share_panel-->
+		<% else %>
+		  <p>Sorry, the loyalty program is not enabled for this deal.</p>
+		<% end %>
+	</div>
+</div>
+

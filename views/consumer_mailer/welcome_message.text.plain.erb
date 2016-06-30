@@ -1,0 +1,17 @@
+<%= t(:dear) %> <%= @consumer.first_name %>,
+
+<%= t('consumers.welcome_message.welcome_to_your_account', :publisher_name => @publisher.brand_name_or_name) %>
+
+<%= t('consumers.welcome_message.to_update_your_account_settings_visit', :publisher_name => @publisher.brand_name_or_name) %>:
+
+  <%= edit_publisher_consumer_url(@publisher, @consumer, :host => @publisher.daily_deal_host) %>
+
+<%= t('consumers.welcome_message.for_technical_support_email') %> <%= @publisher.support_email_address.if_present || "bbdsupport@analoganalytics.com" %><%= @publisher.support_phone_number.present? ? ", #{t('consumers.welcome_message.or_call')} #{@publisher.formatted_support_phone_number}." : "." %>
+
+<%- if @publisher.daily_deal_email_signature.present? -%>
+<%= @publisher.daily_deal_email_signature %>
+<%- else -%>
+<%= t('consumers.welcome_message.valediction') %>,
+
+<%= @publisher.brand_name_or_name %>
+<% end -%>

@@ -1,0 +1,35 @@
+<% set_daily_deal_page_title_slug t(:sign_up) %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    
+    <% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+        <%= render :partial => "sign_up_message", :locals => {:message => @publisher.account_sign_up_message} %>
+    <% end %>
+
+    <h2>Sign Up</h2>
+    <% if @discount.present? -%>
+	    <p style="padding: 1em 0;"><%= t('.discount_message', :discount_amount => number_to_currency(@discount.amount, :unit => @discount.publisher.currency_symbol), :daily_deal_name => @publisher.daily_deal_name) %> </p>
+    <% end -%>
+
+    <div id="signup_form">
+      <% form_for [@publisher, @consumer] do |f| -%>
+          <%= f.error_messages(:header_message => "Errors prevent this account from being created") %>
+          <%= f.text_field_div(:name, "*Full Name:") %>
+          <%= f.text_field_div(:email,"*Email:") %>
+          <%= f.text_field_div(:zip_code) %>
+          <%= render :partial => with_theme("birth_year"), :locals => { :consumer => @consumer, :f => f } %>
+          <%= render :partial => with_theme("gender"), :locals => { :consumer => @consumer, :f => f } %>
+          <%= f.password_field_div(:password) %>
+          <%= f.password_field_div(:password_confirmation, "Confirm Password:") %>
+
+
+          <%= f.check_box_div(:agree_to_terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+
+        <div class="row button_row">
+          <%= submit_tag(t(:sign_up), :name => "sign_up") %> <%= daily_deal_cancel_link(@publisher) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

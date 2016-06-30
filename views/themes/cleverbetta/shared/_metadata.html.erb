@@ -1,0 +1,10 @@
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<% if @daily_deal %>
+<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+<meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+<meta name='keywords' content="<%= @daily_deal.value_proposition %>">
+<link rel="image_src" href="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+<% else %>
+<meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+<% end %>

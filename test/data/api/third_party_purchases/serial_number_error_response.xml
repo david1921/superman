@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errors xmlns="http://analoganalytics.com/api/third_party_purchases/serial_numbers">
+  <error>
+    <code>3</code>
+    <text>Invalid request</text>
+  </error>
+</errors>

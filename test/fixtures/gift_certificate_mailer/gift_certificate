@@ -1,0 +1,3 @@
+GiftCertificateMailer#gift_certificate
+
+Find me in app/views/gift_certificate_mailer/gift_certificate.erb

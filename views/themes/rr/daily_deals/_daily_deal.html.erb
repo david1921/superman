@@ -1,0 +1,37 @@
+<div class="product_wrapper">	
+	
+	<div class="all_deals_photo">
+	   <%= image_tag daily_deal.photo.url(:alternate_standard), :class => 'product' %>
+	</div><!-- /all_deals_photo -->
+			<div class="product_info">
+			
+			<div id="time_left_to_buy_<%= daily_deal.id %>" class="side_deal_timer">
+			  <% if daily_deal.over? %>
+			    <span>Deal Over</span>
+			  <% else %>
+			    <span><%= daily_deal.time_remaining_text_display %> LEFT</span>
+			  <% end %>
+			</div>
+				
+			<div class="clear"></div>
+	
+			<div class="advertiser_product_info">
+				<div class="all_deals_advertiser">
+					<%= daily_deal.advertiser.name %> - 		
+					<span class="all_deals_value_prop">
+						<%= daily_deal.value_proposition %>
+					</span>
+				</div>
+			</div>
+			
+			<div class="price_tag">
+				<h6><% if !daily_deal.daily_deal_variations.blank? -%><span class="variation">From<% end %></span><%= formatted_price_for(daily_deal.price, daily_deal.currency_symbol) %></h6>
+			</div>
+
+			<div class="view_deal">
+			  <span <%= raw 'style="font-size: 0.8em"' if daily_deal.over? %>><a href="<%= Drop::DailyDeal.new(daily_deal).url %>"><%= daily_deal.over? ? "Deal Over" : "View" %></a></span>
+			</div>
+ 		</div>
+ </div>
+
+

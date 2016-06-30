@@ -1,0 +1,11 @@
+<ul>
+    <% if current_consumer_for_publisher?(@publisher) %>
+      <li class="first"><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+      <li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+      <li><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+    <% else %>
+      <li class="first"><a href="<%= daily_deal_login_path(@publisher) %>">Sign in</a></li>
+      <li><a href="<%= new_publisher_consumer_path(@publisher) %>">Sign up</a></li>
+      <%= render :partial => with_theme('shared/facebook_connect_erb') %>
+    <% end %>
+</ul>

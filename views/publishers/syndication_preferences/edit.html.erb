@@ -1,0 +1,63 @@
+<% content_for :stylesheets do %>
+    <%= stylesheet_link_tag 'admin/publishers/syndication_preferences/edit' %>
+<% end %>
+
+<div id="syndication_preferences">
+  <% form_for @publisher, :url => publisher_syndication_preferences_path(@publisher), :method => :put, :html => {:id => "syndication_preferences"} do |f| -%>
+      <%= hidden_field_tag "publisher[publishers_excluded_from_distribution_ids][]", '' %>
+
+      <fieldset id="publishers_to_exclude_from_distribution">
+        <legend>Do not make my deals available to the following publishers:</legend>
+
+        <div id="batch_controls"><a class="select_all">Select All</a> - <a class="select_none">None</a> - <a class="reset">Reset</a></div>
+
+        <div class="checkboxes_wrapper">
+          <% Publisher.in_syndication_network.sort_by { |p| p.name }.each do |pub| %>
+              <div class="publisher_to_exclude_from_distribution">
+                <%= check_box_tag "publisher[publishers_excluded_from_distribution_ids][]", pub.id,
+                                  @publisher.publishers_excluded_from_distribution.include?(pub),
+                                  :id => "exclude_publisher_#{pub.id}" %>
+                <%= label_tag "exclude_publisher_#{pub.id}", pub.name %>
+              </div>
+          <% end %>
+        </div>
+      </fieldset>
+
+      <div style="clear: both;"/>
+
+      <!-- DJZ: May be added after launch -->
+      <!--<fieldset style="display: none">-->
+      <!--<legend>When a new publisher joins the network:</legend>-->
+      <%# f.fields_for :publisher do |ff| %>
+      <%#= ff.radio_button :exclude_new_publishers_from_distribution, false %>
+      <!--Automatically make my deals available to them-->
+      <%#= ff.radio_button :exclude_new_publishers_from_distribution, true %>
+      <!--Do not automatically make my deals available to them-->
+      <%# end %>
+      <!--</fieldset>-->
+
+      <input type="submit" class="submit" value="Save">
+  <% end %>
+
+  <%= button_to('Cancel', edit_publisher_path(@publisher), :method => :get).html_safe %>
+
+  <br/>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    Event.observe(window, 'load', function() {
+        var context = $("publishers_to_exclude_from_distribution");
+
+        context.select("a.select_all").first().observe('click', function() {
+            $(this).up('form').select('input[type=checkbox]').each(function(e) { e.writeAttribute('checked'); } );
+            return false;
+        });
+        context.select("a.select_none").first().observe('click', function() {
+            $(this).up('form').select('input[type=checkbox]').each(function(e){ e.writeAttribute('checked', false); });
+            return false;
+        });
+        context.select('a.reset').first().observe('click', function() {
+            window.location.reload();
+        });
+    });
+</script>

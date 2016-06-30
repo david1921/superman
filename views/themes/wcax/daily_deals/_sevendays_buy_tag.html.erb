@@ -1,0 +1,22 @@
+<tr valign="top">
+	<td>
+		<%= image_tag("http://#{daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/sevendays_buy_left.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 103, :width => 18) %>
+	</td>
+	<td>
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr valign="middle">
+				<td style="background-color: #b9b309; color: #fff;height: 73px;font-size: 28px; line-height: 28px; text-align:center; width:88px;">
+					<%= "From " if daily_deal.daily_deal_variations.present? %><%= formatted_price_for(daily_deal.price_to_display) %>
+				</td>
+				<td>
+					<a href="<%= daily_deal_url(daily_deal) %>"><%= image_tag("http://#{daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/sevendays_buy_button.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 73, :width => 128) %></a>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<%= image_tag("http://#{daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/email_tag_shadow.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 28, :width => 194) %>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>

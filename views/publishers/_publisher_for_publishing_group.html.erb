@@ -1,0 +1,17 @@
+<%- content_tag_for(:tr, publisher_for_publishing_group, :class => cycle("even", "odd")) do -%>
+  <td class="name">
+    <%= link_to(publisher_for_publishing_group.name, publisher_advertisers_path(publisher_for_publishing_group)) %>
+  </td>
+  <td class="label">
+    <%= publisher_for_publishing_group.label %>
+  </td>
+  <td class="users right">
+    <%= publisher_for_publishing_group.users.size if publisher_for_publishing_group.users.present? %>
+  </td>
+  <td colspan="2" class="advertisers right">
+    <%= link_to(publisher_for_publishing_group.advertisers.not_deleted.size, publisher_advertisers_path(publisher_for_publishing_group)) if publisher_for_publishing_group.advertisers.present? %>
+  </td>
+  <td class="right new">
+    <%= link_to("New", new_publisher_advertiser_path(publisher_for_publishing_group)) %>
+  </td>
+<%- end -%>

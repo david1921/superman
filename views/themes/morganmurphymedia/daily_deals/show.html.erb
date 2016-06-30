@@ -1,0 +1,148 @@
+<div id="leftcol">
+	<div class="box main"><!--TOP LEFT BOX-->
+		<h1>TODAY'S DEAL: <span id="value_prop"><%= @daily_deal.value_proposition %></span></h1>
+		<div class="left">
+			<div id="action">
+				<div id="price"<%= " class=variation" if !@daily_deal.daily_deal_variations.blank? %>><% if !@daily_deal.daily_deal_variations.blank? -%><em>From</em><% end %><%= number_to_currency(@daily_deal.price_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %></div>
+				<% if @daily_deal.sold_out? -%>
+				<div id="sold_out" class="dd_button">Sold Out</div>
+				<% elsif @daily_deal.over? -%>
+				<div id="deal_over" class="dd_button">Deal Over</div>
+				<% elsif @daily_deal.active? -%>
+				<a id="buy_now_button" class="dd_button<%= " dd_variations_button" if !@daily_deal.daily_deal_variations.blank? %>" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>">BUY NOW!</a>
+				<div id="deal_over" class="dd_button unavailable" style="display:none;">Deal Over</div>
+
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+				  		<%= render :partial => with_theme("shared/dd_variations_menu") %>
+				  	<% end %>
+
+				<% else -%>
+				<div id="not_yet" class="dd_button">Coming Soon</div>
+       			<% end -%>
+
+			</div>
+			<!-- shared/varation_delay.js is a patch for the buy button when variations are active -->
+			<%= render :partial => 'shared/variation_delay.js' %>
+			<div id="value">
+				<div>VALUE:
+					<span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display, @daily_deal.currency_symbol) %></span>
+				</div>
+				<div>TODAY'S DEAL:
+					<% if !@daily_deal.daily_deal_variations.blank? -%>
+						<span class="variation">From</span>
+					<% end %>
+					<%= formatted_price_for(@daily_deal.price_to_display) %>
+				</div>
+				<div class="red">YOU SAVE: <span id="daily_deal_savings"><%= formatted_price_for(@daily_deal.savings_to_display, @daily_deal.currency_symbol) %></span>
+				</div>
+			</div>
+			<h2 id="sub_head"><%= @daily_deal.value_proposition_subhead %></h2>
+		</div>
+		<div id="dealphoto"><img src="<%= @daily_deal.photo.url(:standard) %>" alt="" /></div>
+		<div id="status">
+			
+			<span>Time left to buy: 
+				<% if @daily_deal.sold_out? -%>
+				  <span>Sold Out</span>
+				<% elsif @daily_deal.over? -%>
+				  <span>Deal is Over</span>
+				<% elsif @daily_deal.active? -%>
+				  <span id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></span>				  
+				<% else -%>
+				  <span>Not Yet Available</span>
+				<% end -%>
+			</span>
+			
+			<span>
+			<% if @daily_deal.number_sold > 24 %>
+				Deals Sold: <span id="deals_sold"><%= @daily_deal.number_sold %></span>
+			<% end %>
+			</span>
+			
+			
+			
+			<span id="share"><span>share this deal:</span> <a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" class="share_link share_button_mail"><img src="/themes/morganmurphymedia/images/buttons/email.png" alt="email" width="21" height="21" /></a> <a href="<%= facebook_daily_deal_path(@daily_deal) %>" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/<%= @daily_deal.id %>/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/morganmurphymedia/images/buttons/facebook.png" width="21" height="21" alt="share on facebook" /></a> <a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_link share_button_twitter"><img src="/themes/morganmurphymedia/images/buttons/twitter.png" width="21" height="21" alt="share this on twitter" /></a></span>
+		</div>
+	</div><!--/TOP LEFT BOX-->
+	
+	<div class="box pad"><!--DESCRIPTION BOX-->
+		<h3>Description</h3>
+		<img id="advertiser_logo" src="<%= @advertiser.logo.url %>" alt="<%= @daily_deal.advertiser.name %>" />
+		<%= @daily_deal.description.try :html_safe %>
+		
+		<div class="details">
+			<div id="highlights" class="cols">
+				 <% if @daily_deal.highlights.present? %>
+				 <h4>Highlights</h4>
+				 <%= @daily_deal.highlights.try :html_safe %>
+				 <% end %>
+			</div>
+			<div id="fine_print" class="cols">
+				  <% if @daily_deal.terms.present? %>
+				 <h4>Deal Details</h4>
+				 <%= @daily_deal.terms.try :html_safe %>
+			 	<% end %>
+			</div>
+		</div>
+		
+	</div><!--/DESCRIPTION BOX-->
+	
+	
+	<div class="clear">
+		<div class="box loc"><!--LOCATION BOX-->
+			
+			<div id="advertiser">
+			  <h3 class="advertiser_name"><%= @daily_deal.advertiser.name %></h3>
+			
+			
+			  <% if @daily_deal.advertiser.website_url.present? %>
+			  <span><a href="<%= @daily_deal.advertiser.website_url %>">Visit Website</a></span>
+			  <% end %>
+			
+			  <% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+			  <div class="location_container" style="<% if idx > 3 %>display:none<% end %>">                   
+				<p>
+				<% if store.address_line_1.present? %>
+				  <span><%= store.address_line_1 %></span>
+				<% end %>
+				<% if store.address_line_2.present? %>
+				  <span><%= store.address_line_2 %></span>
+				<% end %>
+			
+				<% if store.city.present? and store.state.present? and store.zip.present? %>
+				  <span><%= store.city %>, <%= store.state %> <%= store.zip %></span>
+				<% end %>
+				<% if store.formatted_phone_number.present? %>
+				  <span><%= store.formatted_phone_number %></span>
+				<% end %>
+				<% if store.address.present? %>
+				  <a  id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank">Get Map/Directions &raquo;</a>
+				<% end %><br />
+				</p>
+			  </div><!-- /location_container -->
+			  <% end %>
+			
+			  <% if @daily_deal.advertiser.stores.size > 3 %>
+			  <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+			  <% end %>
+	
+			</div><!-- /advertiser -->
+
+			
+		</div><!--/LOCATION BOX-->
+		
+		<%=render :partial => with_theme("shared/sponsor_logos") %>
+	
+	</div>
+	
+</div>
+
+<div id="rightcol">
+	
+	<%= render :partial => with_theme("shared/sidedeals") %>
+	
+	<%= render :partial => with_theme("shared/facebook") %>
+
+
+
+</div>

@@ -1,0 +1,22 @@
+<li class="content_box all_deal_wrap other_deal_tracking">      
+    <%= render :partial => with_theme('daily_deals/categories'), :locals => {:daily_deal => daily_deal} %>
+    <div class="side_deal_thumb"><a href="<%= Drop::DailyDeal.new(daily_deal).url %>"><img src="<%= daily_deal.photo.url(:thumbnail) %>" alt="<%= daily_deal.advertiser.name %>" /></a></div><!-- /side_deal_thumb -->
+    <div class="more_deal_info info_overlay">
+	   <p class="side_deal_value_prop">
+	       <a class="side_deal" href="<%= Drop::DailyDeal.new(daily_deal).url %>" target="_blank">
+                <% if daily_deal.side_deal_value_proposition.present? %>
+                    <%= daily_deal.side_deal_value_proposition %>
+                <% else %>
+                    <%= daily_deal.value_proposition %>	
+                <% end %> 
+                <% if daily_deal.advertiser.store.present? %> 
+                <% if daily_deal.advertiser.store.city.present? %> 
+                    in <span class="store_city"><%= daily_deal.advertiser.store.city %></span>
+                <% end %>
+                <% end %>
+            </a>	
+        </p>
+        <a class="view_deal button gradient" href="<%= Drop::DailyDeal.new(daily_deal).url %>" name="View Deal">View</a>
+    </div><!-- /side_deal_info -->
+	<div class="clear"></div>
+</li><!-- /side_deals -->

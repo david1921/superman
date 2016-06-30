@@ -1,0 +1,6 @@
+<% if @publisher.enable_daily_deal_referral %>
+<div id="refer_friend" class="content_box three_col">
+		<h2 class="refer">Get <%= formatted_price_for(@publisher.daily_deal_referral_credit_amount, @publisher.currency_symbol) %></h1>
+		<p><a id="refer_button" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>" class="button gradient refer_a_friend_tracking">Refer a Friend</a></p>
+</div><!-- /refer_friend -->
+<% end %>

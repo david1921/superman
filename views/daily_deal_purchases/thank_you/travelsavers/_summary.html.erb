@@ -1,0 +1,31 @@
+<div class="wide">
+  <div id="product_name_wrapper">
+    <strong>Vacation Summary:</strong>
+    <span id="product_name"><%= @booking.product_name %></span>
+  </div>
+
+  <div id="product_provider_wrapper">
+    <strong>Vacation Provider:</strong>
+    <span id="provider_name"><%= @booking.provider_name %></span>
+  </div>
+
+  <div id="product_date_wrapper">
+    <strong>Vacation Date:</strong>
+    <span id="product_date"><%= @booking.formatted_product_date %></span>
+  </div>
+
+  <div id="subproduct_name_wrapper">
+    <strong>Accommodation:</strong>
+    <span id="subproduct_name"><%= @booking.subproduct_name %></span>
+  </div>
+
+  <div id="total_charges_wrapper">
+    <strong>Total:</strong>
+    <span id="total_charges"><%= @booking.total_charges %></span>
+  </div>
+
+  <div id="confirmation_number_wrapper">
+    <strong>Booking Reference:</strong>
+    <span class="hlight" id="confirmation_number"><%= @booking.confirmation_number %></span>
+  </div>
+</div>

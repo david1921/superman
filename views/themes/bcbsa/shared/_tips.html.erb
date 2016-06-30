@@ -1,0 +1,25 @@
+<div id="tips">
+ <% if @daily_deal.custom_1.present? %>
+ <div id="tips_label">
+ 	<h4><%= t(:Blue365) %> <span><%= t(:SAYS) %>:</span></h4>
+ 	<span id="bubble_point"></span>
+ </div>
+ <div id="tips_bubble">
+	<div id="tip_bubble_row1">
+ 		<img src="/themes/bcbsa/images/graphics/tip_swirl_top.png" />
+ 	</div>
+ 	<div id="tip_bubble_row2">
+ 		<div class="">
+ 			<% if @daily_deal.custom_1.length < 120 %>
+ 				<p class="small_tip"><%= @daily_deal.custom_1 %></p>
+ 			<% else %>
+ 				<p class="big_tip"><%= @daily_deal.custom_1 %></p>
+ 			<% end %>
+ 		</div>
+	 </div>
+ 	<div id="tip_bubble_row3">
+ 		<img src="/themes/bcbsa/images/graphics/tip_swirl_bottom.png" />
+ 	</div>
+ </div>
+ <% end %>
+</div>

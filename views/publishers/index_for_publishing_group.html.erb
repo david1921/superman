@@ -1,0 +1,17 @@
+<table cellspacing="0" summary="publishers" class="publishers">
+  <tr>
+    <th class="name">Name</th>
+    <th class="label">Label</th>
+    <th class="users right">Users</th>
+    <th class="advertisers right" colspan="2">Advertisers</th>
+    <th></th>
+  </tr>
+
+  <%= render(:partial => "publisher_for_publishing_group", :collection => @publishers.sort_by(&:name)) %>
+
+  <% if @publishers.empty? -%>
+    <tr>
+      <td colspan="9" style="text-align: center;">There are no publishers assigned to this group</td>
+    </tr>
+  <% end -%>
+</table>

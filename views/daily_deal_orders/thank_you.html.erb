@@ -1,0 +1,26 @@
+<% set_daily_deal_page_title_slug "Thank You" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">Thank You</h1>
+    <p>
+      Your order has been processed,
+      and a <strong>confirmation email is on its way to you</strong> with your
+      <%= @daily_deal_order.quantity > 1 ? "certificates" : "certificate" %>
+      attached. You can also download your  <%= @daily_deal_order.quantity > 1 ? "certificates" : "certificate" %> now
+      by visiting your <%= link_to "My Deals", daily_deal_download_url(@daily_deal_order) %> page.
+    </p>
+    <h3>Where to go from here?</h3>
+      <ul>
+        <li><%= link_to "View your orders", daily_deal_download_url(@daily_deal_order) %></li>
+        <li><%= link_to "Back to the Deal", public_deal_of_day_path(@daily_deal_order.publisher.label) %></li>
+        <% if @publisher.enable_daily_deal_referral? && 
+          !(@publisher.daily_deal_referral_message.blank? || @publisher.daily_deal_referral_message_head.empty?) %>
+        <li><%= link_to @publisher.daily_deal_referral_message, "/publishers/#{ @publisher.id }/consumers/refer_a_friend" %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% if File.exists?("#{Rails.root}/app/views/themes/#{@publisher.label}/daily_deal_orders/_conversion.html.erb") -%>
+    <%= render :partial => "themes/#{@publisher.label}/daily_deal_orders/conversion" %>
+  <% end -%>
+</div>

@@ -1,0 +1,12 @@
+<div id="credit_card_logos">
+  <% if daily_deal_purchase.publisher.currency_code == "GBP" %>
+    <%= image_tag "gbp_credit_card_logos.png" %>
+  <% else %>
+    <%= image_tag "credit_card_logos.png" %>
+  <% end %>
+  <div id="secure">
+    <%= image_tag "lock_48.png" %>
+    <br/>
+    <strong><%=t 'secure' %></strong>
+  </div>
+</div>

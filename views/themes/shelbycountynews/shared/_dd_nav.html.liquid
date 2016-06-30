@@ -1,0 +1,12 @@
+<ul id="dd_nav">
+	<li><a href="{{ publisher.todays_daily_deal_path }}" class="first {% if_page_name 'publishers#deal_of_the_day'%}current_page{%endif_page_name%}">Today's Deal</a></li>
+	<li><a href="{{ publisher.how_it_works_path }}" class="{% if_page_name == 'daily_deals#how_it_works'%}current_page{%endif_page_name%}">How it Works</a></li>
+	<li><a href="{{ publisher.feature_your_business_path }}" class="{% if_page_name == 'daily_deals#feature_your_business'%}current_page{%endif_page_name%}">Feature Your Business</a></li>
+	<li><a href="{{ publisher.faq_path }}" class="{% if_page_name == 'daily_deals#faqs'%}current_page{%endif_page_name%}">FAQ</a></li>
+	<li><a href="{{ publisher.contact_path }}" class="{% if_page_name == 'daily_deals#contact'%}current_page{%endif_page_name%}">Contact Us</a></li>
+  {% if daily_deal %}
+  {% if daily_deal.active? %}
+    <li><a href="{{ daily_deal.buy_now_path }}" class="last {% if_page_name == 'daily_deal_purchases#new'%}current_page{%endif_page_name%}">Buy Now</a></li>
+  {% endif %}
+  {% endif %}
+</ul><!-- /dd_nav -->

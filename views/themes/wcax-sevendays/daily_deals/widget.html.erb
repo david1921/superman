@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+	<head>
+		<link rel="stylesheet" href="/themes/wcax-sevendays/stylesheets/widget.css" type="text/css" />
+		<script type="text/javascript" src="/themes/wcax-sevendays/javascripts/iframe.resizer.js"></script>
+	</head>
+	<body>
+		<div id="widget">
+			<%= image_tag("/themes/wcax-sevendays/images/widget/top.png", :style => "display:block;", :alt => "Sevendays Widget Top", :class => "widget_image", :border => 0, :width => 300) %>
+			<% unless @daily_deals.empty? %>
+				<% @daily_deals.each do |daily_deals| %>
+				<div id="side_deal">
+					<div class="side_deal_proposition">
+						<h4><a href="<%= daily_deal_url(daily_deals) %>" target="_blank"><%= daily_deals.advertiser.name %></a></h4>
+						<h5><a href="<%= daily_deal_url(daily_deals) %>" target="_blank"><%= daily_deals.value_proposition %></a></h5>
+					</div>
+					<div id="side_deal_photo_wrap">	
+						<div id="side_deal_photo">
+							<a href="<%= daily_deal_url(daily_deals) %>" target="_blank"><img src="<%= daily_deals.photo.url(:facebook) %>" width="130"></a>
+						</div>
+						<div id="buy_button">
+							<a href="<%= daily_deal_url(daily_deals) %>" target="_blank">BUY</a>
+						</div>
+					</div>
+				</div>
+				<% end %>
+			<% end %>
+			<div clss="clear"></div>
+			<%= render :partial => with_theme("shared/flash_messages") %>
+			<div id="signup_form">
+				<h4>Sign up for email alerts:</h4>
+				<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<fieldset>
+            <input name="redirect_to" value="<%= verifiable_url(daily_deals_public_index_path(@publisher.label, :per_page => 6)) %>" type="hidden" />
+					</fieldset>
+					<fieldset>
+						<input id="subscriber_email" name="subscriber[email]" size="30" type="text" placeholder="Enter your email address here" />
+						<input type="submit" class="sign_up button_gradient" value="Submit" onclick="this.form.target='_blank';return true;" />
+					</fieldset>
+				</form>
+			</div>
+		</div>		
+		<script type="text/javascript">function load() {XD.postHeight();} window.onload = load;</script>
+	</body>
+</html>

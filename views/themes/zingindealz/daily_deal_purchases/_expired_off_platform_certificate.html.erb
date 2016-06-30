@@ -1,0 +1,17 @@
+<tr>
+  <% if expired_off_platform_certificate.present? %>
+      <td class="description">
+        <%= expired_off_platform_certificate.line_item_name %>
+      </td>
+      <td class="serial_number">-</td>
+      <td class="recipient">
+        <%= truncate(expired_off_platform_certificate.redeemer_names, :length => 30) %>
+      </td>
+      <td class="expired_on"><%= expired_off_platform_certificate.humanize_expires_on %></td>
+      <td class="status">
+        <%= print_daily_deal_purchase_link(expired_off_platform_certificate) %>
+      </td>
+  <% else %>
+      <td colspan="4"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

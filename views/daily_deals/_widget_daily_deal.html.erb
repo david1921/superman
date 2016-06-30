@@ -1,0 +1,32 @@
+<div>
+  <h3><%= widget_daily_deal.start_at.to_s(:long_month_and_year) %></h3>
+  <table cellspacing="0" class="deal">
+    <tr>
+      <td rowspan="2">
+        <%= link_to image_tag(widget_daily_deal.photo.url(:facebook)), publisher_daily_deal_path(widget_daily_deal.publisher, widget_daily_deal) %>
+      </td>
+      <td class="value_proposition">
+        <h2><%= link_to widget_daily_deal.value_proposition, publisher_daily_deal_path(widget_daily_deal.publisher, widget_daily_deal) %></h2>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table cellspacing="0" class="dashboard">
+          <tr>
+            <th class="even">Regular Price</th>
+            <th class="odd">Save</th>
+            <th class="even">Sale Price</th>
+            <th class="odd">Purchased</th>
+          </tr>
+          <tr>
+            <td class="even"><%= number_to_currency widget_daily_deal.value, :precision => 0, :unit => widget_daily_deal.currency_symbol %></td>
+            <td class="odd"><%= number_to_percentage widget_daily_deal.savings_as_percentage, :precision => 0 %></td>
+            <td class="even"><%= number_to_currency widget_daily_deal.price, :precision => 0, :unit => widget_daily_deal.currency_symbol %></td>
+            <td class="odd"><%= widget_daily_deal.number_sold %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </div>
+  </table>
+</div>

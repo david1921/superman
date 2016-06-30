@@ -1,0 +1,33 @@
+<% benchmark "View offers/_categories", :silence => true do -%>
+  <div id="categories">
+    <h3>Categories</h3>
+    <ul id="cococategories" class="<%= "many " if @publisher_categories.size > 24 %><%= "with_subcategories" if @publisher.subcategories? %>">
+       <li style="list-style: none"><%= link_to "Featured Offers",
+              render_public_offers_path(@publisher, {
+                :featured         => true,
+                :background_color => @background_color,
+                :category_id      => nil,
+                :city             => @city,
+                :foreground_color => @foreground_color,
+                :iframe_height    => params[:iframe_height],
+                :iframe_width     => params[:iframe_width],
+                :layout           => @layout,
+                :page_size        => params[:page_size],
+                :state            => @state
+              }) %></li>
+      <li style="list-style: none"><%= link_to "All",
+              render_public_offers_path(@publisher, {
+                :background_color => @background_color, 
+                :category_id      => nil,
+                :city             => @city, 
+                :foreground_color => @foreground_color, 
+                :iframe_height    => params[:iframe_height],
+                :iframe_width     => params[:iframe_width],
+                :layout           => @layout,
+                :page_size        => params[:page_size],
+                :state            => @state
+              }) %> <strong>(<%=  @offers_count %>)</strong></li>
+  <%= render :partial => with_theme("offers/category"), :collection => @publisher_categories.sort_by(&:downcase_name) %>
+    </ul>
+  </div>
+<% end -%>

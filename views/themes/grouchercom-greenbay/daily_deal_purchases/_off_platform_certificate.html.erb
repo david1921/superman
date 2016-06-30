@@ -1,0 +1,18 @@
+<tr>
+  <% if off_platform_certificate.has_deal_information? %>
+      <td class="description"><%= off_platform_certificate.line_item_name %></td>
+      <td class="serial_number">-</td>
+      <td class="recipient">
+        <%- if (names = off_platform_certificate.redeemer_names).length > 30 -%>
+            <span title="<%= names %>"><%= truncate(names, :length => 30) %></span>
+        <%- else -%>
+            <%= names %>
+        <%- end -%>
+      </td>
+      <td class="purchased_on"><%= off_platform_certificate.humanize_created_on %></td>
+      <td class="expires_on"><%= off_platform_certificate.humanize_expires_on %></td>
+      <td class="status"><%= print_daily_deal_purchase_link(off_platform_certificate) %></td>
+  <% else %>
+      <td colspan="7"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

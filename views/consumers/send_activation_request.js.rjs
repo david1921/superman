@@ -1,0 +1,1 @@
+page[:send_activation_request_link].replace '<span class="notice">' + t(:email_resent) + '</span>'

@@ -1,0 +1,39 @@
+<% set_daily_deal_page_title_slug "Thank You" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h2>Thank You</h2>
+    <p>
+      Your order has been processed, and a confirmation email is on its way to you, with your <%= @daily_deal_purchase.quantity > 1 ? "certificates" : "certificate" %> attached.
+      You can also download your  <%= @daily_deal_purchase.quantity > 1 ? "certificates" : "certificate" %> now by visiting your
+      <%= link_to "My Deals", daily_deal_download_url(@daily_deal_purchase) %> page.
+      
+    </p>
+    <h3>Where to go from here?</h3>
+      <ul>
+        <li><%= link_to("View your orders", daily_deal_download_url(@daily_deal_purchase)) %></li>
+        <li><%= link_to("Back to the Deal", public_deal_of_day_path(@daily_deal_purchase.publisher.label)) %></li>
+      </ul>
+  </div>
+</div>
+<!-- Google Code for Subscribe Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1016966109;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "AO3UCJuS3AEQ3df25AM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript"
+src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt=""
+src="http://www.googleadservices.com/pagead/conversion/1016966109/?label=AO3UCJuS3AEQ3df25AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+

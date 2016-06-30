@@ -1,0 +1,39 @@
+<div class="left_column">
+  <% form_for [@daily_deal, @daily_deal_variation], :html => {:multipart => true} do |f| %>
+    <%= f.error_messages %>
+
+    <% if (@daily_deal.source || @daily_deal).pay_using?(:travelsavers) %>
+        <%= f.text_field_div :travelsavers_product_code, "Travelsavers Product ID:", :required => true, :disabled => !travelsavers_product_code_is_editable?(@daily_deal, @daily_deal_variation) %>
+    <% end %>
+    <%= f.text_field_div :value_proposition, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :value_proposition_subhead, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :voucher_headline, nil, :disabled => @daily_deal_variation.syndicated? %>
+
+    <%= f.text_field_div :value, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :price, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :listing, nil, :disabled => @daily_deal_variation.syndicated? %>
+
+    <%= f.text_field_div :affiliate_url, nil, :disabled => @daily_deal_variation.syndicated? %>
+
+    <%= f.text_field_div :quantity, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :min_quantity, nil, :disabled => @daily_deal_variation.syndicated? %>
+    <%= f.text_field_div :max_quantity, nil, :disabled => @daily_deal_variation.syndicated? %>
+    
+    <%= f.select_div :certificates_to_generate_per_unit_quantity,
+        5.times.map { |i| [pluralize(i + 1, "voucher"), i + 1] },
+        { :label_text => "Arrives as:" },
+        { :disabled => !@daily_deal.certificates_to_generate_per_unit_quantity_can_be_edited? } %>
+
+    <%= f.file_field_div(:bar_codes_csv, "Bar Codes CSV:", :disabled => @daily_deal_variation.syndicated?) %>
+    <%= f.select_div(:bar_code_encoding_format, DailyDealVariation.allowed_bar_code_encoding_formats, {}, :disabled => @daily_deal_variation.syndicated?) %>
+    <%= f.check_box_div(:allow_duplicate_bar_codes, nil, :disabled => @daily_deal_variation.syndicated?) %>
+    <%= f.check_box_div(:delete_existing_unassigned_bar_codes, nil, :disabled => @daily_deal_variation.syndicated?) %>
+
+    <%= f.text_area_div :terms, "Terms", :rows => 4, :disabled => @daily_deal_variation.syndicated? %>
+
+    <div class="buttons">
+      <%= button_to_function "Cancel", "window.location.href = '#{edit_daily_deal_path(@daily_deal)}'", :class => "left" %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end %>
+</div>

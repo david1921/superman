@@ -1,0 +1,33 @@
+<div class="content_box">
+		<div id="subscribe_header">
+		<h1>GET FREE DEAL OF THE DAY ALERTS!</h1>
+		<h2>Register to receive Free Daily Deal alerts.</h2>
+	</div><!-- end subscribe_header -->
+	
+	<div id="subscribe_form">
+		<form action="/publishers/<%= @publisher.id %>/daily_deal_subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" id="authenticity_token">
+			<fieldset>
+				<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+			</fieldset>
+			<fieldset>
+				<input id="consumer_name" name="consumer[name]" size="30" type="text" placeholder="Name" >
+				<input id="subscriber_email" name="subscriber[email]" size="30" type="text" placeholder="Email Address" />	
+				<input id="subscriber_zip" name="subscriber[zip_code]" size="30" type="text" placeholder="Zip Code" />
+        <%= market_selection(@publisher, :field_name => "subscriber[market_publisher_id]",
+                                         :include_blank => true,
+                                         :blank_text => "City",
+                                         :launched_only => false,
+                                         :use_ids => true) %>
+			</fieldset>
+			<fieldset class="sign_up">
+				<input type="submit" id="sign_up" class="button gradient" value="Subscribe"/>
+        <div class="terms_checkbox">
+          <input name="subscriber[terms]" value="0" type="hidden" />
+          <input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" />
+          <p> I agree to the <%= daily_deals_terms_link(@publisher) %> and <%= daily_deals_privacy_link(@publisher) %></a></p>
+       </div>
+			</fieldset>
+		</form>
+	</div><!-- /subscribe_form -->
+</div><!-- end content_box -->

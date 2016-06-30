@@ -1,0 +1,24 @@
+<% set_daily_deal_page_title_slug "My Deals" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <h1 class="content">MIS OFERTAS</h1>
+    
+    <% if @daily_deal_purchases.blank? %>
+      <p>Usted a&uacute;n no ha comprado ninguna oferta semanal.</p>
+    <% else %>
+      <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase" cellspacing="0">
+        <tr>
+          <th class="description">Descripci&oacute;n</th>
+          <th class="quantity">Cantidad</th>
+          <th class="recipient">Destinatario</th>
+          <th class="purchased_on">Comprado el dia</th>
+          <th class="expires">Se vence en</th>
+          <th class="status"></th>
+        </tr>
+        <%= render(@daily_deal_purchases) %>
+      </table>
+    <% end %>
+  </div>
+</div>
+

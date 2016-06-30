@@ -1,0 +1,46 @@
+<% set_daily_deal_page_title_slug "Sign In" %>
+<div class="page_row">
+	<div class=" login prefix_2 page_column_8 suffix_2 first rounded_corners">
+		<% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+		<%= render :partial => "login_message", :locals => {:message => @publisher.account_sign_up_message }  %>
+		<% end %>
+
+		<% if params && params[:market_label].present?
+    create_account_path = new_publisher_consumer_for_market_path(@publisher, :market_label => params[:market_label])
+    forgot_password_path = new_publisher_consumer_password_reset_for_market_path(@publisher, :market_label => params[:market_label])
+  else
+    create_account_path = new_publisher_consumer_path(@publisher)
+    forgot_password_path = consumer_password_reset_path_or_url(@publisher)
+  end %>
+		<div class="login_header">
+			<p><%= raw(t('.sign_in_or_create_message', :href => link_to(t(:create_an_account), create_account_path))) %></p>
+		</div>
+    <div id="login_form">
+      <% if flash.any? and !%w(wcax-vermont wcax-jumpaways wcax-adirondacks).include?(@publisher.label) %>
+      <!-- Be aware that there are tests that check for this message -->
+        <div class="reset-password-message">
+          <span>We've upgraded!</span> To reset your password, please click <%= link_to("here", consumer_password_reset_path_or_url(@publisher)) %>.<br/> Please let us know if you need assistance by using <%= link_to("this form", "http://www.myjumponit.com/contact.html") %> and we would be glad to help!
+        </div>
+      <% end %>
+			<% form_for :session, :url => { :action => :create } do |f| -%>
+			<%= f.text_field_div :email, t(:email) %>
+			<%= f.password_field_div :password, t(:password) %>
+			<%= f.check_box_div :remember_me_flag, t(:remember_me) %>
+			<div class="row button_row">
+				<%= submit_tag t(:sign_in), :name => "sign_in", :id => "sign_in_button" %> <%= daily_deal_cancel_link(@publisher) %>
+			</div>
+			<% end -%>
+		</div>
+		<p><%= raw(t('.reset_password_message', :href => link_to(t(:reset_your_password), forgot_password_path))) %></p>
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+	Event.observe(window, 'load', function() {
+		if($('session_email') && $F('session_email') == "") {
+			$('session_email').activate();
+		} else {
+			$('session_password').activate();
+		}
+	});
+
+</script>

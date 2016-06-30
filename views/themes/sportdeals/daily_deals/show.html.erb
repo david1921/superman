@@ -1,0 +1,56 @@
+	<div class="clear"></div>
+	<div id="main_column">
+		<div class="content_box"><!-- deal info top row -->
+			<h1 id="value_prop"><%= @daily_deal.value_proposition %></h1>
+                <div id="deal_photo"><img src="<%= @daily_deal.photo.url %>" alt="<%= @advertiser.name %>" /></div>
+				<div id="dashboard"><!--dashboard -->
+					<div id="price_tag">
+					<p id="daily_deal_price"><%= formatted_price_for(@daily_deal.price) %></p>
+						<div id="buy_now">
+						<% if @daily_deal.sold_out? %>
+							<div id="sold_out" class="dd_button"><span>Sold Out</span></div>
+						<% elsif @daily_deal.over? %>
+							<div id="deal_over" class="dd_button"><span>Deal Over</span></div>
+						<% elsif @daily_deal.active? %>
+							<a id="buy_now_button" class="dd_button" href="<%= new_daily_deal_daily_deal_purchase_path(@daily_deal) %>" name="buy_now_button"><span>Buy Now</span></a>
+							<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+						<% else %>
+							<div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>
+						<% end %>
+						</div><!-- /buy_now -->
+					</div><!-- /price_tag -->
+				<div id="deal_specs">
+					<table id="value_summary">
+					<tr>
+					<th>Value</th>
+					<th>Cost</th>
+					<th class="savings">Savings</th>
+					</tr>
+					<tr>
+					<td><%= formatted_price_for(@daily_deal.value) %></td>
+					<td><%= formatted_price_for(@daily_deal.price) %></td>
+					<td class="savings"><%= number_to_percentage(@daily_deal.savings_as_percentage, :precision => 0) %></td>
+					</tr>
+					</table>
+					<table id="timer">
+					<tr>
+					<th id="time_left_to_buy_label">Time Left<br /> to Buy</th>
+					<th id="clock" rowspan="2"></th>
+					<td id="time_left_to_buy"><%= @daily_deal.time_remaining_display %></td>
+					</tr>
+					</table><!-- /timer -->
+				</div><!-- /deal_specs -->
+				</div><!-- /dashboard -->
+			<div class="clear"></div>
+		</div><!-- /deal info top row -->
+		<div><!-- deal info bottom row -->
+		<%= render :partial => with_theme("shared/deal_tab_content") %>
+		</div><!-- /deal info bottom row -->
+	</div><!-- /main_column -->
+	<%= render :partial => with_theme("shared/side_bar") %>
+	
+	<div id="ads">
+		<%= render :partial => with_theme("shared/footer_refer_friend") %>
+		<div id="middle"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>"><img src="/themes/sportdeals/images/graphics/ad-feature.png" alt="Feature Your Business on sportdeals.com" /></a></div>
+		<div><img src="/themes/sportdeals/images/graphics/ad-sportdeals.jpg" alt="Your ad here" /></div>
+	</div>

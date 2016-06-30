@@ -1,0 +1,252 @@
+<div class="left_column">
+  <% form_for @advertiser, :html => { :multipart => true } do |f| -%>
+    <%= error_messages_for(:advertiser) %>
+    <%= hidden_field_tag :publisher_id, @advertiser.publisher_id %>
+
+    <%= f.text_field_div(:name, nil, :required => true) %>
+
+    <%= f.select_div :status, options_for_select(Advertisers::Status::STATUSES.map { |s| [s.to_s.capitalize, s.to_s] }, @advertiser.status) if full_admin? && @publisher.try(:enable_advertiser_statuses?) %>
+
+<%- if @advertiser.publisher.uses_paychex? && !@advertiser.new_record? -%>
+  <%= f.text_field_div(:id, "Advertiser ID", :disabled => true) %>
+<%- end -%>
+<%- if @advertiser.listing? && !current_user.advertiser? -%>
+    <%= f.text_field_div(:listing, "Publisher Advertiser ID", :required => true) %>
+<%- end -%>
+
+<% unless "standard" == @advertiser.publisher.theme -%>
+    <%= f.text_field_div(:tagline) %>
+<% end %>
+
+    <% if @advertiser.publisher.enable_google_offers_feed? %>
+      <%= f.text_area_div :description, "Merchant Description:", :help => "Required by Google Offers feed. The 'story' behind a merchant." %>
+    <% end %>
+    <div class="row">
+      <div class="label"><%= f.label :logo %></div>
+      <div class="input">
+        <% if @advertiser.logo.file? -%>
+          <%= image_tag @advertiser.logo.url(:normal), :id => "advertiser_logo_image" %>
+          <p class="delete_link" id="advertiser_logo_delete_link">
+            <%= link_to_remote "Delete Logo",
+                               :url => clear_logo_advertiser_path(@advertiser),
+            :confirm => "Really delete this logo?"
+         %></p>
+        <% end -%>
+        <%= f.file_field(:logo, :style => "display: #{@advertiser.logo.file? ? "none" : "visible" }") %>
+      </div>
+    </div>
+
+    <div class="row" id="facebook_message">
+      <% if @advertiser.logo.file? -%>
+        <% if @advertiser.logo_facebook_width && @advertiser.logo_facebook_height -%>
+          <% if !@advertiser.logo_dimension_valid_for_facebook? -%>
+          <p>Facebook logo dimensions of <%= @advertiser.logo_facebook_width %> px wide and <%= @advertiser.logo_facebook_height %>
+            px high are invalid.</p>
+
+          <p>The logos's width or height must be at least 50 pixels, and cannot exceed 130x110 pixels. The ratio of both height divided
+            by width and width divided by height (w / h, h / w) cannot exceed 3.0. For example, an image of 126x39 pixels will not be
+            displayed, as the ratio of width divided by height is greater than 3.0 (126 / 39 = 3.23).</p>
+          <% end -%>
+        <% else -%>
+        <p>No Facebook version of this logo</p>
+        <% end -%>
+      <% end -%>
+    </div>
+
+    <%= f.text_div(:subscription_name, "Subscription:") if @advertiser.paid? %>
+    <%= f.check_box_div(:used_exclusively_for_testing) %>
+    <%= f.text_field_div(:website_url, "Website URL:") %>
+    <%= f.text_field_div(:email_address) %>
+    <%= f.text_field_div(:google_map_url, "Google Map URL:") if admin? %>
+    <%= f.check_box_div(:do_not_show_map) %>
+
+    <div class="row check_box">
+      <h3>Coupon Modes</h3>
+    </div>
+
+    <% Advertiser::RECOGNIZED_COUPON_CLIPPING_MODES.each do |mode| -%>
+      <% unless @advertiser.publisher.excludes_clipping_via(mode) -%>
+        <div class="row check_box">
+          <%= check_box_tag("advertiser[coupon_clipping_modes][]", mode, @advertiser.allows_clipping_via(mode)) %>
+          <label><%= mode.to_s.titlecase %></label>
+        </div>
+      <% end -%>
+    <% end -%>
+
+    <%= f.text_field_div(:call_phone_number, nil, :value => @advertiser.call_phone_number_as_entered, :help => "Required if modes include Call") unless @advertiser.publisher.excludes_clipping_via(:call) %>
+    <%= f.text_field_div(:voice_response_code) if admin? %>
+
+<% if current_user.can_manage?(@advertiser.publisher) -%>
+
+    <% if @advertiser.publisher.txt_offers_enabled? -%>
+        <%= f.text_field_div(:active_txt_coupon_limit, "Active TXT Coupon Limit:") %>
+        <%= f.text_field_div(:txt_keyword_prefix, "TXT Keyword Prefix:") %>
+    <% end -%>
+
+    <% if @advertiser.publisher.enable_sales_agent_id_for_advertisers? -%>
+      <%= f.text_field_div(:sales_agent_id) %>
+    <% end -%>
+
+    <% if @advertiser.publisher.publishing_group.try(:advertiser_financial_detail?) %>
+      <%= f.text_field_div :rep_name %>
+      <%= f.text_field_div :rep_id, "Rep ID:" %>
+      <%= f.text_field_div :merchant_name %>
+      <%= f.text_field_div :merchant_contact_name %>
+      <%= f.text_field_div :merchant_commission_percentage, "Merchant Comm. %" %>
+      <%= f.text_field_div :revenue_share_percentage %>
+      <%= f.select_div     :payment_type, [""] + Advertiser::PAYMENT_TYPES %>
+      <%= f.text_field_div :check_payable_to %>
+      <%= f.text_field_div :check_mailing_address_line_1 %>
+      <%= f.text_field_div :check_mailing_address_line_2 %>
+      <%= f.text_field_div :check_mailing_address_city %>
+      <%= f.select_div(:check_mailing_address_state, [""] + Addresses::Codes::US::STATE_CODES) -%>
+      <%= f.text_field_div :check_mailing_address_zip %>
+      <%= f.text_field_div :bank_name %>
+      <%= f.text_field_div :bank_account_number %>
+      <%= f.text_field_div :bank_routing_number %>
+      <%= f.text_field_div :name_on_bank_account %>
+      <%= f.text_field_div :federal_tax_id, "Federal Tax ID" %>
+      <%= f.text_field_div :merchant_id, "Merchant ID" %>
+    <% end -%>
+<% end -%>
+    <%= f.text_field_div(:coupon_limit, "Coupon Redemption Limit:") if admin? %>
+
+    <div class="row check_box">
+      <h3>Retail Stores</h3>
+    </div>
+
+    <div class="row">
+      <% if @advertiser.stores.many? -%>
+      <div class="label">&nbsp;</div>
+      <div class="input">
+        <%= select_tag(
+              "store_id",
+              options_from_collection_for_select(@advertiser.stores, "id", "summary", @advertiser.store.try(:id)),
+              :onchange => "storeIdChanged(this)"
+        ) %>
+      </div>
+      <% end -%>
+    </div>
+
+    <%= render(:partial => "stores/edit", :locals => { :advertiser_form => f }) -%>
+
+    <%= render :partial => with_theme("publisher_specific_fields"), :locals => {:f => f} %>
+
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{publisher_advertisers_url(@advertiser.publisher)}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+
+</div>
+
+<% unless @advertiser.new_record? %>
+  <div class="related preview" id="edit_translations_preview">
+    <%= link_to "Edit Translations For Advertiser", edit_advertiser_translations_for_locale_path(@advertiser.to_param, I18n.locale) %>
+  </div>
+
+  <div class="related preview" id="view_changes">
+    <%= link_to "View Changes", advertiser_versions_path(@advertiser.to_param) %>
+  </div>
+
+  <div class="related preview" id="view_notes">
+    <%= link_to "View Notes", advertiser_notes_path(@advertiser.to_param) %>
+  </div>
+
+  <div class="related preview" id="coupons_preview" >
+    <h3>Online Display Coupons</h3>
+    <%= render :partial => "coupon" %>
+
+    <% if @advertiser.offers.not_deleted.size > 3 %>
+        <a id="see_all_coupons" href="#" onclick="javascript:$$('div.wrapper').each(Element.show); $('see_all_coupons').hide(); return false"><strong><%= @advertiser.offers.not_deleted.size - 3 %></strong> More Coupons</a><br /><br />
+    <% end %>
+
+    <% if @advertiser.offers.not_deleted.empty? %>
+    No coupons<br />
+    <% end -%>
+
+    <%= link_to "Add New Coupon", new_advertiser_offer_path(@advertiser) %>
+  </div>
+
+  <% if @advertiser.allow_gift_certificates? -%>
+  <div class="related preview" id="certificate_preview">
+    <h3>Deal Certificates</h3>
+    <%= render :partial => "gift_certificate", :collection => @advertiser.gift_certificates.not_deleted %>
+    <% if @advertiser.gift_certificates.not_deleted.empty? -%>
+      No Deal Certificates<br />
+      <%= link_to( "Add New Deal Certificate", new_advertiser_gift_certificate_path(@advertiser) ) %>
+    <% end -%>
+  </div>
+  <% end -%>
+
+  <% if @advertiser.allow_daily_deals? -%>
+  <div class="related preview" id="daily_deals_preview">
+    <h3>Daily Deals</h3>
+    <%= render :partial => "daily_deal", :collection => @advertiser.daily_deals.not_deleted %>
+    <% if @advertiser.daily_deals.not_deleted.empty? -%>
+      No Daily Deals<br />
+      <%= link_to( "Add New Daily Deal", new_advertiser_daily_deal_path( @advertiser ) ) %>
+    <% end -%>
+  </div>
+  <% end -%>
+
+<% end -%>
+
+<% if @advertiser.publisher.txt_keyword_prefix.present? and !@advertiser.new_record? -%>
+<div class="related preview" id="txt_coupons_preview">
+  <h3>Printed TXT Coupons</h3>
+  <%= render :partial => "txt_coupon", :collection => @advertiser.txt_offers.not_deleted %>
+
+  <% if @advertiser.txt_offers.not_deleted.empty? %>
+  No TXT coupons<br />
+  <% end -%>
+
+  <%= link_to "Add New TXT Coupon", new_advertiser_txt_offer_path(@advertiser) %>
+</div>
+<% end -%>
+
+
+
+<%= focus "advertiser_name" %>
+
+<!-- START checkbox toggle scripts -->
+<%= javascript_include_tag "jquery/plugins/jquery.bgpos.js" %>
+<%= javascript_include_tag "toggle-box" %>
+<!-- END checkbox toggle scripts -->
+
+<script type="text/javascript">
+  jQuery(document).ready(function($){
+    var $parentDiv = $('#advertiser_company_registration_number').parent().parent();
+    $('.toggle-slider').live('click', function(){
+      checkToggle()
+    });
+    function checkToggle(){
+      if($('.toggle-box').is(':checked')){
+       $parentDiv.slideDown(180);
+      }else{
+        $parentDiv.slideUp(180);
+      }
+    }
+    checkToggle();
+  });
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  <!--
+  function clipCoupon(id, publisherId) {
+    window.open('/offers/' + id +  '/print?publisher_id=' + publisherId ,'_blank',
+                'height=440,width=440,resizable=yes,scrollbars=yes,status=no,menubar=no,toolbar=no,titlebar=no');
+    return false;
+  }
+
+  function cancelClipping(offerId, mode) {
+    $('offer_' + offerId + '_' + mode + '_panel').hide();
+    Effect.SlideDown('offer_' + offerId + '_front_panel');
+  }
+
+  function finishClipping(offerId) {
+    Effect.Fade('offer_' + offerId + '_confirmation_panel', { duration: 5, queue: "end" });
+    Effect.BlindDown('offer_' + offerId + '_front_panel', { duration: 0.1, queue: "end" });
+  }
+  // -->
+</script>

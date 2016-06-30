@@ -1,0 +1,92 @@
+	<ul id="deal_tabs"> 
+			<li class="current_deal_tab"><a id="tab_overview">Overview</a></li> 
+			<li style="{%unless advertiser.address?%}display:none{%endunless%}"><a id="tab_location">Location</a></li>
+			<li style="{%if daily_deal.reviews == empty %}display:none{%endif%}"><a id="tab_reviews">Reviews</a></li>
+			<li><a id="tab_comments">Comments</a></li>
+		</ul> 
+		
+		<div id="deal_tab_content" class="content_box"> 
+			<div id="tab_overview_content">
+				<div id="highlights" class="three_col">
+				     {% if daily_deal.highlights != "" %}
+				     <h2>Highlights</h2>
+				     {{ daily_deal.highlights }}
+				     {% endif %}
+				</div><div id="description" class="six_col">
+				     <h2>Description</h2>
+				     {{ daily_deal.description }}
+				     {% if daily_deal.fine_print != "" %}
+				     <h2>Fine Print</h2>
+				     {{ daily_deal.terms }}
+				     {% endif %}
+				</div>
+				</br>
+				<p><a href="{{ publisher.faq_path }}">See rules that apply to all deals.</a></p>
+
+				<div class="clear"></div>
+
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_location_content" class="deal_tab_hidden">
+				{% if advertiser.address? %}
+				<div id="advertiser_map">
+					<a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" /></a>
+				</div><!-- /map -->
+				{% endif %}
+
+				<div id="advertiser">
+					<img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+					<p class="advertiser_name">{{ advertiser.name }}</p>
+					
+					{% if advertiser.num_stores == 1 %}
+						{{ store.formatted_phone_number }}
+					{% endif %}
+					
+					{% if advertiser.website_url != empty %}
+						<a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+					{% endif %}
+					
+					{% for store in advertiser.stores %}
+						<div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                  
+							<p>
+					          {% if store.address_line_1 != empty %}
+					          <span>{{ store.address_line_1 }}</span>
+					          {% endif %}
+					          {% if store.address_line_2 != empty %}
+					          <span>{{ store.address_line_2 }}</span>
+					          {% endif %}
+					
+					          {% if store.city != empty and store.state != empty and store.zip != empty %}
+					          <span>{{ store.city }}, {{ store.state }} {{ store.zip }}</span>
+					          {% endif %}
+					          
+					          {% if store.formatted_phone_number != empty %}
+					          <span>{{ store.formatted_phone_number }}</span>
+					          {% endif %}        
+					         </p>
+						</div><!-- /location_container -->
+					{% endfor %}
+					
+					{% if advertiser.num_stores > 3 %}
+						<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+					{% endif %}
+									
+				</div><!-- /advertiser -->
+
+				<div class="clear"></div>
+			</div><!--/tab_content_location --> 
+			
+			<div id="tab_reviews_content" class="deal_tab_hidden"> 
+				 {% if daily_deal.reviews != "" %}
+				 <h2>Reviews</h2>
+				 {{ daily_deal.reviews }}
+				 {% endif %}
+			</div><!-- /tab_content_reviews --> 
+			
+			<div id="tab_comments_content" class="deal_tab_hidden"> 
+			  {% if publisher.facebook_configured? %}
+          <h2>Comments</h2>
+          {{ daily_deal | facebook_comments_div: 630 }}
+        {% endif %}        
+			</div><!-- /tab_content_notes --> 
+		</div><!--/tab content --> 

@@ -1,0 +1,46 @@
+<div class="footer" id="offer_<%= offer.id %>_footer">
+  <div class="buttons">
+    <%= link_to_function( "&#160;".html_safe,
+    "clipCoupon(#{offer.id}, #{publisher.id}); trackCouponEvent('Print', #{offer.id})",
+    :id => "print_#{offer.id}", :class => "clip btn_print", :title => "Click to print coupon", :rel => "nofollow") %>
+    <%= link_to_remote(
+          "&#160;".html_safe,
+          :url => email_offer_path(offer, :publisher_id => publisher.id),
+          :html => { :class => "email btn_email", :title => "Click to email coupon to you", :rel => "nofollow" }
+    ) if offer.advertiser.allows_clipping_via(:email) -%>
+    <%= link_to_remote(
+          "&#160;".html_safe,
+          :url => txt_offer_path(offer, :publisher_id => publisher.id),
+          :html => { :class => "txt btn_sms", :title => "Click to send coupon to you via TXT message", :rel => "nofollow" }
+    ) if offer.advertiser.allows_clipping_via(:txt) -%> 
+  <% if publisher.show_call_button? -%>
+  <div class='extrabuttons'>
+    <%= link_to_remote(
+        "&#160;".html_safe,
+        :url => call_offer_path(offer, :publisher_id => publisher.id),
+        :html => { :class => "call btn_call", :title => "Click to call #{offer.advertiser_name}", :rel => "nofollow" }
+    )  -%>
+  </div>
+  <% end -%>
+    <%= link_to(
+          "&#160;".html_safe,
+          twitter_offer_url(offer, :publisher_id => publisher.id),
+          :class => "twitter btn_twitter", :target => "_blank", :title => "Share coupon on Twitter",
+          :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+    ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+    <%= link_to( 
+          "&#160;".html_safe,
+          facebook_offer_url(offer, :publisher_id => publisher.id),
+          :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+          :class => "facebook btn_facebook",
+          :id => "offer_#{offer.id}_facebook_link",
+          :target => "_blank", 
+          :rel => "nofollow"
+      ) if publisher.show_facebook_button? -%>
+    <%= link_to("&#160;".html_safe,
+          offer.advertiser.map_url,
+          :target => "_blank", :class => "map btn_map", :title => "Click for driving directions", :rel => "nofollow",
+          :onclick => "trackCouponEvent('Map', #{offer.id})"
+    ) if publisher.link_to_map? && offer.address? %>
+  </div>
+</div>

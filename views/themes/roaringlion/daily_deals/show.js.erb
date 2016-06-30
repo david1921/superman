@@ -1,0 +1,12 @@
+define({
+	dealUrl: "<%=  daily_deal_path( @daily_deal, :format => :json ) %>",
+  buyNowConfig: {
+		buyNowButtonSelector: "#buy_now_button"
+	},
+	buyNowConfig: {
+		buyNowButtonSelector: "#dd_variations_button"
+	},
+	variationsConfig: {
+		deal_selectors: "#main_column"
+	}
+});

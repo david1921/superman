@@ -1,0 +1,20 @@
+<div id="certificates">
+  <div class="page_column_2">
+  	<div id="alldeals_header">
+			<h1>All Deals</h1>
+		</div><!-- end #alldeals_header -->
+    <% for daily_deal in @daily_deals %>
+        <%= render "themes/cyd/daily_deals/daily_deal", :daily_deal => Drop::DailyDeal.new(daily_deal) %>
+    <% end %>
+    <div style="clear:both"></div>
+    <div class=" pagination_bottom">
+	    <%= will_paginate @daily_deals, :per_page => 9 %>
+    </div>
+  </div>
+  <!-- /page_column_2 -->
+	<div id="sidebar">
+		<%= render :partial => with_theme("shared/subscribe") %>
+		<%= render :partial => with_theme("shared/refer_friend") %>
+			<%= render :partial => with_theme("shared/facebook_box") %>
+	</div><!-- end #sidebar -->
+</div><!-- /certificates -->

@@ -1,0 +1,53 @@
+<div class="page_row refer_a_friend">
+  <div class="page_column_8 first rounded_corners" id="refer_a_friend">
+    <h1><%= t('.title', :credit_amount => number_to_currency(@publisher.daily_deal_referral_credit_amount, :unit => @publisher.currency_symbol)) %></h1>
+    <p><%= t('.description', :credit_amount => number_to_currency(@publisher.daily_deal_referral_credit_amount, :unit => @publisher.currency_symbol)) %></p>
+    <ul>
+      <% referral_url = @consumer.referral_url(@publisher) %>
+      <% if referral_url.present? -%>
+        <li><%= t('.share_unique_link') %> <%= tag("input", :type => "text", :size => referral_url.size, :class => "consumer_referral_link", :value => referral_url) %></li>
+      <% end -%>
+      <li>
+        <%= mail_to(nil, image_tag("/images/buttons/email_32.png"), :body => @consumer.twitter_status(@publisher)) %>
+        <%= mail_to(nil, t(:mail_it), :body => @consumer.twitter_status(@publisher)) %>
+      </li>
+      <li>
+        <%= link_to( 
+              image_tag("/images/buttons/facebook_32.png"),
+              facebook_publisher_consumer_path(@publisher, @consumer),
+              :onclick => "return facebook_popup('#{facebook_publisher_consumer_path(@publisher, @consumer, :popup => true)}')",
+              :title => t(:facebook_share_title),
+              :target => "_blank") %>
+        <%= link_to( 
+              t(:share_it_on_facebook),
+              facebook_publisher_consumer_path(@publisher, @consumer),
+              :onclick => "return facebook_popup('#{facebook_publisher_consumer_path(@publisher, @consumer, :popup => true)}')",
+              :title => t(:facebook_share_title),
+              :target => "_blank") %>
+      </li>
+      <li>
+        <%= link_to(
+              image_tag("/images/buttons/twitter_32.png"),
+              twitter_publisher_consumer_path(@publisher, @consumer),
+              :target => "_blank",
+              :title => t(:twitter_share_title)) %>
+        <%= link_to(
+              t(:tweet_it),
+              twitter_publisher_consumer_path(@publisher, @consumer),
+              :target => "_blank",
+              :title => t(:twitter_share_title)) %>
+      </li>
+    </ul>
+  </div>
+  <%= render(:partial => with_theme("refer_a_friend_sidebar"), :locals => { :publisher => @publisher }) %>
+  <div id="bottom_spacer" class="clear">&nbsp;</div>
+</div>
+
+<% javascript_tag do %>
+$$('.consumer_referral_link').each(function(elem) {
+  elem.onclick = function() {
+    Form.Element.select(this);
+  };
+});
+<% end %>
+

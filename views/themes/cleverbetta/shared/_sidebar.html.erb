@@ -1,0 +1,11 @@
+<% if @publisher.enable_daily_deal_referral %>
+	<%= render :partial => with_theme("shared/refer_friend") %>
+<% end %>  
+	
+<% if @daily_deal.side_deals.size > 0 %>
+	<%= render :partial => with_theme("shared/side_deals") %>
+<% end %>
+	
+<% unless @publisher.facebook_page_url.blank? %>
+	<%= render :partial => with_theme("shared/facebook_likebox") %>
+<% end %>

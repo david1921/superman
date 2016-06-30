@@ -1,0 +1,74 @@
+<div>
+	<div class="clear"></div>
+	<div id="main_column">
+		<div class="content_box"><!-- deal info top row -->
+			<h1 id="value_prop">{{ daily_deal.value_proposition }}</h1>
+				<div id="dashboard"><!--dashboard -->
+					<div id="price_tag">
+					<h1 id="daily_deal_price">{% if daily_deal.price.is_fractional? %}
+       {{ daily_deal.price | currency: 2 }}
+{% else %}
+       {{ daily_deal.price | currency }}
+{% endif %}
+</h1>
+						<div id="buy_now">
+						{% if daily_deal.sold_out? %}
+						<div id="sold_out" class="dd_button"><span>Sold Out</span></div>
+						{% elsif daily_deal.over? %}
+						<div id="deal_over" class="dd_button"><span>Deal Over</span></div>
+						{% elsif daily_deal.active? %}
+						<a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><span>Buy Now</span></a>
+						<div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+						{% else %}
+						<div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>
+						{% endif %}
+						</div><!-- /buy_now -->
+					</div><!-- /price_tag -->
+				<div id="deal_specs">
+					<table id="value_summary">
+					<tr>
+					<th>Value</th>
+					<th>Cost</th>
+					<th class="savings">Savings</th>
+					</tr>
+					<tr>
+					<td>{% if daily_deal.value.is_fractional? %}
+       {{ daily_deal.value | currency: 2 }}
+{% else %}
+       {{ daily_deal.value | currency }}
+{% endif %}
+</td>
+					<td>{% if daily_deal.price.is_fractional? %}
+       {{ daily_deal.price | currency: 2 }}
+{% else %}
+       {{ daily_deal.price | currency }}
+{% endif %}
+</td>
+					<td class="savings">{{ daily_deal.savings_as_percentage | percentage }}</td>
+					</tr>
+					</table>
+					<table id="timer">
+					<tr>
+					<th id="time_left_to_buy_label">Time Left<br /> to Buy</th>
+					<th id="clock" rowspan="2"></th>
+					<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+					</tr>
+					</table><!-- /timer -->
+					
+					{% if daily_deal.number_sold_meets_or_exceeds_display_threshold? %}
+				<p class="deals_bought"><span class="quantity">{{ daily_deal.number_sold }}</span> Deals Sold</p>
+{% endif %}
+
+				</div><!-- /deal_specs -->
+				</div><!-- /dashboard -->
+			<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" /></div>
+						
+			<div class="clear"></div>
+		</div><!-- /deal info top row -->
+		<div><!-- deal info bottom row -->
+		{% include with_theme "shared/deal_tab_content" %}
+		</div><!-- /deal info bottom row -->
+	</div><!-- /main_column -->
+	{% include with_theme "shared/side_bar" %}
+</div>
+

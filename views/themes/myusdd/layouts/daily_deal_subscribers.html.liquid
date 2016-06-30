@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+    <title>Sign up for Uncle Sams Daily Deal alerts!</title>
+    <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/presignup.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/publisher-header-footer.css" type="text/css" />
+    <link rel="stylesheet" href="/themes/myusdd/stylesheets/daily_deals.css" type="text/css" />
+    <link rel="shortcut icon" href="/themes/{{ publisher.label }}/images/graphics/favicon.ico" /><!--[if lte IE 9]>
+		<link href="/themes/{{ publisher.label }}/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		    <!--[if IE 9]>
+		<link href="/themes/{{ publisher.label }}/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+
+    <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		//<![CDATA[
+    $.noConflict();
+    // Code that uses other library's $ can follow here.
+    //]]>
+    </script>
+    <script src="/javascripts/effects.js" type="text/javascript"></script>
+    <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+    <script src="/javascripts/controls.js" type="text/javascript"></script>
+    <script src="/javascripts/ghostie.js" type="text/javascript"></script>
+    <script src="/javascripts/lightbox.js" type="text/javascript"></script>
+    <script type='text/javascript' src='/javascripts/social_media_share.js'></script>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body>
+    {% include with_theme "shared/pub_header" %}
+
+    <div id="wrapper">
+        <div id="main" class="clearfix">
+            <div class="content" id="content">
+                <div id="analog_analytics">
+                    {% include "shared/flash" %} {{ content_for_layout }}
+
+                    <div class="clear"></div>
+                </div>
+
+                <div id="a_a">
+                    <a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a>
+                </div>
+            </div><!-- /content -->
+        </div><!-- #main -->
+        {% include with_theme "shared/pub_footer" %}
+    </div><!-- #wrapper -->
+
+{% include with_theme "shared/tracking_publisher" %}
+</body>
+</html>

@@ -1,0 +1,5 @@
+<% form_tag({:controller => "resque_email_tests"}, :method => "post") do %>
+  <%= label_tag :email_address %>
+  <%= text_field_tag :email_address %>
+  <%= submit_tag "Send Test Email" %>
+<% end %>

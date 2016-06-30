@@ -1,0 +1,7 @@
+<% unless @publisher.facebook_page_url.blank? %>
+<!-- Facebook Like plugin -->
+<div id="facebook_like_box" class="side_box">
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=<%= CGI::escape(@publisher.facebook_page_url) %>&amp;width=270&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23eff6e6&amp;stream=false&amp;header=false&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:258px;" allowTransparency="true"></iframe>
+	</div>
+	<!-- /Facebook Like plugin -->
+<% end %>

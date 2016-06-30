@@ -1,0 +1,8 @@
+my_space_burger_king:
+  offer: my_space_burger_king_free_fries
+  publisher: my_space
+  first_name: Scout
+  last_name: Dog
+  email: scout@butlerpress.com
+  mobile_number: 18104531100
+  call_me: true

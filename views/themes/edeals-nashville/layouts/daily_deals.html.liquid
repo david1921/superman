@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/edeals-nashville/stylesheets/daily_deals.css" type="text/css" />
+     <link rel="stylesheet" type="text/css" href="/themes/edeals-nashville/stylesheets/header_footer.css" />
+
+<!--   <link rel="stylesheet" href="/themes/edeals-nashville/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+  <link rel="stylesheet" href="/themes/{{ publisher.label }}/stylesheets/{{ publisher.publishing_group.label }}.css" type="text/css" />
+
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  
+<!--[if lte IE 9]>
+<link href="/themes/edeals-nashville/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/edeals-nashville/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<script type="text/javascript">
+var wng_analyticsDomain = 'analytics.worldnow.com';
+var wng_analyticsDataSourceId = 'dcsuhch2hzersfqyzf2de5tct_4d8l';
+var wng_webtrendsEnabled = 'True';
+</script>
+
+<script type="text/javascript" src="http://content.worldnow.com/global/interface/analytics/sdctag.js?ver=201011111600"></script>
+<meta name="DCS.dcssip" content="www.newschannel5.com"><meta name="WT.sp" content="WTVF"><meta name="WT.ti" content="NewsChannel 5 Shopping - eDeals"><meta name="WT.cg_n" content="Shopping"><meta name="WT.sv" content="IIS53"><meta name="DCSext.containertype" content="category"><meta name="DCSext.pageclass" content="category"><meta name="wn-rootname" content=""><meta name="DCSext.contentprovider" content="WTVF">
+
+<script type="text/javascript">
+if (location.hostname) {
+document.write('<meta name="DCSext.hostheader" content="' + location.hostname + '">');
+}
+</script>
+<!--END Analytics Setup-->
+<script type="text/javascript">
+var wng_pageInfo = {
+containerId : '201453',
+containerType : 'C',
+contentClassification : 'Shopping',
+affiliateName : 'WTVF',
+affiliateId : '374',
+userId : '',
+baseUrl : 'www.newschannel5.com',
+includesDomain : 'http://content.worldnow.com',
+includesVersion : '201011111600',
+videoHelpPage : 'http://www.newschannel5.com/worldnow/VideoHelp.htm?video=',
+videoHelpPageMac : '/global/Story.asp?s=2918340&displayHelp=true',
+registrationId : '104054',
+registrationURL:'registration',
+readableURLenabled: 'True',
+imageDomain : 'http://WTVF.images.worldnow.com',
+permaLink : '/category/201453/deals',
+body : {
+_id : 'WNAffWTVF',
+_class : 'wnContainerType-category wnLeftAlignment'
+}
+};
+</script>
+<script type="text/javascript" src="http://content.worldnow.com/global/interface/jq.js?ver=201011111600"></script>
+
+<script type="text/javascript" src="http://content.worldnow.com/global/interface/globals.js?ver=201010300600"></script>
+<script type="text/javascript" src="http://www.edeals.com/partner/newschannel5/jscripts/wnvideo.js?ver=201010300600"></script>
+<script type="text/javascript" src="http://www.edeals.com/partner/newschannel5/jscripts/core.js?ver=201010300600"></script>
+<script type="text/javascript" src="http://www.edeals.com/partner/newschannel5/jscripts/menu.js?ver=201010300600"></script>
+<script type="text/javascript" src="http://WTVF.images.worldnow.com/interface/js/wnadmanager.js?ver=201011111600"></script>
+<script type="text/javascript" src="http://WTVF.images.worldnow.com/interface/js/wnvideo.js?ver=201011111600"></script>
+
+
+<link rel="stylesheet" href="http://content.worldnow.com/global/interface/menu/menu.css?ver=201011111600" type="text/css">
+<script type="text/javascript">
+ $.noConflict();
+if (typeof(wng_includesTracker) == 'undefined' || !wng_includesTracker['http://www.newschannel5.com/global/interface/globals.js']) {
+document.write('<scr' + 'ipt type="text/javascript" src="http://www.newschannel5.com/global/interface/globals.js?ver=201011111600"><\/scr' + 'ipt>');
+}
+</script>
+
+  
+<title>NewsChannel 5 Shopping - eDeals - NewsChannel5.com | Nashville News, Weather &amp; Sports</title>
+	 
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body>
+    {% assign current_page = "deal" %}
+<!--Analog_Analytics_Daily_Deal-->
+  {% include 'themes/edeals-nashville/layouts/shared/header' %}
+
+	<div class="clear"></div>
+	<div id="content_wrapper">
+		<!-- content should start here -->
+			<div id="analog_analytics">
+				<div id="daily_deal">				
+				{% include "shared/flash" %} 			
+		  		{% include with_theme "layouts/shared/tabs" %}
+		  	</div>
+		  </div>
+		<!-- content should end here -->
+		<div class="clear"></div>
+		{% include "shared/a_a_alt" %}
+	</div>
+
+
+  {% include 'themes/edeals-nashville/layouts/shared/footer' %}
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>
+
+

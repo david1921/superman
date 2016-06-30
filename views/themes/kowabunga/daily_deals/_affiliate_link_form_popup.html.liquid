@@ -1,0 +1,61 @@
+{% if daily_deal.affiliate_url and publisher.enable_affiliate_url_popup and daily_deal.active? %}
+<div id='affiliate_link_popup_content'>
+<div class="popup-header">
+<a href="{{ publisher.todays_daily_deal_path }}"><img class="popup-pub-logo" src="/themes/kowabunga/images/graphics/kowabunga-header-logo.png" alt="Kowabunga, More Deals, More Places!"/></a>
+<h2>Thanks for Surfing<br/>with Kowabunga!</h2>
+</div>
+<div class="clear"></div>
+<p>You have selected to purchase a deal from one of our partner sites, and will now be leaving Kowabunga.com to complete your purchase.</p>
+<p><span>Don't miss out!</span> Before you go, sign up to receive emails from Kowabunga to ensure you don't miss out on other great deals in your area!</p>
+<form action="{{ publisher.subscribers_path }}" class="new_subscriber" id="new_subscriber" method="post" target="_blank">
+    <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+    <input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+    <input name="redirect_to" type="hidden" value="{{ daily_deal.buy_now_path | verifiable_url }}" />
+    <fieldset>
+      <label for="name">Email</label>
+      <input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email Address" type="text" value="" />
+    </fieldset>
+    <fieldset>
+      <label for="name">Zip code</label>
+      <input class="dd_input" id="subscriber_zip" name="subscriber[zip_code]" size="30" title="ZIP Code" type="text" value="" />
+    </fieldset>
+    <fieldset id="terms">
+      <input name="subscriber[terms]" type="hidden" value="0" />
+      <input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" />
+      <label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a></label>
+    </fieldset>
+    <fieldset id="submit">
+      <input id="submit_button" type='submit' value='submit' data-aa-tracking-id="{{publisher.id}}_lightbox-email-submit"/>
+    </fieldset>
+  </form>
+  <a id="no-thanks" class="no-thanks" href="#no-thanks-continue" data-aa-tracking-id="{{publisher.id}}_lightbox-email-no-thanks">No thanks. Continue</a>
+  <div class='error'></div>
+</div><!-- /affiliate_link_popup_content -->
+
+<script src="/javascripts/AffiliateLinkFormPopup.js" type="text/javascript"></script>
+<script type="text/javascript">
+// initially hide the popup content
+$('affiliate_link_popup_content').hide();
+
+// dynamically include the stylesheet
+var cssElement = $(document.createElement("link"));
+cssElement.writeAttribute({
+    href:  '/stylesheets/popup_form.css',
+    rel:   'stylesheet',
+    type: 'text/css'
+});
+document.getElementsByTagName('head')[0].appendChild(cssElement);
+
+// attach the popup window if the deal is ready to buy
+document.observe("dom:loaded", function() {
+    if ($('buy_now_button'))
+        var confirmation_dialog = new AffiliateLinkFormPopup('buy_now_button', 'affiliate_link_popup_content');
+
+        jQuery('#no-thanks').bind('click', function(){
+		  jQuery.getScript('/javascripts/third-party-offer.js');
+          window.open('{{ daily_deal.affiliate_url }}', '_blank');
+          confirmation_dialog.hide();
+        });
+});
+</script>
+{% endif %}

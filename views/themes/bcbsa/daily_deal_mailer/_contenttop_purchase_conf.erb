@@ -1,0 +1,101 @@
+<!--CONTENT TOP -->   
+      <table width="648" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#ffffff" style="font-family:Arial, Helvetica, sans-serif; color:#747474;font-size:14px;">
+        <tr>
+          <td valign="bottom" align="left" style="padding-left:20px;padding-bottom:10px;">
+              <h1 style="font-family:Arial, Helvetica, sans-serif;font-size: 20px;font-weight:bold;color:#0094d0;margin:0;padding:0;"><%= t(:purchase_conf_top_message) %></h1>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" align="center" bgcolor="#ecf2f6" style="background-color:#ecf2f6;">
+            <img src="<%= @daily_deal_purchase.daily_deal.photo.url %>" width="648" height="280" alt="" />
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" valign="top" align="left">
+            <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
+              <tr>
+                <td valign="top" align="left">
+                  <h2 style="font-family:Arial, Helvetica, sans-serif;font-size: 28px;line-height:30px;font-weight:bold;color:#464646;margin-top:0;margin-bottom:5px;padding:0;"><%= @daily_deal_purchase.daily_deal.advertiser.name %></h2>
+                  <h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 20px;font-weight:normal;color:#464646;margin:0;padding:0;"><%= @daily_deal_purchase.value_proposition %></h3>
+                  <h4 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;font-weight:normal;color:#464646;margin:0;padding:0;"><em><%= t(:at) %> <% if @daily_deal_purchase.daily_deal.custom_2.present? %>
+                    <%= @daily_deal_purchase.daily_deal.custom_2 %>
+                    <% else %>
+                      <%= @daily_deal_purchase.daily_deal.advertiser.name %></em>
+                    <% end %>
+                    </h4>
+                </td>
+                <!-- @daily_deal_purchase.consumer for link to accounts page -->
+                <td rowspan="2" align="right" valign="top"><a href="<%= daily_deal_download_url(@daily_deal_purchase) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/bcbsa/images/email/buttons/<%= t(:purchase_conf_view_account_image) %>"  alt="<%= t(:view_your_account) %>" width="133" height="36" /></a></td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;padding-top:2px;padding-bottom:2px;padding-left:20px; margin-left:0px;">
+                  <h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;margin-bottom:5px;padding:0;padding-left:0px;"><%= t(:the_terms) %></h3>
+                  
+                  <!-- table method -->
+                  <% if true %>
+                  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0"  style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;">
+                    
+                    <% if !@daily_deal_purchase.daily_deal.affiliate_url && @daily_deal_purchase.daily_deal.expires_on.present? %> 
+                      <tr> 
+                        <td style="padding-top: 0px!important;margin-bottom:0px;margin-top: 0px;padding-bottom:2px;">
+                          &#8226;
+                        </td> 
+                        <td>
+                          <%= t(:purchase_conf_expiration_date) %> <%= @daily_deal_purchase.daily_deal.expires_on.strftime("%B #{@daily_deal_purchase.daily_deal.expires_on.day}, %Y")%>.
+                        </td>
+                      </tr>
+                    <% end %>
+                    
+                    <!-- terms from backend -->
+                    <%= @daily_deal_purchase.daily_deal.terms.gsub(/(<ul>)|(<\/ul>)/, "").gsub(/(<li>)/, "<tr><td style=\'margin-top: 0px!important;margin-bottom:2px;vertical-align: top;padding-right: 3px;\'>&#8226;<\/td><td>").gsub(/<\/li>/, "<\/td><\/tr>").try :html_safe %> 
+
+                    <tr>
+                      <td style="margin-top: 0px!important;margin-bottom:0px;vertical-align: top;padding-right: 3px;">
+                        &#8226;
+                      </td>
+                      <td style="margin-top: 0px!important;padding-bottom:10px;"> <%= t(:purchase_conf_redemption_terms1) %> <a href="www.blue365deals.com" style="color:#0094d0;">www.blue365deals.com</a><%= t(:purchase_conf_redemption_terms2) %>. </td>
+                    </tr>
+                  </table>
+                  <% end %>
+                  <!-- END table method -->
+
+                  <!-- non-table method -->
+                  <% if false %>
+                   <% if !@daily_deal_purchase.daily_deal.affiliate_url && @daily_deal_purchase.daily_deal.expires_on.present? %>  
+                    <p style="padding-top: 0px!important;margin-bottom:0px;margin-top: 0px;padding-bottom:2px;text-indent:-8px;padding-left:8px;">
+                        &#8226; <%= t(:purchase_conf_expiration_date) %> <%= @daily_deal_purchase.daily_deal.expires_on.strftime("%B #{@daily_deal_purchase.daily_deal.expires_on.day}, %Y")%>.
+                    </p>
+                  <% end %>
+                  
+                  <%= @daily_deal_purchase.daily_deal.terms.gsub(/(<ul>)|(<\/ul>)/, "").gsub(/(<li>)/, "<p style=\'margin-bottom:0px;margin-top:0px;padding-bottom:2px;text-indent:-8px;padding-left:8px;\'>&#8226; ").gsub(/<\/li>/, "<\/p>").try :html_safe %> 
+
+                  <p style="margin-top: 0px!important;margin-bottom:10px;text-indent:-8px;padding-left:8px;">
+                    &#8226; <%= t(:purchase_conf_redemption_terms1) %> <a href="www.blue365deals.com" style="color:#0094d0;">www.blue365deals.com</a> <%= t(:purchase_conf_redemption_terms2) %>.
+                  </p>
+                  <% end %>
+                  <!-- END non-table method -->
+                </td>
+              </tr>
+              <tr>
+                <td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;padding-top:2px;padding-bottom:2px;">
+                  <h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;padding:0;"><%= t(:purchase_summary) %></h3>
+            
+                  <p style="font-size: 12px; margin: 5px 0px 0px 0px;"><%= t(:quantity) %>: <%= @daily_deal_purchase.quantity %></p>
+                  <p style="font-size: 12px; margin: 5px 0px 5px 0px;"><%= t(:total_paid) %>: <%= number_to_currency(@daily_deal_purchase.actual_purchase_price, :precision => 2) %></p>
+
+                  <p style="font-size: 11px; margin: 5px 0px 0px 0px;"><%= t(:purchase_conf_voucher_attached) %> <%= render :partial => with_theme("voucher_redemption_message.text.plain") %></p>
+
+                  <p style="font-size: 11px; margin: 5px 0px 10px 0px;"><%= t(:purchase_conf_credit_card_message) %></p>
+                </td>
+                  </tr>
+              <tr>
+              <td valign="top" align="left" style="font-family:Arial, Helvetica, sans-serif;font-size:11px;line-height:15px;color:#464646;padding-top:2px;padding-bottom:2px;">
+                <h3 style="font-family:Arial, Helvetica, sans-serif;font-size: 16px;line-height:20px;font-weight:bold;color:#0094d0;margin:0;padding:0;"><%= t(:purchase_conf_support) %></h3>
+                <p style="font-size: 11px; margin: 5px 0px 0px 0px;"><%= t(:purchase_conf_support_message) %>: <a href="mailto:support@blue365deals.com" style="color:#0094d0;">support@blue365deals.com.</a></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+<!--/CONTENT TOP -->

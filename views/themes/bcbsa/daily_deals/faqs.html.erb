@@ -1,0 +1,247 @@
+<% unless params[:page] == "health" %>
+	<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	<ul>
+		<li>
+			<a href="<%= public_deal_of_day_path(@publisher.label) %>">Home</a>
+		</li>
+		<li class="no_underline">></li>
+		<li class="no_underline">
+			<%= case params[:page]
+				when "about"
+					"About Us" 
+				when "plans"
+					"Participating Blue Companies"
+				else 
+					"FAQ"
+				end
+			%>
+		</li>
+	</ul>
+	</div><!-- /breadcrumbs -->
+	<div class="clear"></div>
+<% end %>
+
+<!-- end temp case for About and Pan page -->
+<% case params[:page] %>
+    <% when 'about' %>
+    	<%= render :partial => with_theme('shared/about') %>
+    <% when 'plans' %>
+    	<%= render :partial => with_theme('shared/participating_plans') %>
+	<% when 'health' %>
+    	<%= render :partial => with_theme('shared/health_wellness') %>
+	<% else %>
+
+<% set_daily_deal_page_title_slug "FAQs" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+<h1 class="content"><%= @h1 || "Frequently Asked Questions" %></h1>
+
+<div id="faq_content">
+		
+<a class="print_page" href="javascript:window.print()"><img class="print_icon	" src="/themes/bcbsa/images/graphics/print_icon.png" />Print this page</a>
+<div class="clear"></div>
+
+<h6>Do you have a question about...</h6>
+<h6><a href="#topic_1">Blue Cross and/or Blue Shield Companies<a></h6>
+<h6><a href="#topic_2">Blue365<sup>&#174;</sup><a></h6>
+<h6><a href="#topic_3">Blue365 Vendors<a></h6>
+<h6><a href="#topic_4">Browsing, buying or redeeming Blue365 Featured Deals or Ongoing Deals<a></h6>
+<h6><a href="#topic_5">Problems redeeming a Blue365 Featured Deal or Ongoing Deal<a></h6>
+<h6><a href="#topic_6">Blue365 Rewards<a></h6>
+<h6><a href="#topic_7">Sharing information on Blue365<a></h6>	
+<h6><a href="#topic_8">Anything else<a></h6>
+
+<h3 class="first question_topic"><a name="topic_1">Question topic: Blue Cross and/or Blue Shield Companies</a></h3>
+<h4><a name="faq_1">Who are the Blue Cross and/or Blue Shield Companies?</a></h4>
+<p>They’re a national federation of 38 independent, community-based and locally operated Blue Cross and/or Blue Shield Companies (each, a <a href="http://www.bcbs.com/about-the-companies/">“Blue Company”</a>), which, all together, provide healthcare benefits for more than 99 million members. That’s about one in every three Americans.</p>
+<p>Want to know more about Blue Companies? We’ll share a few fun facts:</p>
+<ul>
+	<li>The Blues are the nation's oldest, largest and most recognized family of healthcare benefits companies.</li>
+	<li>For the past 80 years, the 38 Blue Companies have provided millions of families with affordable healthcare insurance.</li>
+	<li>The Blue Cross and/or Blue Shield System makes healthcare benefits available in all 50 states, the District of Columbia and Puerto Rico.</li>
+	<li>Nationwide, more than 90% of all hospitals and 80% of all doctors are In-Network Providers with Blue Cross and/or Blue Shield Companies. That’s a wider reach than any other insurer.</li>
+	<li>Together, the 38 Blue Cross and/or Blue Shield Companies are among the 20 largest employers in the USA.</li>
+</ul>
+
+<h3 class="question_topic"><a name="topic_2">Question topic: Blue365</a></h3>
+<h4><a name="faq_2">What is Blue365<sup>&#174;</sup>?</a></h4>
+<p>Blue365<sup>&#174;</sup> is a program sponsored by participating local Blue Companies that helps you stay healthier, for less. Since 2007, Blue365 has offered discounts for members to save on products and services for a well balanced lifestyle. These “Blue365 Deals” (which are different than the healthcare benefits that you have with your local Blue Company) can help you maintain a healthy lifestyle, while spending less at some of your favorite Blue365 Vendors nationwide.</p>
+
+<h4><a name="faq_3">Can anyone participate in Blue365?</a></h4>
+<p>Blue365 is currently available to members of many participating <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>?page=plans">Blue Companies</a>, and we’re working to roll out the savings to even more Blue Companies’ members.
+Additionally, Blue365 is available to all members of the Federal Employee Program Service Benefit Plan across the USA.</p>
+
+<h4><a name="faq_4">What deals are available through Blue365?</a></h4>
+<p>Blue365 provides members of participating Blue Companies with access to a wide range of savings from top health and wellness brands around the country plus some of your favorite local companies. You’ll see weekly “Featured Deals” and long term “Ongoing Deals” on healthy products, along with discounts on health and fitness clubs, weight-loss programs, healthy travel experiences and so much more.</p>
+
+<h4><a name="faq_5">Is Blue365 another type of health insurance coverage?</a></h4>
+<p>No. Blue365 is separate from the healthcare benefits you receive from your local Blue Company. Living well goes beyond the doctor’s office, and Blue365’s goal is to help you save on the healthy choices you make every day.</p>
+
+<h4><a name="faq_6">How do I join Blue365?</a></h4>
+<p>It is very simple. All you have to do is <a href="<%= new_publisher_consumer_path(@publisher) %>">register</a> on the website and you are all set to enjoy our great health and wellness Deals!</p>
+
+<h4><a name="faq_7">Does joining Blue365 cost money?</a></h4>
+<p>Not at all. Blue365 is free to members of participating Blue Companies. Because of the Blues’ buying power, Blue365 can offer access to great savings on a wide range of exciting health and wellness products and experiences. Enjoy!</p>
+
+<h4><a name="faq_8">How can I sign up for the Blue365’s email list?</a></h4>
+<p>Blue365 makes it easy for you to find out about weekly Featured Deals by sending the news right to your email. Our email service is free to members of participating local Blue Companies. If you’ve already registered on our Blue365 website, then you’ll begin receiving emails on Blue365 Deals automatically, unless you decide to opt out. If you haven’t registered yet, why not do that today? You can also get emails on upcoming offers before registering, by emailing your request to Blue365 at <a href="mailto:support@blue365deals.com">support@Blue365deals.com.</a>  So sign up now, and tell your friends who are Blue members!</p>
+
+<h4>Does Blue365 get money from Blue365 Vendors or Blue Companies?</h4>
+<p>Blue365 receives a small administrative fee from participating Blue365 Vendors and participating Blue Companies to help maintain the Blue365 program. These fees help keep Blue365’s website up and running and cover the program’s internal costs, so the Blue 365 team can keep working hard to secure exciting new Blue365 deals that will keep you healthy and active.</p>
+
+<h4>What universal terms apply to Blue365 Deals?</h4>
+<p>Here are a few general guidelines for enjoying Blue365 Deals:</p>
+<ul>
+	<li>They’re not valid for cash back.</li>
+	<li>They can’t be combined with other promotions.</li>
+	<li>They must be used in one transaction.</li>
+	<li>They don’t cover tax or gratuity.</li>
+</ul>
+<p>For more details, please check the terms on your Voucher or Coupon, as well as the <a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank">Terms of Use</a> on Blue365’s website.</p>
+
+<h3 class="question_topic"><a name="topic_3">Question topic: Blue365 Vendors</a></h3>
+<h4>How do you select Vendors for Blue365?</h4>
+<p>Very carefully. Blue365 Vendors offer great health and wellness brands for good-for-you savings, and are selected based on feedback from Blue365 members and independent researchers on the Blue365 team. </p>
+
+<h4>Can Blue365 members recommend healthy products and services for future Blue365 Deals?</h4>
+<p>Yes – and we welcome it! You can suggest your favorite brands for future Blue365 Deals <a id="wish_list" ref="#">here</a>, and we’ll see what we can do to make it happen.</p>
+
+<h4>How can I get my business featured on Blue365?</h4>
+<p>Want to list a deal through Blue365’s website? Great! The Blue365 team is always looking for new healthy savings to share with members of participating Blue Companies, so feel free to get in touch with the <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">Blue365 Team.</a></p>
+
+<h3 class="question_topic"><a name="topic_4">Question topic: Browsing, buying or redeeming Blue365 Featured Deals and Ongoing Deals</a></h3>
+<h4>What is a Blue365 Featured Deal?</h4>
+<p>One amazing deal gets the Blue365 spotlight each week, and that’s our “Featured Deal.” Unlike our “Ongoing Deals,” the Featured Deal is only good for a limited time, so you’ll want to act fast and check out Blue365’s website each week for a new Featured Deal.</p>
+<p>If you haven’t done so already, just <% if @publisher.label == 'bcbsa-national' %>
+				<a href="<%= publishing_group_landing_page_path('bcbsa') %>">
+			<% else %>
+				<% if @publisher.launched? %>
+					<a href="<%= new_publisher_consumer_path(@publisher) %>">
+				<% else %>
+					<a href="<%= publisher_daily_deal_subscribers_path(@publisher)%>/presignup">
+				<% end %>
+			<% end %>
+			sign up here</a> to receive our weekly emails so you’ll never miss the savings on our Featured Deals.</p>
+
+<h4>What is a Blue365 Ongoing Deal?</h4>
+<p>“Ongoing Deals” offer access to discounts on healthy products and services from Blue365 Vendors that you can purchase throughout the year, whenever you like. You control when you save.</p>
+
+<h4>How do I buy a Blue365 Deal?</h4>
+<p>In one of two easy ways:</p>
+<ul>
+	<li>If you see a “Buy” button, that means you’ll be able to purchase your Deal directly on the Blue365 website. We’ll email a Voucher right to your inbox, as soon as you purchase it.</li>
+	<li>If you see a “Redeem” button, you’ll be directed to a Blue365 Vendor’s website, where you’ll find special savings offered only to Blue365 members. There, you’ll be able to get either a Coupon code to use on that website or a printable Coupon to redeem at a specified retail location.</li>
+</ul>
+<p>Either way, you’ll get some of the best healthy savings around.</p>
+
+<h4>What happens after I click to “Buy” a Blue365 Deal?</h4>
+<p>We’ll email you a Voucher to redeem your Deal, and charge your credit card. To enjoy your healthy savings, just print the Voucher and use it anytime before its Expiration Date. Remember, you’ll need to print and take the Voucher (with its unique 8-digit code) and a valid state ID, when you claim your offer.</p>
+	
+<h4>What happens after I click to “Redeem” a Blue365 Deal?</h4>
+<p>You’ll be directed to the appropriate Blue365 Vendor’s site. There, you’ll be able to get either a Coupon code to use on that website or a printable Coupon to redeem at a specified retail location.</p>
+
+<h4>What happens if I buy a deal on a Blue365 Vendor’s website?</h4>
+<p>You’ll use a Coupon directly on that Blue365 Vendor’s site. No hassle!</p>
+
+<h4>What’s the difference between a Voucher and a Coupon?</h4>
+<p>When you buy a Deal on the Blue365 website, we’ll email you a Voucher. You’ll need to print and take the Voucher (with its unique 8-digit code) and a valid state ID, when you claim your offer.</p>
+<p>If you’re taking advantage of a Deal on a Blue365 Vendor’s website, then you’ll get a Coupon. The Coupon has no Cash Value, but it’ll allow you to save on a Blue365 Vendor’s website or at a specified retail location.</p>
+
+<h4>I bought a deal on Blue365’s website and printed the Voucher. When can I use it?</h4>
+<p>Anytime before the Expiration Date shown on the Voucher. Each Deal has different terms that are included on your Voucher and your purchase confirmation email, as well as on the Blue365 website.</p>
+
+<h4>Can I buy a Blue365 deal that’s already expired?</h4>
+<p>Unfortunately, no. Blue365 can’t change the dates or terms of a Blue365 Deal. But there are more healthy offers coming to Blue365’s website all the time, so keep checking back for more!</p>
+
+<h4>Can I use part of the Blue365 Voucher now and save the rest for later?</h4>
+<p>Sorry, you’ll need to use your Voucher and get those savings all in a single transaction. Blue365 Vendors don’t issue partial credits for any leftover balance, so keep that in mind when using your Vouchers.</p>
+
+<h4>Why does Analog Analytics show up on my credit card statement?</h4>
+<p>Analog Analytics is the company that keeps the Blue365 website running and processes payments for Blue365 Deals. Enjoy your savings!</p>
+
+<h4>Is it safe for me to use my credit card to make a purchase on Blue365?</h4>
+<p>Yes. Blue365 is a secure website. The transaction uses SSL, a widely used system designed to keep your information safe, along with other industry-standard security features. You can catch Blue365 Deals with confidence.</p>
+
+<h4>If my name is on the Voucher, will the Blue365 Vendor have access to my credit card info?</h4>
+<p>No. The Blue365 website gives you a Voucher, so that Blue365 doesn’t have to give your credit card information to Blue365 Vendors. That information is held securely by Analog Analytics, the company that processes transactions made on the Blue365 website.</p>
+
+<h4>When I give Blue365 Vouchers to my friends, as gifts, will they have access to my credit card info?</h4>
+<p>No, don’t worry. Blue365 Vouchers include a record of the transaction, the purchaser's name, the gifted consumer's name, and a unique 8-digit code that Blue365 Vendors need to finish a Deal. Payment information stays secure and can’t be accessed by the lucky recipients.</p>
+
+<h3 class="question_topic"><a name="topic_5">Question topic: Problems redeeming a Blue365 Deal</a></h3>
+<h4>What if the Blue365 Vendor doesn’t honor the Voucher?</h4>
+<p>Blue365 goes out of our way to make sure Blue365 Vendors meet our standards. We also share other Blue365 members’ recent reviews and testimonials to help you get to know all of our Blue365 Vendors. If something happens and you're not satisfied, however, we’ll refund the amount you paid for the Deal. All you have to do is return your unused Voucher, before its Expiration Date, and tell us about the problem at <a href="mailto:support@blue365deals.com">support@Blue365deals.com.</a></p>
+
+<h4>What’s your refund process for Vouchers?</h4>
+<p>We’ll refund the amount you paid for the Blue365 Deal, without question, any time before the Voucher’s Expiration Date. All you have to do is return your unused Voucher, before its Expiration Date, and tell us about the problem at <a href="mailto:support@lue365deals.com">support@Blue365deals.com.</a></p>
+
+<h4>What if I miss the Expiration Date and forget to use my Voucher in time?</h4>
+<p>Don’t worry — Your money isn’t lost. Although you can’t take advantage of the additional discount on that Deal, you’re still entitled to goods and services equal to the amount you paid for that Voucher. For example, if you spent $25 to buy a $50 Voucher for your favorite running shoes, but you were unable to get them before the Expiration Date, then you’ll still get the $25 you paid towards those running shoes. The only part you’ll lose if you miss the Expiration Date is the difference between the amount you actually paid for the Voucher (the “Cash Value” — $25, in our example) and the total value of the Deal (the “Face Value” — here, $50).</p>
+
+<h3 class="question_topic"><a name="topic_6">Question topic: Blue365 Rewards</a></h3>
+<h4>What’s in it for me if I invite friends to join Blue365?</h4>
+<p>Blue365 Rewards! For every new member of a participating Blue Company that you get to buy a Deal on the Blue365 website, you’ll earn a $10 Blue365 Rewards credit, redeemable only through the Blue365 program, to spend on a future Deal on the Blue365 website. Since you don’t pay for them, Blue365 Rewards have no Cash Value. You can tell your friends about Blue365 Deals by sending them a link through Twitter, Facebook or e-mail. Your friend will need to register on the Blue365 website within 72 hours after clicking that link, and you’ll receive your Blue365 Rewards within a few days after your friend makes his or her first purchase on the Blue365 website. Remember, only members of participating Blue Companies are eligible to register and join in on Blue365’s healthy savings. You’ll receive Blue365 Rewards only for that first purchase by each qualified new Blue365 member referred by you — but you can refer lots of new Blue365 members, so get going and watch those Blue365 Rewards stack up!</p>
+
+<h4>How does it work?  What do I have to do so I get my Blue365 Rewards?</h4>
+<p>When your friends click on the referral link, that lets us know that it was you who referred them to Blue365. They’ll also need to register with Blue365 on our website within 72 hours of clicking that link. That means they’ve got to be members of a Blue Company that participates in the Blue365 program. After that, you’ll receive your Blue365 Rewards within a few days after your friend makes his or her first purchase on the Blue365 website. You’ll see Blue365 Rewards add up in your account, which you can view
+<% if current_consumer.present? %>
+<a href="<%= publisher_consumer_path(@publisher, current_consumer) %>">here</a>
+<% end %>.
+
+Then we’ll apply those Blue365 Rewards automatically, as credits toward the next Deal you buy on the Blue365 website. If you have more Blue365 Rewards than the Deal’s price, then the balance will stay in your account for your future purchases.</p>
+
+<h3 class="question_topic"><a name="topic_7">Question topic: Sharing information on Blue365</a></h3>
+<h4>What’s Blue365’s Privacy Policy?</h4>
+<p>We understand the importance of protecting your information. You can check the Blue365 <%= daily_deals_privacy_link(@publisher) %> to understand how Blue365 gathers, uses, discloses and manages member details.</p>
+
+<h4>What are the Blue365 website’s Terms of Use?</h4>
+<p>If you’d like more info about the general requirements of Blue365’s website, please feel free to check out our <a id="privacy_policy" href="<%= terms_publisher_daily_deals_path(@publisher) %>" target="_blank">Terms of Use</a> anytime.</p>
+
+<h4>Will my information be shared with my local Blue Company?</h4>
+<p>By registering on the Blue365 website, you authorize Blue365 to share your Blue365 user information details (including your name, email address, and other information) with your local Blue Company and Blue365 Vendors. You may revoke this authorization at any time by sending your request in writing to the following address: <strong>Blue365 Member Services, 225 North Michigan Ave., Chicago, IL, 60601-7680,</strong> or alternately, you may send it via email to: <a href="mailto:support@blue365deals.com">support@Blue365deals.com</a>.  Revoking the authorization will de-register you from the Blue365 website and disable your ability to access the Blue365 Deals, until you decide to register again.</p>
+
+<h3 class="question_topic"><a name="topic_8">Question topic: Anything else</a></h3>
+<h4>What if I have more questions?</h4>
+<p>Get in touch! You can email Blue365 at <a href="mailto:support@blue365deals.com">support@Blue365deals.com</a> or call us at (855) 511-BLUE. We’ll gladly answer any further questions you might have – and until then, here’s to your health!</p>
+
+
+	</div>
+  </div>
+</div>
+
+<% end %>
+
+
+<script type="text/javascript">
+  function wishListLightbox() {
+    <% if consumer? %>
+      jQuery.fancybox(
+        "<%= escape_javascript(render :partial => with_theme("suggested_daily_deals/lightbox")) %>",
+        {
+          'autoDimensions'  : false,
+          'width'           : 980,
+          'height'        	: 736,
+          'transitionIn'		: 'none',
+          'transitionOut'		: 'none',
+          'showCloseButton' : false,
+          'centerOnScroll'  : true
+        }
+      );
+    <% else %>
+      window.location = '<%= suggested_daily_deals_login_path %>';
+    <% end %>
+  }
+
+  jQuery(document).ready(function() {
+    jQuery('#wish_list').click(wishListLightbox);
+
+    <% if params[:suggested_daily_deals_lightbox] %>
+      wishListLightbox();
+    <% end %>
+  });
+</script>
+
+<!-- end temp case for About and Pan page -->

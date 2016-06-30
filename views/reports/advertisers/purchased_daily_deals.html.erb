@@ -1,0 +1,32 @@
+<% set_page_title "Reports: Purchased Daily Deals" %>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => advertiser_purchased_daily_deals_data_source_url(@advertiser, @market, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :purchased_daily_deals, :url_options => url_options}) %>
+<%= render(:partial => "market_navigation", :locals => {:page => :purchased_daily_deals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "advertiser_daily_deal_certificates",
+  :data_source => advertiser_purchased_daily_deals_data_source_path(@advertiser, @market, :format => "xml"),
+  :data_params => {},
+  :result_node => :daily_deal_certificate,
+  :data_columns => [
+    [:customer_name, { :label => "Purchaser", :class_name => "left"} ],
+    [:recipient_name, { :label => "Recipient", :class_name => "left" } ], 
+    [:serial_number, {:label => "Serial #", :class_name => "left"} ],
+    [:bar_code, {:label => "Barcode", :class_name => "left"} ],
+    [:redeemed_at, {:label => "Redeemed On"}],
+    [:store_name, {:label => "Redeemed At", :class_name => "left"} ],
+    [:value_proposition, { :label => "Deal", :class_name => "left" }],
+    [:currency_symbol, { :display => false }],
+    [:value, { :label => "Voucher Value", :formatter => "formatCurrency" }],
+    [:price, { :label => "Deal Price", :formatter => "formatCurrency" }],
+    [:purchased_price, { :label => "Pur. Price/Voucher", :formatter => "formatCurrency"}],
+    [:purchased_date, { :label => "Pur. Date" }]
+  ]
+}) %>
+

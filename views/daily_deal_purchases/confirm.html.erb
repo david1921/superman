@@ -1,0 +1,42 @@
+<% set_daily_deal_page_title_slug "Confirm Purchase" %>
+
+<div class="page_row confirm_payment">
+  <div class="page_column_8 first rounded_corners">
+    <% if @daily_deal_purchase.daily_deal_variation_or_daily_deal_available? || @daily_deal_purchase.allow_execution? %>
+      <h1 class="content"><%=t '.title' %></h1>
+      <div id="review">
+        <%= raw purchase_review_message(@daily_deal_purchase) %>
+      </div>
+
+      <div class="row">
+        <div id="go_back">
+          <%= link_to(t('.go_back_to_details'), edit_daily_deal_purchase_path(@daily_deal_purchase)) %>
+        </div>
+      </div>
+
+      <%- if @daily_deal_purchase.total_price > 0 -%>
+        <h2 class="buy_now_proposition">
+          <%=t('.buy_now_proposition',
+            :total_value => number_to_currency(@daily_deal_purchase.total_value, :unit => @daily_deal_purchase.currency_symbol),
+            :total_price => number_to_currency(@daily_deal_purchase.total_price, :unit => @daily_deal_purchase.currency_symbol)) %>
+        </h2>
+
+        <%= render :partial => "daily_deal_purchases/confirm/form" %>
+
+      <%- else -%>
+        <h2><%=t('.free_proposition', :total_value => number_to_currency(@daily_deal_purchase.total_value, :unit => @daily_deal_purchase.currency_symbol)) %></h2>
+
+        <%= render(:partial => "daily_deal_purchases/free_purchase_form", :locals => { :daily_deal_purchase => @daily_deal_purchase }) %>
+      <%- end -%>
+    <% else %>
+      <h2><%=t '.deal_is_over' %></h2>
+      <div id="deal_is_over">
+        <%=raw(t('.deal_is_over_message.all',
+              :line_item_name => @daily_deal_purchase.line_item_name,
+              :current_deal_page => link_to(t('.deal_is_over_message.current_deal_page'), public_deal_of_day_path(@publisher.label)))) %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render :partial => with_theme("daily_deal_purchases/payment_sidebar"), :locals => { :daily_deal => @daily_deal } %>
+</div>

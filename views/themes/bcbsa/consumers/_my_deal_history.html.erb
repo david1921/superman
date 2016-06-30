@@ -1,0 +1,30 @@
+<% @consumer.my_daily_deal_purchases.slice(0,3).each do |purchase| %>
+  <div class="deal_history_info">
+  	 <a href="<%= daily_deal_path(purchase.daily_deal) %>">
+    	<img src="<%=  protocol_relative_url(purchase.daily_deal.secondary_photo.url(:thumbnail)) %>" alt="<%= purchase.line_item_name %>">
+     </a>
+    <% if purchase.expires_on.present? and purchase.expires_on - Date.today < 1.month %>
+      <p class="expires_soon"><%= t(:expires_soon) %></p>
+    <% end %>
+    <p class="deal_title"><%= purchase.value_proposition %></p>
+    <% if purchase.daily_deal.custom_2.present? %>
+      <p><i><%= purchase.daily_deal.custom_2 %></i></p>
+    <% else %>
+      <p><i><%= purchase.advertiser.name %></i></p>
+    <% end %>
+    <p><%= t(:purchased) %> <%= purchase.humanize_created_on %></p>
+    <% if purchase.daily_deal.expires_on.present? %>
+      <p><strong><%= t(:expires) %> <%= purchase.humanize_expires_on %></strong></p>
+    <% end %>
+    <p>
+      <% if purchase.non_voucher_purchase? %>
+        <%= link_to t(:click_to_view_voucher),
+                   non_voucher_redemption_daily_deal_purchase_url(purchase.to_param) %>
+      <% else %>
+        <%= link_to t(:click_to_view_voucher),
+                   publisher_consumer_daily_deal_purchase_url(@publisher.to_param, @consumer.to_param, purchase.to_param, :format => :pdf) %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+

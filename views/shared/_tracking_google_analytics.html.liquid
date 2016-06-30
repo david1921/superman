@@ -1,0 +1,93 @@
+<!-- START Universal Analog Analytics Tag -->
+<script type="text/javascript">
+//<![CDATA[
+var _gaq = _gaq || [];
+_gaq.push(['aa_tracker_0._setLocalGifPath', '/images/ga_tracking_pixel.gif']);
+_gaq.push(['aa_tracker_0._setLocalRemoteServerMode']);
+
+/*** begin accounts loop ***/
+var ga_accounts = [{{ publisher.google_analytics_ids}}];
+for (i = 0; i < ga_accounts.length; i++) {
+    _gaq.push(
+        ['aa_tracker_' + i + '._setAccount', ga_accounts[i]],
+        ['aa_tracker_' + i + '._setDomainName', 'none'],
+        ['aa_tracker_' + i + '._setAllowLinker', true],
+        ['aa_tracker_' + i + '._setCampContentKey', 'utm_content'],
+        ['aa_tracker_' + i + '._setCampMediumKey', 'utm_medium'],
+        ['aa_tracker_' + i + '._setCampNameKey', 'utm_campaign'],
+        ['aa_tracker_' + i + '._setCampSourceKey', 'utm_source'],
+        ['aa_tracker_' + i + '._setCampTermKey', 'utm_term'],
+        ['aa_tracker_' + i + '._setCustomVar', 1, 'Publishing_Group', '{{ publisher.google_analytics_publishing_group | replace: "'", "\\'" | replace: ' ', '_' }}', 3],
+        ['aa_tracker_' + i + '._setCustomVar', 2, 'Publisher', '{{ publisher.google_analytics_publisher | replace: "'", "\\'" | replace: ' ', '_' }}', 3],
+        ['aa_tracker_' + i + '._setCustomVar', 3, 'Deal_Id', '{{ daily_deal.id }}', 3],
+        ['aa_tracker_' + i + '._setCustomVar', 4, 'Category', '{{ daily_deal.category.name }}', 3],
+        ['aa_tracker_' + i + '._trackPageview']
+    );
+
+    {% analytics_tag sale %}
+    _gaq.push(['aa_tracker_' + i + '._addTrans',
+        '{% analytics_tag_data sale_id %}',
+        '{{ daily_deal.advertiser_name | replace: "'", "\\'" }}',
+        '{% analytics_tag_data value %}',
+        '0.00',
+        '0.00',
+        '', '', ''
+        /*
+        {% if daily_deal_purchase.store %}
+            '{{ daily_deal_purchase.store.city | replace: "'", "\\'" }}',
+            '{{ daily_deal_purchase.store.state | replace: "'", "\\'" }}',
+            '{{ daily_deal_purchase.store.country.code }}'
+        {% elsif daily_deal.advertiser %}
+            '{{ daily_deal.advertiser.city | replace: "'", "\\'" }}',
+            '{{ daily_deal.advertiser.state | replace: "'", "\\'" }}',
+            '{{ daily_deal.advertiser.country.code }}'
+        {% else %}
+            '',
+            '',
+            ''
+        {% endif %}
+        */
+    ]);
+    _gaq.push(['aa_tracker_' + i + '._addItem',
+        '{% analytics_tag_data sale_id %}',
+        '{% analytics_tag_data item_id %}',
+        '{{ daily_deal.value_proposition | replace: "'", "\\'" }}',
+        '{{ daily_deal.category.name }}',
+        '{{ daily_deal.price }}',
+        '{% analytics_tag_data quantity %}'
+    ]);
+    _gaq.push(['aa_tracker_' + i + '._trackTrans']);
+    {% endanalytics_tag %}
+}
+/*** end accounts loop ***/
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+// track various page events (e.g. social media buttons, other deals, layout tabs)
+function trackDailyDealEvent (eventType) {
+    for (i = 0; i < ga_accounts.length; i++) {
+        _gaq.push(['aa_tracker_' + i + '._trackEvent', eventType, '{{ daily_deal.id }}', '{{ publisher.name | replace: "'", "\\'" | replace: ' ', '_' }}']);
+    }
+}
+
+// requires prototype.js
+document.observe("dom:loaded", function() {
+    $$('.share_button_facebook').invoke('observe', 'click', trackDailyDealEvent.curry('Share Facebook'));
+    $$('.share_button_twitter').invoke('observe', 'click', trackDailyDealEvent.curry('Share Twitter'));
+    $$('.share_button_mail').invoke('observe', 'click', trackDailyDealEvent.curry('Share Email'));
+    $$('.other_deal_tracking a').invoke('observe', 'click', trackDailyDealEvent.curry('View Other Deal'));
+    $$('form.email_subscription_tracking').invoke('observe', 'submit', trackDailyDealEvent.curry('Email Subscription'));
+    $$('a.refer_a_friend_tracking').invoke('observe', 'click', trackDailyDealEvent.curry('Refer a Friend'));
+    if ($('tab_overview')) $('tab_overview').observe('click', trackDailyDealEvent.curry('Tab Click: Overview'));
+    if ($('tab_location')) $('tab_location').observe('click', trackDailyDealEvent.curry('Tab Click: Location'));
+    if ($('tab_reviews')) $('tab_reviews').observe('click', trackDailyDealEvent.curry('Tab Click: Reviews'));
+    if ($('tab_comments')) $('tab_comments').observe('click', trackDailyDealEvent.curry('Tab Click: Comments'));
+    {% analytics_tag signup %}trackDailyDealEvent('Confirm Email Signup');{% endanalytics_tag %}
+});
+//]]>
+</script>
+<!-- END Universal Analog Analytics Tag -->

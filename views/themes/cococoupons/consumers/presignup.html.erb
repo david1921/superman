@@ -1,0 +1,19 @@
+<div id="presignup">
+	<div id="deal_logos"><img src="/themes/cococoupons/images/graphics/cococoupons_logo.png" height="58" width="385" alt="KLOS Rock Bottom Deals | KABC Savings Center"></div>
+	<h1>Never miss a deal!</h1>
+	<h2>Sign up now to receive CoCoCoupons Alerts.</h2>
+	
+	
+	<form action="<%= publisher_daily_deal_subscribers_path(@publisher) %>" method="POST" class="presignup email_subscription_tracking">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+		<input name="redirect_to" type="hidden" value="<%= verifiable_url(presignup_publisher_consumers_url(:publisher_id => @publisher.id, :host => @publisher.daily_deal_host)) %>" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<p class="title"><label for="Email">Enter your email address:</label></p>
+		<p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></p>
+		<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+		<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false;">Privacy Policy</a></label>
+		<p><input id="subscribe_button" type="submit" value="Sign Up" /></p>
+	</form>
+	
+</div><!-- /background -->

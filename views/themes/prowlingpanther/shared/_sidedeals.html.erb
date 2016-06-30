@@ -1,0 +1,12 @@
+<% if @daily_deal.side_deals.size > 0 %>
+<h4>Other Great Deals
+ 	<% if @publisher.allow_all_deals_page %>
+	<a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6" class="button gradient all_deals_tracking <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">View All<span></span></a>
+	<% end %>
+</h4>
+	
+	       
+<div id="side_deals" class="content_box other_deal_tracking">
+	<%= render :partial => with_theme("shared/sidedeal") %>
+</div><!-- /side_deals -->
+<% end %> 

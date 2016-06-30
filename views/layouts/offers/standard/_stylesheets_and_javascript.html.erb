@@ -1,0 +1,10 @@
+<%= stylesheet_link_tag "scoped_reset", "offers", "standard/offers", "lightbox", "standard/lightbox", :media => "all" %>
+<%= stylesheet_link_tag "#{@publisher.label}/main.css", :media => "all" %>
+<!--[if IE 6]>
+  <%= stylesheet_link_tag "#{@publisher.label}/ie6", :media => "all" %>
+<![endif]-->
+<!--[if IE 5]>
+  <%= stylesheet_link_tag "#{@publisher.label}/ie5", :media => "all" %>
+<![endif]-->
+
+<%= javascript_include_tag :defaults, "ghostie", "lightbox", "coupons" %>

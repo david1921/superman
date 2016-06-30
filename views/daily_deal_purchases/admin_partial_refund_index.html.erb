@@ -1,0 +1,34 @@
+<div class="left_column">
+  <% form_tag :action => "admin_partial_refund", :id => @daily_deal_purchase do %>
+    <table>
+      <tr>
+        <td>Refund</td>
+        <td>Id</td>
+        <td>Status</td>
+        <td>Actual Purchase Price</td>
+        <td>Serial Number</td>
+        <td>Redeemer Name</td>
+        <td>Redeemed At</td>
+      </tr>
+      <% for @daily_deal_certificate in @daily_deal_purchase.daily_deal_certificates do %>
+        <tr class="certificate">
+          <% if @daily_deal_certificate.refundable? %>
+            <td><%= check_box "daily_deal_certificate[]", :refunded? %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td><%= @daily_deal_certificate.id %></td>
+          <td><%= @daily_deal_certificate.status %> </td>
+          <td><%= number_to_currency(@daily_deal_certificate.actual_purchase_price) %> </td>
+          <td><%= @daily_deal_certificate.serial_number %> </td>
+          <td><%= @daily_deal_certificate.redeemer_name %> </td>
+          <td><%= @daily_deal_certificate.redeemed_at %> </td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="buttons">
+      <%= link_to("Cancel", daily_deal_purchases_consumers_admin_edit_path(@daily_deal_purchase.id), :class => "left") %>
+      <%= submit_tag("Submit Partial Refund", :id => "submit_partial_refund_button", :disabled => @daily_deal_purchase.fully_refunded?) %>
+    </div>
+  <% end %>
+</div>

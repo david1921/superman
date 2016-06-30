@@ -1,0 +1,31 @@
+<% set_page_title "Reports: Affiliated Daily Deals" -%>
+<% url_options = { :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => affiliated_daily_deals_reports_publisher_path(@publisher, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :affiliated_daily_deals, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "publisher_affiliated_daily_deals",
+  :data_source => affiliated_daily_deals_reports_publisher_path(@publisher.to_param, :format => "xml"),
+  :data_params => {},
+  :result_node => :daily_deal,
+  :data_columns => [
+    [:started_at, {:label => "Started At"}],
+    [:advertiser_name, { :label => "Advertiser", :class_name => 'left', :formatter => "formatUrl('advertiser_href')" }],         
+    [:advertiser_href, { :display => false }],
+    [:currency_symbol, { :display => false }],
+    [:accounting_id, {:label => "Accounting ID", :class_name => "left"}],
+    [:listing, { :label => "Listing", :class_name => 'left' }],
+    [:value_proposition, { :label => "Value Proposition", :class_name => 'left' }],
+    [:purchases_count, {:label => "Purchased", :parser => "number"}],
+    [:purchasers_count, { :label => "Purchasers", :parser => "number" }],
+    [:affiliate_gross, { :label => "Gross", :formatter => "formatCurrency" }],
+    [:affiliate_rev_share, {:label => "Affiliate Rev. Share", :formatter => "formatPercentage"}],
+    [:affiliate_payout, { :label => "Payout", :formatter => "formatCurrency" }],
+    [:affiliate_total, {:label => "Total", :formatter => "formatCurrency"}]
+  ]
+}) %>

@@ -1,0 +1,6 @@
+<% @consumer.publisher.find_braintree_credentials! -%>
+<%= {
+  :is_new_customer => !@consumer.in_vault?,
+  :payment_gateway => Braintree::TransparentRedirect.url,
+  :tr_data => braintree_protected_data_for_customer_credit_card(@consumer, :redirect_host => AppConfig.api_host, :redirect_format => "json")
+}.to_json.html_safe -%>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ daily_deal.publisher_prefix }} {{ daily_deal.value_proposition }}</title>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td valign="top">
+        <table width="620" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#e2e8ef">
+          <tr>
+		    <td>
+			  <table width="590" border="0" cellspacing="0" cellpadding="0" align="center" style="padding-top: 10px; padding-bottom: 10px;">
+				<tr>
+					<td valign="top" style="padding-bottom: 10px;">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						  <tr>
+							<td rowspan="2" valign="top"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/gaston-chamber-deals.png" alt="Gaston Chamber Deals" /></td>
+							<td valign="top" align="right"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/gaston-gazette.png" alt="Gaston Gazette" /></td>
+						  </tr>
+						  <tr>
+							<td valign="top" align="right" style="padding-top: 2px; font-size: 13px; color: #3e3e3e; font-family: Arial, Helvetica, sans-serif; letter-spacing: -1px;">{{ "now" | date: "%A, %B %e, %Y" }}</td>
+						  </tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f5f5f5" style="padding: 10px;">
+						  <tr>
+							<td colspan="2" valign="top" align="center">
+								<img src="{{ daily_deal.photo.standard_url }}" width="319" alt="{{ advertiser.name }}" style="padding: 4px; background: #ffffff; border-width: 1px; border-style: solid; border-color: #a6a6a6;" />
+							</td>
+						  </tr>
+						  <tr>
+							<td colspan="2" valign="top">
+								<h1 style="font-family: Arial, Helvetica, sans-serif; color: #05608c; font-size: 19px; font-weight: bold; margin-top: 10px; margin-bottom: 0; padding: 0;">{{ daily_deal.value_proposition }}</h1>
+							</td>
+						  </tr>
+						  <tr>
+							<td colspan="2" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 12px;">
+								{{ daily_deal.description | truncate_html_to_first_paragraph_only }}
+							</td>
+						  </tr>
+						  <tr>
+							<td valign="top" align="left" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold;"><a href="{{ daily_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/see-todays-deal.png" width="158" height="31" alt="See Today's Deal >" /></a></td>
+							<td valign="top" align="right" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold;">
+								<a href="{{ daily_deal.twitter_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/twitter.png" alt="Twitter" width="22" height="21" /></a> 
+								<a href="{{ daily_deal.facebook_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/facebook.png" alt="Facebook" width="22" height="21" /></a> 
+								<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/email.png" alt="Email" width="22" height="21" /></a>
+							</td>
+						  </tr>
+						</table>
+					</td>
+				</tr>
+				{% if daily_deal.side_deals.size > 0 %}
+				<!--SIDE DEALS-->
+				<tr>
+					<td valign="top">
+						<h3 style="background-color: #32484f; margin-top: 10px; margin-bottom: 0; padding-top: 5px; padding-left: 15px; padding-bottom: 5px; color: #ffffff; font-size: 16px; font-family: Arial, Helvetica, sans-serif;"><span style="color: #ffffff;">side deals</span></h3>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" bgcolor="#f5f5f5">
+						{% for side_deal in daily_deal.side_deals %}
+						<!--SIDE DEAL-->
+						<table width="50%" border="0" cellspacing="13" cellpadding="0" style="float: left;">
+						  <tr>
+							<td valign="top">
+								<img src="{{ side_deal.photo.standard_url }}" width="258" height="185" alt="{{ side_deal.advertiser.name }}" style="padding: 4px; background: #ffffff; border-width: 1px; border-style: solid; border-color: #a6a6a6;" />
+							</td>
+						  </tr>
+						  <tr>
+							<td valign="top">
+								<h3 style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #05608c; margin-top: 0; margin-bottom: 6px; padding: 0;">{{ side_deal.value_proposition }}</h3>
+								<a href="{{ side_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/see-it.png" width="53" height="21" alt="See it" /></a>
+							</td>
+						  </tr>
+						</table>
+						<!--/SIDE DEAL-->
+						{% endfor %}
+						<table width="50%" border="0" cellspacing="13" cellpadding="0" style="float: right;">
+						  <tr>
+							<td valign="top">
+								<a href="{{ publisher.contact_path }}"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/send-us-your-deals.jpg" width="258" height="185" alt="Send Us Your Deals" style="padding: 4px; background: #ffffff; border-width: 1px; border-style: solid; border-color: #a6a6a6;" /></a>
+							</td>
+						  </tr>
+						  <tr>
+						  	<td valign="top" style="height:57px;"></td>
+						  </tr>
+						</table>
+					</td>
+				</tr>
+				<!--/SIDE DEALS-->
+				{% endif %}
+				<tr>
+					<td valign="top">
+						<h3 style="background-color: #32484f; margin-top: 10px; margin-bottom: 0; padding-top: 5px; padding-left: 15px; padding-bottom: 5px; color: #ffffff; font-size: 16px; font-family: Arial, Helvetica, sans-serif;"><span style="color: #ffffff;">send your deals</span></h3>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" bgcolor="#ffffff">
+						<table border="0" cellspacing="13" cellpadding="0">
+						  <tr>
+							<td valign="top" width="50"><img src="http://{{ publisher.daily_deal_host }}/themes/gastonchamberdeals/images/email/open.png" alt="Open" width="49" height="48" /></td>
+							<td valign="top" style="font-family: Arial, Helvetica, sans-serif;"><p style="font-size: 17px; color: #464646; margin-top: 5px; margin-bottom: 0; padding: 0;"><a style="text-decoration: none; color: #464646" href="{{ publisher.contact_path }}"><strong>Learn about how we can help bring tons of customers <br />to your door.</strong></a></p></td>
+						  </tr>
+					  </table>
+					</td>
+				<tr>
+					<td valign="top"></td>
+				</tr>
+			  </table>
+			</td>
+		  </tr> 
+        </table>
+    </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

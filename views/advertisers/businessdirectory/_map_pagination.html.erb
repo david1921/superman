@@ -1,0 +1,19 @@
+<div class="map_pagination">
+  <% if @page > 1 -%>
+    <span class="previous_page"><%= link_to "&laquo; Previous Results", render_public_advertisers_path(@publisher, pagination_link_params(@page - 1).merge(:category => @category)) %></span>
+  <% end -%>
+  <%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+  <% pages = [] %>
+  <%- formatter.index_range.each do |page| -%>
+    
+    <% if page == @page -%>
+      <% pages << "<span class=\"selected\">#{page}</span>".html_safe %>
+    <%- else -%>
+      <% pages << "<span>#{link_to(formatter.text_for(page), render_public_advertisers_path(@publisher, pagination_link_params(page).merge(:category => @category)))}</span>".html_safe %>
+    <%- end -%>
+  <%- end -%>
+  <%= pages.join("<span class='separator'>&nbsp;</span>").html_safe %>
+  <% if @page < formatter.index_range.last %>
+    <span class="next_page"><%= link_to "Next Results &raquo;", render_public_advertisers_path(@publisher, pagination_link_params(@page + 1).merge(:category => @category)) %></span>
+  <% end -%>
+</div>

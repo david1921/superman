@@ -1,0 +1,24 @@
+	<h1>Sign up and get 50-90% off the hottest things to do, see, eat, and enjoy in Atlanta delivered right to your inbox.</h1>
+	<h2>Create your own deals and find out what other deal lovers are up to
+with Fairwinds&mdash;deals by you, for you!</h2>
+</p>
+	<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" method="POST" class="presignup">
+		<input type="hidden" name="redirect_to" value="{{ publisher.verifiable_thank_you_publisher_daily_deal_subscribers_path }}" id="redirect_to">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<fieldset>
+            <input class="dd_input" id="subscriber_name" name="subscriber[name]" value="Name" aria-label="Name" title="Name" type="text" />
+            <input id="subscriber_zip_code" class="dd_input" name="subscriber[zip_code]" value="Zip Code"  aria-label="Zip Code" type="text" />
+        </fieldset>
+		<fieldset>
+			<input class="dd_input" id="subscriber_email" name="subscriber[email]" value="Email Address" aria-label="Email Address" title="Email address" type="text" />		
+		</fieldset>
+		<fieldset>
+			<input name="subscriber[terms]" type="hidden" value="0" />
+			<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+			<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="{{ publisher.popup_terms_path }}" class="lbOn">Terms</a> and <a href="{{ publisher.popup_privacy_path }}" class="lbOn">Privacy Policy</a></label>
+		</fieldset>
+		<p><input id="subscribe_button" class="subscribe_button" type="submit" value="Sign Up" /></p>
+	</form>
+

@@ -1,0 +1,179 @@
+<div id="wrapper">
+	<div id="leftcol">
+		<div class="content" id="top">
+			<div class="text">
+				<h1 class="value_proposition">
+					{{ daily_deal.value_proposition }}
+					<span class="red"><em>A {{ daily_deal.value | currency }} value. You pay only {{ daily_deal.price | currency }}!</em></span>
+				</h1>
+				<h2 class="value_proposition_sub">
+					<strong>{{ daily_deal.value_proposition_subhead }}</strong>
+				</h2>
+			</div>
+		</div>
+		
+		<div id="contentwrap">
+			<div id="leftside">
+				<div id="pricetag">
+					{% if daily_deal.sold_out? %}
+					<span class="status not">SOLD OUT</span>
+					{% elsif daily_deal.over? %}
+					<span class="status not">DEAL OVER</span>
+					{% elsif daily_deal.active? %}
+					<span class="status" id="buy_now_button"><a href="{{ daily_deal.buy_now_path }}"><img src="/themes/clickondetroit/images/buttons/buy-now.png" width="134" height="97" alt="Click Here to Buy!" /></a></span>
+					<span class="status not unavailable" style="display:none;">DEAL OVER</span>
+					{% else %}
+					<span class="status not">NOT YET AVAILABLE</span>
+					{% endif %}
+					
+					<span id="deal_price"><span>$</span>{{ daily_deal.price | number }}</span>
+				</div>
+				<div class="content">
+					<div id="timer">
+						<div><strong>Time Left</strong></div>
+						<div id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</div>
+					</div>
+					<ul id="share">
+						<li><a class="facebook share_button_facebook" href="/daily_deals/{{ daily_deal.id }}/facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share This Deal on Facebook">Post on Facebook</a></li>
+						<li><a class="twitter share_button_twitter" target="_blank" href="{{ daily_deal.twitter_url }}">Tweet This</a></li>
+						<li><a class="email share_button_mail" href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}">Email This</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="rightside">
+				<div id="dealphoto"><img src="{{ daily_deal.photo.url }}" width="429" alt="{{ advertiser.name }}" /></div>
+				<div id="description">
+					<h3>Deal Information</h3>
+					{{ daily_deal.description }}
+				</div>
+				<div class="clear"></div>
+				<div id="location">
+					<h3>Location</h3>
+					<div>
+						<img src="{{ advertiser.logo.standard_url }}" alt="{{ advertiser.name }}" />
+						<p>{{ advertiser.name }}</p>
+						{% if advertiser.address? %}
+						  {% for store in advertiser.stores %}
+						   <p class="multiloc" style="{% if forloop.index > 1  %}display:none{% endif %}">
+							  {{ store.address_line_1 }}<br />
+							  {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+							  {% if store.formatted_phone_number != empty %}
+							    {{ store.formatted_phone_number }}
+							  {% endif %}
+							  {% if advertiser.website_url != empty %}
+							    <br /><a href="{{ advertiser.website_url }}">website</a>
+							  {% endif %}                    
+						   </p>
+						   {% endfor %}
+						 {% endif %}
+						 
+						 {% if advertiser.address == empty %}
+						   {% for store in advertiser.stores %}
+						  <p>{{ store.formatted_phone_number }}</p>
+						   {% endfor %}
+						   {% if advertiser.website_url != empty %}
+							 <p><a href="{{ advertiser.website_url }}">website</a></p>
+						   {% endif %} 
+						 {% endif %}
+						 
+						 {% if advertiser.num_stores > 1 %}
+						   <p><a id="see_all_locations" href="#" onclick="javascript:$$('p.multiloc').each(Element.show); $('see_all_locations').hide(); return false">See more locations</a></p>
+						 {% endif %}   		
+						
+						
+						{% if advertiser.address? %}
+							{% if advertiser.stores.size > 0 %}
+							 <a href="{{ advertiser.map_url }}">
+							  <img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="blank" style="width: 175px; height: auto;" />
+							 </a>
+						   {% endif %}
+						{% endif %}
+					</div>
+				</div><!--end location-->
+				<div id="details">
+					<h3>Highlights</h3>
+					{{ daily_deal.highlights }}
+					<h3>Fine Print</h3>
+					{{ daily_deal.terms }}
+				</div><!--end details-->
+			</div><!--end rightside-->
+		
+		</div><!--end contentwrap-->
+	</div><!--end leftcol-->
+	<div id="rightcol">
+		
+		{% if publisher.current_user_belongs_to? != true %}
+		<div class="box">
+			   <div id="deal_signup">
+			   
+				<h3>Subscribe Now</h3>
+				<form id="signup" action="{{ publisher.subscribers_path }}" class="email_subscription_tracking" method="post">
+				  <div><input id="redirect_to" name="redirect_to" type="hidden" value="/publishers/{{ publisher.id }}/daily_deals/subscribed" /></div>
+					<div>
+						<span class="email"><input id="subscriber_email" class="text" name="subscriber[email]" size="30" type="text" title="Enter your email address..." value="Enter your email address..."  /></span>
+						<input id="subscriber_submit" name="commit" type="image" src="/themes/clickondetroit/images/buttons/subscribe.png" value="SUBSCRIBE" />
+					</div>
+					<div class="terms">
+					<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" /> I agree to the <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a>
+					</div>
+				</form>
+				
+				<script type="text/javascript">
+				//<![CDATA[
+				  (function() {   
+					var input = $('subscriber_email');
+					var placeholderText = "Enter your email address...";
+					if (input) {
+					  input.value = placeholderText;
+					  input.observe('click', function(event){
+						var element = event.element();
+						if(placeholderText === element.value) {
+						  element.value = '';
+						  element.activate();
+						}
+					  });
+					  input.observe('blur', function(event) {
+						var element = event.element();    
+						if (element.value.length == 0) {
+						  element.value = placeholderText;
+						}
+					  });
+					}
+				  })();
+				
+				//]]>
+				</script>
+			</div><!-- end deal_signup -->
+		</div><!--end box-->
+		{% endif %}
+		
+
+		{% if daily_deal.side_deals.size > 0 %}
+		<div class="box">	
+			<div id="side_deals" class="sidebar_box other_deal_tracking">
+	     <h3>Other Great Deals</h3>
+	       {% for side_deal in daily_deal.side_deals %}
+	         <div class="side_deal_wrap">
+	               <p class="side_deal_value_prop"><a class="side_deal" href="{{ side_deal.url }}">{{ side_deal.value_proposition }}</a></p>
+	               <div class="side_deal_text">
+	                <div class="side_deal_price">{{ side_deal.price | currency }}</div>
+	                <p class="side_deal_value">{{ side_deal.value | currency }} VALUE</p>
+	                    <a class="view_deal button" href="{{ side_deal.url }}">View Deal</a>
+	               </div><!-- /side_deal_text -->
+	               <div class="side_deal_thumb"><img src="{{ side_deal.photo.facebook_url }}" alt="" /></div>
+	               <div class="clear"></div>
+	          </div><!-- /side_deal_wrap -->
+	       {% endfor %}
+				</div><!-- /side_deals -->
+			</div> <!-- end .box -->
+{% endif %}
+
+
+		
+		
+		<div id="facebookbox">
+			<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FClickOnDetroitcoms-Real-Deal%2F134780879910525&amp;width=182&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=true&amp;height=375" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:182px; height:375px;" allowTransparency="false"></iframe>
+		</div>
+		
+	</div><!--end rightcol-->
+</div><!--end wrapper-->

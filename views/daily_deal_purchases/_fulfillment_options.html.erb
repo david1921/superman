@@ -1,0 +1,64 @@
+<h2>Fulfillment Options</h2>
+
+<div>
+  <%= f.radio_button :fulfillment_method, "email" %>
+  <%= f.label :fulfillment_method_email, "Print using your computer - FREE" %>
+</div>
+
+<div>
+  <%= f.radio_button :fulfillment_method, "ship" %>
+  <%= f.label :fulfillment_method_ship, "Shipped from #{@publisher.name}'s office - $#{@publisher.voucher_shipping_fee}" %>
+</div>
+
+<fieldset id="mailing_address" style="<%= @daily_deal_purchase.require_mailing_address? ? "" : "display: none;" %> margin-top: 10px;">
+  <legend>Mailing Address</legend>
+
+  <% f.fields_for :mailing_address do |ff| %>
+   <div class="row"> 
+      <div>
+        <div class="label">
+        <%= ff.label :address_line_1, 'Address 1' %>
+        </div>
+        <div class="input fulfillment_form_address_line_1">
+        <%= ff.text_field :address_line_1 %>
+        </div>
+      </div>
+
+      <div>
+        <div class="label">
+        <%= ff.label :address_line_2, 'Address 2' %>
+        </div>
+         <div class="input fulfillment_form_address_line_2">
+        <%= ff.text_field :address_line_2 %>
+        </div>
+      </div>
+
+      <div>
+       <div class="label">
+        <%= ff.label :city %>
+        </div>
+         <div class="input fulfillment_form_city">
+        <%= ff.text_field :city %>
+        </div>
+      </div>
+
+      <div>
+       <div class="label">
+        <%= ff.label :state %>
+        </div>
+         <div class="input-state fulfillment_form_state">
+        <%= ff.select :state, Addresses::Codes::US::STATE_CODES, :include_blank => true %>
+        </div>
+      </div>
+
+      <div>
+       <div class="label">
+        <%= ff.label :zip %>
+        </div>
+         <div class="input fulfillment_form_zip">
+        <%= ff.text_field :zip %>
+        </div>
+      </div>
+    </div>  
+  <% end %>
+</fieldset>

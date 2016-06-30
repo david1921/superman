@@ -1,0 +1,40 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div id="all_deals" class="content_box">
+	   <div id="all_deals_header">
+      <h2>All Deals</h2>
+      <!-- deal category links -->      
+      <%= raw render :partial => with_theme("shared/all_deals_category_list_nocount") %>
+      <div class="clear"></div>
+    </div>
+		
+	    <%= will_paginate @daily_deals,
+	      :per_page => 6,
+	      :class => "pagination_top" %>
+
+    	<div class="clear"></div>
+    	<div class="inner">
+
+
+	    	<% @daily_deals.each do |daily_deal| %>
+    			<%= render :partial => with_theme('daily_deals/daily_deal'), :locals => {:daily_deal => daily_deal} %>
+    		<% end %>
+
+    	</div>
+
+    	<div class="clear"></div>
+    	
+		<%= will_paginate @daily_deals,
+		  :per_page => 6,
+		  :class=> "pagination_bottom" %>
+		
+	</div><!-- /content_box -->
+</div><!-- /main_column -->
+
+<%= render :partial => with_theme("shared/all_deals_sidebar") %>
+
+</div>
+
+
+

@@ -1,0 +1,19 @@
+<% set_daily_deal_page_title_slug "Reset Password" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>&iquest;Olvidaste tu contrase&ntilde;a?</h2>
+    <p>Si ha olvidado su contrase&ntilde;a por favor introduzca el email que utiliz&oacute; para registrarse, en breve le env&iacute;aremos las instrucciones para recuperarlo.</p>
+    <div id="password_reset_form">
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row">
+        <div class="label">Correo electr&oacute;nico</div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      </div>
+      <div class="row button_row">
+        <%= submit_tag("Restablecer Contrase&ntilde;a", :name => "reset_password") %> <%= daily_deal_cancel_link(@publisher) %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

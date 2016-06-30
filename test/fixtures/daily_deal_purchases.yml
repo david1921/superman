@@ -1,0 +1,16 @@
+changos:
+  daily_deal_id:    <%= Fixtures.identify(:changos) %>
+  consumer:         john_public
+  quantity:         1
+  gift:             true
+  recipient_names:  ["Your Momma"]
+  payment_status:   captured
+  uuid:             <%= UUIDTools::UUID.random_create.hexdigest %>
+
+offplatform:
+  daily_deal_id:    <%= Fixtures.identify(:changos) %>
+  quantity:         1
+  recipient_names:  ["My Momma"]
+  payment_status:   captured
+  uuid:             <%= UUIDTools::UUID.random_create.hexdigest %>
+  type:             OffPlatformDailyDealPurchase

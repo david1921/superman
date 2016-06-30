@@ -1,0 +1,92 @@
+<div id="deal_overview">
+	<div id="deal_photo">
+		<img src="<%=  protocol_relative_url(daily_deal.photo.url(:optimized)) %>" alt="<%= daily_deal.advertiser.name %>"/>
+	
+	<div id="dashboard"><!--dashboard -->
+		<div id="dash_top">
+			<div id="dashboard_category_wrapper" class="<%= daily_deal.publishers_category.name.gsub(/\s/, '').downcase %>_cat_title_wrap" >
+				<% if daily_deal.publishers_category %>
+					<span class="category_icon <%= daily_deal.publishers_category.name.gsub(/\s/, '').downcase %>_category_icon">
+				</span>
+			        <h3><%= t(daily_deal.publishers_category.name.gsub(/\s/, '_').downcase) %></h3>
+			    <% end %>
+			</div>
+		</div>
+		<div id="clear"></div>
+		<div id="dash_bottom">
+			
+			<h2 id="dashboard_advertiser_name"><%= daily_deal.advertiser.name %></h2>
+		
+			
+			<p id="value_prop"><%= daily_deal.value_proposition %>
+			<br />
+			
+				<span id="dashboard_custom_field1"><%= t(:at) %> 
+					<% if daily_deal.custom_2.present? %>
+    		 			<%= daily_deal.custom_2 %>
+    				<% else %>
+    		 			<%= daily_deal.advertiser.name %>
+    		 		<% end %>
+    		 	</span>
+    		 	<a id="dashboard_view_details"  href="<%= daily_deal_path(daily_deal) %>"><%= t(:view_details) %></a>
+			</p>
+		
+			<div id="clear"></div>
+			
+			<div id="dash_bottom_row">
+				<div id="facebook_like_div">
+					<fb:like href="<%= market_aware_daily_deal_url(daily_deal) %>" send="false" layout="button_count" width="450" show_faces="false" font="arial"></fb:like>
+					<% if false %>
+						<iframe src="//www.facebook.com/plugins/like.php?href=<%= market_aware_daily_deal_url(daily_deal) %>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=arial&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe>
+					<% end %>					
+				</div>
+				
+				<% if !daily_deal.affiliate_url %>	
+					<div id="time_left" class=<% if daily_deal.affiliate_url %>"time_left_affinity"<% end %>>
+						<%= distance_of_time_in_words_to_now(daily_deal.hide_at) %>
+						<br>
+						<span><%= t(:REMAINING) %></span>
+					</div>
+				<% end %>	
+							
+				<div id="buy_now">
+				    <% if daily_deal.sold_out? -%>
+				    	<div id="sold_out" class="dd_button sold_out gradient"><span><%= t(:sold_out) %></span></div>
+				    <% elsif daily_deal.over? -%>
+				    	<div id="deal_over" class="dd_button deal_over gradient"><span><%= t(:deal_over) %></span></div>
+				    <% elsif daily_deal.active? -%>
+            	
+	            		<% if daily_deal.affiliate_url %> 
+	                  		<% if current_consumer_for_publisher?(@publisher) %>
+	                    		<%= render :partial => with_theme("shared/lightboxes/affinity"), :locals => { :daily_deal =>  daily_deal } %>
+	            	    		<a id="redeem_now" class="fancybox dd_button buy gradient" href='#affinity_lightbox_info' name="buy_now_button">
+	            	    			<div class="redeem_now_arrow"></div>
+	            	      			<span><%= t(:redeem_now) %></span>
+	            	    		</a>
+	                  		<% else %>
+	                    		<a id="login_to_redeem" class="dd_button buy gradient" href='<%= daily_deal_login_path(@publisher) %>' name="buy_now_button">
+	            	    			<div class="redeem_now_arrow"></div>
+	            	      			<span><%= t(:login_to_redeem) %></span>
+	            	    		</a>
+	                  		<% end %>
+	                	<% else %>
+	            	      	<a id="" class="dd_button buy gradient" href="<%= daily_deal_buy_now_path(daily_deal) %>" name="buy_now_button">
+	            	      		<span><%= t(:buy_now) %></span>
+	            	    	</a>
+	            		<% end %>
+				    	
+				    	<!-- <div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span> -->
+				    	</div>
+				    <% else -%>
+				    	<div id="not_yet" class="dd_button"><span><%= t(:not_yet_available) %></span></div>
+				    <% end -%>
+				    
+				</div><!-- /buy_now -->
+			</div> <!-- /dash_bottom_row -->
+		</div>
+	</div><!-- /dashboard -->
+	
+	</div> <!-- /deal photo -->
+
+</div>
+<!--  facet_deal_overview -->

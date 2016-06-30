@@ -1,0 +1,25 @@
+{% set_daily_deal_page_title_slug Contact Us %}
+<div class="page_row">
+  <div class="page_column_12 first">
+    <h1>Contact Us</h1>
+
+    <h2 class="main_office">Main Office</h2>
+    <p class="main_office">
+      {% if publisher.address_line_1 %}
+        {{ publisher.address_line_1 }}<br />
+        {% if publisher.address_line_2 != empty %}
+          {{ publisher.address_line_2 }}<br />
+        {% endif %}
+        {{ publisher.city }}, {{ publisher.state }} {{ publisher.zip }}
+      {% endif %}<br /><br />
+      Hours: 8:30am-5pm, Monday - Friday<br />
+    </p>
+
+
+    <h2 style="margin-top: 18px;">Customer Service &amp; Technical Support</h2>
+    <p>Please email
+      <a href="mailto:RealDealSupport@chicagoreader.com">RealDealSupport@chicagoreader.com</a>
+      or call {{ publisher.formatted_phone_number }}.
+    </p>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<p>
+  <%
+    if current_consumer_for_publisher?(non_pending_daily_deal_purchase.publisher)
+      action = link_to(t('.check_your_account'), consumer_daily_deals_path(current_consumer)
+    else
+      action = t('.sign_in_message', :sign_in_link => link_to(t('.sign_in'), new_publisher_daily_deal_session_path(non_pending_daily_deal_purchase.publisher)))
+    end
+  %>
+  <%=t 'purchase_no_longer_available_message', :action => action %>
+</p>

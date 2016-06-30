@@ -1,0 +1,9 @@
+	{% if publisher.enable_daily_deal_referral %}
+	<h4 id="refer_friend">Refer A Friend</h4>
+	<div id="refer_friend" class="content_box">
+     <a class="get_info" href="{{ publisher.refer_a_friend_path }}">
+     <h2>Refer a friend and receive a {{ publisher.daily_deal_referral_credit_amount | currency }} credit towards your next purchase.</h2>
+     <div class="refer_credit">Earn <span>{{ publisher.daily_deal_referral_credit_amount | currency }}</span> Credit</div>
+     </a>
+	</div><!-- /refer_friend -->
+	{% endif %} 

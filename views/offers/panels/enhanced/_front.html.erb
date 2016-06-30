@@ -1,0 +1,57 @@
+  <div class="front_panel" id="offer_<%= offer.id %>_front_panel">
+    <div class="top">
+      <div class="logo">
+        <%= raw(offer.advertiser.logo.file? ? image_tag(offer.advertiser.logo.url) : "&nbsp;".html_safe) %>
+      </div>
+      <div class="advertiser_name"><%= advertiser_name offer %></div>
+      <div class="advertiser_tagline"><%= offer.advertiser.tagline %></div>
+      <div class="address">
+        <%= offer.address.join(", ") %>
+        <%= raw("<br />#{h(offer.formatted_phone_number)}") unless offer.formatted_phone_number.blank? %>
+        <div class="links">
+          <%= raw [ link_to_website(offer), link_to_map(offer), link_to_email(offer) ].compact.join(" | ") %>
+        </div>
+      </div>
+    </div>
+    <% class_postfix = offer.show_small_icons? ? "_small" : "" -%>
+    <% image_dir     = offer.show_small_icons? ? "/themes/default/images/small" : "/themes/default/images" -%>
+    <div class="clip<%= class_postfix %>" id="offer_<%= offer.id %>_footer">
+      <%= link_to_function(image_tag("#{image_dir}/print.png"),
+      "clipCoupon(#{offer.id}, #{publisher.id}); trackCouponEvent('Print', #{offer.id})",
+      :id => "print_#{offer.id}", :class => "clip#{class_postfix}", :title => "Click to print coupon", :rel => "nofollow") %>
+      <%= link_to_remote(
+            image_tag("#{image_dir}/email.png"), 
+            :url => email_offer_path(offer, :publisher_id => publisher.id),
+            :html => { :class => "email#{class_postfix}", :title => "Click to email coupon to you", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:email) %>
+      <%= link_to_remote(
+          image_tag("#{image_dir}/phone.png"), 
+          :url => call_offer_path(offer, :publisher_id => publisher.id),
+          :html => { :class => "call#{class_postfix}", :title => "Click to call #{offer.advertiser_name.upcase}", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:call) %>
+      <%= link_to_remote(
+            image_tag("#{image_dir}/txt.png"), 
+            :url => txt_offer_path(offer, :publisher_id => publisher.id),
+            :html => { :class => "txt#{class_postfix}", :title => "Click to send coupon to you via TXT message", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:txt) %> 
+      
+      <% if offer.show_small_icons? -%>
+      <% publisher = offer.publisher %>
+      <%= link_to(
+            image_tag("#{image_dir}/twitter.png"), 
+            twitter_offer_url(offer, :publisher_id => publisher.id),
+            :class => "twitter#{class_postfix}", :target => "_blank", :title => "Share coupon on Twitter", :rel => "nofollow",
+            :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+      ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+      <%= link_to( 
+            image_tag("#{image_dir}/facebook.png"),
+            facebook_offer_url(offer, :publisher_id => publisher.id),
+            :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+            :class => "facebook#{class_postfix}",
+            :id => "offer_#{offer.id}_facebook_link",
+            :target => "_blank", 
+            :rel => "nofollow"
+        ) if publisher.show_facebook_button? -%>      
+      <% end -%>
+    </div>
+  </div>

@@ -1,0 +1,34 @@
+<% set_page_title "Reports: Online Coupon Summary" -%>
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => reports_advertiser_coupons_url(@advertiser, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "reports/advertisers/navigation", :locals => {:page => :coupon_summary, :url_options => url_options}) %>
+<%= render(:partial => "reports/advertisers/market_navigation", :locals => {:page => :coupon_summary, :url_options => url_options}) %>
+
+<%-
+web_data_columns = []
+web_data_columns << [:offer_name, { :label => "Coupon", :class_name => "left" }]
+web_data_columns << [:listing, { :label => "Publisher Offer ID" }] if @advertiser.offer_has_listing?
+web_data_columns << [:impressions_count, { :label => "Impressions", :parser => "number" }]
+web_data_columns << [:clicks_count, { :label => "Clicks", :parser => "number" }]
+web_data_columns << [:click_through_rate, { :label => "CTR", :parser => "number", :formatter => "formatRate" }]
+web_data_columns << [:prints_count, { :label => "Prints", :parser => "number" }]
+web_data_columns << [:txts_count, { :label => "Texts", :parser => "number" }]
+web_data_columns << [:emails_count, { :label => "Emails", :parser => "number" }]
+web_data_columns << [:calls_count, { :label => "Calls", :parser => "number" }]
+web_data_columns << [:facebooks_count, { :label => "Facebook", :parser => "number" }] if @advertiser.publisher.show_facebook_button
+web_data_columns << [:twitters_count,  { :label => "Twitter",  :parser => "number" }] if @advertiser.publisher.show_twitter_button
+web_data_columns << [:account_executive,  { :label => "Account Executive"}]
+-%>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "web_offers",
+  :data_source => reports_advertiser_coupons_path(@advertiser, :format => "xml"),
+  :data_params => { :summary => @summary },
+  :result_node => :offer,
+  :data_columns => web_data_columns
+}) %>

@@ -1,0 +1,19 @@
+<div class="page_row">  
+	<div class="page_column_12 first rounded_corners">
+		<h1 class="content">How It Works</h1>
+		
+		<h4>The Daily Deal</h4>
+		Each day, we send you one deeply discounted deal to use at local businesses. Sign up to get our daily email.
+		
+		<h4>Click and Buy</h4>
+		Every day we’ll announce a new DEAL OF THE DAY that is 50-90% off of regular prices at restaurants, spas, events and other local goodies. Purchase our daily deals with one easy click. Once you make a purchase you will receive a link to your voucher the next business day. It's that simple!
+		
+		<h4>Share</h4>
+		After you buy the deal, you'll get a unique link to share. If three people buy the deal using your link, then your deal is <strong>free</strong>
+		
+		<h4>Redeem</h4>
+		<p>After you make a purchase, you’ll receive the Deal of the Day voucher to print out via email. Take the Deal of the Day to the store or merchant any time before the expiration date.</p>
+		<p><%= raw(t('.sign_up_message', :href => link_to(t(:sign_up), new_publisher_consumer_path(@publisher))) )%> to receive an email every time we post a new deal.</p>
+		<p>Still have questions? <a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Check out our FAQ page</a></p>
+	</div>
+</div>

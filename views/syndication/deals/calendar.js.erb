@@ -1,0 +1,75 @@
+jQuery(document).ready(function() {
+  
+  var display = CalendarDisplay.createFromUrl(window.location.href);
+  
+  jQuery('#calendar').fullCalendar({
+    header: {
+      left: 'title',
+      center: 'prev,basicDay,basicWeek,month,next',
+      right: ''
+    },
+    defaultView: display.getView(),
+    date: display.getDate(),
+    month: display.getMonth(),
+    year: display.getYear(),
+    editable: false,
+    events: function(start, end, callback) {
+      jQuery.getJSON(dealsUrl(start, end), function(data) {
+        var events = [];
+        CalendarDisplay.updateResults(data);
+        jQuery.each(data["daily_deals"], function() {
+          events.push(
+            CalendarDisplay.mapDealToEvent(this.daily_deal));
+        });
+        callback(events);
+      });
+    },
+    eventRender: function(event, element){
+      CalendarDisplay.formatEvent(event, element);
+      element.qtip({
+        prerender: false,
+        content: {
+          url: event.show_on_calendar_url,
+          data: {"c[view]": CalendarDisplay.currentView(), 
+                 "c[date]": CalendarDisplay.currentDate(),
+                 "c[month]": CalendarDisplay.currentMonth(),
+                 "c[year]": CalendarDisplay.currentYear()},
+          method: 'get'
+        },
+        position: {
+          corner: {
+            target: 'rightMiddle',
+            tooltip: 'leftMiddle'
+          }
+        },
+        hide: {
+          fixed: true
+        }
+      });
+    },
+    loading: function(bool) {
+      var loader = jQuery('#calendar_view .loading');
+      if (bool) {
+          loader.show();
+      } else {
+          loader.hide();
+      }
+    },
+    eventClick: function(event, jsEvent, view){
+      CalendarDisplay.gotoUrl(event.syndication_deal_url);
+    },
+    dayClick: function(date, allDay, jsEvent, view) {
+      CalendarDisplay.gotoDate(date);
+    }
+  });
+});
+
+function dealsUrl(start, end) {
+	return CalendarDisplay.dealsUrl(baseDealsUrl(), window.location.href, start, end)
+}
+
+function baseDealsUrl() {
+  //The base url needs to include from_view parameter so that the links back to 
+  //the calendar view are set.
+  return '<%= calendar_syndication_deals_path(:from_view => 'calendar') %>';
+};

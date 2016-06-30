@@ -1,0 +1,93 @@
+<div class="left_column">
+  <% form_for @publishing_group, :html => { :multipart => true } do |f| -%>
+    <%= error_messages_for :publishing_group %>
+
+    <%= f.text_field_div :name %>
+    <%= f.text_field_div :label %>
+    <%= f.check_box_div :coupon_codes %>
+    <%= f.check_box_div :advertiser_financial_detail %>
+    <%= f.check_box_div :require_federal_tax_id, "Require Federal Tax ID" %>
+    <%= f.check_box_div :stick_consumer_to_publisher_based_on_zip_code, "Stick Visitors To Their Zip Code" %>
+    <%= f.check_box_div :redirect_to_deal_of_the_day_on_market_lookup, "Redirect To Publisher's Deal Of The Day Path Instead Of Landing Page" %>
+    <%= f.check_box_div :require_login_for_active_daily_deal_feed %>
+    <%= f.check_box_div :self_serve %>
+    <%= f.check_box_div :require_publisher_membership_codes %>
+    <%= f.check_box_div :restrict_syndication_to_publishing_group %>
+    <%= f.check_box_div :daily_deals_available_for_syndication_by_default, "Daily Deals Available For Syndication By Default" %>
+    <%= f.check_box_div :show_daily_deals_on_landing_page %>
+    <%= f.check_box_div :allow_consumer_show_action %>
+    <%= f.check_box_div :allow_single_sign_on, "Enable Single Sign On For All Consumers in Group" %>
+    <%= f.check_box_div :unique_email_across_publishing_group, "Validate Consumer Email Uniqueness Across All Group Publishers" %>
+    <%= f.check_box_div :allow_publisher_switch_on_login, "Allow Publisher Switch On Login" %>
+    <%= f.check_box_div :enable_daily_deal_variations %>
+    <%= f.check_box_div :send_litle_campaign %>
+    <%= f.check_box_div :allow_non_voucher_deals %>
+    <%= f.check_box_div :enable_redirect_to_last_seen_deal_on_login %>
+    <%= f.check_box_div :enable_redirect_to_users_publisher %>
+    <%= f.check_box_div :enable_force_valid_consumers %>
+    <div class="row">
+      <div class="label"><%= f.label(:logo) %></div>
+      <div class="input">
+        <%= image_tag(@publishing_group.logo.url(:normal), :class => "thumbnail") %><br />
+        <%= f.file_field(:logo) %>
+      </div>
+    </div>
+    <%= f.text_field_div :qr_code_host, "QR Code Host", :help => "Defaults to #{Publisher::DEFAULT_QR_CODE_HOST}" %>
+    <%= f.check_box_div :voucher_has_qr_code_default, "Voucher QR Code Default For All New Deals" %>
+    <%= f.text_field_div :max_quantity_default, "Deal Max Quantity Default:", :help => "Default value for new deal maximum quantity" %>
+    <%= f.text_field_div :apple_app_store_url, "App Store App URL", :help => "For groups with iPhone app" %>
+    <%= f.text_field_div :number_sold_display_threshold_default, nil, :help => "Used to pre-populate number_sold_display_threshold on deal edit page.  Overridden by publisher setting of same name." %>
+    <%= f.text_field_div :facebook_page_url, "Facebook Page URL:" %>
+    <%= f.text_field_div :facebook_app_id, "Facebook Application ID:" %>
+    <%= f.text_field_div :facebook_api_key, "Facebook API key:" %>
+    <%= f.text_field_div :facebook_app_secret, "Facebook Application secret:" %>
+    <%= f.text_field_div :yelp_consumer_key %>
+    <%= f.text_field_div :yelp_consumer_secret %>
+    <%= f.text_field_div :yelp_token %>
+    <%= f.text_field_div :yelp_token_secret %>
+    <%= f.text_field_div :silverpop_api_host %>
+    <%= f.text_field_div :silverpop_api_username %>
+    <%= f.password_field_div :silverpop_api_password %>
+    <%= f.text_field_div :silverpop_database_identifier %>
+    <%= f.check_box_div :uses_paychex %>
+    <%= f.text_field_div :paychex_initial_payment_percentage, "Paychex Initial Payment Percentage" %>
+    <%= f.text_field_div :paychex_num_days_after_which_full_payment_released, "Paychex No. Days After Which Full Payment is Released" %>
+    <div class="row">
+      <div class="label"><%= f.label :time_zone, "Silverpop account time zone:" %></div>
+      <div class="input"><%= f.time_zone_select :silverpop_account_time_zone, ActiveSupport::TimeZone.us_zones, :default => "UTC" %></div>
+    </div>
+    <%= f.text_field_div :silverpop_template_identifier, "Silverpop Email Template Id:" %>
+    <%= f.text_field_div :silverpop_seed_template_identifier, "Silverpop Seed Email Template Id:" %>
+    <%= f.text_field_div :consumer_recipients, "Consumer Report Recipients:" %>
+    <%= f.text_area_div :how_it_works, "Daily Deal How It Works", :rows => 4 %>
+    <%= f.text_area_div :terms_default, "Default Terms For New Deals:" %>
+    <%= f.text_field_div :google_analytics_account_ids, "Google Analytics Account IDs:" %>    
+    <%= f.select_div :parent_theme, PublishingGroup.ready_made_theme_names, :include_blank => true %>
+
+    <% unless @publishing_group.new_record? || @publishing_group.label.blank? %>
+      <div class="row">
+        <div class="label"><%= f.label(:enabled_locales, "Enabled Locales:") %></div>
+        <div class="input check_box_list">
+          <% @publishing_group.enabled_locales_to_display.each do |locale| %>
+            <%= check_box_tag 'publishing_group[enabled_locales][]', locale, @publishing_group.enabled_locales.include?(locale),
+              :id => "publishing_group_enabled_locales_#{locale}" %>
+              <label for="publishing_group_enabled_locales_<%= locale %>"><%= locale %></label>
+              <br />
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="buttons">
+      <%= button_to_function "Cancel", "window.location.href = '#{publishers_url}'", :class => "left" %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<div class="related">
+  <h3>Merchant Account ID</h3>
+  <%= @publishing_group.merchant_account_id || "None" %>
+  <br />
+  <%= link_to "Edit", edit_publishing_group_merchant_account_ids_path(@publishing_group) %>
+</div>

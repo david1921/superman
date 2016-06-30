@@ -1,0 +1,55 @@
+<div id="payment_method_credit" class="row buy_now_with_stored_cards_form">
+
+  <%= render :partial => 'braintree_credit_card_logos', :locals => { :daily_deal_purchase => daily_deal_purchase} %>
+
+  <%- daily_deal_purchase.publisher.find_braintree_credentials! -%>
+
+  <% if daily_deal_purchase.consumer.credit_cards.size > 0 %>
+
+    <div id="choose_payment_method">
+      <h2>Choose payment method</h2>
+
+
+      <input type="radio" id="choose_payment_method_radio" name="toggle" checked="checked"/><label for="choose_payment_method_radio">Use saved card</label>
+
+
+      <div id="choose_payment_method_fields">
+        <%= select_tag :token_select, options_from_collection_for_select(daily_deal_purchase.consumer.credit_cards, :token, :descriptor) %>
+        <% daily_deal_purchase.consumer.credit_cards.each_with_index do |card, idx| %>
+          <% form_for :transaction,
+               :result => result,
+               :builder => BraintreeFormBuilder,
+               :url => Braintree::TransparentRedirect.url,
+               :html => { :autocomplete => "off", :id => "transparent_redirect_stored_cards_form_#{card.token}" } do |f| -%>
+            <% if idx == 0 %>
+              <%= f.display_braintree_error_messages %>
+            <% end %>
+            <%= hidden_field_tag :tr_data, braintree_transaction_data(daily_deal_purchase, { :redirect_url => redirect_url, :use_vault => true, :payment_method_token => card.token }), :id => "tr_data_#{card.token}" %>
+          <% end %>
+       <% end %>
+
+        <%= link_to "Manage stored credit cards", consumer_credit_cards_path(daily_deal_purchase.consumer) %>
+      </div>
+
+      <div><label for="add_new_card_radio">Add new card</label><input type="radio" id="add_new_card_radio" name="toggle"/></div>
+
+      <div id="add_new_card_fields" style="display:none">
+        <%=  render :partial => "braintree_transparent_redirect_form", :locals => { :daily_deal_purchase => daily_deal_purchase, :use_vault => true, :hide_submit_button => true, :result => result } %>
+      </div>
+      <div>
+        <%= submit_tag t('buy_now'), :id => "stored_credit_card_buy_now" %>
+        <%= daily_deal_cancel_link(daily_deal_purchase.publisher) %>
+      </div>
+
+    </div>
+
+  <% else %>
+    <div>
+      <%=  render :partial => "braintree_transparent_redirect_form", :locals => { :daily_deal_purchase => daily_deal_purchase, :use_vault => true, :hide_submit_button => false, :result => result } %>
+    </div>
+  <% end %>
+
+</div>
+
+<%= javascript_include_tag "app/daily_deal_purchases/address", "app/daily_deal_purchases/braintree_buy_now_form", "app/daily_deal_purchases/braintree_buy_now_with_stored_cards_form" %>
+

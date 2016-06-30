@@ -1,0 +1,21 @@
+<% set_page_title "Link Expired" %>
+<% @navbar_active_item_tag = :r3 %>
+
+<% row1 do %>
+  <% box2 do %>
+    <div class="padding" style="text-align:justify">
+
+      <h2>Link Expired</h2>
+      <br/><br/>
+      Sorry, this web address is no longer valid.
+      <br/><br/>
+      If the link you followed or web address you entered was from an email we sent you, please
+      <strong>check your inbox for a more recent message</strong>, which should contain a valid
+      link. You may also wish to check your junk mail folder in case a more recent message was
+      misclassified as spam.
+      <br/><br/>
+      For help with opting in or out of coupon forwarding to your email or mobile phone, please
+      contact <%= mail_to support_email_address %>.
+    </div>
+  <% end -%>
+<% end -%>

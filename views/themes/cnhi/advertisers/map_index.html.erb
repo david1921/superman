@@ -1,0 +1,50 @@
+<div id="business_directory" class='map_view'>
+  <div class="left_column">
+    <%= render :partial => "offers/businessdirectory/search", :locals => {:search_url => render_public_advertisers_path(@publisher)} %>
+
+    <%= render :partial => "advertisers/categories", :object => @publisher_categories %>
+  </div>
+  <div class="right_column">
+    <h2>Coupon Directory</h2>
+    <div class='results'>
+      <% unless @advertisers.empty? -%>
+        <span>Showing <%= @page_size %> of <%= @advertisers_count %> results</span>
+      <% else -%>
+        <span class='no-results'>Sorry, there are no coupons that match your criteria.</span>
+      <% end -%>
+    </div>
+    <div class='navigation'>
+      <div class='bottom'>
+        <div class='view_group'>
+          <div class="view_label">
+            View As
+          </div>
+          <%= render_grid_list_controls( {:active_control => :map, :show_sort_by => false, :publisher => @publisher, :postal_code => @postal_code, :radius => @radius, :sort => @sort }, false ) %>
+        </div>
+      </div>
+    </div>
+    <div class="map aa-map" id="analog-analytics-map" style="width:700px;height:400px;"></div>   
+    <%= render :partial => "advertisers/businessdirectory/map_pagination" %>
+    <div class='map_businesses'>
+      <h3>Businesses Showing In Your Area</h3>
+      <ol id="directory">                       
+        <% if @advertisers.empty? %>
+          <li>Sorry, no businesses found.</li>
+        <% else -%>
+          <% @advertisers.each do |advertiser| -%>
+            <li class='advertiser' id='advertiser_<%= advertiser.id %>'>                                  
+              <%= link_to( advertiser.name, advertiser_path(advertiser.id)) %>
+              <ol class='offers'>
+              <% advertiser.offers.active.each do |offer| %>
+                <li><%= offer.message %></li>                
+              <% end -%>
+              </ol>
+            </li>
+          <% end -%>
+        <% end -%>
+      </ol>      
+    </div>
+  </div>
+</div> 
+<%= render :partial => 'shared/terms_and_conditions' %>
+<%= javascript_include_tag 'business' %>  

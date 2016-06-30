@@ -1,0 +1,76 @@
+<div id="search_results_summary">
+	<div id="left_column">
+		{% include with_theme 'shared/sweepstakes_box' %}
+		{% include with_theme 'shared/community_box' %}
+	</div><!-- /left_column -->
+	<div id="center_column">
+		<h1 class="page_title">Search Results</h1>
+		{% if offers or daily_deals or sweepstakes %}
+		{% if offers.size == 0 and daily_deals.size == 0 and sweepstakes.size == 0 %}
+		<p class="notice">Sorry, no results found for <strong>{{ query | escape }}</strong>.</p>
+		{% else %}
+		<div class="daily_deals">
+			<h2 class="search_results_title">Daily Deals</h2>
+				{% if daily_deals.size == 0 %}
+				<p>Sorry, no daily deals were found for <strong>{{ query | escape }}</strong>.</p>
+				{% else %}
+				{% for daily_deal in daily_deals %}
+				<div class="column_gradient">
+				<div class="daily_deal">
+					<div class="search_thumb"><img src="{{ daily_deal.photo.thumbnail_url }}" alt="{{ side_deal.advertiser.name }}" height="82" width="60" /></div>
+					<div class="deal_details">
+						<h3 class="info_headline">{{ daily_deal.value_proposition }}</h3>
+						<h2 class="info_sub_head">{{ daily_deal.value_proposition_subhead }}</h2>
+						<p class="side_deal_description">{{ daily_deal.short_description }}</p>
+						<a class="view_deal img_button" href="{{ daily_deal.url }}"><span>Get Info</span></a>
+					</div><!-- /deal_info -->
+					<div class="clear"></div>
+				</div><!-- /daily_deal -->
+				</div><!-- /column_gradient -->
+				{% endfor %}        
+				{% endif %}
+		</div><!-- /daily_deals -->
+			
+		<div class="offers">
+			<h2 class="search_results_title">Coupons</h2>
+			{% if offers.size == 0 %}
+			<p>Sorry, no offers were found for <strong>{{ query | escape }}</strong>.</p>
+			{% else %} 
+				<div class="column_gradient">{% include with_theme 'offers/offer' %}</div>
+			{% endif %}
+		</div><!-- /offers --> 
+		
+		<div class="sweepstakes">
+		  <h2 class="search_results_title">Win!</h2>
+  		  {% if sweepstakes.size == 0 %}
+  		  <p>Sorry, no sweepstakes were found for <strong>{{ query | escape }}</strong>.</p>
+  		  {% else %}
+				{% for sweepstake in sweepstakes %}
+				<div class="column_gradient"> 		
+					<div class="sweepstake">
+		  	        		<img class="sweepstakes_search_photo" src="{{ sweepstake.medium_photo_url }}" alt="{{ sweepstake.value_proposition }}" height="100"/>					
+					    	<h3 class="info_headline">	{{ sweepstake.value_proposition }}</h3>
+							<h2 class="info_sub_head"> {{ sweepstake.value_proposition_subhead }}</h3>
+			    			<a class="enter_now img_button" href="{{ sweepstake.public_url }}"><span>Enter Now</span></a>
+					</div>
+				</div>	
+				{% endfor %}
+  		  {% endif %}
+		</div>
+
+		{% endif %}
+		{% else %}
+		<p class="notice">Please enter a search value.</p>
+		{% endif %}
+	</div><!-- /center_column -->
+
+	<div id="right_column">
+
+	  {% include with_theme 'shared/search' %}
+	  {% include with_theme 'shared/refer_friend' %}
+
+	</div><!--right_column-->
+	    
+	<div class="clear"></div>
+	
+</div><!-- /search_results_summary -->

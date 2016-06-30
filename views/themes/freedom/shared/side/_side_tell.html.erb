@@ -1,0 +1,18 @@
+<% if @publisher.enable_daily_deal_referral %>
+<!-- START SIDE TELL SECTION-->
+<div class="side_section side_tell">
+  <div class="side_tell">
+    <!-- getting travel deals link -->
+
+    <a class="" href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>">
+      <h2 class="gradient">Tell A Friend</h2>
+      <div class="side_content">
+        <img src="/themes/freedom/images/graphics/tell_friend.png"/>
+				<p>Tell a friend, <br /><span>get $10!</span></p>
+      </div>
+    </a>
+    <div class="clear"></div>   
+  </div>
+</div>
+<!-- END SIDE TELL SECTION-->
+<% end %>

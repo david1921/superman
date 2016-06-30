@@ -1,0 +1,16 @@
+<% if daily_deal.publishers_category.present? %>
+    <span class="category_icon <%= daily_deal.publishers_category.name.downcase %>_category_icon"></span>
+    <% if daily_deal.publishers_category.name == "Activities" %>
+        <h3>Activities</h3>
+    <% elsif daily_deal.publishers_category.name == "Beauty" -%>
+        <h3>Beauty</h3>
+    <% elsif daily_deal.publishers_category.name == "Other" -%>
+        <h3>Shopping</h3>
+    <% elsif daily_deal.publishers_category.name == "Theater" -%>
+        <h3>Entertainment</h3>
+    <% elsif daily_deal.publishers_category.name == "Tourism" -%>
+        <h3>Travel</h3>
+    <% elsif daily_deal.publishers_category.name == "Dining" -%>
+        <h3>Dining</h3>
+    <% end %>
+<% end %>    	

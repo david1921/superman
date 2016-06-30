@@ -1,0 +1,5 @@
+<div id="share">
+	<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><span>Share on Facebook</span></a>
+	<a href="{{ daily_deal.twitter_url }}" class="share_link share_button_twitter"><span>Share on Twitter</span></a>
+	<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><span>Email to a Friend</span></a>
+</div><!-- /share buttons -->

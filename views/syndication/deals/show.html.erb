@@ -1,0 +1,127 @@
+<div id="deal_details">
+	<div id="page_head">
+    <%= link_to( "Back to BROWSE DEALS", url_for_site_navigation_context(:browse_deals, {:include_params => true}), :class => "back_button gradient" ) %>
+		<h1 class="page_title">DEAL DETAILS</h1>
+		<div class="deal_key_wrap">
+		</div>
+		<div class="clear"></div>
+	</div><!-- /page_head -->
+	<h1 class="value_proposition"><%= @deal.value_proposition.html_safe %></h1>
+    
+    <div class="deal_photo_wrapper">
+    <% if @deal.national_deal? %>
+      <div class="national"><span>National Deal</span></div>
+    <% end %>
+    <%= image_tag(@deal.photo.url(:standard)) %>
+     </div><!-- /deal_photo_wrapper -->
+     <div id="dashboard_wrapper">
+	     <div id="dashboard">
+	          <h1 class="deal_price"><%= number_to_currency(@deal.price, :precision => 0, :unit => @deal.currency_symbol) %></h1>
+	            <% if @deal.sourceable?(@publisher) %>
+	              <%= link_to( "Syndicate<br/>This Deal".html_safe, source_syndication_deal_path(@deal, collect_request_parameters), :id => "get_deal", :class => "syndicate-deal-button get_deal gradient" ) %>
+	            <% elsif @deal.unsourceable?(@publisher) %>
+	                <%= link_to( "Unsyndicate This Deal", unsource_syndication_deal_path(@deal, collect_request_parameters), :id => "get_deal", :class => "unsyndicate-deal-button get_deal gradient" ) %>
+	            <% elsif @deal.distributable?(@publisher) %>
+                <% form_for :daily_deal, @deal, :url => distribute_syndication_deal_path(@deal, collect_request_parameters) do |f| -%>
+                  <%= submit_tag( "Take This Deal", :id => "get_deal", :class => "get-deal-button get_deal gradient") %>	                
+                  <div class="row date">
+                    <div class="label"><%= f.label :start_at, "Start At:" %></div>
+                    <div class="input">
+                      <%= f.text_field :start_at, :class => 'datetime' %>
+                    </div>
+                  </div>
+                  <div class="row date">
+                    <div class="label"><%= f.label :hide_at, "Hide At:" %></div>
+                    <div class="input">
+                      <%= f.text_field :hide_at, :class => 'datetime' %>
+                    </div>
+                  </div>
+                  <%= f.check_box :featured %> <%= f.label :feature, "Featured?" %>
+                
+                <% end -%>
+              <% end %>
+	          <table id="value_summary">
+	               <tr>
+	                    <th>Savings</th>
+	                    <th>Value</th>
+	               </tr>
+	               <tr>
+	                    <td><%= number_to_percentage(@deal.savings_as_percentage, :precision => 0) %></td>
+	                    <td><%= number_to_currency(@deal.value, :precision => 0, :unit => @deal.currency_symbol )%></td>
+	               </tr>
+	          </table>
+	     </div><!-- /dashboard -->
+        <p class="spec"><span class="label">Date: </span><%= @deal.start_at_date_only %> - <%= @deal.hide_at_date_only %></p>
+        <!--<p class="spec"><span class="label">Media: </span>Online</p>-->
+        <p class="spec"><span class="label">Category: </span><%= @deal.category_name %></p>
+        <%= render( :partial => 'syndication/shared/deal_syndication_status', :object => @deal )%>
+    </div><!-- /dashboard_wrapper -->
+    
+    <div id="deal_info">
+    	<div id="left_column">
+	    	<h2>Deal Details</h2>
+	    	<h3>Description</h3>
+	    	<p><%= @deal.description.try :html_safe %></p>
+	    	<h3>Location</h3>
+	    	<% if @deal.advertiser.address? %>
+	    	<div id="advertiser_map">
+	    	<a href="{{ advertiser.map_url }}">
+			    <% if @deal.advertiser.stores.size > 1 %>
+			      <img src="<%= map_image_url_for(@deal, "270x270", true) %>" id="map" target="_blank" alt="map" />
+			    <% else %>
+			      <img src="<%= map_image_url_for(@deal, "270x270") %>" id="map" target="_blank" alt="map" />
+			    <% end %>
+			  </a>
+			  </div>
+			  <% end %>
+	    	<div class="advertiser_info">
+	    		<p class="advertiser_name"><%= @deal.advertiser_name %></p>
+				  <%= image_tag(@deal.advertiser.logo.url(:standard), :id => "advertiser_logo") if @deal.advertiser.logo.file? %><br />
+	    		<%= link_to( "Visit Website", @deal.website_url, :class => "advertiser_website" ) if @deal.website_url.present? %>
+				  <!-- /location_container -->
+				  <div class="location_container">
+				  <% if @deal.advertiser.address? %>
+  					<% @deal.advertiser.stores.each_with_index do |store, index| %>
+  					<% if index > 2 %>
+  					<p class="advertiser_address" style="display:none">
+  					<% else %>
+  					<p class="advertiser_address">
+  					<% end %>
+  					  <%= store.address_line_1 %><br />
+  					  <% if store.address_line_2.present? %>
+  					    <%= store.address_line_2 %><br />
+  					  <% end %>
+  					  <%= store.city %>, <%= store.state %> <%= store.zip %><br />
+  					  <% if store.phone_number.present? %>
+  					    <%= store.formatted_phone_number %><br />
+  					  <% end %>
+  					</p>
+  					<% end %>
+				  <% end %>
+				  </div><!-- /location_container -->
+          <% if @deal.advertiser.stores.size > 3 %>
+          <div id="see_all_locations_container">
+					  <a href="#" onclick="$('div.location_container > p').css('display', 'inherit'); $('#see_all_locations_container').css('display', 'none'); return false;">See All Locations</a>
+					</div>
+          <% end %>
+	    	</div><!-- /advertiser_info -->
+    	</div><!-- /left_column -->
+    	<div id="right_column">
+    	  <% if @deal.highlights.present? -%>
+    		<div id="highlights">
+	    		<h3>Highlights</h3>
+	    		<%= @deal.highlights.try :html_safe %>
+    		</div><!-- /highlights -->
+    		<% end -%>
+    		<div id="fine_print">
+          <h3>Consumer Fine Print</h3>
+	    		<%= @deal.terms.try :html_safe %>
+          <% if @deal.business_fine_print.present? %>
+            <h3>Business Fine Print</h3>
+            <%= @deal.business_fine_print.try :html_safe %>
+          <% end %>
+    		</div><!-- /fine_print -->
+    	</div><!-- /right_column -->
+    </div><!-- /deal_info -->
+</div><!-- /deal_details -->
+

@@ -1,0 +1,22 @@
+<div id="footer">
+	<div id="footer_nav">
+		<ul>
+			<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Featured Deal</a></li>
+			<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=10">All Deals</a></li>
+			<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a></li>
+			<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Get Featured</a></li>
+			<li><a class="last" href="<%= new_publisher_consumer_path(@publisher) %>">Sign Up</a></li>
+		</ul>
+	</div>
+	<div id="footer_bottom_nav">
+		<ul>
+			<li><a href="http://www.entertainment.com/corporate" target="_blank">About Entertainment</a></li>
+			<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>#faqs">FAQs</a></li>
+			<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+			<li><a href="<%= terms_publisher_daily_deals_path(@publisher) %>">Terms &amp; Conditions</a></li>
+			<li><a href="<%= privacy_policy_publisher_daily_deals_path(@publisher) %>">Privacy Policy</a></li>
+			<li><a class="last" href="<%= legal_publisher_daily_deals_path(@publisher) %>">Legal Notices</a></li>
+		</ul>
+		<p>© Copyright 2012 Entertainment Publications, LLC All Rights Reserved.</p>
+	</div>
+</div>

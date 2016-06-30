@@ -1,0 +1,2 @@
+module ConsumerDailyDealsHelper
+end

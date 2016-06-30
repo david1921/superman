@@ -1,0 +1,26 @@
+	 	<% cache([@daily_deal, "subscribe"], :expires_in => 1.hour) do %>
+			<%=raw render :partial => with_theme("shared/subscribe") %>
+		<% end %>
+
+<div id="banner" class="<%= @publisher.market_name.downcase.gsub(" ", "_") if @publisher.market_name.present? %>">
+	
+	<% unless @publisher.label == "clickedin-charlotte" %>
+	<div class="market"> 
+<!--		<h1 class="market_name"><%= @publisher.market_name.titleize if @publisher.market_name.present?  %></h1> 
+-->		
+		<!-- market dropdown -->
+<!--		<div id="market_menu_wrapper">
+			<ul id="market_menu">
+			   <li onmouseover=""><span>(Change City)</span>
+					<%= market_selection_list(@publisher) %>
+			    </li>
+			</ul>
+		</div><!-- /market_menu_wrapper -->
+		<div class="clear"></div>              
+		<!--/ market dropdown -->
+		
+		<div class="clear"></div>
+	</div><!-- /market -->
+	<% end %>
+	<div class="clear"></div>
+</div><!-- /banner -->

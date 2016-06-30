@@ -1,0 +1,30 @@
+<div id="sidebar">
+	<%= render :partial => with_theme("shared/refer_friend") %>
+
+	<% if @daily_deal.present? and @daily_deal.side_deals.size > 0 %>
+	<div id="side_deals" class="content_box other_deal_tracking">
+		<h4>Other Great Deals</h4>
+	       <% @daily_deal.side_deals[0,3].each do |side_deal| %>
+	         <div class="side_deal_wrap">
+				<p class="side_deal_value_prop"><a class="side_deal" href="<%= daily_deal_path(side_deal) %>" target="_blank"><%= side_deal.value_proposition %></a></p>
+				<% if side_deal.value_proposition_subhead.present? %>
+					<p class="side_deal_value_sub_prop"><a class="side_deal" href="<%= daily_deal_path(side_deal) %>" target="_blank"><%= side_deal.value_proposition_subhead %></a></p>
+				<% end %>
+				<div class="side_deal_text">
+					<div class="side_deal_thumb"><a href="<%= daily_deal_path(side_deal) %>" title="<%= side_deal.value_proposition %>"><img src="<%= side_deal.photo.url(:facebook) %>" alt="<%= side_deal.value_proposition %>" width="198" /></a></div>
+					<a class="view_deal button gradient" href="<%= daily_deal_path(side_deal) %>">View Coupon</a>
+				</div><!-- /side_deal_text -->
+				<div class="clear"></div>
+	          </div><!-- /side_deal_wrap -->
+	        <% end -%>
+	</div><!-- /side_deals -->
+	<% end %>
+<% fb_page = CGI::escape("http://www.facebook.com/offto") %>
+<% unless @publisher.facebook_page_url.blank? %>
+	<div class="content_box">
+		<div id="facebook_likebox_cont">
+			<iframe id="facebook_likebox" src="http://www.facebook.com/plugins/likebox.php?href=<%= @publisher.facebook_page_url %>&amp;width=240&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=370" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:240px;height:370px;" allowTransparency="true" ></iframe>
+		</div>
+	</div><!-- /facebook like box -->
+<% end %>
+</div><!-- /sidebar -->

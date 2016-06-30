@@ -1,0 +1,66 @@
+<div id="body-background"><img src="/themes/golfon/images/backgrounds/preopt_bg.jpg" alt="GolfOn Background"></div>
+<div class="content" id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+			<img src="/themes/golfon/images/golfon_logo_lg.png" alt="Golfon" height="98" width="393" />
+			<div id="preopt_container_top"></div>
+			<div id="preopt_container" class="preopt">
+				<div id="intro_row" class="page_row">
+					<div id="intro">
+						<h1 class="atrament">SIGN UP FOR GOLFON TODAY!</h1>
+						<h3>Get the Latest Group Golf Deals and Get Your Golf On!</h3>
+						<p>Simply fill out the form below and be the first to start receiving offers on the best golf deals around. Weekly emails will be delivered to your inbox featuring GolfOn Deals with 50% to 90% discounts on tee times, golf equipment and apparel, play n' stays, plus much more.  GolfOn Deals feature open booking for tee times and limited terms and conditions.</p>
+						<h3>By Signing Up For GolfOn You're Entered To Win!</h3>
+						<p>To show our appreciation, we will be randomly selecting 5 lucky GolfOn Players to receive our first GolfOn Deal FREE. Our first GolfOn Deal will feature round play at the breath-taking Arnold Palmer Doubletree Golf Resort located in San Diego, CA.</p>
+						<p>On top of that, we will be giving away a Callaway Diablo Octane Driver and two $50 Golfsmith gift certificates to other lucky GolfOn Players chosen at random.</p>
+						<p>Thank you for your patience. We are scheduled to launch soon, so be on the look-out for GolfOn Deals in your inbox soon. And don't forget to share the gift of golf with your friends by spreading the word about GolfOn - the more Players we get on the course, the more great GolfOn Deals you will receive.</p>
+					</div><!-- /intro -->
+					<div id="share">
+						<p>Tell your friends about Golfon, plan golf trips and share the gift of golf.</p>
+						<a href="http://www.facebook.com/home.php#!/pages/GolfOn/131387330257823?v=wall" class="share facebook"><img src="/themes/golfon/images/buttons/facebook.png" alt="facebook" height="32" width="93" /></a>
+						<a href="http://www.twitter.com/getyour_golfon" class="share"><img src="/themes/golfon/images/buttons/twitter.png" alt="twitter" height="32" width="93" /></a>
+					</div><!-- /share -->
+					<div class="clear"></div>
+				</div><!-- /page_row 1 -->
+				<div id="form_row" class="page_row">
+          {% include "shared/flash" %}				
+					<form action="{{ publisher.subscribers_path }}" class="new_subscriber preopt email_subscription_tracking" id="new_subscriber" method="post">
+					  <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+            <input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+            <input name="redirect_to" type="hidden" value="{{ publisher.presignup_consumers_url | verifiable_url }}" />
+            <p class="required">* denotes required fields.</p>
+					  
+            <p><input class="dd_input ghostie" id="subscriber_firstname" name="subscriber[first_name]" size="30" title="First Name*" type="text" value="First Name*" /></p>
+            <p><input class="dd_input ghostie" id="subscriber_lastname" name="subscriber[last_name]" size="30" title="Last Name" type="text" value="Last Name" /></p>
+						<p>
+            			<p><input class="dd_input ghostie" id="subscriber_email" name="subscriber[email]" size="30" title="Email Address*" type="text" value="Email Address*" /></p>
+						<p>
+            			<p><input class="dd_input ghostie" id="subscriber_zip" name="subscriber[zip_code]" size="30" title="ZIP Code*" type="text" value="Zip Code*" /></p>
+						<p>
+			              <input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_terms" name="subscriber[terms]" type="checkbox" value="1" />
+			              <label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/terms', '_blank'); return false; return false;">Terms</a> and <a href="#" onclick="window.open('/publishers/{{ publisher.id }}/daily_deals/privacy_policy', '_blank'); return false; return false;">Privacy Policy</a></label>
+						</p>
+						<p>
+							<input class="signup" name="sign_up" type="image" value="Sign Up" src="/themes/golfon/images/buttons/sign_me_up.png" />
+						</p>
+					</form>
+					<div class="clear"></div>
+				</div><!-- /page_row 2 -->
+				<div class="clear"></div>
+			</div><!-- /preopt_container -->
+			<div id="footer" class="preopt">
+				<p class="credit"><img class="footer_logo" src="/themes/golfon/images/golfon_logo.png" width="208" height="52" alt="Golfon" /> &copy; 2010 Golfon. All Rights Reserved. <a href="http://jacobtyler.com">Web Design</a> by Jacob Tyler</p>
+				<div class="clear"></div>
+				<p><a href="http://www.analoganalytics.com/" id="analog_analytics_logo"><img alt="Powered_by_analog_analytics" src="/images/powered_by_analog_analytics.png" /></a></p>
+			</div><!-- /footer -->
+	    </div><!-- end daily_deal -->
+	</div><!-- end analog_analytics -->
+</div><!-- end content -->     
+<div id='thank-you-content' style="display:none;">
+  <h1>THANK YOU!</h1>
+  <p>
+    You are now registered to receive the latest golf deals, coupons, & tee times in your area courtesy of GolfOn.com. Be sure to add <a href="mailto:deals@golfon.com">deals@golfon.com</a> to your safe senders list so that you never miss a deal.<br /><br />
+    Sincerely,<br />
+    The GolfOnTeam
+  </p>
+</div>

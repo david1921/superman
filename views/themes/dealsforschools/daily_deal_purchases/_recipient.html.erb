@@ -1,0 +1,17 @@
+<% form.fields_for :recipients, recipient do |f| %>
+    <div class="recipient">
+      <%= f.text_field_div :name %>
+      <%= f.text_field_div :address_line_1 %>
+      <%= f.text_field_div :address_line_2 %>
+      <%= f.text_field_div :city %>
+      <div class="row state_select_div">
+        <div class="label">
+          <%= f.label :state, 'State' %>
+        </div>
+        <div class="input">
+          <%= f.select :state, Addresses::Codes::US::STATE_CODES %>
+        </div>
+      </div>
+      <%= f.text_field_div :zip %>
+    </div>
+<% end %>

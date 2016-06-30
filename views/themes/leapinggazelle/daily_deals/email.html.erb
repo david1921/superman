@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><% daily_deal_page_title %></title>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #fafbf6;">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#fafbf6" style="background-image: url(http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/bg-green.jpg); background-position: center bottom; background-repeat: no-repeat;">
+  <tr>
+  	<td valign="top" background="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/bg-top.gif" bgcolor="#fafbf6" style="font-family:Arial, Helvetica, sans-serif;">
+    	<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td rowspan="3" width="244" valign="top"><img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/leapinggazelle.gif" width="244" height="123" alt="Leaping Gazelle" style="display: block;" />
+            	
+            </td>
+            <td bgcolor="#679eb7" height="45" valign="top"><img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/spacer-top.gif" width="3" height="45" alt="" style="display: block;" /></td>
+          </tr>
+          <tr>
+            <td bgcolor="#5cac25" height="33" valign="top"><img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/all-things-home-and-more.gif" width="199" height="33" alt="All Things Home and More!" style="display: block;" /></td>
+          </tr>
+          <tr>
+            <td style="font-family:Arial, Helvetica, sans-serif;"><h1 style="font-size: 28px; margin: 0; padding-top: 8px; padding-bottom: 8px;">Today's Deal</h1></td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td valign="top">
+        <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td valign="top">
+            	 <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td valign="bottom" height="12">
+                    	<img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/box-top.gif" width="600" height="12" alt="" style="display: block;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" bgcolor="#ffffff" style="border-left-width: 2px; border-left-style: solid; border-left-color: #78b41d; border-right-width: 2px; border-right-style: solid; border-right-color: #78b41d; background-color: #ffffff;">
+                    	
+                        <table width="574" border="0" cellspacing="0" cellpadding="0" align="center">
+                          <tr>
+                            <td valign="top">
+                            	<table width="215" align="left" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td align="center"><a href="<%= add_params_to_email_link(new_daily_deal_daily_deal_purchase_url(@daily_deal, :host => @daily_deal.publisher.daily_deal_host)) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/view.gif" width="151" height="69" alt="VIEW" /></a></td>
+                                  </tr>
+                                  <tr>
+                                    <td align="center" style="font-size: 58px; color: #78b41d; font-family: Arial, Helvetica, sans-serif; padding-top: 10px; padding-bottom: 15px;"><% if !@daily_deal.daily_deal_variations.blank? -%><span style="font-size: 30px;">From</span><br /><% end %><strong><%= number_to_currency(@daily_deal.price) %></strong></td>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                            <td align="center" style="font-family:Arial, Helvetica, sans-serif;">
+                                            	<strong style="font-size: 10px;">VALUE</strong><br />
+                                           		<strong style="font-size: 24px;"><%= number_to_currency(@daily_deal.value, :precision => 0) %></strong>
+                                            </td>
+                                            <td align="center" style="font-family:Arial, Helvetica, sans-serif; border-left-width: 1px; border-left-style: solid; border-left-color: #000000; border-right-width: 1px; border-right-style: solid; border-right-color: #000000; color: #0d719e;">
+                                            	<strong style="font-size: 10px;">DISCOUNT</strong><br />
+                                           		<strong style="font-size: 24px;"><%= number_to_percentage(@daily_deal.savings_as_percentage, :precision => 0) %></strong>
+                                            </td>
+                                            <td align="center" style="font-family:Arial, Helvetica, sans-serif;">
+                                            	<strong style="font-size: 10px;">YOU SAVE</strong><br />
+                                           		<strong style="font-size: 24px;"><%= number_to_currency(@daily_deal.savings) %></strong>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td valign="bottom" style="padding-top: 20px;">
+                                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#5cac25">
+                                          <tr>
+                                            <td width="10" align="left"><img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/share-left.gif" width="10" height="37" alt="" style="display: block;" /></td>
+                                            <td valign="middle" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff;"><strong>SHARE THIS DEAL</strong></td>
+                                            <td valign="middle" align="center" width="25" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff;"><a href="<%= facebook_daily_deal_url(@daily_deal) %>" target="_blank" title="Share This Deal on Facebook"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/facebook.gif" width="25" height="21" alt="facebook" style="display: block;" /></a></td>
+                                            <td valign="middle" align="center" width="25" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff;"><a href="<%= twitter_daily_deal_url(@daily_deal) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/twitter.gif" width="25" height="21" alt="twitter" style="display: block;" /></a></td>
+                                            <td valign="middle" align="center" width="25" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #ffffff;"><a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/email.gif" width="25" height="21" alt="email" style="display: block;" /></a></td>
+                                            <td width="10" align="right"><img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/share-right.gif" width="10" height="37" alt="" style="display: block;" /></td>
+                                          </tr>
+                                        </table>
+                                    </td>
+                                  </tr>
+                                </table>
+                            </td>
+                            <td width="343" valign="top" style="font-family:Arial, Helvetica, sans-serif;">
+                            	<h2 style="font-size: 20px; margin: 0; padding-top: 0; padding-bottom: 10px; color: #000000;"><%= @daily_deal.value_proposition %></h2>
+                                <img src="<%= @daily_deal.photo.url(:standard) %>" width="343" alt="" style="display: block;" />
+                            </td>
+                          </tr>
+                        </table>
+
+                    </td>
+                  </tr>
+                  <tr>
+                     <td valign="top" height="12">
+                    	<img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/box-bot.gif" width="600" height="12" alt="" style="display: block;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td valign="bottom" height="12">
+                    	<img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/box-top.gif" width="600" height="12" alt="" style="display: block;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td valign="top" bgcolor="#ffffff" style="border-left-width: 2px; border-left-style: solid; border-left-color: #78b41d; border-right-width: 2px; border-right-style: solid; border-right-color: #78b41d; background-color: #ffffff;">                    	
+                        <table width="574" border="0" cellspacing="0" cellpadding="0" align="center">
+                          <tr>
+                            <td width="400" valign="top" style="padding-right: 40px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; color: #434343; padding-bottom: 15px;">
+                            
+                            <table width="370" border="0" cellspacing="0" cellpadding="0" align="left">
+                              <tr>
+                                <td colspan="2" valign="top" style="padding-bottom: 20px;">
+                                	<h3 style="font-size: 14px; color: #0c709d; margin: 0; padding: 0;">Description</h3>
+                                	<%= raw @daily_deal.description %>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td valign="top" width="45%" style="padding-right: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; color: #434343; padding-bottom: 15px;">
+                                    <h3 style="font-size: 14px; color: #0c709d; margin: 0; padding: 0;">Highlights</h3>
+                                    <%= raw @daily_deal.highlights %>
+                                </td>
+                                <td valign="top" width="45%" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; color: #434343; padding-bottom: 15px;">
+                                    <h3 style="font-size: 14px; color: #0c709d; margin: 0; padding: 0;">Fine Print</h3>
+                                    <%= raw @daily_deal.terms %>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                            	
+                            </td>
+                            <td width="174" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 18px; color: #434343;">
+                            	<h3 style="font-size: 14px; color: #0c709d; margin-top: 0; margin-bottom: 5px; padding: 0;">Location</h3>
+                                <img src="<%= @daily_deal.advertiser.logo.url %>" width="102" alt="" />
+                              	<h4 style="font-size: 20px; font-weight: normal; margin-top: 10px; margin-bottom: 5px; padding: 0;"><%= @daily_deal.advertiser.name %></h4>
+                          		
+								<% @daily_deal.advertiser.stores.each_with_index do |store,index| %>
+								<p style="margin-top: 0; margin-bottom: 10px; padding: 0; <%= "display:none" if index > 2 %>">
+									
+									<% if store.address_line_1.present? %>
+									  <span style="display: block;"><%= store.address_line_1 %></span>
+									<% end %>
+									 <% if store.address_line_2.present? %>
+									  <span style="display: block;"><%= store.address_line_2 %></span>
+									<% end %>
+								
+									<% if store.city.present? and store.state.present? and store.zip.present? %>
+									  <span style="display: block;"><%= store.city %>, <%= store.state %> <%= store.zip %></span>
+									<% end %>
+									<% if store.formatted_phone_number.present? %>
+									  <span style="display: block;"><%= store.formatted_phone_number %></span>
+									<% end %>
+									<% if @daily_deal.advertiser.website_url.present? %>
+									  <span><a href="<%= @daily_deal.advertiser.website_url %>">Visit Website</a></span>
+									<% end %>
+									
+								</p>
+								<% end %>
+									
+									
+								<% if @daily_deal.advertiser.address? %>
+									<% if @daily_deal.advertiser.stores.length > 1 %>
+										<a href="<%= @daily_deal.advertiser.map_url %>">see all locations</a>
+									<% end %>
+									<a id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "168x147", true) %>" border="0" /></a>						
+							   <% end %>
+
+                            </td>
+                          </tr>
+                        </table>
+                    </td>
+                  </tr>
+                  <tr>
+                     <td valign="top" height="12">
+                    	<img src="http://<%= @publisher.daily_deal_host %>/themes/leapinggazelle/images/email/box-bot-last.gif" width="600" height="12" alt="" style="display: block;" />
+                    </td>
+                  </tr>
+                  <tr>
+                     <td valign="top" height="60">
+                    	&nbsp;
+                    </td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+<tr>
+  <td class="description">
+    <%= travelsavers_booking.daily_deal.value_proposition %>
+  </td>
+  <td class="serial_number"><%= "##{travelsavers_booking.confirmation_number}" if travelsavers_booking.confirmation_number.present? %></td>
+  <td class="recipient">
+    <%= travelsavers_booking.passengers.map(&:name).join(", ") %>
+  </td>
+  <td class="purchased_on"><%= travelsavers_booking_purchased_on(travelsavers_booking) %></td>
+  <td class="expires"><%= travelsavers_booking_expiry_date(travelsavers_booking) %></td>
+  <td class="status"><%= print_daily_deal_purchase_link(travelsavers_booking.daily_deal_purchase) %></td>
+</tr>

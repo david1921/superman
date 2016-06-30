@@ -1,0 +1,14 @@
+<% content_tag_for :tr, admin_daily_deal_purchase, :class => cycle("even", "odd") do %>
+  <td class="name"><%= admin_daily_deal_purchase.consumer.try(:name) if admin_daily_deal_purchase.consumer.present? %></td>
+  <td class="email"><%= admin_daily_deal_purchase.consumer.try(:email) if admin_daily_deal_purchase.consumer.present?%></td>
+  <td class="payment_status"><%= admin_daily_deal_purchase.payment_status %></td>
+  <td class="toggle_allow_execution">
+    <%- if admin_daily_deal_purchase.toggle_allow_execution? -%>
+      <%- if admin_daily_deal_purchase.allow_execution? -%>
+        <%= link_to("Disallow", toggle_allow_execution_daily_deal_daily_deal_purchase_path(admin_daily_deal_purchase.daily_deal, admin_daily_deal_purchase), :class => "disallow") %>
+      <% else -%>
+        <%= link_to("Allow", toggle_allow_execution_daily_deal_daily_deal_purchase_path(admin_daily_deal_purchase.daily_deal, admin_daily_deal_purchase), :class => "allow") %>
+      <% end -%>
+    <% end -%>
+  </td>
+<% end -%>

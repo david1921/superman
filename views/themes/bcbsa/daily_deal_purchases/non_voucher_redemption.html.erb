@@ -1,0 +1,76 @@
+<!-- Redeem Now -->
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+  <ul>
+    <li>
+      <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+    </li>
+    <li class="no_underline">></li>
+    <li>          
+      <a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:all_deals) %></a>
+    </li>
+    <li class="no_underline">></li>
+    <li>
+    <% if @daily_deal.publishers_category %>
+      <a href="<%= publisher_daily_deal_category_path(@daily_deal.publisher, @daily_deal.publishers_category) %>">
+        <%= t(@daily_deal.publishers_category.name.downcase.gsub(/\s/, '_')) %>
+      </a>
+    <% end %>
+    </li>
+    <li class="no_underline">></li>
+    <li>
+      <a href="<%= daily_deal_path(@daily_deal) %>"><%= @daily_deal.advertiser.name %></a>
+    </li>
+    <li class="no_underline">></li>
+    <li class="no_underline"><%= t(:deal_details) %></li>
+  </ul>
+  </div><!-- /breadcrumbs -->
+<div class="clear"></div>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+    <h1 class="content"><%= t(:your_deal_details) %></h1>
+
+    <div id="redeem_page_content">
+    
+      <a class="print_page" href="javascript:window.print()"><img class="print_icon" src="/themes/bcbsa/images/graphics/print_icon.png" /><%= t(:print_page) %></a>
+      <div class="clear"></div>
+  
+      <div id="redeem_page_top">
+        <div id="non_part_tpreoptop_row1">
+         <img src="/themes/bcbsa/images/graphics/tip_swirl_top_bigger.png" />
+        </div>
+        <div id="redeem_page_top_row2">
+          <h3><%= t(:zero_deal_congratulations) %></h3>
+        </div>
+        <div id="non_part_preopt_top_row3">
+          <img src="/themes/bcbsa/images/graphics/tip_swirl_bottom_bigger.png" />
+        </div>
+      </div>
+
+      <div id="redeem_page_photo">
+        <img src="<%= protocol_relative_url(@daily_deal.photo.url(:optimized)) %>" alt="<%= @daily_deal.advertiser.name %>" />
+      </div>
+
+      <div id="redeem_page_info">
+        <div id="deal_info_left">
+          <h2><%= @daily_deal.value_proposition %></h2>
+          <%= @daily_deal.redemption_page_description.html_safe %>
+        </div>
+        <div id="deal_info_right">
+          <% if @daily_deal.advertiser.logo? %>
+            <img id="advertiser_logo" src="<%= protocol_relative_url(@daily_deal.advertiser.logo.url(:normal)) %>" alt="<%= @daily_deal.advertiser.name %>" /><br />
+          <% end %>
+        </div>
+      </div>
+      <div class='clear'></div>
+
+    </div>
+
+  </div>
+</div>
+  
+<!-- /Redeem Now -->
+

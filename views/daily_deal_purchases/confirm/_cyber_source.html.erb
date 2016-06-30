@@ -1,0 +1,50 @@
+<div id="payment_method_cyber_source" class="row">
+  <div id="credit_card_logos">
+    <%= image_tag ("gbp" == order.currency ? "gbp_credit_card_logos.png" : "credit_card_logos.png") %>
+    <div id="secure">
+      <%= image_tag "lock_48.png" %><br/><strong><%=t('secure') %></strong>
+    </div>
+  </div>
+
+  <% form_for order, :id => "daily_deal_purchase", :builder => CyberSource::FormBuilder, :url => AppConfig.cyber_source_post_url, :method => :post, :html => {
+       :id => "new_cyber_source_order", :class => "new_cyber_source_order", :autocomplete => "off"
+     } do |f| -%>
+    <%= cyber_source_order_signature(purchase, order) %>
+    <%= render(:partial => with_theme("cyber_source/custom_order_fields"), :locals => { :purchase => purchase, :order => order }) %>
+
+    <%= cyber_source_error_messages(purchase, order) %>
+
+    <h2 style="text-align: left">Card Billing Information</h2>
+    <%= f.text_field_div(:billing_first_name, :required => true) %>
+    <%= f.text_field_div(:billing_last_name, :required => true) %>
+    <%= f.text_field_div(:billing_address_line_1, :required => true) %>
+    <%= f.text_field_div(:billing_address_line_2) %>
+    <%= f.text_field_div(:billing_city, :required => true) %>
+    <%= f.state_province_div :billing_state, grouped_options_for_select(grouped_state_options), {:label_text => "State/Province*"}, :class => "floatLeft" %>
+    <%= f.text_field_div(:billing_postal_code, :required => true, :class => "zipCode") %>
+    <%= f.select_div(:billing_country, cyber_source_billing_country_options(purchase), :required => true) %>
+
+    <h2 style="text-align: left">Payment Information</h2>
+    <%= f.select_div(:card_type, cyber_source_card_type_options(purchase), :required => true) %>
+    <%= f.text_field_div(:card_number, :required => true, :class => "creditcard") %>
+
+    <div class="row">
+      <div class="label"><%= label_tag("card_expirationMonth", "Expiration Date*") %></div>
+      <div class="input">
+        <span class="float-left" style="float: left"><%= f.select(:card_expiration_month, credit_card_month_options) %></span>
+        <span class="float-left" style="float: left"><%= f.select(:card_expiration_year,  credit_card_year_options) %></span>
+      </div>
+    </div>
+    <%= f.text_field_div(:card_cvv, :required => true, :class => "creditcard-cvv") %>
+
+    <%= submit_tag(t('buy_now')) %> 
+  <% end %>
+</div>
+
+<%= javascript_include_tag "jquery/plugins/jquery.validate.min", "jquery/plugins/validate/additional-methods.min" %>
+<%= javascript_include_tag "app/daily_deal_purchases/address", "app/daily_deal_purchases/cyber_source_order_form" %>
+<% javascript_tag do %>
+  jQuery(document).ready(function() {
+    Analog.CyberSourceOrderForm.validate('#new_cyber_source_order');
+  });
+<% end %>

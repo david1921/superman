@@ -1,0 +1,2 @@
+class CyberSourceGatewayResult < BraintreeRedirectResult
+end

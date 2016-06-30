@@ -1,0 +1,169 @@
+<%  @advertiser.stores.each do |store| %>
+  <% advertiser_form.fields_for :stores, store do |f| -%>
+    <% content_tag :div, 
+                   :class => "store", 
+                   :id => "store_#{store.id}", 
+                   :style => @advertiser.stores.size == 1 || store == @advertiser.store ? "" : "display: none;" do %>
+       <%= f.text_field_div(:listing) if can_edit_store_listing? -%>
+       <div class="row">
+         <div class="label"><%= f.label :country_id %></div>
+         <div class="input"><%= f.collection_select(:country_id, @advertiser.publisher.try(:countries), :id, :name, {}, :onchange => "setupCountryAwareFields(this.id)") %></div>
+      </div>
+      <%= f.text_field_div(:address_line_1, nil, :help => t(:required_unless_phone_given)) -%>
+      <%= f.text_field_div(:address_line_2) -%>
+      <%= f.text_field_div(:city, nil, :help => t(:required_unless_phone_given)) -%>
+      <span id="advertiser_stores_attributes_<%= f.object_name.gsub(/[^0-9]+/,'') %>_country_aware_fields">
+        <span id="advertiser_stores_attributes_<%= f.object_name.gsub(/[^0-9]+/,'') %>_region_panel">
+        <%= f.text_field_div(:region) -%>
+        </span>
+        <span id="advertiser_stores_attributes_<%= f.object_name.gsub(/[^0-9]+/,'') %>_us_states_panel">
+        <%= f.select_div(:state, Addresses::Codes::US::STATE_CODES, { :include_blank => true }) -%>
+        </span>
+        <span id="advertiser_stores_attributes_<%= f.object_name.gsub(/[^0-9]+/,'') %>_ca_states_panel">
+        <%= f.select_div(:state, Addresses::Codes::CA::STATE_CODES, { :include_blank => true }) -%>
+        </span>
+      </span>
+      <%= f.text_field_div(:zip, "ZIP:", :value => store.zip_as_entered, :help => t(:required_unless_phone_given)) -%>
+      <%= f.text_field_div(:phone_number, nil, :value => store.phone_number_as_entered) -%>
+      <div class="row">
+          <% unless store.new_record? %>
+        <p class="delete_link" id="store_<%= store.id %>_delete_link">
+          <%= link_to_remote("Delete Store",
+            :url => store_path(store),
+            :method => "delete",
+            :confirm => "Really delete store information?") %>
+        </p>
+        <% end -%>
+      </div>
+    <% end -%>
+  <% end -%>
+<% end -%>
+<script type="text/javascript" charset="utf-8">
+    var regions = [];
+    var usStates = [];
+    var caStates = [];
+    
+    Event.observe(window, 'load', function() {
+      collectAllCountryAwareElements();
+      setupCountryAwareFields('advertiser_stores_attributes_0_country_id');
+    });
+    
+    function storeIdChanged(selectElement) {
+      $$('.store').each(function(s, index) {
+        s.hide();
+      });
+      $('store_' + $('store_id').value).show();
+      $('advertiser_stores_attributes_' + selectElement.selectedIndex + '_address_line_1').activate();
+      setupCountryAwareFields('advertiser_stores_attributes_' + selectElement.selectedIndex + '_country_id');
+      return false;
+    }
+    
+    function resetAllCountryAwareElements() {
+      regions = [];
+      usStates = [];
+      caStates = [];
+    }
+    
+    function collectAllCountryAwareElements() {
+      var rids = "";
+      var usids = "";
+      var caids = "";
+      $$('span[id$=_region_panel]').each(function(span){
+        rids = rids + " " + span.id
+        regions.push(span);
+        span.remove();
+      });
+      $$('span[id$=_us_states_panel]').each(function(span){
+        usids = usids + " " + span.id
+        usStates.push(span);
+        span.remove();
+      });
+      $$('span[id$=_ca_states_panel]').each(function(span){
+        caids = caids + " " + span.id
+        caStates.push(span);
+        span.remove();
+      });
+    };
+    
+    function replaceLastRegionElement(regionId) {
+      regions.each(function(span){
+        if(span.id == regionId) {
+          i = regions.indexOf(span)
+          regions.splice(i, 1, $(regionId))
+        }
+      });
+    };
+    
+    function replaceLastUsStateElement(usStatesId) {
+      usStates.each(function(span){
+        if(span.id == usStatesId) {
+          i = usStates.indexOf(span)
+          regions.splice(i, 1, $(usStatesId))
+        }
+      });
+    };
+    
+    function replaceLastCaStateElement(caStatesId) {
+      caStates.each(function(span){
+        if(span.id == caStatesId) {
+          i = caStates.indexOf(span)
+          regions.splice(i, 1, $(caStatesId))
+        }
+      });
+    };
+    
+  	function setupCountryAwareFields(countrySelectId) {
+      countrySelect = $(countrySelectId);
+      country = countrySelect.options[countrySelect.selectedIndex].innerHTML;
+      regionId = countrySelectId.replace(/_country_id/i, "_region_panel");
+      usStatesId = countrySelectId.replace(/_country_id/i, "_us_states_panel");
+      caStatesId = countrySelectId.replace(/_country_id/i, "_ca_states_panel");
+      countryAwareId = countrySelectId.replace(/_country_id/i, "_country_aware_fields");
+      
+      if (country == "United States") {
+        if($(regionId) != null) {
+          replaceLastRegionElement(regionId);
+          $(regionId).remove();
+        }
+        usStates.each(function(span){
+          if(span.id == usStatesId) {
+            $(countryAwareId).appendChild(span);
+          }
+        });
+        if($(caStatesId) != null) {
+          replaceLastCaStateElement(caStatesId);
+          $(caStatesId).remove();
+        }
+      }
+      else if (country == "Canada") {
+        if($(regionId) != null) {
+          replaceLastRegionElement(regionId);
+          $(regionId).remove();
+        }
+        if($(usStatesId) != null) {
+          replaceLastUsStateElement(usStatesId);
+          $(usStatesId).remove();
+        }
+        caStates.each(function(span){
+          if(span.id == caStatesId) {
+            $(countryAwareId).appendChild(span);
+          }
+        });
+      }
+      else {
+        regions.each(function(span){
+          if(span.id == regionId) {
+            $(countryAwareId).appendChild(span);
+          }
+        });
+        if($(usStatesId) != null) {
+          replaceLastUsStateElement(usStatesId);
+          $(usStatesId).remove();
+        }
+        if($(caStatesId) != null) {
+          replaceLastCaStateElement(caStatesId);
+          $(caStatesId).remove();
+        }
+      }
+    }
+</script>

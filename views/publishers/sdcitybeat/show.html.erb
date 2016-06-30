@@ -1,0 +1,70 @@
+<div id="home">
+  <div class="warn"><%= flash[:warn] %></div>
+  <div class="notice"><%= flash[:notice] %></div>
+
+  <h1>Coupons and Discounts</h1>
+  <div id="advanced_search_box">
+    <div id="left">
+      <%= image_tag "/themes/sdcitybeat/images/search_header.png" %>
+      <% form_tag public_offers_path(@publisher), :method => :get do %>
+        <div id="left_content">
+        <h2>Advanced Search</h2>
+          <%= hidden_field_tag "layout", params[:layout] %>
+          <%= hidden_field_tag "page_size", @page_size %>
+          <div id="search">
+            <h3>Keywords</h3>
+            <%= text_field_tag "text", @text, :class => "ghostie", :id => "text", :title => "name, category, keyword" %><br/>
+          </div>
+
+          <div id="postal_code">
+            <h3>ZIP Code &amp; Distance (in miles)</h3>
+            <%= text_field_tag :postal_code, @postal_code, :class => "ghostie", :title => "zip" %>
+          </div>
+          
+          <div id="radius">
+            <%= radio_button_tag "radius", "", @radius.blank? %>Zero
+            <%= radio_button_tag "radius", "5", @radius == "5" %>5
+            <%= radio_button_tag "radius", "10", @radius == "10" %>10
+            <%= radio_button_tag "radius", "20", @radius == "20" %>20
+            <%= radio_button_tag "radius", "50", @radius == "50" %>50
+            <%= radio_button_tag "radius", "" %>all
+          </div>
+
+          <div class="categories_scope">
+            <h3>Search Only in These Categories</h3>
+            <%= render :partial => "categories" %>
+          </div>
+        </div>
+        <%= image_submit_tag "/themes/#{@publisher.label}/images/search.png", :id => "search_button" %>
+        <%= image_tag "/themes/sdcitybeat/images/search_footer.png", :class => "footer" %>
+      <% end %>
+    </div>
+    <div id="right">
+      <%= image_tag "/themes/sdcitybeat/images/search_header.png" %>
+      <div id="categories">
+        <h2 id="browse_by_category">Browse by Category</h2>
+        <ul>
+      <%= render :partial => "offers/category", :collection => @publisher_categories.sort_by(&:name) %>
+        </ul>
+      </div>
+      <%= link_to image_tag("/themes/#{@publisher.label}/images/browse_all_coupons.png"),
+              public_offers_path(
+                @publisher,
+                :category_id => nil,
+                :page_size => params[:page_size],
+                :iframe_width => params[:iframe_width],
+                :iframe_height => params[:iframe_height],
+                :layout => params[:layout]
+              ), :id => "browse_all_coupons"
+      %>
+      <%= image_tag "/themes/sdcitybeat/images/search_footer.png", :class => "footer" %>
+    </div>
+  </div>
+  <div id="ad">
+    <% if File.exists?( "#{Rails.root}/app/views/layouts/offers/#{@publisher.label}/_sidebar_ad.html.erb") -%>
+      <%= render :partial => "layouts/offers/#{@publisher.label}/sidebar_ad" %>
+    <% end -%>
+  </div>
+</div>
+
+<%= render :partial => 'shared/terms_and_conditions' %>

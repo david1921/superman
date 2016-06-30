@@ -1,0 +1,19 @@
+<div id="nav">
+  <% if @publisher.launched? %>
+  <% special_deal_link(publisher) if @show_special_deal %>
+
+  <%= navbar_link "today's deal", public_deal_of_day_path(publisher.label) %>
+  <%= navbar_link "how it works", how_it_works_publisher_daily_deals_path(publisher) %>
+  <%= navbar_link "faq", faqs_publisher_daily_deals_path(publisher) %>
+  <%= navbar_link "contact us", contact_publisher_daily_deals_path(publisher) %>
+  <% if current_consumer_for_publisher?(publisher) -%>
+    <%= navbar_link "my deals", publisher_consumer_daily_deal_purchases_path(publisher, current_consumer) %>
+    <%= navbar_link "my account", edit_publisher_consumer_path(publisher, current_consumer) %>
+    <%= navbar_link "sign out", daily_deal_logout_path(publisher) %>
+  <% else -%>
+    <%= navbar_link"sign in", daily_deal_login_path(publisher) %>
+  <% end -%>
+  <% else %>
+  &nbsp;
+  <% end %>
+</div>

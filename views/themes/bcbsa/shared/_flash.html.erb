@@ -1,0 +1,12 @@
+<% if flash.any? -%>
+<div id="flash">
+  <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+    <img src="/themes/bcbsa/images/graphics/notice.png">
+	<p><%= flash[:warn] %></p>
+  </div>
+  <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+    <img src="/themes/bcbsa/images/graphics/notice.png">
+	<p><%= flash[:notice] %></p>
+  </div>
+</div>
+<% end -%>

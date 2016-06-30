@@ -1,0 +1,28 @@
+<!-- START Universal Analog Analytics Tag -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(
+    ['aa_tracker._setAccount', 'UA-21436942-6'],
+    ['aa_tracker._setDomainName', 'none'],
+    ['aa_tracker._setAllowLinker', true],
+    ['aa_tracker._setCampContentKey', 'utm_content'],
+    ['aa_tracker._setCampMediumKey', 'utm_medium'],
+    ['aa_tracker._setCampNameKey', 'utm_campaign'],
+    ['aa_tracker._setCampSourceKey', 'utm_source'],
+    ['aa_tracker._setCampTermKey', 'utm_term'],
+    ['aa_tracker._trackPageview']
+  );
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  // track various page events (e.g. social media buttons, other deals, layout tabs)
+  function trackSyndicationEvent (eventType) {
+    _gaq.push(['aa_tracker._trackEvent', eventType, 'TEST', 'TEST']);
+    return false;
+  }
+</script>
+<!-- END Universal Analog Analytics Tag -->

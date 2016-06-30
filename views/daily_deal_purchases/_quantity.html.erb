@@ -1,0 +1,53 @@
+      <%- have_discount, have_credit = daily_deal_purchase.discount.present?, daily_deal_purchase.credit_used > 0 -%>
+
+      <% content_tag_for(:table, daily_deal_purchase, :cellspacing => "0") do %>
+        <tr class="header">
+          <th class="description"><%=t 'description' %></th>
+          <th class="quantity"><%=t 'quantity' %></th>
+          <th class="update_total">&nbsp;</th>
+          <th class="price"><%=t 'unit_price' %></th>
+        </tr>
+        <tr>
+          <td class="description"><%= daily_deal_purchase.line_item_name %></td>
+          <td class="quantity"><%= f.text_field(:quantity, :size => 2, :disabled => daily_deal_purchase.travelsavers?) %></td>
+          <td class="update_total">
+            <%= link_to_function(t('.update_total'), "updatePurchaseTotal()") unless daily_deal_purchase.travelsavers? %>
+          </td>
+          <td class="price"><%= number_to_currency(daily_deal_purchase.price, :unit => @publisher.currency_symbol) %></td>
+        </tr>
+
+        <tr id="subtotal" class="total" style="<%= show_if(have_discount || have_credit) %>">
+          <td colspan="4">
+            <span id="purchase_subtotal_label" class="total_label"><%=t 'subtotal' %></span>
+            <span id="purchase_subtotal_value" class="total_value"><%= number_to_currency(daily_deal_purchase.total_price_without_discount, :unit => @publisher.currency_symbol) %></span>
+          </td>
+        </tr>
+
+        <tr id="discount" style="<%= show_if(have_discount) %>">
+          <%= render(:partial => "discount", :object => daily_deal_purchase.discount) if have_discount %>
+        </tr>
+
+        <tr id="credit" style="<%= show_if(have_credit) %>">
+          <td class="description">
+            <%= raw(t('.credit_applied_message', :balance => %Q{<span id="purchase_credit_available">#{number_to_currency(daily_deal_purchase.credit_available, :unit => @publisher.currency_symbol) }</span>}) )%>
+          </td>
+          <td></td>
+          <td></td>
+          <td class="price">-&nbsp;<span id="purchase_credit_used"><%= number_to_currency(daily_deal_purchase.credit_used, :unit => @publisher.currency_symbol) %></span></td>
+        </tr>
+
+        <tr id="total" class="total">
+          <td colspan="4">
+            <span id="purchase_total_label" class="total_label"><%=t 'total' %></span>
+            <span id="purchase_total_value" class="total_value"><%= number_to_currency(daily_deal_purchase.total_price, :unit => @publisher.currency_symbol) %></span>
+          </td>
+        </tr>
+      <% end %>
+
+      <%- if @publisher.checkout_discount_codes? -%>
+      <div id="discount_fields" style="margin-top: 1em; text-align: right">
+        <%= f.label(:discount_code, "#{t('discount_code')}:") %>
+        <%= f.text_field(:discount_code) %>
+        <%= link_to_function(t('apply'), "applyDiscount()") %>
+      </div>
+      <%- end -%>

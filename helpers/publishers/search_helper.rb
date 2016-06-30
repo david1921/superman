@@ -1,0 +1,2 @@
+module Publishers::SearchHelper
+end

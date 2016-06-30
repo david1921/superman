@@ -1,0 +1,77 @@
+<%#
+	
+	Define a module for configuring the javascript on the show deal page.
+	The deal page can contain the following javascript elements:
+		
+		- dealsTickers 	- responsible for updating the side deals countdown values
+		- DealTicker 	- responsible for updating the countdown values
+		- NumberSold 	- responsible for updating the number sold
+		- Buttons			- responsible for updating the buttons based on deal state
+		- Status			- responsible for updating the status text
+		
+	The default module only needs to define dealUrl. If you want to use the side deals
+	tickers then you need to include sideDealsUrl.
+	
+	============================   Deal Ticker   ==================================
+	
+	To customize the deal ticker, you need to provide a dealTickerConfig object.  If you
+	wanted to use a different css selector for the timer, then you can do the
+	following:
+	
+		define({
+			dealUrl: "....",
+			dealTickerConfig: {
+				selector: "my-new-selector"
+			}
+		});
+		
+	The avaliable configuration options are:
+	
+		- selector 						- this is the css selector for the timer (default: '#time_left_to_buy')
+		- includeDay 					- if true, the timer will include the day (default will no include day)
+		- formatTimeRemaining - is a function that accepts day, hour, min, sec.  The default is:  hh:mm:ss
+		
+	========================   Deals Ticker   ===============================
+
+	To customize the side deals tickers or public_index tickers, you need to provide a dealsTickerConfig 
+	object.  If you wanted to use a different css selector for the timer, then you can do the
+	following:
+
+		define({
+			dealUrl: "....",
+			dealsUrl: "....",
+			dealsTickerConfig: {
+				selectorPrefix: "my-new-selector-prefix"
+			}
+		});
+
+	The avaliable configuration options are:
+
+		- selectorPrefix 			- this is the css selector for the timer (default: '#time_left_to_buy_')
+		- includeDay 					- if true, the timer will include the day (default will no include day)
+		- formatTimeRemaining - is a function that accepts day, hour, min, sec.  The default is:  hh:mm:ss
+			
+  ============================ NumberSold =================================
+	
+	To customize the number sold, you need to provide a numberSoldConfig object.  The only
+	customization at this time is to change the css selector for the numberSold.  For example,
+	to use '.sold' as the selector, then you can do the following:
+	
+		define({
+			dealUrl: "...",
+			numberSoldConfig: {
+				selector: '.sold'
+			}
+		});
+		
+	The available configuration options are:
+		
+		- selector - this is the css selector for the numberSold (default: '#deals_sold')
+	
+	============================  Buttons  ==================================
+
+
+%>
+define({
+	dealUrl: "<%=  daily_deal_path( @daily_deal, :format => :json ) %>"
+});

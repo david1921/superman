@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta description>
+		<% if @daily_deal %>
+		<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+		<meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+		<meta name='keywords' content="<%= @daily_deal.value_proposition %>">
+		<link rel="image_src" href="<%= url_for_facebook_daily_deal_image(@daily_deal) %>" />
+		<% else %>
+		<meta name="description" content="Sign up for Entertainment.com® Deals™ and save up to 70% at the best places to eat, shop, play and relax">
+		<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end %>
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/entertainment/stylesheets/landing_page.css" type="text/css" />
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+
+
+  <link href="/stylesheets/lightbox.css" media="all" rel="stylesheet" type="text/css" /> 
+  <link href="/themes/entertainment/stylesheets/lightbox.css" media="all" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/lightbox.js" type="text/javascript"></script>
+  
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="/themes/entertainment/stylesheets/ie8.css" type="text/css" media="all" />
+	<![endif]-->
+
+	
+	<title>Entertainment.com® Deals™ | Save up to 70% every day!</title>
+	<%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+	<body>
+		<div id="analog_analytics">
+			<div id="landing_page">
+				<%= raw yield %>	
+			</div>
+		</div>
+	</body>
+</html>

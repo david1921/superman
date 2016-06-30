@@ -1,0 +1,34 @@
+<h2>Shipping</h2>
+<div class="section_content">
+   <% if consumer && consumer.recipients.any? %>
+        <%= select_tag :consumer_recipient, options_for_select(consumer.recipients.map { |r| [text_for_recipient_select_option(r), r.id]}) %>
+   <% else %>
+      <% fields_for 'daily_deal_purchase[recipients_attributes][0]' do |r| %>
+         <fieldset class="name">
+            <%= r.text_field :name, :placeholder => t('activerecord.attributes.recipient.name') %>
+         </fieldset>
+         <fieldset class="address">
+            <%= r.text_field :address_line_1, :placeholder => t('activerecord.attributes.recipient.address_line_1') %>
+         </fieldset>
+         <fieldset class="address">
+            <%= r.text_field :address_line_2, :placeholder => t('activerecord.attributes.recipient.address_line_2') %>
+         </fieldset>
+         <fieldset class="city">
+            <%= r.text_field :city, :placeholder => t('activerecord.attributes.recipient.city') %>
+         </fieldset>
+         <fieldset class="state_zip">
+            <fieldset class="state">
+               <%= r.label :state, "#{t('activerecord.attributes.recipient.state')}:" %>
+               <%= r.select :state, Addresses::Codes::US::STATE_CODES %>
+            </fieldset>
+            <fieldset class="zip_code">
+            <%= r.text_field :zip, :placeholder => t('activerecord.attributes.recipient.zip'), :pattern => '[0-9]*' %>
+           </fieldset>
+         </fieldset>
+      <% end %>
+      <fieldset class="store_shipping">
+         <input type="checkbox" name="consumer_store_recipient" value="1" />
+         <label for="consumer_store_recipient"><%= t('one_click_purchases.recipient.save_shipping_address') %></label>
+      </fieldset>
+   <% end %>
+</div>

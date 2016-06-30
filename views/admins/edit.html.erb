@@ -1,0 +1,130 @@
+<% content_for :javascripts do %>
+  <%= javascript_include_tag "jquery/jquery.min.js" %>
+  <script type="text/javascript" charset="utf-8">
+    jQuery.noConflict();
+    (function($) {
+      var removeRow = function(e) {
+        $(e.target).parents("li:first").remove();
+        return false;
+      }
+
+      $(function() {
+        $("#full-admin").click(function(){
+          $("#manageable-publishers-container").add("#manageable-publishing-groups-container").hide();
+        });
+
+        $("#restricted-admin").click(function(){
+          $("#manageable-publishers-container").add("#manageable-publishing-groups-container").show();
+        });
+
+        $("#add-publishers").click(function() {
+          var pub_name = $("#manageable-publishers option:selected").text();
+          var pub_id = $("#manageable-publishers").val();
+          var publisher_li = $('<li><a class="delete" href="#">[x]</a> ' + pub_name + '<input type="hidden" name="manageable_publisher_ids[]" value="' + pub_id + '" /></li>');
+          publisher_li.find("a.delete").click(removeRow);
+          $("ul#manageable-publishers-list").append(publisher_li);
+        });
+
+        $("#add-publishing-groups").click(function() {
+          var pub_group_name = $("#manageable-publishing-groups option:selected").text();
+          var pub_group_id = $("#manageable-publishing-groups").val();
+          var pub_group_li = $('<li><a class="delete" href="#">[x]</a> ' + pub_group_name + '<input type="hidden" name="manageable_publishing_group_ids[]" value="' + pub_group_id + '" /></li>');
+          pub_group_li.find("a.delete").click(removeRow);
+          $("ul#manageable-publishing-groups-list").append(pub_group_li);
+        });
+
+        $("ul.manageable-things a.delete").click(removeRow);
+      })
+    })(jQuery)
+  </script>
+<% end %>
+
+<% content_for :stylesheets do %>
+<style type="text/css" media="screen">
+  ul.manageable-things {
+    list-style: none;
+  }
+
+  ul.manageable-things li {
+    margin-left: -20px;
+  }
+
+  ul.manageable-things li a.delete {
+    color: red;
+  }
+</style>
+<% end %>
+
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+
+<div class="left_column">
+  <% form_for @user, :url => @user.new_record? ? admins_url : admin_url(@user) do |f| -%>
+    <%= f.text_field_div :login, nil, :required => true %>
+    <%= f.text_field_div :name %>
+    <%= f.text_field_div :email %>
+    <%= f.password_field_div :password %>
+    <%= f.password_field_div :password_confirmation %>
+
+    <div class="row">
+      <div class="label">
+        <label>Access Privileges:</label>
+      </div>
+      <div class="input">
+        <ul style="list-style:none; margin: 0px" id="privileges">
+          <li>
+            <input style="float:none" type="radio" id="full-admin" value="F" name="user[admin_privilege]" <% if disable_full_admin_setting? %>disabled="true"<% end %> <% if @user.has_full_admin_privileges? %>checked="checked"<% end %> />
+            <label style="font-weight:normal" for="full-admin">Full admin access</label>
+          </li>
+          <li>
+            <input style="float:none" type="radio" id="restricted-admin" value="R" name="user[admin_privilege]" <% if @user.has_restricted_admin_privileges? %>checked="checked"<% end %> />
+            <label style="font-weight:normal" for="restricted-admin">Restricted admin access</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row" <% unless @user.has_restricted_admin_privileges? %>style="display:none"<% end %> id="manageable-publishers-container">
+      <div class="label">
+        <label>Manageable Publishers:</label>
+      </div>
+      <div class="input">
+        <%= manageable_publishers_list(@user) %>
+        <%= manageable_publishers_select %>
+        <div><input type="button" id="add-publishers" value="Add" /></div>
+      </div>
+    </div>
+
+    <div class="row" <% unless @user.has_restricted_admin_privileges? %>style="display:none"<% end %> id="manageable-publishing-groups-container">
+      <div class="label">
+        <label>Manageable Publishing Groups:</label>
+      </div>
+      <div class="input">
+        <%= manageable_publishing_groups_list(@user) %>
+        <%= manageable_publishing_groups_select %>
+        <div><input type="button" id="add-publishing-groups" value="Add" /></div>
+      </div>
+    </div>
+
+    <div class="buttons full_width">
+      <%= button_to_function("Cancel", "window.location.href = '#{admins_path}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end -%>
+</div>
+
+<% if full_admin? && !@user.new_record? %>
+  <div class="related">
+    <% if @user.access_locked? %>
+      <%= link_to "Unlock Access", unlock_user_lock_path(@user), :method => :put %>
+    <% else %>
+      <%= link_to "Lock Access", lock_user_lock_path(@user), :method => :put %>
+    <% end %>
+  </div>
+<% end %>
+
+<%- javascript_tag do -%>
+  <%= "Form.focusFirstElement('new_user')" %>
+<%- end if @user.new_record? -%>
+

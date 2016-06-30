@@ -1,0 +1,11 @@
+<ul id="account_nav">
+  <%- if @publisher.launched? %>
+    <%- if current_consumer_for_publisher?(@publisher) %>
+      <li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+      <li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+      <li><a class="last" href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+    <%- else %>
+<!--       <li><a class="last" href="<%= daily_deal_login_path(:publisher_id => @publisher.id) %>">Sign In</a></li> -->
+    <%- end %>
+  <%- end %>
+</ul>

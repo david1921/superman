@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title><%= @daily_deal.value_proposition %></title>
+		<!-- Subject: <%= @daily_deal.email_blast_subject.html_safe %> -->
+		<!-- From: <%= @publisher.name %> daily deal -->
+	</head>
+	<body style="margin:0">
+		<table border="0" cellpadding="0" cellspacing="0" style="background: url(http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/email_background.png);background-repeat: no-repeat;background-color: #5bb2d1; font: 14px/20px helvetica, arial, sans-serif; color: #4a4a4a; width: 600px;" align="center">
+			<tr>
+				<td>
+					<table>
+						<tr valign="middle">
+							<td>
+								<img src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/email_logo.png" style="padding: 10px"/>
+							</td>
+							<td style="color:white;font-size:30px;margin-top:20px;padding-left: 35px; padding-top:50px;text-align:center;">
+								Best Daily Deals<br />
+								<p style="margin:15px 0 0 0;"><%= @publisher.market_name_or_city %></p>
+							</td>
+						</tr>
+					</table>
+					<table border="0" cellpadding="0" cellspacing="0" align="center" style="width:580px;">
+						<tr>
+							<td>
+								<img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/rounded_corners_top.png" width="580" height="15"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr style="background-color:white;">
+										<td colspan="2" style="font-size:16px;padding-left:10px;width:570px">
+											<strong>Today's Deal:</strong> <%= @daily_deal.value_proposition %>
+										</td>
+									</tr>
+									<tr style="background-color:white;">
+										<td>
+											<table border="0" cellpadding="0" cellspacing="0" style="padding-top:15px;">
+												<tr>
+													<td>
+														<table border="0" cellpadding="0" cellspacing="0">
+															<tr>
+																<td colspan="3">
+																	<img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/rounded_dash.png" />
+																</td>
+															</tr>
+															<tr valign="middle" style="background-color:#2b8dd9;">
+																<td style="color:black;font-size:16px;background-color:white;text-align:center;padding: 0 12px;">
+																	PRICE <br />
+																	<strong><%= number_to_currency @daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></strong>
+																</td>
+																<td>
+																	<a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>&cmpid=emailbuy" style="border:none;">
+																	<img style="border:none;display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/email_buy_now.png"/></a>
+																</td>
+															</tr>
+														</table>
+														<table border="0" cellpadding="0" cellspacing="0">
+															<tr style="background-color:#2b8dd9;">
+																<td style="padding-top:20px">
+																	<table border="0" cellpadding="0" cellspacing="0" width="225" style="padding-top:10px:">
+																		<tr valign="top">
+																			<td style="padding:5px;color:white;font-size:12px;border-right:1px solid #52a2e7;border-bottom:1px solid #52a2e7;border-top:1px solid #52a2e7;text-align:center;height:20px" >
+																				VALUE <br />
+																				<strong><%= number_to_currency @daily_deal.value.to_i, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %></strong>
+																			</td>
+																			<td style="padding:5px;color:white;font-size:12px;border-top:1px solid #52a2e7;border-bottom:1px solid #52a2e7;border-right:1px solid #52a2e7;text-align:center">
+																				SAVINGS <br />
+																				<strong><%= number_to_percentage(@daily_deal.savings, :precision => 0) %></strong>
+																			</td>
+																			<td style="padding:5px;color:white;font-size:12px;border-top:1px solid #52a2e7;border-bottom:1px solid #52a2e7;text-align:center">
+																				DISCOUNT <br />
+																				<strong><%= number_to_percentage(@daily_deal.savings_as_percentage, :precision => 0) %></strong>
+																			</td>
+																		</tr>
+																	</table>
+																		<table border="0" cellpadding="0" cellspacing="0" style="background-color:#2b8dd9;height:100px;text-align:center;width:225px;margin-bottom:20px">
+																			<tr>
+																				<td colspan="4" style="color:white;font-size:18px;padding-top:15px">
+																					Share this deal:
+																				</td>
+																			</tr>
+																			<tr>
+																				<td>
+																					<a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>"><img src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/share_email.png" /></a>
+																				</td>
+																				<td>
+																					<a href="<%= twitter_daily_deal_url(@daily_deal) %>"><img src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/share_twitter.png" /></a>
+																				</td>
+																				<td>
+																					<a href="<%= facebook_daily_deal_url(@daily_deal) %>"><img src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/share_facebook.png" /></a>
+																				</td>
+																			</tr>
+																		</table>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table><!-- /dashboard -->
+										</td>
+										<td style="display:block;">
+											<table border="0" cellpadding="0" cellspacing="0">
+												<tr>
+													<td style="display:block;padding-top:15px">
+														<a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>"><%= image_tag(@daily_deal.photo.url(:email), :style => "border:1px solid #c3c3c3; margin-top:5px;margin-left:3px; display: block;", :alt => "Photo", :border => 0, :width => 300, :height => 200) %></a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign="bottom" colspan="2">
+								<img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/rounded_corners_bottom.png" width="580" height="15"/>
+							</td>
+						</tr>
+					</table>
+					<table border="0" cellpadding="0" cellspacing="0" align="center" style="padding-top: 20px;width:580px;">
+						<tr>
+							<td colspan="2">
+								<img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/email_bottom_rounded_top.png" width="580" height="10"/>
+							</td>
+						</tr>
+						<tr valign="top">
+							<td style="background-color:#d0e9f2;">
+						<table border="0" cellpadding="0" cellspacing="0" style="background-color:#d0e9f2;width:580px;padding-left:10px;width:200px;"><!-- advertise and map -->
+							<tr valign="top" style="background-color:#d0e9f2;">
+								<td style="color:#0c6ba6;font-size:16px;">
+									The Merchant
+								</td>
+							</tr>
+							<tr valign="top">
+								<td style="color:#00549f;font-size:13px;font-weight:bold;padding-top:10px">
+									<%= @daily_deal.advertiser.name %>
+								</td>
+							</tr>
+							<tr valign="top">
+								<td style="font-size: 11px;color:black;line-height:12px">
+									<% unless @advertiser.store.blank? %>
+									    <% if @advertiser.store.address.present? %>
+												<% unless @advertiser.store.address_line_1.blank? %>
+													<%= @advertiser.store.address_line_1 %><br />
+												<% end %>
+												<% unless @advertiser.store.city.blank? or @advertiser.store.state.blank? or @advertiser.store.zip.blank? %>
+													<%= @advertiser.store.city %>, <%= @advertiser.store.state %> <%= @advertiser.store.zip %><br />
+												<% end %>
+												<% unless @advertiser.store.phone_number.blank? %>
+													<%= @advertiser.store.phone_number %><br />
+												<% end %>
+										<% end %>
+									<% end %>
+								<% unless @advertiser.website_url.blank? %>
+									<p><a href="<%= @advertiser.website_url %>" style="color: #f57d00;" target="_blank">visit website</a></p>
+								<% end  %>
+								
+								<% unless @advertiser.store.blank? %>
+								<p><%= link_to(image_tag(map_image_url_for(@daily_deal, "171x149"), :width => 171,:style => 'border:1px solid #c3c3c3'), @daily_deal.advertiser.map_url) %></p>
+								<% end  %>
+									
+								</td>
+							</tr>
+						</table><!-- advertiser and map end -->
+							</td>
+						<td style="display:static;background-color:#d0e9f2;border-left:1px solid #c6cbcd;padding:0 15px">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr style="vertical-align:top">
+									<td style="color:#3278b4;font-size: 25px; padding-bottom:15px">
+										Details
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#0c6ba6;font-size:15px;font-weight:bold;">
+										Highlights
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#4a4a4a;font-size:15px;padding-bottom:15px">
+										<%= @daily_deal.highlights.try :html_safe %>
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#0c6ba6;font-size:15px;font-weight:bold">
+										Description
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#4a4a4a;font-size:12px;padding-bottom:15px">
+										<%= @daily_deal.description.try :html_safe %>
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#0c6ba6;font-size:15px;font-weight:bold">
+										Fine Print
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#4a4a4a;font-size:12px;padding-bottom:0;">
+										<%= @daily_deal.terms.try :html_safe %>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<tr>
+							<td colspan="2">
+								<img style="display:block;" src="http://<%= @publisher.daily_deal_host %>/themes/moxtelecom/images/email_bottom_rounded_bottom.png" width="580" height="10"/>
+							</td>
+						</tr>
+					</table>
+					<table border="0" cellpadding="0" cellspacing="0" style="background-color:#2e2e2e; border-top:3px solid #b2b2b2;color:white;margin-top:20px;padding:15px;" width="600">
+						<tr>
+							<td style="display:block;height:30px">
+
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>		
+	</body>
+</html>

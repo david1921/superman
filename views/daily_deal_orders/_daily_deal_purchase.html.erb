@@ -1,0 +1,7 @@
+<% content_tag_for :tr, daily_deal_purchase do %>
+  <td><%= daily_deal_purchase.line_item_name %></td>
+  <td class="quantity"><%= daily_deal_purchase.quantity %></td>
+  <td class="price"><%= number_to_currency(daily_deal_purchase.total_price, :unit => daily_deal_purchase.publisher.currency_symbol) %></td>
+  <td><%= link_to("Change", edit_daily_deal_purchase_path(daily_deal_purchase), :class => "edit") %></td>
+  <td><%= link_to("Remove", publisher_daily_deal_purchase_path(daily_deal_purchase.publisher, daily_deal_purchase), :method => :delete, :class =>"remove") %></td>
+<% end %>

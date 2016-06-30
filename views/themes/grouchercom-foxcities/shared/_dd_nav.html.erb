@@ -1,0 +1,10 @@
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+		<% if @publisher.allow_all_deals_page -%>
+            <li class="all_deals_btn"><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals</a></li>
+		<% end %>
+		<li><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="<%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>">Featured Deal</a></li>
+
+<!-- 		<li><span href="" class="<%= "#{controller_name}##{action_name}" == "daily_deals#deal_lab" ? 'current_page' : nil %>">Deal Lab</span></li> -->
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->

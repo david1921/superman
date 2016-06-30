@@ -1,0 +1,6 @@
+<div class="share">
+	<p>Share this deal:</p>
+	<a href="<%= facebook_daily_deal_path(@daily_deal) %>" class="share_button facebook"  target="_blank" title="Share coupon on Facebook"><span>Facebook</span></a>
+	<a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_button twitter" target="_blank"><span>Twitter</span></a>
+	<a id="share_via_email_link" href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=Check out this deal at <%= market_aware_daily_deal_url(@daily_deal, params) %>" class="share_button email"><span>Email</span></a>
+</div><!-- /share -->

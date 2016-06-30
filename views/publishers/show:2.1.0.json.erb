@@ -1,0 +1,23 @@
+<%-  url_options = { :protocol => "https", :host => AppConfig.api_host, :format => "json" } -%>
+<%= {
+  :label => @publisher.label,
+  :logo => @publisher.logo.url,
+  :name => @publisher.name,
+  :support_phone_number => @publisher.phone_number,
+  :support_email_address => @publisher.support_email_address,
+  :support_url => @publisher.support_url,
+  :updated_at => @publisher.updated_at.utc.to_formatted_s(:iso8601),
+  :qr_code_host => @publisher.effective_qr_code_host,
+  :connections => {
+    :active_daily_deals => active_publisher_daily_deals_url(@publisher.label, url_options.except(:protocol))
+  },
+  :methods => {
+    :login => publisher_daily_deal_sessions_url(@publisher, url_options),
+    :signup => publisher_consumers_url(@publisher, url_options),
+    :reset_password => publisher_consumer_password_resets_url(@publisher, url_options),
+    :register_push_notification_device => publisher_push_notification_devices_url(@publisher, url_options),
+    :facebook_connect => api_facebook_connect_url(@publisher, url_options),
+    :merchant_login => session_url(url_options)
+  }
+}.to_json.html_safe -%>
+

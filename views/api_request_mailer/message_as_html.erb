@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Coupon</title>
+</head>
+
+<body style="color: black; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
+  <table cellspacing="0" cellpadding="0" width="600" align="center">
+    <tr><td>
+      <%= @email_api_request.text_html_content %>
+    </td></tr>
+    <tr><td style="padding: 12px 24px;"><table cellspacing="0" cellpadding="0" width="552">
+      <tr><td align="center">You are receiving this email because a coupon was forwarded from the <%= @email_api_request.publisher.name %> website to <span class="email"><%= @email_api_request.destination_email_address %></span>. To opt out of receiving further email from us, 
+      <%= link_to("click here", email_opt_out_url(:random_code => @opt_out_random_code), :id => "email-opt-out") %>.</td></tr>
+      <tr><td align="center" style="padding-top: 6px;">Analog Analytics respects your privacy. <%= link_to "Click here", txt411_privacy_url %> to read our Privacy Policy.</td></tr>
+      <tr><td align="center" style="padding-top: 6px;">Analog Analytics and TXT411 are trademarks of <%= link_to "Analog Analytics Inc", "http://analoganalytics.com" %>. Postal address: 14525&nbsp;SW&nbsp;Millikan&nbsp;Way&nbsp;#34115, Beaverton, Oregon&nbsp;97005-2343.</td></tr>
+    </table></td></tr>
+  </table>
+</body>

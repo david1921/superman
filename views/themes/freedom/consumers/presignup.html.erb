@@ -1,0 +1,54 @@
+<% set_daily_deal_page_title_slug "Sign Up" %>
+<div class="page_row" id="prelaunch_new_consumer">
+  <div class="page_column_8 first rounded_corners">
+    <div class="left">
+      <p>You’re almost there!<br/>
+      Simply fill out the form below to deal more with savings than SPAM! And if you do it today, 
+      <span class="hl">you get $10 off</span> on your first Deal of the Day purchase in August.</p>
+
+      <p class="note">* Valid one per person. Deal Credit must be used by August 30, 2010</p>
+
+      <div id="presignup_form">
+        <% form_for [@publisher, @consumer] do |f| -%>
+          <%= f.error_messages(:header_message => "Errors prevent this account from being created") %>
+          <%= f.text_field_div(:name, "Full Name:") %>
+          <%= f.text_field_div(:email) %>
+          <%= f.text_field_div(:zip_code) %>
+          <%= render :partial => with_theme("birth_year"), :locals => { :consumer => @consumer, :f => f } %>
+          <%= render :partial => with_theme("gender"), :locals => { :consumer => @consumer, :f => f } %>
+          <%= f.password_field_div(:password) %>
+          <%= f.password_field_div(:password_confirmation, "Confirm Password:") %>
+
+          <%= f.text_field_div(:discount_code, nil, :disabled => @consumer.discount_code.present?) -%>
+          <%= f.hidden_field(:discount_code) if @consumer.discount_code.present? %>
+
+          <%= f.check_box_div(:agree_to_terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+
+          <div class="row button">
+            <%= image_submit_tag "/themes/daily_deals/images/buttons/subscribe.png", :name => "sign_up" %>
+          </div>
+          <div class="clear"></div>
+        <% end %>        
+      </div>
+
+    </div>
+    <div class="right">
+      <%= image_tag "/themes/daily_deals/images/deal_example.png" %>
+    </div>
+  </div>
+
+  <div id="widgets">
+    <div class="page_column_4 last rounded_corners deal_how_it_works" id="deal_credit">
+      <div class="copy">
+        <ol>
+          <li>Every day one Deal of the Day is featured at <%= @publisher.name %>.</li>
+        </ol>
+
+      </div>
+    </div>
+    <div class="page_column_4 last rounded_corners" id="send_deal">
+      <%= mail_to(@publisher.sales_email_address, image_tag("/themes/daily_deals/images/open.png")) %>
+      <%= mail_to(@publisher.sales_email_address, "Learn about how we can help bring tons of customers to your door.") %>
+    </div>
+  </div>  
+</div>

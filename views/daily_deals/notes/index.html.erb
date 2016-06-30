@@ -1,0 +1,23 @@
+<ol class='notes'>
+	<% @notes.each do |note| -%>
+		<% unless note.new_record? -%>
+		<li class="<%= cycle("odd", "even") %>">
+            <%= note.updated_at.to_s(:long_month_and_year) %>: <%= note.text %> by <%= note.user.login %>
+			<% if note.attachment? -%>
+			<%= link_to("download", note.attachment.url, :target => "_blank", :class => "external_link") %>
+			<% end -%>
+			<% if note.external_url.present? -%>
+			<%= link_to("link", note.external_url, :target => "_blank", :class => "external_link") %>
+			<% end -%>
+            <% if can_edit?(note) -%>
+			<%= link_to("edit", edit_daily_deal_note_path(@daily_deal,note)) %>
+			<% end -%>
+		</li>
+		<% end -%>
+	<% end -%>
+</ol>
+<h2>Add Note:</h2>
+<% form_for :note, @note, :url => daily_deal_notes_path(@daily_deal), :html => {:multipart => true, :id => "note"} do |f| -%>
+	<%= render :partial => "daily_deals/notes/form", :object => f %>
+	<%= f.submit "Add Note" %>
+<% end -%>

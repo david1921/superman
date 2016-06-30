@@ -1,0 +1,12 @@
+<div id="left_column">
+	<%= render :partial => with_theme("shared/dd_main_content") %>
+	<%= render :partial => with_theme("shared/dd_details") %>	
+</div>
+<div id="right_column">
+	<% if @daily_deal.present? and @daily_deal.side_deals.size > 0 %>
+	<a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=10"><h4>More Deals</h4></a>
+	<%= render :partial => with_theme("shared/side_deals") %>
+	<% end %>
+	<%= render :partial => with_theme("shared/facebook_likebox") %>
+</div>
+

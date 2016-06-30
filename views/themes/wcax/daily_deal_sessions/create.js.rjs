@@ -1,0 +1,25 @@
+if @consumer.try(:force_password_reset)
+  page.send :record, "document.location='#{consumer_password_reset_path_or_url(@publisher)}'"
+elsif current_consumer_for_publisher?(@publisher)
+  page['consumer'].replace({ 
+    :partial => "daily_deal_purchases/consumer",
+    :object => current_consumer,
+    :locals => { :publisher => @publisher }
+  })
+  page['buttons'].show
+  
+  if (discount = current_consumer.signup_discount_if_usable)
+    page['daily_deal_purchase_discount_uuid'].set_value discount.uuid
+    page['daily_deal_purchase'].write_attribute "discount_amount", discount.amount
+    page['discount'].replace_html :partial => "daily_deal_purchases/discount", :object => discount
+  end
+  if (credit_available = current_consumer.credit_available) > 0
+    page['daily_deal_purchase'].write_attribute "credit_available", credit_available
+  end
+  page.call :updatePurchaseTotal
+  page['facebook'].show if current_consumer.facebook_user?
+elsif !%w(wcax-vermont wcax-jumpaways wcax-adirondacks).include?(@publisher.label)
+  page['session_warning'].update "<div class=\"reset-password-message\"><span>We've upgraded!</span> To reset your password, please click #{link_to("here", consumer_password_reset_path_or_url(@publisher))}.<br/> Please let us know if you need assistance by using #{link_to("this form", "http://www.myjumponit.com/contact.html")} and we would be glad to help!</div>".html_safe
+else
+  page['session_warning'].update t("daily_deal_sessions.create.could_not_sign_in")
+end

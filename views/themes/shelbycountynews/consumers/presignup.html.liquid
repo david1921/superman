@@ -1,0 +1,112 @@
+<div id="presignup">
+
+	<div id="header">
+		<img src="/themes/shelbycountynews/images/header/SCN_presignup_header.png" alt="Shelby County News" width="860px" height="154px"> 
+	</div>
+	<div id="content">
+	<div id="row1">
+		<h1>Sign up for FREE today & receive a $5 Credit on your first deal!!</h1>
+	</div> 
+	<!-- /row1 -->
+	<div id="row2">
+		<span id="col1">
+			<h1>We'll send you exceptional deals to your inbox every day.</h1>
+			<h2>Get up to 50% or more off at great places in Shelby County. Sign up for FREE to receive Shelby County News' TODAY'S REAL DEAL - the best, hassle-free, easy-to-use deals</h2>
+			<!-- start form -->
+			<form action="{{ publisher.daily_deal_subscribers_path }}" method="POST" class="presignup email_subscription_tracking">
+	   			<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+	   			<input name="redirect_to" type="hidden" value="{{ publisher.presignup_consumers_url }}" />	
+	  	 		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+	  	 		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+	   			<fieldset>
+	   	 			<p><label for="subscriber_email">Email:</label>
+	   	 			<input class="dd_input email" id="subscriber_email" name="subscriber[email]" size="30" title="Please enter your e-mail address" type="text" /></p>
+	   	 		</fieldset>
+	   			<fieldset>
+	   	 			<p><label for="subscriber_first_name">First Name:</label>
+	   	    		<input class="dd_input name" id="subscriber_first_name" name="subscriber[first_name]" size="30" title="First Name" type="text"  /></p>
+	   	 		</fieldset>
+	   	 		<fieldset>
+	   	 			<p><label for="subscriber_last_name">Last Name:</label>
+	   	     		<input class="dd_input name" id="subscriber_last_name" name="subscriber[last_name]" size="30" title="Last Name" type="text" /></p>
+	   	 		</fieldset>
+	   	 		<fieldset>
+	   	 			<p><label for="subscriber_zip_code">Postal Code:</label>
+	   	 			<input class="dd_input zip" id="subscriber_zip_code" name="subscriber[zip_code]" size="30" title="Zip Code" type="text" /></p>
+	   	 		</fieldset>
+	   	 		<fieldset>
+	   	 			<input name="subscriber[terms]" type="hidden" value="0" />
+	   	 			<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" />
+	    			<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> 
+	    			and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+	    		</fieldset>
+	   	 		<fieldset>
+	   	 		<input class="subscribe_button" name="sign_up" type="submit" value="Sign Up" src="/themes/queenschronicle/images/buttons/signup.png" />
+	   	 		</fieldset>
+			</form>
+			<!-- end form -->
+		
+			<div id="promo_graphic">
+		    	<img src="/themes/shelbycountynews/images/graphics/promo2.png" alt="Restaurants" width=150px height="100">
+		    	<h4>Up to 50% off</h4>
+		    	<h3>Restaurants</h3>
+		    </div>
+		    <div id="promo_graphic">
+		    	<img src="/themes/shelbycountynews/images/graphics/promo1.png" alt="Spas" width=150px height="100">
+		    	<h4>Up to 50% off</h4>
+		    	<h3>Spas</h3>
+		    </div>
+		    <div id="promo_graphic">
+		    	<img src="/themes/shelbycountynews/images/graphics/promo3.png" alt="Attractions" width=150px height="100">
+		    	<h4>Up to 50% off</h4>
+		    	<h3>Attractions</h3>
+		    </div>
+		</span> <!-- /col1 -->
+		<span id="col2">
+			<h1>How It Works</h1>
+			
+				<h2>SIGN UP
+					<img src="/themes/shelbycountynews/images/icons/signup.png" alt="" >
+				</h2>
+				<p>Subscribe to TODAY's Real Deal and we'll email you one exceptional deal per day saving you up to 50% or more at businesses in or around Shelby County!!</p>
+				<hr></hr>
+			
+				<h2>GET THE DEAL
+					<img src="/themes/shelbycountynews/images/icons/getdeal.png" alt="" >
+				</h2>
+				<p>Buy the deal. Once you buy, check your email for your voucher. It's easy!</p>
+				<hr></hr>
+				
+				<h2>SHARE IT
+					<a href="{{ daily_deal.facebook_url }}">
+						<img src="/themes/shelbycountynews/images/icons/facebook.png" alt="Facebook" />
+					</a>
+					<a href="{{ daily_deal.twitter_url }}">
+						<img src="/themes/shelbycountynews/images/icons/twitter.png" alt="Twitter" />
+					</a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}">
+						<img src="/themes/shelbycountynews/images/icons/email.png" alt="Email" />
+					</a>
+				</h2>
+				<p>Share the savings with friends on Facebook, Twitter or by email!</p>
+				<hr></hr>
+				
+				<h2>REDEEM IT</h2>
+				<p>Print the deal and present it to the business to claim your Real Deal!</p>
+				<hr></hr>
+				
+				<h2>SAVE</h2>
+				<p>Save big and smile - you're living large while spending less!</p>
+		</span> <!-- /col2 -->
+		<br style="clear:both" />
+		
+		<div id="row3">
+		<h2>Are you a merchant looking to share wealth or just have questions? Email Shelby County News at:</h2>
+		<h1>sales@shelbycountynews.net</h1>
+		</div> 
+		<!-- /row3 -->
+	</div>
+	<!-- /row2 -->
+	
+</div> <!-- /content -->
+</div><!-- /presigup -->

@@ -1,0 +1,52 @@
+<div class="dd_details content">
+	<div id="advertiser_info">
+		<% if @daily_deal.advertiser.logo.present? %>
+		<img id="advertiser_logo" src="<%= @daily_deal.advertiser.logo.url(:normal) %>" alt="<%= @daily_deal.advertiser.name %>" />
+		<% end %>
+		<h4>Location</h4>
+		<div id="advertiser">
+    	<p><strong><%= @daily_deal.advertiser.name %></strong></p>
+
+    	<% @daily_deal.advertiser.stores.each_with_index do |store, idx| %>
+    		<div class="location_container" style="<% if idx > 2 %>display:none<% end %>">
+    			<p>
+    			<% if @daily_deal.advertiser.store.address_line_1.present? %>
+    				<%= store.address_line_1 %>
+    			<% end %>
+    			<% if @daily_deal.advertiser.store.address_line_2.present? %>
+    				<span style="display:block"><%= store.address_line_2 %></span>
+    			<% end %>
+    			<% if @daily_deal.advertiser.store.city.present? and @daily_deal.advertiser.store.state.present? and @daily_deal.advertiser.store.zip.present? %>
+    				<span style="display:block"><%= store.city %>, <%= store.state %> <%= store.zip %></span>
+    			<% end %>
+    			<% if @daily_deal.advertiser.store.formatted_phone_number.present? %>
+    				<span style="display:block"><%= store.formatted_phone_number %></span>
+    			<% end %>
+    			</p>
+    		</div><!-- /location_container -->
+    	<% end %>
+
+    	<% if @daily_deal.advertiser.stores.size > 3 %>
+    		<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+            <br />
+    	<% end %>
+
+			<% if @daily_deal.advertiser.website_url.present? %>
+    		<a href="<%= @daily_deal.advertiser.website_url %>" target="blank">View Website</a>
+    	<% end %>
+
+			<% if @daily_deal.advertiser.address.present? %>
+			<div id="advertiser_map">
+				<a  id="map" href="<%= @daily_deal.advertiser.map_url %>" target="_blank"><img src="<%= map_image_url_for(@daily_deal, "199x169", true) %>" /></a>
+			</div><!-- /map -->
+			<% end %>
+
+    </div><!-- /advertiser -->
+	</div>
+	<div id="about_deal">
+		<h4>About The Deal</h4>
+		<%= @daily_deal.description.try :html_safe %>
+	</div>
+<div class="clear"></div>
+</div>
+<div class="shadow_main"></div>

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  
+  <link rel="stylesheet" href="/themes/localdealsandmore/stylesheets/global.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/localdealsandmore/stylesheets/daily_deals.css" type="text/css" />
+
+    
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  <script src="/javascripts/ghostie.js" type="text/javascript"></script>
+
+<!--[if IE]>
+<link rel="Stylesheet" href="/themes/localdealsandmore/stylesheets/globalIE.css" type="text/css" />
+<![endif]-->
+  
+<!--[if IE]>
+<link href="/themes/localdealsandmore/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  
+  <title>{% daily_deal_page_title %}</title>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body id="ldnm">
+   <div id="wrapper">
+    <div id="container">
+        <!--Top Menu Begins-->
+            <div id="topmenu">
+              <ul>
+                <li style="margin-right:40px;padding-top:7px;"><a href="http://localdealsandmore.com" target="_blank">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://localdealsandmore.com/viewAllCoupons.php">View All Coupons</a></li>
+                <li style="margin-right:5px;padding-top:7px;color:#878787;">Connect With Us:</li>
+                <li style="margin-right:5px;padding-top:5px;"><a href="http://twitter.com/localdealsmore"><img src="/themes/localdealsandmore/images/twitter.jpg" alt="" width="20" height="20" /></a></li>
+                <li style="margin-right:40px;padding-top:5px;"><a href="http://www.facebook.com/pages/Local-Deals-and-More/142117445821016"><img src="/themes/localdealsandmore/images/fb.jpg" alt="" width="21" height="20" /></a></li>
+                <li class="helpimg" style="padding:5px 40px 0px 35px;"><a href="http://localdealsandmore.com/help.php">Help?</a></li>
+                <li class="numtext" style="padding:2px 20px 0px 25px;"><span style="font:bold 18px arial;color:#3D0991;">586-713-7794</span></li>
+              </ul>
+            </div>
+        <!--Top Menu Ends-->
+        <!--Header Begins-->
+            <div id="header">
+              <ul>
+                <li class="logo" style="margin-left:20px;"><a href="http://localdealsandmore.com/"></a></li>
+                <li class="metrotext" style="margin:0px 30px;">Metro Detroit</li>
+                <li><a href="http://localdealsandmore.com/admin/index.php"><img src="/themes/localdealsandmore/images/merchant_btn.png" width="172" height="35" alt="" style="margin:15px 10px 0px 10px;" /></a></li>
+                <li class="signuptext" style="margin:15px 0px 0px 9px;"><a href="http://localdealsandmore.com/weeklyeventsandcontests.php?type=d">Sign Up & Save More</a> <br /> <span class="signuptext1"><a href="http://localdealsandmore.com/weeklyeventsandcontests.php?type=w">Sign Up & Save More Weekly</a></span></li>
+              </ul>
+            </div>
+        <!--Header Ends-->
+        <!--Menu Begins-->
+            <div id="menu">
+               <ul>
+                <li class="leftimg"></li>
+                <li class="middleimg">
+                    <ul class="menu1">
+                        <li><a href="http://localdealsandmore.com/">Home</a></li>
+                        <li><a href="http://localdealsandmore.com/aboutUs.php">About us</a></li>
+                        <li><a href="http://localdealsandmore.com/printableCoupons.php">Printable Coupons</a></li>
+                        <li><a href="http://localdealsandmore.com/localContests.php">Local Contests</a></li>
+                        <li><a href="http://localdealsandmore.com/localEvents.php"  >Local Events</a></li>
+                        <li><a href="http://localdealsandmore.com/contestWinners.php"  >Contest Winners</a></li>
+                        <li><a href="http://localdealsandmore.com/advertisewithus.php" >Advertise with us</a></li>
+
+                    </ul>
+                </li>
+                <li class="rightimg"></li>
+               </ul>
+            </div>
+        <!--Menu Ends-->
+        <div class="topimg"></div>
+        <!--Main Body Begins-->
+            <div class="mainbody">
+            	<div class="bgright">
+
+<!--Analog_Analytics_Daily_Deal-->
+
+<div id="analog_analytics">
+	<div id="daily_deal">
+	
+		<div id="banner">
+			<div id="subscribe_form"><p class="subscribe">ENTER YOUR EMAIL FOR DEAL ALERTS!</p>
+				<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+					<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+					<p><input id="subscriber_email" name="subscriber[email]" size="30" class="ghostie" type="text" value="Email Address" title="Email Address"/></p>
+					<p><input id="subscribe_button" src="/themes/localdealsandmore/images/buttons/sign_up.png" type="image" /></p>
+					<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+					</p>
+				</form>
+			</div>
+		</div><!--banner-->   
+		 
+		<div id="dd_content">
+			<div id="dd_nav">
+				<a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> 
+				<a href="{{ publisher.contact_path }}">Contact Us</a>
+				<a href="{{ publisher.faq_path }}">FAQ's</a>
+				
+				{% if publisher.launched? %}
+					{% if publisher.current_user_belongs_to? %}
+				<a href="{{ publisher.my_account_path }}">My Account</a>
+				<a href="{{ publisher.my_deals_path }}">My Deals</a>
+				<a class="last" href="{{ publisher.logout_path }}">Sign Out</a>
+					{% else %}
+				<a class="last" href="{{ publisher.login_path }}">Sign In</a>
+					{% endif %}
+				{% endif %}
+			</div><!-- /dd_nav -->
+	       	 
+		    {% include "shared/flash" %}
+		    {{ content_for_layout }}
+            
+            {% include "shared/a_a_alt" %}
+
+		</div><!--dd_content-->
+		
+		
+		<div class="clear"></div>
+	</div><!--daily_deal-->
+</div><!--analog_analytics-->
+
+
+			</div>
+          </div>
+        <!--Main Body Ends-->
+         <!--Footer Begins-->
+                <div id="footer">
+                    <ul>
+                        <li class="footer-top"></li>
+                        <li class="footer-middle">
+                            <div class="footer_content">
+                                <ul>
+                                    <li style="margin-right:50px;">
+                                        <div class="footer-content1">
+                                            <ul>
+                                                <li><h3>Company</h3></li>
+                                                <li><a href="http://localdealsandmore.com/aboutUs.php" >About Us</a></li>
+                                                <li><a href="http://localdealsandmore.com/contactUs.php" >Contact Us</a></li>
+                                                <li><a href="http://localdealsandmore.com/jobs.php" >Jobs</a></li>
+                                                <li><a href="http://localdealsandmore.com/terms_privacy.php" >Privacy Policy</a></li>
+ 												<li><a href="http://localdealsandmore.com/admin/index.php">Admin Panel</a></li>
+ 											</ul>
+                                        </div>
+                                    </li>                                      
+                                    <li style="margin-right:60px;">
+                                        <div class="footer-content1">
+                                            <ul>
+                                                <li><h3>Learn More</h3></li>
+                                                <li><a href="http://localdealsandmore.com/advertisewithus.php" >Advertise with Us</a></li>
+                                                <li><a href="http://localdealsandmore.com/faq.php" >FAQ</a></li>  
+ 												<li><a href="http://localdealsandmore.com/help.php" >Help</a></li>                                                  
+                                            </ul>
+                                        </div>                                        
+                                    </li>
+                                    <li style="margin-right:60px;">
+                                        <div class="footer-content1">
+                                            <ul>
+                                                <li><h3>Fun Stuff</h3></li>
+                                                <li><a href="http://localdealsandmore.com/sugg_business.php" >Suggest a Business</a></li>
+                                                <li><a href="http://localdealsandmore.com/sharefeedback.php" >Share your Feedback</a></li>                                               
+                                            </ul>
+
+                                        </div>                                        
+                                    </li>
+                                    <li style="margin-right:40px;">
+                                        <div class="footer-content1">
+                                            <ul>
+                                                <li><h3>Follow Us</h3></li>
+                                                <li><a href="http://www.facebook.com/pages/Local-Deals-More/142117445821016" >Facebook</a></li> 								
+                                                <li><a href="http://localdealsandmore.com/weeklyeventsandcontests.php?type=d" >Subscribe to the Daily Deal of the Day</a></li>                                                  
+                                                <li><a href="http://localdealsandmore.com/weeklyeventsandcontests.php?type=w" >Subscribe to Receive Coupons and Events Weekly</a></li>                                                        
+ 												</ul>
+                                        </div>                                        
+                                    </li>
+                                    <li>
+                                        <div class="footer-content1">
+                                            <ul>
+                                                <li style="margin-top:20px;"><img src="/themes/localdealsandmore/images/btm_box_logo.jpg" alt="" width="76" height="68" /></li>                                                
+                                            </ul>
+                                        </div>                                        
+                                    </li>                                                                           
+                                </ul>
+                            </div>
+                            <div style="clear:both;font:normal 13px arial;color:#7852AE;text-align:center;margin:20px 0px;padding:0px;">&copy; 2010 Local Deals And More. All Rights Reserved.</div>
+                        </li>
+                        <li class="footer-bottom"></li>
+                    </ul>
+                </div>
+         <!--Footer Ends-->
+        
+        
+    </div>
+   </div>
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>
+
+

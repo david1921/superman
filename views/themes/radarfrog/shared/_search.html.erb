@@ -1,0 +1,50 @@
+<% 
+  if defined?(search_url) 
+    url = search_url
+  else 
+    url = render_public_offers_path(Publisher.find(params[:publisher_id]))
+  end
+-%>
+<div id="search">
+  <h3>Search</h3>
+  <div id="search_wrapper">
+    <% form_tag url, :method => :get, :id => "search_form" do -%>
+    
+    <%= text_field_tag "text", @text, :class => "ghostie", :id => "text", :value => "Name, category, or ZIP", :onclick=> "this.value='';", :onfocus=> "this.select()", :onblur => "this.value=!this.value?'Name, category, or ZIP':this.value;" %><br/>
+    <% basic_params_for_pagination.each_pair do |key, value| -%>
+      <%= hidden_field_tag key, value %>
+    <% end %>
+          
+    <div id="zip_code_distance"> 
+      <% unless defined?( zip_code_options ) -%>
+        <% zip_code_options = [["ZIP Code Distance", ""], ["Limit to ZIP code", "0"], ["5 miles", "5"], ["10 miles", "10"], ["20 miles", "20"], ["50 miles", "50"]] %>
+      <% end -%>
+      <% unless @publisher.show_zip_code_search_box? %>
+      <h4>ZIP Code Distance</h4>
+      <%= 
+        select_tag "radius", 
+          options_for_select(zip_code_options, @radius), 
+          :disabled => !@text.zip_code?,
+          :id => "radius",
+		  :class => "ghostie"
+      %>
+      <% javascript_tag do -%>
+        Event.observe(window, 'load', function() {
+          $('text').observe('keyup', function(element) { text_changed() });
+        });
+      <% end -%>
+      <% else -%>
+        <h4>ZIP Code &amp; Distance</h4>
+        <%= text_field_tag "postal_code", @postal_code %>
+        <%= select_tag "radius", 
+              options_for_select(zip_code_options, @radius.to_s) %>
+        <%= submit_tag "Search" %>          
+      <% end -%>
+    </div>
+   
+ 	<div class="search_button"><%= submit_tag "Search" unless @publisher.show_zip_code_search_box? %>
+    <% end -%></div>
+
+      <div class="clear"></div>
+  </div>
+</div>

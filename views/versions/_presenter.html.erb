@@ -1,0 +1,9 @@
+<% @presenter.by_date.each do |by_date| -%>
+	<dl class="versions">
+		<dt>Changes on <%= by_date.date.to_s(:simple) %></dt>
+		<% by_date.entries.each do |entry| -%>
+			<dd class="<%= cycle('odd', 'even') %>"><%= render_entry(entry) %></dd>
+		<% end -%>
+
+	</dl>
+<% end -%>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="el-gr" lang="el-gr" xmlns="http://www.w3.org/1999/xhtml" xmlns:web="urn:schemas-microsoft-com/web">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<% if @daily_deal -%>
+<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+<meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+<meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+<link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+<% else -%>
+<meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+<% end -%>
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/prowlingpanther/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/prowlingpanther/stylesheets/prowlingpanther.css" type="text/css" />
+
+  <link rel="shortcut icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/presignup.css" type="text/css" />
+
+  <script src="/javascripts/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  
+  <%= raw render :partial => with_theme("shared/publisher_head") %>
+  <%= render :partial => with_theme("daily_deals/custom_stylesheet_includes") %>
+  
+<!--[if lte IE 9]>
+<link href="/themes/prowlingpanther/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/prowlingpanther/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if gte IE 9]>
+  <style type="text/css">
+    .gradient {
+       filter: none;
+    }
+  </style>
+<![endif]-->
+  
+  <title>Σύντομα οι καλύτερες προσφορές για εστιατόρια, spa, εκδηλώσεις, ξενοδοχεία κ.ά. κάθε μέρα στο MSN Deals!</title>
+  <%= raw render :partial => "/shared/tracking_google_analytics" %>
+	
+</head>
+
+<body class="wide">
+
+  <%= raw render :partial => with_theme("shared/publisher_header") %>
+
+<div class="clear"></div>
+<!--Analog_Analytics_Daily_Deal-->
+
+<div id="analog_analytics">
+
+
+
+	<div id="daily_deal">
+		<div id="dd_content">
+	       	 
+		   <%= raw render :partial => '/shared/flash', :locals => { :flash => flash } %>
+		   <%= yield %>
+		    <div class="clear"></div>
+		    <div id="a_a"><a href="http://www.forestview.eu/en/dealroom/"><img src="/themes/msn/images/graphics/footer_fv.png" /></a><a href="http://analoganalytics.com/"><img src="/themes/msn/images/graphics/footer_aa.png" /></a></div>
+		</div><!--dd_content-->
+		
+		
+	</div><!--daily_deal-->
+
+</div><!--analog_analytics-->
+
+<%= raw render :partial => with_theme("shared/publisher_footer") %>
+
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+<%= raw render :partial => 'daily_deals/javascript' %>
+</body>
+</html>

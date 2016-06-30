@@ -1,0 +1,59 @@
+  <div class="front_panel" id="offer_<%= offer.id %>_front_panel">
+    <div class="body" id="offer_<%= offer.id %>_body">
+      <div class="top">
+        <div class="header"><%= offer.message %></div>
+        <div class="middle">
+          <div class="left">
+            <div class="image_left">
+              <%= offer_photo_image_tag(offer) %>
+            </div>
+            <div class="address">
+              <span class="advertiser_name"><%= advertiser_name(offer) -%></span><br/>
+              <% offer.address do |line| -%>
+                <%= line -%><br/>
+              <% end -%>
+              <% unless offer.formatted_phone_number.blank? -%>
+              <span class="phone_number"><%= offer.formatted_phone_number %></span>
+              <% end -%>
+              <% if offer.publisher.show_gift_certificate_button? && offer.advertiser.gift_certificates? -%>
+              <div class="website_link">
+                <%= link_to_website(offer, "Visit Website") %>            
+              </div>
+              <% end -%>
+            </div>
+          </div>
+          <div class="right">
+            <div class="logo">
+              <%= raw(
+                if offer.advertiser.logo.file?
+                  if link_to_website?(offer)
+                    link_to_website(offer, advertiser_logo_image_tag(offer))
+                  else
+                    advertiser_logo_image_tag(offer)
+                  end
+                else
+                  "&#160;".html_safe
+                end
+              ) %>
+              <div class="website_link centered">
+                <%= link_to_website(offer, "Visit Website") %>   
+              </div>
+            </div>
+            <div class="terms">
+              <span class="<%= terms_size(offer) %>"><%= offer.terms_with_expiration -%></span>
+            </div>
+            <% if offer.publisher.show_gift_certificate_button? && offer.advertiser.gift_certificates? && "iframe" != @layout -%>
+            <div class="gift_certificate centered">
+              <%= link_to(
+                    image_tag("/themes/standard/images/deal_certificate.png"), 
+                    gift_certificate_path(offer.advertiser.gift_certificates.first), 
+                    :class => "lbOn", :title => "Click to purchase deal certificate for #{offer.advertiser_name}"
+                  ) %>
+            </div>            
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render :partial => 'themes/radarfrog/offers/footer', :locals => {:offer => offer, :publisher => publisher, :icon_base_url => '/themes/standard/images/coupons'} %>
+  </div>

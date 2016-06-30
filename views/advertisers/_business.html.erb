@@ -1,0 +1,27 @@
+<% offers = business.offers.active %>
+<% unless offers.empty? -%>
+<li class="business">
+  <div class='logo'>
+    <%= raw(
+      if business.logo.file?
+       image_tag(business.logo.url(:standard))
+      else
+       "&nbsp;"
+      end
+    ) %>
+  </div>
+  <h2><%= link_to( business.name, render_public_offers_path( @publisher, {:advertiser_id => business.id, :advertiser_label => business.label} ) ) %></h2>
+  <div class='address'><%= business.address.join(", ") %><br /><%= business.formatted_phone_number %></div> 
+ 
+  <ul class='offers'>
+    <% offers.each do |offer| %>
+      <li>
+      <%= link_to( offer.value_proposition, public_offers_path( :publisher_id => @publisher.to_param, :offer_id => offer.id ) ) %>
+      <% unless offer.expiration.blank? %>
+        <span class="expiration">(<%= offer.expiration %>)</span>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</li>
+<% end -%>

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title><%= @daily_deal.value_proposition %></title>
+	</head>
+
+	<% category_deals = @daily_deal.side_deals.select { |x| x.publishers_category.present? } %>
+	<% travel_deals = category_deals.select { |x| x.publishers_category.name == "Travel Deal" } %>
+
+	<body style="margin: 0;">
+		<table width="620" style="font-family: Arial, Helvetica, sans-serif !important; padding-bottom: 20px;" border="0" cellspacing="0" cellpadding="0" align="center"> <!-- WRAPPER -->
+			<tr>
+				<td>
+					<table width="620" border="0" cellspacing="0" cellpadding="0" align="center"> <!-- HEADER -->
+						<tr>
+							<td rowspan="2" style="padding: 5px 0 5px 47px;"><a href="http://<%= @daily_deal.publisher.daily_deal_host + public_deal_of_day_path(@publisher.label) %>"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/logo.png", :style => "display:block;", :alt => "Jump On It", :border => 0) %></a></td>
+						<% if @publisher.label == "northwestfloridadailynews" || @publisher.label == "panamacitynewsherald" %>
+							<% if @publisher.logo.present? %>
+							<td style="padding: 30px 15px 0 0; text-align: right;"><%= image_tag("#{@publisher.logo.url(:normal)}", :style => "display:inline-block;", :alt => "#{@publisher.name} Logo", :border => 0, :height => 60) %></td>
+							<% end %>
+						<% else %>
+							<% if @publisher.logo.present? %>
+							<td style="padding: 30px 15px 0 0; text-align: right;"><%= image_tag("#{@publisher.logo.url(:normal)}", :style => "display:inline-block;", :alt => "#{@publisher.name} Logo", :border => 0, :height => 45) %></td>
+							<% end %>
+						<% end %>
+						</tr>
+						<tr>
+							<td style="font-size: 12px; padding: 0 15px 0 0; text-align: right; font-weight: bold;"><%= @time.strftime("%A, %B %e, %Y") %></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/email_shadow.png", :style => "display:block;", :alt => "Shadow", :border => 0) %></tr>
+						</tr>
+					</table>
+					<table width="595" border="0" cellspacing="0" cellpadding="0" align="center"> <!-- BORDER TOP -->
+						<tr>
+							<td align="center"><a href="http://<%= @daily_deal.publisher.daily_deal_host + public_deal_of_day_path(@publisher.label) %>"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/email_rounded_top.png", :style => "display:block;", :alt => "Shadow", :border => 0) %></a></td>
+						</tr>
+						<tr>
+							<td style="border-left: 1px solid #0082c8; border-right: 1px solid #0082c8; padding-bottom: 10px;">
+								<%= render :partial => with_theme('shared/email/featured_deals') %>
+							</td>
+						</tr>
+						<% unless @daily_deal.side_deals.blank? %>
+						<tr>
+							<td style="border-left: 1px solid #0082c8; border-right: 1px solid #0082c8; padding-left: 9px; padding-bottom: 10px;">
+								<table width="561" style="border-top: 1px solid #cbc6c6;" border="0" cellspacing="0" cellpadding="0" align="center">
+									<tr>
+										<td style="width: 227px">
+											<a href="http://<%= daily_deals_public_index_path(@publisher.label) %>"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/more_deals_email.png", :style => "display: block;", :alt => "More Great Deals", :border => 0)%></a>
+										</td>
+										<td>
+											<a style="color: #000; font-size: 12px; text-decoration: none; font-weight: bold;" href="http://<%= @daily_deal.publisher.daily_deal_host +  daily_deals_public_index_path(@publisher.label) %>">See All Deals >></a>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding-bottom: 10px;">
+											<%= render :partial => with_theme('shared/email/other_deals'), :locals => { :daily_deal => @daily_deal, :side_deals => @daily_deal.side_deals } %>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<% unless travel_deals.blank? %>
+						<tr>
+							<td style="border-left: 1px solid #0082c8; border-right: 1px solid #0082c8; padding-left: 9px; padding-bottom: 10px;">
+								<table width="561" style="border-top: 1px solid #cbc6c6;" border="0" cellspacing="0" cellpadding="0" align="center">
+									<tr>
+										<% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending  %>
+									   <% travel_category = categories.find_by_name("Travel Deal") %>
+
+										<td style="width: 227px">
+											<a href="http://<%= publisher_daily_deal_category_path(@publisher, travel_category) %>"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/travel_deals_email.png", :style => "display: block;", :alt => "More Great Deals", :border => 0)%></a>
+										</td>
+										<td>
+											<a style="color: #000; font-size: 12px; text-decoration: none; font-weight: bold;" href="http://<%= @daily_deal.publisher.daily_deal_host + publisher_daily_deal_category_path(@publisher, travel_category) %>">See All Deals >></a>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding-bottom: 10px;">
+											<%= render :partial => with_theme('shared/email/other_deals'), :locals => { :daily_deal => @daily_deal, :side_deals => travel_deals } %>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<% end %>
+						<% end %>
+						<tr>
+							<td style="border-left: 1px solid #0082c8; border-right: 1px solid #0082c8; padding-left: 12px;"><%= link_to(image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/buttons/send_deals_bottom_email.png", :style => "display:block;", :alt => "Share Deals Bottom", :border => 0), "http://" + @daily_deal.publisher.daily_deal_host + feature_your_business_publisher_daily_deals_path(@publisher)) %></td>
+						</tr>
+						<tr>
+							<td align="center"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/email_rounded_bottom.png", :style => "display:block;", :alt => "Shadow", :border => 0) %></td> <!-- BORDER BOTTOM -->
+						</tr>
+					</table>
+				<td>
+			<tr>
+		</table>
+	</body>
+</html>

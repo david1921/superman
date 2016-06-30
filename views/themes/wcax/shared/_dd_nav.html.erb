@@ -1,0 +1,21 @@
+<ul>
+	<% unless @publisher.label == 'wcax-sevendays' %>
+		<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Deal</a></li>
+	<% end %>
+	<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>">All Deals</a></li> 
+	<li><a href="<%= past_deals_of_day_path(@publisher.label) %>">Past Deals</a></li>
+	<% if @publisher.launched? %>
+		<% if current_consumer_for_publisher?(@publisher) %>
+		<li id="my_account"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+		<li id="my_deals"><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+		<li class="sign_out last"><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+		<% else %>
+		<li><a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+		<li class="last sign_up_btn"><a href="#signup" onclick="SignUpClick()">Sign Up</a></li>
+		<% end %>
+	<% end %>
+</ul>
+<!-- hides navigation on mobile devices -->
+<script type="text/javascript">
+if(jQuery(window).width()<379){jQuery('#dd_nav').hide();}
+</script>

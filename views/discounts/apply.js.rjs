@@ -1,0 +1,11 @@
+if @discount
+  page['flash_warn'].hide
+  page['daily_deal_purchase_discount_uuid'].set_value @discount.uuid
+  page['daily_deal_purchase'].write_attribute "discount_amount", @discount.amount
+  page['discount'].replace_html :partial => "daily_deal_purchases/discount", :object => @discount
+  page.call :updatePurchaseTotal
+else
+  page['flash_warn'].update("Sorry, that's not a valid discount code")
+  page['flash_warn'].show
+end
+page['daily_deal_purchase_discount_code'].clear

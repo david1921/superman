@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" >
+  {% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>{% daily_deal_page_title %}</title> 
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="shortcut icon" href="/themes/kowabunga/images/favicon.ico" type="image/x-icon" /> 
+  <link rel="stylesheet" href="/themes/kowabunga/stylesheets/shopping-mall.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="/themes/kowabunga/stylesheets/pop-up-forms.css" type="text/css" media="all" />
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/lib/scriptaculous.js" type="text/javascript"></script>
+  <script src="/javascripts/lib/widgets.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  <script src="/javascripts/ghostie.js" type="text/javascript"></script>
+ <!--[if IE 9]>
+      <link rel="stylesheet" href="/themes/kowabunga/stylesheets/ie9.css" type="text/css" media="all" />
+  <![endif]-->    
+  <!--[if lte IE 8]>
+     <link rel="stylesheet" href="/themes/kowabunga/stylesheets/ie.css" type="text/css" media="all" />
+  <![endif]-->    
+	<link rel="stylesheet" href="/themes/kowabunga/stylesheets/kowabunga-deals.css" type="text/css" media="all" /> 
+	<link href='//fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+	<!-- Sharethis Scripts -->
+	<script type="text/javascript">var switchTo5x=true;</script>
+	{% http %}
+	  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	{% endhttp %}
+	<script type="text/javascript">stLight.options({publisher:'115cb736-1976-465d-920e-9e0407ba5571'});</script>
+	<!-- Sharethis Scripts end -->
+  {% include "daily_deals/javascript" %}
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type='text/javascript' src='/javascripts/social_media_share.js'></script>
+<script type="text/javascript">
+$.noConflict();
+jQuery(document).ready(function(){
+        jQuery("#subscribe_button").fadeTo("fast", 0.9);
+	jQuery("#subscribe_button").hover(function() {
+                jQuery("#subscribe_button").stop().fadeTo("fast", 1.0);
+            },
+            function(){
+                jQuery("#subscribe_button").stop().fadeTo("fast", 0.9);
+            }
+        );
+});
+</script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+     sfHover = function() {
+          var sfEls = document.getElementById("market_menu").getElementsByTagName("LI");
+          for (var i=0; i<sfEls.length; i++) {
+               sfEls[i].onmouseover=function() {
+                    this.className+=" sfhover";
+               }
+               sfEls[i].onmouseout=function() {
+                    this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+               }
+          }
+     }
+     if (window.attachEvent) window.attachEvent("onload", sfHover);
+     //--><!]] ]]]] >  </script>
+	{% include "shared/tracking_google_analytics" %}
+	
+	<script type="text/javascript" charset="utf-8">
+		<!-- Begin SearchForce tracking code for conversion page (4.1) -->
+		<script type="text/javascript" language="Javascript">
+		var jAccountID = "35383";
+
+		function recordIt(convType, convValue, orderId){
+		var juAgent = navigator.userAgent;
+		var imgURL = "//sftrack.searchforce.net/SFConversionTracking/img.jpg?jt=3&jru=" + escape(window.location) + "&jaid=" + jAccountID + "&joid=" + escape(orderId) + "&jcv=" + convValue + "&je=" + convType + "&juag=" + juAgent;
+		var convImg = new Image();convImg.src = imgURL;
+		}
+		</script>
+		<!-- End SearchForce tracking code -->
+	</script>
+</head>
+  <div id="light-box-background" style="display:none;"></div>
+<body id="deal-page">
+   <div id="page-wrap">
+	  {% include with_theme "shared/deal-header" %}
+	  {% include with_theme "shared/market_nav" %}
+	  {% include with_theme "shared/dd-nav" %}
+		<div id="analog_analytics">
+			<div id="daily_deal">
+			 		{% include "shared/flash" %}
+			 		{{ content_for_layout }} 
+			 </div><!-- /daily_deal-->
+		</div><!-- /analog_analytics-->
+		{% include with_theme "shared/tracking_publisher" %}
+
+	</div><!-- end #page-wrap -->
+  <div class="clear"></div>
+	{% include with_theme "shared/deal-footer" %}
+<script type="text/javascript">
+ var orderId = ''
+ var orderAmout = ''
+{% analytics_tag sale %}
+ orderId =  {% analytics_tag_data sale_id %}
+ orderAmount = {{ daily_deal.price }}
+{% endanalytics_tag %}
+
+jQuery(document).ready(function() {
+    jQuery("#flash_notice").delay(4000).fadeOut(800);
+    jQuery("#flash_warn").delay(4000).fadeOut(800);
+	jQuery(document).find('*[data-aa-tracked]').each(function(){
+	   jQuery(this).bind('click', function(event){
+			switch (jQuery(this).attr('data-aa-tracking-id')){
+				case '738_create_account':  recordIt(lead, 1, orderId, 'accountcreate'); break;
+				case '738_cta-signup-submitted': recordIt(signup, 1, orderId, 'corneremailsubmit'); break;
+				case '738_lightbox-email-no-thanks': recordIt(signup, 1, orderId, 'leavesitelightbox'); break;
+				case '738_lightbox-email-submit': recordIt(signup, 1, orderId, 'leavesitelightbox'); break;
+				case '738_third-party-offer': recordIt(lead, 1, orderId, '3rdpartyclick'); break;
+				case '738_popup-welcome-email': recordIt(signup, 1, orderId, 'firstvisitlightbox'); break;
+				
+			}
+		});
+	});
+
+});
+</script>
+
+<script type="text/javascript" charset="utf-8">
+</script>
+
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery("#market-menu-click-here").click(function(){
+    jQuery("#market_nav").slideDown();
+    });
+    jQuery('.close-market-menu').click(function(){
+     jQuery("#market_nav").slideUp();
+    });
+    
+    });
+
+</script>
+
+</body><!--  end #preopt -->
+</html>

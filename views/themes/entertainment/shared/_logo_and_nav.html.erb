@@ -1,0 +1,15 @@
+<div id="logo_and_nav">
+	<div id="logo">
+		<a href="<%= public_deal_of_day_path(@publisher.label) %>"><img src="/themes/entertainment/images/graphics/logo.png" /></a>
+	</div>
+	<div class="clear"></div>
+	<div class="dd_nav nav_gradient">
+		<ul>
+			<li><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="<%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>">Featured Deal</a></li>
+			<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=10" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals</a></li> 
+			<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>">How It Works</a></li> 
+			<li><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>">Get Featured</a></li> 
+		</ul>
+	</div>
+	<%= render :partial => with_theme("shared/market_nav") %>	
+</div>

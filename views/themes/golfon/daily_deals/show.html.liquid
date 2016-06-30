@@ -1,0 +1,236 @@
+<!-- begin daily deal content -->
+
+<div>
+
+<div id="left_column">
+
+	<div id="left_top"></div>
+	
+	<div id="left_main">
+		<div id="left_main_top">
+			<h1 id="currently">Currently In The Tee Box</h1>
+			<div id="right">
+				<h1 id="value_proposition">{{ daily_deal.value_proposition }}</span></h1>
+				
+				<div id="buy_now_wrap">
+					<div id="buy_now_top"></div>
+					<div id="buy_now_main">
+
+						<div id="buy_now">
+							  {% if daily_deal.sold_out? %}
+						      <div id="sold_out" class="dd_button"><span>Sold Out</span></div>
+							  {% elsif daily_deal.over? %}
+							  <div id="deal_over" class="dd_button"><span>Deal Over</span></div>
+							  {% elsif daily_deal.active? %}
+							  <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button"><span>Buy Now</span></a>
+							  <div id="deal_over" class="dd_button unavailable" style="display:none;"><span>Deal Over</span></div>
+							  {% else %}
+						      <div id="not_yet" class="dd_button"><span>Not Yet Available</span></div>							  
+						      {% endif %}
+						</div><!-- /buy_now -->
+						<div id="buy_it">{{ daily_deal.price | currency }}</div>
+						<div class="clear"></div>
+						<div class="dashboard"><!--deal_dashboard-->
+							<table align="center">
+      						    <tr align="center">
+						          <th>Value</th>
+						          <th>Discount</th>
+						          <th>You Save</th>
+						        </tr>
+						        <tr align="center">
+						          <td>{{ daily_deal.value | currency }}</td>
+						          <td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+						          <td>{{ daily_deal.savings | currency }}</td>
+						        </tr>  						        
+							</table>
+						</div>	
+						
+						<table id="timer" align="center">
+							<tr align="center">
+								<td id="clock" rowspan="2" width="37" ></td>
+								<th id="time_left_to_buy_label">Time Left to Buy</th>
+							</tr>
+							<tr align="center">
+								<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+							</tr>
+						</table><!-- /timer -->						
+
+
+						{% if publisher.enable_daily_deal_referral %}
+						<div id="refer_friend">
+						     <a href="{{ publisher.refer_a_friend_path }}" class="refer_a_friend_tracking"><img src="/themes/golfon/images/buttons/buy-for-a-friend.png" width="188" height="28" alt="Buy For A Friend" /></a>
+						</div><!-- /refer_friend -->
+						{% endif %}  
+											
+					<div class="clear"></div>
+					</div>
+					<div id="buy_now_bottom"></div>
+				</div> <!--/dashboard container -->
+				
+				<div id="deals_sold_container">
+					<div id="deals_sold_top"></div>
+					
+					<div id="deals_sold_main">
+					
+            {% if daily_deal.sold_out? %}
+            <div class="deal_pending">Sorry this deal is sold out!</div>
+            {% elsif daily_deal.over? %}
+            <div class="deal_pending">Sorry this deal is over!</div>
+            {% elsif daily_deal.active? %}
+              <p id="tee" {% if daily_deal.number_sold <= 0 %}style="display:none"{% endif %}>We're Golfin' Now!</p>
+              <p>
+                  <div id="deals_sold" style="display:inline">{{ daily_deal.number_sold }}</div> Players Bought
+              </p>
+            {% else %}
+            <div class="deal_pending">Sorry this deal is not yet available.</div>
+            {% endif %}
+				
+					</div>
+					<div id="deals_sold_bottom"></div>
+				</div> <!--/deals sold container -->
+				
+				<div id="share">
+					<p>Share this deal!</p>
+					<a href="{{ daily_deal.facebook_url }}" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/golfon/images/icons/facebook-logo.png" width="30" height="30" alt="share on facebook" /></a>
+					<a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/golfon/images/icons/twitter-logo.png" width="30" height="30" alt="share this on twitter" /></a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition | uri_escape }}&body=Check out this deal at {{ daily_deal.url | cgi_escape }}" class="share_link share_button_mail"><img src="/themes/golfon/images/icons/email-button.png" width="30" height="30" alt="email this to a freind" /></a>
+				</div><!--/share -->				
+			</div>			
+			
+			
+			<div id="left">
+				<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}"  /></div>
+				<div id="fine_print">
+					{% if daily_deal.fine_print != "" %}
+					<h2>Course Marshall Rules</h2>
+					{{ daily_deal.terms }}
+					{% endif %}
+				</div>				
+	
+				<div id="highlights">
+				     {% if daily_deal.highlights != "" %}
+				     <h2>Highlights</h2>
+				     {{ daily_deal.highlights }}
+				     {% endif %}
+				</div>
+								
+				<div class="clear"></div>
+			</div>
+
+			
+		
+		</div>
+		
+		<div id="left_main_bottom">
+		
+				<div id="description">
+				     <h2>Description</h2>
+				     {{ daily_deal.description }}
+				</div>	
+				
+					
+				<div id="advertiser">
+		               <img class="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" />
+		               {% if advertiser.address? %}
+		               <div class="advertiser_address">
+			               <h2>Contact</h2>
+			               <p>{{ advertiser.name }}</p>
+			                    {% for store in advertiser.stores %}
+			               <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                   
+			                    <p>
+			                         {{ store.address_line_1 }}<br />
+			                         {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+			                         {% if store.formatted_phone_number != empty %}
+			                         {{ store.formatted_phone_number }}
+			                         {% endif %}<br />                   
+			                         {% if advertiser.website_url != empty %}
+			                         <a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+			                         {% endif %}
+			                    </p>
+			               </div><!-- /location_container -->
+			                    {% endfor %}
+		               </div><!-- /advertiser_address -->
+		               {% endif %}
+		               <div class="clear"></div>
+		               
+		               {% if advertiser.num_stores > 3 %}
+		               <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+		               {% endif %}
+		               {% if advertiser.stores.size > 0 %}
+		               <h2>Map</h2>
+		               <a id="map" href="{{ advertiser.map_url }}" target="_blank"><img class="map" src="{{ daily_deal | map_image_url_for: "260x166" }}" /></a>
+		               {% endif %}
+		         </div><!-- /advertiser -->		
+		</div>
+	
+				<div class="clear"></div>
+	
+	</div>
+	<div id="left_bottom"></div>
+	
+	
+</div>
+
+<div id="right_column">
+	<div class="right_sub">
+		<div class="right_sub_top"></div>
+		<div class="right_sub_main">
+			<h4 class="box-title tk-league-gothic">{{ publisher.market_name_or_city }}</h4>
+			<p><em>Not in {{ publisher.market_name_or_city }}?</em> Please select a location to view deals in your area.</p>
+			 <!-- market dropdown -->
+               
+               <div id="market_menu_wrapper">
+                    
+                    <ul id="market_menu">
+                       <li><a href="#">{{ publisher.market_name_or_city }}</a>
+                              {{ publisher | market_selection_list }}
+                         </li>
+                    </ul>
+               </div><!-- /market_menu_wrapper -->
+               <div class="clear"></div>              
+               <!--/ market dropdown -->
+		</div> <!-- end right_sub_main -->
+		<div class="right_sub_bottom"></div>
+	</div> <!-- end right_sub -->
+
+	{% if daily_deal.side_deals.size > 0 %}
+	<div class="right_sub other_deal_tracking">
+		<div class="right_sub_top"></div>
+		<div class="right_sub_main">
+			<h4 class="box-title tk-league-gothic">Nearby Deals</h4>
+		  {% for side_deal in daily_deal.side_deals %}
+		    <div class="side_deal_wrap">
+				<div class="side_deal_text">
+					<p class="side_deal_address">{{ side_deal.advertiser.city }}, {{ side_deal.advertiser.state }}</p>
+					<p><a class="side_deal" href="{{ side_deal.url }}" target="_blank">{{ side_deal.value_proposition }}</a></p>
+                    <p class="side_deal_price"><span>Price:</span> {{ side_deal.price | currency }}</p>
+                    <p class="side_deal_value"><span>Discount:</span> {{ side_deal.value | currency }}</p>
+                    <p><span>Time Left to Buy:</span> {{ side_deal.time_remaining_display }}</p>
+					<p><a href="{{ side_deal.url }}" target="_blank"><img src="/themes/golfon/images/buttons/buy-now-side.png" width="98" height="26" alt="buy deal" /></a></p>
+				</div><!-- /side_deal_text -->
+				<div class="clear"></div>
+			</div><!-- /side_deal_wrap -->
+		  {% endfor %}
+		</div>
+		<div class="right_sub_bottom"></div>	
+	</div>			  
+	{% endif %}
+
+	
+	<div class="right_sub">
+		<div class="right_sub_top"></div>
+		<div class="right_sub_main">
+			<div class="side_deal_wrap">
+				<h4 class="box-title tk-league-gothic">Pair with Golfon</h4>
+				<p><em>Own a golf related business? Run a GolfOn deal!</em> Click the link below to learn how you can run a deal and share your golf business with GolfOn Players.</p>
+				<a href="http://www.golfon.com/page/10/Run-A-Deal.html" class="right"><img src="/themes/golfon/images/buttons/learn-more.png" alt="learn more" /></a>
+					<div class="clear"></div>
+			</div><!-- /side_deal_wrap -->
+
+		</div>
+		<div class="right_sub_bottom"></div>
+	</div>	
+	
+</div>
+</div>
+<!-- end daily deal content -->	

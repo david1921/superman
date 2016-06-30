@@ -1,0 +1,24 @@
+<div id="new_subscriber">
+  <h3 id="headline">Weekly Coupons &amp; Promotions<br/>Sent to Your Inbox</h3>
+
+  <% remote_form_for @subscriber do |f| %>
+    <div id="email">
+      <h3>Email Address</h3>
+      <%= f.text_field :email %><br/>
+    </div>
+    
+      
+    <div id="zip_code">
+      <h3>ZIP Code</h3>
+      <%= f.text_field :zip_code %>
+    </div>
+      
+
+    <div class="footer">
+      <%= image_submit_tag "/themes/#{@publisher.label}/images/submit.png", :id => "submit_button" %>
+      <a href="#" class="lbAction" rel="deactivate" id="close">Close</a>
+    </div>
+  
+    <%= hidden_field_tag :publisher_id, @publisher.id %>
+  <% end -%>
+</div>

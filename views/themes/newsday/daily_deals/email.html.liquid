@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Subject: {{ daily_deal.email_blast_subject }} -->
+<!-- From: "Newsday daily deal" -->  
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+	p {padding: 0; margin: 0;}
+
+</style>
+</head>
+
+<body>
+
+
+<table width="670" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td>
+	  <p style="font: normal 12px Arial; color: #7d7d7d; line-height: 1.5em; margin-bottom: 20px">
+     	       Please do not reply to this e-mail. If you need to contact us please email <a href="mailto:dailydeal@newsday.com" style="text-decoration:none">dailydeal@newsday.com</a>.<br/>
+     	       To ensure delivery of Newsday communications, please add <a href="mailto:newsday@newsalertsnewsday.com" style="text-decoration:none">newsday@newsalertsnewsday.com</a> to your address book.<br />
+     	       If you have trouble viewing this e-mail, <a href="{{ daily_deal.url_for_email }}" style="text-decoration:none">click here</a>.<br/>
+     	       You will continue to receive the Newsday Daily Deal unless you chose not to do so by <a href="http://ebm.cheetahmail.com/r/webunsub?t=%%t%%&amp;email=%%email%%&amp;n=1" style="text-decoration:none">clicking here</a>
+	</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td valign="top">
+        <table width="670" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#a4d4ef" background="/themes/newsday/images/email/tablelowerbg.png">
+          <tr>
+            <td valign="top"><!--HEADER-->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#7fc5ea">
+                  <tr>
+                    <td width="182" rowspan="4" align="center" valign="top" style="font-family: Arial, Helvetica, sans-serif;"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/newsday-daily-deal.png" width="182" height="182" alt="Newsday daily deal" /></td>
+                    <td colspan="2"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/space24.png" width="10" height="24" /></td>
+                  </tr>
+                  <tr>
+                    <td>
+                    	<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#031a2d">
+                          <tr>
+                            <td rowspan="2" valign="middle" style="font-family: Arial, Helvetica, sans-serif; color: #ffffff;">
+                            	<h1 style="font-size: 16px; padding-left: 8px; margin: 0; padding-top: 0; padding-bottom: 0;">Newsday's Daily Deal<br /><strong style="font-size: 30px;">Long Island</strong></h1>
+                            </td>
+                            <td align="right" valign="bottom" style="font-family: Arial, Helvetica, sans-serif; color: #ffffff; font-size: 12px; padding-top: 10px;"><strong>{{ "now" | date: "%A, %B %e, %Y" }}</strong></td>
+                            <td rowspan="2" width="33" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/top-right-black.png" width="33" height="79" alt="" /></td>
+                          </tr>
+                          <tr>
+                            <td align="right" style="font-family: Arial, Helvetica, sans-serif; color: #ffffff; font-size: 12px;"><strong>follow us:</strong> <a href="{{ daily_deal.facebook_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/facebook.png" width="15" height="15" alt="facebook" /></a> <a href="{{ daily_deal.twitter_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/twitter.png" width="15" height="15" alt="twitter" /></a></td>
+                          </tr>
+                        </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="488" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/look-below.png" width="488" height="79" alt="LOOK FOR MORE GREAT DEALS BELOW!" /></td>
+                  </tr>
+                </table><!--/HEADER-->
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+                <!--FEATURE DEAL-->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="40" rowspan="2" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/border-left.jpg" width="40" height="433" alt="" /></td>
+                    <td width="478" bgcolor="#eeeeee" valign="top">
+                    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr>
+                            <td colspan="2" valign="top" style="font-family:Arial, Helvetica, sans-serif; padding-left: 15px; font-size: 13px; font-weight: bold; color: #555555;">
+                            	<h2 style="margin: 0; padding: 0; color: #2f64d2; font-size: 22px;">{{ daily_deal.value_proposition }}</h2>
+                                {{ daily_deal.description | truncate_html_to_first_paragraph_only }}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 15px; font-family:Arial, Helvetica, sans-serif;" align="left"><a href="{{ daily_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/view-deal-red.png" width="115" height="26" alt="View This Deal" /></a></td>
+                            <td align="right" style="padding: 15px; font-family:Arial, Helvetica, sans-serif; font-size: 13px;">
+								{% if daily_deal.advertiser.stores.size > 0 %}
+									{% if daily_deal.advertiser.stores.size == 1 %}
+										{{ daily_deal.advertiser.stores[0].city}}
+									{% else %}
+										Multiple Locations
+									{% endif %}
+								{% else %}
+									Online Deal
+								{% endif %}		
+							</td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" align="center" valign="top" style="padding-bottom: 15px;"><img style="padding: 3px; background-color: #ffffff; border-width: 1px; border-style: solid; border-color: #cccccc;" src="{{ daily_deal.photo.alternate_standard_url }}" width="440" alt="{{ advertiser.name }}" /></td>
+                          </tr>
+                        </table>
+                    </td>
+                    <td width="112" bgcolor="#eeeeee" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/deals-arrow.png" width="112" height="425" alt="DEALS BELOW" /></td>
+                    <td width="40" rowspan="2" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/border-right.jpg" width="40" height="433" alt="" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><img src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/feature-shadow.png" width="590" height="15" alt="" /></td>
+                  </tr>
+                </table>
+                <!--/FEATURE DEAL-->
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+             	 <!--SIDE DEALS-->
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" background="/themes/newsday/images/email/tablelowerbg.png">
+                  <tr>
+                    <td width="33">&nbsp;</td>
+                    <td width="604" valign="top">
+                    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                         <!--START ROW--> 
+						 {% if daily_deal.side_deals.size > 0 %}
+						   {% for side_deal in daily_deal.side_deals limit:4 %}
+						     {% cycle '<tr>', '' %}
+							   <td width="7"></td>
+							   <td width="288" valign="top" style="font-family:Arial, Helvetica, sans-serif; padding-bottom: 15px;" bgcolor="#eeeeee">
+							     <h3 style="height: 60px; font-size: 17px; color: #2f64d2; margin: 0; padding-top: 12px; padding-right: 15px; padding-bottom: 5px; padding-left: 15px">{{ side_deal.value_proposition }}</h3>
+                                 <p style="margin: 0; padding-left: 15px; padding-bottom: 0; font-size: 12px;">
+								   {% if side_deal.advertiser.stores.size > 0 %}
+								     {% if side_deal.advertiser.stores.size == 1 %}
+									   {{ side_deal.advertiser.stores[0].city}}
+									 {% else %}
+								       Multiple Locations
+									 {% endif %}
+								   {% else %}
+								     Online Deal
+								   {% endif %}
+								 </p>
+                                 <a href="{{ side_deal.url }}" style="display: block; margin-top: 8px; margin-bottom: 8px; padding-left: 15px;"><img style="display: block; margin-bottom: 0;" border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/veiw-deal-blue.png" width="115" height="26" alt="View This Deal" /></a>
+                                 <img align="middle" style="display: block; margin-left: 12px; padding: 3px; background-color: #ffffff; border-width: 1px; border-style: solid; border-color: #cccccc;" src="{{ side_deal.photo.blast_url }}" width="257" alt="{{ advertiser.name }}" />
+							   </td>
+							   <td width="7"></td>
+						     {% cycle '', '</tr><tr><td colspan="6" style="color: #a6d5ef;" align="right">.</td></tr>  ' %}
+						  {% endfor %}
+						  {% if daily_deal.side_deals.size % 2 == 1 %}
+						    </tr>
+						    <tr><td colspan="6" style="color: #a6d5ef;" align="right">.</td></tr>  
+						  {% endif %}
+						{% endif %}
+						<!--END ROW-->   
+                        </table>
+                    </td>
+                    <td width="33">&nbsp;</td>
+                  </tr>
+                </table>
+                <!--/SIDE DEALS-->
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+                <table width="592" border="0" cellspacing="0" cellpadding="0" align="center">
+                  <tr>
+                    <td colspan="2" bgcolor="#ede28e" align="center" valign="middle" style="border-width: 1px; border-style: solid; border-color: #d5cb80; padding: 8px; font-family: Arial, Helvetica, sans-serif; font-size: 14px;">
+                    For Help or to provide Feedback, <a href="mailto:dailydeal@newsday.com" style="text-decoration:none; color: #2f64d2;"><strong style="color: #2f64d2;">CLICK HERE</strong></a> to Contact Us </td>
+                  </tr>
+                  <tr>
+                    <td style="padding-top: 14px; padding-bottom: 14px; font-family: Arial, Helvetica, sans-serif;"><a href="http://analoganalytics.com"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/aa_logo.png" width="163" height="17" alt="Powered by Analog Analytics" /></a></td>
+                    <td align="right" style="padding-top: 14px; padding-bottom: 14px; font-family: Arial, Helvetica, sans-serif;"><a href="{{ daily_deal.url_for_email }}" style="text-decoration: none; color: #057db2;">See All Long Island Deals <img border="0" src="http://{{ publisher.daily_deal_host }}/themes/newsday/images/email/arrow.png" width="14" height="12" alt="&gt;" /></a></td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="top" bgcolor="#031a2d" style="padding: 15px; font-size: 13px; line-height: 22px; color: #00b4f7; font-family: Arial, Helvetica, sans-serif;">
+                <p style="margin-bottom: 15px;"><a href="http://www.newsday.com/" style="color: #00b4f7; text-decoration: none;">Home</a> | <a href="http://www.newsday.com/long-island/" style="color: #00b4f7; text-decoration: none;">Long Island</a> | <a href="http://www.newsday.com/sports" style="color: #00b4f7; text-decoration: none;">Sports</a> | <a href="http://www.newsday.com/entertainment/" style="color: #00b4f7; text-decoration: none;">Entertainment</a><br />
+                <a href="http://www.newsday.com/services/privacy-policy-1.2515999" style="color: #00b4f7; text-decoration: none;">Privacy Policy</a> | <a href="http://www.newsday.com/terms-of-service-1.1282904" style="color: #00b4f7; text-decoration: none;">Terms of Service</a> | <a href="http://www.newsday.com/services/contact-newsday-1.1303755" style="color: #00b4f7; text-decoration: none;">Contact</a> | <a href="#" style="color: #00b4f7; text-decoration: none;">Newsday Advertising</a> | <a href="http://www.newsdayinteractive.com/specials/onlinemediakit/media.html" style="color: #00b4f7; text-decoration: none;">Media Kit</a> | <a href="{{ publisher.faq_path }}" style="color: #00b4f7; text-decoration: none;">FAQs</a> | <a href="http://www.newsday.com/help-center-1.1379916" style="color: #00b4f7; text-decoration: none;">Help</a> </p>
+
+                <p style="font-size: 13px; line-height: 22px; color: #0276ca; font-family: Arial, Helvetica, sans-serif;">Copyright 2011 Newsday. All rights reserved.<br />235 Pinelawn Road, Melville, NY 11747-4250</p>
+            </td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

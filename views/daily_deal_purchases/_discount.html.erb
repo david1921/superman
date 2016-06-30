@@ -1,0 +1,4 @@
+<td class="description"><%=t ".discount_message", :code => discount.code %></td>
+<td class="quantity"></td>
+<td class="update_total"></td>
+<td class="price">-&nbsp;<%= number_to_currency(discount.amount, :unit => discount.publisher.currency_symbol) %></td>

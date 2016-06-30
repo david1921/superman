@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title><%= @daily_deal.value_proposition %></title>
+	</head>
+	<body style="margin: 0;">
+		<table style="border-spacing: 0; font: 14px/20px helvetica, arial, sans-serif; color: #2e2e2e; width: 100%;" cellspacing="0" cellpading="0" align="center">
+			<!-- Header Container Beings -->
+			<tr valign="bottom">
+				<td bgcolor="#000000" align="center" style="padding: 0;">
+					<table width="600" cellspacing="0" cellpadding="0">
+						<tr valign="bottom">
+							<td style="padding: 10px 0;">
+								<a href="<%= daily_deal_url(@daily_deal) %>?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.label}/images/#{@publisher.label}-email-logo.jpg", :alt => "#{@publisher.name}", :border => 0, :width => 603, :style => "display:block") %></a>
+							</td>
+							
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- Header Container Ends -->
+			<tr>
+				<td align="center" bgcolor="#3d3d3d" style="background-image: url(http://<%= @publisher.daily_deal_host %>/themes/<%= @publisher.publishing_group.label %>/images/backgrounds/wood-background.jpg); background-position: top center;">
+					
+					<% if @daily_deal.reviews.present? %>
+						<table width="598" cellspacing="0" cellpadding="0" style="border-spacing: 0; margin: 39px 0 23px 0; text-align: left;">
+							<tr style="font-size: 5px; line-height: 5px;">
+								<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+								<td bgcolor="#ffffff" style="font-size: 5px; height: 8px; line-height: 5px; overflow: hidden; width: 2000px;">&nbsp;</td>
+								<td style="font-size: 6px; height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+							</tr>
+							<tr>
+								<td bgcolor="#ffffff" colspan="3" style="padding: 0 15px;">
+									<%= @daily_deal.reviews.try :html_safe %>
+								</td>
+							</tr>
+							<tr style="font-size: 5px; line-height: 5px;">
+								<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+								<td bgcolor="#ffffff" style="width: 2000px;">&nbsp;</td>
+								<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+							</tr>
+						</table>
+					<% end %>
+					<table width="598" cellspacing="0" cellpadding="0" style="border-spacing: 0; margin: 39px 0 23px 0; text-align: left;">
+						<tr style="font-size: 5px; line-height: 5px;">
+							<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+							<td bgcolor="#ffffff" style="font-size: 5px; height: 8px; line-height: 5px; overflow: hidden; width: 2000px;">&nbsp;</td>
+							<td style="font-size: 6px; height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+						</tr>
+						<tr>
+							<td bgcolor="#ffffff" colspan="3" style="border-botom: 1px solid #0694d2; padding: 0;">
+								<h2 style="font-family: 'HelveticaNeue-Light', helvetica, arial, sans-serif; font-size: 23px; line-height: 28px; padding: 0 15px;"><%= @daily_deal.value_proposition %> 
+                                    <% if @daily_deal.advertiser.store.present? %> 
+                                    in <span style="color: #71bf44"><%= @daily_deal.advertiser.store.city %></span>
+                                    <% end %>
+								</h2>
+								<table width="598" cellspacing="0" cellpadding="0" style="font: 14px/20px helvetica, arial, sans-serif;">
+									<tr valign="top">
+										<td width="427" style="padding: 0 0 0 15px;">
+											<img src="<%= @daily_deal.photo.url(:portrait) %>" alt="<%= @advertiser.name %>" width="412" />
+											<table width="419">
+												<tr>
+													<td width="230">
+														<h3 style="font: 28px/28px 'HelveticaNeue-Light', helvetica, arial, sans-serif; color: #4a4a4a; text-indent: 15px; text-transform: lowercase;">Share This Deal</h3>
+													</td>
+	    										<td><a href="<%= facebook_daily_deal_url(@daily_deal) %>" style="color: #ffffff;padding-right:20px;"><img src="http://<%= @publisher.daily_deal_host %>/themes/<%= @publisher.publishing_group.label %>/images/buttons/email_facebook.png" height="52" alt="Facebook" style="border: none;" width="52" /></a></td>
+	    										<td><a href="<%= twitter_daily_deal_url(@daily_deal) %>" style="color: #ffffff;padding-right:20px;"><img src="http://<%= @publisher.daily_deal_host %>/themes/<%= @publisher.publishing_group.label %>/images/buttons/email_twitter.png" height="52" alt="Twitter" style="border: none;" width="52" /></a></td>
+	    										<td><a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" style="color: #ffffff;"><img src="http://<%= @publisher.daily_deal_host %>/themes/<%= @publisher.publishing_group.label %>/images/buttons/email_mail.png" height="52" alt="Email" style="border: none;" width="52" /></a></td>
+												</tr>
+											</table>
+										</td>
+										<td style="padding: 0 15px 0 0; text-align: center;">
+											<p style="color: #f57d00; font-family: helvetica, arial, sans-serif; font-size: 53px; line-height: 53px; margin: 0 0 13px 0;"><%= number_to_currency(@daily_deal.price, :precision => 0)%></p>
+											<a href="<%= daily_deal_url(@daily_deal) %>?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/graphics/email_view_deal.png", :alt => "View Deal", :height => 77, :width => 112, :border => 0) %></a>
+											<table cellspacing="0" cellpadding="5" style="color: #4a4a4a; font: 14px/20px helvetica, arial, sans-serif; margin: 10px 0; text-align: left; text-transform: uppercase;" width="100%">
+												<tr>
+													<td align="right" style="border-bottom: 1px solid #4a4a4a;"><strong<span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display, @daily_deal.currency_symbol) %></span></strong></td>
+													<td style="border-bottom: 1px solid #4a4a4a;">Value</td>
+												</tr>
+												<tr>
+													<td align="right"><strong><span id="daily_deal_savings"><%= formatted_price_for(@daily_deal.savings_to_display, @daily_deal.currency_symbol)%></span></strong></td>
+													<td>Savings</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" style="border-top: 1px solid #0694d2;">
+											<!-- Start Deal Info -->
+											<table width="598" cellspacing="0" style="border-top: 1px solid #86d2f3; font: 14px/20px helvetica, arial, sans-serif; text-align: left;">
+												<tr valign="top">
+													<td style="padding: 0 15px; width: 320px">
+														<h3 style="color: #46951d; font: 25px/25px 'HelveticaNeue-Light', hevletica, arial, sans-serif; margin-top: 15px;">Deal Details</h3>
+														<h4 style="color: #0694d2; font: bold 18px/18px helvetica, arial, sans-serif;">Highlights</h4>
+														<span style="color: #0694d2; font: 18px/22px helvetica, arial, sans-serif;">
+															<%= @daily_deal.highlights.try :html_safe %>
+														</span>
+													
+														<h4 style="color: #46951d; font-size: 14px; margin-bottom: -15px;">Description</h4>
+														<%= @daily_deal.description.try :html_safe %>
+                                                           
+                                                           <% if @advertiser.store.blank? %>
+                                                                <% unless @advertiser.website_url.blank? %>
+                                                                <p><a href="<%= @advertiser.website_url %>" style="color: #f57d00;" target="_blank">visit website</a></p>
+                                                                <% end  %>
+                                                            <% end  %>
+
+													
+														<h4 style="color: #46951d; font-size: 14px; margin-bottom: -15px;">Fine Print</h4>
+														<%= @daily_deal.terms.try :html_safe %>
+													</td>
+													
+													<% unless @advertiser.store.blank? %>
+													<td style="border-left: 1px solid #0694d2; padding: 0 15px; width: 149px;">
+														<h3 style="color: #2e2e2e; font: 25px/25px 'HelveticaNeue-Light', hevletica, arial, sans-serif; margin-top: 15px; text-align: center;">Location</h3>
+														<img src="<%= @advertiser.logo.url(:standard) %>" alt="<%= @advertiser.name %>" style="display: block; text-align: center;" />
+															<% unless @advertiser.store.blank? %>
+															    <% if @advertiser.store.address.present? %>
+																		<% unless @advertiser.store.address_line_1.blank? %>
+																			<%= @advertiser.store.address_line_1 %><br />
+																		<% end %>
+																		<% unless @advertiser.store.city.blank? or @advertiser.store.state.blank? or @advertiser.store.zip.blank? %>
+																			<%= @advertiser.store.city %>, <%= @advertiser.store.state %> <%= @advertiser.store.zip %><br />
+																		<% end %>
+																		<% unless @advertiser.store.phone_number.blank? %>
+																			<%= @advertiser.store.phone_number %><br />
+																		<% end %>
+																<% end %>
+															<% end %>
+														<% unless @advertiser.website_url.blank? %>
+															<p><a href="<%= @advertiser.website_url %>" style="color: #f57d00;" target="_blank">visit website</a></p>
+														<% end  %>
+														
+														<% unless @advertiser.store.blank? %>
+														<p><a style="color: #f57d00;" href="<%= @daily_deal.advertiser.map_url %>" target="_blank">view map</a></p>
+														<% end  %>
+													</td>
+													<% end  %>
+												</tr>
+											</table>
+											<!-- End Deal Info -->
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr style="font-size: 5px; line-height: 5px;">
+							<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+							<td bgcolor="#ffffff" style="width: 2000px;">&nbsp;</td>
+							<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+						</tr>
+						<tr>
+							<td colspan="3" style="font: 14px/20px helvetica, arial, sans-serif; padding: 20px 0; text-align: left;">
+								<h2 style="color: #ffffff; display: inline; font: 36px/36px 'HelveticaNeue-Light', helvetica, arial, sans-serif; padding: 20px 20px 20px 0;">more <strong>awesome</strong> deals</h2>
+								<a href="<%= "http://" + @daily_deal.publisher.daily_deal_host + daily_deals_public_index_path(@publisher.label) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>" style="color: #ffffff; text-decoration: none;">view more >></a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<table width="598" cellspacing="0" cellpadding="0">
+									<tr valign="top">
+										<% @daily_deal.side_deals[0,2].each do |side_deal| %>
+											<td style="padding: 0">
+												<table width="199" height="289" cellspacing="0" cellpadding="0" style="font: 14px/20px helvetica, arial, sans-serif;">
+													<tr style="font-size: 5px; line-height: 5px;">
+														<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+														<td height="8" bgcolor="#ffffff" style="font-size: 5px; height: 8px; line-height: 5px; overflow: hidden; width: 600px;">&nbsp;</td>
+														<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_top_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+													</tr>
+													<tr>
+														<td colspan="3" bgcolor="#ffffff" style="padding: 0 8px" valign="top">
+															<h2 style="color: #000000; font: 18px/20px helvetica, arial, sans-serif; height: 60px; overflow: hidden;"><%= @publisher.enable_side_deal_value_proposition_features and side_deal.side_deal_value_proposition.present? ? side_deal.side_deal_value_proposition : side_deal.value_proposition %> 
+                                                                <% if side_deal.advertiser.store.present? %> 
+                                                                in <span style="color: #71bf44"><%= side_deal.advertiser.store.city %></span>
+                                                                <% end %>
+															</h2>
+															<img src="<%= side_deal.photo.url(:portrait) %>" alt="<%= @advertiser.name %>" style="margin-bottom: 10px;" width="212" />
+															<table width="100%" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td style="font: 33px/33px helvetica, arial, sans-serif;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/graphics/email_price_tag.png", :alt => "", :height => 26, :width => 27) %> <%= number_to_currency(side_deal.price, :precision => 0) %></td>
+																	<td style="text-align: right;"><a href="<%= daily_deal_url(side_deal) %>?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" style="background: #F57D00;
+																	background: -moz-linear-gradient(top, #fad9a1 0%, #f3bd5f 6%, #f57d00 95%, #cd7417 100%);
+																	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fad9a1), color-stop(6%,#f3bd5f), color-stop(95%,#f57d00), color-stop(100%,#cd7417));
+																	background: -webkit-linear-gradient(top, #fad9a1 0%,#f3bd5f 6%,#f57d00 95%,#cd7417 100%);
+																	background: -o-linear-gradient(top, #fad9a1 0%,#f3bd5f 6%,#f57d00 95%,#cd7417 100%);
+																	background: -ms-linear-gradient(top, #fad9a1 0%,#f3bd5f 6%,#f57d00 95%,#cd7417 100%);
+																	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fad9a1', endColorstr='#cd7417',GradientType=0 );
+																	background: linear-gradient(top, #fad9a1 0%,#f3bd5f 6%,#f57d00 95%,#cd7417 100%); -webkit-border-radius: 8px; 
+																	-moz-border-radius: 8px; border-radius: 8px; -moz-box-shadow: 0 2px 4px rgba(0,0,0,.41); -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.41); box-shadow: 0 2px 4px rgba(0,0,0,.41); color: #fff; font-size: 19px; padding: 7px 10px; text-decoration: none; text-shadow: 0 1px 1px #d8760a;">VIEW</a></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr style="font-size: 5px; line-height: 5px;">
+														<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_left_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+														<td height="8" bgcolor="#ffffff" style="font-size: 5px; height: 8px; line-height: 5px; width: 213px;">&nbsp;</td>
+														<td style="height: 8px; width: 8px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/backgrounds/email_bottom_right_corner.png", :alt => "", :height => 8, :width => 8) %></td>
+													</tr>
+												</table>
+											</td>
+										<% end %>
+										<!-- Insert mobile app promo box here -->
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor="#000000" style="color: #fff;">
+					<table cellspacing="10" width="600" style="color: #ffffff; padding-top: 10px">
+						<tr>
+							<td colspan="3" style="text-align: center;">
+									<a href="http://analoganalytics.com/" style="position: relative; top: -10px;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/dramaticchipmunk/images/graphics/powered_by_analog_analytics.png", :alt => "Powered By Analog Analytics", :border => '0') %></a>
+							</td>
+						</tr>
+						<tr valign="top">
+							<td style="color: #ffffff; width: 120px;">
+								
+								Follow Us:<br />
+
+									<a href="<%= @publisher.facebook_page_url %>" style="display: inline-block;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/buttons/email_facebook.png", :alt => "Facebook", :border => '0') %></a>
+							</td>
+							<td>
+								<table style="color: #ffffff; text-align: left;" width="100%">
+									<tr valign="top">
+										<td>
+											<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/graphics/contact.png", :alt => "Contact", :border => '0') %>
+										</td>
+										<td style="color: #ffffff; font: 12px/15px helvetica, arial, sans-serif; text-align: left;">
+											Want to feature your business? <br />Email us at <a href="mailto:<%= @publisher.sales_email_address %>" style="color: #fff; text-decoration: none;"><%= @publisher.sales_email_address %></a>
+										</td>
+									</tr>
+								</table>
+							</td>
+							<td width="180">
+								<table style="color: #ffffff; font: 11px/20px helvetica, arial, sans-serif; text-align: left;" width="100%">
+									<tr valign="top">
+										<td>
+											<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.publishing_group.label}/images/graphics/info.png", :alt => "Twitter", :border => '0') %>
+										</td>
+										<td>
+											<ul style="list-style: none; margin: 0; padding: 0;">
+												<li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + about_us_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">About Us</a></li>
+				                <li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + privacy_policy_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">Privacy Policy</a></li>
+												<li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + terms_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">Terms</a></li>
+											</ul>
+										</td>
+										<td>
+											<ul style="list-style: none; margin: 0; padding: 0;">
+												<li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + faqs_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">FAQ</a></li>
+												<li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + how_it_works_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">How It Works</a></li>
+												<li><a style="color: #ffffff; text-decoration: none;" href="<%= "http://" + @daily_deal.publisher.daily_deal_host + contact_publisher_daily_deals_path(@publisher) + "?utm_source=daily-deal-blast&utm_medium=email&utm_campaign=daily-deal-blast" %>">Contact Us</a></li>
+											</ul>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="color: #ffffff; font: 11px/14px helvetica, arial, sans-serif;text-align: center;">Copyright 2012 <%= @publisher.name %> <br />US Patent 8090613, Additional Patents Pending</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<!-- Main Content Container -->
+		</table>
+	</body>
+</html>

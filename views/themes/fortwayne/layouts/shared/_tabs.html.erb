@@ -1,0 +1,26 @@
+<%#  expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals %>
+
+<div id="main_tabs">
+  <ul class="main_tab">
+    <li><a href="<%= public_deal_of_day_path(:label => @publisher.label) %>" class="<%- if context_is?("daily_deals") %>main_tab_selected<%- end %>">DAILY DEAL</a></li>
+<li><a href="<%= public_offers_path(:publisher_id => @publisher) %>" class="<%- if context_is?("offers") %>main_tab_selected<%- end %>">COUPONS</a></li>
+  </ul><!-- /main_tabs -->
+
+</div>
+
+	<div class="clear"></div>
+
+	<div class='tab_content <%= @current_page %>_content'>
+    <% if context_is?("daily_deals") %>
+      <%= render :partial => with_theme("layouts/shared/dd_nav") %>
+    <%- end %>
+
+		<%= yield %>
+
+		<div class="clear"></div>
+	</div>
+</div><!-- /main_tabs -->
+
+
+
+

@@ -1,0 +1,5 @@
+<% unless @subscribed %>
+<div class="hotdeals">
+<%= link_to image_tag("/themes/sdcitybeat/images/hot_deals.png"), new_subscriber_path(:publisher_id => @publisher), :class => "lbOn #{self.controller_name}"%>
+</div>
+<% end -%>

@@ -1,0 +1,20 @@
+<div class="offer_wrapper">
+    <%= link_to( list_offer.value_proposition, syndication_show_deal_path(list_offer), :class => "value_proposition" ) %>
+	<div class="photo_and_button">
+		<div class="deal_photo_wrapper">
+			<% if list_offer.national_deal? -%>
+			<div class="national"><span>National Deal</span></div>
+			<% end -%>
+			<%= link_to( image_tag( list_offer.photo.url(:syndication), :class => "deal_photo", :size => "132x80" ),  syndication_show_deal_path(list_offer), :class => "deal_details" ) %>
+		</div><!-- /deal_photo_wrapper -->
+	</div><!-- /photo_and_button -->
+	<div class="offer_details">
+		<p class="spec"><span class="label">Summary:</span> <%= list_offer.short_description %></p>
+		<p class="spec"><span class="label">Price:</span> <%= list_offer.humanize_price %></p>
+		<p class="spec"><span class="label">Date:</span> <%= list_offer.start_at.to_s(:compact_date_only) %> - <%= list_offer.hide_at.to_s(:compact_date_only) %></p>
+		<!--p class="spec"><span class="label">Media:</span> Online</p-->
+			<p class="spec"><span class="label">Category:</span> <%= list_offer.category_name %></p>
+			<%= render( :partial => 'syndication/shared/deal_syndication_status', :object => list_offer )%>
+	</div><!-- /offer_details -->
+			<div class="view_details_wrap"><%= link_to( "View Details", syndication_show_deal_path(list_offer), :class => "button gradient" ) %></div>
+</div><!-- /offer_wrapper -->

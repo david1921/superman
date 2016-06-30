@@ -1,0 +1,29 @@
+<div class="offer" id="offer_<%= offer.id %>">
+  <div class="body" id="offer_<%= offer.id %>_body">
+    <div class="header" id="offer_<%= offer.id %>_header">
+      <div class="summary_message"><%= offer.message.upcase unless offer.message.nil? %>&nbsp;</div>
+      <div class="clip_this_coupon">CLIP THIS COUPON</div>
+    </div>
+    
+    <div class="left">
+      <%= render :partial => "offers/panels/#{@publisher.theme}/front", :locals => { :offer => offer, :publisher => (@publisher || publisher) } %>
+      <div class="call_panel" style="display: none;" id="offer_<%= offer.id %>_call_panel"></div>
+      <div class="email_panel" style="display: none;" id="offer_<%= offer.id %>_email_panel"></div>
+      <div class="txt_panel" style="display: none;" id="offer_<%= offer.id %>_txt_panel"></div>
+    </div>
+    <div class="right <%= offer.coupon_background %>"  id="offer_<%= offer.id %>_right">
+      <div class="text">
+        <div class='valuepropwrapper'>
+        <% unless offer.value_proposition.nil? %>
+          <div class="value_proposition">
+            <%= offer.value_proposition.upcase %>
+           </div>
+        <% end %>
+          <div class="value_proposition_detail"><%= offer.value_proposition_detail.upcase unless offer.value_proposition_detail.nil? %></div>
+         </div>
+       </div>
+       <%= image_tag offer.photo.url, :class => "photo", :alt => "photo" %>
+    </div>
+    <div class="footer"><%= offer.terms %></div>
+  </div>
+</div>

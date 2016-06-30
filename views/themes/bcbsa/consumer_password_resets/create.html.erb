@@ -1,0 +1,42 @@
+<% set_daily_deal_page_title_slug t(:title_slug_password_reset_email) %>
+
+<% unless @publisher.label == 'bcbsa-national' %>
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+  <ul>
+  <li>
+    <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+  </li>
+  <li class="no_underline">></li>
+    <li>
+      <a href="<%= daily_deal_login_path(@publisher) %>"><%= t(:log_in) %></a>
+    </li>
+    <li class="no_underline">></li>
+    <li class="no_underline">          
+      <%= t(:forgot_password_short) %>
+    </li>
+  </ul>
+  </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+<% end %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2><%=t '.title' %></h2>
+
+    <p><%= t '.check_email_message', :publisher_name => @publisher.brand_name_or_name %></p>
+
+    <p class="small"><%=t '.resend_message' %></p>
+
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row check_email_input">
+        <div class="label"><b><%= label_tag(:email, t(:email)) %></b></div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      <div class="full_width buttons check_email_button">
+        <%= submit_tag(t('.resend_email'), :name => "resend_email", :class => "blue_button") %>
+      </div>
+      </div>
+      
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<tr class="<%= cycle('odd','even')%>">
+	<td class="value_prop"><%= dd_variation.value_proposition %></td>
+	<td><strong><%= formatted_price_for(dd_variation.value) %></strong> <%= t("value") %></td>
+	<td><% if dd_variation.sold_out? %>
+			<span class="variation_sold_out">Sold Out</span>
+		<% else %>
+			<a href="<%= new_daily_deal_daily_deal_purchase_path(daily_deal, :daily_deal_variation_id => dd_variation.to_param) %>" class="variation_buy_button"><%= formatted_price_for(dd_variation.price) %></a>
+		<% end %>
+	</td>
+</tr>

@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head></head>
+<body>
+
+<h2>We're sorry!</h2>
+We were unable to process your booking from <%= link_to "#{@brand_name}", daily_deal_url(@booking.daily_deal, :host => @booking.publisher.production_daily_deal_host) %>.
+<p>
+<%= @booking.book_transaction.unfixable_errors.map(&:message).join(', ') %>
+</p>
+<p>
+Your request has not been processed and you have not been billed.
+</p>
+</body>
+</html>

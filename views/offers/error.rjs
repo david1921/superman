@@ -1,0 +1,1 @@
+page.alert "Could not delete photo because: #{@offer.errors.full_messages.join('. ')}"

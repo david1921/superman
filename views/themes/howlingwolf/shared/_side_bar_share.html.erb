@@ -1,0 +1,7 @@
+<h4 id="share_deal">Share this deal:</h4>
+<div id="share" class="content_box">
+	<a href="/daily_deals/<%= @daily_deal.id %>/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/<%= @daily_deal.id %>/facebook?popup=true')" target="_blank" title="Share coupon on Facebook">Share this deal via Facebook</a>
+	<a href="<%= twitter_daily_deal_url(@daily_deal, :host => @publisher.daily_deal_host) %>" class="share_button share_button_twitter" target="_blank">Share this deal via twitter</a>
+	<a href="mailto:?subject=<%= @daily_deal.publisher_prefix %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" class="share_button last share_button_mail">Share this deal via Email</a>
+	<div class="clear"></div>
+</div><!-- /share -->

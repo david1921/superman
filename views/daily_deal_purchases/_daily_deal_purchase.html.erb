@@ -1,0 +1,18 @@
+<tr>
+  <% if daily_deal_purchase.has_deal_information? %>
+  <td class="description"><%= daily_deal_purchase.line_item_name %></td>
+  <td class="quantity"><%= daily_deal_purchase.quantity_excluding_refunds %></td>
+  <td class="recipient">
+  <%- if (names = daily_deal_purchase.redeemer_names).length > 30 -%>
+    <span title="<%= names %>"><%= truncate(names, :length => 30) %></span>
+  <%- else -%>
+    <%= names %>
+  <%- end -%>
+  </td>
+  <td class="purchased_on"><%= daily_deal_purchase.humanize_created_on %></td>
+  <td class="expires"><%= daily_deal_purchase.humanize_expires_on %></td>
+  <td class="status"><%= print_daily_deal_purchase_link(daily_deal_purchase) %></td>
+  <% else %>
+  <td colspan="6"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

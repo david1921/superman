@@ -1,0 +1,3 @@
+<% if logo = @daily_deal_purchase.try(:publisher).try(:daily_deal_logo) -%>
+    <h1><img src="<%= logo.url %>"/></h1>
+<% end -%>

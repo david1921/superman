@@ -1,0 +1,75 @@
+<div id="sweepstakes">
+	
+  <% sweepstake = @sweepstakes.first %>
+  
+	<div id="content" class="landing">
+		
+		<div id="header">
+			<img src="/themes/entercomnew/images/graphics/holiday_craze.png" alt="Holidaze Craze!" />
+			<h1>Get $10 in free PERKS bucks and be entered in our <em>AWESOME</em> <u>27 PRIZE-A-DAY</u> drawings!</h1>
+			<h2>Winning Is Easy! Here's how:</h2>
+		</div>
+		
+		<div id="columns">
+			<img id="arrow" src="/themes/entercomnew/images/graphics/holiday_arrow.png" width="46" height="41" />
+			<a href="<%= daily_deals_public_index_path(@publisher.label) %>"><img id="click" src="/themes/entercomnew/images/graphics/holiday_deals_button.png" width="222" height="150" /></a>
+			<div class="box left">
+				<p class="green"><strong>1. With your first deal purchase during the
+Holidaze Craze, you'll get $10 <u>free</u> PERKS bucks sent to your inbox to spend by 12/25/11.</strong></p>
+				<h3 class="red">Make Your Purchase Soon!</h3>
+				<p><strong>Craze Starts:</strong> 11/28/11 at 12:00 pm EST<br />
+				<strong>Craze Ends:</strong> 12/24/11 at 11:59 pm EST</p>
+				<p><img src="/themes/entercomnew/images/graphics/holiday_snowman1.png" alt="" /></p>
+			</div>
+			<div class="box right">
+				<p class="green"><strong>2. You'll automatically be entered into our 
+27 days of prize drawings. The earlier you buy a deal, the more chances you have to win!</strong></p>
+				<h3 class="red">27 Amazing Prizes, Valued Up To $800!</h3>
+				<p>A big screen TV, fancy dinners, a trip to Vegas.
+We've got something for everyone! <a id="toggle" onclick="javascript:toggle2('cal','toggle');" href="#cal">View All Prizes</a></p>
+				<p style="text-align:right;"><img src="/themes/entercomnew/images/graphics/holiday_snowman2.png" alt="" /></p>
+			</div>
+		</div>		
+		
+		<p align="center"><img src="/themes/entercomnew/images/graphics/holiday_swirl.png" alt="" /></p>
+		<% if sweepstake %>
+      <p class="bottom">No purchase necessary. Must be legal resident of 48 contiguous U.S. states, 18 or older.  One entry per day per email address.  Entries must be received by 11:59pm ET 12/24/11.  For entry without purchase, <a href="http://etm.getmyperks.com/entry-form">click here</a>.   Click here for complete <a class="lbOn" href="<%= official_rules_publisher_sweepstake_path(@publisher.label, sweepstake) %>">Official Rules.</a></p>
+    <% end %>
+		 
+    	 	
+			<div id="cal" style="display: none;" align="center">
+				<p><a href="#top" onclick="javascript:document.getElementById('cal').style.display = 'none';location.href='#top';"><< Back</a></p>
+				<div align="center" style="display: block;">
+					<img src="/themes/entercomnew/images/graphics/holiday_calendar_header.png" />
+					<p><strong>We've got something for everyone! Here's a look at all 27 prizes for each day:</strong></p>
+					<img src="/themes/entercomnew/images/graphics/holiday_calendar.png" />
+				</div>
+        <% if sweepstake %>
+				  <p>Restrictions and limitations may apply to many of the prizes listed above. For a complete description of
+each prize and its associated restrictions, see the "Prizes" section of the Official Rules, available by <a class="lbOn" href="<%= official_rules_publisher_sweepstake_path(@publisher.label, sweepstake) %>">clicking here.</a></p>
+        <% end %>
+			</div>
+	
+		
+	</div>
+
+</div>
+
+<script language="javascript"> 
+function toggle2(showHideDiv, switchTextDiv) {
+	var ele = document.getElementById(showHideDiv);
+	var text = document.getElementById(switchTextDiv);
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "View All Prizes";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "View All Prizes";
+	}
+}
+</script>
+
+
+
+

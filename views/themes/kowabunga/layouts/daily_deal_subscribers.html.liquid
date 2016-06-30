@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  
+  <title>Sign up for Kowabunga.com Featured Deal Alerts!</title> 
+  
+	<link rel="stylesheet" href="/themes/kowabunga/stylesheets/presignup.css" type="text/css" media="all" /> 
+	<link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/themes/kowabunga/images/favicon.ico" type="image/x-icon" />
+	<!-- Sharethis Scripts -->
+	<script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript">stLight.options({publisher:'115cb736-1976-465d-920e-9e0407ba5571'});</script>  
+	<!-- Sharethis Scripts end -->
+ 
+ 
+ <!--[if IE 9]>
+      <link rel="stylesheet" href="/themes/kowabunga/stylesheets/ie9.css" type="text/css" media="all" />
+  <![endif]-->    
+  
+  <!--[if lte IE 8]>
+     <link rel="stylesheet" href="/themes/kowabunga/stylesheets/ie.css" type="text/css" media="all" />
+  <![endif]-->    
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type='text/javascript' src='/javascripts/social_media_share.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){	$("#subscribe_button").fadeTo("fast", 1.0);
+	$("#subscribe_button").hover(function(){
+		$("#subscribe_button").stop().fadeTo("fast", .8); 	},function(){
+			$("#subscribe_button").stop().fadeTo("fast", 1.0); });
+});
+</script>
+
+	{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body id="preopt">
+ 
+   <div id="page-wrap">
+	  {% include with_theme "shared/preopt-header" %}
+
+ <img id="page-background" src="/themes/kowabunga/images/presignup/page-background.jpg"/>
+		
+		<div id="analog_analytics">
+			<div id="daily_deal">
+			 		{% include "shared/flash" %}
+			 		{{ content_for_layout }} 
+			 </div><!-- /daily_deal-->
+		</div><!-- /analog_analytics-->
+		
+
+		
+
+		
+		{% include with_theme "shared/tracking_publisher" %}
+	</div><!-- end #page-wrap -->
+
+	{% include with_theme "shared/preopt-footer" %}
+	
+	<div id="a_a-wrap">
+        {% include "shared/a_a_alt" %}	
+    </div><!--  end #"a_a-wrap -->
+</body><!--  end #preopt -->
+</html>

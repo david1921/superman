@@ -1,0 +1,43 @@
+burger_king:
+  advertiser: burger_king
+  publisher: my_space
+  value: 81.00
+  price: 39.00
+  start_at: <%= Time.zone.now - 1.month %>
+  hide_at: <%= Time.zone.now - 1.month + 1.day %>
+
+changos:
+  publisher: sdh_austin
+  advertiser: changos
+  price: 20.00
+  value: 50.00
+  start_at: <%= 2.days.ago %>
+  hide_at: <%= Time.zone.now.yesterday %>
+  expires_on: <%= Date.today + 4.weeks %>
+
+no_percent_savings:
+  publisher: sdh_austin
+  advertiser: changos
+  price: 100.00
+  value: 100.00
+  start_at: <%= 2.days.ago %>
+  hide_at: <%= Time.zone.now.yesterday %>
+  expires_on: <%= Date.today + 4.weeks %>
+
+one_hundred_percent_savings:
+  publisher: sdh_austin
+  advertiser: changos
+  price: 0.00
+  value: 100.00
+  start_at: <%= 2.days.ago %>
+  hide_at: <%= Time.zone.now.yesterday %>
+  expires_on: <%= Date.today + 4.weeks %>
+
+zero_value:
+  publisher: sdh_austin
+  advertiser: changos
+  price: 0.00
+  value: 0.00
+  start_at: <%= 2.days.ago %>
+  hide_at: <%= Time.zone.now.yesterday %>
+  expires_on: <%= Date.today + 4.weeks %>

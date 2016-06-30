@@ -1,0 +1,98 @@
+<%= render :partial => with_theme("shared/all_deals_nav") %>
+<div id="certificates">
+  <div class="page_column_2">
+   <div id="alldeals_header">
+</div><!-- end #alldeals_header -->
+<div class="featured_box">
+    <%= render :partial => with_theme('daily_deals/all_deal_sub_pages/featured') %>
+</div><!-- end .featured_box -->
+    <% for daily_deal in @daily_deals %>
+<div class="alldeals_box" style="visiblity:hidden">
+    <%= render :partial => with_theme('daily_deals/all_deal_sub_pages/daily_deal'), :locals => { :daily_deal => daily_deal } %>
+</div><!-- end .alldeals_box -->
+<% end %>
+<div class="howitworks_box" style="visiblity:hidden">
+    <%= render :partial => with_theme('daily_deals/all_deal_sub_pages/how_it_works'), :locals => { :daily_deal => daily_deal } %>
+</div><!-- end .alldeals_box -->
+    <div style="clear:both"></div>
+    <div class=" pagination_bottom">
+<%= will_paginate @daily_deals, :per_page => 9 %>
+    </div>
+  </div><!-- /page_column_2 -->
+</div><!-- /certificates -->
+
+<!-- equal height grids -->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+function equalGrids(group) {
+    var tallest = 0;
+    group.each(function() {
+        var thisHeight = $(this).height();
+        if(thisHeight > tallest) {
+            tallest = thisHeight;
+        }
+    });
+    group.height(tallest);
+}
+
+equalGrids($(".alldeals_deal_box"));
+});
+</script>
+
+<!-- all deals tab nav -->
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+$('.featured_box').hide().css('visibility', 'visible');
+$('.howitworks_box').hide().css('visibility', 'visible');
+
+    $('.all_deal_btn').click(function() {
+        $(this).addClass('all_deal_active');
+        $('.featured_btn').removeClass('all_deal_active');
+        $('.how_it_works_btn').removeClass('all_deal_active');
+        $('.featured_box').hide();
+        $('.howitworks_box').hide();
+        $('.alldeals_box').fadeIn(300);
+    });
+    $('.featured_btn').click(function() {
+        $(this).addClass('all_deal_active');
+        $('.all_deal_btn').removeClass('all_deal_active');
+        $('.how_it_works_btn').removeClass('all_deal_active');
+        $('.alldeals_box').hide();
+        $('.howitworks_box').hide();
+        $('.featured_box').fadeIn(300);
+    });
+    $('.how_it_works_btn').click(function() {
+        $(this).addClass('all_deal_active');
+        $('.all_deal_btn').removeClass('all_deal_active');
+        $('.featured_btn').removeClass('all_deal_active');
+        $('.alldeals_box').hide();
+        $('.featured_box').hide();
+        $('.howitworks_box').fadeIn(300);
+    });
+    return false
+});
+</script>
+
+<!-- Tooltip -->
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	var offsetX = 10;
+	var offsetY = -10;	
+$(function() {
+	
+	$('.locations_name').hover(function(e) {
+ var theaddress = $(this).attr('rel')
+ $('<div class="address_hover_box"> <h3 style="margin-top:0px;padding-top:0px">Location:</h3>' + theaddress +'</div>').fadeIn(300).css('position', 'absolute').css('z-index', '9999').css('top', e.pageY + offsetY)
+		.css('left', e.pageX + offsetX)
+		.appendTo('body');
+	
+		}, function() {
+		$('.address_hover_box').remove();
+});
+$('.locations_name').mousemove(function(e) {
+		$(".address_hover_box").css('top', e.pageY + offsetY).css('left', e.pageX + offsetX);
+	});
+});
+}); 
+</script>

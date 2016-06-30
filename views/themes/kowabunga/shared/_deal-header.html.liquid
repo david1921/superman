@@ -1,0 +1,33 @@
+{% include with_theme "shared/account-nav" %}
+<div id="deal-header">
+	<a href="{{ publisher.todays_daily_deal_url }}"><img src="/themes/kowabunga/images/graphics/kowabunga-header-logo.png" alt="Kowabunga, More Deals, More Places!"/></a>
+	<div id="market_menu_wrapper">
+	      <h3>Check out Awesome deals in</h3>
+	      <h4><a href="{{ publisher.user_market_aware_todays_daily_deal_path }}">{% controller browse_market_name %}</a></h4>
+	      <p>Looking for deals in another area? <a id="market-menu-click-here" href="#market-menu">Click Here!</a></p>
+                   
+                 
+               </div><!-- /market_menu_wrapper -->
+               <div class="clear"></div>              
+               <!--/ market dropdown -->
+
+	</div><!-- /market_menu_wrapper -->
+	
+	<div id="subscribe_form">
+	<h5 class="subscribe">Get Featured Deal Updates</h5>
+    <fieldset>
+     <form action="{{ publisher.subscribers_path }}" id="daily_deal_header" method="post">
+         <input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+         <input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" />
+         <input name="subscriber[zip_code_required]" type="hidden" value="true" /> 
+        <input class="dd_input" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;"  />
+					<input class="dd_input" id="zip-code-input" name="subscriber[zip_code]" size="30" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;"  />  
+         <input id="subscribe_button" type="submit" value="Sign Up" data-aa-tracking-id="{{ publisher.id }}_cta-signup-submitted"/>
+         <input name="subscriber[terms]" value="0" type="hidden" />
+         <div id="terms-box"><input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /><p id="terms">I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a></p>
+  			</div><!-- end #terms-box -->
+     	</form>
+   	</fieldset> 
+	</div><!--  end subscribe_form -->
+	
+

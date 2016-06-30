@@ -1,0 +1,44 @@
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="header">
+			<div id="banner_top" class="banner_top">
+				     
+				<ul id="account_nav">	
+					<%- if @publisher.launched? %>
+						<%- if current_consumer_for_publisher?(@publisher) %>
+					<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+					<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+					<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+						<%- else %>
+					<li class="last"><a href="<%= daily_deal_login_path(:publisher_id => @publisher.id) %>">Sign In</a></li>
+						<%- end %>
+					<%- end %>
+				</ul><!-- /account_nav -->
+				<div class="clear"></div>
+				<div id="subscribe_form">
+					<h4 class="subscribe">GET FREE DAILY DEAL ALERTS!</h4>
+					<form action="<%= publisher_subscribers_path(@publisher) %>" id="daily_deal_header" class="email_subscription_tracking" method="post">
+						<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+						<p><input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(:label => @publisher.label)) %>" type="hidden" /></p>
+						<p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" /></p>
+						<p><input id="subscribe_button" type="submit" value="sign up" /></p>
+						<p id="terms">
+							<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(:publisher_id => @publisher.id) %>', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+						</p>
+					</form>
+				</div>
+				
+			</div><!--banner-->
+      <%= render :partial => with_theme("layouts/shared/publisher_logo") %>
+    </div><!-- /header -->
+
+    <%= render :partial => 'shared/flash_messages' %>
+
+    <div id="page_content">
+      <%= render :partial => with_theme("layouts/shared/tabs") %>
+      <div class="clear"></div>
+		</div><!--page_content-->
+		
+	</div><!--daily_deal-->
+</div><!--analog_analytics-->
+<%= render :partial => with_theme("layouts/shared/footer") %>

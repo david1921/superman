@@ -1,0 +1,68 @@
+<% set_daily_deal_page_title_slug "Participating Plans" %>
+
+<div class="page_row">  
+  <div class="page_column_12 first rounded_corners">
+    
+  <h1 class="content"><%= @h1 || "Participating Blue Companies" %></h1>
+
+  <div id="faq_content">
+    <div id="plan_content">
+
+      <a class="print_page" href="javascript:window.print()"><img class="print_icon " src="/themes/bcbsa/images/graphics/print_icon.png" />Print this page</a>
+      <div class="clear"></div>
+
+      <h4>
+        Many Blue Companies already offer access to Blue365; helping families across the country live healthier lives.  Here's the list of Companies that offer wellness savings through Blue365 right now:
+      </h4>
+
+      <p class="plan_disclaimer">
+        By clicking on any of the links below, you will leave Blue365deals.com and go to the website of the local Blue Company you selected. Information for Blue Company members can be found on the website of the Blue Company providing the health coverage. Each Blue Company is responsible for the content and experience of its website, including the policies and terms that apply to use of the site.
+      </p>
+      
+      <div id="plans_list">
+        <a href="http://www.bcbsaz.com/" target="_blank">Arizona, Blue Cross and Blue Shield</a><br />
+        <a href="http://www.highmarkbcbsde.com/" target="_blank">Delaware, Highmark Blue Cross Blue Shield &#8212; Delaware</a><br />
+        <a href="http://www.carefirst.com/" target="_blank">District of Columbia, CareFirst Blue Cross Blue Shield</a><br />
+        <a href="http://www.bcbsfl.com/" target="_blank">Florida, Blue Cross Blue Shield</a><br />
+        <a href="http://www.wellmark.com/" target="_blank">Iowa, Wellmark Blue Cross Blue Shield</a><br />
+        <a href="http://www.bcbsks.com/" target="_blank">Kansas, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bcbsla.com/" target="_blank">Louisiana, Blue Cross Blue Shield</a><br />
+        <a href="http://www.carefirst.com/" target="_blank">Maryland, Carefirst Blue Cross Blue Shield</a><br />
+        <a href="https://www.bluecrossma.com/" target="_blank">Massachusetts, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bluebenefitma.com/" target="_blank">Massachusetts, Blue Benefit Administrators</a><br />
+        <a href="http://www.bcbsm.com/" target="_blank">Michigan, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bluekc.com/" target="_blank">Missouri, Blue Cross Blue Shield of Kansas City</a><br />
+        <a href="http://www.bcbsmt.com/" target="_blank">Montana, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bcbsne.com/" target="_blank">Nebraska, Blue Cross Blue Shield</a><br />
+        <a href="http://www.horizon-bcbsnj.com/" target="_blank">New Jersey, Horizon Blue Cross Blue Shield</a><br />
+        <a href="https://securews.bcbswny.com/wps/portal/wny/WNYHome" target="_blank">New York, Blue Cross and Blue Shield of Western New York</a><br />
+        <a href="https://securews.bsneny.com/wps/portal/neny/NENYHome" target="_blank">New York, Blue Shield of Northeastern New York</a><br />
+        <a href="https://www.excellusbcbs.com/wps/portal/xl" target="_blank">New York, Excellus BlueCross BlueShield</a><br />
+        <a href="http://www.bcbsnc.com/" target="_blank">North Carolina, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bcnepa.com/" target="_blank">Pennsylvania, Blue Cross of Northeastern &#8212; Wikes-Barre</a><br />
+        <a href="https://www.highmarkblueshield.com/" target="_blank">Pennsylvania, Highmark Blue Shield</a><br />
+        <a href="https://www.capbluecross.com/" target="_blank">Pennsylvania, Capital BlueCross &#8212; Harrisburg</a><br />
+        <a href="https://www.highmarkbcbs.com/" target="_blank">Pennsylvania, Highmark Blue Cross Blue Shield &#8212; Pittsburgh</a><br />
+        <a href="http://www.ibx.com/" target="_blank">Pennsylvania, Independence Blue Cross &#8212; Philadelphia</a><br />
+        <a href="http://www.bcbsri.com/" target="_blank">Rhode Island, Blue Cross Blue Shield</a><br />
+        <a href="http://www.southcarolinablues.com/" target="_blank">South Carolina, Blue Cross Blue Shield</a><br />
+        <a href="http://www.bluechoicesc.com/" target="_blank">South Carolina, BlueChoice HealthPlan</a><br />
+        <a href="http://www.bcbsvt.com/" target="_blank">Vermont, Blue Cross Blue Shield</a><br />
+        <a href="http://www.carefirst.com" target="_blank">Virginia, CareFirst Blue Cross Blue Shield</a><br />
+        <a href="https://www.highmarkbcbswv.com/" target="_blank">West Virginia, Highmark Blue Cross Blue Shield West Virginia</a><br />
+        <a href="http://www.fepblue.org/" target="_blank">Federal Employee Program</a><br />
+      </div>
+      
+      <% national_publisher = Publisher.find_by_label("bcbsa-national") %>
+      <p>If you don't see your Blue company listed here, you can <% if @publisher.launched? %>
+          <a href="<%= new_publisher_consumer_path(@publisher) %>">
+        <% else %>
+          <a href="<%= publisher_daily_deal_subscribers_path(@publisher)%>/presignup">
+        <% end %>
+      sign up here</a>, to be notified when your Blue Company joins the Blue365 movement.  Hope to see you soon!</p>
+      </p>
+      
+    </div>
+  </div> <!-- /faq content -->
+  </div>
+</div>

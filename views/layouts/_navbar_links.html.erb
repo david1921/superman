@@ -1,0 +1,31 @@
+<ul class="navbar">
+<% if logged_in? -%>
+  <li><span id="login_status">logged in as <%= raw current_user.login %></span></li>
+<%- if admin? -%>
+  <li><%= link_to "publishers", publishers_path, { :id => "publishers_link" } %></li>
+<%- end -%>
+<%- if publishing_group? && current_user.company.self_serve -%>
+  <li><%= link_to "publishers", publishing_group_publishers_path(current_user.company), { :id => "publishers_link" } %></li>
+<%- end -%>
+<%- if publisher? && current_user.company.self_serve -%>
+  <li><%= link_to "advertisers", publisher_advertisers_path(current_user.company), { :id => "advertisers_link" } %></li>
+<%- end -%>
+<%- if advertiser? && current_user.company.publisher.advertiser_self_serve -%>
+  <li><%= link_to "home", edit_advertiser_path(current_user.company), { :id => "advertiser_link" } %></li>
+<%- end -%>
+<%- if full_admin? -%>
+  <li><%= link_to "admins", admins_path, { :id => "admins_link" } %></li>
+<%- end -%>
+<%- if admin? -%>  
+  <li><%= link_to "consumers", consumers_path, { :id => "consumers_link" } %></li>
+<%- end -%>
+<%- unless affiliate? -%>
+  <li><%= link_to "analytics", reports_path, { :id => "reports_link" } %></li>
+<%- else -%>
+  <li><%= link_to "home", affiliate_publisher_daily_deals_path(current_user.publisher) %></li>
+<%- end -%>
+  <li><%= link_to "log out", logout_path, { :title => "log out" } %></li>
+<% else -%>
+  <li>log in</li>
+<% end -%>
+</ul>

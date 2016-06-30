@@ -1,0 +1,45 @@
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="header">
+			<div id="banner">
+				{% include with_theme "layouts/shared/publisher_logo" %}      
+				<ul id="account_nav">			
+					{% if publisher.launched? %}
+						{% if publisher.current_user_belongs_to? %}
+					<li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+					<li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+					<li class="last"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+						{% else %}
+					<li class="last"><a href="{{ publisher.login_path }}">Sign In</a></li>
+						{% endif %}
+					{% endif %}
+				</ul><!-- /account_nav -->
+				<div class="clear"></div>
+				<div id="subscribe_form">
+					<h4 class="subscribe">GET FREE DEAL OF THE DAY ALERTS!</h4>
+					<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+						<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+						<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+						<p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" /></p>
+						<p><input id="subscribe_button" type="submit" value="sign up" /></p>
+						<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+							<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+						</p>
+					</form>
+				</div>
+			</div><!--banner-->   
+		</div><!-- /header -->
+
+    {% include "shared/flash" %}
+		 
+		<div id="page_content">
+      		{% include with_theme "layouts/shared/tabs" %}	
+      		<div class="clear"></div>	
+		</div><!--page_content-->
+		
+		{% include "shared/a_a_alt" %}
+		
+	</div><!--daily_deal-->
+<div class="push"></div>
+</div><!--analog_analytics-->
+{% include with_theme "layouts/shared/footer" %}

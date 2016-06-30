@@ -1,0 +1,12 @@
+student_discount_handbook:
+  name: Student Discount Handbook
+
+locm:
+  name: Local.com
+
+vvm:
+  name: Village Voice Media
+  self_serve: true
+
+times_review:
+  name: Times Review

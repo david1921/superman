@@ -1,0 +1,92 @@
+<% set_daily_deal_page_title_slug t(:title_slug_sign_in) %>
+
+<% unless @publisher.label == 'bcbsa-national' %>
+  <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+      </li>
+      <li class="no_underline">></li>
+      <li class="no_underline">          
+        <%= t(:log_in) %>
+      </li>
+    </ul>
+    </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+<% end %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_12 suffix_2 first rounded_corners">
+	  <h1 class="content"><%= t(:log_in) %></h1>
+	  <div id="log_in">
+		  <p><%= raw t(:log_in_message_1) %>
+			 <%= t(:log_in_message_2) %>
+		  </p>
+      <div style="clear:both"></div>
+	    <%= raw render :partial => '/themes/bcbsa/shared/flash', :locals => { :flash => flash } %>
+
+      <% if false %>
+         <% if !(@publisher.account_sign_up_message.nil? || @publisher.account_sign_up_message.empty?) %>
+            <%= render :partial => "login_message", :locals => {:message => @publisher.account_sign_up_message} %>
+        <% end %>
+      <% end %>
+
+      <% if params && params[:market_label].present?
+         create_account_path = new_publisher_consumer_for_market_path(@publisher, :market_label => params[:market_label])
+         forgot_password_path = new_publisher_consumer_password_reset_for_market_path(@publisher, :market_label => params[:market_label])
+       else
+         create_account_path = new_publisher_consumer_path(@publisher)
+         forgot_password_path = new_publisher_consumer_password_reset_path(@publisher)
+       end %>
+
+    
+	    <div id="login_form">
+        <% form_for :session, :url => { :action => :create } do |f| -%>
+          <%= f.text_field_div :email, t(:email) %>
+          <%= f.password_field_div :password, t(:password) %>
+
+          <div class="row button_row">
+            <%= submit_tag t(:sign_in), :name => "sign_in", :id => "sign_in_button", :class => "blue_button" %>
+		        <p><%= link_to t(:forgot_password), new_publisher_consumer_password_reset_path(@publisher) %></p>
+          </div>
+        <% end -%>
+		    <div class="clear"></div>
+	
+		    <div id="facebook_connect">
+			    <p><%= t(:connect_with_facebook) %></p>
+			    <a href="<%= auth_init_path(@publisher) %>" class="facebook_connect"><img src="/themes/bcbsa/images/buttons/facebook_connect.png" border="0" height="22" width="165" alt="facebook Connect" /> </a>
+		    </div>
+		    <div class="clear"></div>
+      </div><!-- end login_form -->
+    </div><!-- end log_in -->
+    
+    <div id="login_right">
+      <div id="not_registered">
+    	  <h3><%= t(:not_registered) %>?</h3>
+        <p><%= t(:not_registered_text) %></p>
+      </div>
+      <div id="register">
+        <p><%= link_to t(:sign_up_here), new_publisher_consumer_path(@publisher), :class => 'blue_button' %></p>
+      </div>
+	    <div id="not_blue_member">
+    	  <h3><%= t(:not_a_blue_member) %>?</h3>
+        <p><a href="<%= params[:locale] == "es-MX" ? 'http://esic.jellyvision-conversation.com/?id=blue365deals' : 'http://ic.jellyvision-conversation.com/?id=blue365deals' %>" target="_blank"><%= t(:click_here) %></a> <%= t(:to_learn_how_easy) %></p>
+		  </div>
+    </div><!-- end login_right -->
+
+    <div class="clear"></div>
+  </div><!-- end page_column_12 -->
+</div><!-- end page_row -->
+
+<script type="text/javascript" charset="utf-8">
+  Event.observe(window, 'load', function() {
+    if ($('session_email') && $F('session_email') == "") {
+      $('session_email').activate();
+    }
+    else {
+      $('session_password').activate();
+    }
+  });
+</script>
+

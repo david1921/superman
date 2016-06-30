@@ -1,0 +1,47 @@
+<div id="container-mall">
+	<h1>
+	<!--market name-->
+	</h1>
+
+	<div id="deals">
+      <% if @featured_deal.present? %>
+            <div class="deal">
+                <div class="image"><img src="<%= @featured_deal.photo.url(:blast) %>" alt="" width="220" height="133" /></div>
+                <div class="value_prop"><p><%= @featured_deal.value_proposition_subhead %></p></div>
+                <div class="locations">
+                    <p>
+                    <% if @featured_deal.advertiser.store.present? %> 
+                        <% if @featured_deal.advertiser.store.city.present? %> 
+                        <span class="location"><%= @featured_deal.advertiser.store.city %></span>
+                        <% end %>
+                    <% end %>
+                    </p>
+                </div>
+                <div class="price"><span><%= number_to_currency @featured_deal.price, :precision => 2, :unit => @featured_deal.publisher.currency_symbol %> </span></div>
+                <div class="view">
+                    <a href="<%= Drop::DailyDeal.new(@featured_deal).url %>">VIEW DEAL</a>
+                </div>
+            </div><!--END DEAL-->
+        <% end %>
+
+		
+        <% side_deals = @publisher.side_deals_in_custom_entercom_order(@daily_deal) %>
+        <% unless side_deals.blank? %>        
+            <%= render :partial => with_theme('daily_deals/daily_deal'), :collection => side_deals %>
+        <% end %>
+        
+		<div class="clear"></div>
+    </div><!-- /deals -->
+</div><!-- /container-mall -->
+
+<div class="clear"></div>
+</div><!--END Inner-->
+
+
+<div id="sidebar">
+	<div id="container">
+		<div id="facebookbox" class="content">
+		  <%= raw render :partial => with_theme("shared/facebook_likebox"), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+		</div>
+	</div>
+</div>

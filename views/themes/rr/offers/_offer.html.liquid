@@ -1,0 +1,14 @@
+{% for offer in offers %}
+{% assign advertiser = offer.advertiser %}
+
+  {% if_page_name == "landing_pages#show" %}
+    <div class="offer {% cycle 'odd', 'even' %}" id="offer_{{ offer.id }}"> 
+    {% assign cycled = true %}
+  {% endif_page_name %}
+  {% unless cycled %} 
+    <div class="offer {% cycle 'even', 'odd' %}" id="offer_{{ offer.id }}"> 
+  {% endunless %}
+  {% assign cache_key = offer.id %}
+  {% cache with_theme 'offers/offer_content' | expiry: 1.minute | key: cache_key %}
+</div><!-- /offer -->
+{% endfor %}	 

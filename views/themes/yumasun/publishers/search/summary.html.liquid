@@ -1,0 +1,99 @@
+<div id="offers_wrapper">
+	<div id="left_column">
+        <div id="categories">
+            <h3>Coupons</h3>
+
+            <ul id='category_list'>
+                <!-- TODO: need to handle featured only view of coupons -->
+
+                <li style="list-style: none">{% if showing_featured %}</li>
+
+                <li class="current_category">{% else %}</li>
+
+                <li>{% endif %} <a href="{{ publisher.offers_path}}?featured=true">Featured Offers</a></li>
+
+                <li style="list-style: none">{% if showing_featured %}</li>
+
+                <li>{% elsif category %}</li>
+
+                <li>{% else %}</li>
+
+                <li class="current_category">{% endif %} <a href="{{ publisher.offers_path }}">All <span class="offers_count">({{ offers_count }})</span></a></li>
+
+                <li style="list-style: none">{% for publisher_category in publisher_categories %} {% if forloop.last %} {% if category.id == publisher_category.id %}</li>
+
+                <li class='last current_category'>{% else %}</li>
+
+                <li class='last'>{% endif %} {% else %} {% if category.id == publisher_category.id %}</li>
+
+                <li class='current_category'>{% else %}</li>
+
+                <li>{% endif %} {% endif %} <!-- TODO: we need to attach page_size, order, etc to the link -->
+                 <a href="{{ publisher.offers_path }}?category_id={{ publisher_category.id }}">{{ publisher_category.name | titleize }}</a> <span class="offers_count">({{ publisher_category.offers_count }})</span></li>
+
+                <li style="list-style: none">{% endfor %}</li>
+            </ul>
+        </div><!-- /categories -->
+        
+        <!-- search box -->
+        <div id="search" class="box_wrapper">
+       <form action="{{ publisher.search_path }}" id="search_form" method="get">      
+           <input class="ghostie" id="text" name="q" title="Search Offers" type="text"/><br/> 
+           <input id="search_button" type="submit" value="search"/> 
+       </form> <br>
+   </div><!-- /search -->
+        <!-- /search box -->
+    </div><!-- /left_column -->
+    
+	<div id="center_column">
+		<h1 class="page_title">Search Results</h1>
+		{% if offers or daily_deals or sweepstakes %}
+		{% if offers.size == 0 and daily_deals.size == 0 and sweepstakes.size == 0 %}
+		<p class="notice">Sorry, no results found for <strong>{{ query | escape }}</strong>.</p>
+		{% else %}
+		<h2 class="search_results_title">Daily Deals</h2>
+		<div class="daily_deals">
+			
+			<div class="column_gradient">
+				{% if daily_deals.size == 0 %}
+				<p>Sorry, no daily deals were found for <strong>{{ query | escape }}</strong>.</p>
+				{% else %}
+				{% for daily_deal in daily_deals %}
+				<div class="daily_deal">
+					<div class="search_thumb"><img src="{{ daily_deal.photo.thumbnail_url }}" alt="{{ side_deal.advertiser.name }}" height="82" width="60" /></div>
+					<div class="deal_details">
+						<h3 class="info_headline">{{ daily_deal.value_proposition }}</h3>
+						<h2 class="info_sub_head">{{ daily_deal.value_proposition_subhead }}</h2>
+						<p class="side_deal_description">{{ daily_deal.short_description }}</p>
+						<a class="view_deal img_button" href="{{ daily_deal.url }}"><span>Get Info</span></a>
+					</div><!-- /deal_info -->
+					<div class="clear"></div>
+				</div><!-- /daily_deal -->
+				{% endfor %}        
+				{% endif %}
+			</div><!-- /column_gradient -->
+		</div><!-- /daily_deals -->
+			
+		<div class="offers">
+			<h2 class="search_results_title">Coupons</h2>
+			{% if offers.size == 0 %}
+			<p>Sorry, no offers were found for <strong>{{ query | escape }}</strong>.</p>
+			{% else %} 
+				<div class="column_gradient">{% include with_theme 'offers/offer' %}		</div>
+					
+			{% endif %}
+		</div><!-- /offers --> 
+		
+		{% endif %}
+		{% else %}
+		<p class="notice">Please enter a search value.</p>
+		{% endif %}
+	</div><!-- /center_column -->
+
+	<div id="right_column">
+	  	
+	</div><!--right_column-->
+	    
+	<div class="clear"></div>
+	
+</div><!-- /search_results_summary -->

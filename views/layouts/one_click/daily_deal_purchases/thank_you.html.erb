@@ -1,0 +1,31 @@
+<% set_daily_deal_page_title_slug t('.title') %>
+
+<div class="thank_you_page content_wrap">
+    <h1 class="content"><%=t '.title' %></h1>
+    <p>Your purchase is complete.</p>
+    <%= link_to("View your voucher", redeemable_daily_deal_purchase_daily_deal_certificates_path(@daily_deal_purchase)) %><br />
+    <%= link_to t('.view_your_orders'), daily_deal_download_url(@daily_deal_purchase) %>
+    <% if @daily_deal.enable_loyalty_program? %>
+      <h3>Get this deal for free!</h3>
+      <p style="margin-bottom: 0">
+        Share the following link with your friends. Refer
+        <%= pluralize(@daily_deal_purchase.daily_deal.referrals_required_for_loyalty_credit, "purchaser") %>
+        to this deal, and you'll get yours for free!
+      </p>
+      <input type="text" name="loyalty_program_url" id="loyalty_program_url" size="50"
+       value="<%= loyalty_program_url(@daily_deal_purchase.daily_deal, @daily_deal_purchase.consumer) %>">
+    <% end %>
+    
+<!--    <div class="thank_you_share"> commented out until we get the proper links
+		<p>Share this deal:</p>
+		<a href="<%= facebook_daily_deal_path(@daily_deal) %>" class="share_link share_link_facebook"  target="_blank" title="Share coupon on Facebook"><span>Facebook</span></a>
+		<a href="<%= twitter_daily_deal_path(@daily_deal) %>" class="share_link share_link_twitter" target="_blank"><span>Twitter</span></a>
+		<a id="share_via_email_link" href="" class="share_link share_link_mail"><span>Email</span></a>
+		<script type="text/javascript" charset="utf-8">
+			var mailto = "mailto:"
+			mailto += escape("<Insert Recipients Here>") +"?subject=" +escape('<%= "#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}" %>') +"&body=" +escape('Check out this deal at <%= daily_deal_url(@daily_deal) -%>?utm_source=fundogo-share_this_deal&utm_medium=email&utm_campaign=share-this-deal');
+			document.getElementById('share_via_email_link').href = mailto;
+		</script>
+    </div>--><!-- /share -->
+    
+</div><!-- /thank_you_page -->

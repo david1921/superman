@@ -1,0 +1,23 @@
+<% set_daily_deal_page_title_slug "Password Reset Email" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Revise su correo electr&oacute;nico</h2>
+
+    <p>Por favor revise su correo electr&oacute;nico para ver si recibi&oacute; un correo de <%= @publisher.brand_name_or_name %> con instrucciones para recuperar si contrase&ntilde;a.  En breve le env&iacute;aremos las instrucciones para recuperarlo. 
+    </p>
+
+    <p class="small">Si a&uacute;n no ha recibido un correo, favor de reintroducir su correo electr&oacute;nico.</p>
+
+    <% form_tag publisher_consumer_password_resets_path(@publisher) do -%>
+      <div class="row">
+        <div class="label">Correo electr&oacute;nico</div>
+        <div class="input"><%= text_field_tag(:email) %></div>
+      </div>
+      <div class="clear"></div>
+      <div class="full_width buttons">
+        <%= submit_tag("Reenviar correo electr&oacute;nico", :name => "resend_email") %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+{% if publisher.show_special_deal? %}
+	<div id="deal_credit" class="sub">
+	<h1><a href="{{ publisher.deal_credit_path }}">SIGN UP, GET A {{ publisher.daily_deal_referral_credit_amount | currency }} DEAL CREDIT</a></h1>
+		<p>Sign up now for a free account and receive a {{ publisher.daily_deal_referral_credit_amount | currency }} credit towards your first deal purchase</p>
+		<ul>
+			<li>Valid one per person.</li>
+			<li>Must be used before January 8, 2012</li>
+		</ul>
+
+		<h2 id="badge">{{ publisher.daily_deal_referral_credit_amount | currency }}</h2>
+		<div class="clear"></div>
+	</div>
+{% endif %}

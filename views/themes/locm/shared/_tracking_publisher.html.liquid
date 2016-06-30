@@ -1,0 +1,87 @@
+<!-- SiteCatalyst code version: H.22.1. -->
+<script type="text/javascript">
+var s_account = (document.location.hostname == "deals.local.com") ? "ic-hulk2010production" : "ic-hulk2010beta";
+</script>
+<script language="JavaScript" type="text/javascript" src="/themes/locm/javascripts/s_code.js"></script>
+<script language="JavaScript" type="text/javascript">
+var isDealCentricPage = false;
+// pageName
+if (/\/consumers\/presignup$/.test(document.location.pathname))
+  s.pageName = "Deals - Presignup";
+else if (/(\/deal-of-the-day)|(\/daily_deals\/\d+)$/.test(document.location.pathname))
+ { s.pageName = "Deals - Deal Details";  isDealCentricPage = true; }
+else if (/\/daily_deal_purchases\/new$/.test(document.location.pathname))
+ { s.pageName = "Deals - Update Quantity"; isDealCentricPage = true; }
+else if (/\/daily_deal_purchases\/.*?\/confirm$/.test(document.location.pathname))
+ { s.pageName = "Deals - Confirm Purchase"; isDealCentricPage = true; }
+else if (/\/daily_deal_purchases\/.*\/thank_you$/.test(document.location.pathname))
+ { s.pageName = "Deals - Thank You"; isDealCentricPage = true; }
+else if (/\/daily_deals\/subscribed$/.test(document.location.pathname))
+  s.pageName = "Deals - Email Subscription"; 
+else if (/\/how_it_works$/.test(document.location.pathname))
+  s.pageName = "Deals - How It Works";
+else if (/\/faqs$/.test(document.location.pathname))
+  s.pageName = "Deals - FAQ";
+else if (/\/feature_your_business$/.test(document.location.pathname))
+  s.pageName = "Deals - Feature Your Business";
+else if (/\/contact$/.test(document.location.pathname))
+  s.pageName = "Deals - Contact Us";
+else if (/\/daily_deal\/login$/.test(document.location.pathname))
+  s.pageName = "Deals - Login";
+else if (/\/consumers\/refer_a_friend$/.test(document.location.pathname))
+  s.pageName = "Deals - Refer A Friend";
+else
+  s.pageName = "Deals - Unknown";
+// prop11
+var prop11cookie = Get_Cookie("prop11");
+if (prop11cookie === null) {
+  var prop11match = document.location.pathname.match(/locm\-([^/]*)/);
+  if (prop11match !== null) {
+    s.prop11 = prop11match[1].replace("-", ", ");
+    setCookie("prop11", s.prop11);
+  }
+} else {
+  s.prop11 = prop11cookie;
+}
+
+// prop12
+// as per Mark Stradling of LOCM
+/*
+The name of the deal should only be written on the pages that pertain to the deal and should not continue to be written if the user is on a non-deal page.  For example, if I look at a deal and go all the way down the path to purchase, then that value will be written for those three pages.  If I then navigate to FAQs, then it should not be written on that page. 
+*/
+  s.prop12 = "";
+  var prop12match = "{{ daily_deal.value_proposition }}";
+  if (prop12match != "" && isDealCentricPage) {
+    s.prop12 = prop12match;
+  }
+
+// strCID is set in cid.js (which was provided by local.com)
+s.campaign = strCID;
+
+{% analytics_tag sale %}
+// event12
+s.event12 = "{% analytics_tag_data value %}";
+{% endanalytics_tag %}
+
+s.channel="Deals";
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)</script>
+<script language="JavaScript" type="text/javascript">
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript><a href="http://www.omniture.com" title="Web Analytics"><img src="ic-hulk2010production.122.2o7.net/b/ss/ic-hulk2010production/1/H.22.1--NS/0?pageName=Deals%20-%20Unknown" height="1" width="1" border="0" alt="" /></a></noscript>
+<!-- End SiteCatalyst code version: H.22.1. -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+$.noConflict();
+jQuery(document).ready(function() {
+  jQuery("a").each(function(){
+	// note: local.coms javascript is case-sensitive, so the CID *must* be uppercase!
+	if (/\?/.test(jQuery(this).attr('href'))) {
+	  jQuery(this).attr('href', jQuery(this).attr('href') + '&CID='+ s.campaign);
+	} else {
+	  jQuery(this).attr('href', jQuery(this).attr('href') + '?CID='+ s.campaign);
+	}
+  });
+});	
+</script>

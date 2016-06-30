@@ -1,0 +1,110 @@
+<% set_daily_deal_page_title_slug t :contact_us %>
+
+<!-- Start Contact Content -->
+<div class="page_column_12 first rounded_corners">
+	<% div_for @contact_request do %><!-- support_contact_request -->
+
+		<div class="left_content">
+
+		<%= error_messages_for(:contact_request, :header_message =>nil) %>
+
+		<h1 id="value_proposition"><%= t(:contact_us) %></h1>
+
+
+		  <h2>Customer Service Inquiries</h2>
+		  	<p>Email us using this form and we will get back to you as soon as possible.</p>
+
+		  <h2>Frequently Asked Questions</h2>
+			<p>We may have your answer at the ready! <br /><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Visit our FAQs page</a></p>
+
+		  <br><img src="/themes/allconnect/images/graphics/MoveGuru-Color-Standing.jpg" width="260px" alt="Contact Us">
+
+		</div><!-- END left_content -->
+
+		<div class="right_content">
+
+		  <% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+
+		      <% render with_theme("form_options") %>
+
+		      <%= f.hidden_field :email_subject_format, :value => @email_subject_format %>
+
+			  <h4 class="header">Email us about Move Guru</h4>
+
+			  <div class="row">
+				<p><strong>Have a question or just want to give us some feedback? Fill out the form below and we'll get back to you as soon as possible.</strong></p>
+			  </div>
+
+		      <div class="row">
+		        <div class="label">
+		          <%= f.label :first_name, "First Name *", :class => "required" %>
+		        </div>
+
+		        <div class="field">
+		          <%= f.text_field :first_name %>
+		        </div>
+		      </div>
+
+		      <div class="row">
+		     	<div class="label">
+		          <%= f.label :last_name, "Last Name *", :class => "required" %>
+		        </div>
+
+		        <div class="field">
+		          <%= f.text_field :last_name %>
+		        </div>
+		      </div>
+
+		      <div class="row">
+		        <div class="label">
+		          <%= f.label :email, "Email *", :class => "required" %>
+		        </div>
+
+		        <div class="field">
+		          <%= f.text_field :email %>
+		        </div>
+		      </div>
+
+		      <div class="row">
+		        <div class="label">
+		          <%= f.label :reason_for_request, "Reason *", :class => "required" %>
+		        </div>
+
+		        <div class="field">
+		          <%= f.select(:reason_for_request, [["Please select one", nil]] + (@reasons_for_request || ["Question", "Comment"]).map{|reason| [reason, "#{@publisher.name} - #{reason}"]},
+		                                 {}, :class => "contact_reason") %>
+		        </div>
+		      </div>
+
+		      <div class="row">
+		        <div class="label message_label">
+		          <%= f.label :message, "Message *", :class => "required" %>
+		        </div>
+
+		        <div class="field message_field" id="message_area">
+		          <p class="message_text">If applicable, please mention the deal or advertiser in your message below.</p>
+		          <%= f.text_area :message, :class => "message" %>
+		        </div>
+		      </div>
+
+			  <div class="row">
+				<div class="field extra_text">
+					<p>* Required Fields</p>
+					<p>Please double check the information you've provided for accuracy.</p>
+				</div>
+			</div>
+
+			<div class="row" id="buttons">
+				<div class="field">
+					<%= f.submit 'Send', :id => "submit" %>
+				</div>
+			</div>
+
+		  <% end %>
+
+		<% end %><!-- END right_col -->
+
+	</div><!-- END support_contact_request -->
+
+</div>
+<!-- End Contact Content -->

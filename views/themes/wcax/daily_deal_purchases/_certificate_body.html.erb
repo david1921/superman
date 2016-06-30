@@ -1,0 +1,151 @@
+  <div <%= 'class="new_page"' if page_break %>>
+    <div style="width:665px">
+      <div class="blackBorder">
+        <div class="content">
+          <div class="bottomSep section" id="top">
+            <% publisher_name = source_publisher.label.split('wcax-')[1] %>
+            <img src="<%= Rails.root %>/public/themes/wcax/images/<%= publisher_name %>-images/<%= publisher_name %>-logo-header.png" width="200" id="publisher_logo" />
+            <div class="floatLeft">
+              <% if certificate.voucher_has_qr_code? %>
+            <div class='qrcode'><img id="imgQRCode" src="<%= certificate.qr_code_data_uri %>" width="75" height="75" ></div>
+             <% end %>
+             </div>
+            <div class="floatRight hugeTitle">
+              <span id="lblCertNumber"><%= certificate.serial_number unless certificate.daily_deal.hide_serial_number_if_bar_code_is_present? && certificate.bar_code.present? %></span>
+            </div>
+            <div class="clearFloat"></div>
+          </div>
+          <div id="panelGeneralContent1">
+
+            <div class="bottomSep section">
+              <div class="floatRight">
+
+              </div>
+
+              <div>
+                <div class="largeTitle">
+                  <span id="lblTitle"><%= certificate.voucher_headline.present? ? certificate.voucher_headline : certificate.value_proposition %></span>
+                </div>
+              </div>
+              <div class="clearFloat"></div>
+            </div>
+            <div class="section">
+              <table>
+                <tbody>
+                <tr>
+                  <td style="width:290px;vertical-align:top;">
+
+                    <div style="padding-right:15px;text-align:left;">
+                      <img id="advertiser_logo" src="<%= certificate.advertiser.logo(:normal) %>">
+                      <br /><br />
+                      <div class="labelText">
+                       <div class="normalTitle">Terms:</div>
+                        <div class="legalText">
+                          <span id="lblSmallPrint"><%= textilize certificate.terms(:plain) %></span>
+                        </div>
+                        <% if daily_deal_purchase.daily_deal.expires_on.present? %>
+                          <br />
+                          <span class="normalTitle">Expires On:</span> 
+                          <span id="lblExpiresOn labelText"><%= daily_deal_purchase.daily_deal.expires_on.strftime("%B %e, %Y") %></span>
+                        <% end %>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="width:312px;">
+                      <div class="normalTitle">Recipient:</div>
+                      <div class="labelText">
+                        <span id="lblRecipients"><%= certificate.redeemer_name %></span><br>
+                      </div>
+                      <br>
+                    <div class="normalTitle">Redeem at:</div>
+                    <div class="labelText">
+                      <span id="lblRedeemAt">
+                        <% if daily_deal_purchase.daily_deal.advertiser.stores.length > 0 %>
+                          <% daily_deal_purchase.daily_deal.advertiser.stores.each do |store| %>
+                            	<% unless store.address_line_1.blank? %> <span><%= store.address_line_1 %></span>
+															<% end %>
+															<% unless store.address_line_2.blank? %><br/><span><%= store.address_line_2 %></span>
+															<% end %><br/>
+															
+															<% if !store.city.blank? && !store.state.blank? && !store.zip.blank? %> <span><%= store.city %>, <%= store.state %> <%= store.zip %><br/></span>
+															<% elsif !store.city.blank? && !store.country.name.blank? && !store.zip.blank? %> <span><%= store.city %>, <%= store.country.name %> <%= store.zip %><br/></span>
+															<% end %>
+															<% unless store.formatted_phone_number.blank? %> 
+																<span><%= number_to_phone(store.formatted_phone_number, :area_code => true) %></span>
+															<% end %>
+															<br />
+                          <% end %>
+                        <% else %>
+                          <% certificate.advertiser.address do |line| %>
+                            <%= line %><br/>
+                          <% end %>
+                          <%= certificate.advertiser.formatted_phone_number unless certificate.advertiser.formatted_phone_number.blank?%><br/>
+                        <% end %></span>
+                    </div>
+                    <br>
+
+                    <div class="normalTitle">Website:</div>
+                    <div class="labelText">
+                      <span id="lblWebsite"><%= certificate.advertiser.website_url %></span>
+                    </div>
+                    <br>
+
+                    <% if certificate.bar_code.present? %>
+                      <div class="center">
+                        <img id="imgBarCode" src="<%= bar_code_file_path %>">
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div>
+              </div>
+              <div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+
+      <div id="panelGeneralContent2">
+
+        <div>
+          <div class="blackBorder floatLeft content" id="steps" style="width:310px;">
+            <div>
+              <div class="normalTitle">How to use this:</div>
+              <div id="steps">
+               <%= textilize certificate.voucher_steps %>
+              </div>
+            </div>
+          </div>
+
+          <div class="floatLeft" style="width:208px; display:none">
+            <div class="section">
+              <div class="sectionLeftSideOnly">
+                <div class="bold">Other Locations:</div>
+                <div class="labelText">
+                  <span id="lblOtherLocations">Currently there are no other locations.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="floatLeft" style="width:312px">
+            <div class="sectionLeftSideOnly">
+              <div>
+               <%= certificate_map_image %>
+              </div>
+            </div>
+          </div>
+          <div class="clearFloat"></div>
+        </div>
+        <br>
+      <div id="logos">
+        <img src="http://<%= daily_deal_purchase.daily_deal.publisher.daily_deal_host %>/images/powered_by_analog_analytics.png" />
+      </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+<% if @pages > 1%>
+	<ul class="pagination">
+	  <% if @page > 1 -%>
+	    <li class="previous_page"><%= link_to "&larr;", render_public_offers_path(@publisher, pagination_link_params(@page - 1).merge(:category => @category)) %></li>
+	  <% end -%>
+	  <%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+	  <%- formatter.index_range.each do |page| -%>
+	    <% if page == @page -%>
+	      <li class="selected"><%= page %></li>
+	    <%- else -%>
+	      <li><%= link_to(formatter.text_for(page), render_public_offers_path(@publisher, pagination_link_params(page).merge(:category => @category))) %></li>
+	    <%- end -%>
+	  <%- end -%>
+	  <% if @page < formatter.index_range.last %>
+	    <li class="next_page"><%= link_to "&rarr;".html_safe, render_public_offers_path(@publisher, pagination_link_params(@page + 1).merge(:category => @category)) %></li>
+	  <% end -%>
+	</ul>
+<% end %>

@@ -1,0 +1,41 @@
+Configure /etc/hosts to ensure you don't load test production:
+0.0.0.0 coupons.houstonpress.com
+0.0.0.0 coupons.laweekly.com
+0.0.0.0 coupons.westword.com
+0.0.0.0 admin.analoganalytics.com
+0.0.0.0 www.getmyperks.com
+0.0.0.0 coupons.sdreader.com
+
+Hit http://admin.analoganalytics.com/benchmark/setup before test to set up data
+
+Run the load test:
+tsung -f test/benchmark/tsung.xml start
+
+Create graphs (if you want). Requires Python and Python graphing libraries:
+tsplot "local" /Users/sw/.tsung/log/20110331-20\:00/tsung.log -d tsung_out
+
+
+New Relic
+---------
+seo_friendly_public_index: 37 / 755 = .04900662251655629139
+daily_deals show: 38 * 17 = 646 / 755 = .85562913907284768211
+ - JSON .65 * .85562913907284768211 = .55615894039735099337
+ - HTML .30 * .85562913907284768211 = .25668874172185430463
+ - XML  .05 * .85562913907284768211 = .04278145695364238410
+deal of the day: 30 / 755 = .03973509933774834437
+seo_friendly_deal_of_the_day: 14 / 755 = .01854304635761589403
+offers#public_index: 9 / 755 = .01192052980132450331
+braintree_redirect: 2 / 755 = .00264900662251655629
+DailyDealPurchases#create: 3 / 755 = .00397350993377483443
+Api2Controller#web_coupon_categories: 7 / 755 = .00927152317880794701
+OffersController#show: 4 / 755 = .00529801324503311258
+DailyDealPurchases#thank_you: 2 / 755 = .00264900662251655629
+AdvertisersController#index: 1 / 755 = .00132450331125827814
+total: 37 + 646 + 30 + 14 + 9 + 2 + 3 + 7 + 4 + 2 + 1 = 755
+
+7 / 755 = .00927152317880794701
+
+nginx logs
+----------
+99737 total rpm for 10 minutes
+8228 /dail_deals == 829 rpm, 48 rpm to Rails

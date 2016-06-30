@@ -1,0 +1,59 @@
+<div id="landing_container">
+	
+	<div id="landing_content">
+		<h1 id="headline"><img src="/themes/newsday/images/graphics/presignup-headline.png" width="700px" alt="Save 50% to 90% on your favorite things to do, buy and eat in your area!" /></h1>
+		
+		<div id="optinform">
+			<h2>TO START SAVING ... </h2>
+			
+			<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="new_subscriber">
+				<input type="hidden" name="redirect_to" value="/publishers/{{ publisher.id }}/daily_deal_subscribers/thank_you" id="redirect_to"> 
+				<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}">
+				<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+				<input id="subscriber_zip_code_required" name="subscriber[zip_code_required]" type="hidden" value="true" />
+				<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />                
+				
+				<div>
+					<label for="subscriber_email">Enter your email address:</label>
+					<input id="subscriber_email" name="subscriber[email]" type="text" />
+				</div>
+						
+				<div id="optional">
+					<div>
+						<label for="subscriber_zip_code">Zip/Postal Code:</label>
+						<input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text" />
+					</div>
+				
+					<div>
+						<label for="subscriber_gender">Gender:</label>
+						<select id="subscriber_gender" name="subscriber[gender]" />
+							<option>Select...</option>
+							<option value="female">Female</option>
+							<option value="male">Male</option>
+						</select>
+					</div>
+				</div>
+								
+				<div id="terms">
+					<input name="subscriber[terms]" type="hidden" value="0" />
+					<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+					<label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false;">Privacy Policy</a></label>
+				</div>
+				
+				<div id="button">
+					<input id="subscribe_button" type="image" src="/themes/newsday/images/buttons/submit.png" value="Submit" />           
+				</div>
+				
+				<div id="smalltext">
+					<a href="{{ publisher.login_path }}">Sign In</a> | <a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false;">Privacy Statement</a>
+				</div>
+			</form>
+			
+		</div>
+		
+	</div>
+	
+	<div id="a_a">
+     	<a href="http://analoganalytics.com"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" style="border:0" alt="Powered By Analog Analytics" /></a>
+    </div>
+</div>

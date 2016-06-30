@@ -1,0 +1,54 @@
+{% for offer in offers %}
+{% assign advertiser = offer.advertiser %}
+<div class="offer {% cycle 'odd', 'even' %}" id="offer_{{ offer.id }}"> 
+	<div class="offer_image"> 
+		<img alt="photo" class="photo" id="photo" src="{{ offer.offer_image.medium_url }}" /> 
+	</div><!-- /offer_image -->
+	<div class="offer_info" id="offer_{{ offer.id }}_front_panel"> 
+		<div class="offer_headlines">
+			<h5 class="value_proposition">{{ offer.value_proposition }}</h5>
+			<p class="message">{{ offer.terms_with_expiration }}</p>
+		</div><!-- /offer_headlines -->
+		<div class="footer">
+			<div class="buttons"> 
+				<div class="top_buttons">
+					<a href="/offers/{{ offer.id }}/twitter?publisher_id={{ publisher.id }}" class="offer_button btn_twitter" target="_blank" title="Share coupon on Twitter"><span>Twitter</span></a>    
+					<a href="/offers/{{ offer.id }}/facebook?publisher_id={{ publisher.id }}" class="offer_button btn_facebook" id="offer_{{ offer.id }}_facebook_link" onclick="return facebook_popup('/offers/{{ offer.id }}/facebook?popup=true&amp;publisher_id={{ publisher.id }}')" rel="nofollow" target="_blank"><span>Facebook</span></a> 
+<!--
+				<div class="fb_share_button">
+					<iframe src="http://www.facebook.com/plugins/like.php?href={{ offer.url }}&amp;send=false&amp;layout=button_count&amp;width=80&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=trebuchet+ms&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
+				</div>
+-->
+				</div>
+				<div class="bottom_buttons">
+					<a class="offer_button clip btn_print" href="#" id="print_{{ offer.id }}" onclick="clipCoupon({{ offer.id }}, {{ publisher.id }}); return false;" rel="nofollow" title="Click to print coupon"><span>Print</span></a> 
+					<a class="offer_button email btn_email" href="#" onclick="new Ajax.Request('/offers/{{ offer.id }}/email?publisher_id={{ publisher.id }}', {asynchronous:true, evalScripts:true}); return false;" rel="nofollow" title="Click to email coupon to you"><span>Email</span></a>    
+					<a class="offer_button txt btn_sms" href="#" onclick="new Ajax.Request('/offers/{{ offer.id }}/txt?publisher_id={{ publisher.id }}', {asynchronous:true, evalScripts:true}); return false;" rel="nofollow" title="Click to send coupon to you via TXT message"><span>Text</span></a><br />  
+				</div>
+				<div class="offer_links"><a href="http://{{ offer.website_url }}" target="_blank">Website</a> | <a href="{{ advertiser.google_map_url }}" target="_blank">Map</a></div> 
+			</div><!-- /buttons -->									
+			<div class="address"> 
+				<span class="advertiser_name">
+<!-- 			{% if advertiser.website_url %} -->
+			    <a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.name }}</a>
+<!--
+			  {% else %}
+			    {{ advertiser.name }}
+			  {% endif %}
+-->
+                </span><br/> 
+                {{ advertiser.address_line_1 }} <br/> 
+								{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+							<span class="phone_number">{{ advertiser.formatted_phone_number }}</span> 
+			</div><!-- /address -->
+			<div class="logo"> 
+				<img src="{{ advertiser.logo.square_url }}" alt="" />
+			</div> 
+		</div><!-- /footer -->
+					
+	</div><!-- /offer_info-->
+	<div class="call_panel" style="display: none;" id="offer_{{ offer.id }}_call_panel"></div> 
+	<div class="email_panel" style="display: none;" id="offer_{{ offer.id }}_email_panel"></div> 
+	<div class="txt_panel" style="display: none;" id="offer_{{ offer.id }}_txt_panel"></div> 
+</div><!-- /offer -->
+{% endfor %}	 

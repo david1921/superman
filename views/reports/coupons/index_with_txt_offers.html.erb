@@ -1,0 +1,22 @@
+<% set_page_title "Reports: Newsprint TXT Coupon Summary" -%>
+<% url_options = { :summary => @summary, :dates_begin => @dates.begin, :dates_end => @dates.end } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => reports_advertiser_coupons_url(@advertiser, url_options.merge(:format => "csv"))
+}) %>
+
+<%= render(:partial => "reports/advertisers/navigation", :locals => {:page => :txt_coupon_summary, :url_options => url_options}) %>
+<%= render(:partial => "reports/advertisers/market_navigation", :locals => {:page => :txt_coupon_summary, :url_options => url_options}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :dates => @dates,
+  :table_name => "txt_coupons_summary",
+  :data_source => reports_advertiser_coupons_path(@advertiser, :format => "xml"),
+  :data_params => { :filter => "txt" },
+  :result_node => :txt_offer,
+  :data_columns => [
+    [:keyword, { :label => "Keyword", :class_name => "left" }],
+    [:inbound_txts_count, { :label => "Texts Received", :parser => "number" }],
+    [:outbound_txts_count, { :label => "Texts Sent", :parser => "number" }]
+  ]
+}) %>

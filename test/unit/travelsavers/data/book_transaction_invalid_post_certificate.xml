@@ -1,0 +1,17 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>1.1</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Fail</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>102</ErrorCode>
+      <ErrorSourceID>1</ErrorSourceID>
+      <ErrorText>Invalid post data certificate.</ErrorText>
+      <UserCanFix>false</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues/>
+  <PaymentStatus>Fail</PaymentStatus>
+  <TransactionDate>2012-03-12T21:42:25.08</TransactionDate>
+  <TransactionID>280</TransactionID>
+</BookTransaction>

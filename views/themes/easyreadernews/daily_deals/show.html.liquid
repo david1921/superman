@@ -1,0 +1,137 @@
+﻿<div id="main"><!--MAIN CONTENT-->
+    <div id="deal_content"><!--LEFT COLUMN-->
+        <div id="deal_feature">
+        	<h2 id="todays_deal"><strong>Today's Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!</strong><br />
+        {{ daily_deal.value_proposition }}</h2>
+        
+            <div id="dash_container">
+            	<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="" width="300" /></div>
+                <div id="dashboard">
+                  {% if daily_deal.sold_out? %}
+                	<div id="buy_now"><img src="/themes/easyreadernews/images/buttons/sold-out.png" alt="sold out" width="300" /></div>
+                  {% elsif daily_deal.over? %}
+                	<div id="buy_now"><img src="/themes/easyreadernews/images/buttons/deal-over.png" alt="deal over" width="300" /></div>
+                  {% elsif daily_deal.active? %}
+                	<div id="buy_now_button"><a href="{{ daily_deal.buy_now_path }}"><img src="/themes/easyreadernews/images/buttons/buy_now_large.png" alt="BUY NOW" width="300" height="66" /></a></div>
+                	<div class="unavailable" style="display:none;"><img src="/themes/easyreadernews/images/buttons/deal-over.png" alt="deal over" width="300" /></div>
+                  {% endif %}
+                    <div id="value">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                        <td align="center" valign="top">
+                        <div class="price">{{ daily_deal.value | currency }}</div>
+                        <div class="tag"><img src="/themes/easyreadernews/images/display/value.png" alt="Value" /></div>
+                        </td>
+                        <td align="center" valign="top" width="80">
+                        <div class="price">{{ daily_deal.price | currency }}</div>
+                        <div class="tag"><img src="/themes/easyreadernews/images/display/todays-deal.png" alt="Today's Deal" width="78" height="10" /></div>
+                        </td>
+                        <td align="center" valign="top" class="save">
+                        <div class="price">{{ daily_deal.savings | currency }}</div>
+                        <div class="tag"><img src="/themes/easyreadernews/images/display/you-save.png" alt="You Save" width="54" height="10" /></div>
+                        </td>
+                        <!--<td align="center" valign="top" id="deals_sold">
+                        <div class="price">{{ daily_deal.number_sold }}</div>
+                        <div class="tag"><img src="/themes/easyreadernews/images/display/deals-sold.png" alt="You Save" /></div>
+                        </td>-->
+                        </tr>
+                        </table>
+
+                        {% if daily_deal.sold_out? %}
+                        <div id="soldout">SOLD OUT</div>
+                        {% elsif daily_deal.over? %}
+                        <div id="soldout">THIS DEAL IS OVER</div>
+                        {% elsif daily_deal.active? %}
+                        <table cellspacing="0" width="100%">
+                        <tr>
+                        <td rowspan="2" valign="bottom" id="clock"><img src="/themes/easyreadernews/images/display/lil_clock.png" width="38" height="47" alt="" /></td>
+                          <td id="time_left_to_buy" valign="bottom" align="center">{{ daily_deal.time_remaining_display }}</td>
+                          <td rowspan="2" align="center" valign="bottom" id="tip">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <th id="time_left_to_buy_label" valign="bottom" height="11"><img src="/themes/easyreadernews/images/display/time-left-to-buy.png" alt="Time Left To Buy" width="104" height="11" /></th>
+                        </tr>
+                        </table>
+                        {% endif %}
+                    </div>
+                	<div style="height: 6px; line-height: 6px;"><img src="/themes/easyreadernews/images/backgrounds/value_bg_bottom.png" alt=""/></div>
+                </div><!--DASHBOARD-->
+                
+            </div>
+        </div>
+    
+        <div id="share">
+            <a href="/daily_deals/{{ daily_deal.id }}/facebook" class="facebook share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/easyreadernews/images/buttons/facebook.png" alt="Facebook" width="34" height="31" /></a><a href="{{ daily_deal.twitter_url }}" class="share_button_twitter"><img src="/themes/easyreadernews/images/buttons/twitter.png" alt="Twitter" width="34" height="31" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button_mail"><img src="/themes/easyreadernews/images/buttons/email.png" alt="Email" width="34" height="31" /></a></div>
+        
+        <div id="deal_info">
+            
+            <div id="box1">
+                <img src="{{ advertiser.logo.url }}" alt="" />
+                {% if advertiser.address? %}
+                <p>{{ advertiser.name }}<br />
+                {{ advertiser.address_line_1 }}<br />
+                {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                {{ advertiser.phone_number }}<br />
+                {% endif %}
+                </p>
+                {% if advertiser.website_url != empty %}
+                <a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a>
+                {% endif %}
+            </div>
+        
+            <div id="box2">
+                <h2>Highlights</h2>
+                {{ daily_deal.highlights }}
+            </div>
+            
+            <div id="box2">
+                <h2>The Fine Print</h2>
+                {{ daily_deal.terms }}
+            </div>
+            
+            <div id="description">
+                <h2>Description</h2>
+                {{ daily_deal.description }}
+            </div>
+        
+        </div>
+    
+    </div><!--/LEFT COLUMN-->
+
+    <div id="side_bar"><!--SIDE BAR-->
+
+       {% if publisher.show_special_deal? %}
+        <div id="side_content_box">
+            <h2>Sign up offer!</h2>
+            <p>Sign up now and receive a $10 <br />credit towards your first purchase.</p>
+             
+            <ul>
+            <li>Valid one per person</li>
+            <li>Offer ends July 31, 2011</li>
+            </ul>
+            <a href="{{ publisher.deal_credit_path }}"><img src="/themes/easyreadernews/images/buttons/click_here_button.png" width="81" height="21" alt="click here for more details" /></a>
+        </div>
+        {% endif %}
+
+        {% if advertiser.address? %}
+        <div id="side_content_box">
+            <h2>MAP &amp; Location</h2>
+            {% if advertiser.stores.size > 0 %}
+            <a href="{{ advertiser.map_url }}"><img src="{{ daily_deal.map_image_url }}" id="map" target="_blank" /></a>
+            {% endif %}
+            <p>{{ advertiser.name }}<br />
+            {{ advertiser.address_line_1 }}<br />
+            {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+            {{ advertiser.phone_number }}
+            {% if advertiser.website_url != empty %}
+            <a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a>
+            {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    
+    
+    </div><!--/SIDE BAR-->
+
+</div><!--/MAIN CONTENT-->
+

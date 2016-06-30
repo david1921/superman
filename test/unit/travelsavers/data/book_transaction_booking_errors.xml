@@ -1,0 +1,17 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+   <Version>1.0</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Fail</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>132</ErrorCode>
+      <ErrorSourceID>2</ErrorSourceID>
+      <ErrorText>An unhandled error occurred after sending the booking request to the vendor : This cabin is no longer available and must be waitlisted.</ErrorText>
+      <UserCanFix>false</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues/>
+  <PaymentStatus>Fail</PaymentStatus>
+  <TransactionDate>2012-03-05T08:13:26.457</TransactionDate>
+  <TransactionID>209</TransactionID>
+</BookTransaction>

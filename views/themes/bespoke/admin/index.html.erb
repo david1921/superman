@@ -1,0 +1,12 @@
+<ul>
+  <li>
+    <a>Admin</a>
+    <ul style="margin-left: 10px;">
+      <li><%= link_to 'Setup merchant', new_publisher_advertiser_path(current_user.publisher) %></li>
+      <li><%= link_to 'Search', publisher_advertisers_path(current_user.publisher) %></li>
+      <li><a>Validate</a></li>
+    </ul>
+  </li>
+  <li><a>Service</a></li>
+  <li><a>Sales</a></li>
+</ul>

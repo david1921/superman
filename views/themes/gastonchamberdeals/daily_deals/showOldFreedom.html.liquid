@@ -1,0 +1,182 @@
+<!-- begin daily deal content -->
+
+<div id="colwrap">
+
+	<div id="leftcol">
+		<div id="value_prop">
+			<div id="todays_deal"><span><em>{{ daily_deal.savings_as_percentage | percentage }} OFF</em></span></div>
+			<h1>{{ daily_deal.value_proposition }}</h1>
+			<div class="clear"></div>
+		</div>
+		<hr />
+		<div id="deal">
+			<div id="advertiser">
+				<div id="photo"><img src="{{ daily_deal.photo.standard_url }}" width="230" height="175" alt="" /></div>
+				<div id="location">
+					<div id="logo">
+					{% if advertiser.logo.file? %} 
+						<img src="{{ advertiser.logo.url }}" width="65" alt="{{ advertiser.name }}" />
+					{% endif %}
+					</div>
+					
+					<div id="address">
+					<h3 class="advertiser_name">{{ advertiser.name }}</h3>
+
+					 {% if advertiser.num_stores == 1 %}
+					 <p>{{ store.formatted_phone_number }}</p>
+					 {% endif %}
+					 
+					 {% for store in advertiser.stores %}
+					 <div class="location_container" style="{% if forloop.index > 1 %}display:none{% endif %}"> 
+						<p>
+						  {% if store.address_line_1 != empty %}
+						  <span>{{ store.address_line_1 }}</span>
+						  {% endif %}
+						  {% if store.address_line_2 != empty %}
+						  <span>{{ store.address_line_2 }}</span>
+						  {% endif %}
+				
+						  {% if store.city != empty and store.state != empty and store.zip != empty %}
+						  <span>{{ store.city }}, {{ store.state }} {{ store.zip }}</span>
+						  {% endif %}
+						  
+						  {% if store.formatted_phone_number != empty %}
+						  <span>{{ store.formatted_phone_number }}</span>
+						  {% endif %}
+						  
+						  {% if advertiser.website_url != empty %}
+						  </span><a href="{{ advertiser.website_url }}" target="_blank">Visit Website</a></span>
+						  {% endif %}
+						</p>
+					 </div><!-- /location_container -->
+					{% endfor %}
+
+					{% if advertiser.num_stores > 3 %}
+					<a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+					{% endif %}
+					</div>
+				</div>
+			</div>
+			<div id="dashboard">
+				<table width="295" align="center" border="0" cellspacing="10" cellpadding="0">
+				  <tr class="numbers">
+					<td valign="middle" align="center">{{ daily_deal.value | currency }}<span>value</span></td>
+					<td valign="middle" align="center" class="price">{{ daily_deal.price | currency }}<span>today's deal</span></td>
+					<td valign="middle" align="center">{{ daily_deal.savings | currency }}<span>you save</span></td>
+				  </tr>
+				  <tr>
+					<td colspan="3" align="center" class="button">
+						 {% if daily_deal.sold_out? %}
+						  <span id="sold_out">SOLD OUT</span>
+						  {% elsif daily_deal.over? %}
+						  <span>DEAL OVER</span>
+						  {% elsif daily_deal.active? %}
+						  <a id="buy_now_button" href="{{ daily_deal.buy_now_path }}"><img src="/themes/gastonchamberdeals/images/buttons/buy-now.png" width="257" height="54" alt="BUY NOW" /></a>
+						  {% else %}
+						  <span>Not Yet Available</span>
+						 {% endif %}
+					</td>
+				  </tr>
+				  <tr>
+					<td valign="middle" colspan="3" align="center">
+						<div><strong id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</strong><span>time left to buy</span></div>
+						<div><strong id="deals_sold">{{ daily_deal.number_sold }}</strong><span>deals sold</span></div>
+					</td>
+				  </tr>
+				</table>
+				<div id="share">
+					<span class="text">share with others</span>
+					<a href="{{ daily_deal.twitter_url }}"><img src="/themes/gastonchamberdeals/images/buttons/twitter.png" width="25" height="18" alt="twitter" /></a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}"><img src="/themes/gastonchamberdeals/images/buttons/email.png" width="24" height="18" alt="email" /></a>
+					<span class="facebook">
+						<iframe src="http://www.facebook.com/plugins/like.php?app_id=141884942553569&amp;href={{ daily_deal.url }}&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+					</span>
+				</div>
+			</div><!-- /dashboard -->
+		</div><!-- /deal -->
+		
+		<hr />
+		
+		{% if advertiser.num_stores > 0 %}
+		<img id="map" src="{{ daily_deal | map_image_url_for: "170x140" }}" />
+		{% endif %}
+		
+		<div id="highlights" class="info">
+			<h3>highlights:</h3>
+			{{ daily_deal.highlights }}
+		</div>
+		
+		<div id="terms" class="info">
+			<h3>the fine print:</h3>
+			{{ daily_deal.terms }}
+		</div>
+		
+		<div class="clear info">
+			<h3>description:</h3>
+			{{ daily_deal.description }}
+		</div>
+		
+		<hr />
+	
+		{% if publisher.facebook_configured? %}
+		<div class="info" id="comments">
+			<h3>comments:</h3>
+			{{ daily_deal | facebook_comments_div: 552 }}         						
+		</div>
+		{% endif %} 
+		
+	</div><!-- /leftcol -->
+	
+	<div id="rightcol">
+	
+		{% if publisher.enable_daily_deal_referral %}
+		<div class="box">
+			<h3>sign up and get {{ publisher.daily_deal_referral_credit_amount | currency }} credit</h3>
+			<div class="content wont_last">
+				<p><strong>Sign up now for a free account <br />and receive a {{ publisher.daily_deal_referral_credit_amount | currency }} credit towards <br />your first deal purchase</strong></p>
+				<ul>
+					<li>Valid one person.</li>
+					<li>Offer ends July 31, 2011</li>
+				</ul>
+				<a class="deal_credit" href="{{ publisher.deal_credit_path }}"><strong>{{ publisher.daily_deal_referral_credit_amount | currency }}</strong></a>
+			</div>
+		</div>
+		{% endif %} 
+		
+		
+		{% if daily_deal.side_deals.size > 0 %}
+		<div class="box other_deal_tracking">
+			<h3>side deals</h3>
+			<div class="side_deals_content">
+				{% for side_deal in daily_deal.side_deals %}
+				<a href="{{ side_deal.url }}" class="side_deal">
+					<img class="side_photo" src="{{ side_deal.photo.facebook_url }}" alt="" width="50" height="50" alt="" />
+					<span>
+					  <strong>{{ side_deal.value_proposition }}</strong>
+					  <img class="see_it" src="/themes/gastonchamberdeals/images/buttons/see-it.png" width="53" height="21" alt="see it" />
+					</span>
+				</a><!-- /side_deal -->
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+		
+		<div class="box">
+			<h3>send your deals</h3>
+			<div class="content">
+				<p class="send"><a href="{{ publisher.contact_path }}"><strong>Learn about how we can help bring  tons of customers to your door.</strong></a></p>
+			</div>
+		</div>
+
+			<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FGaston-Chamber-Deals%2F181872905216393&amp;width=288&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:288px; height:258px;" allowTransparency="true"></iframe>	
+
+	
+	</div><!-- /rightcol -->
+	
+	<div class="clear"></div>
+	
+</div>
+
+
+<!-- end daily deal content -->
+     

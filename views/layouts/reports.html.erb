@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  <%= render :partial => "layouts/stylesheets_and_javascript" %>
+  <%= render :partial => "reports/stylesheets_and_javascript" %>
+  
+  <title>Analog Analytics: <%= page_title %></title>
+</head>
+
+<body class="analog-yui-skin">
+  
+<%= render :partial => "layouts/navbar" %>
+
+<%= render :partial => "layouts/flash_messages" %>
+<div class="content" id="content">
+  <%= image_tag "rules/blue_top.png", :class => "rule" %>
+  <%= render :partial => "layouts/crumbs" %>
+  <%= yield %>
+  <%= image_tag "rules/content_bottom.png", :class => "rule" %>
+</div>
+<p class="copyright">&copy; COPYRIGHT <%= Time.zone.now.year %> ANALOG ANALYTICS</p>
+</body>
+</html>

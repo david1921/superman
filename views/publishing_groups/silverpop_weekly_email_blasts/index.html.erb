@@ -1,0 +1,43 @@
+<h1><%= @publishing_group.label %></h2>
+<br/>
+<h3>Configured to schedule a weekly blast:</h3>
+<br/>
+<table>
+  <% if @publishing_group.publishers.any? {|p| p.configured_to_schedule_weekly_emails?} %>
+    <tr>
+      <td></td>
+      <td>Send to contact list?</td>
+      <td>Send to seed list?</td>
+      <td>This weeks blast at</td>
+      <td>Daily Deal</td>
+    </tr>
+  <% end %>
+  <% @publishing_group.publishers.each do |publisher| %>
+    <% if publisher.configured_to_schedule_weekly_emails? %>
+      <tr>
+        <td><a href=<%= edit_publisher_path(publisher) %>/><%= publisher.label %></a></td>
+        <td><%= publisher.send_weekly_email_blast_to_contact_list %></td>
+        <td><%= publisher.send_weekly_email_blast_to_seed_list %></td>
+        <%
+          send_at = publisher.send_this_weeks_email_blast_at
+          deal = publisher.daily_deal_for_email_blast(send_at)
+        %>
+        <td><%= send_at.strftime("%a %D at %I:%M %p %Z") %></td>
+        <% if deal %>
+          <td><a href=<%= edit_daily_deal_path(deal) %>/><%= deal.value_proposition %></a></td>
+        <% else %>
+          <td>No Deal At Blast Time</td>
+        <% end %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<br/>
+<h3>Not configured to schedule a weekly blast:</h3>
+<% @publishing_group.publishers.each do |publisher| %>
+  <% unless publisher.configured_to_schedule_weekly_emails? %>
+    <p><a href=<%= edit_publisher_path(publisher) %>/><%= publisher.label %></a></p>
+  <% end %>
+<% end %>
+
+

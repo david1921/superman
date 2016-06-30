@@ -1,0 +1,40 @@
+<div class="free_offers">
+  <div class="left_column">
+    <%= render :partial => "offers/businessdirectory/search", :locals => {:search_url => render_public_advertisers_path(@publisher)} %>
+    <h3 class="manufacturer_coupons"><a href="http://www.aamedge.com/coupons">Manufacturers Coupons</a></h3>
+	<%= render :partial => "advertisers/categories", :object => @publisher_categories %>
+  </div>
+  <div class="right_column">
+    <div class='top_navigation'>
+        <h1>Coupon Directory</h1>
+		<%= render_grid_list_controls( {:active_control => :map, :show_sort_by => false, :publisher => @publisher, :postal_code => @postal_code, :radius => @radius, :sort => @sort } ) %>
+		
+     </div>
+	 
+	<div id="map-content">
+    <div class="map aa-map" id="analog-analytics-map" style="width:700px;height:400px;"></div>   
+    <%= render :partial => "advertisers/businessdirectory/map_pagination" %>
+    <div class='map_businesses'>
+      <h3>Businesses Showing In Your Area</h3>
+      <ol id="directory">                       
+        <% if @advertisers.empty? %>
+          <li>Sorry, no businesses found.</li>
+        <% else -%>
+          <% @advertisers.each do |advertiser| -%>
+            <li class='advertiser' id='advertiser_<%= advertiser.id %>'>                                  
+              <%= link_to( advertiser.name, advertiser_path(advertiser.id)) %>
+              <ol class='offers'>
+              <% advertiser.offers.active.each do |offer| %>
+                <li><%= offer.message %></li>                
+              <% end -%>
+              </ol>
+            </li>
+          <% end -%>
+        <% end -%>
+      </ol>      
+    </div>
+	</div>
+	
+  </div>
+</div><!-- /free_offers -->
+<%= javascript_include_tag 'business' %>  

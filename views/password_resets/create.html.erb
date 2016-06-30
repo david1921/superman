@@ -1,0 +1,25 @@
+<% set_page_title "Password Reset" %>
+
+<div class="left_column">
+  <p>
+    A password reset email has been sent to <%= @user.email %>.
+    Please check your email for a message from <%= @user.organization_name %> and click the
+    link inside to reset your password.
+  <p>
+
+  <p>
+    If you didn't receive the email, please check your spam folder. If you still
+    haven't received your email, please enter your email address again and we'll
+    send you another one.
+  </p>
+
+  <% form_tag password_resets_path do -%>
+    <div class="row">
+      <div class="label"><%= label_tag(:email, "#{t(:email)}:") %></div>
+      <div class="input"><%= text_field_tag(:email) %></div>
+    </div>
+    <div class="row button_row">
+      <%= submit_tag("Resend Email") %>
+    </div>
+  <% end %>
+</div>

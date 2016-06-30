@@ -1,0 +1,35 @@
+burger_king_en:
+  advertiser_id: <%= Fixtures.identify(:burger_king) %>
+  locale: en
+  tagline: Have it your way
+  name: Burger King
+
+di_milles_en:
+  advertiser_id: <%= Fixtures.identify(:di_milles) %>
+  locale: en
+  name: "Di Mille's"
+  tagline: Eatta Da Pizza!
+
+changos_en:
+  advertiser_id: <%= Fixtures.identify(:changos) %>
+  locale: en
+  name: Changos
+  tagline: "Austin's Local Taqueria"
+  website_url: http://www.changos.com
+
+el_greco_en:
+  advertiser_id: <%= Fixtures.identify(:el_greco) %>
+  locale: en
+  name: El Greco
+  tagline: A Greek Taverna
+
+bella_smiles_en:
+  advertiser_id: <%= Fixtures.identify(:bella_smiles) %>
+  locale: en
+  name: Bella Smiles
+  website_url: http://www.BellaSmilesNow.com
+
+elbow_east_en:
+  advertiser_id: <%= Fixtures.identify(:elbow_east) %>
+  locale: en
+  name: Elbow East

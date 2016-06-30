@@ -1,0 +1,38 @@
+<div id="navbar">
+	<div id="mainnav">
+    	<ul id="mainnav_ul">
+        {% if publisher.current_user_belongs_to? %}
+      	  <li><a href="{{ publisher.todays_daily_deal_path }}">HOME</a></li>
+      	  <li><a href="{{ publisher.daily_deals_path }}">ALL DEALS</a></li>
+      	  <li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+          <li><a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a></li>
+          <li><a href="{{ publisher.contact_path }}">CONTACT US</a></li>
+          <li><a href="{{ publisher.my_deals_path }}">MY DEALS</a> | </li>
+          <li><a href="{{ publisher.my_account_path }}">MY ACCOUNT</a> | </li>
+          <li><a href="{{ publisher.logout_path }}">SIGNOUT</a></li>
+
+        {% else %}
+          <li><a href="{{ publisher.todays_daily_deal_path }}">HOME</a></li>
+      	  <li><a href="{{ publisher.daily_deals_path }}">ALL DEALS</a></li>
+      	  <li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+          <li><a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a></li>
+          <li><a href="{{ publisher.contact_path }}">CONTACT US</a></li>
+          <li><a href="{{ publisher.login_path }}">SIGN IN</a></li>
+          {% include with_theme "shared/facebook_connect_liquid" %}
+        {% endif %}
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+var width = 0;
+$('#mainnav_ul li').each(function() {
+    width += $(this).outerWidth( true );
+});
+$('#mainnav').css('width', width + 10);
+
+
+});
+
+
+</script>

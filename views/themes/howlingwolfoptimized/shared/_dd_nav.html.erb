@@ -1,0 +1,8 @@
+<ul id="dd_nav">
+	<%= render :partial => with_theme('shared/market_menu') if @publisher.enable_market_menu %>
+	<li class="todays_deal"><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>">Today's Deal</a></li>
+	<li class="how_it_works"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>">How it Works</a></li>
+	<li class="feature_business"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>">Feature Your Business</a></li>
+	<li class="faq"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>">FAQ</a></li>
+	<li class="contact_us"><a href="<%= contact_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#contact" ? 'current_page' : nil %>">Contact Us</a></li>
+</ul><!-- /dd_nav -->

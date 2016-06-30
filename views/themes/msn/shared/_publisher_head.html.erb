@@ -1,0 +1,103 @@
+<link rel="SHORTCUT ICON" href="/themes/<%= @publisher.label %>/publishers/images/favicon.ico" type="image/x-icon"></link>
+<meta name="description" content="MSN Deals"></meta><meta name="keywords" content="αγορές, ευκαιρίες, προσφορές"></meta>
+
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/gtl_sitegeneric.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/11.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/css.css" media="all" rel="stylesheet" type="text/css" />
+
+<!--[if IE]>
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/mni_longhorizontal_ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 6]>
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/ie6.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/header_ie6.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lt IE 5.5000]>
+<link href="/themes/<%= @publisher.label %>/publisher/stylesheets/ie5.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="/themes/<%= @publisher.label %>/publisher/javascripts/report.js"></script>
+<script type="text/javascript" src="/themes/<%= @publisher.label %>/publisher/javascripts/navigation.js"></script>
+<script type="text/javascript" src="/themes/<%= @publisher.label %>/publisher/javascripts/dapmsn.js"></script>
+
+
+
+<script type="text/javascript">
+/*<![CDATA[*/
+(function($){function isNumber(obj,min,max){return(typeof obj=="number")&&(isNumber(min)?obj>=min:true)&&(isNumber(max)?obj<=max:true)}
+function isString(obj,minLength){return(typeof obj=="string")&&(isNumber(minLength)?obj.length>=minLength:true);}
+var $isArray=$.isArray;var urlRegExp=/^((ht|f)tps?\:\/\/)((([a-z0-9\-]+\.)+[a-z]{2,4})|((\d{1,3}\.){3}\d{1,3})(:[0-9]+)?)(\/([a-z0-9\-_\.\?!~\*\'\(\);\/\?:@&=\+\$,%#])*|\/?)$/i;function getObjectWithNamespace(objName){var ns=objName.split('.'),o=window,i,len=ns.length;for(i=0;i<len;i++){o=o[ns[i]];if(o==null)
+return null;}
+return o;}
+$.extend({isNumber:isNumber,isString:isString,isAbsoluteUrl:function(obj){return isString(obj)&&urlRegExp.test(obj);},isObject:function(obj){return(typeof obj=="object")&&(obj!==null);},isDefined:function(obj){return(typeof obj!="undefined");},isArray:function(obj,minLength){return $isArray(obj)&&(isNumber(minLength)?obj.length>=minLength:true);},getObjectWithNamespace:getObjectWithNamespace});})(jQuery);(function($){var defaults={timeout:250};var pending={};var pollList=[];var timerId;var $isString=$.isString;var $isFunction=$.isFunction;var w=window;function async(test,action,url){var canary;if($isString(test,1)&&(canary=(this[test])||$.getObjectWithNamespace(test))){if($isFunction(action)){action.apply(this);}
+else if($isFunction(canary)){if($.isArray(action)){canary.apply(this,action);}
+else if(!$.isDefined(action)){canary.apply(this);}}}
+else if($isString(url)){var testQueue=pending[url];if(testQueue){testQueue.push(new testItem(test,action,this));}
+else{pending[url]=[new testItem(test,action,this)];$.ajax({url:url,dataType:"script",cache:1,success:function(){testQueue=pending[url];for(var item,ndx=0;(item=testQueue[ndx]);++ndx){retryTest(item);}}});}}
+else if($isString(test,1)){pollList.push(new testItem(test,action,this));if(!timerId){timerId=w.setTimeout(pollCallback,defaults.timeout);}}}
+function pollCallback(){var list=pollList;pollList=[];for(var item,ndx=0;(item=list[ndx]);++ndx){retryTest(item);}
+timerId=(pollList.length==0?0:w.setTimeout(pollCallback,defaults.timeout));}
+function retryTest(item){async.call(item.callee,item.test,item.action);}
+function testItem(test,action,callee){this.test=test;this.action=action;this.callee=callee;}
+$.async=$.fn.async=w.async=async;$.async.defaults=defaults;})(jQuery);
+
+//]]>
+</script>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+	jQuery.async(0,0,"/themes/<%= @publisher.label %>/publisher/javascripts/header.js");
+	jQuery.async(0,0,"/themes/<%= @publisher.label %>/publisher/javascripts/sitenavigation.js");
+	jQuery.async(0,0,"/themes/<%= @publisher.label %>/publisher/javascripts/footer.js");
+//]]>
+</script>
+
+<script type="text/javascript">
+//patch for top navigation and Bing Search Field
+jQuery(document).ready(function($) {
+	var a = $(".nav3");
+	if ($.isDefined(a)) a.menuNavBar({
+		delay: {
+			open: 100,
+			close: 150
+		},
+		stickyMenu: true
+	});
+	var titleVal = $("#q").attr('title');
+	$("#q").val(titleVal);
+	$("#q").click(function() {
+	  var thisvar = $(this);
+    var originalvalue = thisvar.attr('title');
+    var originalcss = thisvar.css('color');
+    thisvar.addClass('input-focus');   
+    
+    if (thisvar.val() == originalvalue) {
+    		thisvar.val('').css({
+    			"background" : "#ffffff"
+    			});
+    }    
+    thisvar.blur(function() {
+        if (thisvar.val() == '') {
+          thisvar.val(originalvalue).removeClass('input-focus').css({
+          	'color' : originalcss,
+          	'background' : 'url("/themes/msn/publisher/images/binglogo.gif") no-repeat scroll right top transparent'
+          });
+        }
+    });
+	});	
+	$(".higmore").hover(function(){
+			$("#more").css({"display" : "block"});
+	});
+	$("#more").mouseleave(function(){
+			$(this).css({"display" : "none"});
+	});
+	$(".opts a").hover(function(){
+			$("#pgoptslinks").css({"display" : "block"});
+	});
+	$("#pgoptslinks").mouseleave(function(){
+			$(this).css({"display" : "none"});
+	});
+});
+</script>

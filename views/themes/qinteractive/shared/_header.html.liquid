@@ -1,0 +1,125 @@
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	var currentPage = window.location.pathname.substring(window.location.pathname.indexOf('/') + 1).split('/');
+	currentPage  = currentPage [ 0 ];
+
+	if(jQuery('#' + currentPage + 'SubnavDrop').length) {
+		jQuery('#' + currentPage + 'SubnavDrop').show();
+	}
+
+	if(jQuery('#' + currentPage).length) {
+		var parentItem = currentPage;/*jQuery('#' + currentPage + '-link').parent().parent().attr('id').replace('-li','');*/
+		jQuery('#' + parentItem).addClass('navSelected');
+	}
+	else {
+		var parentItem = '';
+	}
+	
+	jQuery('#nav ul li').css({'cursor':'pointer'}).click(function() {
+		if(jQuery(this).hasClass('menuOver') == false) {
+			window.location.href = jQuery(this).find('a:first').attr('href');
+		}
+	});
+
+	jQuery('.menuOver').mouseover(function() {
+		var c = jQuery(this).attr('id');
+		jQuery('#'+c+'-li').show();
+	});
+	jQuery('.menuOver').mouseout(function() {
+		var c = jQuery(this).attr('id').replace('-li','');
+		if(c == parentItem) {
+			var n = 'navSelected';
+		}
+		else {
+			var n = 'navButton';
+		}
+		jQuery('#' + c).removeClass('navHover').addClass(n);
+		jQuery('#' + c + '-li').hide();
+	});
+	jQuery('#rollDownMenu div').mouseover(function() {
+		var c = jQuery(this).attr('id').replace('-li','');
+		if(c == parentItem) {
+			var n = 'navSelected';
+		}
+		else {
+			var n = 'navHover';
+		}
+		jQuery('#' + c).removeClass('navButton').removeClass('navSelected').addClass('navHover');
+		jQuery(this).show();
+	});
+	jQuery('#rollDownMenu div').mouseout(function() {
+		var c = jQuery(this).attr('id').replace('-li','');
+		if(c == parentItem) {
+			var n = 'navSelected';
+		}
+		else {
+			var n = 'navButton';
+		}
+		jQuery(this).hide();
+		jQuery('#' + c).removeClass('navButton').removeClass('navHover').addClass(n);
+	});
+
+		
+	jQuery('.targetPopup').click(function() {
+		window.open(jQuery(this).attr('title'), '', "scrollbars=yes,resizable=yes,menubar=yes,status=yes,toolbar=yes,personalbar=yes,location=yes,hotkeys=yes,width=860,height=535");
+	});
+	
+	jQuery('.targetLink').click(function() {
+		this.target='_blank';
+	});
+});
+</script>
+
+<div id="wrapper">
+    <!--HEADER-->
+    <div id="header">
+        <a href="http://www.coolsavings.com" id="navLogo" title="CoolSavings.com"></a>
+        <div class="right">
+            <!--MEMBER BAR-->
+            <div id="memberBar">
+            	<div id="socialLinks">
+                	<a href="http://www.facebook.com/CoolSavings" id="navFacebook" class="targetLink" title="Like CoolSavings on Facebook!"></a>
+					<a href="http://twitter.com/coolsavings" id="navTwitter" class="targetLink" title="Follow CoolSavings on Twitter!"></a>
+            		<a href="http://www.youtube.com/user/CoolSavingsChannel" id="navYoutube" class="targetLink" title="Subscribe to the CoolSavings channel on YouTube!"></a>
+                </div>
+                <div id="memberLinks">
+                    <a href="http://www.coolsavings.com" title="CoolSavings Home">Home</a> <span>|</span>
+                    <a href="http://savingscommunity.coolsavings.com/" title="CoolSavings Community">Community</a>
+                </div>
+            </div>
+            <!--/MEMBER BAR-->
+            <!--NAVIGATION-->
+            <div id="nav">
+            	<ul>
+                    <li id="deals" class="navSelected"><a href="http://www.coolsavings.com/deals" title="Deals">Deals</a></li>
+                    <li id="free-stuff" class="navButton"><a href="http://www.coolsavings.com/free-stuff" title="FreeStuff">FreeStuff</a></li>
+                    <li id="coupons" class="navButton menuOver"><a href="http://www.coolsavings.com/coupons" title="Coupons">Coupons</a></li>
+                    <li id="categories" class="navButton menuOver"><a href="http://www.coolsavings.com/categories" title="Categories">Categories</a></li>
+                    <li id="pricegrabber" class="navButton"><a href="http://coolsavings.pricegrabber.com/" title="Compare Prices">Compare Prices</a></li>
+                    <li id="recipes" class="navButton"><a href="http://groceryguide.com/coolsavings/" title="Recipes">Recipes</a></li>
+                </ul>
+            </div>
+            <div id="rollDownMenu">
+                <div id="coupons-li">
+                    <ul>
+                        <li><a href="http://www.coolsavings.com/coupons/grocery-coupons" title="Grocery Coupons">Grocery Coupons</a></li>
+                        <li><a href="http://www.coolsavings.com/coupons/online-coupons" title="Online Coupons">Online Coupons</a></li>
+                    </ul>
+                </div>
+                <div id="categories-li">
+                    <ul>
+                        <li><a href="http://www.coolsavings.com/categories/babies-kids" title="Babies and Kids">Babies & Kids</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/clothing-apparel" title="Clothing and Apparel">Clothing & Apparel</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/dining-entertainment" title="Dining and Entertainment">Dining & Entertainment</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/groceries" title="Groceries">Groceries</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/health-beauty-fitness" title="Health, Beauty and Fitness">Health, Beauty & Fitness</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/home-improvement" title="Home Improvement">Home Improvement</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/pets" title="Pets">Pets</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/seniors" title="Seniors">Seniors</a></li>
+                        <li><a href="http://www.coolsavings.com/categories/travel-leisure" title="Travel & Leisure">Travel and Leisure</a></li>
+                    </ul>
+                </div>
+			</div>
+            <!--/NAVIGATION-->
+        </div>
+    </div>

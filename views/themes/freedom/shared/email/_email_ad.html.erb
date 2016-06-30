@@ -1,0 +1,9 @@
+<td <%= cycle("border: none; padding-left: 20px; padding-right: 0", "border-right: 1px solid #a4a6a5; padding-left: 0; padding-right:20px", :name => "small_deal_borders") %> valign="bottom" style="padding-left: 18px; padding-bottom: 10px;">
+	<% if @publisher.enable_daily_deal_referral %>
+	<a href="<%= cycle("#{refer_a_friend_publisher_consumers_path(@publisher)}", "#{daily_deals_public_index_path(@publisher.label)}", :name => "email_ad_paths") %>"><img style="box-shadow: 0 0 11px #7c7c7c;" src="http://<%= @daily_deal.publisher.daily_deal_host %>/themes/freedom/images/buttons/<%= cycle("tell_friend", "new_offers", :name => "email_ad_images") %>_email.png"></a>
+	<% elsif @daily_deal.enable_loyalty_program? %>
+	<a href="<%= cycle("#{loyalty_program_daily_deal_path(:id => @daily_deal.id)}", "#{daily_deals_public_index_path(@publisher.label)}", :name => "email_ad_paths") %>"><img style="box-shadow: 0 0 11px #7c7c7c;" src="http://<%= @daily_deal.publisher.daily_deal_host %>/themes/freedom/images/buttons/<%= cycle("get_yours", "new_offers", :name => "email_ad_images") %>_email.png"></a>
+	<% else %>
+	<a href="<%= daily_deals_public_index_path(@publisher.label) %>"><img style="box-shadow: 0 0 11px #7c7c7c;" src="http://<%= @daily_deal.publisher.daily_deal_host %>/themes/freedom/images/graphics/new_offers_email.png"></a>
+	<% end %>
+</td>

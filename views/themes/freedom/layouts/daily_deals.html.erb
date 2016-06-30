@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <%= render(:partial => "themes/freedom/daily_deals/meta_tags", :locals => { :daily_deal => @daily_deal, :referral => @referral }) %>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<%= stylesheet_link_tag "/stylesheets/scoped_reset.css" %>
+		<%= stylesheet_link_tag "/stylesheets/application.css" %>
+		<%= stylesheet_link_tag "/themes/daily_deals/stylesheets/daily_deals.css" %>
+		<%= stylesheet_link_tag "/themes/freedom/stylesheets/freedom-compressed.css" %>
+		<!--   <link rel="stylesheet" href="/themes/roaringlion/stylesheets/customized_styles.css" type="text/css" /> THIS INCLUDE IS ONLY NECESSARY FOR PUBLISHERS WITHIN PUBLISHER GROUPS-->
+		<%= render :partial => with_theme("head/head_items") %>	
+		<%= javascript_include_tag "lib/prototype.js" %>
+		<%= javascript_include_tag "effects.js" %>
+		<%= javascript_include_tag "dragdrop.js" %>
+		<%= javascript_include_tag "controls.js" %>
+		<%= javascript_include_tag "/themes/freedom/javascript/cookies.js" %>
+ 
+		<script type="text/javascript">
+		function hideBtn() {
+		    jQuery("#subscribe_form").animate({
+		        "margin-top": "-38px"
+		    }, 200, function () {
+		        jQuery(this).remove();
+		    });
+		};
+
+		function slideUpAndRemember(element) {
+	    new Effect.SlideUp(element);
+	    setCookie('slide.'+element, 'up', 1);
+	  }
+
+	  function slideDownAndForget(element) {
+	    new Effect.SlideDown(element);
+	    setCookie('slide.'+element, 'down', -1);
+	  } 
+		</script>		
+		
+		  
+		<!--[if lte IE 9]>
+		<link href="/themes/freedom/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<!--[if IE 9]>
+		<link href="/themes/freedom/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+		
+		<title><%= daily_deal_page_title %></title>
+		<%= raw render :partial => "shared/tracking_google_analytics" %>
+		<%= render :partial => with_theme("daily_deals/custom_stylesheet_includes") %>
+
+    <!--[if (gte IE 6) & (lte IE 9)]>
+			<%= javascript_include_tag 'modernizr-2.0.6.min.js' %>
+		<![endif]-->
+
+		<% if action_name == "handle_redirect" %>
+		<!-- This is required for the freeze overlay on travelsavers purchase processing page -->
+		<style type="text/css">
+			#fi_nav * {
+				z-index: 0;
+			}
+			#pub_header, #fi_wrapper {
+				z-index: 0 !important;
+			}
+		</style>
+		<% end %>
+
+</head>
+<body>
+		<% @current_page = "deal" %>
+		<div id="pub_header"><%= render :partial => with_theme("shared/pub_header") %></div>
+		<div class="clear"></div>	
+
+		<!--Analog_Analytics_Daily_Deal-->
+		<div id="analog_analytics">
+				<div id="daily_deal">
+				<img src="/themes/freedom/images/graphics/shadow.png" id="shadow" alt="Shadow Graphic">
+
+						<%= render :partial => with_theme("shared/subscribe") %>
+						<%= render :partial => "shared/flash_messages" %>
+						
+						<%= render :partial => with_theme("shared/banner_header") %>
+						<%= render :partial => with_theme("shared/dd_nav") %>
+						
+						<div id="page_content">		
+							<%= yield %>
+							<div class="clear"></div>	
+						</div><!--page_content-->
+						
+				<img src="/themes/freedom/images/graphics/shadow.png" id="shadow" alt="Shadow Graphic">		
+				</div><!--daily_deal-->
+				<div class="push"></div>
+		</div><!--analog_analytics-->
+		<%= render :partial => with_theme("shared/footer") %>
+		<%= raw render :partial => 'shared/a_a_alt' %>
+		
+		<%= render :partial => with_theme("shared/pub_footer") %>
+		
+		<%= render :partial => with_theme("shared/tracking_publisher.html.erb") %>
+		<%= render :partial => "daily_deals/javascript.html.erb" %>
+</body>
+</html>

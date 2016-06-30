@@ -1,0 +1,41 @@
+<table border="0" cellspacing="0" cellpadding="0" > <!-- FEATURED DEAL -->
+	<tr>
+		<td rowspan="5" style="padding: 0 19px 0 20px;"><a href="<%= daily_deal_url(@daily_deal) %>"><%= image_tag("#{@daily_deal.photo.url}", :style => "display:block;", :alt => "#{@daily_deal.value_proposition}", :border => 0, :width => 363, :style => "box-shadow: 0 3px 13px #7c7c7c;") %></a></td>
+		<td style="color: #0082c8; font-size: 18px; font-weight: bold;  padding: 20px 0 0 0;"><a style="color: #0082c8; font-size: 18px; font-weight: bold; text-decoration: none;" href="<%= daily_deal_url(@daily_deal) %>"><%= @daily_deal.value_proposition %></a></td> 
+	</tr>
+	<tr>
+		<td style="color: #989a99; font-size: 14px; font-weight: bold;">
+			<% if @daily_deal.publishers_category %>
+				<% if @daily_deal.custom_1.present? %>
+	    		 	<span class="store_city"><%= @daily_deal.custom_1 %></span>
+	            <% elsif @daily_deal.advertiser.store.present? %> 
+	                <% if  @daily_deal.advertiser.stores.size > 1 %>
+	                	<span class="store_city">Multiple Locations</span>
+	                <% else %> 
+	                    <span class="store_city"><% unless @daily_deal.advertiser.store.city.blank? %><%= @daily_deal.advertiser.store.city %><% end %>, <% unless @daily_deal.advertiser.store.state.blank? %><%= @daily_deal.advertiser.store.state %><% end %></span>
+	                <% end %>
+	        	<% end %>
+	        <% elsif @daily_deal.advertiser.store.present? %>
+				<span class="store_city"><% unless @daily_deal.advertiser.store.city.blank? %><%= @daily_deal.advertiser.store.city %><% end %>, <% unless @daily_deal.advertiser.store.state.blank? %><%= @daily_deal.advertiser.store.state %><% end %></span>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td style="color: #0082c8; font-size: 14px; font-weight: bold; padding: 20px 0 0 0;">DESCRIPTION</td>
+	</tr>
+	<tr>
+		<td style="border-bottom: #c5c6c6; color: #363636; font-size: 12px; font-weight: bold; padding-right: 15px;"><%= "#{HtmlTruncator.truncate_html(@daily_deal.description.html_safe,150)}".html_safe %></td>
+	</tr>
+	<tr>
+		<td>
+			<table style="border-top: 1px solid #c5c6c6; padding-top: 10px;" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="padding-right: 5px;"><%= link_to(image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/icons/twitter.png", :style => "display:block;", :alt => "twitter share", :border => 0), twitter_daily_deal_url(@daily_deal)) %></td>
+					<td style="padding-right: 5px;"><%= link_to(image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/icons/facebook.png", :style => "display:block;", :alt => "facebook share", :border => 0), facebook_daily_deal_url(@daily_deal)) %></td>
+					<td style="padding-right: 5px;"><a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>"><img style="display: block;" src="http://<%= @daily_deal.publisher.daily_deal_host %>/themes/freedom/images/icons/email.png" /></a></td>
+					<td><%= link_to(image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/freedom/images/graphics/email_see_tag.png", :style => "display:block;", :alt => "See it!", :border => 0), "http://#{@daily_deal.publisher.daily_deal_host}" + daily_deal_path(@daily_deal)) %></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table> <!-- END FEATURED DEAL -->

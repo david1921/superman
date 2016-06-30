@@ -1,0 +1,108 @@
+<li style="list-style: none">
+<%- if @publisher.subcategories? && category.subcategories.any? {|subcat| @categories_publisher_has_offers_in.include?(subcat) } -%>
+  <%- if @category && ((@category == category) || @category.parent == category) -%>
+    <%= link_to_remote "&nbsp;".html_safe, {
+      :url => subcategories_offers_path(
+        :category_id => category, 
+        :publisher_id => @publisher_id,
+        :background_color => @background_color,
+        :city             => @city, 
+        :foreground_color => @foreground_color,
+        :iframe_height    => @iframe_height,
+        :iframe_width     => @iframe_width,
+        :layout           => @layout,
+        :order            => @order, 
+        :page_size        => @page_size, 
+        :postal_code      => @postal_code, 
+        :radius           => @radius,
+        :state            => @state, 
+        :text             => @text
+      ),
+      :with => "'disclosed=' + $('disclosure_#{category.id}').hasClassName('disclosed')"
+    }, :class => "disclosure disclosed",
+    :id => "disclosure_#{category.id}" %>
+    <%= link_to truncate(category.name, :length => 20),
+      render_public_offers_path(@publisher, {
+         :background_color => @background_color, 
+         :category_id      => category, 
+         :city             => @city, 
+         :foreground_color => @foreground_color,
+         :iframe_height    => @iframe_height,
+         :iframe_width     => @iframe_width,
+         :layout           => @layout,
+         :page_size        => @page_size, 
+         :publisher_id     => @publisher_id, 
+         :state            => @state, 
+         :postal_code      => @postal_code,
+         :radius           => @radius
+      }), 
+      :title => category.name,
+      :alt => category.name -%>
+    <span class="offers_count">(<%= category.offers_count -%>)</span>
+    <ul class="subcategories" id="subcategories_<%= category.id %>">
+      <%= render :partial => with_theme("offers/subcategory"), :collection => @subcategories.select {|subcat| subcat.offers.present? }.sort_by(&:name) %>
+    </ul>
+  <% else -%>
+    <%= link_to_remote "&nbsp;".html_safe, {
+      :url => subcategories_offers_path(
+                :category_id => category, 
+                :publisher_id => @publisher_id,
+                :background_color => @background_color,
+                :city             => @city, 
+                :foreground_color => @foreground_color,
+                :iframe_height    => @iframe_height,
+                :iframe_width     => @iframe_width,
+                :layout           => @layout,
+                :order            => @order, 
+                :page_size        => @page_size, 
+                :postal_code      => @postal_code, 
+                :radius           => @radius,
+                :state            => @state, 
+                :text             => @text
+              ),
+      :with => "'disclosed=' + $('disclosure_#{category.id}').hasClassName('disclosed')"
+    }, :class => "disclosure",
+    :id => "disclosure_#{category.id}" %>
+  <%= link_to truncate(category.name, :length => 20),
+    render_public_offers_path(@publisher, {
+       :background_color => @background_color, 
+       :category_id      => category, 
+       :city             => @city, 
+       :foreground_color => @foreground_color,
+       :iframe_height    => @iframe_height,
+       :iframe_width     => @iframe_width,
+       :layout           => @layout,
+       :page_size        => @page_size, 
+       :state            => @state, 
+       :publisher_id     => @publisher_id,
+       :postal_code      => @postal_code,
+       :radius           => @radius      
+    }), 
+    :title => category.name,
+    :alt => category.name -%>
+    <span class="offers_count">(<%= category.offers_count -%>)</span>
+    <ul class="subcategories" id="subcategories_<%= category.id %>">
+    </ul>
+  <% end -%>
+<% else -%>
+  <%= link_to truncate(category.name, :length => 20),
+    render_public_offers_path(@publisher, {
+       :background_color => @background_color, 
+       :category_id      => category, 
+       :city             => @city, 
+       :foreground_color => @foreground_color,
+       :iframe_height    => @iframe_height,
+       :iframe_width     => @iframe_width,
+       :layout           => @layout,
+       :page_size        => @page_size, 
+       :state            => @state, 
+       :publisher_id     => @publisher_id,
+       :postal_code      => @postal_code,
+       :radius           => @radius      
+    }), 
+    :class => "empty_subcategories",
+    :title => category.name,
+    :alt => category.name -%>
+  <span class="offers_count">(<%= category.offers_count -%>)</span>
+<% end -%>
+</li>

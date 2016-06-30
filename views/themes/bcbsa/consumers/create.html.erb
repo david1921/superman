@@ -1,0 +1,41 @@
+<% set_daily_deal_page_title_slug t(:title_slug_activate_account) %>
+
+<% unless @publisher.label == 'bcbsa-national' -%>
+   <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+      </li>
+      <li class="no_underline">></li>
+      <li class="no_underline">          
+        <%= t(:register) %>
+      </li>
+    </ul>
+    </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+<% end -%>
+
+<div class="page_row register_activate">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2><%= t(:register_account_created_header_message) %></h2>
+    <p><%= t(:register_account_created_par1) %></p>
+
+    <p class="small"><%= raw t(:register_account_created_par2) %> <%= link_to_remote( t(:resend_email), { :url => send_activation_request_consumer_path(@consumer) }, { :id => "send_activation_request_link" }) %></p>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px", :id => "activate_form" do %>
+      <div class="row">
+        <div class="label">
+          <%= raw label_tag(:activation_code, "<b>#{t(:activation_code_label)}:</b>".html_safe) %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons button_row">
+        <%= submit_tag("#{t(:activate)}", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>

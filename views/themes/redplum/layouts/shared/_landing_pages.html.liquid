@@ -1,0 +1,35 @@
+<div id="landing_content">	
+	<h1>Sign up for Daily Deal alerts!</h1>
+	<p id="description">The daily deal is an awesome way to save 50-90% off your city's finest restaurants, spas, events, and more! Sign up today and you'll get the daily deal sent right to your inbox. There's no easier way to save money and have fun!</p>
+
+        <div id="market_menu_wrapper">
+          <form action="{{ publishing_group.subscribers_path }}" class="preopt email_subscription_tracking" method="post" id="optin">
+            <input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+            <input type="hidden" name="redirect_to_deal_page" value="true" />
+            <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+			<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+
+
+
+            <div id="market_menu_form">
+            	<h2>Select your city</h2>
+              {{ publishing_group | market_selection: 'publisher_id', true, false, true }}
+            </div>
+
+				<h2>Enter your email address</h2>
+            <p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email Address" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;"  /></p>
+
+            <div id="sign_up">
+				<p><input id="subscribe_button" class="button" type="submit" value="View Deals" /></p>
+            </div>
+			<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						
+			    <input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="{{ publishing_group.popup_terms_path }}" class="lbOn" style="color:#b30838;">Terms</a> and &nbsp;<a href="{{ publishing_group.popup_privacy_policy_path }}" class="lbOn" style="color:#b30838;">Privacy Policy</a>
+			</p>
+            
+            <div class="clear"></div>
+            
+
+          </form>
+        </div>		
+</div>

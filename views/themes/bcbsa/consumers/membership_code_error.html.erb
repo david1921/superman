@@ -1,0 +1,3 @@
+
+<p><%= t(:membership_code_error_1) %> <%= @publisher.name %> <%= t(:membership_code_error_2) %> <%- if @publisher.try(:publishing_group).try(:label) %><%= t(:membership_code_error_3) %> <%= link_to "www.blue365deals.com", publishing_group_landing_page_path(:publishing_group_id => @publisher.publishing_group.label) %> <%= t(:membership_code_error_4) %><%- end %></p>
+

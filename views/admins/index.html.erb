@@ -1,0 +1,17 @@
+<% form_tag(:action => "delete") do %>
+  <table cellspacing="0" summary="users" class="users">
+    <tr>
+      <th>&nbsp;</th>
+      <th class="name">Name</th>
+      <th class="privileges">Privileges</th>
+      <th class="email">Email</th>
+      <th>&nbsp;</th>
+    </tr>
+    <%= render :partial => "user", :collection => @users %>
+  </table>
+
+  <div class="full_width buttons">
+    <%= submit_tag("Delete", :confirm => "Really delete?", :class => "left") %>
+    <%= button_to_function("New Admin", :class => "add_new_admin") { |page| page.redirect_to :action => :new } %>
+  </div> 
+<% end -%>

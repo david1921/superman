@@ -1,0 +1,56 @@
+<% if @publisher %>
+  <% if show? %>
+  <div class="deal_key_wrapper">
+  <ul id="deal_key">
+    <li id="sourced_by_publisher"><%= @publisher.name %> Deals Available to Network</li>
+    <li id="sourced_by_network">Network Deals Available to <%= @publisher.name %></li>
+    <li id="distributed_by_publisher"><%= @publisher.name %> Deals Selected from Network</li>
+    <li id="distributed_by_network">All Deals in Network Selected for Distribution</li>
+  </ul>
+  </div><!-- end .deal_key_wrapper -->
+  <% else %>
+   <div class="deal_key_wrapper">
+    <ul id="deal_key">
+      <div class="top_nav_keys">
+      <li id="all_deals"><%= link_to("All Deals", url_for_syndication_status_label_search) %></li>
+      <li id="sourceable_by_publisher"><%= link_to("Sourced By #{@publisher.name}", url_for_syndication_status_label_search("sourceable_by_publisher")) %></li></div>
+      <li id="sourced_by_publisher"><%= link_to("#{@publisher.name} Deals Available to Network", url_for_syndication_status_label_search("sourced_by_publisher")) %></li>
+      <li id="sourced_by_network"><%= link_to("Network Deals Available to #{@publisher.name}", url_for_syndication_status_label_search("sourced_by_network")) %></li>
+      <li id="distributed_by_publisher"><%= link_to("#{@publisher.name} Deals Selected from Network", url_for_syndication_status_label_search("distributed_by_publisher")) %></li>
+      <li id="distributed_by_network"><%= link_to("All Deals in Network Selected for Distribution", url_for_syndication_status_label_search("distributed_by_network")) %></li>
+    </ul>
+  </div><!-- end .deal_key_wrapper -->
+  <% end %>
+<% end %>
+<script type="text/javascript">
+jQuery.noConflict();            
+jQuery(document).ready(function ($) {
+    if ( document.location.href.indexOf('sourceable_by_publisher') > -1 ) {
+        $('#deal_key #sourceable_by_publisher').addClass('active_key srcble_by_pub');
+    }
+    else if ( document.location.href.indexOf('sourced_by_publisher') > -1 ) {
+         $('#deal_key #sourced_by_publisher').addClass('active_key src_by_pub');
+    }
+    else if ( document.location.href.indexOf('sourced_by_network') > -1 ) {
+         $('#deal_key #sourced_by_network').addClass('active_key src_by_net');
+    }
+    else if ( document.location.href.indexOf('distributed_by_publisher') > -1 ) {
+         $('#deal_key #distributed_by_publisher').addClass('active_key dis_by_pub');
+    }       
+    else if ( document.location.href.indexOf('distributed_by_network') > -1 ) {
+        $('#deal_key #distributed_by_network').addClass('active_key dis_by_net');
+    }
+    else{
+    		$('#deal_key #all_deals').addClass('active_key all_deals_btn');
+    }
+var width = 0;
+$('#deal_key li').each(function() {
+    width += $(this).outerWidth( true );
+});
+$('#deal_key').css('width', width + 10);
+
+
+});
+
+
+</script>

@@ -1,0 +1,16 @@
+<ul id="dd_nav">
+	<li><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>">Today's Deal</a></li>
+	<li><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=9" class="<%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">All Deals</a></li>
+	<li><a href="<%= past_deals_of_day_path(@publisher.label) %>?per_page=9" class="<%= "#{controller_name}##{action_name}" == "daily_deals#past" ? 'current_page' : nil %>">Past Deals</a></li>
+	<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>">How it Works</a></li>
+	<% if current_consumer_for_publisher?(@publisher) %>
+			<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#login" ? 'current_page' : nil %>">My Deals</a></li>
+		<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#login" ? 'current_page' : nil %>">My Account</a></li>
+		<li><a href="<%= daily_deal_logout_path(@publisher) %>">Logout</a></li>
+	<% else %>
+		<li><a href="<%= new_publisher_consumer_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "consumers#new" ? 'current_page' : nil %>">Sign Up</a></li>
+		<li><a href="<%= daily_deal_login_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#login" ? 'current_page' : nil %>">Login</a></li>
+	<% end %>
+
+
+</ul><!-- /dd_nav -->

@@ -1,0 +1,9 @@
+<div id="sort_form">
+<% form_for :search_request, @search_request, :html => {:method => :get, :id => "sort_form"} do |form| %>
+  <label for="sort" class="sort">Sort by&nbsp;</label>
+  <%= select_tag('sort', options_for_select(sort_options, @search_request.sort), :onchange => "this.form.submit();", :class => 'sort_select') %>
+<%= hidden_field_tag :publisher_id, @publisher.id %>
+<%= hidden_field_tag(:status, @search_request.status) %>
+<%= render :partial => "syndication/shared/filter_params", :object => form %>
+<% end%>
+</div>

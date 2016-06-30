@@ -1,0 +1,84 @@
+	<div id="main_column" class="travel_page_content">
+	<div id="dd_main_content">
+
+	  <% if @featured_deal.present? %>
+        <div class="featured_deals">
+            <div class="featured_wrapper">
+			  <div class="deal_photo_wrapper">
+                <div class="deal_photo">
+                  <a href="<%= public_deal_of_day_path(@publisher.label) %>">
+                    <!-- old shadow <img src="/themes/freedom/images/graphics/deal_shadow_left.png" alt="Left Shadow" class="shadow"> -->
+                    <img class="featured_deal_image" src="<%= protocol_relative_url(@featured_deal.photo.url(:portrait)) %>" alt="<%= @featured_deal.advertiser.name %>" />
+                    <!-- old shadow <img src="/themes/freedom/images/graphics/deal_shadow_right.png" alt="Left Shadow" class="shadow"> -->
+                	</a>
+                </div>
+			  </div>
+              <div class="featured_deal_info">
+                <h3>
+                   <%= @featured_deal.value_proposition %> 
+                </h3>
+                
+				<!-- Show custom field for location if available otherwise advertiser location -->
+                <h4 class="featured_deal_location">
+                	<% if @featured_deal.custom_1.present? %>
+    		 			<span class="store_city"><%= @featured_deal.custom_1 %></span>
+                    <% elsif @featured_deal.advertiser.store.present? %> 
+                      <% if  @featured_deal.advertiser.stores.size > 1 %>
+                        <span class="store_city">Multiple Locations</span>
+                      <% else @featured_deal.advertiser.store.city.present? %> 
+                      <span class="store_city"><%= @featured_deal.advertiser.store.city %>, <%= @featured_deal.advertiser.store.country.name %></span>
+                    <% end %>
+                   <% end %>
+                </h4>
+                <div class="featured_deal_description">
+										<h5>Description</h5>
+                    <p><%= raw truncate(@featured_deal.description, :length => 400) %></p>
+                </div>
+                
+                <!-- featured_deal_timer -->
+				<table class="timer">
+					<tr>
+						<td rowspan="2">
+							<a class="featured_deal_view" href="<%= Drop::DailyDeal.new(@featured_deal).url %>" name="View Deal">
+                    	<div class="featured_deal_tag"> <p>See It</p></div>
+                    	</a>
+						</td>
+						<td rowspan="2">
+							
+							<img src="/themes/freedom/images/graphics/timer_clock.png" alt="Timer Clock">
+						</td>
+						<td class="time_left_to_buy_label">Time Left To Buy</td>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy" class="time_left_to_buy"><%= @featured_deal.time_remaining_display %></td>
+					</tr>
+				</table>
+                <!-- /featured_deal_timer -->
+
+              </div><!-- /featured_deal_info -->
+                <div class="clear"></div>
+            </div><!-- /featured_wrapper -->
+        </div>
+      <% end %>
+
+        	<!-- Travel Side Deals --> 
+        	<% category_deals = @daily_deals.select { |x| x.publishers_category.present? } %>
+    		<% travel_deals = category_deals.select { |x| x.publishers_category.name == "Travel Deal" } %> 
+        	<% unless travel_deals.blank? %>
+            	<div class="travel_deals">
+                	<!-- getting travel deals link -->
+                	<% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending  %>
+                	<% travel_category = categories.find_by_name("Travel Deal") %>
+
+                	<% travel_deals.shuffle.each_with_index do |side_deal, index| %>
+                    	<%= render :partial => with_theme("shared/medium_deal"), :locals => {:small_deal => side_deal} %>
+                	<% end %>
+                	<div class="clear"></div>
+            	</div>
+        	<% end %>
+        	<!-- END Travel Side Deals -->
+
+				
+		
+	</div><!-- /dd_main_content -->
+</div><!-- /travel_page_content -->

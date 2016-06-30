@@ -1,0 +1,20 @@
+	<h2 class="signup_slug">We’ll deliver great local coupons, deals and other offers directly to your inbox or mobile phone. <span class="red">Sign up now!  It’s easy and free!</span></h2>
+	<div id="signup_form">
+	<% form_for([@publisher, @subscriber], :html => { :class => "edit_subscriber email_subscription_tracking", :id => "edit_subscriber" }) do |f| -%>
+	      <%= hidden_field_tag :redirect_to, verifiable_url(public_offers_url(@publisher)) %>
+        <%= f.error_messages(:header_message => "Errors prevent this account from being created") %>
+        <%= f.text_field_div(:name, "Full Name:") %>
+        <%= f.text_field_div(:email) %>
+		<%= f.text_field_div(:mobile_number)%>
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<fieldset>
+			<input name="subscriber[terms]" type="hidden" value="0" />
+			<%= f.check_box_div(:terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+		</fieldset>
+		<h3>Please help us send you the most relevant offers by providing a little more information.</h3>
+		<%= f.text_field_div(:zip_code)%>
+		<%= f.select_div :birth_year, options_for_select([""] + (1910..(Time.now.strftime("%Y").to_i)).map(&:to_s)), {:label_text => "Year of Birth:"}, :class => 'floatleft' %>
+		<%= f.select_div :gender, options_for_select(["", "Male", "Female"]), {}, :class => 'floatleft' %>
+		<p id="subscribe_button"><input class="button" type="submit" value="Sign Up" /></p>
+	<% end %>
+	</div>

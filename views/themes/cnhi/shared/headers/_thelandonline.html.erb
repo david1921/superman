@@ -1,0 +1,126 @@
+
+<script type="text/javascript">
+function html_entity_decode(str) {
+    return str.replace(/&amp;/g,"&").replace(/&lt;/g,"<").replace(/&gt;/g,">").replace(/&quot;/g,"\"");
+}
+function display_ad(ads)
+{
+  if(ads == '')
+  {
+    document.write('<!-- No ads in feed for this position in this section -->');
+    return;
+  }else{  
+      if(ads.length > 0)
+      {
+          var tmp_ads = Array();
+          for (var ad in ads)
+          {
+              var currad = ads[ad];
+              for (var x = 0; x < currad.shares; x++)
+              {
+                  tmp_ads.push(currad);
+              }
+          }
+          var ad = tmp_ads[Math.floor(Math.random()*(tmp_ads.length))];
+          var code = html_entity_decode(ad.code);
+          if(ad.type == 'GOO')
+          {
+              eval(code);
+          }else{
+              document.write(code);
+          }
+          if(ad.ad_event)
+          {
+              adTracker._trackEvent('AdLoad', ad.ad_event);
+          }
+      }
+  }
+}
+</script><!--<base>--><title>
+       Coupons
+       »
+       The Land :: www.TheLandOnline.com
+    </title>
+<script type="text/javascript" src="http://classifieds.neighborsink.com/premiumads/thelandonline.js"></script><script type="text/javascript"> siteurl='http://www.thelandonline.com';</script><script type="text/javascript">
+      /* <![CDATA[ */
+          var djConfig = {
+              useXDomain : true,
+              noFirebugLite: true,
+              isDebug : false,
+              parseOnLoad : false,
+              preventBackButtonFix : false,
+              dojoBlankHtmlUrl : siteurl + '/blank.html',
+              dojoIframeHistoryUrl : siteurl + '/iframe_history.html'
+          };
+      /* ]]> */
+      </script><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/dojo.xd.js"></script><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script><script type="text/javascript" src="http://static.cnhi.zope.net/min/g=js"></script><link rel="stylesheet" type="text/css" media="screen" href="/include/css/styles.css">
+<meta name="y_key" content="1c998588ae2be693">
+<meta name="google-site-verification" content="E3RzH6_lstln2ggXlW2b3gc3IRTEG6SwIOIsCu5BlPI">
+<meta name="msvalidate.01" content="0123456789ABCDEF0123456789ABCDEF">
+<!-- Begin Header Resources --><!-- End Header Resources --><meta name="description" content="Empty Template">
+<meta name="title" content="The Land :: www.TheLandOnline.com">
+<link rel="image_src" href="http://static.cnhi.zope.net/thelandonline/images/theland.jpg">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--[if lte IE 6]>
+  <link rel="stylesheet" type="text/css" media="screen"
+        href="http://static.cnhi.zope.net/min/g=ie" />
+  <![endif]--><link rel="stylesheet" type="text/css" media="screen" href="http://o.aolcdn.com/dojo/1.4/dijit/themes/tundra/tundra.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://o.aolcdn.com/dojo/1.4/dojox/image/resources/Lightbox.css">
+<link rel="stylesheet" type="text/css" media="screen" href="http://o.aolcdn.com/dojo/1.4/dojox/image/resources/image.css">
+<script type="text/javascript" src="http://webads.js.cnhi.s3.amazonaws.com/thelandonline_coupons_cnhi.js"></script><script type="text/javascript" src="http://www.thelandonline.com/section_mapping.js"></script><script type="text/javascript">
+      /* <![CDATA[ */
+    var initial_section = 'coupons_cnhi';
+    var siteid = 'thelandonline'
+    var sectionid = 'coupons_cnhi';
+    /*  ]]> */</script><script type="text/javascript">
+  /* <![CDATA[ */
+    dojo.require("dijit.dijit");
+    dojo.require("dojo.fx");
+    dojo.require("dojox.fx.scroll");
+    dojo.require("dojox.layout.ScrollPane");
+    dojo.require("dojo.fx.easing");
+    dojo.require("dojox.image.Lightbox");
+    dojo.require("dojox.image.LightboxNano");
+    dojo.require("dojo.parser");
+    dojo.require("dijit.layout.AccordionContainer");
+    dojo.require("dojo.cookie");
+    dojo.require("dojox.widget.Roller");
+    dojo.require("dojox.image.Gallery");
+    dojo.require("dojo.data.ItemFileReadStore");
+    dojo.require("dojox.image.ThumbnailPicker");
+    dojo.require("dojox.image.SlideShow");
+    dojo.require("dijit.form.Button");
+    dojo.require("dojox.charting.Chart2D");
+    dojo.require("dojox.charting.plot2d.Pie");
+    dojo.require("dojox.charting.action2d.Highlight");
+    dojo.require("dojox.charting.action2d.MoveSlice");
+    dojo.require("dojox.charting.action2d.Tooltip");
+    dojo.require("dojox.charting.themes.MiamiNice");
+    dojo.require("dojox.charting.widget.Legend");
+    dojo.addOnLoad(function(){
+      CNHI.init({
+        siteurl : siteurl,
+        siteid : siteid,
+        mapping : mapping,
+        initial_section : initial_section,
+        more_text : '&hellip; more &raquo;'
+      });
+      CNHI.API.pta(premium_text_ads);
+    });
+  /*  ]]> */
+  </script><!-- AP Video --><script type="text/javascript" src="http://img.video.ap.org/p/j/apovn.js"></script><!-- end AP Video // Begin Evie Says --><script type="text/javascript" src="http://dev.eviesays.com/script/widget_v2.2.js"></script><script type="text/javascript">/* <![CDATA[ */
+        eviesays.widget.settings.base_url = "http://thelandonline.eviesays.com";
+        eviesays.widget.settings.setPartnerCode("cnhi");
+        eviesays.widget.settings.where = "Mankato,MN";
+        eviesays.includeCSS(eviesays.widget.settings.base_url + "/version/cnhi/style/widget_v1.0.css");
+        eviesays.widget.settings.restaurants_url = "http://local.thelandonline.com/search.pg?q=restaurant&z=Mankato%2CMN";
+        /* ]]> */</script><!-- end Evie Says --><script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js"></script><script type="text/javascript">
+    GS_googleAddAdSenseService('ca-pub-4648602590429272');
+    GS_googleAddAdSenseService('ca-pub-6374692812882232');
+    GS_googleAddAdSenseService("ca-pub-0441876019302704");
+    GS_googleEnableAllServices();
+  </script><script type="text/javascript">
+        GA_googleAddAttr('zopesiteid', 'thelandonl');
+        GA_googleAddAttr('Section', 'coupons_cnhi');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'allsites_obituaries_TP_728x90');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'allsites_monster_TP_728x90');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'allsites_monster_RS_160x600');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-6374692812882232', 'eviesays_widget_thelandonline');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-6374692812882232', 'eviesays_widget_thelandonline_300x250');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'BP_728x90');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'RS_160x600');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'TP_728x90');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'IL_300x250');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'UR_234x60');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-4648602590429272', 'c_234x60');</script><script type="text/javascript">GA_googleAddSlot('ca-pub-0441876019302704', 'z5_B_728x90');</script><script type="text/javascript">GA_googleAddSlot("ca-pub-0441876019302704", "z5_IL_300x250");</script><script type="text/javascript">GA_googleAddSlot("ca-pub-0441876019302704", "z5_RS_160x600");</script><script type="text/javascript">GA_googleAddSlot("ca-pub-0441876019302704", "z5_TP_728x90");</script><script type="text/javascript">GA_googleAddSlot("ca-pub-0441876019302704", "z5_wb_120x60");</script><script type="text/javascript">GA_googleAddSlot("ca-pub-0441876019302704", "z5_B_300x250");</script><script type="text/javascript">GA_googleFetchAds();</script><script type="text/javascript" src="http://static.cnhi.zope.net/GLOBAL/js/flowplayer-3.1.4.min.js"></script><script type="text/javascript" src="http://static.cnhi.zope.net/GLOBAL/monster_redux/wdgJobSeach/js/mnst_jobsearch.js"></script><meta property="fb:app_id" content="http://www.facebook.com/thelandonline">
+

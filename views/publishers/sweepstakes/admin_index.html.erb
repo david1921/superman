@@ -1,0 +1,29 @@
+<table cellspacing="0" summary="sweepstakes" class="sweepstakes">
+  <tr>
+    <th class="name">Value Proposition</th>
+    <th class="entries">Entries</th>
+    <th class="start_at">Start At</th>
+    <th class="hide_at">Hide At</th>
+    <th>&nbsp;</th>
+  </tr>
+  
+  <% @sweepstakes.each do |sweepstake| -%>
+    <tr>
+      <td><%= sweepstake.value_proposition -%></td>
+      <td><%= link_to( sweepstake.entries.size, admin_index_publisher_sweepstake_entries_path(@publisher, sweepstake) ) %></td>
+      <td><%= sweepstake.humanize_start_at %></td>
+      <td><%= sweepstake.humanize_hide_at %></td>
+      <td><%= link_to("edit", edit_publisher_sweepstake_path(@publisher, sweepstake) ) %> | <%= link_to("view", preview_publisher_sweepstake_path(@publisher.label, sweepstake) ) %></td>
+    </tr>
+  <% end -%>
+<% if @sweepstakes.empty? -%>
+  <tr>
+    <td colspan="4" style="text-align: center;">There are currently no sweepstakes, click <strong>New Sweepstake</strong> to add a sweepstake</td>
+  </tr>
+<% end -%>
+
+</table>
+
+<div class="full_width buttons">
+  <%= button_to_function "New Sweepstake", "window.location.href = '#{new_publisher_sweepstake_url(@publisher)}'" %>
+</div>

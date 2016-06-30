@@ -1,0 +1,26 @@
+<div id="contact" class="info_page">
+
+	<% unless @publisher.label == "clickedin-charlotte" %>
+		<div id="left_column">
+ 			<%= raw render :partial => with_theme("shared/side_nav") %>
+		</div><!-- left_column -->
+
+		<div id="center_column">
+	<% else %>
+		<div id="center_column" style="margin-left:190px;">
+	<% end %>
+			<h1>Contact Us</h1> 
+			<h2>For Merchant Support</h2> 
+			<p>Please email <a href="mailto:operations@clickedin.com">operations@clickedin.com</a></p> 
+			<h2>For Sales</h2>
+			<p>Please email <a href="mailto:sales@clickedin.com">sales@clickedin.com</a></p> 
+			<h2>For Customer Support</h2>
+			<p>Please email <a href="mailto:support@clickedin.com">support@clickedin.com</a> or call (800)455-2139</p> 
+		</div><!--/center_column -->
+
+		<div id="right_column">
+			<%= raw render :partial => with_theme("shared/search") %>
+			<%= raw render :partial => with_theme("shared/refer_friend") %>
+		</div><!--right_column-->
+     
+</div><!--/contact-->

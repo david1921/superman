@@ -1,0 +1,59 @@
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [
+ <!ENTITY mysession1 SYSTEM "/home/nniclausse/.tsung/tsung_recorder20051217-13:11.xml">
+]>
+
+<tsung loglevel="info">
+  <clients>
+    <client host="localhost" use_controller_vm="true"/>
+  </clients>
+
+  <servers>
+    <server host="localhost" port="80" type="tcp"/>
+  </servers>
+
+  <load loop="1">
+    <arrivalphase phase="1" duration="2" unit="minute">
+      <users interarrival="0.8" unit="second" maxnumber="250"/>
+    </arrivalphase>
+  </load>
+
+  <sessions>
+    <session name="main_session" type="ts_http" probability="100">
+
+      <transaction name="landing_page">
+        <request>
+          <http url="http://bcbsa.analoganalytics.com/publishing_groups/bcbsa/landing_page" version="1.1" method="GET" />
+        </request>
+      </transaction>
+
+      <transaction name="daily_deal">
+        <request>
+          <http url="http://bcbsa.analoganalytics.com/publishers/bcbsmi/deal-of-the-day" version="1.1" method="GET">
+            <add_cookie key="publisher_membership_code" value="NXO" />
+            <add_cookie key="seen_welcome" value="1" />
+          </http>
+        </request>
+      </transaction>
+
+      <transaction name="vanity_url">
+        <request>
+          <http url="http://bcbsa.analoganalytics.com/BCBSMI" version="1.1" method="GET">
+            <http_header name="Host" value="www.blue365deals.com" />
+            <add_cookie key="publisher_membership_code" value="NXO" />
+            <add_cookie key="seen_welcome" value="1" />
+          </http>
+        </request>
+      </transaction>
+
+      <transaction name="deal_categories">
+        <request>
+          <http url="http://bcbsa.analoganalytics.com/publishers/1372/daily_deal_categories" version="1.1" method="GET">
+            <add_cookie key="publisher_membership_code" value="NXO" />
+            <add_cookie key="seen_welcome" value="1" />
+          </http>
+        </request>
+      </transaction>
+
+    </session>
+  </sessions>
+</tsung>

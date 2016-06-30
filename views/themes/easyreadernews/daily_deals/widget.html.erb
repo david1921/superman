@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+	<head>
+		<link rel="stylesheet" href="/themes/easyreadernews/stylesheets/widget.css" type="text/css" />
+		<title>Easy Deals</title>
+	</head>
+	<body>
+		<div id="widget">
+			<% @daily_deals.each do |daily_deals| %>
+			    <div>
+			    	<a href="<%= daily_deal_url(daily_deals) %>" target="_blank"><img class="photo" src="<%= daily_deals.photo.url(:facebook) %>"></a>
+					<h1><a href="<%= daily_deal_url(daily_deals) %>"><%= daily_deals.value_proposition %></a></h1>
+					<div class="view"><a href="<%= daily_deal_url(daily_deals) %>" target="_blank">View Deal</a></div>
+			    </div>
+
+		  	<% end %>
+		</div>		
+	</body>
+</html>

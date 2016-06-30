@@ -1,0 +1,28 @@
+<tr>
+  <th rowspan="2">&nbsp;</th>
+  <th class="name" rowspan="2">Name</th>
+  <th class="center parent coupons" colspan="3">Online Display Coupons</th>
+  <% if @publisher.txt_offers_enabled? -%>
+      <th class="center parent txt_coupons" colspan="3">TXT Coupons</th>
+  <% end %>
+  <% if @publisher.allow_gift_certificates? -%>
+      <th class="center parent gift_certificates" colspan="3">Deal Certificates</th>
+  <% end -%>
+  <th class="users right" colspan="2" rowspan="2">Users</th>
+  <th rowspan="2">&nbsp;</th>
+</tr>
+<tr>
+  <th class="active_coupons right">Active</th>
+  <th class="total_coupons right">Total</th>
+  <th>&nbsp;</th>
+  <% if @publisher.txt_offers_enabled? -%>
+      <th class="active_txt_coupons right">Active</th>
+      <th class="total_txt_coupons right">Total</th>
+      <th>&nbsp;</th>
+  <% end -%>
+  <% if @publisher.allow_gift_certificates? -%>
+      <th class='active_gift_certificates right'>Active</th>
+      <th class='total_gift_certificates right'>Total</th>
+      <th>&nbsp;</th>
+  <% end -%>
+</tr>

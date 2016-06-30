@@ -1,0 +1,35 @@
+<% if grid_offer -%>
+<% clazz = grid_offer_counter == 3 ? "offer_wrapper last" : "offer_wrapper" %>
+<div class="<%= clazz %>">
+	<div class="deal_photo_wrapper">
+		<% if grid_offer.national_deal? -%>
+		<div class="national"><span>National Deal</span></div>
+		<% end -%>
+		<%= link_to( image_tag( grid_offer.photo.url(:syndication), :class => "deal_photo", :size => "182x110" ), syndication_show_deal_path(grid_offer), :class => "deal_details" ) %>
+	</div><!-- /deal_photo_wrapper -->
+	<div class="offer_details">
+	  <%= link_to( grid_offer.value_proposition, syndication_show_deal_path(grid_offer), :class => "value_proposition" ) %>
+		<p class="spec"><span class="label">Price:</span> <%= grid_offer.humanize_price %></p>
+		<p class="spec"><span class="label">Date:</span> <%= grid_offer.start_at.to_s(:compact_date_only) %> - <%= grid_offer.hide_at.to_s(:compact_date_only) %></p>
+		<p class="spec"><span class="label">Category:</span> <%= grid_offer.category_name %></p>
+		<%= render :partial => "syndication/shared/deal_syndication_status", :object => grid_offer %>
+		<div class="view_details_wrap"><%= link_to( "View Details", syndication_show_deal_path(grid_offer), :class => "button gradient view_details" ) %></div>
+	</div><!-- /offer_details -->
+</div><!-- /offer_wrapper -->
+<% end -%>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+function equalGrids(group) {
+	var tallest = 0;
+	group.each(function() {
+		var thisHeight = $(this).height();
+		if(thisHeight > tallest) {
+			tallest = thisHeight;
+		}
+	});
+	group.height(tallest);
+}
+
+equalGrids($(".offer_wrapper"));
+});
+</script>

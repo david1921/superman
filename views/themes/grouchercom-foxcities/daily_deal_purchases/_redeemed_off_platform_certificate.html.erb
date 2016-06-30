@@ -1,0 +1,21 @@
+<tr>
+  <% if redeemed_off_platform_certificate.has_deal_information? %>
+      <td class="description"><%= redeemed_off_platform_certificate.line_item_name %></td>
+      <td class="serial_number">-</td>
+      <td class="recipient">
+        <%- if (names = redeemed_off_platform_certificate.redeemer_names).length > 30 -%>
+            <span title="<%= names %>"><%= truncate(names, :length => 30) %></span>
+        <%- else -%>
+            <%= names %>
+        <%- end -%>
+      </td>
+      <td class="used_on">
+        <%= redeemed_off_platform_certificate.redeemed_at.present? ?
+                    I18n.localize(redeemed_off_platform_certificate.redeemed_at.to_date, :format => :long) :
+                    '-' %>
+      </td>
+      <td class="status"><%= print_daily_deal_purchase_link(redeemed_off_platform_certificate) %></td>
+  <% else %>
+      <td colspan="7"><%= t('.error_message') %></td>
+  <% end %>
+</tr>

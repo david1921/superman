@@ -1,0 +1,9 @@
+<% if @publisher.enable_daily_deal_referral %>
+	<h4 class="refer_friend">Refer A Friend</h4>
+	<div id="refer_friend" class="content_box">
+     <a class="get_info" href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>">
+     <h2>Refer a friend and receive a <%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :precision => 0) %> credit towards your next purchase.</h2>
+     <div class="refer_credit">Earn <span><%= number_to_currency(@publisher.daily_deal_referral_credit_amount, :precision => 0) %></span> Credit</div>
+     </a>
+	</div><!-- /refer_friend -->
+<% end %>

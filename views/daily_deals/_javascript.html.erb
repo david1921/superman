@@ -1,0 +1,11 @@
+<% if @daily_deal -%>
+<script type="text/javascript">
+  var aaDealPath = '<%= daily_deal_path(@daily_deal, :format => "js") %>';
+</script>
+<% elsif @daily_deals -%>
+<script type="text/javascript">
+  var aaDealPath = '<%= daily_deals_public_index_path(@publisher.label, :format => "js") %>';
+</script>
+<% end -%>
+<script data-main="/javascripts/app/daily_deals/main.js" src="/javascripts/lib/require-jquery.js"></script>
+<script type='text/javascript'>jQuery.noConflict();</script>

@@ -1,0 +1,26 @@
+<div class="images_controls">
+  <div class="will_paginate">
+  <%= will_paginate @offers %>&nbsp;
+  </div>
+  <div class="page_size">
+    Page Size: 
+    <% [ 10, 100, 1000 ].each do |page_size| -%>
+    <%= link_to page_size, publisher_images_path(:page => params[:page], :per_page => page_size, :page => nil) %>
+    <% end -%>
+  </div>
+</div>
+
+<table cellspacing="0" class="images clear">
+  <tr>
+    <th class="name">Advertiser Logo on Listings Page</th>
+    <th class="name">Photo on Listings Page</th>
+    <th class="name">Advertiser Logo on Printed Coupon</th>
+    <th class="name">Offer Image on Printed Coupon</th>
+  </tr>
+  <%= render :partial => "offer", :collection => @offers %>
+</table>
+
+<div class="images_controls">
+<%= will_paginate @offers %>
+</div>
+

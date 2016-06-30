@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>{{ daily_deal.value_proposition }}</title>
+</head>
+<body style="background: #ffffff; margin:0; padding:0;"> 
+	<table align="center" cellpadding="0" cellspacing="0" width="600"><!-- main table -->
+		<tr>
+			<td colspan="2" style="text-align:center;border-bottom:1px solid #cccccc;">
+				<img src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/backgrounds/email_header.png" height="98" width="583" alt="Creative Loafing Deals" />
+			
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-bottom:10px;">
+			&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-right:20px;text-align:center;width:359px">
+				<p><img src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/backgrounds/deal_of_the_day.png" height="36" width="257" alt="Deal of the Day" /></p>
+				<span id="value_proposition" style="color: black;font-family: Times, serif;font-size: 22px;font-weight: bold;line-height: 24px;margin-bottom:0;">{{ daily_deal.value_proposition }}</span>
+			</td>
+			<td style="background-color:#9bdb87;width:241px;padding:0;margin:0;vertical-align:top;">
+				<a href="{{ daily_deal.url_for_email }}" id="buy_now_button"><img src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/buttons/go_to_the_deal.png" style="border: none;" height="45" width="241" alt="Go to the Deal" /></a>
+				<table cellpadding="4" cellspacing="0" align="center"><!-- dashboard -->
+					<tr>
+						<th style="color:white;font-family: helvetica, Arial, sans-serif;font-size:12px;">RETAIL PRICE</th>
+						<td style="color:black;font-family: helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;vertical-align:middle;"> {{ daily_deal.value | currency }}</td>
+					</tr>
+					<tr>
+						<th style="color:white;font-family: helvetica, Arial, sans-serif;font-size:12px;vertical-align:middle;">YOUR PRICE </th>
+						<td style="color:black;font-family: helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;vertical-align:middle;"> {{ daily_deal.price | currency }}</td>
+					</tr>
+				</table><!-- /end dashboard -->
+			</td>
+		</tr>
+		<tr>
+			<td style="padding-top:30px">
+				<img alt="Deal of the Day" src="{{ daily_deal.photo.url }}"/>
+			</td>
+			<td style="padding-top:30px;text-align:center;vertical-align:top;">
+				{% if advertiser.logo.file? %}
+				<img src="{{ advertiser.logo.standard_url }}" alt="{{ advertiser.name }}" width="110" style="text-align:center;" />
+				{% endif %}
+				
+				{% if advertiser.address? %}
+					<p style="color:black;font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight:bold; padding: 0; margin-top: 10px; margin-bottom:0;">{{ advertiser.name }}</p>
+					<p style="color:black;font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight:bold; padding: 0; margin:0;">
+						{{ advertiser.address_line_1 }}<br />
+						{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+						{{ advertiser.phone_number }}<br />
+						{% if advertiser.website_url != empty %}
+						<a href="{{ advertiser.website_url }}" style="color:#1f60b4;text-decoration:none;">{{ advertiser.website_url }}</a>
+					</p>
+					{% endif %}
+				{% endif %}
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table cellpadding="0" cellspacing="0" style="background-color:#5a9416;display:block;height:41px; padding:0;margin:0;width:566px;overflow:hidden;"><!-- share -->
+					<tr>
+						<td style="padding:0;margin:0;height:41px;display:block;">
+							<img src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/backgrounds/email_share_left.png" height="41" width="116" alt="Share It" />
+						</td>
+						<td valign="middle" align="center" style="padding:0;margin:0;height:42px;vertical-align:middle;overflow:hidden;">
+							<a href="{{ daily_deal.facebook_url }}" title="Share coupon on Facebook" ><img alt="facebook" src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/icons/facebook.png" width="31" height="32" style="border: none;padding-right:6px;padding-left:6px;margin:0;" /></a>
+						</td>
+						<td valign="middle" align="center" style="padding:0;margin:0;height:42px;vertical-align:middle;overflow:hidden;">
+							<a href="{{ daily_deal.twitter_url }}" title="Share coupon on Twitter"><img alt="Twitter" src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/icons/twitter.png" width="31" height="32" style="padding-right:6px;border: none;margin:0;" /></a>
+						</td>
+						<td valign="middle" align="center" style="padding:0;margin:0;height:42px;vertical-align:middle;overflow:hidden;">
+							<a href="{{ daily_deal.email_url }}"><img alt="Email" src="http://{{ publisher.daily_deal_host }}/images/buttons/email_32.png" width="31" height="31" style="border: none;padding-right:6px;margin:0;" /></a>
+						</td>
+						<td style="padding:0;margin:0;height:41px;display:block;">
+							<img src="http://{{ publisher.daily_deal_host }}/themes/tampa/images/backgrounds/email_share_right.png" width="339" height="41" alt="Share It" />
+						</td>
+					</tr>
+				</table><!-- /share -->
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" style="padding-right:20px;width:60%;">
+				<h4 style="color:black;font-family: Helvetica, Arial, sans-serif;font-size: 16px;font-weight: bold;margin-bottom:0;">What you Get</h4>
+				<span style="color:black;font-family: Helvetica, Arial, sans-serif;font-size:12px;line-height:16px;">{{ daily_deal.description }}</span>
+			</td>
+			<td valign="top">
+				<h4 style="color:black;font-family: Helvetica, Arial, sans-serif;font-size: 16px;font-weight: bold;margin-bottom:0;">Highlights</h4>
+				<span style="color:black;font-family: Helvetica, Arial, sans-serif;font-size:12px;line-height:16px;">{{ daily_deal.highlights }}</span>
+			</td>
+		</tr>
+	</table><!-- /main table -->	
+</body>
+</html>

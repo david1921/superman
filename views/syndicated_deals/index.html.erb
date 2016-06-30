@@ -1,0 +1,31 @@
+<%= render :partial => "syndicated_deals/syndicated_deal_form" %>
+<% syndicated_deals = @daily_deal.syndicated_deals.not_deleted %>
+<% if !syndicated_deals.empty? %>
+<h3>Syndicated Deals</h3>
+<table cellspacing="0" summary="daily_deals" class="daily_deals">
+<thead>
+  <th>Publisher</th> 
+  <th>&nbsp;</th>
+  <th>&nbsp;</th>
+  <th>&nbsp;</th>
+</thead>
+  <% @daily_deal.syndicated_deals.not_deleted.each do |sd| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <% if sd.publisher %>
+    <td width="85%"><%= sd.publisher.name %></td>
+    <td width="5%"><%= link_to "View", daily_deal_path(sd)%></td>
+    <td width="5%"><%= link_to "Edit", edit_daily_deal_path(sd)%></td>
+    <td width="5%"><%= link_to "Delete", daily_deal_syndicated_deal_path(@daily_deal, sd), :method => :delete %></td>
+    <% else %>
+    <td width="85%"><em><%= "Publisher #{sd.publisher_id} for deal #{sd.id} deleted" %></em></td>
+    <td width="5%"></td>
+    <td width="5%"></td>
+    <td width="5%"></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<% end %>
+<div class="full_width buttons">
+<%= button_to_function "Cancel", "window.location.href = '#{edit_daily_deal_path(@daily_deal)}'", :class => "left" %>
+</div>

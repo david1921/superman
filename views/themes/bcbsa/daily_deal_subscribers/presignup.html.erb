@@ -1,0 +1,77 @@
+<% set_daily_deal_page_title_slug "#{t(:title_slug_presignup)} #{@publisher.name}" %>
+
+<% if !@publisher.launched %>
+    <%= render :partial => with_theme("shared/tracking/#{@publisher.label.downcase.gsub('-', '_')}_tracking") %>
+<% end %>
+
+<div id="non_part_preopt">
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    
+    <div id="non_part_preopt_top">
+			<div id="non_part_tpreoptop_row1">
+		 		<img src="/themes/bcbsa/images/graphics/tip_swirl_top.png" />
+		 	</div>
+		 	<div id="non_part_preopt_top_row2">
+		 		<h3><%= t(:thanks_for_interest)%></h3>
+		 	</div>
+		 	<div id="non_part_preopt_top_row3">
+		 		<img src="/themes/bcbsa/images/graphics/tip_swirl_bottom.png" />
+		 	</div>
+	  </div>
+
+	   <div id="non_part_graphic">
+		  <img src="/themes/bcbsa/images/graphics/non_part_graphic.jpg" />
+	  </div>
+    
+    <div id="non_part_preopt_content">
+      
+      
+      <% if @publisher.label == "BCBSMA" || @publisher.label == "BlueBenefitMA" %>
+          <p>
+            <%= t(:looks_like)%>
+            <% if @publisher.label == "BCBSMA" %>
+              Blue Cross Blue Shield of Massachusetts
+            <% elsif @publisher.label == "BlueBenefitMA" %>
+              Blue Benefit Administrators of Massachusetts
+            <% end %>
+            <%= t(:hasnt_launched)%> 
+          </p>
+
+          <% if @publisher.label == "BCBSMA" %>
+            <a id="bcbsma_nonpar_button" class="blue_button" href="https://www.blue-365.com/?planid=bluecrossmacom"><%= t(:take_me_there)%></a>
+          <% elsif @publisher.label == "BlueBenefitMA" %>
+            <a id="bcbsma_nonpar_button" class="blue_button" href="https://www.blue-365.com/?planid=bluebenefitmacom"><%= t(:take_me_there)%></a>
+          <% end %>
+      <% else %>
+     
+      	<p>
+          <%= t(:non_par_message)%>
+      	</p>
+     		
+     		<div id="signup_form">
+     		  <form action="<%= publisher_daily_deal_subscribers_path(@publisher) %>" method="POST" class="presignup">
+    		    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    		    <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+    		    <input name="subscriber[zip_code_required]" value="true" type="hidden" />
+      	  
+      	  	<label id="name_label" for="Name"><%= t(:name)%>:</label>
+            <input id="subscriber_name" name="subscriber[name]" title="Name" type="text" value="<%= params[:name] %>"> <br />
+      	  	<label id="email_label" for="Email"><%= t(:email)%>:*</label>
+      	  	<input id="subscriber_email" name="subscriber[email]" title="Email Address" type="text" value="<%= params[:email] %>"> <br />
+      	  	<label id="company_label" for="BlueCompany"><%= t(:blue_company)%>:*</label>
+    		   	<input id="publisher_name" name="publisher[name]" title="Blue Company" type="text" value="<%= @publisher.name %>" readonly="readonly" disabled="disabled" /> <br />
+    		   	<label id="zip_label" for="ZipCode"><%= t(:zip_code)%>:*</label>
+    		   	<input id="subscriber_zip_code" name="subscriber[zip_code]" title="Zip Code" type="text" maxlength="5" value="<%= params["zip_code"] %>" > <br />
+    		   	
+    		   	<p>* <%= t(:required) %></p>
+    		   	
+    		   	<input id="non_part_preopt_submit_button" class="blue_button" name="sign_up" type="submit" value="<%= t(:let_me_know) %>">
+      	  </form> 
+     		</div>
+      <% end %>
+
+   	</div> <!-- end non_part_preopt_content -->
+  </div>
+</div>
+</div>

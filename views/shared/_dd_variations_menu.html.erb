@@ -1,0 +1,14 @@
+<div id="dd_variations" class="dd_variations_menu" style="display:none;">
+	<table class="dd_variations_data">
+	<thead>
+		<tr>
+			<th colspan="3">Choose your deal:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @daily_deal.daily_deal_variations.each do |variation| %>
+			<%= render :partial => with_theme("shared/dd_variation"), :locals => { :dd_variation => variation, :daily_deal => @daily_deal } %>
+		<% end %>
+	</tbody>
+	</table>
+</div>

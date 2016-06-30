@@ -1,0 +1,34 @@
+<% if @publisher.facebook_app_id.present? %>
+<meta property="fb:app_id" content="<%= daily_deal.publisher.facebook_app_id %>"/>
+<% end %>
+<% if @daily_deal && @daily_deal.present? -%>
+<meta property="og:type" content="product"/>
+<meta property="og:url" content="<%= @daily_deal.url_for_bit_ly %>"/>
+	<% if @referral.present? && @referral -%>
+      <meta property="og:title" content="<%= @daily_deal.publisher.daily_deal_referral_message_head %>"/>
+	  <meta property="og:description" content="<%= @daily_deal.publisher.daily_deal_referral_message_body %>"/>
+	<% else -%>
+	  <meta property="og:title" content="<%= @daily_deal.facebook_title %>"/>
+	  <meta property="og:description" content="<%= @daily_deal.facebook_description.html_safe %>"/>
+	<% end -%>
+	  <meta property="og:image" content="<%= url_for_facebook_daily_deal_image(@daily_deal) %>"/>
+<meta property="og:updated_time" content="<%= @daily_deal.updated_at.to_i -%>">
+<% elsif @offers && @offers.present? -%>
+<% offer = @offers.first -%>
+<meta property="og:url" content="<%= offer.url_for_bit_ly %>" />
+<meta property="og:title" content="<%= offer.facebook_title %>" />
+<meta name="description" content="<%= offer.facebook_description %>" />
+<meta property="og:description" content="<%= offer.facebook_description %>" />
+<meta property="og:image" content="<%= offer.image.url %>" />  <!-- offer -->
+<meta property="og:image" content="<%= offer.advertiser.logo(:facebook) %>" /> <!-- advertiser -->
+<meta property="og:image" content="<%= @publisher.logo(:facebook) %>" />  <!-- publisher -->
+<meta property="og:updated_time" content="<%= offer.updated_at.to_i -%>">
+
+<% elsif @gift_certificates && @gift_certificates.present? -%>
+<% gift_certificate = @gift_certificates.first -%>
+<% title = "[#{@publisher.brand_name_or_name} Coupon] #{gift_certificate.message}" -%>
+<meta property="og:url" content="<%= gift_certificate.url_for_bit_ly %>" />
+<meta property="og:title" content="<%= title %>" />
+<meta property="og:description" content="<%= gift_certificate.facebook_description %>" />
+<meta property="og:image" content="<%= gift_certificate.logo(:medium) -%>">
+<% end -%>

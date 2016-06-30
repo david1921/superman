@@ -1,0 +1,13 @@
+<% filter_params.fields_for :filter, @search_request.filter do |filter| -%>
+  <%= filter.hidden_field :text %>
+  <%= filter.hidden_field :national_deals %>
+  <%= filter.hidden_field :location %>
+  <%= filter.hidden_field :radius %>
+  <%= filter.hidden_field :start_date %>
+  <%= filter.hidden_field :end_date %>
+  <% @categories.each do |category| -%>
+    <% if @search_request.filter.categories.include?( category.id.to_s) -%>
+      <%= hidden_field_tag("search_request[filter][categories][]", category.id) %>
+    <% end -%>
+  <% end %>
+<% end %>

@@ -1,0 +1,67 @@
+<% set_daily_deal_page_title_slug "Invalid Activation Code" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Invalid Activation Code</h2>
+    <p>Sorry, the link you followed, or the activation code you entered, is not valid.</p>
+
+    <p>Please check your email for a message from Kowabunga and click the link inside to activate your account. If clicking the link doesn't work, you can copy the activation code shown in the message and paste it here, then click the Activate button.</p>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, "Activation Code:") %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+
+      <div class="full_width buttons">
+        <%= submit_tag("Activate", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" language="Javascript">
+var jAccountID = "35383";
+var jconversion_type = "lead";
+var jValue = "1";
+var jOrderID = "userid / timestamp here";
+var jvar1 = "accountcreate";
+var juAgent = navigator.userAgent;
+var imgURL = "//sftrack.searchforce.net/SFConversionTracking/img.jpg?jt=3"
++ "&jaid=" + jAccountID + "&joid=" + escape(jOrderID) + "&jcv=" + jValue + "&je=" + jconversion_type
+ + "&juag=" + juAgent;
+ var convImg = new Image();
+ convImg.src = imgURL;
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//sftrack.searchforce.net/SFConversionTracking/img.jpg?jt=3&jaid=35383&je=Lead&jcv=&joid="/>
+</div>
+</noscript>
+<!-- End SearchForce tracking code -->
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1016553453;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "LYnBCJvDmQIQ7b_d5AM";
+var google_conversion_value = 0;
+if (99) {
+  google_conversion_value = 99;
+}
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1016553453/?value=99&amp;label=LYnBCJvDmQIQ7b_d5AM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>

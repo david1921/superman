@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<% if @daily_deal -%>
+<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+<meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+<meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+<link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+<% else -%>
+<meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+<% end -%>
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/radarfrog/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/radarfrog/stylesheets/radarfrog.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/radarfrog/stylesheets/offers.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/offers.css" type="text/css" />
+
+  <link rel="shortcut icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/themes/<%= @publisher.label %>/images/graphics/favicon.ico" type="image/x-icon">
+
+  
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  <script src="/themes/freedom/javascript/cookies.js" type="text/javascript"></script>
+  <script src="/javascripts/coupons.js" type="text/javascript"></script>
+  
+  
+<!--[if lte IE 9]>
+<link href="/themes/<%= @publisher.label %>/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/radarfrog/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/<%= @publisher.label %>/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/themes/radarfrog/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  
+  <title><%= daily_deal_page_title %></title>
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+
+<body>
+
+
+<div class="clear"></div>
+<!--Analog_Analytics_Daily_Deal-->
+
+<div id="analog_analytics">
+	<%= render :partial => with_theme("shared/banner") %>
+	<div class="clear"></div>
+
+	<div id="analog_analytics_content">
+		<div id="coupon_content">
+	       	 
+		   <%= render :partial => 'shared/flash_messages' %>
+		   <div class="clear"></div>
+		   
+		   <!-- offer content -->
+		   <%= yield %>
+		   
+		   <div class="clear"></div>
+		   
+		   <!--  <div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div> -->
+		</div><!--coupon_content-->
+		
+		
+	</div><!--analog_analytics_content-->
+
+	<div class="clear"></div>
+	
+	<% if @publisher.label == "radarfrog" %>
+	<%= render :partial => with_theme("shared/footer") %>
+	<% end %>
+</div><!--analog_analytics-->
+
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+<% if params[:with_map] %>
+<script type="text/javascript" charset="utf-8">
+
+    var aaMapConfig = {
+      dataUrl: "<%= public_advertisers_path( @publisher, :with_map => true, :format => 'json' ) %>",
+      startingZoomLevel: <%=  @publisher.google_map_zoom_level %>,
+      startingLatitude: <%= @publisher.google_map_latitude %>,
+      startingLongitude: <%= @publisher.google_map_longitude %>
+    }
+    
+</script>
+<script data-main="/themes/radarfrog/javascripts/app/offers/main.js" src="/javascripts/lib/require-jquery.js"></script>
+<script type='text/javascript'>jQuery.noConflict();</script>
+<% end %>
+</body>
+</html>

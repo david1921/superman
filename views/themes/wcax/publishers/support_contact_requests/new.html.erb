@@ -1,0 +1,62 @@
+<% set_daily_deal_page_title_slug "Contact" %>
+<div class="page_row">
+	<div class="page_column_12 first contact_us_page rounded_corners">
+		<div id="dd_nav" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px;">
+			<%= raw render :partial => with_theme("shared/dd_nav")%>
+		</div><!-- END #dd_nav -->
+		<h1><%= t :contact_us %></h1>
+		<h4>Does your business want to be a featured deal? <a href="<%= new_publisher_business_contact_request_path(@publisher) %>">Click here</a> to become a deal.</h4>
+		<h3 class="main_office">Mailing Address</h3>
+		<p class="contact_top_line">
+			<%= "#{@publisher.address_line_1}
+			<br/>
+			".html_safe unless @publisher.address_line_1.blank? %>
+			<%= "#{@publisher.address_line_2}
+			<br/>
+			".html_safe unless @publisher.address_line_2.blank? %>
+			<%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}".html_safe unless @publisher.city.blank? %>
+		</p>
+		<% unless @publisher.support_phone_number.blank?%>
+		<p style="margin:0px;">Phone: <%= @publisher.formatted_support_phone_number %></p>
+		<% end %>
+		<div id="contact_content">
+			<div id="left_column">
+				<%= error_messages_for(:contact_request, :header_message =>nil)%>
+
+				<% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+				<fieldset>
+					<h5>Contact Name:<span class="required">*</span></h5>
+					<div class="first-name-block">
+						<%= f.text_field :first_name, :id => "first_name" %> <label id="name_first" for="first_name">First</label>
+					</div>
+					<div class="name-block">
+						<%= f.text_field :last_name, :id => "last_name" %> <label id="name_last" for="last_name">Last</label>
+					</div>
+				</fieldset>
+				<fieldset>
+					<h5>Email:<span class="required">*</span></h5>
+					<%= f.text_field :email %>
+				</fieldset>
+				<fieldset>
+					<%= f.collection_select(:reason_for_request, [
+                        "Change Voucher Name",
+                        "Promo Code Issue",
+                        "Refund",
+                        "Merchant Inquiry",
+                        "System Issue",
+                        "Other (please specify)"],
+                      :to_s, :to_s, :class => "contact_reason", :prompt => 'Reason for contacting us')%>
+				</fieldset>
+				<fieldset>
+					<h5>Message:<span class="required">*</span></h5>
+					<%= f.text_area :message, :class => "message" %>
+				</fieldset>
+				<div class="clear"></div>
+				<div class="submit_field">
+					<%= f.submit 'Submit', :id => "submit", :class => "blue_button" %> <span class="required_fields">* required fields</span>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

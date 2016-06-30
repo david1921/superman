@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  <Version>1.1</Version>
+  <Booking>
+    <BookedProducts>
+      <Product>
+        <Description>
+          <Advisories>
+            <ProductAdvisory>
+              <Format>Text</Format>
+              <Message><![CDATA[Next Steps: Go to the cruise line website using your name, confirmation number and sailing date and:
+Register in the cruise line website
+View your current reservation
+Prepare for your vacation with cruising FAQs
+Look for more exciting information]]></Message>
+              <Type>NextSteps</Type>
+            </ProductAdvisory>
+            <ProductAdvisory>
+              <Format>HTML</Format>
+              <Message><![CDATA[<p><strong>Next Steps:</strong><br />Go to the <a href="www.royalcaribbean.com">cruise line website</a> using your name, confirmation number and sailing date and:</p><div><ol><li>Register in the cruise line website</li><li>View your current reservation</li><li>Prepare for your vacation with cruising FAQs</li><li>Look for more exciting information</li></ol></div>]]></Message>
+              <Type>NextSteps</Type>
+            </ProductAdvisory>
+          </Advisories>
+          <MoreDetail i:nil="true"/>
+          <Name>7 Day Caribbean/Bahamas on the Norwegian Jewel</Name>
+          <Summary>New York City, Port Canaveral, Florida, Norwegian Private Island, Nassau</Summary>
+        </Description>
+        <ProductID>3083</ProductID>
+        <ServiceEndDate>2012-04-28T00:00:00</ServiceEndDate>
+        <ServiceStartDate>2012-04-21T00:00:00</ServiceStartDate>
+        <SubProducts>
+          <SubProduct>
+            <Description>
+              <Advisories i:nil="true"/>
+              <MoreDetail i:nil="true"/>
+              <Name>Category: IS</Name>
+              <Summary>Inside Cabin</Summary>
+            </Description>
+            <SubProductID>IS</SubProductID>
+            <Travelers>
+              <Person>
+                <Action i:nil="true"/>
+                <Age>43</Age>
+                <BirthDate>1969-05-30T00:00:00</BirthDate>
+                <Citizenship>US</Citizenship>
+                <DepartureCity>DEN</DepartureCity>
+                <Email i:nil="true"/>
+                <FirstName>Johnny</FirstName>
+                <Gender>M</Gender>
+                <LastName>Tester</LastName>
+                <MiddleName i:nil="true"/>
+                <PersonAddress>
+                  <Address1>123 Test Lane</Address1>
+                  <Address2/>
+                  <City>
+                    <Code i:nil="true"/>
+                    <Name>Hill Valley</Name>
+                  </City>
+                  <Country>
+                    <Code>US</Code>
+                    <Name i:nil="true"/>
+                  </Country>
+                  <PostalCode>80516</PostalCode>
+                  <State>
+                    <Code>CO</Code>
+                    <Name i:nil="true"/>
+                  </State>
+                </PersonAddress>
+                <PersonID>1</PersonID>
+                <Phone>
+                  <InternationalCode i:nil="true"/>
+                  <Number>3031234567</Number>
+                  <PhoneType i:nil="true"/>
+                </Phone>
+                <PrimaryContact>true</PrimaryContact>
+                <StatusCode i:nil="true"/>
+                <Title>MR</Title>
+                <UsingDefaultValues>false</UsingDefaultValues>
+              </Person>
+              <Person>
+                <Action i:nil="true"/>
+                <Age>44</Age>
+                <BirthDate>1968-03-21T00:00:00</BirthDate>
+                <Citizenship>US</Citizenship>
+                <DepartureCity>DEN</DepartureCity>
+                <Email i:nil="true"/>
+                <FirstName>Gabriella</FirstName>
+                <Gender>F</Gender>
+                <LastName>Testoo</LastName>
+                <MiddleName i:nil="true"/>
+                <PersonAddress>
+                  <Address1>123 Test Lane</Address1>
+                  <Address2/>
+                  <City>
+                    <Code i:nil="true"/>
+                    <Name>Hill Valley</Name>
+                  </City>
+                  <Country>
+                    <Code>US</Code>
+                    <Name i:nil="true"/>
+                  </Country>
+                  <PostalCode>80516</PostalCode>
+                  <State>
+                    <Code>CO</Code>
+                    <Name i:nil="true"/>
+                  </State>
+                </PersonAddress>
+                <PersonID>2</PersonID>
+                <Phone>
+                  <InternationalCode i:nil="true"/>
+                  <Number>3031234567</Number>
+                  <PhoneType i:nil="true"/>
+                </Phone>
+                <PrimaryContact>false</PrimaryContact>
+                <StatusCode i:nil="true"/>
+                <Title>MRS</Title>
+                <UsingDefaultValues>false</UsingDefaultValues>
+              </Person>
+            </Travelers>
+          </SubProduct>
+        </SubProducts>
+        <TotalCharges>$2294.12</TotalCharges>
+        <VendorCode>NCL</VendorCode>
+        <VendorConfirmationNumber>36329883</VendorConfirmationNumber>
+        <VendorName>Norwegian Cruise Line</VendorName>
+      </Product>
+    </BookedProducts>
+    <BookingID>1</BookingID>
+    <LastUpdated>2012-03-12T10:31:07.1750845-06:00</LastUpdated>
+  </Booking>
+  <BookingStatus>Success</BookingStatus>
+  <Errors/>
+  <FormValues><SubmittedForm><Field>credit_card[billing][address_line_1]</Field><Value>123 Test Lane</Value></SubmittedForm><SubmittedForm><Field>credit_card[billing][address_line_2]</Field><Value/></SubmittedForm><SubmittedForm><Field>credit_card[billing][country_code]</Field><Value>US</Value></SubmittedForm><SubmittedForm><Field>credit_card[billing][locality]</Field><Value>Hill Valley</Value></SubmittedForm><SubmittedForm><Field>credit_card[billing][postal_code]</Field><Value>80516</Value></SubmittedForm><SubmittedForm><Field>credit_card[billing][region]</Field><Value>CO</Value></SubmittedForm><SubmittedForm><Field>credit_card[cardholder_firstname]</Field><Value>John</Value></SubmittedForm><SubmittedForm><Field>credit_card[cardholder_lastname]</Field><Value>Tester</Value></SubmittedForm><SubmittedForm><Field>credit_card[expiration_date]</Field><Value>06/2013</Value></SubmittedForm><SubmittedForm><Field>credit_card[vendor_code]</Field><Value>MC</Value></SubmittedForm><SubmittedForm><Field>service_end_date</Field><Value/></SubmittedForm><SubmittedForm><Field>service_start_date</Field><Value/></SubmittedForm><SubmittedForm><Field>traveler[1][address_line_1]</Field><Value>123 Test Lane</Value></SubmittedForm><SubmittedForm><Field>traveler[1][address_line_2]</Field><Value/></SubmittedForm><SubmittedForm><Field>traveler[1][birth_date]</Field><Value>30/05/1969</Value></SubmittedForm><SubmittedForm><Field>traveler[1][citizenship]</Field><Value>US</Value></SubmittedForm><SubmittedForm><Field>traveler[1][country_code]</Field><Value>US</Value></SubmittedForm><SubmittedForm><Field>traveler[1][email]</Field><Value>jtest@test.com</Value></SubmittedForm><SubmittedForm><Field>traveler[1][first_name]</Field><Value>John</Value></SubmittedForm><SubmittedForm><Field>traveler[1][gender]</Field><Value>M</Value></SubmittedForm><SubmittedForm><Field>traveler[1][last_name]</Field><Value>Tester</Value>
+																																																																																																																																																																																																																																																																																																																																																																		     </SubmittedForm><SubmittedForm><Field>traveler[1][locality]</Field><Value>Hill Valley</Value></SubmittedForm><SubmittedForm><Field>traveler[1][phone_number]</Field><Value>3031234567</Value></SubmittedForm><SubmittedForm><Field>traveler[1][postal_code]</Field><Value>80516</Value></SubmittedForm><SubmittedForm><Field>traveler[1][region]</Field><Value>CO</Value></SubmittedForm><SubmittedForm><Field>traveler[1][terms_accepted]</Field><Value>on</Value></SubmittedForm><SubmittedForm><Field>traveler[1][title]</Field><Value>MR</Value></SubmittedForm><SubmittedForm><Field>traveler[2][address_line_1]</Field><Value>123 Test Lane</Value></SubmittedForm><SubmittedForm>
+																																																																																																																																																																																																																																																																																																																																																																																												           <Field>traveler[2][address_line_2]</Field>
+																																																																																																																																																																																																																																																																																																																																																																																													         <Value/>
+																																																																																																																																																																																																																																																																																																																																																																																														     </SubmittedForm><SubmittedForm><Field>traveler[2][birth_date]</Field><Value>21/03/1968</Value></SubmittedForm><SubmittedForm><Field>traveler[2][citizenship]</Field><Value>US</Value></SubmittedForm><SubmittedForm><Field>traveler[2][country_code]</Field><Value>US</Value></SubmittedForm><SubmittedForm><Field>traveler[2][email]</Field><Value>jatest@test.com</Value></SubmittedForm>
+																																																																																																																																																																																																																																																																																																																																																																																																												         <SubmittedForm><Field>traveler[2][first_name]</Field><Value>Jane</Value></SubmittedForm><SubmittedForm><Field>traveler[2][gender]</Field><Value>F</Value></SubmittedForm><SubmittedForm><Field>traveler[2][last_name]</Field><Value>Tester</Value></SubmittedForm><SubmittedForm><Field>traveler[2][locality]</Field><Value>Hill Valley</Value></SubmittedForm><SubmittedForm><Field>traveler[2][phone_number]</Field><Value>3031234567</Value></SubmittedForm><SubmittedForm><Field>traveler[2][postal_code]</Field><Value>80516</Value></SubmittedForm><SubmittedForm><Field>traveler[2][region]</Field><Value>CO</Value></SubmittedForm><SubmittedForm><Field>traveler[2][terms_accepted]</Field><Value>on</Value></SubmittedForm><SubmittedForm><Field>traveler[2][title]</Field><Value>MRS</Value></SubmittedForm>
+																																																																																																																																																																																																																																																																																																																																																																																																																																												   </FormValues>
+  <PaymentStatus>Success</PaymentStatus>
+  <TransactionDate>2012-03-12T10:09:44.28</TransactionDate>
+  <TransactionID>271</TransactionID>
+</BookTransaction>

@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb">
+<head>
+
+<link href="/themes/parentingoc/stylesheets/templates/rt_mixxmag_j15/css/template.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/rt_mixxmag_j15/css/style1.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/rt_mixxmag_j15/css/rokmininews.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/rt_mixxmag_j15/css/typography.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/system/css/system.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/system/css/general.css" rel="stylesheet" type="text/css">
+<link href="/themes/parentingoc/stylesheets/templates/rt_mixxmag_j15/css/rokmoomenu.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	div.wrapper,#main-body-bg { margin: 0 auto; width: 958px;padding:0;}
+	#leftcol { width:0px;padding:0;}
+	#rightcol { width:260px;padding:0;}
+	#inset-block-left { width:185px;padding:0;}
+	#inset-block-right { width:0px;padding:0;}
+	#maincontent-block { margin-right:0px;margin-left:185px;padding:0;}
+</style>	
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+
+<% if @daily_deal -%>
+  <title>Parenting OC | <%= @daily_deal.value_proposition %></title>
+  <meta name="title" content="<%= @daily_deal.facebook_title %>" />
+  <meta name="description" content="<%= @daily_deal.facebook_description.html_safe %>" />
+  <meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>">
+  <link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+<% else -%>
+  <title>Parenting OC | Daily Deals</title>
+  <meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+<% end -%>
+
+
+
+
+<%= stylesheet_link_tag "application", "scoped_reset", :media => "all" %>
+<%= stylesheet_link_tag "/themes/parentingoc/stylesheets/daily_deals", :media => "all" %>
+<!--[if IE]>
+<%= stylesheet_link_tag "ie", :media => "all" %>
+<%= stylesheet_link_tag "/themes/parentingoc/stylesheets/ie", :media => "all" %>
+<![endif]-->
+<!--[if IE 7]>
+<%= stylesheet_link_tag "/themes/parentingoc/stylesheets/ie7", :media => "all" %>
+<![endif]-->
+
+
+<%= javascript_include_tag :defaults, 'ghostie' %>
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+	<body id="ff-mixxmag" class="f-default style1 iehandle <%= controller_name %> <%= action_name %>">
+
+		<div id="page-bg">
+
+			<!--Begin Top Header Bar-->
+
+			<div id="top-bar" class="png">
+
+				<div class="wrapper">
+
+					<div class="date-block">
+            <%= Time.now.strftime("<span class=\"date1\">%A</span> <span class=\"date2\">%b</span> <span class=\"date3\">%d</span>").html_safe %>
+					</div>
+
+					
+				</div>
+
+			</div>
+
+			<!--End Top Header Bar-->
+
+			<div class="wrapper"><div class="side-shadow-l png"><div class="side-shadow-r png">
+
+			<!--Begin Main Header-->
+
+			<div id="top-divider" class="png"></div>
+
+			<div id="main-header">
+
+				
+				<div id="logo-bg-area"></div>
+
+				<div id="logo-surround"><div id="logo-banner"><div id="logo-banner2" class="png"><div id="logo-banner3">
+
+					<a href="http://www.parentingoc.com/" class="nounder"><img src="/themes/parentingoc/images/templates/blank.gif" border="0" alt="logo" id="logo"></a>
+
+				</div></div></div></div>
+
+							    
+
+				
+				<div id="header-tools">
+
+					<div id="searchmod">
+
+								<div class="moduletable">
+                </div>
+	
+
+					</div>
+
+				</div>
+
+				
+				
+				<div id="horiz-menu" class="suckerfish">
+
+					<div class="wrapper">
+
+					
+						<ul class="menutop"><li id="current" class="item1"><a href="http://www.parentingoc.com/"><span>Home</span></a></li><li class="parent  item117"><a href="http://www.parentingoc.com/about-us.html" class="topdaddy"><span>About Us</span></a><ul><li class="item245"><a href="http://www.parentingoc.com/about-us/about-us.html"><span>About Us</span></a></li><li class="item238"><a href="http://www.parentingoc.com/about-us/contact-us.html"><span>Contact Us</span></a></li><li class="item426"><a href="http://www.parentingoc.com/about-us/blogs.html"><span>Blogs</span></a></li></ul></li><li class="parent  item92"><a href="http://www.parentingoc.com/magazine.html" class="topdaddy"><span>Current Issue</span></a><ul><li class="item246"><a href="http://www.parentingoc.com/magazine/current-issue.html"><span>Current Issue</span></a></li><li class="item249"><a href="http://www.parentingoc.com/magazine/archives.html"><span>Archives</span></a></li></ul></li><li class="parent  item53"><a href="http://www.parentingoc.com/event-calendar/month.calendar/2010/10/27/-.html" class="topdaddy"><span>Events Calendar</span></a></li><li class="item239"><a href="http://www.parentingoc.com/video-gallery.html"><span>Videos</span></a></li><li class="item236"><a href="http://www.parentingoc.com/index.php?Itemid=236&amp;option="><span>Advertise</span></a></li></ul>
+					
+					</div>
+
+				</div>
+
+				
+
+
+				<div class="clr"></div>
+
+			</div>
+
+			<!--End Main Header-->
+
+			<!--Begin Main Content Area-->
+
+			<div id="main-body-bg">
+
+			<div id="main-body">
+
+        <div id="content">
+        <div id="analog_analytics">
+        	<div id="daily_deal">
+              <div id="nav">
+                <%= link_to("Today's Deal", public_deal_of_day_path(@publisher.label)) %>
+                <%= link_to("How it Works", how_it_works_publisher_daily_deals_path(@publisher)) %>
+                <%= link_to("Feature Your Business", feature_your_business_publisher_daily_deals_path(@publisher)) %>
+                <% if current_consumer_for_publisher?(@publisher) -%>
+                  <%= link_to("My Account", publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer)) %>
+                  <%= link_to("Sign Out", daily_deal_logout_path(@publisher), :class => "sign_in") %>
+                <% else -%>
+                  <%= link_to("Sign In", daily_deal_login_path(@publisher), :class => "sign_in") %>
+                <% end -%>
+              </div>
+
+                <div class="header">
+                  <div class="email_capture"><h1>Enter Your Email for Deal Alerts</h1>
+                    <% form_for :subscriber, @subscriber, :url => publisher_subscribers_path(@publisher), :html => {:id => "daily_deal_header", :class => "email_subscription_tracking"} do |f| -%>
+                       <%= f.hidden_field :must_accept_terms, :value => true %>
+                       <%= hidden_field_tag :redirect_to, verifiable_url(request.url) %>
+                         <div class="maincontent">
+                           <%= f.text_field :email, :class => "dd_email_input ghostie", :value => "Enter email for Bigger Better Deals!", :title => "Enter email for Bigger Better Deals!" %>
+                           <input type="image" id="submit_btn" class="sign_up_btn_form" src="/themes/parentingoc/images/buttons/subscribe.png" />
+                         </div>
+                         <div class="terms">
+                          <%= f.check_box :terms, :class => "terms_agree" %> I agree to the <%= link_to("Terms", terms_publisher_daily_deals_path(@publisher) )%> and <%= link_to("Privacy Policy", privacy_policy_publisher_daily_deals_path(@publisher)) %>
+                         </div>
+
+                    <% end -%>
+                  </div>	        
+                </div><!--header-->
+                  <% if flash.present? -%>
+                  <div class="flash">
+                    <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+                      <%= flash[:warn] %>
+                    </div>
+                    <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+                      <%= flash[:notice] %>
+                    </div>  
+                  </div>                     
+                  <% end -%>
+
+                <%= yield %>
+                <div class="rounded_corner_bottom">&nbsp;</div> 
+
+            </div><!--daily_deal-->
+        </div><!--analog_analytics-->
+        <div id="publisher_links"><%= image_tag("/themes/parentingoc/images/chaching_logo.png", :alt => "cha-ching! Daily Deals", :width => "211", :height => "39") %>
+        	<p>© Copyright 2010, All Rights Reserved</p>
+        </div>
+        <%= raw render :partial => 'shared/a_a_alt' %>
+
+
+			  <div class="clr"></div>
+
+			</div><!-- /#main-body -->
+
+			<!-- Begin Bottom Main Modules -->
+
+			
+			
+			<!-- End Bottom Main Modules -->
+
+		<!--End Main Content Area-->
+
+		<!--Begin Bottom Area-->
+
+		<div class="bottom-padding">
+		</div>
+
+		<!--End Bottom Area-->
+
+		</div></div></div>
+
+		</div>
+
+		<div id="bottom-expansion">
+
+			<div class="wrapper">
+
+				
+				
+			</div>
+
+		</div>
+
+		</div>
+          
+<%= raw render :partial => "themes/parentingoc/shared/tracking_publisher" %>
+<%= raw render :partial => "daily_deals/javascript" %>
+</body>
+</html>

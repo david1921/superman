@@ -1,0 +1,29 @@
+<% set_page_title "Opt Out" %>
+<% @navbar_active_item_tag = :r3 %>
+
+<% row1 do %>
+  <% box2 do %>
+    <div class="padding" style="text-align:justify">
+
+    <% if @email_recipient.email_allowed_changed? %>
+      <h2>Unable to Opt Out</h2>
+      <br/><br style="line-height:10px" />
+      We were unable to add your address <span class="email"><%= @email_recipient.email_address %></span> to our do-not-email list.
+      Please try again later or contact <%= mail_to(support_email_address, :subject => "Email opt-out") %> for assistance.
+    <% elsif @email_recipient.email_allowed_before %>
+      <h2>You Have Opted Out</h2>
+      <br/><br style="line-height:10px" />
+      We've added your address to our do-not-email list:
+      <br/><br/>
+      &nbsp;&nbsp;<span class="email"><%= @email_recipient.email_address %></span>
+    <% else %>
+      <h2>You Have Opted Out</h2>
+      <br/><br style="line-height:10px" />
+      Your address is already on our do-not-email list:
+      <br/><br/>
+      &nbsp;&nbsp;<span class="email"><%= @email_recipient.email_address %></span>
+    <% end %>
+
+    </div>
+  <% end -%>
+<% end -%>

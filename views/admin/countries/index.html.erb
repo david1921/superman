@@ -1,0 +1,12 @@
+<h3>Active Countries</h3>
+<table>
+<% @active_countries.each do |country| %>
+  <tr><td><%= link_to(country.name, edit_admin_country_path(country)) %></td></tr>
+<% end %>
+</table>
+<h3>Inactive Countries</h3>
+<table>
+<% @inactive_countries.each do |country| %>
+  <tr><td><%= link_to(country.name, edit_admin_country_path(country)) %></td></tr>
+<% end %>
+</table>

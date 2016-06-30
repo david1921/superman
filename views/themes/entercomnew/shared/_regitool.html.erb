@@ -1,0 +1,36 @@
+<script type="text/javascript"> 
+	//Write deal signup openening div
+	var cookieValue=getCookie('slide.deal_signup');
+	if (cookieValue == null || cookieValue == "") {
+		document.write("<div id='deal_signup'>");
+	}
+	else {
+		document.write("<div id='deal_signup' style='overflow: visible; display: none;'>");
+	}
+</script>
+	<div id="optin">
+		<div id="signup_email">
+			<div class="signup">
+					<%= render :partial => with_theme("daily_deals/signup_text") %>
+					<em>Get My PERKS Emails: </em>
+			</div>
+		
+			<div id="signup_form">
+			<form id="signup" action="/publishers/<%= @publisher.id %>/subscribers" class="email_subscription_tracking" method="post">
+				<div>
+					<input id="redirect_to" name="redirect_to" type="hidden" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" />
+				</div>
+				<div class="maincontent">
+					<span class="email"><input id="subscriber_email" name="subscriber[email]" type="text" title="please enter your email" value="please enter your email" onclick="this.value=''" /></span>
+					<input id="subscriber_zip_code" name="subscriber[zip_code]" size="10" class="ghostie" type="text" value="zip code" title="zip code"/>
+					<input id="subscriber_submit" name="commit" type="submit"  value="Email Me!" />
+				</div><!--maincontent-->
+			</form>
+			
+			</div><!--signup_form-->
+			<a href="" id="close_button" onclick="slideUpAndRemember('deal_signup'); _gaq.push(['_trackEvent', 'Daily Deal', 'Signup - Slide Up', '<%= @publisher.name.gsub(" ", "_").gsub("'", "\\'") %>']); return false;">Hide</a>
+		</div><!--signup_email-->
+		
+	</div><!--optin-->
+
+</div><!--/deal_signup-->

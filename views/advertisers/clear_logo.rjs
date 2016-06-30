@@ -1,0 +1,4 @@
+page.visual_effect "puff", "advertiser_logo_image"
+page.hide "advertiser_logo_delete_link"
+page.hide "facebook_message"
+page.show "advertiser_logo"

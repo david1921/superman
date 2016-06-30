@@ -1,0 +1,56 @@
+<div id="landing_page_gallery">
+<!-- Start photosgallery-vertical -->
+<div class="dealslider photosgallery-vertical">
+<div class="dealslider-nav">
+<div class="dealslider-nav-clip">
+<ul>
+<% if bcbsa_national = Publisher.find_by_label("bcbsa-national") %>
+              <% bcbsa_national.daily_deals.active.ordered_by_start_at_descending.show_on_landing_page[(1..5)].each do |deal| %>
+                <li><a href="#" rel="nofollow"><img src="<%= protocol_relative_url(deal.photo.url(:alternate_standard)) %>" alt="<%= deal.value_proposition %>" /></a></li>
+              <% end %>
+            <% end %>
+</ul>
+</div>
+</div><!--end .dealslider-nav -->
+<% if bcbsa_national = Publisher.find_by_label("bcbsa-national") %>
+          <div class="dealslider-panels">
+        <% bcbsa_national.daily_deals.active.ordered_by_start_at_descending.show_on_landing_page[(1..5)].each do |deal| %>
+
+            <div class="dealslider-panel">
+              <img src="<%= protocol_relative_url(deal.photo.url(:alternate_standard)) %>" alt="<%= deal.value_proposition %>" />
+              <div class="dealslider-panel-textbox">
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Healthy Eating' %>
+                  <div class="category_icon healthyeating_category_icon">Healthy Eating</div>
+                <% end %>
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Experiences' %>
+                  <div class="category_icon experiences_category_icon">Experiences</div>
+                <% end %>
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Wellness' %>
+                  <div class="category_icon wellness_category_icon">Wellness</div>
+                <% end %>
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Personal Care' %>
+                  <div class="category_icon personalcare_category_icon">Personal Care</div>
+                <% end %>
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Living' %>
+                  <div class="category_icon living_category_icon">Living</div>
+                <% end %>
+                <% if deal.publishers_category.present? and deal.publishers_category.name == 'Fitness' %>
+                  <div class="category_icon fitness_category_icon">Fitness</div>
+                <% end %>
+
+                <div class="dealslider-panel-text">
+                    <h4 class="<%= deal.publishers_category.name.gsub(/\s/, '').downcase %>">
+                    	<% if deal.side_deal_value_proposition.present? %>
+                    		<%= deal.side_deal_value_proposition %>
+      				          <% else %>
+      					       <%= deal.value_proposition %>
+      				        <% end %>
+  				          </h4>
+                </div><!-- end .dealslider-panel-text -->
+              </div><!-- end ealslider-panel-textbox -->
+            </div><!-- end .dealslider-panel -->
+        <% end %>
+          </div><!-- end .dealslider-panels -->
+      <% end %>
+</div><!-- end of photosgallery-vertical -->
+</div>

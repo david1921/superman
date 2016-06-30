@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  
+{% if daily_deal %}
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <meta name='keywords' content="{{ daily_deal.advertiser.name }}, {{ daily_deal.value_proposition }}">
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+  <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  <title>{% daily_deal_page_title %}</title>
+  
+  <link href="/themes/entercom/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/entercom/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/entercom/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/entercom/stylesheets/entercom_daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+
+  <!--[if IE]>
+  <link href="/themes/{{ publisher.label }}/stylesheets/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body>
+
+<div class="content" id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+			<div id="header">
+				
+				{% if publisher.current_user_belongs_to? != true %}
+				
+				{% case publisher.label %}
+				{% when 'entercom-milwaukee' %}
+  				{% assign pub_city = "Milwaukee" %}
+  				{% assign short_code = 32961 %}
+				{% when 'entercom-sacramento' %}
+  				{% assign pub_city = "Sacramento" %}
+  				{% assign short_code = 45797 %}
+				{% when 'entercom-denver' %}
+  				{% assign pub_city = "Denver" %}
+  				{% assign short_code = 51059 %}
+				{% when 'entercom-madison' %}
+				  {% assign pub_city = "Madison" %}
+				{% endcase %}
+				<div id="deal_signup" style="display:none">
+					<div id="signup_text">
+						<h2 class="signup">Submit your email for {{ pub_city }} Perks Deals</h2>
+						{% if short_code %}
+						<p class="signup">Get perks messages sent to your phone, send "Perks" to {{ short_code }}</p>
+						{% endif %}
+					</div>
+                    
+                    
+					<form id="signup" action="{{ publisher.subscribers_path }}" class="email_subscription_tracking" method="post">
+            <div><input id="redirect_to" name="redirect_to" type="hidden" value="{{ publisher.subscribers_thank_you_path | verifiable_url }}" /></div>
+						<div class="maincontent">
+							<span class="email"><input id="subscriber_email" name="subscriber[email]" size="30" type="text" title="your email address" value="your email address" /></span>
+	      					<input id="subscriber_submit" name="commit" type="image" src="/themes/entercom/images/buttons/send_me_deals.png" value="SUBSCRIBE" />
+						</div>
+					</form>
+					
+                    
+	  				<a href="#" id="close_button" onclick="javascript:$('deal_signup').hide(); document.cookie = 'hide_signup=1'; return false"><img alt="Close" src="/themes/entercom/images/buttons/close.png" /></a>
+					<script type="text/javascript">
+					//<![CDATA[
+					  (function() {   
+					    var input = $('subscriber_email');
+					    var placeholderText = "Enter email for free Deal of the Day alerts";
+					    if (input) {
+					      input.value = placeholderText;
+					      input.observe('click', function(event){
+					        var element = event.element();
+					        if(placeholderText === element.value) {
+					          element.value = '';
+					          element.activate();
+					        }
+					      });
+					      input.observe('blur', function(event) {
+					        var element = event.element();    
+					        if (element.value.length == 0) {
+					          element.value = placeholderText;
+					        }
+					      });
+					    }
+					  })();
+					
+					//]]>
+					</script>
+				</div><!-- end deal_signup -->
+				<script type="text/javascript" charset="utf-8">
+				  (function() {
+  				  if (!document.cookie.match(/hide_signup/)) {
+  				    $('deal_signup').show();
+  				  }
+  				})();
+				</script>
+				{% endif %}
+				
+				<a id="perkslogo" href="{{ publisher.todays_daily_deal_path }}"><img src="/themes/{{ publisher.label }}/images/perks_logo.png" width="230" height="130" alt="Get My Perks" /></a>
+				
+				<ul id="nav" class="nav">
+					<li id="todays_deal"><a href="{{ publisher.todays_daily_deal_path }}"><span id="current_navbar_link">Today's Deal</span></a></li>
+					<li id="how_it_works"><a href="{{ publisher.faq_path }}">FAQ</a></li>
+                    
+					<li id="contact"><a href="{{ publisher.contact_path }}">Contact</a></li>                   
+                    {% if publisher.launched? %}
+                      {% if publisher.current_user_belongs_to? %}
+                      <li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+                      <li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+                      <li><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+                      {% else %}
+					            <li id="nav_sign_in"><a href="{{ publisher.login_path }}">Sign In</a></li>
+					            {% include with_theme "shared/facebook_connect_liquid" %}
+                      {% endif %}
+                    {% endif %}
+				</ul>
+			</div><!-- end header  -->     
+			<div class="clear"></div>
+         {% include "shared/flash" %}
+         {{ content_for_layout }}
+			<div class="clear"></div>
+        {% include "themes/entercom/shared/entercom_footer" %}
+		</div><!-- end daily_deal -->
+	</div><!-- end analog_analytics -->
+</div><!-- end content -->
+{% include with_theme "shared/tracking_publisher" %}
+</body>
+</html>
+

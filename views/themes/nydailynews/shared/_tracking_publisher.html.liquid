@@ -1,0 +1,44 @@
+{% analytics_tag signup %}
+<!-- Begin SearchRev CONVERSION Tag -->
+<script type="text/javascript">
+var srev_url=location.protocol=='https:'?'https:':'http:';
+document.write ("<" + "img src='" + srev_url);
+document.write ("//s1.srtk.net/www/delivery/ti.php?trackerid=1276&cb=1791054064");
+document.write ("&_sr_amount=1&_sr_orderid=0' width='1' height='1' border='0'/>");
+</script>
+<!-- End SearchRev Tag -->
+{% endanalytics_tag %}
+
+{% analytics_tag sale %}
+<!-- Begin SearchRev CONVERSION Tag -->
+<script type="text/javascript">
+var srev_url=location.protocol=='https:'?'https:':'http:';
+document.write ("<" + "img src='" + srev_url);
+document.write ("//s1.srtk.net/www/delivery/ti.php?trackerid=1275&cb=1791054064");
+document.write ("&_sr_amount=" + escape({{ daily_deal.price | times: daily_deal.quantity }}) + "&_sr_orderid=0' width='1' height='1' border='0'/>");
+</script>
+<!-- End SearchRev Tag -->
+
+<!-- Begin Google Code for DOD Purchase Conversion Page -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 969838503;
+var google_conversion_language = "en";
+var google_conversion_format = "2";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "DijNCPnPvAIQp5-6zgM";
+var google_conversion_value = 0;
+if (150.00) {
+  google_conversion_value = 150.00;
+}
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/969838503/?value=150.00&amp;label=DijNCPnPvAIQp5-6zgM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- End Google Code for DOD Purchase Conversion Page -->
+{% endanalytics_tag %}

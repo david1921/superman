@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  
+  <title>
+    Coupon
+  </title>
+  <%= stylesheet_link_tag "reset", "offers", "narrow/offers", :media => "all" %>
+  <!--[if IE 6]>
+    <%= stylesheet_link_tag "ie6", :media => "all" %>
+  <![endif]-->
+  <%= javascript_include_tag :defaults %>
+</head>
+
+<body>
+  <div class="embedded_coupon narrow" id="analog_analytics_content">
+<%= yield %>
+  </div>
+
+  <script type="text/javascript" charset="utf-8">
+    <!--
+    function clipCoupon(id, publisherId) {
+      window.open('/offers/' + id +  '/print?publisher_id=' + publisherId ,'_blank',
+                  'height=440,width=440,resizable=yes,scrollbars=yes,status=no,menubar=no,toolbar=no,titlebar=no');
+      return false;
+    }
+
+    function cancelClipping(offerId, mode) {
+      $('offer_' + offerId + '_' + mode + '_panel').hide();
+      Effect.SlideDown('offer_' + offerId + '_front_panel');
+    }
+
+    function finishClipping(offerId) {
+      Effect.Fade('offer_' + offerId + '_confirmation_panel', { duration: 5, queue: "end" });
+      Effect.BlindDown('offer_' + offerId + '_front_panel', { duration: 0.1, queue: "end" });
+    }
+
+    Event.observe(window, 'load', function() {
+      Event.observe($(<%= "'offer_#{@offer.id}_logo'" %>), 'click', clipCoupon.bind($(<%= "'offer_#{@offer.id}_logo'" %>), <%= @offer.id %>, <%= @offer.publisher.id %>));
+      Event.observe($(<%= "'offer_#{@offer.id}_text'" %>), 'click', clipCoupon.bind($(<%= "'offer_#{@offer.id}_text'" %>), <%= @offer.id %>, <%= @offer.publisher.id %>));
+    });
+    // -->
+  </script>
+</body>
+</html>

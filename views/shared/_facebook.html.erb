@@ -1,0 +1,19 @@
+<% land_id, land_h, sale_id, sale_h = @publisher.analytics_site_id.split(":") -%>
+<!-- Begin Facebook Tag -->
+<% if analytics_tag.landing? -%>
+<script src="//ah8.facebook.com/js/conversions/tracking.js"></script>
+<script type="text/javascript">
+  try {
+    FB.Insights.impression({ 'id': <%= land_id %>, 'h': '<%= land_h %>' });
+  } catch (e) {}
+</script>
+<% end -%>
+<% if analytics_tag.sale? -%>
+<script src="//ah8.facebook.com/js/conversions/tracking.js"></script>
+<script type="text/javascript">
+  try {
+    FB.Insights.impression({ 'id': <%= sale_id %>, 'h': '<%= sale_h %>' });
+  } catch (e) {}
+</script>
+<% end -%>
+<!-- End Facebook Tag -->

@@ -1,0 +1,158 @@
+<div class="page_row">
+
+  <div class="page_column_12 first rounded_corners">
+
+    <div>
+      <% set_daily_deal_page_title_slug t(:feature_your_business) %>
+
+
+      <div class="info">
+
+        <h1><%= t(:feature_your_business) %></h1>
+
+
+        <h3>Your Business + Our Deal Program.com = More Quality Customers!</h3>
+        <p>Looking for ways to get more customers to your store? We feature incredible deals from the best businesses in the <br />
+        area which creates brand awareness and attracts quality customers.</p>
+        <p>Consider the benefits of promoting your business with our risk-free advertising program:</p>
+
+
+        <p class="icon spotlight"><strong>Spotlight on Your Business:</strong> Be the main feature in front of a targeted audience, so the spotlight is on your business.</p>
+
+        <p class="icon costs"><strong>No Upfront Cost:</strong> We handle the marketing, email delivery and the secure online transactions. You just need to prepare for the new customers to show up! Our fees are absorbed into a revenue share model, so you never have to worry about upfront costs or writing checks to us.</p>
+
+        <p class="icon word"><strong>Word-Of-Mouth Buzz:</strong> We make it easy for consumers to share with everyone they know in one easy click. Your business can be shared on Facebook, Twitter and forwarded via email from a variety of consumer touch points.</p>
+
+        <p class="icon revenue"><strong>Immediate Revenue:</strong> Consumers purchase a voucher for your product or service before they even set foot in your store.</p>
+
+        <p class="icon advertising"><strong>No Risk, Performance-Based Advertising:</strong> Completely measurable and trackable, so you'll be able to measure the impact your marketing dollars have had.</p>
+
+
+      </div>
+
+
+      <% form_for [@publisher, @sales_contact_request], :html => {:id => "feature_form", :class => "vipform"}  do |f| %>
+
+      <%= error_messages_for :sales_contact_request, :header_message =>nil %>
+
+
+       <div class="col">
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :company, "Name of Business *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :company %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :type, "Type of Business" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :type %>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :first_name, "Contact First Name *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :first_name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :last_name, "Contact Last Name *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :last_name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :email, "Contact Email *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :email %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :phone_number, "Preferred Phone *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :phone_number %>
+          </div>
+        </div>
+
+      </div>
+
+        <div class="col">
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :city, "City" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :city %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :state, "State" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :state %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :zip_code, "Zip Code" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :zip_code %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :message, "Deal Description" %>
+            </div>
+            <div class="field">
+              <%= f.text_area :message, :class => "message" %>
+            </div>
+          </div>
+
+          <div class="row">
+          	<div class="label"></div>
+          	<div class="field">
+          		<p>* Required Fields</p>
+          		<p>Please double check the information you've provided for accuracy.</p>
+          	</div>
+          </div>
+
+          <div class="row" id="buttons">
+          	<div class="label"></div>
+          	<div class="field">
+          		<%= f.submit 'Send', :id => "submit", :class => "button gradient" %>
+          	</div>
+          </div>
+
+        </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+</div>

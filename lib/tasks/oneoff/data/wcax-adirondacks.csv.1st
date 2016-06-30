@@ -1,0 +1,988 @@
+UserID,FirstName,MiddleInitial,LastName,EmailAddr,Age,Sex,Phone,Address1,Address2,City,State,Region,PostalCode,BirthMonth,BirthDay,BirthYear,RegistrationDateTime
+larryjack,Larry,  ,Rosenberger,ljkcbl@comcast.net,51,MALE,802-893-3876,27 country Ln,,Milton,VT,,5468,4,1,1960,11/7/2011 16:27
+mmcarroll,Mary,  ,Carroll,mmcarroll13@aol.com,59,FEMALE,8028788423,2 Southdown Court,,Essex Junction,VT,,5452,12,16,1952,12/7/2011 9:09
+mlmannino,Michele,  ,Mannino,mlmannino@gmail.com,26,FEMALE,,,,,  ,,5404,12,19,1985,11/30/2011 22:17
+druggles,darlene,  ,ruggles,druggles@us.ibm.com,60,FEMALE,802 482-3311,96 silver st.,,hinesburg,VT,,5461,7,21,1951,11/7/2011 18:37
+jbljjordan,Linda,  ,Jordan,Linda.Jordan@Hitchcock.org,43,FEMALE,,,,,  ,,,3,28,1968,12/18/2011 11:23
+GVIENS,Gary,  ,Viens,kay57aks@yahoo.com,47,MALE,8028633501,464 South Bay Circle,,Colchester,VT,,5446,6,30,1964,11/7/2011 9:09
+Crownptr,Leslie,  ,Anderson,Crownptr@yahoo.com,18,FEMALE,,,,Crown Point Center,NY,,,1,1,1993,11/18/2011 15:01
+ChapelHeel,Sarah,  ,Waterman,sjwaterman@gmail.com,28,FEMALE,,8 Main Street Apartment A,,Winooski,VT,,5404,9,8,1983,11/30/2011 9:46
+jennroch,Jennifer,  ,Rocheleau,jennlavery@hotmail.com,18,FEMALE,,22 Platt ST,,Swanton,VT,,5488,1,1,1993,11/15/2011 18:01
+jchauvin,Jessica,  ,Chauvin,jessicachauvin@ymail.com,27,FEMALE,,151 Trombly's Trailer Park Box 16,,Northfield,VT,,5663,3,20,1984,11/8/2011 8:44
+gira2441,Donna,  ,Wyant,gira2441@hotmail.com,31,FEMALE,,25 Fiske Rd,,West Chazy,NY,,12992,7,15,1980,11/21/2011 21:03
+Shelby61,Valerie,  ,Rogers,valerie.rogers@vtmednet.org,46,FEMALE,,61 S. Main St.,,Waterbury,VT,,5676,7,2,1965,11/30/2011 22:39
+countrygir,Nancy,  ,McLean,mcleanm_82358@yahoo.com,18,FEMALE,,58 Valcour Heights Drive,,Peru,NY,,12972,1,1,1993,11/8/2011 20:20
+bruceg,bruce,  ,grindle,grindle@wcax.com,18,MALE,,92 Colligan Pt Rd,,Plattsburgh,NY,,12901,1,1,1993,11/8/2011 16:20
+TedDeb,Deborah,  ,Kessler,takumtacoc@aol.com,62,FEMALE,,PO Box 234,,Waterbury,VT,,5676,9,24,1949,11/30/2011 20:11
+Donna5308,Donna,  ,Dalley,ladybug8153@yahoo.com,58,FEMALE,,2462 RT 74,,Cornwall,VT,,5753,8,1,1953,12/7/2011 12:56
+GrammieE,Carol,  ,Eldridge,taxlady@gmavt.net,71,FEMALE,,73 Munsill Avenue,,Bristol,VT,,5443,10,26,1940,12/7/2011 7:57
+Carlahorn,Carla,  ,Hornbeck,crhornbeck@peoplepc.com,62,FEMALE,,78 Hickory Lane,,Castleton,VT,,5735,3,8,1949,12/7/2011 9:00
+cin,Cindy,  ,Longe,cindylonge@yahoo.com,50,FEMALE,,5487 Tyler Branch Rd,,Enosburg,VT,,5450,1,3,1961,11/8/2011 11:42
+birdman,Richard,  ,Asch,aschbusiness@comcast.net,49,MALE,,314 lefebvre lane,,Williston,VT,,5495,6,1,1963,1/5/2012 19:39
+Greg,Greg,  ,Machia,gregmachia@hotmail.com,18,MALE,,3891 Hanna Rd,,Franklin,VT,,5457,1,1,1993,11/3/2011 10:30
+sjillz,S Jill,  ,Zagrobelny,sjillzagrobelny@yahoo.com,18,FEMALE,,,,,  ,,,1,1,1993,11/4/2011 11:05
+LLDaniels,Lissa,  ,Daniels,LLDaniels1010@aol.com,23,FEMALE,,,,,  ,,,9,21,1988,11/7/2011 11:31
+Beryl,Beryl,  ,Noelting,TinkerBRN@aol.com,55,FEMALE,,3453 Rt. 9,,Peru,NY,,12972,1,5,1956,11/7/2011 20:08
+cathy1,CATHY,  ,COTY,ccoty5@hotmail.com,67,FEMALE,,po box 28,,ALTONA,NY,,12910,3,29,1944,11/7/2011 20:44
+julietaylo,Julie,  ,Taylor,ejtportkent@frontiernet.net,46,FEMALE,,PO Box 202,,Port Kent,NY,,12975,2,27,1965,11/8/2011 10:05
+ellensdeal,Ellen,  ,Drollette,ellen@mygpcu.com,49,FEMALE,,386 General Leroy Manor Rd,,Morrisonville,NY,,12962,2,3,1962,11/8/2011 10:08
+jennjb73,Jennifer J,  ,Ives,jennifer.ives@rocketmail.com,38,FEMALE,,PO Box 73,2171 Moriah Rd,Moriah,NY,,12960,10,20,1973,11/8/2011 13:12
+tynmarsmom,Kaley,  ,Gauthier,kgauthier@champlaintelephone.com,27,FEMALE,,107 SOUTHWICK RD,,CHAMPLAIN,NY,,12919,2,29,1984,11/8/2011 14:20
+cjtarpey,Celia,  ,Tarpey,cjtarpey@yahoo.com,21,FEMALE,,,,,NY,,12901,3,15,1990,11/8/2011 16:42
+vikings1,Melissa,  ,Larrow,mclarrow@hotmail.com,39,FEMALE,,7 Edgemont Rd,,Moriah,NY,,12960,9,15,1972,11/8/2011 18:01
+langey27,Jimmy,  ,Langey,vikingjl27@hotmail.com,30,MALE,,P.O Box 67,,moriah,NY,,12960,10,3,1981,11/8/2011 19:46
+Gumbarex,Debora,  ,Van Buren,Debora_vanburen@hotmail.com,44,FEMALE,8028936153,42 Deer Run,,Milton,VT,,5468,12,13,1967,11/30/2011 20:02
+bettys,betty,  ,shambo,pepsisham@charter.net,71,FEMALE,,61 honey drive,,plattsburgh,NY,,12901,7,3,1940,11/7/2011 11:29
+kgarrett,Karen,  ,Garrett,kgarrett02@yahoo.com,31,FEMALE,,,,,  ,,,2,27,1980,12/8/2011 20:45
+Thomasg,Thomas,  ,Gaboriault Jr.,tredskins@comcast.net,61,MALE,802-249-8612,127 uppersunnybrook rd,,Middlesex,VT,,5602,10,21,1950,11/30/2011 20:12
+trehsmom,ellen,  ,wigmore,trehsmomwigmore@yahoo.com,46,FEMALE,8023246514,us rte 2 box 273,,grand isle,VT,,5458,1,15,1965,12/7/2011 10:13
+Kathy92755,Kathy,  ,Shortsleeves,Kathy92755@yahoo.com,56,FEMALE,,128 Windy Hill Dr.,P O Box 141,Pittsford,VT,,5763,9,27,1955,12/7/2011 9:46
+njones,Nancy,  ,Lavoie,njones_451@comcast.net,53,FEMALE,,78 Joey Drive,,Colchester,VT,,5446,7,3,1958,11/26/2011 22:03
+sbrazz,Sandra B,  ,Rasco,sbrazz@aol.com,66,FEMALE,,28 Meadow Rd,,Milton,VT,,5468,3,10,1945,12/8/2011 13:12
+anthibault,Angela,  ,Thibault,angthibault@gmail.com,35,FEMALE,,524 North Brownell Road,,Williston,VT,,5495,7,24,1976,11/30/2011 17:11
+sdsmith,Susan,  ,Smith,sdsmith60@yahoo.com,62,FEMALE,,831 Hopkins Road,,Vergennes,VT,,5491,3,1,1949,11/17/2011 12:19
+dclanst,Dennis,  ,Dupere,dclanst@yahoo.com,58,MALE,,,,,  ,,,7,27,1953,11/16/2011 13:02
+Hearts2247,Anne,  ,paquette,hearts2247@yahoo.com,57,FEMALE,,28 Tilley Drive,,Swanton,VT,,5488,2,14,1954,11/7/2011 21:45
+Alwayright,Ken,  ,Peterson,Kenbet99@comcast.net,65,MALE,,5 Claire Pointe Road,,Burlington,VT,,5408,3,27,1946,11/22/2011 21:55
+tericuff,Terry,  ,Spinner,teri12t@westelcom.com,60,FEMALE,,57 Duley Rd,,Altona,NY,,12910,4,12,1951,11/4/2011 18:42
+kspt1000,Karen,  ,Staniels,karenstaniels@comcast.net,51,FEMALE,,680 Hidden Valley Road,,Shaftsbury,VT,,5262,8,5,1960,12/7/2011 18:13
+Gleno99,Glen,  ,Gehrkens,glen.gehrkens@gmail.com,38,MALE,,PO Box 776,,Willsboro,NY,,12996,3,21,1974,1/9/2012 9:24
+wright,diane,  ,blanchard,deeblanch@msn.com,58,FEMALE,,1032 decker rd.,,milton,VT,,5468,10,24,1953,11/30/2011 13:37
+pauline34,Pauline,  ,Chappell,pgregg60@aol.com,77,FEMALE,,393 Baldwin Rd.,,Ticonderoga,NY,,12883,9,13,1934,12/2/2011 23:05
+lpokorak,Lindsay,  ,Pokorak,lpokorak@gmail.com,29,FEMALE,,,,Burlington,VT,,5401,11,8,1982,11/30/2011 8:48
+GLDKJD,Kathy,  ,DeCelle,kjdecelle@aol.com,55,FEMALE,,4 Penny Circle,,Plattsburgh,NY,,12901,6,18,1956,11/7/2011 9:30
+gspinner,greg,  ,spinner,gregspinner@ymail.com,43,MALE,,67 duley road,,altona,NY,,12910,8,24,1968,11/7/2011 10:23
+taranate,Tara,  ,Rickert,taranate@charter.net,40,FEMALE,,41 Washington Street,,Peru,NY,,12972,9,15,1971,11/7/2011 10:42
+gilletkl,Kim,  ,Gillette,Gilletkl@plattsburgh.edu,18,FEMALE,,13 plank road,,ellenburg depot,NY,,12935,1,1,1993,11/8/2011 8:03
+oconnema,Melanie,  ,O'Connell,boconnell8572@charter.net,45,FEMALE,,1073 Hardscrabble Road,,Cadyville,NY,,12918,1,17,1966,11/8/2011 8:13
+hewson,Amy,  ,Hewson,hewson7832@charter.net,35,FEMALE,,3 vintage estates,,plattsburgh,NY,,12901,1,1,1976,11/8/2011 9:27
+busynymom,Janette,  ,Stetson,janettestetson@yahoo.com,36,FEMALE,,,,,  ,,,9,21,1975,11/8/2011 9:51
+northjay,Lynn,  ,LaDieu,ladieu.lynn@avcsk12.org,43,FEMALE,,972 Stickney Bridge Road,,Au SAble Forks,NY,,12912,9,16,1968,11/8/2011 10:50
+bmarcil,Buffy,  ,Marcil,b.marcil@hotmail.com,32,FEMALE,,PO Box 413,,Mineville,NY,,12956,12,21,1979,11/8/2011 11:32
+mtbouch,Tracy,  ,Boucher,tlbouch1977@yahoo.com,34,FEMALE,,24 Meacham Street,,Port Henry,NY,,12974,6,26,1977,11/8/2011 11:59
+maloneskie,shawn,  ,sousie,maloneskier@yahoo.com,45,MALE,,10 second st,,malones,NY,,12953,8,22,1966,11/8/2011 18:05
+jsanborn,Jennifer,  ,Sanborn,jensanborn@hotmail.com,36,FEMALE,,8194 State Route 9,,West Chazy,NY,,12992,2,6,1975,11/8/2011 19:02
+gguerin,Gail,  ,Guerin,gguerin@twcny.rr.com,55,FEMALE,,19 Town Hall Road,,Mooers Forks,NY,,12959,3,31,1956,11/8/2011 19:32
+jonjo,Jeffrey,  ,LaDieu,jlladieu@frontiernet.net,18,MALE,,972 Stickney Bridge Road,,Au Sable Forks,NY,,12912,1,1,1993,11/8/2011 19:45
+mfryan01,Molly,  ,Ryan,mfryan01@gmail.com,28,FEMALE,,59 church street,,Rouses Point,NY,,12979,6,7,1983,11/8/2011 19:56
+aburdo,Amy,  ,Burdo,aburdo@charter.net,46,FEMALE,,58 Akey Road,,Morrisonville,NY,,12962,1,15,1965,11/8/2011 20:11
+kaulis0322,Karen,  ,Aulis,kaulis@live.com,51,FEMALE,,P.O. Box 93,,Rouses Point,NY,,12979,3,22,1960,11/8/2011 22:48
+p1mpjuce,Brian,  ,Branham,unc11bud@aol.com,28,MALE,,1382 military tpke,,Plattsburgh,NY,,12901,7,15,1983,11/8/2011 23:20
+Nikki01,Nikki,  ,Edwards,trouble.maker001@yahoo.com,33,FEMALE,,12 alford blvd,,plattsburgh,NY,,12901,5,9,1978,11/8/2011 23:52
+chrisbrown,Christopher,  ,Brown,christopherbrownvt@gmail.com,27,MALE,,60 Colchester Ave #4,,Burlington,VT,,5401,6,18,1984,11/30/2011 8:17
+caroltom,Carol-Tom,  ,Rennell,rennell.tc@gmail.com,18,FEMALE,,13 Olivetti Place,,Plattsburgh,NY,,12901,1,1,1993,11/9/2011 9:47
+jabow1,Holly,  ,Mitchell,mitchell_holly@msn.com,46,FEMALE,,,,,  ,,,10,31,1965,11/9/2011 12:46
+lwdashnaw,laurie,  ,dashnaw,lwdashnaw@hotmail.com,55,FEMALE,,37 clinton st.,,keeseville,NY,,12944,10,14,1956,11/9/2011 21:57
+ejfmgf,Emily,  ,Fessette,emilysavon@aol.com,18,FEMALE,,,,,NY,,12992,1,1,1993,11/16/2011 17:22
+Nia1657,Darlene,  ,LaMountain,niamonk@charter.net,54,FEMALE,,26 Smart St,,Keeseville,NY,,12944,6,8,1957,11/16/2011 21:20
+nfinley,Nancy,  ,Finley,nfinley382@aol.com,62,FEMALE,,,,,  ,,,6,26,1949,11/17/2011 8:47
+Jmhiro,Joseph,  ,Hiro,Jhiro41@yahoo.com,31,MALE,,,,,  ,,,4,13,1980,11/17/2011 8:52
+jablab85,Laurie,  ,Burns,jablab85@nycap.rr.com,46,FEMALE,,207 Burgoyne Rd,,Ticonmderoga,NY,,12883,5,18,1965,11/23/2011 19:30
+cableguywi,Daniel,  ,Cogan,kcogin3690@charter.net,49,MALE,,1816 N. Ausable St,Cogan,Keeseville,NY,,12944,11,13,1962,11/25/2011 9:42
+Hairymare,Yvette,  ,Tillema,yvettetillema@mac.com,54,FEMALE,,10015 NY ST Rt 9N,,Keene,NY,,12942,6,17,1957,11/27/2011 18:35
+denalmt,Dena,  ,Archer,dena@archerspa.com,41,FEMALE,,36 lafayette st,,plattsburgh,NY,,12901,3,2,1970,11/29/2011 13:32
+lizhillvt,Liz,  ,Hill,lizhillvt@hotmail.com,69,FEMALE,,9 Cooper Bay South,,Grand Isle,VT,,5458,5,21,1942,11/30/2011 8:05
+bhawley,Brenda,  ,Hawley,bhawley03@gmail.com,51,FEMALE,,233 Nichols Road,,Fairfax,VT,,5454,9,1,1960,11/30/2011 9:51
+ROCH,ROCHELLE,  ,THERRIEN,rochelle.therrien@yahoo.com,75,FEMALE,,99 PEARL ST.,,GRAND ISLE,VT,,5458,8,6,1936,11/30/2011 15:42
+lemieux25,Lisa,  ,Lemieux,llemieux25@gmail.com,54,FEMALE,,3183 BOLTON NOTCH RD,,JERICHO,VT,,5465,7,25,1957,12/7/2011 20:00
+RRice,Rose,  ,Rice,rm_rice@yahoo.com,47,FEMALE,,PO Box 24,41 Witherbee Road,Moriah Center,NY,,12961,5,19,1964,12/7/2011 9:43
+schwarl,Laura-Jean,  ,Schwartau-Swanson,schwarl@plattsburgh.edu,54,FEMALE,,53 Maryland Ave.,,Saranac Lake,NY,,12983,8,20,1957,12/7/2011 14:08
+stopinski,Lynn,  ,coeby,Lcoeby@gmail.com,56,FEMALE,,PO box 667,,E. Middlebury,VT,,5740,8,16,1955,12/7/2011 17:08
+jimcondon,James,  ,Condon,jscondon@mac.com,56,MALE,,2062 Panton RD,,Vergennes,VT,,5491,2,17,1955,12/7/2011 21:24
+djpellerin,deb,  ,pellerin,bammapel@msn.com,53,FEMALE,,,,,  ,,,5,21,1958,12/8/2011 19:56
+lmenard,Lynda,  ,Menard,daemonzeiro@gmail.com,25,FEMALE,,122 N Union St,1,Burlington,VT,,5401,4,24,1986,12/9/2011 7:46
+cmussaw,Charlene,  ,mussaw,cmussaw@gmail.com,43,FEMALE,,974 military tpk,,plattsburgh ny,NY,,12901,12,24,1968,12/10/2011 16:12
+jdevine,Julia,  ,Devine,juliaruthdevine@gmail.com,34,FEMALE,,7 Couch St,,Plattsburgh,NY,,12901,8,31,1977,12/12/2011 20:44
+anjani1,Anjanie,  ,Sakhichand,anjani1@aol.com,38,FEMALE,,86 Brinkerhoff Street,,Plattsburgh,NY,,11001,7,8,1973,12/14/2011 8:47
+Cadyville,Carol,  ,Lombard,carol145@aol.com,67,FEMALE,,115 East Road,,Cadyville,NY,,12918,12,31,1944,12/16/2011 11:09
+DarciB,Darci,  ,Benoit,bj_darci@yahoo.com,31,FEMALE,,20 Broadway St,,Swanton,VT,,5488,5,18,1980,11/7/2011 14:46
+edrobhart,ed,  ,hart,edrobhart54@aim.com,57,MALE,,1966 north rd,,hinesburg,VT,,5461,5,1,1954,11/7/2011 10:37
+magnolia,Spencer,  ,Baker,wspencerbaker@comcast.net,70,MALE,802-862-9725,123 Shunpike Road,,South Burlington,VT,,5403,12,18,1942,1/4/2012 23:08
+Matty42583,Matt,  ,Seney,Matty42583@yahoo.com,28,MALE,5185775695,17 Monty street,,Plattsburgh,NY,,12901,4,25,1983,11/9/2011 10:30
+paydata,Ruth,  ,Butts,rbuttsrb@gmail.com,32,FEMALE,802-644-8745,95 Overlake Dr,,Milton,VT,,5468,6,4,1980,1/7/2012 8:23
+vtbob,Bob,  ,Zeliff,zeliff@gmavt.net,65,MALE,802 758 2108,2209 east st,,bridport,VT,,5734,9,3,1946,11/23/2011 8:19
+lerock,Lester,  ,Rockey,totherockies@myfairpoint.net,62,MALE,,2225 Frontage Rd,,Swanton,VT,,5488,3,4,1949,11/7/2011 13:43
+lauriesher,laurie,  ,fleming,laurieshero@gmail.com,60,FEMALE,,,,,  ,,,12,14,1951,11/30/2011 15:11
+eglarocque,Elaine,  ,LaRocque,blazer27@comcast.net,60,FEMALE,,104 Mountain View Drive,,Swanton,VT,,5488,4,17,1951,12/26/2011 14:18
+mellowmiti,Joyce,  ,McCutcheon,mellowmiti@aol.com,52,FEMALE,,37 Precast Road,,Milton,VT,,5468,4,27,1959,11/30/2011 16:40
+renee,Renee,  ,Blaise,my20acresoffun@yahoo.com,31,FEMALE,,307 Murtagh Hill Rd,,West Chazy,NY,,12992,10,24,1980,11/13/2011 15:39
+Joannestet,Joanne,  ,Stetson,jostets@yahoo.com,54,FEMALE,,983 Pond Road,,North Ferrisburgh,VT,,5473,10,15,1957,11/30/2011 12:05
+CGuros,Chris,  ,Guros,chrisguros@gmail.com,31,MALE,,14 Crombie Street #2,,Burlington,VT,,5401,3,17,1980,11/29/2011 13:15
+sarahpsuc,Sarah,  ,Racine,sarahmracine@yahoo.com,29,FEMALE,,,,,NY,,12979,12,10,1982,11/8/2011 18:17
+dotts12919,Tia,  ,LaFlesh,dotts12919@gmail.com,40,FEMALE,,583 State Route 11,,Champlain,NY,,12919,4,13,1971,11/8/2011 20:49
+Imwayno,Wayne,  ,LaBonte,wayne.labonte@twincraft.com,43,MALE,,340 Watkins Rd,,Colchester,VT,,5446,11,6,1968,11/30/2011 8:14
+nm1000x,Norma,  ,Miller,norma.knits@gmail.com,52,FEMALE,,147 High Street,,SAINT ALBANS,VT,,5478,7,18,1959,11/30/2011 21:09
+802rebecca,Rebecca,  ,Aitchison,aitchisonfour@aol.com,45,FEMALE,,337 Scott Hill Road-Berlin,,Barre,VT,,5641,12,26,1966,12/24/2011 10:28
+derkswife,Diane,  ,LaFrance,derkswife@yahoo.com,48,FEMALE,,29 Shore Airport Road,,Ticonderoga,NY,,12883,12,23,1963,11/14/2011 20:03
+lmarcelle,Laura,  ,Marcelle,lmarcelle802@hotmail.com,49,FEMALE,,1093 Basin Harbor Rd.,,Vergennes,VT,,5491,8,2,1962,12/7/2011 19:14
+odmnd11,John,  ,Fallon,j.fallon10@comcast.net,68,MALE,,770 Weybridge Rd,,Weybridge,VT,,5753,10,13,1943,12/7/2011 20:16
+Stuski33,Stuart,  ,Friedman,stuski33@hotmail.com,46,MALE,,8 South Acres Rd.,,Plattsburgh,NY,,12901,10,7,1965,11/7/2011 16:26
+dthibault,Dawn,  ,Thibault,dawnthibault@gmavt.net,62,FEMALE,,39 Tatro Road,,Starksboro,VT,,5487,6,22,1949,11/23/2011 22:18
+plafrench,Paula,  ,French,plafrench@yahoo.com,40,FEMALE,,93 Mayo Road,,Colchester,VT,,5446,2,26,1971,12/7/2011 12:06
+soccer1113,Peggy,  ,Dumont,peggyann_12@yahoo.com,49,FEMALE,,275 St. Albans Road,,Swanton,VT,,5488,11,13,1962,11/25/2011 11:15
+mkcrosby,Mindy,  ,Crosby,mindykay_81@yahoo.com,30,FEMALE,,36a ktp st,,bristol,VT,,5443,8,9,1981,12/7/2011 19:44
+Nnissa9,NIcole,  ,Seymour,Nnissa9@aol.com,30,FEMALE,,242 duprey rd,,Chazy,NY,,12921,11,14,1981,11/7/2011 18:12
+JUSTJACKIE,JACQUELINE,  ,HILLS,JUSTJACKIE76@YAHOO.COM,35,FEMALE,,11 HOLDEN AVE,,PERU,NY,,12972,5,18,1976,11/8/2011 10:09
+carissam,Carissa,  ,Kemp,carissamkemp@aol.com,29,FEMALE,,1274 State Route 9B,,Champlain,NY,,12919,8,25,1982,11/8/2011 13:48
+valcool,Valerie,  ,Coolidge,coolidge@frontiernet.net,52,FEMALE,,PO Box 651,16 Getta Way,Au Sable Forks,NY,,12912,7,27,1959,11/8/2011 14:43
+Lizzy50,Lizabeth,  ,Woodard,lizabeth.woodard@plattsburgh.edu,61,FEMALE,,6 March Lane,,Plattsburgh,NY,,12901,3,3,1950,11/8/2011 14:46
+twitks,THERESA,  ,WITKIEWICZ,twitks@yahoo.com,38,FEMALE,,,,,  ,,,7,4,1973,11/8/2011 15:09
+kbarber,Kathleen,  ,Barber,barber.kathleen@avcsk12.org,47,FEMALE,,671 Peasleeville Road,,Schuyler Falls,NY,,12985,11,17,1964,11/8/2011 19:56
+aholder76,April,  ,Holder,amfulloffun@charter.net,35,FEMALE,,,,,  ,,,4,21,1976,11/8/2011 20:16
+jtrudo,Janelle,  ,Trudo,jj107547@yahoo.com,33,FEMALE,,53 Locust St,,Champlain,NY,,12919,2,10,1978,11/8/2011 20:23
+Nikkiny911,Nikki,  ,Duquette,Nikkiny911@msn.com,41,FEMALE,,172 Tom Miller Rd,,Plattsburgh,NY,,12901,9,11,1970,11/8/2011 20:25
+ashlinej,Jeremy,  ,Ashline,ashlinej1163@yahoo.com,25,MALE,,,,,  ,,,3,8,1986,11/8/2011 21:27
+waldrocb,Courtney,  ,Waldron,courtneybri90@gmail.com,21,FEMALE,,5 Oak Lane,,Port Henry,NY,,12974,12,24,1990,11/8/2011 21:35
+sandmans42,Mark,  ,Sand,marknsarah@yahoo.com,36,MALE,,1219 Jersey Swamp Rd.,,Morrisonville,NY,,12962,2,21,1975,11/9/2011 7:42
+sabocaa,Arlene,  ,Sabo,arlenes1234@aol.com,51,FEMALE,,,,,NY,,12901,6,14,1960,11/9/2011 9:11
+kshor001,Kristin,  ,Short,kshor001@plattsburgh.edu,27,FEMALE,,P.O. Box 417,,Plattsburgh,NY,,12962,9,19,1984,11/9/2011 10:27
+jmdavis,Janet,  ,Davis,jmdavis1952@charter.net,59,FEMALE,,,,,  ,,,5,21,1952,11/11/2011 15:23
+ReneeAE,Renee,  ,Elsinger,reneelittlewood@yahoo.com,34,FEMALE,,P.O. Box 2139,,Plattsburgh,NY,,12901,5,31,1977,11/12/2011 9:52
+gimpgod,joseph,  ,aesquivel,aesq_jj@yahoo.com,47,MALE,,10 howard dr,,peru,NY,,12972,8,25,1964,11/12/2011 22:09
+Deig43,Deidre,  ,Berman,deidre@canine-adventure.com,32,FEMALE,,,,,  ,,,11,14,1979,11/13/2011 14:41
+Westviewqh,Erin,  ,Longworth,Westviewqh@aol.com,35,FEMALE,,25 Bernier rd,,Milton,VT,,5468,4,16,1976,11/13/2011 20:45
+SLProvost,Sherri,  ,Provost,sprovost@perucsd.org,42,FEMALE,,,,,  ,,,11,21,1969,11/15/2011 17:25
+kinderway,Becki,  ,Wayman,bjw92960@yahoo.com,51,FEMALE,,299 Pearl Street,,West Bridport,VT,,12928,9,29,1960,11/17/2011 18:23
+alterngirl,Kristina,  ,Melton,kristina.m.melton@gmail.com,26,FEMALE,,,,,NY,,,9,2,1985,11/18/2011 16:49
+dbruley,D,  ,Bruley,damiebruley@gmail.com,28,FEMALE,,62B Lake St,,Rouses Point,NY,,12979,5,2,1983,12/22/2011 15:17
+c79parot,Carissa,  ,Parot,c79parot@gmail.com,32,FEMALE,,17 Baltimore Way,,Plattsburgh,NY,,12903,2,7,1979,11/25/2011 7:32
+thanne1,Ruthanne,  ,Stan,ruthanne@grabapples.com,36,FEMALE,,67 Thompson Rd,,Keeseville,NY,,12944,8,9,1975,11/25/2011 18:07
+kmccool2,Kaleen,  ,McCool,soccer2mccool@hotmail.com,28,FEMALE,,58 Pleasant street,,Peru,NY,,12972,4,27,1983,11/28/2011 16:49
+jcalnon,James,  ,Calnon,jcalnon@westelcom.com,62,MALE,,108 Bailey Avenue,,Plattsburgh,NY,,12901,9,10,1949,11/28/2011 19:39
+susanalex,susan,  ,alexander,susansalexander@gmail.com,52,FEMALE,,,,,  ,,,12,6,1959,11/29/2011 10:54
+barbwagner,Barbara,  ,Wagner,BARBWAGNER@aol.com,60,FEMALE,,34 Blair Road,,Plattsburgh,NY,,12901,7,15,1951,11/30/2011 8:19
+kmraymond1,Keri,  ,Raymond,kmraymond12@gmail.com,26,FEMALE,,86 Goodsell Point,,Colchester,VT,,5404,1,11,1985,11/30/2011 10:09
+jgroberts,Joseph,  ,Roberts,jroberts129@hotmail.com,43,MALE,,,,,  ,,,1,29,1968,11/30/2011 11:01
+Hsdriscoll,Heather,  ,Driscoll,Hsdriscoll@gmail.com,40,FEMALE,,27 rose st,,Burlington,VT,,5401,5,3,1971,11/30/2011 11:10
+bookworks,Julie,  ,Stillman,jstillman315@gmail.com,58,FEMALE,,1 Folmsom Harbor Rd.,,Grand Isle,VT,,5458,3,15,1953,11/30/2011 19:49
+1adklady,Lori,  ,Clark,1adklady@gmail.com,53,FEMALE,,375 Pleasant st,,Peru,NY,,12972,1,12,1958,11/30/2011 18:30
+hollymac5,Carolyn,  ,McCray,hollymac5@aol.com,63,FEMALE,,64 East Shore South,,Grand Isle,VT,,5458,3,6,1948,11/30/2011 19:57
+megfog,Megan,  ,Fogarty,megfog@hotmail.com,32,FEMALE,,,,,  ,,,2,25,1979,11/30/2011 21:03
+minischnau,Sue,  ,Laurin,slaurin@chazy.org,48,FEMALE,,2354 Lake Shore Road,,Chazy,NY,,12921,2,12,1963,12/5/2011 8:45
+maryse58,Nancy,  ,Neubrand,maryse58@verizon.net,53,FEMALE,,2441 Route 22,,Peru,NY,,12972,9,2,1958,12/5/2011 22:51
+smac46r,Scott,  ,McIntyre,scottymac46r@hotmail.com,50,MALE,,,,,  ,,,12,5,1962,1/9/2012 16:38
+Aumember,damon,  ,Petrie,petrie004@gmail.com,37,MALE,,,,,VT,,,3,2,1974,11/30/2011 17:35
+bouday,Bevely,  ,Bronson,bouday57@hotmail.com,46,FEMALE,527-0130,81 Bradley Hill rd,,Milton,VT,,5468,5,26,1965,12/25/2011 6:23
+lmlibby106,Lisa,  ,Libby,lmlibby106@aol.com,50,FEMALE,802-878-9795,32 Tyler Dr.,,Essex Junction,VT,,5452,10,6,1961,11/30/2011 18:20
+vogtfd,Dan,  ,Vogt,vogtfd@plattsburgh.edu,58,MALE,802-872-8642,142 Blackberry Circle,,Colchester,VT,,5446,2,27,1953,12/23/2011 10:03
+AmyJo329,Amy,  ,Joseph,mikjoseph@aol.com,42,FEMALE,802-893-1416,13 Lena Court,,Milton,VT,,5468,3,29,1969,11/30/2011 21:52
+gbgodfrey,Gay,  ,Godfrey,godfreygb@comcast.net,47,FEMALE,,,,,  ,,,3,30,1964,11/30/2011 9:13
+achase3,alyssa,  ,chase,chasevt@comcast.net,32,FEMALE,,216 raven circle,,williston,VT,,5495,2,2,1979,12/27/2011 16:47
+boutonrn,Dottie,  ,Bouton,boutonrn@msn.com,68,FEMALE,,25 Gorham Lane,,Middlebury,VT,,5753,2,24,1943,12/7/2011 18:47
+sunset,LInda,  ,Fishell,knlfishell@comcast.net,74,FEMALE,,51 Grove Lane,,Shelburne,VT,,05482-6899,3,28,1937,12/7/2011 13:49
+frazzieam,Amy,  ,Mincher,amincher@email.com,30,FEMALE,,720 Cobble Road,,Middlebury,VT,,5753,6,19,1981,12/7/2011 19:42
+SCarter65,Lisa,  ,Carter,suzcarter49@gmail.com,18,FEMALE,,50 Kansas Ave,,Plattsburgh,NY,,12903,1,1,1993,11/8/2011 12:27
+BonBon,Bonny,  ,Streeter,streetgregbonny@aol.com,49,FEMALE,,287 Cote Hill Rd,,Morrisville,VT,,5661,5,9,1962,11/30/2011 8:41
+terryj,Terry,  ,Jackson,tlj2x534@yahoo.com,18,FEMALE,,9 White Street,,Vergennes,VT,,5491,1,1,1993,11/17/2011 11:14
+singe,William,  ,Price,mauisinge@hotmail.com,63,MALE,,14 Winding Brook Dr.,,south Burlington,VT,,5403,11,2,1948,11/30/2011 20:51
+chier,charlene,  ,hier,clhhier@hotmail.com,18,FEMALE,,99 pine ridge lane,,weybridge,VT,,5753,1,1,1993,11/17/2011 12:40
+clairabell,Claire,  ,Martin,clairabelle8737@yahoo.com,18,FEMALE,,4775 US Ave Apt 3,,Plattsburgh,NY,,12901,1,1,1993,11/8/2011 9:44
+Meckster,Carolyn,  ,Farineau,crf56@surfglobal.net,55,FEMALE,,64 West Shore Road,,South Hero,VT,,5486,12,27,1956,11/30/2011 9:01
+bronx1957,David,  ,Shapiro,bronx1957@aol.com,54,MALE,,19 Northshore Drive,,Burlington,VT,,5408,5,7,1957,12/16/2011 9:37
+knordica,Katie,  ,Winterbottom,katie.n.winterbottom@gmail.com,34,FEMALE,,330 Bear Trap Road,,Milton,VT,,5468,8,14,1977,11/30/2011 8:43
+carey56,John,  ,Carey,carey56@gmail.com,37,MALE,,56 Sandra Av,,Plattsburgh,NY,,12901,5,27,1974,11/7/2011 12:20
+mrae38,Melissa,  ,Benjamin,mraebenjamin@gmail.com,38,FEMALE,,11 Hog Island Road,,Swanton,VT,,5488,7,1,1973,11/8/2011 8:56
+roch30,Nicole,  ,Rocheleau,roch30@gmavt.net,35,FEMALE,,52 Lester Ln,,Moretown,VT,,5660,12,9,1976,11/8/2011 9:08
+barthur,Bethany,  ,Arthur,bethany.arthur2009@gmail.com,27,FEMALE,,364 Arthur Road,,Peru,NY,,12972,7,12,1984,11/8/2011 9:12
+memers74,Amy,  ,Duda,memers74@me.com,37,FEMALE,,5091 S. Catherine Street,,Plattsburgh,NY,,12901,12,24,1974,11/8/2011 9:12
+adkblakes,robert,  ,blake,blake@trainersdirect.com,50,MALE,,405 No 37 Rd,,Saranac,NY,,12981,11,29,1961,11/8/2011 9:37
+bubbles1,Lisa,  ,Brousseau,brousslm@plattsburgh.edu,47,FEMALE,,,,,  ,,,10,27,1964,11/8/2011 13:04
+Clangey,Carrie,  ,Langey,Clangey@nycap.rr.com,36,FEMALE,,PO Box 220,2600 Center Road,Moriah,NY,,12960,8,31,1975,11/8/2011 14:10
+SarahL27,Sarah,  ,LaFountain,sarahmae123083@yahoo.com,28,FEMALE,,,,,  ,,,12,30,1983,11/8/2011 14:31
+Misse88,Melissa,  ,Bechard,Misse88@aol.com,37,FEMALE,,,,,  ,,,5,29,1974,11/8/2011 17:45
+MorticiaB,Beth,  ,Miller,elizabella33@yahoo.com,39,FEMALE,,30 Pine St,,Champlain,NY,,12919,5,28,1972,11/8/2011 20:06
+jblack27,Jackie,  ,Black,jblack27@earthlink.net,43,FEMALE,,168 Priest Road,,Redford,NY,,12978,4,5,1968,11/8/2011 20:24
+deedee1957,Denise,  ,Tuttle,deedee1957@myfairpoint.net,54,FEMALE,802-868-7838,PO Box 1,,Swanton,VT,,5488,5,21,1957,11/7/2011 19:19
+beyor21,Amber,  ,Beyor,a.beyor@comcast.net,32,FEMALE,802-868-5373,18 Andy Ave,,Swanton,VT,,5488,9,22,1979,11/8/2011 20:33
+adambufano,Adam,  ,Bufano,asbufano@gmail.com,27,MALE,802-310-4099,49 Village Glen,,Essex Junction,VT,,5452,11,19,1984,11/30/2011 13:06
+seastman,Susan,  ,Eastman,smkvt@comcast.net,42,FEMALE,,,,,  ,,,9,20,1969,12/19/2011 21:52
+Valhunter,Valerie,  ,Hunter,Mvhunter88@msn.com,18,FEMALE,802-372-5595,47 Hyde Rd,,Grand isle,VT,,5458,1,1,1993,11/7/2011 15:57
+taraz2002,Tara,  ,Adams,tadams6370@gmail.com,41,FEMALE,802-372-4792,PO Box 118,72 Hyde Rd,Grand Isle,VT,,5458,6,3,1970,11/26/2011 17:08
+crobare,Cindy,  ,Robare,crobare@comcast.net,50,FEMALE,802-655-0433,40 Orchard Terrace,,Winooski,VT,,5404,5,24,1961,12/17/2011 11:41
+Jpayea,Jaimie,  ,Coffey,jcoffey1121@gmail.com,28,FEMALE,,11027 RT 116 Apt A,,Hinesburg,VT,,5461,11,21,1983,12/26/2011 9:42
+haja,Heather,  ,Aja,aja@wcax.com,32,FEMALE,,11 Cobble Hill Meadows,,Barre,VT,,5641,2,15,1979,12/12/2011 8:09
+skingsland,Shannon,  ,Kingsland,shannon.leclair@nbtbank.com,37,FEMALE,,,,,  ,,,9,2,1974,12/7/2011 21:21
+abirch15,Andrew,  ,Birch,abirch15@yahoo.com,24,MALE,,57 Cedar Dr,,Addison,VT,,5491,5,19,1987,12/7/2011 18:53
+Rleffler,Robyn,  ,Leffler,rleffler@gmail.com,43,FEMALE,,1201 Lincoln Hill Rd,,Hinesburg,VT,,5461,5,20,1968,12/1/2011 18:12
+reenie,Noreen,  ,Wolfstich,reenie25@gmail.com,53,FEMALE,,35 Old Colchester Rd.,,Essex Junction,VT,,5452,2,6,1958,12/8/2011 18:25
+sheana,Sheana,  ,holder,surfergirl1974@gmail.com,37,FEMALE,,40 conroy rd,,west chazy,NY,,12992,1,28,1974,12/6/2011 18:05
+CrenshawX2,Julie,  ,Crenshaw,CrenshawX2@msn.com,55,FEMALE,,6 Brownell Drive,,Essex Jct,VT,,05452-3526,8,30,1956,12/7/2011 9:15
+alirish,allan,  ,irish,alifibber@aol.com,69,MALE,,po Box 181 12 Sunrise Lane,,grand Isle,VT,,5458,9,15,1942,12/23/2011 9:38
+boris,B,  ,Bolen,nomad@gmavt.net,65,MALE,,117 Hunt Rd,,New Haven,VT,,5472,8,31,1946,12/7/2011 13:18
+fosteram,avis,  ,foster,avis.foster@plattsburgh.edu,18,FEMALE,,38 lapointe road,,chazy,NY,,12921,1,1,1993,11/8/2011 8:33
+SteveMinor,Steve,  ,Minor,sminor59@yahoo.com,52,MALE,,435 Ethan Allen Highway,,Georgia,VT,,5468,8,23,1959,12/7/2011 19:44
+lsaia,Linda,  ,Saia,Linda.Saia@comcast.net,63,FEMALE,,23 Peacham Lane,,Essex Junction,VT,,5452,10,5,1948,11/30/2011 22:01
+tmterreri,Terri,  ,Terreri,tmterreri@aol.com,53,FEMALE,,,,,  ,,,7,9,1958,11/19/2011 15:36
+gina1,GUDRUN,  ,NOETZOLD,noetzoldg@gmail.com,54,FEMALE,,446 Camp St,,Barre,VT,,5641,11,1,1957,12/1/2011 18:02
+Wandalush,Wanda,  ,Seymour,wandalush@yahoo.com,38,FEMALE,,30 School St,,Vergennes,VT,,5491,9,22,1973,11/7/2011 11:34
+JEMHAT,JUSTIN,  ,jENNETTE,WEENIEWITCH@YAHOO.COM,22,MALE,,p.o. box 238,,Willsboro,NY,,12996,1,9,1989,11/7/2011 13:52
+amla,Amy,  ,LaValley,adirondackstable@hotmail.com,41,FEMALE,,,,,  ,,,10,27,1970,11/7/2011 14:02
+hviens76,Heidi,  ,Viens,hviens76@gmail.com,35,FEMALE,,380 Lime Kiln RD #528,,South Burlington,VT,,5403,6,27,1976,11/7/2011 22:40
+bosox18,Steve,  ,Ouellette,ouellette1918@gmail.com,46,MALE,,22 Sanborn Ave,,Plattsburgh,NY,,12901,8,8,1965,11/8/2011 7:14
+terrapin,martha,  ,lambert,coturtles@msn.com,54,FEMALE,,,,,  ,,,12,16,1957,11/8/2011 12:11
+kbrault,Kelley,  ,Brault,kelleybrault@Yahoo.com,47,FEMALE,,29 Pristine Drive,,Plattsburgh,NY,,12901,5,16,1964,11/8/2011 13:52
+lilangel,Amanda,  ,Sears,lilangel_leigh@yahoo.com,28,FEMALE,,67 River st,,Keeseville,NY,,12944,8,22,1983,11/8/2011 15:03
+thatin,Tracie,  ,Hatin,mommydec99@yahoo.com,33,FEMALE,,,,,  ,,,10,30,1978,11/8/2011 16:49
+kaylaruger,Kayla,  ,Ruger,kayylaxmariee@gmail.com,18,FEMALE,,1345 Lavalley Rd,,Champlain,NY,,12958,1,1,1993,11/8/2011 17:39
+goyettee,ellen,  ,goyette,ellengoyette@yahoo.com,60,FEMALE,,95 stratton hill road,,WEST CHAZY,NY,,12992,11,21,1951,12/18/2011 18:02
+karenef,Karen,  ,Fountain,karenef@localnet.com,62,FEMALE,,271 Old Military Rd,,lake Placid,NY,,12946,6,15,1949,12/18/2011 21:02
+lizzydizzy,Elizabeth,  ,Siskavich,liz12929@yahoo.com,37,FEMALE,,,,,  ,,,10,18,1974,12/20/2011 21:07
+haylee787,Kari,  ,Kelsh,tweetygurl0426@yahoo.com,28,FEMALE,,Po Box 194,,Champlain,NY,,12919,4,26,1983,12/22/2011 19:39
+dpecoraro,Diane,  ,Pecoraro,dpecoraro@saranac.org,44,FEMALE,,9 Dennis Ave,,Plattsburgh,NY,,12901,1,16,1967,12/23/2011 8:20
+gouchier,Cristy,  ,Ashline,Jcashline@hotmail.com,38,FEMALE,,256 Agnew Rd,,Morrisonville,NY,,12962,2,7,1973,12/26/2011 8:11
+judy1,judy,  ,graves,judygraves@charter.net,59,FEMALE,,42 Rugar Park Way,,plattsburgh,NY,,12901,2,8,1952,12/26/2011 10:00
+jtcarter61,Joshua,  ,Carter,blitzvik@gmail.com,30,MALE,,,,Plattsburgh,NY,,,6,10,1981,12/26/2011 17:07
+bguynup55,Bernard,  ,Guynup,bguynup55@yahoo.com,56,MALE,,PO Box 743,,Morrisonville,NY,,12962,8,3,1955,12/26/2011 18:58
+Stromb,Sue,  ,Trombley,Tfonmrd@charter.net,51,FEMALE,,8 Maple Ridge Drive,,West Chazy,NY,,12992,10,5,1960,12/26/2011 19:20
+daisee,Diane,  ,Pecoraro,dpecoraro@verizon.net,25,FEMALE,,9 Dennis Ave,,Plattsburgh,NY,,12901,5,23,1986,12/28/2011 13:03
+klein79,eric,  ,klein,ericklein79@hotmail.com,28,MALE,,101 west milton road #28,,Milton,VT,,5468,8,22,1984,1/4/2012 15:03
+pepper64,Lisa,  ,Rodgers,sunshine2564@charter.net,48,FEMALE,,4113 state route 9,,Plattsburgh,NY,,12901,2,5,1964,1/4/2012 17:13
+David1,David,  ,Burgess,burgess60@charter.net,52,MALE,,"23 Mohican,Ln.",,Plattsburgh,NY,,12901,4,4,1960,1/5/2012 18:11
+fieldfam,evie,  ,field,fieldfam@dishmail.net,62,FEMALE,,,,,  ,,,1,12,1950,1/9/2012 10:04
+drambin,Danielle,  ,Rambin,danirambin@aol.com,48,FEMALE,,399 Rt 30 S,,Poultney,VT,,5764,1,26,1963,12/6/2011 10:00
+hults,celestine,  ,hults,shults48@yahoo.com,63,FEMALE,,6786 monument hill rd,,castleton,VT,,5735,1,22,1948,12/7/2011 10:50
+mamag,Gayle,  ,Santa,santaschildren@yahoo.com,52,FEMALE,,1 Tom Miller Rd,,Plattsburgh,NY,,12901,3,4,1959,12/8/2011 12:21
+slabombard,Sarah,  ,LaBombard,morningsover518@gmail.com,21,FEMALE,,546 Mason St,,Morrisonville,NY,,12962,1,3,1990,12/8/2011 21:11
+mamamaye,Cynthia,  ,Mayette,mayette@luckbros.com,58,FEMALE,,192 Commodore Thomas,MacDonough Highway,Plattsburgh,NY,,12901,4,19,1953,12/12/2011 9:22
+tmiller,Tammy,  ,Miller,tmiller0668@gmail.com,43,FEMALE,,24 Baltimore Way,,Plattsburgh,NY,,12903,6,23,1968,12/20/2011 19:46
+jubee,julie,  ,Welch,h20word@yahoo.com,43,FEMALE,,71 Liberty St,,Keeseville,NY,,12944,1,2,1968,12/23/2011 18:03
+michaelc,Michael,  ,Cava,michaeljcava@gmail.com,42,MALE,,26 Pearl St.,,Grand Isle,VT,,5458,7,28,1969,12/25/2011 12:38
+lorigp,Lori,  ,Pion,lgirard@dps.state.vt.us,52,FEMALE,,8 Bosworth Court,,Swanton,VT,,5488,12,22,1959,12/26/2011 15:45
+Felbal,Barbara,  ,LeClair,Leclair8049@charter.net,58,FEMALE,,159 Hank Wilson Rd,,Cadyville,NY,,12918,2,24,1953,12/26/2011 17:11
+god75,Kevin,  ,Goddeau,god75@verizon.net,55,MALE,,16 Graves Lane,,Plattsburgh,NY,,12901-1211,4,7,1956,12/26/2011 21:25
+mbl481,mary,  ,leclair,crl42795@gmail.com,47,FEMALE,,481 rugar st,,plattsburgh,NY,,12901-3109,2,19,1964,12/26/2011 22:40
+shelli00,shelli,  ,golden,shlgolden100@aol.com,45,FEMALE,,1266 cumberlandhead rd,,plattsburgh,NY,,12901,8,2,1966,12/27/2011 22:25
+tallen,Tracy,  ,Waite,tallen@saranac.org,52,FEMALE,,4 Brookside Ave,,Morrisonville,NY,,12962,11,26,1960,1/4/2012 12:45
+dmkd91,Donna,  ,De Meulemeester,dmkd91@yahoo.com,41,FEMALE,,15 Hollywood ave.,,Keeseville,NY,,12944,6,12,1971,1/4/2012 21:24
+BPawluk,Barbara,  ,Pawluk,bpawluk@myfairpoint.net,53,FEMALE,,6 Maple Avenue,,South Burlington,VT,,5403,8,1,1959,1/7/2012 9:36
+jlamotte,Julie,  ,LaMotte,julielamotte@earthlink.net,32,FEMALE,,,,Albany,NY,,,12,24,1979,11/8/2011 16:09
+talu64,Tammy,  ,HAMILTON,talu64@yahoo.com,47,FEMALE,,840 Peasleeville Road,,Schuyler Falls,NY,,12985,4,26,1964,11/8/2011 18:25
+kelmo922,Kelly,  ,Guynup,kelmo922@hotmail.com,29,FEMALE,,5 Winding Brook Road,,Peru,NY,,12972,9,22,1982,11/8/2011 19:50
+KariLynn13,Kari,  ,Lynn,mikekari@charter.net,39,FEMALE,,10 Leander Lane,,Morrisonville,NY,,12962,7,13,1972,11/8/2011 20:08
+Watosh72,Tina,  ,Larrabee,watosh@hotmail.com,18,FEMALE,,44 Peasleeville Rd,,Peru,NY,,12972,1,1,1993,11/8/2011 20:28
+sooinlove0,Pamela,  ,Brickey,pbrickey@roadrunner.com,35,FEMALE,,24 Pleasant Ave,,Tupper Lake,NY,,12986,11,3,1976,11/8/2011 20:32
+myoung2013,Mallory,  ,Young,mallory.young@acphs.edu,22,FEMALE,,89 Woodlawn Lane,,Willsboro,NY,,12996,7,16,1989,11/8/2011 20:43
+KMP,Kristy,  ,Akey,whispers_of_luv@hotmail.com,26,FEMALE,,13040 NYS Route 9N,,Jay,NY,,12941,10,15,1985,11/8/2011 23:43
+lkimbler68,Laurie,  ,Kimbler,lkimbler@twcny.rr.com,43,FEMALE,,8877 State Route 22,,West Chazy,NY,,12992,12,21,1968,11/9/2011 8:43
+jllcarey,Jill,  ,Carey-Herzog,jcarey@primelink1.com,38,FEMALE,,4 Tennessee Rd Apt 3,,Plattsburgh,NY,,12903-4441,1,14,1973,11/9/2011 11:24
+Nickb62,Peter,  ,Lavigne,lavign2@netscape.net,49,MALE,,9374 State Route 9,,Chazy,NY,,12921,10,8,1962,11/9/2011 17:03
+patinka22,Brittany,  ,Patinka,bmp0522@yahoo.com,26,FEMALE,,PO Box 1502,,Plattsburgh,NY,,12901,8,1,1985,11/9/2011 17:28
+darmstrong,DONALD,  ,ARMSTRONG,ds.armstrong19@gmail.com,58,MALE,,22 SPEARMAN RD,,PLATTSBURGH,NY,,12901,1,19,1953,11/9/2011 17:45
+lucia4,Cheryl,  ,Lucia,flossetasst@yahoo.com,54,FEMALE,,PO Box 704,,Dannemora,NY,,12929,4,1,1957,11/9/2011 21:59
+chadajs1,Chad,  ,Stevens,chads@yahoo.com,36,MALE,,,,,  ,,,9,6,1975,11/11/2011 16:42
+amart78,Alex,  ,Martin,sadcadillac@hotmail.com,34,MALE,,452 Huntville Road,,Fairfax,VT,,5454,4,6,1978,1/7/2012 10:04
+Allisonkau,Allison,  ,Kaupelis,Bestwesternti@ymail.com,28,FEMALE,,,,,  ,,,11,20,1983,11/17/2011 23:14
+kstark,Keith,  ,Stark,kstark@plattscsd.org,57,MALE,,54 Cogan Ave.,,Plattsburgh,NY,,12901,3,26,1954,11/18/2011 10:16
+Lobo,Linda,  ,St. Peter,wstpe84576@aol.com,61,FEMALE,,113 Blackberry Circle,,Colchester,VT,,5446,4,13,1950,11/18/2011 19:07
+midgebilly,Kathy,  ,Adams-Desotell,midgebilly@aol.com,18,FEMALE,,82 campsite road,,Schuyler falls,NY,,12985,1,1,1993,11/21/2011 10:44
+cookie,Donna,  ,Cook,cookdonna30@gmail.com,63,FEMALE,,30 Cedar St.,,Port Henry,NY,,12974,5,3,1948,12/7/2011 10:48
+aemt661,Grant,  ,Brassard,aemt661@yahoo.com,28,MALE,,,,Peru,NY,,12972,7,16,1983,11/25/2011 1:00
+boosern,steve,  ,osborne,boosern@aol.com,53,MALE,,,,,NY,,12901,12,8,1958,11/25/2011 15:38
+debbie123,debbie,  ,fortier,debbiefortier@gmail.com,56,FEMALE,,po box 541,,middlebury,VT,,5753,6,5,1955,11/30/2011 10:47
+foxpatty,Patty,  ,Lyon,plyon51@aol.com,60,FEMALE,,1002 Paine Turnpike South,,Berlin,VT,,5602,8,28,1951,11/30/2011 15:29
+tomnjennp,Jennifer,  ,Pike,jenn.pike1023@gmail.com,38,FEMALE,,63 3rd Ave,,Ticonderoga,NY,,12883,10,23,1973,12/1/2011 10:05
+grandemarq,Lynne,  ,Tompkins,lbtompkins@peoplepc.com,66,FEMALE,,9077 us rte 9,,Lewis,NY,,12950,12,13,1945,12/3/2011 15:56
+rharker,Rick,  ,Harker,rharker@nycap.rr.com,48,MALE,,119 the portage,,Ticonderoga,NY,,,12,15,1963,12/3/2011 22:38
+flaxk,Kelly,  ,Flax,kellysteffens@hotmail.com,32,FEMALE,,16 Newell Avenue,,Plattsburgh,NY,,12901,10,4,1979,12/5/2011 20:15
+cac04,carol,  ,calabrese,ccalabrese001@nycap.rr.com,46,FEMALE,,751 tarbell hill road,,moriah,NY,,12960,8,4,1965,12/7/2011 17:00
+poeticbabs,Barb,  ,Goff,poeticbabs@yahoo.com,42,FEMALE,,Po Box 54,,Ferrisburgh,VT,,05456-0054,8,14,1969,12/7/2011 18:55
+hobocop,Ernest,  ,Rheaume,ernie.rheaume@myfairpoint.net,62,MALE,,29 Grandview Ave,,Essex Jct,VT,,5452,9,7,1949,12/7/2011 18:56
+tlh513,Tricia,  ,Hoit,hoit98@twcny.rr.com,38,FEMALE,,P O Box 453,,Chateaugay,NY,,12920,5,13,1973,11/8/2011 20:32
+jmoosebabe,Joy,  ,Howard,jmoosebabe14@yahoo.com,35,FEMALE,,39 Rugar Park Way,,Plattsburgh,NY,,12901,10,14,1976,11/8/2011 21:11
+becky5174,Rebecca,  ,Nieves,becky5174@peoplepc.com,37,FEMALE,,P.O. Box 531,,Mooers,NY,,12958,5,1,1974,11/8/2011 21:22
+darlene65,darlene,  ,goddeau,darlenegoddeau@yahoo.com,46,FEMALE,,316 Turner rd,,Morrisonville,NY,,12962,3,3,1965,11/8/2011 21:44
+sambis22,Samantha,  ,Verkey,samverkey@gmail.com,28,FEMALE,,47 Grace Ave,,Plattsburgh,NY,,12901,10,10,1983,11/9/2011 8:08
+sbelsere,Sarah,  ,Belser-Ehrlich,sbelsere@gmail.com,22,FEMALE,,,,Plattsburgh,NY,,12901,4,6,1989,11/9/2011 8:40
+adkshoer,Pat,  ,Banker,adkshoer@aol.com,58,FEMALE,,442 st rt 86,,Paul Smiths,NY,,12970,8,15,1953,11/9/2011 11:42
+25-Feb,Mona,  ,Goldenberg,Goldenberg48@charter.net,58,FEMALE,,48 Macey lane,,plattsburgh,NY,,12901,2,25,1953,11/13/2011 20:03
+ErinD,Erin,  ,Duval,ttnmprl@yahoo.com,34,FEMALE,,217 trimble rd,,Crown Point,NY,,12928,1,2,1977,11/14/2011 8:50
+k4brooks,Karen`,  ,Brooks,k4brooks@sover.net,50,FEMALE,,2407 Sand Road,,Ferrisburgh,VT,,5456,10,20,1961,12/7/2011 21:11
+bridges959,Nikki,  ,Bridges,bridges9597@hotmail.com,37,FEMALE,,229 Salmon River Rd,,Plattsburgh,NY,,12901,10,29,1974,11/16/2011 16:21
+mggriffinm,Mary,  ,Griffin,mggriffinm1@gmail.com,48,FEMALE,,3787 State Route 3,,Saranac,NY,,12981,10,12,1963,11/17/2011 0:00
+Marshall,Melanie,  ,Marshall,FRENCHJEWELS@AOL.COM,63,FEMALE,,70 Champlain Ave.,,Ticonderoga,NY,,12883,12,6,1948,11/17/2011 10:02
+c,Cynthia,  ,Brannock,chbq@hotmail.com,64,FEMALE,,,,,  ,,,1,1,1947,11/17/2011 20:26
+ewhitfo,elmer,  ,whitford,ejwhitfo@cptelco.net,61,MALE,,1598 creek rd.,,crown point,NY,,12928,8,11,1950,11/18/2011 14:03
+shortda,Dawn,  ,Short,shortda@plattsburgh.edu,49,FEMALE,,PO Box 417,,Peru,NY,,12972,8,15,1962,11/21/2011 8:32
+cvcarte,Colleen,  ,Carter,cvsmurff@yahoo.com,28,FEMALE,,2086 route 22b,apt a,morrisonville,NY,,12962,11,17,1983,11/21/2011 11:06
+rblair8379,Angela,  ,Blair,rblair8379@aol.com,47,FEMALE,,22 ryan Road,,Saranac,NY,,12981,5,7,1964,11/21/2011 13:50
+lgardner19,Leah,  ,Gardner,lgardner1984@live.com,27,FEMALE,,PO Box 1723,,Plattsburgh,NY,,12901,5,16,1984,11/21/2011 21:52
+jnichols,Judy,  ,Nichols,jnichols@saranac.org,58,FEMALE,,PO Box 25,,Saranac,NY,,12981,7,5,1953,11/25/2011 9:00
+ddd123,Dale,  ,Davis,fr123@twcny.rr.com,59,FEMALE,,74 elm sty,,malone,NY,,12953,10,1,1952,11/25/2011 10:02
+dandrow,JoAnne,  ,Dandrow,dandrow47@verizon.net,64,FEMALE,,58 Club Rd Unit 302,,Plattsburgh,NY,,12903,1,24,1947,11/26/2011 16:32
+paulnchazy,Lyn,  ,Jacobs,paul_shearouse@yahoo.com,40,MALE,,282 Seymour Road,,West Chazy,NY,,12992,1,3,1971,11/26/2011 21:14
+ACAce,Michael,  ,Early,MGA1500@aol.com,63,MALE,,P.O. Box 564,,Keeseville,NY,,12944,10,10,1948,11/27/2011 15:46
+Crecore,Chad,  ,Recore,Crecore@charter.net,41,MALE,,,,,  ,,,7,7,1970,11/27/2011 18:35
+Kjrecore,Kim,  ,Recore,Kjrecore@charter.net,44,FEMALE,,,,,  ,,,7,4,1967,11/27/2011 21:47
+jkemp,Janine,  ,Kemp,JanineK_1999@yahoo.com,33,FEMALE,,113 Chesterfield Street,,Keeseville,NY,,12944,7,15,1978,11/29/2011 20:28
+truedaisy,Stephanie,  ,Pfaff,stephanie.pfaff@gmail.com,51,FEMALE,,35 Morrison Ave,35 Morrison Ave,Plattsburgh,NY,,12901,7,24,1960,11/29/2011 21:45
+denjohn,Dennis,  ,Johnson,djohnson@jpclasslaw.com,59,MALE,,479 West Shore Road,,South Hero,VT,,5486,5,19,1952,11/30/2011 17:58
+epconroy,Patricia,  ,Conroy,epconroy1975@gmail.com,57,FEMALE,,52 STAFFORD DR,52 STAFFORD DR,Plattsburgh,NY,,12901,6,29,1954,12/1/2011 13:27
+alrjones,Alan,  ,Jones,alrjones19@yahoo.com,45,MALE,,9533 US Route 9,,Lewis,NY,,12950,4,6,1966,12/1/2011 17:55
+cynchia23,cindy,  ,knight,lvgdng@yahoo.com,58,FEMALE,,29 cossey st,,ticonderoga,NY,,12883,8,19,1953,12/4/2011 15:42
+njbb2003,Brittney,  ,Johnson,brittney216@hotmail.com,23,FEMALE,,8 Runway Dr,,plattsburgh,NY,,12901,6,7,1988,11/8/2011 20:11
+becky1,rebecca,  ,doorey,bdoorey@meadowbrookhealth.com,44,FEMALE,,12 christon road,,morrisonville,NY,,12962,12,17,1967,11/8/2011 20:55
+mushball17,Jennifer,  ,St. Jacques,mushball17@aol.com,32,FEMALE,,4 sonya way,,Plattsburgh,NY,,12901,11,21,1979,11/8/2011 21:24
+murdie1231,Melissa,  ,Deso,murdie1231@hotmail.com,27,FEMALE,,,,,  ,,,12,13,1984,11/8/2011 21:47
+mfloyd,Melissa,  ,Floyd,duanemelissa@yahoo.com,31,FEMALE,,5 Willow Way,,Morrisonville,NY,,12962,6,7,1980,11/8/2011 22:21
+JenMf92,Jennifer,  ,Gonya,ilovedeals79@yahoo.com,37,FEMALE,,,,,  ,,,7,15,1974,11/8/2011 23:15
+Antonia,Antonia,  ,Blair,toni.lukeblair925@gmail.com,27,FEMALE,,2002 Route 22B,,Morrisonville,NY,,12962,11,30,1984,11/9/2011 7:11
+josborne,Jodie,  ,Osborne,jodiemosborne@gmail.com,32,FEMALE,,139 Quaker Highlands Road,,Peru,NY,,12972,9,6,1979,11/9/2011 8:59
+finnegan1,Tabatha,  ,Finnegan,finnegan1@charter.net,35,FEMALE,,,,,  ,,,8,1,1976,11/10/2011 22:19
+worley70,Monique,  ,Worley,mworley@primelink1.net,41,FEMALE,,64 fort brown drive,,plattsburgh,NY,,12903,7,26,1970,11/12/2011 21:25
+lizzy,Theresa,  ,Jenks,the3jenks@verizon.net,18,FEMALE,,1219 us rt 9,,schroon lake,NY,,12870,1,1,1993,11/17/2011 22:32
+shagoney,Heather,  ,Agoney,the_agoneys@yahoo.com,35,FEMALE,,1060 Fuller Road,,Peru,NY,,12972,9,1,1976,11/16/2011 18:43
+hungrybear,Keith,  ,Trombly,kdt@wildblue.net,74,MALE,,,,,  ,,,7,4,1937,11/16/2011 21:20
+vmildon,Valerie,  ,Mildon,vmildon@aol.com,49,FEMALE,,PO Box 227,,Moriah,NY,,12960,1,10,1962,11/17/2011 12:08
+jifortier,Joann,  ,Fortier,jifortier777@yahoo.com,51,FEMALE,,36 Fortier Road,,Crown Point,NY,,12928,6,1,1960,11/19/2011 15:36
+pbrgirl30,Cristina,  ,Bordeau,cowgirlz26@yahoo.com,31,FEMALE,,899 Durand Road,,Plattsburgh,NY,,12901,3,26,1980,11/21/2011 19:27
+suenephew,Susan,  ,Nephew,suenephew@yahoo.com,46,FEMALE,,224 Witherbee Road,,Witherbee,NY,,12998,2,20,1965,12/8/2011 9:52
+janaclark,Jana,  ,Clark,janasueclark@hotmail.com,37,FEMALE,,232 Route 9N,,Keeseville,NY,,12944,4,25,1974,11/21/2011 22:21
+cocktailhr,Tina,  ,Osborne,cocktailhryet@aol.com,44,FEMALE,,8 valley dr,,plattsburgh,NY,,12901,1,23,1967,11/25/2011 9:27
+ttatro,Terry,  ,Tatro,ttatro@fairpoint.net,64,MALE,,P O Box 191,16 Winters Lane,Alburgh,VT,,5440,6,18,1947,11/25/2011 11:01
+Mickey1,Amy,  ,Murray,msamymurray@yahoo.com,32,FEMALE,,,,,  ,,,12,11,1979,11/26/2011 12:04
+sarge411,Judy,  ,Lemza,lemza5@nycap.rr.com,72,FEMALE,,4035 NYS  Rte 9N,,Port Henry,NY,,12974,4,18,1939,11/27/2011 13:12
+etts34,ellen,  ,sherman,etts34@hotmail.com,67,FEMALE,,po box 281,,peru,NY,,12972,3,1,1944,11/27/2011 21:54
+lilacmama,C,  ,Farring,catherine@stallmuckers.net,39,FEMALE,,,,,  ,,,1,1,1972,11/30/2011 8:44
+imsaralee,Sarah,  ,Lee,imsaralee@hotmail.com,50,FEMALE,,47 Susie Wilson Rd # 208,,Essex Junction,VT,,5452,9,7,1961,11/30/2011 9:24
+mmarckres,Melody,  ,Marckres,marckresx3@hotmail.com,36,FEMALE,,,,,  ,,,4,1,1975,11/30/2011 10:41
+spreston,Susie,  ,Preston,spreston@pcschools.us,48,FEMALE,,P.O. Box 681774,,Park City,UT,,84068,6,9,1963,11/30/2011 10:47
+jelb,Jodie,  ,Bushey,cjbushey@charter.net,39,FEMALE,,77 Monty Street,,Plattsburgh,NY,,12901,7,2,1972,12/1/2011 10:49
+jwb999,John,  ,Bartlett,JBARTLETT1@nycap.rr.com,59,MALE,,10 Temperance Point,,Ticonderoga,NY,,12883,7,17,1952,12/1/2011 16:46
+michael936,michael,  ,holder,owm1999@gmail.com,36,MALE,,40 conroy rd,,west chazy,NY,,12992,4,14,1975,12/6/2011 18:43
+dsawczyn53,Dorothy,  ,Sawczyn,dsawczyn@hotmail.com,58,FEMALE,,P O Box 335,10869 NYS Route 9N,Keene,NY,,12942,6,12,1953,12/8/2011 8:51
+Imaxine,Marilyn,  ,Dwyer,mdd1221@gmail.com,57,FEMALE,,,,,  ,,,6,1,1954,12/8/2011 22:56
+talktokell,Kelli,  ,Rodriguez,talktokelli@yahoo.com,32,FEMALE,,40 Washington St,,Peru,NY,,12972,7,21,1979,12/13/2011 11:45
+hessey,Joanne,  ,Hesseltine,hessey@roadrunner.com,50,FEMALE,,20 Cherrytree Lane,,Saranac Lake,NY,,12983,3,11,1961,12/18/2011 9:35
+tpoulin,tom,  ,poulin,tpoulin733@hotmail.com,53,MALE,,14 stetson rd,,tupper lake,NY,,12986,5,17,1958,12/18/2011 20:08
+tonya711,Tonya,  ,Barry,tbarry@amccares.org,33,FEMALE,,14 McClelland St.,,Saranac Lake,NY,,12983,8,6,1978,12/18/2011 20:19
+deckergma,john,  ,decker,deckergma@yahoo.com,61,FEMALE,,221 coreys rd,,tupper lake,NY,,12986,9,8,1950,12/18/2011 21:32
+billsfanj,James,  ,Hay,billsfan@westelcom.com,69,MALE,,1455 Ashley Rd,,West Chazy,NY,,12992,1,15,1942,12/26/2011 8:48
+Lindsey10,Lindsey10,  ,Levesque,lindseyeducation@yahoo.com,25,FEMALE,,,,,NY,,,8,22,1986,12/27/2011 11:05
+grabdakat,kathi,  ,grabda,kathi2thet@yahoo.com,39,FEMALE,,120 Oak Street,,Plattsburgh,NY,,12901,2,9,1973,1/3/2012 9:32
+millers62,Scott,  ,Miller,miller.scott@bcsdk12.org,50,MALE,,85 Oak Street,,Plattsburgh,NY,,12901,7,31,1962,1/4/2012 9:00
+jumpit22,Darlene,  ,Boule,darlene_boule@yahoo.com,56,FEMALE,,6419 State Route 22,,Plattsburgh,NY,,12901,4,12,1956,1/5/2012 11:53
+ginphin,Ginger,  ,Phinney,gin12932@yahoo.com,36,FEMALE,,7103 US Route 9,,Elizabethtown q,NY,,12932,8,20,1976,1/10/2012 13:28
+mkwarta,Mary,  ,Kwarta,mkwarta12@elmira.edu,22,FEMALE,,,,,  ,,,9,29,1989,12/8/2011 17:28
+jontj2000,Jon,  ,Jessmer,jontj2000@aol.com,62,MALE,,13 Main Mill St,,Plattsburgh,NY,,12901-3709,3,16,1949,12/11/2011 22:30
+Nananorth,Jeanne,  ,Breen,Thebreens@roadrunner.com,65,FEMALE,,,,,NY,,,1,1,1946,12/18/2011 17:20
+pypoppy,Alicia,  ,Edenfield,aliciaedenfield@yahoo.com,56,FEMALE,,5 School St.,,Saranac Lake,NY,,12983,11,23,1955,12/18/2011 21:18
+twoblaines,Norm,  ,Blaine,twoblaines@gmail.com,63,MALE,,693 lapham mills rd,,peru,NY,,12972,7,30,1948,12/26/2011 11:23
+laceytl,Terry,  ,Lacey,lacey3t@msn.com,45,FEMALE,,3 Val Haven Dr.,,Morrisonville,NY,,12962,7,30,1966,12/27/2011 13:10
+shrlyshrly,Shirley,  ,Gerry,shirley.gerry@gmail.com,66,FEMALE,,22 Rosbo Lane,,Morrisonville,NY,,12962,2,11,1946,1/1/2012 17:51
+Mdfact,Mark,  ,Facteau,Mdfact@yahoo.com,60,MALE,,15 Hobbs road,,Plattsburgh,NY,,12901,3,27,1952,1/1/2012 17:53
+5185631969,Theresa,  ,Duquette,duquettetheresa@gmail.com,78,FEMALE,,3 /brookside Dr,,Morrisonville,NY,,12962,5,5,1934,1/2/2012 16:47
+chazyliz,Elizabeth,  ,Cote,kcote@twcny.rr.com,57,FEMALE,,9192 State Rt 9,,Chazy,NY,,12921,5,3,1955,1/5/2012 8:20
+Joyals57,Amanda,  ,Yelle,Amyell07@gmail.com,24,FEMALE,,167 church ln,,Au sable forks,NY,,12912,3,21,1988,1/5/2012 9:28
+ricksay,Richard,  ,Sayward,ricksplace@willex.com,53,MALE,,269 Coonrod Road,,Willsboro,NY,,12996,1,7,1959,1/5/2012 9:59
+meakea,maria,  ,aguglia,maguglia@cvph.org,48,FEMALE,,,,,  ,,,10,25,1964,1/5/2012 16:36
+blarosa,Rebecca,  ,LaRosa,blarosa@saranac.org,49,FEMALE,,200 Barney Downs Road,,Peru,NY,,12972,6,28,1963,1/5/2012 20:16
+kmoore15,Kirsten,  ,Moore,freefall1582@msn.com,30,FEMALE,,,,,  ,,,1,15,1982,1/8/2012 9:35
+aliceson6,Pam,  ,Drollette,aliceson6@yahoo.com,41,FEMALE,,70 Corlear Drive,,Willsboro,NY,,12996,8,10,1971,1/9/2012 19:10
+the2forand,George,  ,Forand Sr,the2forands@gmavt.net,64,MALE,,1971 Carlstrom Road,,Bristol,VT,,5443,10,26,1947,12/7/2011 19:29
+petmin,Mina,  ,Angelos,petmin@charter.net,72,FEMALE,,40 Sunnyside Rd.,,Plattsburgh,NY,,12901,3,15,1939,12/8/2011 10:45
+truck,terry,  ,besaw,besawbuilders@charter.net,64,MALE,,20honeydrive,,plattsburgh,NY,,12901,3,18,1947,12/9/2011 11:17
+fishygirl,Linda,  ,Leighton,fishygirl09@charter.net,64,FEMALE,,,,,  ,,,5,9,1947,12/10/2011 14:25
+junieg,Gerianne,  ,Downs,gerianne.wright@plattsburgh.edu,50,FEMALE,,96A Oak St.,,Plattsburgh,NY,,12901,2,12,1961,12/13/2011 9:14
+TrudyMNY,Trudy,  ,Murtagh,twotags@gmail.com,51,FEMALE,,82 Bradford Rd,,Plattsburgh,NY,,12901,11,24,1960,12/13/2011 9:23
+lina618,LENA,  ,AITNER,maitner@nycap.rr.com,54,FEMALE,,90 Stone Street,,Port Henry,NY,,12974,6,12,1957,12/15/2011 8:47
+daisymae,dianne,  ,lennon,diannedl@hotmail.com,63,FEMALE,,31 Hillside road,,rutland,VT,,5701,2,11,1948,12/16/2011 17:41
+upickem,Holly,  ,Huber,houx_vert@hotmail.com,51,FEMALE,,,,,  ,,,9,29,1960,12/18/2011 11:10
+dhulbert,Dennis,  ,Hulbert,dennishulbert@yahoo.com,60,MALE,,284 Cumberland Head Rd,,Plattsburgh,NY,,12901,2,25,1951,12/26/2011 10:43
+kippy9er,Kristie,  ,Morrison,kippy9er@hotmail.com,28,FEMALE,,3 Deer Run,,Plattsburgh,NY,,12901,3,16,1983,12/26/2011 14:40
+jmgood,Joy,  ,Good,jmgood@frontiernet.net,49,FEMALE,,Po Box 35,,Plattsburgh,NY,,12975,9,29,1962,12/26/2011 16:17
+Cricket77,Shelli,  ,Lunna,vermonstermassage@hotmail.com,34,FEMALE,,44 Pike St,APT 6,Plattsburgh,NY,,12901,1,12,1977,12/27/2011 18:59
+tmcross,Terry,  ,Cross,tmcross@willex.com,49,MALE,,3543 essex rd.,,willsboro,NY,,12996,6,27,1963,1/2/2012 9:59
+garrow,PATRICIA,  ,GARROW,oolbr@yahoo.com,53,FEMALE,,25 HOBBS RD,,PLATTSBURGH,NY,,12901,10,6,1959,1/4/2012 18:28
+Laroser,Randy,  ,LaRose,Itsabouttimehc@yahoo.com,60,MALE,,37 Honey Drive,,Plattsburgh,NY,,12901,4,1,1952,1/5/2012 12:08
+1chefflea,Laura,  ,Thompson,lauralynnt68@hotmail.com,44,FEMALE,,46 Wood Cliff Drive,,Plattsburgh,NY,,12901,2,1,1968,1/5/2012 13:14
+Dgaivrel85,Tara,  ,Forkey,Taraforkey@yahoo.com,27,FEMALE,,,,,NY,,12901,5,20,1985,1/8/2012 21:58
+KScottieG,Kathleen,  ,Ginn,kscottieg@aol.com,56,FEMALE,,25 Derby Way,,Essex,NY,,12936,3,16,1956,1/9/2012 6:44
+JRunciman,James,  ,Runciman,JRunciman@videotron.ca,52,MALE,,10 Monaco,,Candiac,QC,,j5r5x4,6,13,1960,1/9/2012 19:38
+barre56,Karen,  ,Barrett,youngbart@comcast.net,63,FEMALE,,208 Cote Road,,Richmond,VT,,5477,5,25,1948,12/8/2011 8:58
+mspinner,marcia,  ,spinner,mspinner@ccsuvt.org,56,FEMALE,,,,,  ,,,11,26,1955,11/30/2011 18:22
+drsalls11,Dave,  ,Salls,drsalls11@gmail.com,36,MALE,,,,,  ,,,8,11,1975,12/26/2011 16:12
+herb802,Herb,  ,Riley,herb802@gmail.com,18,MALE,,,,,  ,,,1,1,1993,11/7/2011 21:27
+jmarvin,Jeffrey,  ,Marvin,jmarvin4189@gmail.com,23,MALE,8025782187,89 Brook Dr,,Burlington,VT,,5408,4,2,1989,1/4/2012 13:33
+ddimille,Dan,  ,DiMille,ddimille@yahoo.com,57,MALE,8028780938,15 South Street Lane,,Essex Junction,  ,,5452,9,5,1954,12/8/2011 8:16
+sushon,Susan,  ,Bliss,sushon@comcast.net,53,FEMALE,,197 Catkin Drive,,South Burlington,VT,,5403,7,7,1958,11/30/2011 10:04
+rhobel,Rhonda,  ,Belzile,dbelzile@willex.com,64,FEMALE,,45 Maple St,,Willsboro,NY,,12996,12,24,1948,1/2/2012 16:20
+dedion,Debbie,  ,Dion,debbiedion@hotmail.com,53,FEMALE,,32 LOVELY LN PO Box 513,,MILTON,VT,,5468,10,13,1958,12/24/2011 22:17
+cherp024,Cheryl,  ,Patterson,cheryllpatterson@yahoo.com,32,FEMALE,,35 Stetson Ave,,Plattsburgh,NY,,12901,8,9,1979,11/8/2011 19:43
+NonnaF,Maria,  ,Farnsworth,mer38@hotmail.com,51,FEMALE,,59 Exchange Street,,Middlebury,VT,,5753,10,26,1960,12/7/2011 8:19
+kdelphia,Kathleen,  ,Delphia,delphia_05@yahoo.com,49,FEMALE,,1070 Otter Creek Hwy,,New Haven,VT,,5472,4,29,1962,12/7/2011 19:50
+jenlyon,Jen,  ,Lyon-Horne,jenlyon2002@yahoo.com,39,FEMALE,,500 Route 2,,South Hero,VT,,5486,5,3,1972,11/30/2011 14:05
+vthutch,Jill,  ,Federico,vthutch@gmail.com,49,FEMALE,,29 Hill Road,,South Hero,VT,,5486,4,4,1962,11/30/2011 19:26
+hnprescott,Nancy,  ,Bonin Prescott,hnprescott@charter.net,41,FEMALE,,,,barre,VT,,5641,2,1,1970,11/8/2011 20:18
+jlschoie,Judith,  ,Schofield,jlschoie@aol.com,56,FEMALE,,P.O. Box 360,,South Hero,VT,,5486,1,9,1955,11/30/2011 8:36
+dyana216,Dyana,  ,Gampel,dyana216@hotmail.com,34,FEMALE,,287 Davigon,,DDO,QC,,H9B 1Y4,10,3,1977,11/7/2011 10:16
+markwebb,mark,  ,webb,brianvolz@gmail.com,18,FEMALE,,965 mountain road,,bristol,VT,,5443,1,1,1993,11/7/2011 9:19
+jimcollins,james,  ,collins,j.collins60@comcast.net,62,FEMALE,,144 bourgea lane,,shelburne,VT,,5482,2,26,1949,11/30/2011 17:25
+Gordo643,Gordon,  ,Duprey,gordonduprey72@msn.com,64,MALE,,24 Reservoir Rd,,Peru,NY,,12972,9,2,1947,11/7/2011 10:16
+Nannie,Jeannette,  ,OConnell,deerhunter1935@hotmail.com,76,FEMALE,,5 Duke Ave.,PO Box 33,Cadyville,NY,,12918,5,20,1935,11/7/2011 11:18
+jonimd54,Nrman,  ,Devost,jonimd54@comcast.net,60,MALE,,195 Luke street,,Highgate Ctr.,VT,,5459,10,15,1951,11/7/2011 14:39
+cheryl2959,cheryl,  ,goldfarb,cheryl2959@aol.com,52,FEMALE,,6561 route 22,,plattsburgh,NY,,12901,2,9,1959,11/7/2011 15:53
+azar1968,Tania,  ,Azar,azar1968@aol.com,43,FEMALE,,25 Baycrest Dr. #311,,So. Burlington,VT,,5403,9,23,1968,11/7/2011 16:23
+melinvt,Mary Ellen,  ,Matulonis,bmatulonis@live.com,57,FEMALE,,24 Corduroy Roaf,,Essex Jct,VT,,5452,12,30,1955,1/5/2012 23:12
+kc2dnw,Jeremy,  ,DuMont,bear@hydrolinux.com,29,MALE,,70 Gadway Rd,,Merrill,NY,,12955,9,25,1982,11/8/2011 6:52
+tromblmf,Melody,  ,Trombly,tromblmf@charter.net,54,FEMALE,,24 Seneca Drive,,Plattsburgh,NY,,12901,8,24,1957,11/8/2011 7:30
+adkgirl38,Tracey,  ,SantaMaria,adkgirl38@hotmail.com,36,FEMALE,,362 Nelson Rd,,Ausable Forks,NY,,12912,3,20,1975,11/8/2011 8:49
+snowperry,Linda,  ,Snow-Perry,ljsp72@yahoo.com,39,FEMALE,,PO Box 1 2802 Center Rd,,Moriah Center,NY,,12961,8,8,1972,11/8/2011 11:41
+DShoramNY,Don,  ,Shoram,jennifersny@gmail.com,43,MALE,,,,,  ,,,10,15,1968,11/8/2011 14:53
+jeseld,Jessica,  ,Chevalier,jeseld@yahoo.com,34,FEMALE,,5 Spruce St,,Champlain,NY,,12919,7,5,1977,11/8/2011 17:48
+haleytaylo,Haley,  ,Taylor,taylor.julie@avcsk12.org,18,FEMALE,,28 Washington St,,Port Kent,NY,,12975,4,26,1993,11/8/2011 18:11
+Davel33,David,  ,Landry,davel33@yahoo.com,46,MALE,802-893-0583,17 Meadow Rd,,Milton,VT,,5468,6,30,1965,11/30/2011 18:57
+cforgan,Cheri,  ,Little,cherilittle@gmail.com,44,FEMALE,802-825-1167,241 Bissette Dr,,Colchester,VT,,5446,9,6,1967,11/7/2011 9:22
+cljpink,Ethel,  ,Hathaway,willsborobirdhouse@yahoo.com,69,FEMALE,518 963 8389,542 Angier Hill Road,Essex,,NY,,12936,1,6,1942,11/7/2011 13:51
+elismsue,Sue,  ,Belrose,dbelrose@twcny.rr.com,18,FEMALE,5182984112,PO Box 174,1091 Route 9,Champlain,NY,,12919,1,1,1993,11/7/2011 8:07
+lindajayt,Linda,  ,Thatcher,jlthatcher@comcast.net,18,FEMALE,,,,,  ,,,1,1,1993,11/17/2011 21:40
+RaZorA,Ray,  ,Aley,ray@aley.com,18,MALE,,222 Lost Cove,,Colchester,VT,,05446-7786,1,1,1993,11/9/2011 5:29
+sleclair,Steven,  ,Leclair,shannon.kingsland@yahoo.com,40,MALE,,,,,  ,,,12,30,1971,12/7/2011 21:26
+danpsmith,Daniel,  ,Smith,danpsmith@yahoo.com,36,MALE,,22 Linden Terrace,,Burlington,VT,,5401,2,6,1975,11/30/2011 8:12
+noonmom,Rhonda,  ,Bailey,noonmom@charter.net,48,FEMALE,,31 Club Rd Apt. 2,,Plattsburgh,NY,,12903,7,23,1963,12/26/2011 16:24
+kimglynn,kim,  ,glynn,glynn.kim@gmail.com,32,FEMALE,,9 butler st,,waterbury,VT,,5676,9,11,1979,12/24/2011 11:12
+amagee,Amber,  ,Magee,greenmountainbud@yahoo.com,31,FEMALE,,64 STATE ST,,ROUSES POINT,NY,,12979,6,4,1980,11/28/2011 10:28
+danni,Danielle,  ,Hemingway,babytaz4u2004@netzero.com,37,FEMALE,,3675 Monkton Rd,,NewHaven,VT,,5472,10,18,1974,12/7/2011 19:29
+joehack103,joe,  ,hack,joehack103@gmail.com,24,MALE,,27a weed st,,plattsburgh,NY,,12901,6,22,1987,11/8/2011 8:10
+glluvscwby,Michelle,  ,Vandenbusch,glluvscowboylots@yahoo.com,45,FEMALE,,90 Pine Street,,Plattsburgh,NY,,12901,10,10,1966,11/8/2011 10:12
+klynch,Kirsten,  ,Lynch,kirsten2cold@hotmail.com,40,FEMALE,,PO Box 2033,,Lake Placid,NY,,12946,3,29,1971,11/8/2011 10:47
+wendy13,wendy,  ,sargent,woodssargent@yahoo.com,38,FEMALE,,2353 moriah rd,,moriah,NY,,12960,6,10,1973,11/8/2011 11:23
+dblj1500,justin,  ,jock,justinjock@charter.net,29,MALE,,54 champlain street,,Plattsburgh,NY,,12901,3,25,1982,11/8/2011 14:15
+jburd24,Carie,  ,Mattox,cariemattox@yahoo.com,18,FEMALE,,12 Hamilton Street,,Plattsburgh,NY,,12901,1,1,1993,11/8/2011 17:32
+alexxa,alexandra,  ,bechard,schoolbus68a@yahoo.com,54,FEMALE,,31 Oliver st.,,chazy,NY,,12921,1,7,1957,11/8/2011 18:59
+bcs6424,chris,  ,falcon,bcsftballplya64@yahoo.com,22,MALE,,,,,  ,,,6,27,1989,11/8/2011 19:55
+newkid77,kathy,  ,madore,madore3880@charter.net,54,FEMALE,,3880 State Rt 9,,Plattsburgh,NY,,12901,3,19,1957,11/8/2011 21:16
+baelie2001,renee,  ,swetson,baelie2001@yahoo.com,18,FEMALE,,50 liberty st,2,keeseville,NY,,12944,7,18,1993,11/8/2011 23:02
+salsagirl,angie,  ,minehan,angieminehan@netscape.net,40,FEMALE,,144 Beekman Street,,Plattsburgh,NY,,12901,5,21,1971,11/9/2011 17:07
+jjblrock,Brenda,  ,Rock,tworoadsrock@hotmail.com,50,FEMALE,,843 Shingle St,,Morrisonville,NY,,12962,2,4,1961,11/9/2011 21:08
+OLDCAT,FRANK,  ,LAMBERT,CHARLOTTELAMBERTS@COMCAST.NET,50,MALE,,331 WILDWOOD WEST,,CHARLOTTE,VT,,5445,6,8,1961,11/30/2011 9:15
+JRAHC5,ROSEMARY,  ,DECKER,jdeckerj@twcny.rr.com,52,FEMALE,,32 FRENCH SETTLEMENT RD,,CHATEAUGAY,NY,,12920,6,8,1959,11/10/2011 16:30
+sharimcd,Shari,  ,McDonald,shari72@frontiernet.net,46,FEMALE,,52 Jay Mt Road,,Jay,NY,,12941,11,14,1965,11/10/2011 20:32
+kpoissant,Kelli,  ,Poissant,kpoissant8@gmail.com,49,FEMALE,,8 Kellogg Ct,,Plattsburgh,NY,,12901,12,24,1962,11/11/2011 9:17
+MarciaG,Marcia,  ,Wgner,marcia861@verizon.net,61,FEMALE,,132 Salmon River Rd.,,Plattsburgh,NY,,12901,6,20,1950,11/12/2011 8:54
+luciej04,Lucie,  ,Dunne,luciej04@yahoo.com,51,FEMALE,,38 dawn drive,,west chazy,NY,,12992,4,1,1960,11/12/2011 22:04
+pseymoura,amy,  ,seymour,pseymoura@yahoo.com,41,FEMALE,,9461 state route 9,,chazy,NY,,12921,3,14,1970,11/13/2011 19:43
+mocon010,Morgan,  ,O'Connell,mocon010@mail.plattsburgh.edu,18,FEMALE,,1073 Hardscrabble Road,1073 Hardscrabble Road,Cadyville,NY,,12918,6,15,1993,11/16/2011 23:30
+tamtaz,Tammy,  ,Pinsonneault,marvin1122@westelcom.com,47,FEMALE,,61 Sanger Lane,,West Chazy,NY,,12992,1,23,1964,11/8/2011 20:04
+chet5215,Chet,  ,Woods,chet5215@yahoo.com,58,MALE,,33 Wall st,,Mineville,NY,,12956,10,25,1953,11/8/2011 20:50
+cmblaise,Christine,  ,Blaise,cmblaise@hotmail.com,33,FEMALE,,3071 Plank Road,,mineville,NY,,12956,6,25,1978,11/8/2011 21:05
+CarrieBell,Carrie,  ,Bell,hisgoddess2@yahoo.com,30,FEMALE,,14 Northwood Ave,Apt D,Peru,NY,,12972,10,31,1981,11/8/2011 21:10
+MrsD,Shawna,  ,DeAngelo,lcfestore@gmail.com,33,FEMALE,,PO Box 1033,,Dannemora,NY,,12929,3,12,1978,11/8/2011 22:20
+joshuajock,Joshua,  ,Jock,joshua.jock@yahoo.com,28,MALE,,,,,  ,,,6,1,1983,11/8/2011 23:42
+akgarrant2,Amanda,  ,Garrant,amandagarrant@yahoo.com,18,FEMALE,,,,Cadyville,NY,,,11,4,1993,11/9/2011 11:08
+krishubby,Gary,  ,Cheyne,krishubby@charter.net,52,MALE,,60 Bridge St.,,Plattsburgh,NY,,12901,6,15,1959,11/9/2011 11:49
+dreed81,david,  ,reeves,dreeves81@verizon.net,61,MALE,,22 n. bend st.,,perru,NY,,12972,8,1,1950,11/9/2011 20:59
+squeak,beth,  ,nolland,bnolland@charter.net,60,FEMALE,,151 dickson pt. rd.,,plattsburgh,NY,,12901,12,18,1951,11/9/2011 21:33
+bmccasland,Becky,  ,McCasland,bmccasland@charter.net,46,FEMALE,,65 Ram Rd,,Morrisonville,NY,,12962,2,26,1965,11/11/2011 17:39
+etoby1084,Erika,  ,Tobrocke,erikatobrocke@hotmail.com,18,FEMALE,,,,,  ,,,8,1,1993,11/13/2011 19:15
+Jen52,Jennifer,  ,Swiatek,jeninvermont52@yahoo.com,40,FEMALE,,"p,o box 306",,Jericho,VT,,5465,10,6,1971,11/30/2011 9:09
+Jodivt,Jodi,  ,Butler,Frostycat2@aol.com,42,FEMALE,,47 Town Line Road,,Grand Isle,VT,,5458,8,1,1969,11/30/2011 20:01
+Churchman,Bill,  ,Patnode,nckids4@msn.com,68,MALE,,,,,  ,,,4,1,1943,11/16/2011 12:06
+gllsp,Glenn,  ,Gillespie,gllsp813@aol.com,62,MALE,,50 Joyce Ave.,,Morrisonville,NY,,12962,6,24,1949,11/16/2011 17:09
+mayerkim55,Kim,  ,Mayer,mayerkim55@yahoo.com,51,FEMALE,,47 Rivers Edge Dr,,Morrisonville,NY,,12962,6,20,1960,11/16/2011 22:09
+mcjjjander,Carolyn,  ,Andersen,mcjjjander@aol.com,58,FEMALE,,16 Holcomb Ave,16 Holcomb Ave,Ticonderoga,NY,,12883,11,3,1953,11/17/2011 6:55
+uthompson,Ursula,  ,Thompson,maretht@yahoo.com,38,FEMALE,,16 Champlain Avenue,,Ticonderoga,NY,,12883,3,28,1973,11/17/2011 18:38
+Steveh,Stephen,  ,Huestis,shuestis@gmavt.net,66,MALE,,Stephen Huestis,95 Adirondack View,Bridport,VT,,5734,8,25,1945,11/17/2011 18:49
+kalien1,Karen,  ,Yeager,kalien1@charter.net,31,FEMALE,,10 Clinton Street,,Keeseville,NY,,12944,9,24,1980,11/21/2011 17:22
+sandy33,sandra,  ,woods,lvsandra@hotmail.com,57,FEMALE,,33 wall st,,mineville,NY,,12956,4,22,1954,11/23/2011 20:15
+Bugtowin,Mary,  ,Minogue,Tuckerbird@frontiernet.net,57,FEMALE,,259 river rd,,Jay,NY,,12941,3,29,1954,11/24/2011 22:27
+Cfavreau,Connie,  ,Favreau,Favreaco@yahoo.com,49,FEMALE,,51 lake breeze drive,,Plattsburgh,NY,,12901,2,16,1962,11/25/2011 19:37
+bjbhey,Betty,  ,Heywood,bjbhey@yahoo.com,68,FEMALE,,806 Slosson Road,,West Chazy,NY,,12992,1,25,1943,11/26/2011 12:05
+soconnell1,Susan,  ,OConnell,soconnell1955@charter.net,56,FEMALE,,13 Woodland Dr.,,Plattsburgh,NY,,12901,2,28,1955,11/27/2011 21:40
+grbergman,Grace,  ,Bergman,grbergman@aol.com,56,FEMALE,,108 Bailey Avenue,108 Bailey Avenue,Plattsburgh,NY,,12901,11,8,1955,11/28/2011 19:15
+adkbasket,Rita,  ,Ward-Slater,slaters@westelcom.com,55,FEMALE,,1662 Miner Farm Rd,,Chazy,NY,,12921,1,23,1956,11/29/2011 18:17
+pixie,stephanie,  ,hulse,pookiesplace@netscape.net,46,FEMALE,,45 mainieri lane,,colchester,VT,,5446,10,25,1965,11/30/2011 8:38
+cyndie,Cynthia,  ,Lathrem,clathrem@yahoo.com,50,FEMALE,,24 Grace Ave,,Plattsburgh,NY,,12901,6,23,1961,12/5/2011 10:12
+gailhorne,gail,  ,horne,gailhorne3@aol.com,60,FEMALE,,500 route 2,,south hero,VT,,5486,11,8,1951,11/30/2011 9:16
+HURUTETE,JACQUELINE,  ,HURU,HURUTETE@CHARTER.NET,76,FEMALE,,59 CUMBERLAND AVE,,PLATTSBURGH,NY,,12901,8,24,1935,11/30/2011 16:50
+jeanneadms,Jeanne,  ,Adams,jeanneadms@gmail.com,54,FEMALE,,162 Orchard Lane,,Richmond,VT,,5477,11,14,1957,12/7/2011 11:40
+rplace,Renee,  ,Place,david_place@comcast.net,22,FEMALE,,26 Brewster Road,,Fairfax,VT,,5454,7,11,1989,12/26/2011 8:31
+SBARRETT33,Sara,  ,Barrett,BELLA716@COMCAST.NET,38,FEMALE,802-893-6873,4 Summit Way,,Milton,VT,,5468,9,20,1973,12/8/2011 9:04
+rlongwell,Richard,  ,Longwell,rlongwell@yahoo.com,59,MALE,802-879-1796,93 South Street,,Essex Junction,VT,,5452,9,5,1952,11/25/2011 23:19
+gsracing,LESTER,  ,UPTON,toolkitgsracing@yahoo.com,51,MALE,,9 LEONARD AVENUE,,plattsburgh,NY,,12901,2,4,1960,11/8/2011 17:57
+Penne23,Penne,  ,Dodge,penne@dairycreme.com,31,FEMALE,802-272-5885,180 Lower Sunnybrook Road,,Middlesex,VT,,5602,6,8,1980,11/30/2011 10:26
+daclar04,Deb,  ,Clark-Turcotte,ariendct@aol.com,49,FEMALE,,,,,VT,,,4,6,1962,11/16/2011 17:48
+bonnette28,nina,  ,bonnette,nbonnette@hotmail.com,34,FEMALE,,,,,  ,,,4,22,1977,12/8/2011 9:11
+raspberry1,Lorelei,  ,Bluteau,raspberry53gardener@yahoo.com,58,MALE,,39 pearl st,,grand isle,VT,,5458,5,1,1953,11/8/2011 21:38
+demogirl08,Ashlee,  ,Goddeau,demogirl08@verizon.net,27,FEMALE,,,,,  ,,,8,8,1984,11/8/2011 22:05
+gina95,Mary,  ,Soutiere,marysout59@aol.com,52,FEMALE,,9 Sawyer Ave.,,Milton,VT,,5468,5,22,1959,11/30/2011 22:25
+avassar,Amy,  ,Vassar,a_vassar28@yahoo.com,29,FEMALE,,16 Gonyea Rd,,Altona,NY,,12910,7,16,1982,11/21/2011 21:55
+bsawyer,Barbara,  ,Sawyer,sawyerfive@comcast.net,60,FEMALE,,79 Congress St.,,St. Albans,VT,,5478,11,12,1951,12/7/2011 8:35
+lcsimino,Larry,  ,Simino,lcsimino@gmavt.net,18,MALE,,728 Tri-Town Road,,Addison,VT,,05491-9105,1,1,1993,11/17/2011 15:04
+MYALS,YVETTE,  ,WALKER,MY831ALS@YAHOO.COM,57,FEMALE,,34 COGSWELL WAY,,ENFIELD,NH,,3748,8,17,1954,12/7/2011 16:05
+MaggieCF,Margret,  ,Felty,margret.felty@gmail.com,50,FEMALE,,,,,  ,,,8,20,1961,11/29/2011 9:27
+ROCKWELL,April,  ,Rockwell,arockwell@gmavt.net,30,FEMALE,,12 Ireland RD,,Bristol,VT,,5443,5,7,1981,12/7/2011 9:36
+klmousseau,kim,  ,mousseau,klmousseau@aol.com,34,FEMALE,,46 Iowa St,,Plattsburgh,NY,,12903,5,25,1977,11/8/2011 8:12
+SMILLER,SALLY F.,  ,MILLER,SALLY.MILLER@VTMEDNET.ORG,64,FEMALE,,37 DONALDSON ROAD,37 DONALDSON ROAD,"GRAND ISLE,VT",VT,,5458,4,1,1947,11/30/2011 17:08
+GaleQ,Gale,  ,Quenneville,gale.quenneville@gmail.com,53,FEMALE,,206 South Main Street,,Whiting,VT,,5778,11,25,1958,12/7/2011 9:21
+Christinas,Christina,  ,Sweet,bittersweetchristina@gmail.com,25,FEMALE,,187 loomis st apt 1,,burlington,VT,,5401,7,27,1986,11/8/2011 12:01
+michelleco,Michelle,  ,Coes,Michellecoes@comcast.net,38,FEMALE,,87 Hillside Ter.,,Shelburne,VT,,5482,5,24,1973,12/1/2011 12:36
+jro53,jerry,  ,rosenbaum,rosenbaum61@charter.net,58,MALE,,44 Fawn Ridge Trail,,Morrisonville,NY,,12962,6,24,1953,11/4/2011 16:09
+edperu,Edward,  ,Nelson,edandshirley@charter.net,66,MALE,,619 Calkins Road,,Peru,NY,,12972,3,3,1945,11/7/2011 10:07
+jandy25,Jatha,  ,Johnson,xersizer4life@hotmail.com,30,FEMALE,,,,Jay,NY,,12941,7,3,1981,11/7/2011 11:05
+MissyMarie,Melissa,  ,Kilburn,missyk24@hotmail.com,26,FEMALE,,101 Champlain drive,,Mineville,NY,,12956,11,4,1985,11/8/2011 12:43
+donediehl,Michelle,  ,Diehl,donediehl@aol.com,41,FEMALE,,3130 Broad Street,,Port Henry,NY,,12974,4,5,1970,11/8/2011 13:03
+lleighng,Lindsey,  ,Gilman,lleighng@gmail.com,28,FEMALE,,18 Cornelia St.,Apt. 2,Plattsburgh,NY,,12901,12,5,1983,11/8/2011 13:16
+barbie1956,Barbara,  ,LaDuke,barb.laduke@gmail.com,55,FEMALE,,PO 177,3869 Rt,Lyon Mountain,NY,,12952,1,7,1956,11/8/2011 14:32
+nedved01,Nicole,  ,LeClair,nickeyl@gmail.com,36,FEMALE,,10 Spaulding Drive,,Plattsburgh,NY,,12901,5,7,1975,11/8/2011 17:25
+favro524,Lori,  ,Favro,favro524@hotmail.com,50,FEMALE,,9 Cogan Avenue,,Plattsburgh,NY,,12901,10,25,1961,11/8/2011 17:32
+amybn4,Amy,  ,Goheens,amybn4@charter.net,40,FEMALE,,1565 Rt. 22B,,Morrisonville,NY,,12962,9,18,1971,11/8/2011 17:50
+taximan,Howard,  ,Longway,taximan2@comcast.net,57,MALE,,,,,VT,,5452,6,26,1954,12/7/2011 9:59
+silevoyer,Sile,  ,Voyer Torres,sile.voyer@gmail.com,18,FEMALE,,38 Cobb Hill Road,,Waterbury,VT,,5676,1,1,1993,11/14/2011 14:10
+browningkj,karen,  ,browning,browningkj@msn.com,65,FEMALE,,83 Lakeview Road,,South Hero,VT,,5486,11,15,1946,11/30/2011 20:00
+jimrvman,James,  ,Whitehead,jimrvman@comcast.net,62,MALE,,,,,  ,,,2,21,1949,11/30/2011 12:46
+doolindog,Linda,  ,DuCharme,lakechamplaincottage@yahoo.com,46,FEMALE,802-244-5701,235 S. Pinnacle Ridge Rd,,Waterbury,VT,,5676,6,19,1965,11/30/2011 9:27
+kpreston01,Kimberly,  ,Lasnier,kimlasnier@gmail.com,32,FEMALE,802-233-6279,1902 Sheldon Road,,St. Albans,VT,,5478,12,18,1979,11/7/2011 10:17
+steves,steve,  ,schouten,srs502312@yahoo.com,63,MALE,8023430823,142 lamoille bluff,#5,colchester,VT,,5446,3,18,1948,11/30/2011 7:13
+KATESKUTE,KATE,  ,MCDONOUGH,KATESKUTE@YAHOO.COM,26,FEMALE,5186451976,5222 N CATHERINE ST #2,,PLATTSBURGH,NY,,12901,11,24,1985,11/27/2011 11:04
+bethfrank,Beth,  ,Wright,tlwright5@verizon.net,56,FEMALE,,130 Veterans Rd.,,Ticonderoga,NY,,12883,6,23,1955,12/4/2011 16:08
+pbnginvt,Betty,  ,Gilbert,pbnginvt@comcast.net,52,FEMALE,,,,,  ,,,10,21,1959,11/30/2011 17:03
+ryky35,Linda,  ,Strickland,ryky35@yahoo.com,48,FEMALE,,35 Brickyard rd,unit #20,Essex Jct.,VT,,5452,9,3,1963,12/7/2011 9:14
+tazman76,Erik,  ,Breiland,erik.breiland@gmail.com,35,MALE,,,,,  ,,,1,8,1976,12/7/2011 17:05
+judber,Judy,  ,Berthiaume,Jbert08@hotmail.com,65,FEMALE,,800 Fern Lake Road,,Leicester,VT,,5733,9,8,1946,12/7/2011 12:30
+OrdwayCK1,Christopher,  ,Kramer,chris.anketell@gmail.com,30,MALE,,1253 Swinton Road,,Bridport,VT,,5734,2,2,1981,12/7/2011 9:02
+mphelps,merrilee,  ,phelps,mpinvt@gmail.com,57,FEMALE,,13 beach rd,,milton,VT,,5468,12,25,1954,11/30/2011 22:03
+goffka,Kara,  ,Goff,goffka@plattsburgh.edu,18,FEMALE,,,,,  ,,,1,1,1993,11/7/2011 9:55
+cdragon57,Carla,  ,Dragon,bcjjd@aol.com,54,FEMALE,,298 Dragoon Rd,,Altona,NY,,12910,8,10,1957,11/8/2011 18:39
+jerichofjr,James,  ,Bowers,jerichofjr@comcast.net,51,MALE,,,,,  ,,,11,11,1960,11/30/2011 10:10
+sbeste,suzanne,  ,beste,sbeste@cisco.com,45,FEMALE,,,,,  ,,,3,29,1966,11/30/2011 9:12
+rsqmom2001,Hilda,  ,Tallman,rsqmom2001@yahoo.com,56,FEMALE,,36 Drew Lane,,Shelburne,VT,,5482,11,18,1955,12/7/2011 9:26
+4kcn,katie,  ,norcross,katie76c@yahoo.com,35,FEMALE,,,,,  ,,,4,30,1976,11/7/2011 9:39
+sftbalnut,Dawn,  ,Michel,sftbalnut2010@yahoo.com,49,FEMALE,,,,,  ,,,4,20,1962,11/7/2011 9:44
+jlasnier13,Jason,  ,Lasnier,jason.lasnier@totalhomecenter.net,36,MALE,,1902 Sheldon Rd,,Saint Albans,VT,,5478,8,13,1975,11/7/2011 11:18
+alyse,Alyse,  ,Whitney,spinningfree@gmail.com,21,FEMALE,,44 Miller Street,,Plattsburgh,NY,,12901,10,13,1990,11/7/2011 23:51
+carolyni,Carolyn,  ,Cowin,redob@aol.com,65,FEMALE,,4931 S. Catherine St.,,Plattsburgh,NY,,12901,11,28,1946,11/8/2011 7:25
+notes4jeff,Jeff,  ,Robinson,notes4jeff@hotmail.com,41,MALE,,28 Hilltop Road,,Alburgh,VT,,5440,5,18,1970,11/8/2011 8:24
+tforrence,Tammy,  ,Forrence,forrence.tammy@avcsk12.org,46,FEMALE,,154 Mannix Rd.,,Peru,NY,,12972,3,16,1965,11/8/2011 11:08
+chip1956,cathy,  ,wyand,cdlove88@charter.net,46,FEMALE,,7762 rt 9,,plattsburgh,NY,,12901,4,1,1965,11/8/2011 11:28
+Gamewave,Matt,  ,Parks,Gamewayve@aol.com,28,MALE,,,,,  ,,,12,31,1983,11/8/2011 13:13
+shekey,Michelle,  ,Malark,mmalark1@twcny.rr.com,52,FEMALE,,82 baker road,,chazy,NY,,12921,1,1,1959,11/8/2011 15:28
+dml5278,Diane,  ,Leonard,dml5278@yahoo.com,55,FEMALE,,206 Jabez Allen Rd,,Peru,NY,,12972,7,29,1956,11/8/2011 16:40
+Beca,Rebecca,  ,Ayotte,beca.ayotte@yahoo.com,37,FEMALE,,20 Iowa Street,,Plattsburgh,NY,,12903,6,3,1974,11/8/2011 18:10
+TishaG,Tisha,  ,Guay,youngmoolha3@yahoo.com,44,FEMALE,,,,,  ,,,5,5,1967,11/8/2011 19:35
+fl2vt,ANGELA,  ,ALLARD,banjoco@ymail.com,18,FEMALE,,,,,VT,,5486,1,1,1993,11/7/2011 20:28
+rickreed11,Richard,  ,Reed,rickreed11@aol.com,62,MALE,,,,,VT,,5446,7,19,1949,11/30/2011 21:21
+lesliekleh,Leslie,  ,Broome,lesliekleh@aol.com,50,FEMALE,,,,,  ,,,3,16,1961,12/24/2011 9:29
+ppotter1,Pat,  ,Potter,terry-patpotter@comcast.net,65,FEMALE,802-985-2562,205 Maple Leaf Lane,,Shelburne,VT,,5482,3,3,1947,1/4/2012 23:14
+Tam,Tammy,  ,Corron,tlcinvt3@msn.com,47,FEMALE,8028789860,po box 225,,williston,VT,,5495,2,11,1964,11/7/2011 23:46
+jomama,Debra,  ,Jackman,djjackman@yahoo.com,59,FEMALE,802 453 4143,22 Heath Road,,Bristol,VT,,5443,7,5,1952,12/7/2011 10:54
+Tammy,Tammy,  ,Francis,francis3@fairpoint.net,18,FEMALE,802-355-4518,2158 Main Street,,Isle La Motte,VT,,5463,1,1,1993,11/8/2011 19:57
+marktperry,Mark,  ,Perry,marktperry@charter.net,56,MALE,802-371-7675,P.O. Box 450,,Barre,VT,,5641,5,20,1955,12/7/2011 18:53
+scoryea,steve,  ,coryea,stevecoryea@aol.com,32,MALE,,61 park avenue,,plattsburgh,NY,,12901,8,12,1979,12/13/2011 12:37
+ranner,Jan,  ,Chauvin,mail2ranner@gmail.com,18,FEMALE,5185619049,316 ONeil Rd.,,West Chazy,NY,,12992,1,1,1993,11/7/2011 15:51
+tretiak22,Patricia,  ,Tretiak,2satya2@snet.net,43,FEMALE,,218 Blake Rd,,Fairfax,VT,,5454,10,22,1968,11/29/2011 10:18
+kaitlynvt,kaitlyn,  ,ruland,kaitlynruland@yahoo.com,29,FEMALE,,,,,  ,,,12,21,1982,11/30/2011 9:54
+Carrottop4,Jacqui,  ,Hood,jacquih@comcast.net,55,FEMALE,,PO Box 1414,,Saint Albans,VT,,5478,6,29,1956,11/18/2011 12:06
+mfrantz777,Molly,  ,Frantz,mollyfrantz@hotmail.com,18,FEMALE,,12 Trafalgar Drive,,Plattsburgh,NY,,12901,1,1,1993,11/8/2011 20:41
+jbudaj,Edith,  ,Budaj,jbudaj@wcvt.com,53,FEMALE,,461 Lake Rd,2,Panton,VT,,5491,9,3,1958,12/7/2011 21:23
+winter0123,Julia,  ,Winter,Winter0123@aol.com,52,FEMALE,,281 Fox Hill Dr,,Jeffersonville,VT,,5464,10,18,1959,11/7/2011 18:31
+jar12240,joe,  ,ryan,vtjryan@gmail.com,71,MALE,,"108 Pheasant Woods, No. 200",,Colchester,VT,,5446,12,24,1940,11/29/2011 12:58
+darich,Art,  ,Rich,darich103144@hotmail.com,67,MALE,,3170 Broad St.,P.O. Box 77,Port Henry,NY,,12974,10,31,1944,11/7/2011 9:50
+brokenroad,Brenda,  ,Copella,brokenroad05@hotmail.com,18,FEMALE,,48 New Street,,Swanton,VT,,5488,1,1,1993,11/7/2011 22:09
+mbero,Melinda,  ,Bero,mindylhiggins@hotmail.com,33,FEMALE,,,,,  ,,,9,12,1978,11/30/2011 11:17
+Pugg,Karen,  ,Coty,hairbykc@hotmail.com,46,FEMALE,,874 Alder Bend Rd,,Ellenburg Depot,NY,,12935,11,3,1965,11/7/2011 9:44
+blobdell,Robert,  ,Lobdell,blobdell@twcny.rr.com,58,MALE,,,,,  ,,,6,26,1953,11/7/2011 17:21
+hgmag,Mary,  ,Fountain,hgmag@aol.com,55,FEMALE,,2 Nicholas Drive,,Morrisonville,NY,,12962,8,30,1956,11/8/2011 9:16
+kcrone,Kerry,  ,Crone,kcrone@roadrunner.com,39,FEMALE,,87 Algonquin Ave,,Saranac Lake,NY,,12983,4,16,1972,11/8/2011 11:06
+Nephew30,Connie,  ,Nephew,Nephewcl@plattsburgh.edu,54,FEMALE,,PO Box 633,30 Reservoir Rd.,Dannemora,NY,,12929,12,17,1957,11/8/2011 11:32
+sunny14,Nicky,  ,Duprey,nduprey@chazy.org,31,FEMALE,,13 Cobblestone Drive,,Morrisonville,NY,,12962,10,13,1980,11/8/2011 11:54
+jodyolcott,Jody,  ,Olcott,jolcott001@nycap.rr.com,35,FEMALE,,5 Rocky Top Way,,Moriah,NY,,12960,8,19,1976,11/8/2011 13:48
+ajsc316,jason,  ,warren,bankeramanda@hotmail.com,31,MALE,,po box 23,,cadyville,NY,,12918,3,13,1980,11/8/2011 15:09
+facteauc,Christine,  ,Facteau,marcnchris@yahoo.com,42,FEMALE,,34 Pine Tree Dr,,Keeseville,NY,,12944,4,7,1969,11/8/2011 17:58
+Hplumadore,Holly,  ,Plumadore,Hplumadore@gmail.com,18,FEMALE,,898 Casey rd,,Saranac,NY,,12981,1,1,1993,11/8/2011 18:38
+bensmom02,BRANDI,  ,LLOYD,brandi@primelink1.net,38,FEMALE,,,,,  ,,,9,25,1973,11/8/2011 19:03
+tj7shan,shannon,  ,rabideau,tj7shan@yahoo.com,32,FEMALE,,,,,  ,,,3,24,1979,11/8/2011 19:07
+drecore,Dawn,  ,Recore,recoreppw@aol.com,57,FEMALE,,75 Dumont Road,,Champlain,NY,,12019,11,29,1954,11/8/2011 19:51
+jclancy78,Jennifer,  ,Clancy,jclancy78@yahoo.com,33,FEMALE,,313 Ryan Rd.,,Saranac,NY,,12981,1,30,1978,11/21/2011 13:48
+melbell,Melody,  ,Bushey,unchainedmel_bell@hotmail.com,55,FEMALE,,,,,  ,,,11,28,1956,11/21/2011 20:20
+mitchl518,Christina,  ,Mitchell,mitchl518@gmail.com,42,FEMALE,,PO Box 35,8081 State Highway 9N,Elizabethtown,NY,,12932,3,2,1969,11/22/2011 7:07
+myshadoe,Brenda,  ,Fodor,myshadoe@comcast.net,65,FEMALE,,174 Landon Road,,South Hero,VT,,5486,7,15,1946,12/23/2011 14:04
+daniel,daniel,  ,hebert,hebert357@yahoo.com,26,FEMALE,,232 edgemont rd,,moriah,NY,,12960,1,9,1985,11/25/2011 11:31
+mikemcg,Michael,  ,McGlincy,mike.mcglincy@charter.net,69,MALE,,,,,NY,,,5,14,1942,11/25/2011 23:09
+Kdowdle,Kim,  ,Dowdle,dowdlekim@yahoo.com,56,FEMALE,,50 Cogan Ave,,Plattsburgh,NY,,12901,4,25,1955,11/28/2011 21:11
+agervich,Amy,  ,Gervich,amylrioux@hotmail.com,35,FEMALE,,52 Lynde Street,,Plattsburgh,NY,,12901,8,7,1976,11/29/2011 21:44
+isotechna,Scott,  ,Sabourin,scott@isotechna.com,39,MALE,,158 Brentwood Drive,Unit #4,Colchester,VT,,5446,2,14,1972,11/30/2011 8:24
+Pete44,Pete,  ,Johnson,vtpsjohnson@aol.com,57,MALE,,,,,  ,,,8,17,1954,11/30/2011 10:43
+fatbob9256,Bob,  ,Bouchard,bpbob1@yahoo.com,56,MALE,,126 Leclair Dr.,,Colchester,VT,,5446,2,7,1955,11/30/2011 10:51
+deanjr,Donald,  ,Dean,dean_vermont@yahoo.com,47,MALE,,3824 Ethan Allen Hwy,,Saint Albans,VT,,5478,4,18,1964,11/30/2011 12:45
+courtright,Wendy,  ,Courtright,wendycourtright@hotmail.com,39,FEMALE,,12 First Lane,,Port Henry,NY,,12974,2,6,1972,12/2/2011 13:19
+jetski,Maria,  ,Bagneschi,bagneschi7@nycap.rr.com,39,FEMALE,,138 Lake George Ave,,Ticonderoga,NY,,12883,7,7,1972,12/4/2011 17:27
+jrab7376,Jack,  ,Rabideau,jrab7376@aol.com,56,MALE,,,,Plattsburgh,NY,,12901,8,26,1955,12/5/2011 9:28
+tmenard,tracy,  ,menard,tulip3_2004@yahoo.com,25,FEMALE,,249 Thompson Road,,Mooers,NY,,12958,5,1,1986,12/8/2011 20:05
+mlaw,Matthew,  ,Law,matthewglaw@gmail.com,34,MALE,,,,,  ,,,6,20,1977,12/5/2011 19:52
+RETTE,LORRETTE,  ,bOURGEOIS,RETTEBOURGEOIS@MSN.COM,63,FEMALE,,681 PANTON ROAD,,VERGENNES,VT,,5491,2,29,1948,12/7/2011 18:58
+gbesaw,Gail,  ,Besaw,gtbesaw@charter.net,64,FEMALE,,20 Honey Drive,,Plattsburgh,NY,,12901,11,24,1947,12/8/2011 9:06
+curlyqqqs3,Rebecca,  ,Hamborsky,rbuchanan@lasnny.org,39,FEMALE,,21 Dukette Rd,,"Plattsburgh, NY 12901",NY,,12901,11,15,1972,12/8/2011 9:43
+MLDRAGON,MICHELLE,  ,DRAGON-NAGEL,ICU2QTPEA@YAHOO.COM,31,FEMALE,,35 STANDISH ST,35 STANDISH ST,PLATTSBURGH,NY,,12901,9,17,1980,12/8/2011 9:58
+crl1023,carl,  ,leclair,crl102360@gmail.com,51,MALE,,481 rugar st,,plattsburgh,NY,,12901,10,16,1960,12/8/2011 10:47
+MOLINICK,Michael,  ,Olinick,molinick@middlebury.edu,70,MALE,,311 Woodland Park,,Middlebury,VT,,5753,5,29,1941,12/8/2011 11:14
+bodahcar,Carol,  ,Bodah,bodahcar@yahoo.com,64,FEMALE,,43 Woodycrest Rd,,Saranac Lake,NY,,12983,12,25,1947,12/8/2011 11:38
+jlanglois,Jennifer,  ,Langlois,jlanglois@chazy.org,40,FEMALE,,1329 Lake Shore Road,,Chazy,NY,,12921,12,25,1971,12/8/2011 13:11
+hillmunn,juliet,  ,hill-munn,hillmunn@gmail.com,49,FEMALE,,1996 state rt 374,,ellenburg depot,NY,,12935,4,27,1962,12/8/2011 17:07
+marion,Marion,  ,Perrotte,marionmperrotte@aol.com,74,FEMALE,,158 Hill St,,Keeseville,NY,,12944,12,8,1937,12/8/2011 21:05
+trptg10,Tom,  ,Raville,trptg10@charter.net,53,MALE,,38 Barton Road,,Plattsburgh,NY,,12901,7,25,1958,12/9/2011 10:20
+damarsh65,David A,  ,Marsh,damarsh65@gmail.com,46,MALE,,11 Fay Lane,,Plattsburgh,NY,,12901,12,23,1965,12/11/2011 22:29
+faithlong,Faith,  ,Long,faithosbornelong@gmail.com,50,FEMALE,,36 Washington St.,,Peru,NY,,12972,3,21,1961,12/13/2011 7:58
+itssarah,sarah,  ,slater,slatersarah@rocketmail.com,20,FEMALE,,1662 Miner Farm Rd,,Chazy,NY,,12921,5,30,1991,12/13/2011 9:02
+tehaley,Trish,  ,Haley,tehaley67@hotmail.com,32,FEMALE,,24 Sanborn Ave.,,Plattsburgh,NY,,12901,10,27,1979,12/13/2011 11:31
+loopyqui,Mary Lou,  ,Quinones,loopyqui@accessvt.com,60,FEMALE,,3073 North Road,,Waitsfield,VT,,5673,6,24,1951,11/30/2011 18:18
+jpwelch,jeanne,  ,welch,jeannewelch103@yahoo.com,59,FEMALE,,412 Broadlake Rd,,Colchester,VT,,5446,1,10,1952,11/30/2011 20:12
+Jfleury,Jennifer,  ,Fleury,Plenty_12974@yahoo.com,37,FEMALE,,Po box 43,,Moriah Center,NY,,12962,12,5,1974,12/1/2011 19:30
+Nanmyk,Nancy,  ,Rich,rich_nancyjo@yahoo.com,39,FEMALE,,,,,  ,,,9,26,1972,12/1/2011 21:07
+bmoore,Rebecca,  ,MOORE,samram@localnet.com,40,FEMALE,,1007 County Rt. 2,,Putnam,NY,,12861,9,11,1971,12/2/2011 17:30
+climbhigh4,Deb,  ,Cleary,emeraldcascader@yahoo.com,46,FEMALE,,271 Allen Hill Rd.,,Peru,NY,,12972,2,23,1965,12/5/2011 8:34
+JIMMY13,JIM,  ,ANCTIL,JANCTIL@TWCNY.RR.COM,49,MALE,,113 GAMLAW RD,,CHAMPLAIN,NY,,12919,7,13,1962,12/5/2011 21:57
+Jimc758,Jim,  ,Craig,Jac@gmavt.net,65,MALE,,,,Bridport,VT,,5491,9,20,1946,12/7/2011 18:49
+harter2022,Joanne,  ,Harter,harter2022@yahoo.com,67,FEMALE,,2022 Button Bay Road,,Vergennes,VT,,5491,4,29,1944,12/7/2011 18:51
+alydunk,Alysia,  ,Duncanson,aly_091193@yahoo.com,37,FEMALE,,1624 Upper Plains Rd,,Salisbury,VT,,5769,7,30,1974,12/7/2011 22:23
+rayfield1,Robert,  ,Miller,b3furyiii@twcny.rr.com,67,MALE,,,,,  ,,,12,13,1944,12/8/2011 12:35
+gee72,keri,  ,denchick,keridenchick@charter.net,39,FEMALE,,3 bouchard drive,,peru,NY,,12972,5,23,1972,12/9/2011 19:39
+jumponme,Gregory,  ,Hooper,trouthermit@gmail.com,60,MALE,,578 Poker Hill Road,,Underhill,VT,,5489,2,5,1951,12/23/2011 9:05
+edtco,Edward,  ,Thompson,edtco@primelink1.net,64,MALE,,28 kansas ave,,Plattsburgh,NY,,12903,1,17,1947,12/10/2011 12:14
+pacey,Bill,  ,Anctil,wanctil@primelink1.net,56,MALE,,,,,  ,,,12,19,1955,12/10/2011 12:57
+victorialz,Victoria,  ,Duley,victorialzj@gmail.com,38,FEMALE,,104 Cooper Drive,,Plattsburgh,NY,,12901,7,23,1973,12/12/2011 9:03
+JoyBugaloo,Gina,  ,Lindsey,JoyBugaloo@aol.com,44,FEMALE,,2068 Military Turnpike,,Plattsburgh,NY,,12901,10,26,1967,12/13/2011 10:19
+aleman87,Mike,  ,Lynch,hmlyntup@roadrunner.com,65,MALE,,87 South Little Wolf Road,,Tupper Lake,NY,,12986,10,22,1946,12/16/2011 10:11
+marilou59,marilyn,  ,begor,marilou59@aol.com,52,FEMALE,,804 mason st.,,morrisonville,NY,,12962,2,10,1959,12/16/2011 15:09
+lkeyes,Lisa,  ,Keyes,lkeyes1@hotmail.com,51,FEMALE,,92 Campsite Rd,,Schuyler Falls,NY,,12985,6,10,1960,12/18/2011 10:26
+els607,Emelda L,  ,Simard,els607@live.com,86,FEMALE,,PO Box 195,,Grand Isle,VT,,5458,4,21,1925,12/24/2011 15:43
+RAV1945,Prof. Rene,  ,vallee,Vallee.denofantiquity@Gmail.com,66,MALE,,293  usroute 2  north,"'WINDWAY AT THE LAKE""","GRAND  ISLE,",VT,,5458,2,25,1945,12/23/2011 22:02
+daphnev71,Daphne,  ,Vassar,daphneriker@msn.com,40,FEMALE,,88 Bailey Ave.,,Plattsburgh,NY,,12901,8,3,1971,12/24/2011 10:34
+osnac,Lois,  ,Murray,stannardpulp@earthlink.net,48,FEMALE,,P.O. Box 567,P.O. Box 567,Keeseville,NY,,12944,2,15,1963,12/26/2011 19:24
+Lawlisschi,Meghan,  ,Lawliss,lawlissmeg@charter.net,45,FEMALE,,2 nancy drive,,Plattsburgh,NY,,12901,7,24,1966,12/27/2011 21:55
+2dispatch,Laura,  ,Moulton,lmoulton@dps.state.vt.us,57,FEMALE,,4 Aiken Place,,Rutland,VT,,5701,7,22,1954,12/28/2011 17:51
+Juliebs,Julie,  ,Strieble,strieblejulie@yahoo.com,42,FEMALE,,37 Spruce Way,,Moriah,NY,,12960,6,15,1970,1/1/2012 14:12
+hfinley,Heather,  ,Finley,hfinley@plattsburghneuro.com,39,FEMALE,,738 Slosson Rd,,West Chazy,NY,,12992,10,6,1973,1/5/2012 13:49
+LaurieB,Laurie,  ,Blanchette,blanchettelaurie@yahoo.com,44,FEMALE,,1422 WillistonRD,Apt 3,South Burlington,VT,,5403,11,6,1968,1/7/2012 14:31
+chingching,Alex,  ,Laramie,mgadt@charter.net,56,MALE,,39 Bay Road,,Plattsburgh,NY,,12901,10,15,1956,1/8/2012 22:31
+dgadwah,Dee,  ,Gadwah,facebook4dg@gmail.com,22,FEMALE,,,,,  ,,,3,17,1990,1/9/2012 13:31
+cathyalden,Catherine,  ,Alden,jalden@willex.com,54,FEMALE,,35 Maple Street,,Willsboro,NY,,12996,3,1,1958,1/9/2012 20:43
+gavin,John,  ,Gavin,gavinjjg311@msn.com,44,MALE,8023726740,,,,  ,,,3,11,1967,11/7/2011 13:10
+woodroe,vicki,  ,fletcher,mvdafletch@aol.com,41,FEMALE,,116 chalet heights,,huntington,VT,,5462,9,14,1970,12/26/2011 10:16
+acouillard,annette,  ,couillard,acouillard63@comcast.net,48,FEMALE,802-863-4292,96 brierwood lane,,burlington,VT,,5408,6,10,1963,11/25/2011 14:37
+pepsad,Deborah,  ,McCaffrey,pepsad@aol.com,60,FEMALE,802-363-3083,p.o. box 882,,milton,VT,,5468,2,7,1951,12/8/2011 9:49
+fnichol,Dick,  ,Nichols,fnichol2@aol.com,66,MALE,802 - 876 7689,275 Michael Lane,,Williston,VT,,5495,12,29,1945,11/30/2011 10:42
+tlcmashley,Caroline,  ,Ashley,tlcmashley@msn.com,48,FEMALE,8028784671,26A Sunset Dr,,Essex,VT,,5452,11,30,1963,11/26/2011 22:20
+rainee,Lorraine,  ,Heagen,rainee91@hotmail.com,77,FEMALE,,,,,  ,,,9,1,1934,11/7/2011 11:01
+SANDRA,SANDRA,  ,BROWN,SANDRABROWNDESIGNS@GMAIL.COM,18,FEMALE,802-999-2588,500 Pine St Apt 2C,,Burlington,VT,,5401,1,1,1993,11/9/2011 11:59
+Rufus,Rufus,  ,Duell,mrduell@myfairpoint.net,67,MALE,802-878-6398,1316 Old Stage Road,,Williston,VT,,5495,4,29,1944,12/7/2011 20:14
+doreylynne,Dorey,  ,Myers,doreylynne@gmail.com,25,FEMALE,,771-1 Lower Newton Road,,St. Albans,VT,,5478,10,1,1986,11/30/2011 8:16
+snosurf968,Derek,  ,Freeburn,snosurf968@aol.com,29,MALE,,,,,  ,,5403,9,20,1982,11/30/2011 12:04
+scovey,Ted,  ,Coles,tedacoles@yahoo.com,61,MALE,,,,,  ,,,1,1,1950,12/7/2011 22:12
+vodriscoll,Vince,  ,O'Driscoll,vodriscoll@charter.net,55,MALE,,7 Heritage Dr.,,Plattsburgh,NY,,12901,10,12,1956,11/8/2011 19:15
+RCFehr,Robert,  ,Fehr,zebbcity@gmail.com,18,MALE,,6 W Church St,,West Chazy,NY,,12992,1,1,1993,11/8/2011 8:05
+MonicaG,Monica,  ,Greene,mgreene@vermontprecisiontools.com,47,FEMALE,,137 Border Road,,Alburgh,VT,,5440,12,10,1964,12/5/2011 13:49
+Annie912,Antoinette,  ,St Amour,stanniegirl@comcast.net,42,FEMALE,,3906 Case Street,,Middlebury,VT,,5753,9,12,1969,12/7/2011 9:37
+jfi7,janice,  ,interlandi,jfinterlandi@yahoo.com,59,FEMALE,,7 hochelaga road,,south hero,VT,,5486,11,24,1952,11/30/2011 8:26
+halfmoon,nancy,  ,gillett,halfmoon53@excite.com,58,FEMALE,,120 cottage grove,,burlington,VT,,5408,7,5,1953,12/1/2011 5:40
+Jshannon,Joan,  ,Shannon,Jshannon@burlingtontelecom.net,47,FEMALE,,,,,  ,,,7,27,1964,12/7/2011 10:47
+Bethanymj,Bethany,  ,McGrath-Riegel,b.mjmcgrath@gmail.com,22,FEMALE,,,,Burlington,VT,,,3,16,1989,12/14/2011 10:50
+cmyrick84,Cybil,  ,Myrick,cmyrick@middlebury.edu,27,FEMALE,,,,,VT,,,12,14,1984,12/7/2011 16:37
+Brault,Barbara,  ,Dirmaier,oilgas26@aol.com,55,FEMALE,,27 Deerfield Rd,,South Burlington,VT,,5403,2,26,1956,11/30/2011 23:50
+57moSA,Sharon,  ,Votraw,svotraw@gmail.com,59,FEMALE,,5 Addoms Street,,Plattsburgh,NY,,12901,10,7,1952,11/29/2011 15:06
+dmanning77,Deborah,  ,Manning,dmanning77@comcast.net,56,FEMALE,,,,,  ,,,11,15,1955,11/23/2011 18:03
+kiss1973,kevin,  ,norcross,bmtp02@aol.com,40,MALE,,1151 Route 3,,Plattsburgh,NY,,12901,7,19,1971,11/7/2011 16:14
+carrie1292,Carrie,  ,Coty,carrie12929@aol.com,33,FEMALE,,477 Hardscrabble Road,,Cadyville,NY,,12918,5,11,1978,11/8/2011 9:55
+Melliebd4,Melissa,  ,Houle,Melliebd4@hotmail.com,27,FEMALE,,Po box 375,,Peru,NY,,12972,8,1,1984,11/8/2011 10:32
+writer1963,Nama,  ,NancyleeDestiny,writer1963@gmail.com,18,FEMALE,,,,Morrisonville,NY,,12962,1,1,1993,11/8/2011 11:03
+Maskell,joshua,  ,maskell,taofeng_69@yahoo.com,28,MALE,,P.O. Box 2377,,champlain,NY,,12919,4,26,1983,11/8/2011 11:05
+ndavis,Nicole,  ,Davis,ndavis@chazy.org,33,FEMALE,,38 Town Line Road,,Cadyville,NY,,12918,4,4,1978,11/8/2011 11:30
+hrlmom,Donna,  ,LaMotte,hrlmom@charter.net,42,FEMALE,,86 Campsite Road,,Schuyler Falls,NY,,12985,1,29,1969,11/8/2011 11:36
+jnolan2084,Juliana,  ,Nolan,jcn2084@gmail.com,54,FEMALE,,1060 Rt 9,,Champlain,NY,,12919,12,29,1957,11/8/2011 13:10
+robertany,Roberta,  ,Firenze,roberta12962@yahoo.com,50,FEMALE,,,,,  ,,,11,2,1961,12/31/2011 9:33
+riverwood2,Jacquelyn,  ,Girardin,4jsvt@comcast.net,43,FEMALE,802-878-8361,83 Weed Road,,Essex Junction,VT,,5452,1,27,1968,11/8/2011 19:33
+kegs260,Kelly,  ,Circe,Kelly.Circe@uvm.edu,51,FEMALE,802-879-0218,324 Village Dr.,,Colchester,VT,,5446,2,6,1960,11/17/2011 15:32
+bigalskids,Alan,  ,Levi,bigalskids@aol.com,57,MALE,,310 Hanon Drive,,Williston,VT,,5495,4,23,1954,11/29/2011 18:58
+adkjoe,Joe,  ,Drago,adirondackjoe@live.com,27,MALE,,,,,  ,,,11,5,1985,1/6/2012 9:44
+tbessette,Thomas,  ,Bessette,tbessette@smcvt.edu,69,MALE,802-654-2000,P.O. Box 333,5851 Shelburne Rd,Shelburne,VT,,5482,2,26,1942,12/7/2011 8:28
+petey,glen,  ,goodsell,sawafew@msn.com,47,MALE,8027963037,24 winters ln,,alburg,VT,,5440,9,28,1964,11/10/2011 18:11
+dexa2000,Jessica,  ,Remmey,dexa2000@yahoo.com,35,FEMALE,,,,,  ,,,5,5,1976,12/13/2011 21:06
+nicole9281,Nicole,  ,Taber,nicole9281vt@yahoo.com,30,FEMALE,,256 Twin Oaks Terrace,,South Burlington,VT,,5403,9,2,1981,11/30/2011 16:35
+amy_recor,Amy,  ,Recor,amy_recor@hotmail.com,34,FEMALE,,12 Baker Road,,Chazy,NY,,12921,6,22,1977,11/8/2011 19:54
+lpoupore,Lynn,  ,Poupore,athleticmom6@yahoo.com,58,FEMALE,,2203 county rt 8,,Malone,NY,,12953,11,26,1953,11/9/2011 21:51
+vastraw58,Vikki,  ,Straw,perustraw@charter.net,53,FEMALE,,5 Washington St,,Peru,NY,,12972,3,7,1958,12/14/2011 9:18
+stangelo1,Christine,  ,Lebiecki,innerwisdom@hotmail.com,44,FEMALE,,85 Whipple Rd,,South Hero,VT,,5486,7,6,1967,11/30/2011 15:49
+towanda,sally,  ,fellows,towanda2@comcast.net,65,FEMALE,,,,,  ,,,5,8,1946,11/30/2011 17:29
+rgomez1961,Rebecca,  ,Gomez,rgomez1961@yahoo.com,50,FEMALE,,12 Meadowbrook LN,,St. Albans,VT,,5478,4,1,1961,11/30/2011 21:18
+bsullivan,Betsy,  ,Sullivan,b_ksullivan@yahoo.com,38,FEMALE,,5000 Jersey Street,,Vergennes,VT,,5491,4,17,1973,11/17/2011 8:55
+celioseff,Charles,  ,Elioseff,celioseff@hotmail.com,70,MALE,,275 Pine Meadow Dr.,,Colchester,VT,,5446,8,23,1942,1/6/2012 11:03
+sarandos,Dana,  ,Valentine,dana.valentine@lmsre.com,42,FEMALE,,256 Sutton Farm Dr,,Shelburne,VT,,5482,6,19,1969,11/30/2011 10:16
+kathlisk,kathleen,  ,liskowsky,kathlisk@gmail.com,60,FEMALE,,166 old quarry rd,,st. albans,VT,,5478,3,4,1951,11/30/2011 10:25
+julowell,julie,  ,lowell,julowell@gmail.com,31,FEMALE,,11 POPLAR ST,,BURLINGTON,VT,,05401-5129,9,6,1980,11/30/2011 10:36
+Whitetail,Tom,  ,Perrotte,tomperrotte@gmail.com,53,MALE,,PO Box 227,,Bakersfield,VT,,5441,10,3,1958,11/7/2011 21:00
+busheylm,Lynn,  ,Bushey,busheylm@aol.com,45,FEMALE,,158 Standish Rd,,Saranac,NY,,12981,11,21,1966,11/8/2011 8:13
+hreynolds,Heather,  ,Reynolds,hmacreynolds@gmail.com,33,FEMALE,,2554 county route 10,,Westport,NY,,12993,1,15,1978,11/8/2011 8:15
+jennifer12,Jennifer,  ,Armstrong,jennifer12919@yahoo.com,50,FEMALE,,793 Perry Mills Road,,Champlain,NY,,12919,1,14,1961,11/8/2011 9:19
+cshemm,Curtiss,  ,Hemm,cshemm@charter.net,41,MALE,,,,,  ,,,7,6,1970,11/8/2011 9:50
+jenw1981,Jennifer,  ,Allen,jenallen1981@gmail.com,30,FEMALE,,,,,  ,,,6,14,1981,11/8/2011 10:05
+SLussier,Suzanne,  ,Lussier,rcljr@comcast.net,60,FEMALE,,10 Parsons Lane,,"St. Albans,",VT,,5478,8,14,1951,11/8/2011 10:39
+em2011,Emily,  ,Berkman,eeb24@hotmail.com,25,FEMALE,,1277 state route 3,,Morrisonville,NY,,12962,2,24,1986,11/8/2011 15:13
+helen7554,helen,  ,seguin,helen7554@netzero.net,27,FEMALE,,,,,  ,,,8,28,1984,11/8/2011 17:08
+clarktowin,candice,  ,clarj,clarktowing@aol.com,33,FEMALE,,121 clark rd,,peru,NY,,12972,6,29,1978,11/8/2011 20:27
+jdawson2,John,  ,Dawson,jdawson2@twcny.rr.com,68,MALE,,PO Box271,101 South St,Champlain,NY,,12919,3,30,1943,11/8/2011 22:42
+mamaboo15,Heather,  ,Narducci,mamaboo15@hotmail.com,25,FEMALE,,,,,  ,,,1,4,1986,11/8/2011 22:57
+ladycroft,Caitlin,  ,Lee,mercurybloom@hotmail.com,27,FEMALE,,,,,  ,,,4,29,1984,11/8/2011 22:57
+seller,carrie,  ,seller,carrieseller@yahoo.com,28,FEMALE,,846 state Route 11,,Champlain,NY,,12919,2,28,1983,11/8/2011 18:28
+daniellern,Danielle,  ,Rohrer,daniellern42@yahoo.com,36,FEMALE,,P.O. box 125,,witherbee,NY,,12998,7,28,1975,11/8/2011 18:41
+jeanbouvia,Jean,  ,Bouvia,jbhbouvia@hotmail.com,38,FEMALE,,117 Eccles Rd,,Peru,NY,,12972,2,23,1973,11/8/2011 19:57
+sexibaby09,Kaylah,  ,Jean,baker.kaylah@yahoo.com,24,FEMALE,,,,,NY,,,12,12,1987,11/8/2011 20:08
+sf49ers,David,  ,Duprey,sf49ers01@hotmail.com,37,MALE,,,,Peru,NY,,12972,7,11,1974,11/8/2011 20:14
+tchalways,Tonya,  ,Robinson,tonyatrm@yahoo.com,37,FEMALE,,47 Rivers Edge Dr,,Morrisonville,NY,,12962,7,24,1974,11/8/2011 20:32
+Dlabelle,Doreen,  ,LaBelle,doreenlabelle@yahoo.com,30,FEMALE,,65 depot street,,Mooers,NY,,12958,12,11,1981,11/8/2011 20:53
+snowgoose,Karen,  ,Puliafico,craftyjewel@charter.net,62,FEMALE,,25 Tioga Lane,,Plattsburgh,NY,,12901,8,19,1949,11/8/2011 21:11
+ash9585,Ashley,  ,Zins,Ash9585_2000@yahoo.com,26,FEMALE,,369 Bashaw Rd,,Mooers,NY,,12958,9,5,1985,11/8/2011 21:19
+dragonla,Linda,  ,Dragon,dragonla@plattsburgh.edu,54,FEMALE,,218 Barney Downs Road,,Peru,NY,,12972,3,14,1957,11/8/2011 21:37
+dlavarnway,Dianne,  ,LaVarnway,adklimo@gmail.com,18,FEMALE,,4369 STATE RTE 9,,Plattsburgh,NY,,12901,1,1,1993,11/9/2011 19:37
+esupernaw,Erin,  ,Supernaw,esupernaw@live.com,18,FEMALE,,69 Garrand Rd,,Mooers,NY,,12958,1,1,1993,11/9/2011 20:22
+alrachelle,Rachelle,  ,Givogue-Ruest,proud2bca@yahoo.com,39,FEMALE,,464 Wallace Hill Rd,,Plattsburgh,NY,,12901,3,16,1972,11/10/2011 11:22
+twhitt955,Tiffany,  ,Whittington,twhitt955@yahoo.com,38,FEMALE,,14 HOMESTEAD DR,,Plattsburgh,NY,,12901,2,21,1973,11/12/2011 10:28
+recore1,Alexis,  ,Recore,arecore0804@gmail.com,31,FEMALE,,392 Salmon River Road,,Plattsburgh,NY,,12901,10,14,1980,11/13/2011 8:07
+jbenard,Jamie,  ,Benard,dupont24fann@yahoo.com,37,MALE,,,,,  ,,,7,14,1974,11/13/2011 21:03
+cpaynter1,chris,  ,paynter,cpaynter1@yahoo.com,27,MALE,,14 sheila ave,,plattsburgh,NY,,12901,1,2,1984,11/14/2011 21:03
+mommyof2,Atasha,  ,Goble,sweetgirl2138@yahoo.com,29,FEMALE,,42 Lorraine Street,,Plattsburgh,NY,,12901,9,20,1982,11/16/2011 15:53
+yourangley,Kim,  ,Smith,yourangleyes69@yahoo.com,42,FEMALE,,38 south peru street,,Plattsburgh,NY,,12901,6,4,1969,11/16/2011 16:25
+tstonitsch,Tracy,  ,Stonitsch,tstonitsch@yahoo.com,28,FEMALE,,6 Baldwin Road,,Ticonderoga,NY,,12883,10,3,1983,11/17/2011 9:53
+bls91496,Brenda,  ,Sherman,bls91496@yahoo.com,41,FEMALE,,PO BOX 231,69 Mt Spring Rd,Mineville,NY,,12956,3,11,1970,11/17/2011 19:18
+VTMOM1,Precious,  ,Chamberlin,chamberlin@gmavt.net,29,FEMALE,,103 Pleasant View Terrace,,Addison,VT,,5941,2,1,1982,11/18/2011 20:48
+hondog,Michael,  ,Defayette,defayettem@westelcom.com,35,MALE,,,,,  ,,,3,23,1976,11/19/2011 18:15
+marci27,marci,  ,huestis,marcihuestis@msn.com,39,FEMALE,,605 cumberland head rd,,plattsburgh,NY,,12901,6,27,1972,11/21/2011 20:33
+telsat,walter,  ,worth,edgex66@hotmail.com,45,MALE,,2940 nys rte 9n,,crown point,NY,,12928,12,29,1966,11/22/2011 8:41
+parrotk,Karen,  ,Parrotte,parrotk@plattsburgh.edu,52,FEMALE,,po box 53,,saranac,NY,,12981,9,4,1959,11/22/2011 9:15
+nbrckk,Nancy,  ,Coty,cotysqtrhorses@aol.com,46,FEMALE,,43 O'Neil Road,,West Chazy,NY,,12992,2,16,1965,11/24/2011 19:51
+wonderful,SHARON,  ,NEPHEW,grnephew@aol.com,57,FEMALE,,749 SLOSSON ROAD,,WEST CHAZY,NY,,12992,8,20,1954,11/28/2011 13:45
+missybanke,Missy,  ,Banke,pinebrookkennels@aol.com,39,FEMALE,,524 Lake Road,,Milton,VT,,5468,1,13,1972,11/30/2011 8:29
+McManus,Jill,  ,McManus,Jillmcmanus14@gmail.com,38,FEMALE,,,,,  ,,,12,14,1973,11/30/2011 10:52
+tbuck44,Tammy,  ,Davis,tbuck44@comcast.net,39,FEMALE,,9 Hidden Oaks Dr.,,Colchester,VT,,5446,11,15,1972,11/30/2011 15:43
+lmsol,Lisa,  ,Solomon,lmsol@comcast.net,45,FEMALE,,107 Stone Drive,,Colchester,VT,,5446,6,16,1966,11/30/2011 16:22
+jolcott,Jody,  ,Olcott,jolcott@essexcountyida.com,35,FEMALE,,5 Rocky Top Way,,Moriah,NY,,12960,8,19,1976,11/8/2011 13:55
+Carla,CARLA,  ,VARGO,cvargo@moriahk12.org,57,FEMALE,,16 BRIDAL ROW,,WITHERBEE,NY,,12998,12,22,1954,11/8/2011 14:28
+AGoodspeed,Angie,  ,Goodspeed,breanna_83@hotmail.com,31,FEMALE,,,,West Chazy,NY,,,7,21,1980,11/8/2011 15:27
+uncrnmystk,Rebekka,  ,Malcolm,unicorn18_98@yahoo.com,31,FEMALE,,870 Fiske Rd.,,West Chazy,NY,,12992,6,17,1980,11/8/2011 18:09
+Cleoshoc,Kelly,  ,Fuller,kellyfuller@hotmail.com,31,FEMALE,,,,,  ,,,2,11,1980,11/8/2011 18:14
+blackjack,Jacqueline,  ,Coleman,jacklib@hughes.net,50,FEMALE,,6367 State Rt 374 PO Box 206,,Brainardsville,NY,,12915,2,11,1961,11/8/2011 20:05
+stingray19,Raymond,  ,Agoney,stingray1929@aol.com,38,MALE,,106 Reservoir Road,,Peru,NY,,12972,10,4,1973,11/8/2011 21:09
+busygirl,Kim,  ,Williams,jkw6274@charter.net,44,FEMALE,,11 Old state Rd,,Ausable Chasm,NY,,12911,6,17,1967,11/8/2011 23:53
+elmoplush,rich,  ,welch,elmoplush@yahoo.com,35,MALE,,,,,  ,,,3,21,1976,11/9/2011 8:08
+ColleenR,Colleen,  ,Rabideau,ccrgram@verizon.net,57,FEMALE,,7 Leonard Ave.,,Plattsburgh,NY,,12901,2,15,1954,11/9/2011 8:09
+cand88ice,Candice,  ,Eckler,patinka8@hotmail.com,28,FEMALE,,1320 State Route 3,,Morrisonville,NY,,12962,10,31,1983,11/9/2011 9:45
+lised,Lise,  ,Davidson,lisedavidson@yahoo.com,18,FEMALE,,12 Monty St,,Plattsburgh,NY,,12901,1,1,1993,11/9/2011 20:34
+dgiroux,Deborah,  ,Giroux,grxdb@aol.com,42,FEMALE,,1Trafalgar Dr,,Plattsburgh,NY,,12901,4,21,1970,11/11/2011 17:54
+longe,IDA,  ,STRACK,redfordwomen@aol.com,71,FEMALE,,2025state route22-b,apt.105,morrisonville,NY,,12962,12,17,1940,11/16/2011 8:59
+Bizarre,Bizarre,  ,Bizarre,eyesaregreen56@hotmail.com,48,MALE,,14 Plattsburgh Plaza,,Plattsburgh,NY,,12901,12,5,1963,11/16/2011 10:11
+Janny,Janice,  ,Madden,Janny0504@aol.com,40,FEMALE,,29 pinebrook dr,,Morrisonville,NY,,12962,4,6,1971,11/16/2011 18:12
+lala211,laura,  ,flax,laura.flax21187@sbcglobal.net,24,FEMALE,,,,plattsburgh,NY,,12901,2,11,1987,11/16/2011 19:47
+pdorr,Patricia,  ,Dorr,pat@adirondackpeturns.com,53,FEMALE,,191 Hogan Hill Road,,Crown Point,NY,,12928,7,11,1958,11/18/2011 16:00
+waszakm,Michael,  ,Waszak,waszakm@gmail.com,32,MALE,,,,,  ,,,3,16,1979,11/29/2011 10:21
+krsunny890,Kimberly,  ,Rushford,tannie64@yahoo.com,47,FEMALE,,,,,  ,,,10,29,1964,11/19/2011 16:33
+loubear,Lisa,  ,Abare,loubear625@yahoo.com,44,FEMALE,,19 Treadway Street,,Ticonderoga,NY,,12883,6,25,1967,11/22/2011 10:33
+jjrab70,jay,  ,RABIDEAU,jjrab70@yahoo.com,41,MALE,,157 S PERU ST apt D,,PLATTSBURGH,NY,,12901,2,23,1970,11/25/2011 20:20
+mary1,kathy,  ,nichols,nicholsm33@yahoo.com,51,FEMALE,,6 adams drive,,plattsburgh,NY,,12901,5,5,1960,11/27/2011 16:59
+pgaudreau5,Patricia,  ,Gaudreau,rgaud@primelink1.net,51,FEMALE,,1330 LaValley Road,,Mooers,NY,,12958,1,29,1960,11/28/2011 22:45
+rlevitre,Richard,  ,LeVitre,rlevitre@cornell.edu,59,MALE,,53 Wellington Street,,Malone,NY,,12953,10,8,1952,11/30/2011 11:00
+hjarochym,Heather,  ,Jarochym,hjarochym@hotmail.com,33,FEMALE,,PO Box 3891,,Stowe,VT,,5672,12,31,1978,11/29/2011 9:26
+jazzk,Jessy,  ,Kapoor,jazzk1986@gmail.com,51,MALE,,,,,  ,,,10,31,1960,11/30/2011 9:41
+wilbur,bruce,  ,viani,bav1122@comcast.net,54,MALE,,255 clover ln.,,north hero,VT,,5474,11,22,1957,11/30/2011 11:17
+perky,Priscilla,  ,Maddocks,psmaddocks1@gmail.com,63,FEMALE,,186 Woods Hollow Road,,Essex Junction,VT,,5452,10,2,1948,11/30/2011 15:28
+Cody,Jodi,  ,Petro,Cody0227@hotmail.com,40,FEMALE,,379 Edgemont Road,,Port Henry,NY,,12974,12,6,1971,12/1/2011 13:47
+jsubra,Jeff,  ,Subra,jsubra5@gmail.com,50,MALE,,,,,  ,,,1,26,1961,12/2/2011 23:57
+pammy2848,Pam,  ,Dickinson,pammy2848@aol.com,47,FEMALE,,14 McIntosh Drive,,Peru,NY,,12972,6,5,1964,12/5/2011 8:49
+ReeRee,Lori,  ,Miller,1266chopsy@charter.net,45,FEMALE,,128 Sunrise Drive,,Plattsburgh,NY,,12901,1,2,1966,12/5/2011 9:31
+stop7short,Erin,  ,Jamieson,stop7short@aol.com,22,FEMALE,,,,,  ,,,8,11,1989,12/14/2011 20:32
+berylszwed,Beryl,  ,Szwed,szwed@northnet.org,63,FEMALE,,157 Kiwassa Road,,Saranac Lake,NY,,,3,21,1948,12/17/2011 10:17
+Soozie2u,Soozie,  ,Leubert,Soozie@wakanda.com,59,FEMALE,,PO Box 114,,Rainbow Lake,NY,,12976,4,3,1952,12/17/2011 17:48
+melooh,Melissa,  ,Hart,trahassilem@gmail.com,34,FEMALE,,,,,  ,,,8,1,1977,12/17/2011 22:56
+dakotadb,Richard,  ,Branch,branch1959@gmail.com,52,MALE,,,,,  ,,,2,10,1959,12/18/2011 9:39
+willard2f,Willard,  ,Stewart,willard3f@yahoo.com,64,MALE,,50 Church Street,,Lake Placid,NY,,12946,2,14,1947,12/18/2011 9:48
+timsue,Tim,  ,Pelkey,timsue@primelink1.net,48,MALE,,49 East St,,Champlain,NY,,12919,12,10,1963,12/22/2011 15:25
+dbrul001,Damie,  ,Bruley,lushymcchapstick@gmail.com,28,FEMALE,,,,,  ,,,5,2,1983,12/22/2011 15:36
+ARTAK13,CRAIG,  ,LAPLANTE,craig.laplante@verizon.net,49,MALE,,13 SMITH ST,,PLATTSBURGH,NY,,12901,8,22,1962,12/26/2011 15:58
+cedwards,carla,  ,edwards,woodlandm@charter.net,47,FEMALE,,14 woodland drive,,plattsburgh,NY,,12901,7,18,1964,12/26/2011 16:44
+coco2626,chanelle,  ,heath,chanelleheath@yahoo.com,26,FEMALE,,,,,  ,,,5,22,1986,1/1/2012 20:01
+chefflea,Ronald,  ,Nelson,rlnjr@hotmail.com,42,MALE,,46 Wood Cliff Drive,,Plattsburgh,NY,,12901,1,1,1970,1/5/2012 14:31
+onlyonce,Mark,  ,Lacharite,mark.ipm.lacharite@gmail.com,53,MALE,,22 Cardinal Ln.,P.O. Box 322,"South Hero,",VT,,05486-0322,1,21,1958,11/30/2011 16:54
+smittyr,kathy,  ,robinson,kasr3@myfairpoint.net,46,FEMALE,,15 Hill Road,,South Hero,VT,,5486,3,16,1965,11/30/2011 17:13
+pills8,marylyn,  ,pillsbury,m372@aol.com,68,FEMALE,,42 townline road,,grand isle,VT,,5458,3,26,1943,12/23/2011 13:32
+peninti,Penny,  ,Mosley,Mosley721@hotmail.com,48,FEMALE,,243 Vineyard Rd,,Ticonderoga,NY,,12883,2,11,1963,12/3/2011 10:44
+Pam,Pamela,  ,Preston,ducky@gmavt.net,61,FEMALE,,90 Sunset Knoll Road,,Panton,VT,,5491,7,23,1950,12/7/2011 11:02
+c1demers,Charlotte,  ,Demers,cdemers@frontiernet.net,49,FEMALE,,,,,NY,,,3,28,1962,12/7/2011 18:11
+Choolulu,Christa,  ,Bolen,thechoolulu@hotmail.com,32,FEMALE,,52 Foley St,Flr 1,West Hartford,CT,,6110,5,25,1979,12/8/2011 0:01
+Oakleyrod,Ann,  ,Lupino,oakley3de@yahoo.com,56,FEMALE,,PO Box 1734,,Plattsburgh,NY,,12901,9,10,1955,12/8/2011 13:44
+sherrik32,Sherri,  ,Kowalowski,slkowalowski@aol.com,41,FEMALE,,,,,  ,,,7,4,1970,12/8/2011 15:45
+katyvee,kate,  ,villanueva,katyvee@yahoo.com,31,FEMALE,,1820 wald rd #33,,new braunfels,TX,,78132,3,19,1980,12/8/2011 19:46
+froggiella,Jessica,  ,Paradis,froggiellama@hotmail.com,33,FEMALE,,,,,  ,,,9,6,1978,12/9/2011 17:24
+mohawk,scot,  ,slater,adkbasket@yahoo.com,51,MALE,,1662 Miner Farm Rd,,Chazy,NY,,12921,8,9,1960,12/13/2011 4:55
+Mikacorn2,Elizabeth,  ,ahern,Mikacorn2@aol.com,46,FEMALE,,60 Ahern road,,Saranac,NY,,12981,5,18,1965,12/19/2011 10:03
+Reneepje,Renee,  ,Dezotelle,Reneedbck@aol.com,31,FEMALE,,PO Box 141,,Montpelier,VT,,5601,11,14,1980,12/21/2011 10:44
+bobw,Bob,  ,Walker,rwalker4742@charter.net,57,MALE,,856 State Route 3,,Plattsburgh,NY,,12901,8,19,1954,12/20/2011 14:44
+palmervc,Palmer,  ,Vet. Clinic,palmervc@palmervet.com,21,MALE,,6274 State Route 22,,Plattsburgh,NY,,12901,9,1,1990,12/20/2011 15:23
+Peggys,Margaret,  ,Miller,pegmiller21@gmail.com,64,FEMALE,,1127 state route 11,,brushton,NY,,12916,7,22,1947,12/26/2011 13:02
+mea0,maria,  ,aguglia,mearn@charter.net,47,FEMALE,,430 Stafford Rd,,Plattsburgh,NY,,12901,10,25,1964,12/26/2011 22:41
+hfuller,Heather,  ,Fuller,wfuller1316@charter.net,36,FEMALE,,18 Facteau Ave,,Plattsburgh,NY,,12901,6,23,1975,12/27/2011 8:55
+ginger44,Ginger,  ,Bushey,ginger4@uga.edu,27,FEMALE,,560 Irona Road,,Altona,NY,,12910,1,5,1984,12/27/2011 9:44
+Dani1,Danielle,  ,Salmon,Esalmon7969@charter.net,31,FEMALE,,123 south Peru atreet,,Plattsburgh,NY,,12901,10,7,1980,12/27/2011 16:52
+itsa7t5,Bruce,  ,LaValley,lavalley1112@charter.net,75,MALE,,1112 Cumberlandhead Rd,,Plattsburgh,NY,,12901,4,17,1937,1/4/2012 16:47
+tomaidan,carol,  ,hackett,hceh65@aol.com,67,FEMALE,,6 set point,,plattsburgh,NY,,12901,9,3,1945,1/9/2012 11:35
+Lad0527,Lori,  ,Dandrow,Lad0527@Verizon.net,43,FEMALE,,3 Lexington Ave,,Plattsburgh,NY,,12901,3,30,1969,1/9/2012 19:27
+mcdowejn,Janet,  ,McDowell,maggiemcaussie@gmail.com,62,FEMALE,,7841 Rt 9,,Plattsburgh,NY,,12901,5,19,1949,11/9/2011 10:37
+aknight53,Alice,  ,Knight,aknight53@frontiernet.net,58,FEMALE,,,,,  ,,,5,26,1953,11/9/2011 16:29
+tyjess,Jessica,  ,Wilson,tyjess@westelcom.com,18,FEMALE,,,,,NY,,,1,1,1993,11/10/2011 15:13
+rayfield,peg,  ,miller,picsnapperpeg@hotmail.com,64,FEMALE,,,,,  ,,,7,22,1947,11/10/2011 17:32
+hoptoit,Ed,  ,Eisele,Bigolddivot@yahoo.com,60,MALE,,8 Button Brook Pkwy,,Peru,NY,,12972,4,4,1951,11/10/2011 18:30
+mvalentine,Marybeth,  ,Valentine,muse3135@hotmail.com,58,FEMALE,,,,,  ,,,3,13,1953,11/11/2011 15:41
+jswinton,John,  ,Swinton,jswinton@cpcsteam.org,28,MALE,,1920 Creek Rd,,Crown Point,NY,,12928,6,18,1983,11/17/2011 21:33
+dolly05105,sierra,  ,pepin,dolly051505@yahoo.com,23,FEMALE,,,,,  ,,,4,14,1988,11/21/2011 11:41
+holywatera,Ashley,  ,Rogers,holywaterak@hotmail.com,24,FEMALE,,PO BOX 925,,Dannemora,NY,,12929,1,9,1987,11/21/2011 18:39
+wolfdee,Deadra,  ,Dunbar,idunbar@twcny.rr.com,44,FEMALE,,,,,  ,,,2,2,1967,11/21/2011 21:42
+blackbay,Laurel,  ,Rule,blackbay@westelcom.com,41,FEMALE,,,,Westport,  ,,12993,11,24,1970,11/23/2011 10:19
+rpb2688,Randy,  ,Brown,rpb2688@gmail.com,23,MALE,,,,,NY,,,2,6,1988,11/26/2011 19:40
+msarnowicz,Michelle,  ,Sarnowicz,mpoquette7@yahoo.com,31,FEMALE,,5 Pinnacle Drive,,Milton,VT,,5468,3,19,1980,11/27/2011 15:56
+nataliep,Natalie,  ,Peck,nataliepeck@yahoo.com,44,FEMALE,,,,,  ,,,10,14,1967,11/29/2011 8:36
+Ank263,Christopher,  ,Anctil,canctil_79@hotmail.com,32,MALE,,,,Plattsburgh,NY,,,3,9,1979,11/29/2011 17:39
+krobil,Kristin,  ,Robillard,krobil@aol.com,34,FEMALE,,60 woodlins circle #2,,Colchester,VT,,5446,9,1,1977,11/30/2011 9:19
+patmogan,Patricia,  ,Mogan,patmog@earthlink.net,65,FEMALE,,316 South Street,,South Hero,VT,,5486,10,21,1946,11/30/2011 9:39
+elutz,Emily,  ,Burgess,elutz@uvm.edu,24,FEMALE,,23 Turner Ave,,Milton,VT,,54678,11,5,1987,11/30/2011 12:47
+kilhazey,Karen,  ,McCloud,kilhazey@aol.com,54,FEMALE,,3 Kibbe Point Road,,South Hero,VT,,5486,4,23,1957,11/30/2011 18:41
+mkrull,Mary,  ,Krull,JKrull1@comcast.net,62,FEMALE,,319 Boston Post Road,,Amherst,NH,,3031,2,8,1949,11/30/2011 19:11
+shalom,marv,  ,greenberg,shalom@gmavt.net,58,MALE,,341 mountain rd,,bristol,VT,,5443,7,6,1953,11/30/2011 20:24
+rosskelley,Ross,  ,Kelley,rosskelley1@comcast.net,59,MALE,,,,,  ,,,5,8,1952,12/3/2011 16:49
+kinterkl,Katie,  ,kinter,kinterkl@gmail.com,21,FEMALE,,,,plattsburgh,NY,,12901,6,1,1990,12/5/2011 17:43
+MJMKBM62,Beth,  ,Perrotte-Miller,BethEllen62@gmail.com,49,FEMALE,,42 Olivetti Place,,Plattsburgh,  ,,12901,5,13,1962,12/5/2011 17:44
+Janmatan,Janet,  ,Lavelle,Janetlavelle57@gmail.com,28,FEMALE,,31 gorge rd,,Colchester,VT,,5446,10,13,1983,12/7/2011 11:47
+doneen,Eileen,  ,Rinker,rinkers@accessvt.com,65,FEMALE,,1301 Pearson Road,,New Haven,VT,,5472,11,10,1946,12/7/2011 15:18
+buckaroo,Edmund,  ,Clarke,buckaroo2000_us@yahoo.com,42,MALE,,PO Box 8286,,Essex,VT,,5451,10,27,1969,12/16/2011 1:57
+cutiepie,chasity,  ,brunet,cutiepie63080@yahoo.com,31,FEMALE,,6825 rte 22,,plattsburgh,NY,,12901,6,30,1980,12/8/2011 23:13
+neva7373,neva,  ,provost,provost19@hotmail.com,53,FEMALE,,19 sheila avenue,,plattsburgh,NY,,12901,7,25,1958,12/9/2011 10:37
+belserob,ona,  ,belser,belserob@plattsburgh.edu,40,FEMALE,,,,,NY,,,2,14,1971,12/15/2011 18:35
+Marknamy67,Mark,  ,Carter,retracm67@yahoo.com,44,MALE,,115 Park Ave,,Saranac Lake,NY,,12983,5,12,1967,12/16/2011 23:00
+mmwpg,Megan,  ,Glennon,mmwpg@yahoo.com,36,FEMALE,,,,,  ,,,5,15,1975,12/17/2011 16:11
+grandma2,Gail,  ,Giroux,captaing@charter.net,60,FEMALE,,6096 Route 22,,Plattsburgh,NY,,12901,3,16,1951,12/17/2011 16:17
+kokesk,Kathy,  ,Kokes,kokesk@primelink1.net,46,FEMALE,,431 Gilbert Road,,Mooers,NY,,12958,12,26,1965,12/19/2011 7:40
+pattyanne,patty,  ,taylor,pattytaylor@charter.net,52,FEMALE,,333 stickney bridge rd,,jay,NY,,12941,5,27,1959,11/8/2011 20:42
+mmarlow,meeghan,  ,marlow,bakem516@yahoo.com,31,FEMALE,,37 panunzio rd,,malone,NY,,12953,4,5,1980,11/8/2011 20:48
+marti1013,Marlene,  ,Waldron,tessa_goddess13@yahoo.com,39,FEMALE,,P.O. Box 726,,Morrisonville,NY,,12962,10,13,1972,11/8/2011 21:55
+jadehawke,Dove,  ,Phillips,jackaroo_8@yahoo.com,35,FEMALE,,14 mohican lane,,plattsburgh,NY,,12901,7,17,1976,11/8/2011 22:10
+jking,Judy,  ,King,kjudy44@yahoo.com,50,FEMALE,,PO Box 781,"10 Pine St., Apt. 1",Malone,NY,,12953,9,10,1961,11/9/2011 9:47
+camelokm,kathleen,  ,camelo,camelokm@plattsburgh.edu,52,FEMALE,,38 cumberland ave,,plattsburgh,NY,,12901,7,26,1959,11/9/2011 12:49
+susansand,Susan,  ,Sand,susanmeiser@comcast.net,43,FEMALE,,,,,  ,,,9,16,1968,11/9/2011 14:05
+bdkm17,Darlene,  ,Liberty,bdkm17@aol.com,50,FEMALE,,PO Box 8,2 State Rd.,Dannemora,NY,,12929,11,20,1961,11/9/2011 16:23
+grannyrab,Betty,  ,Rabideau,bettyannrab@yahoo.com,52,FEMALE,,13 Rabideau St.,,Morrisonville,NY,,12962,7,13,1959,11/10/2011 14:44
+Kayakkween,Kathy,  ,Miller,kmiller50@live.com,56,FEMALE,,,,Plattsburgh,NY,,12903,2,11,1955,11/11/2011 9:36
+bevst,Beverly,  ,Stellges,flathp@roadrunner.com,67,FEMALE,,,,,  ,,,4,30,1944,11/11/2011 20:20
+VERSEPUTJJ,JONATHAN,  ,VERSEPUT,VERSEPUTJJ@YAHOO.COM,29,MALE,,828 MASON STREET,,MORRISONVILLE,NY,,12962,11,10,1982,11/12/2011 13:17
+Leona,Shirley,  ,Recore,shirl412@charter.net,61,FEMALE,,,,,  ,,,4,12,1950,11/13/2011 11:16
+anne1956,Anne,  ,Griffin,annegriffin7@yahoo.com,55,FEMALE,,224 Stickney Bridge Rd.,,Jay,NY,,12941,9,6,1956,11/14/2011 13:51
+Marpli,Marilyn,  ,Plishka,Plishka@hotmail.com,45,FEMALE,,761 Dugway Road,,Keeseville,NY,,12944,3,18,1966,11/16/2011 18:16
+Mbechard,Molly,  ,Bechard,Mbessett@nycap.rr.com,33,FEMALE,,20 treadway st,,Ticonderoga,NY,,12883,6,26,1978,11/17/2011 7:26
+beckster,becky,  ,manor,beckster.1987@yahoo.com,44,FEMALE,,4307 State Route 11,,Mooers Forks,NY,,12959,12,15,1967,11/21/2011 12:11
+jarobertj,Jay,  ,Robert,j_austin317@hotmail.com,18,MALE,,75 Lake street,,Rouses Point,NY,,12979,1,1,1993,11/21/2011 13:29
+crowsnest5,Nancy,  ,Kelley,rogersrock1@comcast.net,60,FEMALE,,,,,  ,,,5,5,1951,11/22/2011 17:06
+gbw38,Gail,  ,Williams,gbwilliams38@verizon.net,60,FEMALE,,38 Durand Street,,Plattsburgh,NY,,12901,6,19,1951,11/25/2011 12:01
+crcoty,Rachel,  ,Coty,crcoty@frontiernet.net,32,FEMALE,,101 Thompson Rd,,Keeseville,NY,,12944,2,26,1979,11/25/2011 18:04
+Jehosaphat,Jeffrey,  ,Smith,JBenRLM@aol.com,55,MALE,,7597 STATE ROUTE 22,,WEST CHAZY,NY,,12992-3302,3,14,1956,11/26/2011 11:14
+rrampal,Rohit,  ,Rampal,rrampal62@yahoo.com,49,MALE,,,,,  ,,,4,1,1962,11/29/2011 12:15
+vdumont,Vanessa,  ,Dumont,v.dumont@hotmail.com,38,FEMALE,,696 Durand Rd,,Plattsburgh,NY,,12901,7,21,1973,11/29/2011 18:49
+alploess,Amy,  ,Ploesser,amy.ploesser@vtmednet.org,26,FEMALE,,362 US Route 2,,South Hero,VT,,5486,9,8,1985,11/30/2011 8:10
+eliza899vt,Elizabeth,  ,Kelly,eliza899vt@yahoo.com,50,FEMALE,,,,,VT,,5468,2,22,1961,11/30/2011 8:50
+valleyj,Jeff,  ,Valley,jeffrey.valley@pfizer.com,39,MALE,,,,,  ,,,2,3,1972,11/30/2011 9:14
+tgeney,Teri,  ,Geney,teri.geney@comcast.net,45,FEMALE,,,,,  ,,,4,23,1966,11/30/2011 9:23
+abaircain,Marilee,  ,Cain,abaircain@aol.com,62,FEMALE,,,,,  ,,,3,18,1949,11/30/2011 10:04
+marydat,Mary,  ,Dattilio,marydat@aol.com,62,FEMALE,,,,,  ,,,5,14,1949,11/30/2011 11:13
+abes,Alan,  ,Barr,abarr61@aol.com,50,MALE,,33 Naomis Way,Unit 209,Colchester,VT,,5446,1,28,1961,11/30/2011 17:22
+jaynem,Jayne,  ,Cawthern,mommyxx6@aol.com,60,FEMALE,,P.O. Box 685,,Boalsburg,PA,,16827,3,11,1951,11/30/2011 22:37
+kbake002,Konnor,  ,Baker,kbake002@gmail.com,23,FEMALE,,,,Plattsburgh,NY,,,1,12,1988,12/2/2011 14:09
+HAILA,HAILA,  ,CONANT,hailac@aol.com,51,FEMALE,,403 WEST BAY PLAZA,,PLATTSBURGH,NY,,12901,10,14,1960,12/5/2011 18:56
+ronnie,Ron,  ,Sharron,resclr@aol.com,56,MALE,,202 west  church st,,west chazy,NY,,12992,12,13,1955,12/5/2011 19:04
+fosterba,Barbara,  ,Foster,fosterba@yahoo.com,54,FEMALE,,,,,  ,,,11,2,1957,12/6/2011 7:21
+tgrant,Tammy,  ,Grant,tgrant@middlebury.edu,42,FEMALE,,435 Grandey Road,,Addison,VT,,5491,4,27,1969,12/7/2011 9:39
+rjlaba,Robert,  ,Laba,rjlaba@hotmail.com,32,MALE,,,,,  ,,,11,13,1979,12/8/2011 13:04
+buster3,lorie,  ,maskell,busterbrent@netzero.com,46,FEMALE,,8006 us rt 2,,north hero,VT,,5474,12,16,1965,12/8/2011 19:57
+rfmartine,rachel,  ,martine,rfmartine@yahoo.com,39,FEMALE,,17 Bailey Avenue,,Plattsburgh,NY,,12901,10,17,1972,12/13/2011 8:22
+Fayner,Fayne,  ,Cayea,faynerc@gmail.com,52,FEMALE,,38 So. Summit St,,Essex Jct,VT,,5452,6,26,1959,12/16/2011 11:45
+Denali,Ed,  ,Snizek,snizeke@hotmail.com,53,MALE,,28 Sinkhole Road,,Vermontville,NY,,12989,5,25,1958,12/17/2011 9:32
+lmtaylor8,Lynne,  ,Murphy,lmtaylor8@aol.com,49,FEMALE,,479 Lake Street,,Saranac Lake,NY,,12983,3,6,1962,12/18/2011 21:06
+mscollin,Mary,  ,Scollin,mscollin@roadrunner.com,53,FEMALE,,353 Kiwassa Road PO Box 5,,Saranac Lake,NY,,12983,10,10,1958,12/18/2011 21:41
+bddgsm,Donna,  ,Finney,Bodonnafin1@hotmail.com,64,FEMALE,,9 Garceau Rd,,Champlain,NY,,12919,1,11,1947,12/26/2011 16:42
+JDorey3274,Jennifer,  ,Dorey,JDorey3274@aol.com,37,FEMALE,,2342 State Route 22,Apt 4,Peru,NY,,12972,3,2,1974,12/27/2011 11:07
+dennisw,Dennis,  ,Wear,djw472000@yahoo.com,57,MALE,,PO Box 1410,11 Meadow Lane,Champlain,NY,,12919,11,11,1955,1/3/2012 14:03
+craftytms,Teresa,  ,Spash,craftytms@yahoo.com,46,FEMALE,,3528 State Route 22,,Plattsburgh,NY,,12901,11,29,1966,1/6/2012 20:25
+lkuehn,Lisa,  ,Kuehn,lakuehn@comcast.net,45,FEMALE,,39 Greenbriar Dr,,Essex Junction,VT,,5452,9,4,1967,1/9/2012 10:43
+Gregory,Gregory,  ,Haynes,gregory.haynes@dhs.gov,46,MALE,,10 Kellogg CT,,Plattsburgh,NY,,12901-4314,2,9,1966,1/9/2012 16:29
+shalonie,shalonie,  ,Porter,pshonie1@yahoo.com,42,FEMALE,,45 woodlawn ln,,willsboro,NY,,12996,4,15,1970,1/10/2012 13:23
+Shodie,Shirley,  ,Douglas,sdouglas15@nycap.rr.com,75,FEMALE,,PO Box 45,,Moriah,NY,,12960,6,14,1936,12/7/2011 19:16
+ccsimp,Charles,  ,Simpson,simpsonsghouse@hotmail.com,61,MALE,,25 Schoolhouse Rd.,,Waltham,VT,,5491,5,18,1950,12/7/2011 20:42
+cindym56,Cindy,  ,Myrick,jackracer@rocketmail.com,55,FEMALE,,284 Hemenway Rd,,Bridport,VT,,5734,9,9,1956,12/7/2011 21:51
+Durn504,Gwen,  ,Durney,Durn504@yahoo.com,37,FEMALE,,38 Durand St.,,Plattsburgh,NY,,12901,9,9,1974,12/8/2011 17:41
+dyeron22,GEORGE,  ,DYER,dyeron22@charter.net,50,MALE,,6390 ROUTE 22,,PLATTSBURGH,NY,,12901,8,31,1961,12/10/2011 8:38
+dolly,karla,  ,jarvis,jarvis94@charter.net,52,FEMALE,,16 Joann Lane,,Cadyville,NY,,12918,10,25,1959,12/10/2011 23:15
+yvonnemma,Yvonne,  ,Caska,yvonnemanell@aol.com,58,FEMALE,,680 rand hill rd,,Morrisonville,NY,,12962,3,31,1953,12/11/2011 16:21
+MsMarie,Marie,  ,Gardner,Ms.MarieGardner@gmail.com,22,FEMALE,,1800 North State Street #103,,Provo,UT,,84604,1,29,1989,12/16/2011 16:38
+Jump123,Melody,  ,Cooke,infomevt@aol.com,77,FEMALE,,,,,  ,,,3,6,1935,1/6/2012 17:25
+aweld,Amber,  ,Weld,aweld@tropical-valley-foods.com,35,FEMALE,,29 maple st,,morrisonville,NY,,12962,11,22,1976,12/20/2011 12:12
+Hosmer4,Typhani,  ,Hosmer,typhanihosmer@yahoo.com,18,FEMALE,,,,,  ,,,10,6,1993,12/21/2011 15:02
+dkerr,Doug,  ,KERR,douglasdkerr@gmail.com,57,MALE,,29 SOUTH STREET,,SOUTH HERO,VT,,5486,1,22,1954,12/23/2011 9:00
+fedleowp,Walt,  ,Pietz,pietz1@charter.net,45,MALE,,11 Mohawk Road,,Plattsburgh,NY,,12901,10,29,1966,12/27/2011 2:53
+lafsa,sandra,  ,lafontaine,lafsa@charter.net,60,FEMALE,,,,,  ,,,6,5,1951,12/27/2011 9:23
+harlynnie,Lynn,  ,Hart,harlyn2@verizon.net,59,FEMALE,,128 Shepard Ave,,Saranac Lake,NY,,12983,4,7,1952,12/29/2011 8:14
+mydlarz,Jo,  ,Mydlarz,mmochajess@aol.com,56,FEMALE,,428 Windy hill Road,,Moriah,NY,,12960,8,24,1955,12/29/2011 14:30
+JAG,Julie,  ,Garcia,julie@garcialawyer.net,48,FEMALE,,POB 352,,Westport,NY,,12993,10,3,1963,12/29/2011 22:25
+amadore,Amanda,  ,Madore,hollandgirl22@hotmail.com,32,FEMALE,,,,,  ,,,7,29,1980,1/1/2012 21:10
+teagle,tina,  ,eagle,boss1921@charter.net,46,FEMALE,,86 wall st,,plattsburgh,NY,,12901,7,7,1966,1/7/2012 12:17
+crahanclan,Elizabeth,  ,Crahan,eacrahan@hotmail.com,34,FEMALE,,177 Rugar Street,,Plattsburgh,NY,,12901,8,10,1977,12/19/2011 17:04
+Starlisa,Starlisa,  ,Cereske-Rabideau,nova_rats@yahoo.com,32,FEMALE,,65 so peru st,,Burlington,VT,,12901,11,24,1979,12/20/2011 9:45
+joncheung,jonathan,  ,cheung,jonathan.cheung@analoganalytics.com,23,MALE,,,,,  ,,,6,12,1988,12/20/2011 11:59
+Mariannelp,Marianne,  ,Perreault,marianne_l_p@hotmail.com,48,FEMALE,,747 Miner Farm Rd,,Chazy,NY,,12921,1,7,1964,1/3/2012 19:49
+pgonzalez,Pamela,  ,Gonzalez,aapmgonz@yahoo.com,48,FEMALE,,7 MERIDEN PL,,MELVILLE,NY,,117471003,12,3,1964,1/3/2012 21:40
+Garrow66,Amanda,  ,Bruce,Garrow66@yahoo.com,29,FEMALE,,1129 Ridge Road,,Chazy,NY,,12921,12,3,1983,1/4/2012 8:20
+jojorg,Joann,  ,Gowett,jmgowett@charter.net,51,FEMALE,,9 Macomb Street,,Plattsburgh,NY,,12901,10,9,1961,1/5/2012 9:32
+nicoleb23,Nicole,  ,Beauregard,nbeauregard23@gmail.com,34,FEMALE,,,,,  ,,,2,23,1978,1/5/2012 20:53
+deb225,Debra,  ,Alphonso,gmblmni@northnet.org,58,FEMALE,,712 Jersey Swamp Rd,,West Chazy,NY,,12992,2,25,1954,1/5/2012 22:53
+tray1988,Tara,  ,Raymond,traymond214@gmail.com,24,FEMALE,,254 Lincoln Ave,,Rutland,VT,,5701,7,26,1988,1/6/2012 10:27
+jabmac,jane,  ,banach,jabmacban@gmail.com,57,FEMALE,,,,,  ,,,9,14,1955,1/7/2012 9:54
+patgar,PATRICIA,  ,GARDNER,edpatgardner@gmail.com,58,FEMALE,,57 SCHOOL ST,,ESSEX,NY,,12936,5,26,1954,1/9/2012 16:05
+edls76,Edith,  ,Ellis,edithellis@gmail.com,35,FEMALE,,,,,  ,,,9,30,1976,11/8/2011 19:40
+aylanicole,Ayla,  ,Garrison,aylanicolegarrison@yahoo.com,24,FEMALE,,204 Margret St.,APT. B,Plattsburgh,NY,,12901,6,1,1987,11/8/2011 19:48
+bremarie84,Bryana,  ,Capen,bremarie84@yahoo.com,27,FEMALE,,10 abenaki rd,,Plattsburgh,NY,,12901,1,4,1984,11/8/2011 20:35
+standina,Adina,  ,Hatch,aghatch@charter.net,44,FEMALE,,1455 Hardscrabble Road,,Cadyville,NY,,12918,10,1,1967,11/8/2011 21:25
+Sharon493,Sharon,  ,Nephew,nephewd@westelcom.com,50,FEMALE,,726 Slosson Road,,West Chazy,NY,,12992,10,8,1961,11/8/2011 22:08
+kmb52,Karen,  ,Boule,karen1258@ymail.com,59,FEMALE,,14 Couch Street,,Plattsburgh,NY,,12901,5,7,1952,11/9/2011 10:34
+DCRyder,Denise,  ,Ryder,dcryder@gmail.com,51,FEMALE,,497 Cumberland Head Road,,Plattsburgh,NY,,12901,1,22,1960,11/9/2011 11:11
+LynneG,Lynne,  ,Glanc,cats@westelcom.com,51,FEMALE,,,,,  ,,,1,1,1960,11/9/2011 13:12
+hidejas03,Heidi,  ,Dresser,fish12@charter.net,36,FEMALE,,46 McCutcheon dr,,saranac,NY,,12981,7,24,1975,11/9/2011 17:18
+lswift1580,Lisa,  ,Swift,optical@eyecareadk.com,54,FEMALE,,3 Jan Street,,Morrisonville,NY,,12962,2,27,1957,11/10/2011 7:31
+families,JoAnne,  ,Caswell,jcaswell@familiesfirstessex.org,47,FEMALE,,PO Box,,Mineville,NY,,12956,5,23,1964,11/10/2011 8:32
+slattsa,Anne,  ,Slattery,slattery.anne@avcsk12.org,49,FEMALE,,43 Pine Ridge Drive,,Morrisonville,NY,,12962,1,10,1962,11/10/2011 14:29
+Edwards,Edward,  ,Schiffler,schifflers@gmail.com,79,MALE,,3011 Main Street,PO Box 189,Peru,NY,,12972,9,25,1932,11/11/2011 20:12
+adana3779,Allison,  ,Dana,allisondana@live.com,32,FEMALE,,,,Williston,VT,,,3,7,1979,12/7/2011 12:17
+forjen2004,jenifer,  ,pummell,jenflynn63@gmail.com,48,FEMALE,,125 marion dr,,plattsburgh,NY,,12901,1,31,1963,11/12/2011 10:05
+alisanelso,Alisa,  ,Nelson,nelsonboone@yahoo.com,43,FEMALE,,6 Locust Drive,,Peru,NY,,12972,10,15,1968,11/14/2011 8:17
+Agoney71,Amy,  ,Murphy,Amyagoney@aol.com,40,FEMALE,,106 reservoir road,,Peru,NY,,12972,2,9,1971,11/21/2011 20:00
+aubby5,Sherry,  ,Veneto,aubby5@aol.com,34,FEMALE,,,,,  ,,,7,13,1977,11/23/2011 18:23
+htwilliams,Heather,  ,Williams,hatoohill@gmail.com,29,FEMALE,,300 Hinesburg Road Apt. 8,,South Burlington,VT,,5403,9,15,1982,12/22/2011 0:35
+LoryJL,Loretta,  ,Lepine,LoryJL@verizon.net,68,FEMALE,,170 William Street,"Apt, Suite, Bldg # (Optional)",MALONE,NY,,12953,7,6,1943,11/26/2011 23:21
+Daniela,Daniela,  ,Gitlin,dgitlin@charter.net,56,FEMALE,,69 Cumberland Avenue,,Plattsburgh,NY,,12901,10,9,1955,11/29/2011 8:53
+kmoff28,Katie,  ,Moffett,kmoffett@gmail.com,28,FEMALE,,2048 State Route 22B,Apt 1,Morrisonville,NY,,12962,6,28,1983,11/29/2011 10:57
+PaulBardis,Paul,  ,Bardis,PaulBardis@hotmail.com,51,MALE,,,,,  ,,,11,5,1960,11/29/2011 21:31
+jude2125,Judith,  ,Defayette,jude24@charter.net,51,FEMALE,,7 River Bend Drive,,Plattsburgh,NY,,12901,11,29,1961,11/30/2011 18:46
+flowers,Claire,  ,Larose,larose.claire@yahoo.com,51,FEMALE,,210 Janes Road,,Swanton,VT,,5488,9,3,1960,11/30/2011 21:10
+billybob54,bill,  ,barnhart,barnh6@aol.com,57,MALE,,49 Amherst Ave.,,Ticonderoga,NY,,12883,9,27,1954,12/2/2011 11:03
+crick1952,Cricket,  ,Terry,mterry@plattscsd.org,59,FEMALE,,12 Charlene Drive,,Plattsburgh,NY,,12901,8,23,1952,12/2/2011 14:15
+bknapp12,Bret,  ,Knapp,bkinvt@yahoo.com,39,MALE,,po box 314,,Vergennes,VT,,5491,6,15,1972,12/2/2011 17:43
+rgallo1,Janet,  ,Gallo,amagallo1977@yahoo.com,55,FEMALE,,7 Treadway St.,,Ticonderoga,NY,,12883,7,10,1956,12/3/2011 8:31
+smdj59,william,  ,johnson,william.johnson@us.ngrid.com,40,MALE,,49 black point road,,ticonderoga,NY,,12883,10,12,1971,12/4/2011 10:58
+majormomj,Marianne,  ,Major,majormom@nycap.rr.com,65,FEMALE,,,,,NY,,,12,13,1946,12/4/2011 12:57
+JDarragh,Jennee,  ,Darragh,JenneeDarragh@aol.com,28,FEMALE,,57 Montcalm St,,Ticonderoga,NY,,12883,12,20,1983,12/4/2011 15:13
+Rory222,Rory,  ,Porter,rory_porter@yahoo.com,48,MALE,,371 Butler Rd,,Plattsburgh,NY,,12901,5,6,1963,12/5/2011 11:32
+jthompson1,Jessica,  ,Thompson,jgreeno0311@yahoo.com,29,FEMALE,,PO BOX 928,,Elizabethtown,NY,,12932,10,11,1982,12/7/2011 10:25
+lilpal,Lisa,  ,Payne,lilpal64@yahoo.com,47,FEMALE,,685 Lapham Bay Rd,,Shoreham,VT,,5770,12,22,1964,12/7/2011 12:33
+firefrog,Danielle,  ,Swinton,dswinton@nycap.rr.com,51,FEMALE,,1473 US Rte 9,,Schroon Lake,NY,,12870,7,14,1960,12/7/2011 18:19
+WildBill,William,  ,Patnode,nckids2@verizon.net,68,MALE,,,,,  ,,,4,1,1943,12/10/2011 11:08
+mgenem11,gena,  ,rosenbaum,mgenem11@yahoo.com,27,FEMALE,,,,,NY,,,1,25,1984,12/11/2011 22:24
+moecarlo,Maureen,  ,Carlo,moecarlo@yahoo.com,30,FEMALE,,,,,  ,,,10,4,1981,12/12/2011 2:26
+lbkelly,Lauren,  ,Kolisko,lauren@alpinesnowguards.com,51,FEMALE,,139 Thompson Road,,Jeffersonville,VT,,5464,10,21,1960,12/14/2011 10:06
+dvshmb,David,  ,Shambo,djoes@mail.com,57,MALE,,PO Box 304,,Schuyler Falls,NY,,12985,9,18,1954,12/16/2011 14:46
+newlifeat4,Barbara,  ,Grimshaw,barbrashaw@gmail.com,63,FEMALE,,16 Pearl St.,,Rouses Point,NY,,12979,9,29,1948,12/22/2011 14:13
+KathyBB,Kathy,  ,Bennett,lookinup17@aol.com,52,FEMALE,,17 Leonard Avenue,,Plattsburgh,NY,,12901,1,7,1959,12/26/2011 14:24
+smkgray,sue,  ,gray,smkgray@yahoo.com,61,FEMALE,,,,,  ,,,2,24,1950,12/29/2011 14:58
+aahre001,alysia,  ,ahrent,aahrent@gmail.com,25,FEMALE,,,,,  ,,,7,24,1986,12/29/2011 17:38
+anamaris,Anna,  ,Marisseau,amarisseau@gmail.com,44,FEMALE,,,,,  ,,,7,3,1968,1/9/2012 23:16
+candee69,candee,  ,shedrick,candeelynn@charter.net,43,FEMALE,,24 south platt st.,,plattsburgh,NY,,12901,9,18,1969,1/4/2012 21:07
+ranger81,Betsy,  ,Finnegan,finneganbetsy@rocketmail.com,42,FEMALE,,POBox 726,,Peru,NY,,12972,2,25,1970,1/8/2012 22:02

@@ -1,0 +1,12 @@
+<div id="wishlist_lightbox" class="lightbox">
+	<a href="javascript:;" id="lightbox_close" class="close" onclick="jQuery.fancybox.close()">X</a>
+
+  <div id="suggested_daily_deals_lightbox_content">
+    <h2><%= t(:wish_list_overlay_heading) %></h2>
+    <div class="suggested_daily_deals_form_wrapper">
+      <p><%= t(:wish_list_overlay_paragraph) %></p>
+      <%= render :partial => with_theme("suggested_daily_deals/form"),
+                 :locals => {:suggested_daily_deal => SuggestedDailyDeal.new} %>
+    </div>
+  </div>
+</div>

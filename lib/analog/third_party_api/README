@@ -1,0 +1,2 @@
+This module sould contain submodules that let us interact with third party services via their APIs.
+"Third Party API" here means "Someone else's API".

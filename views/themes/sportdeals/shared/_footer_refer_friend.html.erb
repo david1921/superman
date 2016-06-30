@@ -1,0 +1,7 @@
+<% if @publisher.enable_daily_deal_referral %>
+<div id="referral">
+	<a href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>"><h5>EARN <sup>$</sup><%= number_with_precision(@publisher.daily_deal_referral_credit_amount, :precision => 0) %></h5></a>
+	<a href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>"><h6>FOR REFERRALS</h6></a>
+	<a class="button" href="<%= refer_a_friend_publisher_consumers_url(@publisher) %>"><img src="/themes/sportdeals/images/buttons/refer_a_friend.png" alt="Refer a friend" /></a>
+</div>
+<% end %>

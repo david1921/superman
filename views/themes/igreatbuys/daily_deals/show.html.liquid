@@ -1,0 +1,177 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div class="content_box"><!-- deal info top row -->
+		<h1 id="value_prop">{{ daily_deal.value_proposition }}</h1>
+		<h2 id="value_prop_subhead">{{ daily_deal.value_proposition_subhead }}</h2>
+		<div class="six_col"><!-- photo and share links -->
+			<div id="deal_photo"><img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" /></div>
+		</div><!-- /photo and share links -->
+		<div class="three_col"><!--dashboard -->
+			<div id="price_tag">
+				<h1 id="daily_deal_price">{{ daily_deal.price | currency }}</h1>
+				<div id="buy_now">
+					{% if daily_deal.sold_out? %}
+					<div id="sold_out" class="dd_button sold_out gradient">Sold Out</div>
+					{% elsif daily_deal.over? %}
+					<div id="deal_over" class="dd_button deal_over gradient">Deal Over</div>
+					{% elsif daily_deal.active? %}
+					<a id="buy_now_button" class="dd_button buy gradient" href="{{ daily_deal.buy_now_path }}" name="buy_now">Buy</a>
+					<div id="soldout" class="dd_button deal_over gradient" style="display:none;">Deal Over</div>
+					{% else %}
+					<div id="not_yet_available" class="dd_button not_yet_available gradient">Not Yet Available</div>
+					{% endif %}
+										
+				</div><!-- /buy_now -->
+			</div><!-- /price_tag -->
+			<div id="deal_specs">
+				<table id="value_summary">
+					<tr>
+						<th>Savings</th>
+						<th>Value</th>
+					</tr>
+					<tr>
+						<td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+						<td >{{ daily_deal.value | currency }}</td>
+					</tr>
+				</table>
+		      
+				<table id="timer">
+					<tr>
+						<th id="clock" rowspan="2"></th>
+						<th id="time_left_to_buy_label">Time Left to Buy</th>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+					</tr>
+				</table><!-- /timer -->
+				<!-- <p class="deals_bought"><span class="quantity">{{ daily_deal.number_sold }}</span> Bought</p> -->
+
+        {% if daily_deal.sold_out? %}
+          <div class="deal_pending">Sorry this deal is sold out!</div>
+        {% elsif daily_deal.over? %}
+          <div class="deal_pending">Sorry this deal is over!</div>
+        {% elsif daily_deal.active? %}
+			<div class="deal_pending"></div>
+        {% else %}
+          <div class="deal_pending">Sorry this deal is not yet available.</div>
+        {% endif %}
+			</div><!-- /deal_specs -->
+		</div><!-- /dashboard -->
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	<div><!-- deal info bottom row -->
+			
+		<div id="deal_tab_content" class="content_box"> 
+			<div id="tab_overview_content">
+				<div id="description" class="six_col">
+					<h1>About This Deal</h1>
+				     <h2>Description</h2>
+				     {{ daily_deal.description }}
+				     {% if daily_deal.reviews != "" %}
+				     <h2>Reviews</h2>
+				     {{ daily_deal.reviews}}
+				     {% endif %}
+				     {% if daily_deal.fine_print != "" %}
+				     <h2>Fine Print</h2>
+				     {{ daily_deal.terms }}
+				     {% endif %}
+				</div>
+							
+				<div id="advertiser" class="four_col">
+					<h2>Location</h2>
+				     {% if advertiser.address? %}
+				     <h3>{{ advertiser.name }}</h3>
+				          {% for store in advertiser.stores %}
+				     <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                   
+				          <p>
+				              {% if store.address_line_1 != empty %}
+                                <span>{{ store.address_line_1 }}</span>
+                              {% endif %}
+                              {% if store.city != empty and store.state != empty and store.zip != empty %}
+                                <span>{{ store.city }}, {{ store.state }} {{ store.zip }}</span>
+                              {% endif %}
+				              {% if store.formatted_phone_number != empty %}
+				                <span>{{ store.formatted_phone_number }}</span>
+				              {% endif %}<br />
+				              {% if advertiser.website_url != empty %}
+				                <a href="{{ advertiser.website_url }}">{{ advertiser.website_url | downcase | replace: 'http://', '' }}</a>
+				              {% endif %}
+				          </p>
+				     </div><!-- /location_container -->
+				          {% endfor %}
+				     {% endif %}
+				     {% if advertiser.num_stores > 3 %}
+				     <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+				     {% endif %}
+				     
+				     <img id="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" /><br />
+				
+					<div id="advertiser_map">
+					     {% if advertiser.stores.size > 0 %}
+					     <a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.map_image_url }}" /></a>
+					     {% endif %}
+					</div>
+					<div class="clear"></div>
+
+				</div><!-- /advertiser -->
+				<div class="clear"></div>				
+			</div><!--/tab_overview_content --> 
+			
+
+		</div><!--/deal_tab_content --> 
+
+	</div><!-- /deal info bottom row -->
+	
+</div><!-- /main_column -->
+
+
+
+<div id="sidebar">
+	
+	<div id="share" class="content_box three_col">
+		<h2>Tell your friends about</h2>
+		<img id="publisher_logo_small" src="/themes/igreatbuys/images/graphics/logo_small.png" alt="The Observer" />
+		
+			<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img src="/themes/igreatbuys/images/buttons/facebook.png" alt="share on facebook" /></a>
+			<a href="{{ daily_deal.twitter_url }}" class="share_button share_button_twitter" target="_blank"><img src="/themes/igreatbuys/images/buttons/twitter.png" alt="share on twitter" /></a>
+			<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button share_button_mail"><img src="/themes/igreatbuys/images/buttons/mail.png" alt="Email this to a friend" /></a>
+	</div><!-- /share -->
+			
+		
+	<div id="side_instructions" class="content_box three_col">
+		<img id="publisher_logo_small" src="/themes/igreatbuys/images/graphics/logo_small.png" alt="The Observer" />
+		<div id="instructions_list">
+	 		<h2>Click & Buy</h2>
+	 		<ul>
+	 			<li>Decide on the GREAT BUY you want</li>
+	 			<li>Click BUY and follow the instructions to pay with your credit card</li>
+	 			<li>Print out your voucher and enjoy your GREAT BUY</li>
+	 		</ul>
+		</div>
+	</div><!-- /side_instructions -->
+
+	
+	{% if daily_deal.side_deals.size > 0 %}
+	<div id="side_deals" class="content_box three_col other_deal_tracking">
+	     <h4>Other Great Deals</h4>
+	       {% for deal in daily_deal.side_deals %}
+	         <div class="side_deal_wrap">
+				<p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+				<div class="side_deal_text">
+					<div class="side_deal_price">{{ deal.price | currency }}</div>
+					<p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+				</div><!-- /side_deal_text -->
+				<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+				<div class="clear"></div>
+				<a class="view_deal button gradient" href="{{ deal.url }}" target="_blank">View Deal</a>
+				<div class="clear"></div>
+	          </div><!-- /side_deal_wrap -->
+	       {% endfor %}
+	</div><!-- /side_deals -->
+	{% endif %}
+	
+	
+</div><!-- /sidebar -->
+</div>
+

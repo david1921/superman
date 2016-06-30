@@ -1,0 +1,14 @@
+<% if !is_one_click_purchase_page? %>
+	<%= render :partial => with_theme('shared/subscribe') %>
+<% end %>
+
+<header class="main">
+	<div class="header_content">
+		<a href="<%= public_deal_of_day_path(@publisher.label) %>"><h1 id="logo"><img src="<%= logo_with_theme('/themes/analogapplied/images/graphics/analogapplied_logo.png', :full_size) %>" /></h1></a>
+		<% if !is_one_click_purchase_page? %>
+	        <%= render :partial => with_theme('shared/account_nav') %>
+			<%= render :partial => with_theme('shared/dd_nav') %>
+		<% end %>
+		<div class="clear"></div>
+	</div>
+</header>

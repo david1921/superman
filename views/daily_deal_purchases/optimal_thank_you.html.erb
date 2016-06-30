@@ -1,0 +1,13 @@
+<h1 class="content"><%=t 'daily_deal_purchases.thank_you.title' %></h1>
+<p>
+  <%= raw purchase_thank_you_message(@daily_deal_purchase) %>
+</p>
+<h3><%= t 'daily_deal_purchases.thank_you.further_actions_title' %></h3>
+  <ul>
+    <li><%= link_to t('daily_deal_purchases.thank_you.view_your_orders'), daily_deal_download_url(@daily_deal_purchase), :class => "popout" %></li>
+    <li><%= link_to t('daily_deal_purchases.thank_you.back_to_the_deal'), public_deal_of_day_path(@daily_deal_purchase.publisher.label), :class => "popout" %></li>
+    <% if @publisher.enable_daily_deal_referral? && 
+      !(@publisher.daily_deal_referral_message.blank? || @publisher.daily_deal_referral_message_head.empty?) %>
+    <li><%= link_to @publisher.daily_deal_referral_message, "/publishers/#{ @publisher.id }/consumers/refer_a_friend", :class => "popout" %></li>
+    <% end %>
+  </ul>

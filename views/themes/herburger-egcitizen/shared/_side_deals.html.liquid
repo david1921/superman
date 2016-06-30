@@ -1,0 +1,15 @@
+<div id="other_deals" class="sidebar_box other_deal_tracking">
+	<h3>Other Local Deals</h3>
+	  {% for deal in daily_deal.side_deals %}
+		<div class="side_deal_wrap">
+			<p><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+			<div class="side_deal_text">
+				<div class="side_deal_price">{{ deal.price | currency }}</div>
+				<p class="side_deal_value">{{ deal.value | currency }} VALUE</p>
+				<a class="view_deal" href="{{ deal.url }}" target="_blank"><span>View Deal</span></a>
+			</div><!-- /side_deal_text -->
+			<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+			<div class="clear"></div>
+		</div><!-- /side_deal_wrap -->
+	  {% endfor %}
+</div><!-- /other_deals -->

@@ -1,0 +1,45 @@
+<div id="community">
+<div id="left_column_wide">
+	<h1 class="community_title">ClickedIn&trade;<span class="<%= @publisher.market_name %>">, <%= @publisher.market_name.titleize if @publisher.market_name.present? %></span> and you.</h1>
+	<div id="community1">
+		<div class="community1_photo">
+		<div class="community_details">
+			<p>Time Warner Cable <strong>will donate 3% of every ClickedIn&trade; Daily Deal purchased</strong> to community organizations that connect young people to the wonders of science, technology, engineering and math. It's just another way Time Warner Cable is helping to <strong>Connect a Million Minds&trade;.</strong></p>
+			<a class="learn_more_alt img_button" href="/publishers/<%= @publisher.label %>/communities/learn_more"><span>Learn More</span></a>
+		</div><!-- /community_details -->
+		</div><!-- community1_photo -->
+	</div><!-- /community_1 -->
+	<h1 class="community2_title">Connecting minds in <%= @publisher.market_name.titleize if @publisher.market_name.present?%>.</h1>
+	<div id="community2">
+		<div class="community_info floating_box">
+		<p><strong>Remember, 3% of all Daily Deal proceeds go directly to CAMM (Connect A Million Minds) organization.</strong><br /> Discover other local programs built to engage, educate and amaze through Connect a Million Minds.</p>
+		<a class="learn_more_alt4 img_button" href="http://www.connectamillionminds.com/connectory.php" target="_blank"><span>Learn More</span></a>
+		</div>
+	</div><!-- /community_2 -->
+</div><!-- /left_column -->
+
+<div id="right_column">
+	<div class="helping">
+		<h4 class="sidebar_heading">Who <strong>We're Helping Now</strong></h4>
+	
+	<% if @publisher.label == "clickedin-austin" %>
+	  <%=raw render :partial => with_theme("shared/childrensmuseum_austin") %>
+	<% elsif @publisher.label == "clickedin-dallas" %>
+	  <%=raw render :partial => with_theme("shared/childrensmuseum_dallas") %>
+	<% elsif @publisher.label == "clickedin-sanantonio" %>
+	  <%=raw render :partial => with_theme("shared/childrensmuseum_sanantonio") %>
+	<% end %>
+
+	
+		
+		<div id="robotics" class="sidebar_box">
+	     	<div class="info floating_box">
+				<h3 class="info_headline"><em>FIRST&reg;</em> Robotics</h3>
+				<p>Building confidence and life skills through science, technology, and engineering.</p>
+	     	</div><!-- /info -->
+			<a class="learn_more img_button floating" href="http://www.usfirst.org/" target="_blank"><span>Learn More</span></a>
+		</div><!-- /childrens_museum -->
+	</div><!-- /helping -->
+	
+</div><!-- /right_column -->
+</div><!-- /community -->

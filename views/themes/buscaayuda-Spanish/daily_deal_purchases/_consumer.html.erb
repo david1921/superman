@@ -1,0 +1,51 @@
+<div id="consumer">
+<% if current_consumer_for_publisher?(publisher) %>
+  <div id="consumer">
+    <div class="row">
+      <div class="static"><%= current_consumer.name %></div>
+      <div class="static"><%= current_consumer.email %></div>
+    </div>
+<% elsif (daily_deal_order = current_daily_deal_order(publisher)) && daily_deal_order.consumer %>
+  <div id="consumer">
+    <div class="row">
+      <div class="static"><%= daily_deal_order.consumer.name %></div>
+      <div class="static"><%= daily_deal_order.consumer.email %></div>
+    </div>
+  </div>
+<% else %>
+  <div id="sign_up">
+    <div class="row">
+      <p>Ya me inscrib&iacute;.&nbsp;<%= link_to_function("Ir a mi cuenta", "showLoginForm()") %></p>
+    </div>
+    <% fields_for consumer do |consumer_form| %>
+      <%= consumer_form.text_field_div(:name, "Su Nombre:") %>
+      <%= consumer_form.text_field_div(:email, "Correo Electr&oacute;nico") %>
+      
+      <%- if @publisher.require_billing_address? %>
+        <%= render :partial => with_theme('consumers/billing_address'), :locals => { :consumer => consumer, :f => consumer_form } %>
+      <% end %>
+      
+      <%= consumer_form.password_field_div(:password, "Contrase&ntilde;a:") %>
+      <%= consumer_form.password_field_div(:password_confirmation, "Confirma Contrase&ntilde;a:") %>
+      <%= consumer_form.check_box_div(:agree_to_terms, "Estoy de acuerdo con los &nbsp;#{daily_deals_terms_link(publisher)} y #{daily_deals_privacy_link(publisher)}") %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+
+  <div id="sign_in" style="display: none;">
+    <div class="row">
+      <p id="session_warning"></p>
+    </div>
+    <% fields_for :session do |session_form| %>
+      <%= hidden_field_tag("consumer_login_url", publisher_daily_deal_sessions_path(publisher)) %>
+      <%= session_form.text_field_div(:email, "Correo Electr&oacute;nico") %>
+      <%= session_form.password_field_div(:password, "Contrase&ntilde;a:") %>
+      <div class="row">
+      <%= button_to_function("Iniciar sesi&oacute;n", "loginConsumer()"); %>&nbsp;<%= link_to_function("Cancelar", "hideLoginForm()"); %>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+<% end %>
+</div>
+

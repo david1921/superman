@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <%= stylesheet_link_tag "txt411/layout", :media => "all" %>
+  <%= stylesheet_link_tag "txt411/style", :media => "all" %>
+  <%= extra_stylesheets.collect {|path| stylesheet_link_tag(path, :media => "all")}.join %>
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "txt411/application" %>
+  <title>TXT411 &mdash; <%= @page_title %></title>
+</head>
+
+<body id="index_2" onload="MM_preloadImages(<%= %w!b1a.gif b2a.gif b3a.gif b4a.gif!.collect {|x| %!'#{txt411_image_path(x)}'!}.join(',') %>)" >
+  <!--header -->
+  <div id="header">
+    <div class="main">
+      <div class="menu">
+        <img alt="" src="<%= txt411_image_path('txt411logo.png') %>" class="logo" />
+        <%= render :partial => "txt411/navbar", :locals => { :active_item_tag => @navbar_active_item_tag } %>
+        <br/>
+      </div>
+    </div>
+  </div>
+  <!--header end-->
+
+<%= yield %>
+
+  <!--footer -->
+  <div id="footer">
+    <div class="main">
+      <div class="right">
+        <div class="left">
+          &nbsp;&copy; <%= Time.zone.now.year %> Analog Analytics Corporation | <%= link_to("Privacy Policy", txt411_privacy_path) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--footer end-->
+</body>
+</html>

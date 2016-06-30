@@ -1,0 +1,29 @@
+<% set_daily_deal_page_title_slug t :contact_us %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1><%=t(:contact_us) %></h1>
+
+    <% unless @publisher.support_email_address.blank? %>
+    <h2 style="margin-top: 18px;"><%= t('.support_header') %></h2>
+    <p>
+      <% if @publisher.support_phone_number.present? %>
+        <%=raw(t('.support_message', :email_link => link_to(@publisher.support_email_address, "mailto:#{@publisher.support_email_address}", :target => "_blank"), :support_phone_number => @publisher.formatted_support_phone_number)) %>
+      <% else %>
+        <%=raw(t('.support_message_without_support_number', :email_link => link_to(@publisher.support_email_address, "mailto:#{@publisher.support_email_address}", :target => "_blank"))) %>
+      <% end %>
+    </p>
+    <% end %>
+
+    <h2 style="margin-top: 18px;"><%= t('.feature_business_header') %></h2>
+    <p>
+      <% unless @publisher.sales_email_address.blank? %>
+        <%=raw(t('.feature_business_message', :email_link => link_to(@publisher.sales_email_address, "mailto:#{@publisher.sales_email_address}", :target => "_blank"))) %>
+      <% end %>
+      <% unless @publisher.formatted_phone_number.blank? %>
+        or call <%= @publisher.formatted_phone_number %>
+      <% end %>
+    </p>
+
+  </div>
+</div>

@@ -1,0 +1,8 @@
+changos:
+  type: BraintreePayment
+  daily_deal_purchase: changos
+  payment_gateway_id: 1111
+  payment_at: <%= Time.zone.now %>
+  amount: 20
+  credit_card_last_4: "0000"
+  payer_postal_code: "90210"

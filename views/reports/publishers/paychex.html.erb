@@ -1,0 +1,38 @@
+<% set_page_title "Reports: Publisher Daily Deals" -%>
+
+<% url_options = { :date => @date } -%>
+
+<%= render(:partial => "reports/dates", :locals => {
+  :csv_url => paychex_reports_publisher_url(@publisher, url_options.merge(:format => "csv")),
+  :one_date => true,
+  :selector_label => "Period ending on"
+}) %>
+
+<%= render(:partial => "navigation", :locals => {:page => :paychex, :url_options => {}}) %>
+
+<%= render(:partial => "reports/data_table", :locals => {
+  :table_name => "publisher_paychex",
+  :data_source => paychex_reports_publisher_path(@publisher.to_param, :format => "xml"),
+  :data_params => {:date => @date.to_s},
+  :result_node => :daily_deal,
+  :sort_by => :deal_start_date,
+  :data_columns => [
+    [:payment_calc_date, {:label => "Payment Period Ending"}],
+    [:currency_symbol, {:display => false}],
+    [:merchant_id, {:label => "Merchant ID"}],
+    [:merchant_name, {:label => "Merchant Name"}],
+    [:merchant_tax_id, {:label => "Merchant Tax Id"}],
+    [:deal_id, {:label => "Deal ID", :formatter => "formatBBD"}],
+    [:deal_headline, {:label => "Deal Headline"}],
+    [:deal_start_date, {:label => "Deal Start Date"}],
+    [:deal_end_date, {:label => "Deal End Date"}],
+    [:number_sold, {:label => "# Purchased"}],
+    [:gross, {:label => "Gross $", :formatter => "formatCurrency"}],
+    [:credit_card_fee, {:label => "CC Fee $", :formatter => "formatCurrency"}],
+    [:number_refunded, {:label => "# Refunded"}],
+    [:refunds, {:label => "Refunds $", :formatter => "formatCurrency"}],
+    [:advertiser_split, {:label => "Adv. Split %", :formatter => "formatPercentage"}],
+    [:advertiser_share, {:label => "Adv. Earned to Date $", :formatter => "formatCurrency"}],
+    [:total_payment_due, {:label => "Adv. Due to Date $", :formatter => "formatCurrency"}]
+  ]
+}) %>

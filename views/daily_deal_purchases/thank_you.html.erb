@@ -1,0 +1,43 @@
+<% set_daily_deal_page_title_slug t('.title') %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content"><%=t '.title' %></h1>
+    <p>
+      <%= raw purchase_thank_you_message(@daily_deal_purchase) %>
+    </p>
+
+    <% if @daily_deal.enable_loyalty_program? %>
+      <h3>Get this deal for free!</h3>
+      <p style="margin-bottom: 0">
+        Share the following link with your friends. Refer
+        <%= pluralize(@daily_deal_purchase.daily_deal.referrals_required_for_loyalty_credit, "purchaser") %>
+        to this deal, and you'll get yours for free!
+      </p>
+      <input type="text" name="loyalty_program_url" id="loyalty_program_url" size="50"
+       value="<%= loyalty_program_url(@daily_deal_purchase.daily_deal, @daily_deal_purchase.consumer) %>">
+
+        <div class="dd_share_panel">
+            <h4>Share This Deal</h4>
+            <div class="share_link_wrap">
+                <%= render 'shared/share_deal_link', :type => :facebook %>
+                <%= render 'shared/share_deal_link', :type => :twitter %>
+                <%= render 'shared/share_deal_link', :type => :mailto %>
+            </div><!-- END .share_link_wrap -->
+        </div><!-- END .dd_share_panel-->
+    <% end %>
+    
+    <h3><%=t '.further_actions_title' %></h3>
+      <ul>
+        <li><%= link_to t('.view_your_orders'), daily_deal_download_url(@daily_deal_purchase) %></li>
+        <li><%= link_to t('.back_to_the_deal'), public_deal_of_day_path(@daily_deal_purchase.publisher.label) %></li>
+        <% if @publisher.enable_daily_deal_referral? && 
+          !(@publisher.daily_deal_referral_message.blank? || @publisher.daily_deal_referral_message_head.empty?) %>
+        <li><%= link_to @publisher.daily_deal_referral_message, "/publishers/#{ @publisher.id }/consumers/refer_a_friend" %></li>
+        <% end %>
+      </ul>
+  </div>
+  <% if File.exists?("#{Rails.root}/app/views/themes/#{@publisher.label}/daily_deal_purchases/_conversion.html.erb") -%>
+    <%= render :partial => "themes/#{@publisher.label}/daily_deal_purchases/conversion" %>
+  <% end -%>
+</div>

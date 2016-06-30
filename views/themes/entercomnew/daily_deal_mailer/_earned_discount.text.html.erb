@@ -1,0 +1,10 @@
+<style>
+    .red-highlight {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+
+<p id="promotion_explanation">Thank you for your order! You have made a purchase during our Holidaze Craze and get to save even more by receiving a <span class="red-highlight">free $10 PERKS</span> bucks promo code (see below)! Use it to buy even more great deals by <b>December 25th</b>. You have also been automatically entered into our <span class="red-highlight">daily prize drawing</span>! To see if you're a winner, please visit http://etm.getmyperks.com/winners. Winners will be added to this page, and personally notified, within 7 days of each prize drawing.</p>
+
+<p id="promotion_discount_code">Discount code: <%= @daily_deal_purchase.earned_discount.try(:code) %></p>

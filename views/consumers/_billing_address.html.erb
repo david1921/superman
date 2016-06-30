@@ -1,0 +1,7 @@
+
+<%= f.text_field_div(:address_line_1) %>
+<%= f.text_field_div(:address_line_2) %>
+<%= f.text_field_div(:billing_city) %>
+<%= f.select_div :state, grouped_options_for_select(grouped_state_options, consumer.try(:state)), {}, :class => 'floatleft' %>
+<%= f.text_field_div :zip_code, nil, :size => '6', :maxlength => '6', :class => 'autowidth' %>
+<%= f.select_div :country_code, options_for_select(consumer.publisher.country_codes, consumer.country_code), {}, :class => 'floatleft' %>

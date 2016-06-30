@@ -1,0 +1,116 @@
+<div class="page_row">
+
+  <div class="page_column_12 first rounded_corners">
+
+    <% div_for @contact_request do %>
+      <% set_daily_deal_page_title_slug "Contact" %>
+
+
+      <div class="sidebar">
+
+        <h1><%= t(:contact_us) %></h1>
+
+
+        <h3>Customer Service Inquiries</h3>
+        <p>Email us using the form to the right and we will get back to you as soon as possible.</p>
+
+        <h3>What’s Your Deal</h3>
+        <p>Let us know what deal or businesses you LOVE, and would like to see featured.  Also if there was a previous deal you want us to bring back – we want to hear from you.  So tell us what’s your deal by filling out this form and select “Suggest A Deal” from the Reason Dropdown.</p>
+
+
+        <h3>Frequently Asked Questions</h3>
+      	<p>We may have your answer at the ready! <br /><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Visit our FAQs page</a></p>
+
+
+        <h3>Address</h3>
+
+        <p>MyTownVIP: <%= @publisher.market_name_or_city %><br />
+        <%= "#{@publisher.address_line_1}<br/>".html_safe! unless @publisher.address_line_1.blank? %>
+        <%= "#{@publisher.address_line_2}<br/>".html_safe! unless @publisher.address_line_2.blank? %>
+        <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}<br/>".html_safe! unless @publisher.city.blank? %>
+        </p>
+
+      </div>
+
+      <% form_for [@publisher, @contact_request], :html => {:id => "contact_form", :class => "vipform"} do |f| %>
+
+      <%= error_messages_for :contact_request, :header_message =>nil %>
+
+        <% render with_theme("form_options") %>
+
+        <%= f.hidden_field :email_subject_format, :value => @email_subject_format %>
+
+        <h4 class="header">Send an Email MyTownVIP</h4>
+
+        <div class="row">
+          <p><strong>Have a question or just want to give us some feedback? Fill out the form below and we'll get back to you as soon as possible.</strong></p>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :reason_for_request, "Reason *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.select(:reason_for_request, [["Please select one", nil]] + (@reasons_for_request || ["Question", "Comment"]).map{|reason| [reason, "#{@publisher.name} - #{reason}"]},
+                                   {}, :class => "contact_reason") %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :first_name, "First Name *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :first_name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :last_name, "Last Name *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :last_name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :email, "Email *", :class => "required" %>
+          </div>
+          <div class="field">
+            <%= f.text_field :email %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">
+            <%= f.label :message, "Message *", :class => "required" %>
+          </div>
+          <div class="field">
+            <p>If applicable, please mention the deal or advertiser in your message below.</p>
+            <%= f.text_area :message, :class => "message" %>
+          </div>
+        </div>
+
+        <div class="row">
+        	<div class="label"></div>
+        	<div class="field">
+        		<p>* Required Fields</p>
+        		<p>Please double check the information you've provided for accuracy.</p>
+        	</div>
+        </div>
+
+        <div class="row" id="buttons">
+        	<div class="label"></div>
+        	<div class="field">
+        		<%= f.submit 'Send', :id => "submit", :class => "button gradient" %>
+        	</div>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+</div>

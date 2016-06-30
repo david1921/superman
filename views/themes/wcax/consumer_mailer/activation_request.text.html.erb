@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Activation Request</title>
+</head>
+
+<body>
+<% if logo = @consumer.try(:publisher).try(:daily_deal_logo) -%>
+    <h1><img src="<%= logo.url %>"/></h1>
+<% end -%>
+
+<p><%= t :dear %> <%= @consumer.first_name %>,</p>
+
+<p>
+  To activate your new jumponit account, please verify your email address by following this link:<br>
+  <br>
+  <a href="<%= activate_consumer_url(@consumer) %>"><%= activate_consumer_url(@consumer) %></a>
+</p>
+
+<p>
+If clicking on the link doesn't work, you can also copy and paste the following code into the activation screen during signup:<br>
+  <br>
+  <%= @consumer.activation_code %>
+</p>
+
+<p>
+Thanks,<br>
+<%= @consumer.publisher.brand_name_or_name %> Customer Support
+</p>
+</body>
+</html>

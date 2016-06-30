@@ -1,0 +1,22 @@
+<% set_daily_deal_page_title_slug "Expired Deals for #{@publisher.name}" %>
+
+<div id="main_column">
+    <div class="past_deals_content">
+        <!-- Display past deals -->
+        <% filtered_deals = @daily_deals[0..8] %>
+        <% if filtered_deals.size > 0  %>
+            <% filtered_deals.each_with_index do |filtered_deal, index| %>
+                <%= render :partial => with_theme("shared/small_deal"), :locals => {:small_deal => filtered_deal} %>
+            <% end %>
+        <% else %>
+            <p class="coming_soon">Sorry, there are no recent deals available at this time.</p>
+        <% end %>
+        <!-- END Display past deals -->
+    </div>
+
+</div><!-- /main_column -->
+
+<%= featured_deal = @publisher.daily_deals.detect(&:featured?) || @publisher.daily_deals[0]
+render :partial => with_theme("shared/side/sidebar"), :locals => { :daily_deal => featured_deal, :publisher => @publisher, :advertiser => @advertiser } if featured_deal %>
+
+		

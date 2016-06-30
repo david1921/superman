@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+ 
+	<title>Ventura County Reporter - Front Page</title> 
+ 
+	<!-- Meta --> 
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="copyright" content="Copyright (c) VCR 2010. All Rights Reserved" /> 
+	<meta name="cms" content="VCR" /> 
+  <meta NAME="description" CONTENT="The alternative Web site for Ventura County.  News, features, fashion, gossip, arts, opinions, classifieds, personals, entertainment listings, restaurant reviews."> 
+  <meta name="rating" content="General"> 
+  <meta name="revisit-after" content="1 days"> 
+ 
+ 
+	<!-- Stylesheets --> 
+	<link type="text/css" rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/css/master.css" media="screen, tv, projection" /> 
+	<link type="text/css" rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/css/custom.css" media="screen, tv, projection" /> 
+	<link type="text/css" rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/css/print.css" media="print" />
+
+	
+ 
+	<!-- Javascript -->
+	<%= javascript_include_tag "/themes/#{@publisher.label}/javascripts/default-media/jquery.js" %>
+	<%= javascript_include_tag "/themes/#{@publisher.label}/javascripts/default-media/functions.js" %>
+	<%= javascript_include_tag "/themes/#{@publisher.label}/javascripts/default-media/tabs.js" %>
+	<%= javascript_include_tag "/themes/#{@publisher.label}/javascripts/default-media/initialize.js" %>
+
+  
+  <% unless request.ssl? -%>
+
+	<script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js"></script> 
+	
+	<script type="text/javascript"> 
+	  GS_googleAddAdSenseService("ca-pub-9270135839447258"); 
+	  GS_googleEnableAllServices(); 
+	</script> 
+	<script type="text/javascript"> 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Button1"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Button2"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Button3"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Button4"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Leaderboard"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Rectangle"); 
+	  GA_googleAddSlot("ca-pub-9270135839447258", "Tower"); 
+	</script> 
+	<script type="text/javascript"> 
+	  GA_googleFetchAds(); 
+	</script> 
+	
+	<% end -%>
+
+
+  <%= stylesheet_link_tag "scoped_reset", "application", "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/presignup", :media => "all" %> 
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/subscriber_opt_in", :media => "all" %> 
+  <!--[if IE]>
+  <%= stylesheet_link_tag "/themes/#{@publisher.label}/stylesheets/ie", :media => "all" %>
+  <![endif]-->  
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head> 
+<body> 
+ 
+   <%= render :partial=>"themes/vcreporter/shared/header" %>
+	
+   <div id="analog_analytics">
+    <div id="daily_deal">
+      <% if flash[:warn].present? -%>
+        <div class="warn" id="flash_warn">
+          <%= flash[:warn].html_safe %>
+        </div>
+      <% end -%>
+      <% if flash[:notice].present? -%>
+        <div class="notice" id="flash_notice">
+          <%= flash[:notice].html_safe %>
+        </div>
+      <% end -%>
+      <%= yield %>
+    </div>
+  </div>
+ 
+	<!-- Container : Begin --> 
+	<div id="container"> 
+
+  <%= render :partial=>"themes/vcreporter/shared/footer" %>
+ 
+	</div> 
+	<!-- Container : End -->
+
+<%= raw render :partial => "themes/8newsnow/shared/tracking_publisher" %>
+</body> 
+</html>

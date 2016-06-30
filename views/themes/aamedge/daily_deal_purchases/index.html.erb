@@ -1,0 +1,27 @@
+<% set_daily_deal_page_title_slug t(:my_deals) %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    
+	 <h2 class="account"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>"><%= t(:my_account) %></a> &nbsp;|&nbsp; <%= t(:my_deals) %></h2>
+	
+	<h1 class="content"><%= t(:my_deals) %></h1>
+    
+    <% if @daily_deal_purchases.blank? %>
+      <p><%= t('.no_deals_message') %></p>
+    <% else %>
+      <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase" cellspacing="0">
+        <tr>
+          <th class="description"><%= t(:description) %></th>
+          <th class="quantity"><%= t(:quantity) %></th>
+          <th class="recipient"><%= t(:recipient) %></th>
+          <th class="purchased_on"><%= t(:purchased) %></th>
+          <th class="expires"><%= t(:expires) %></th>
+          <th class="status"></th>
+        </tr>
+        <%= render(@daily_deal_purchases) %>
+      </table>
+    <% end %>
+  </div>
+</div>
+

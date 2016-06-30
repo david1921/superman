@@ -1,0 +1,5 @@
+<% if @advertiser.active? -%>
+  <p class="notice">Sorry, <%= @advertiser.name %> is already active and cannot subscribe now.</p>
+<% else -%>
+  <%= render(@advertiser.subscription_rate_schedule) %>
+<% end -%>

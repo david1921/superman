@@ -1,0 +1,6 @@
+<div class="nav">
+    <%= link_to t(:available), publisher_consumer_daily_deal_purchases_path(@publisher, @consumer), :class => ("#{controller_name}##{action_name}" == "daily_deal_purchases#index" ? 'current_page' : nil) %>
+    <%= link_to t(:redeemed), redeemed_publisher_consumer_daily_deal_purchases_path(@publisher, @consumer), :class => ("#{controller_name}##{action_name}" == "daily_deal_purchases#redeemed" ? 'current_page' : nil) %>
+	<%= link_to t(:refunded_mydeals), refunded_publisher_consumer_daily_deal_purchases_path(@publisher, @consumer), :class => ("#{controller_name}##{action_name}" == "daily_deal_purchases#refunded" ? 'current_page' : nil) %>
+    <%= link_to t(:expired), expired_publisher_consumer_daily_deal_purchases_path(@publisher, @consumer), :class => ("#{controller_name}##{action_name}" == "daily_deal_purchases#expired" ? 'current_page' : nil) %>
+</div>

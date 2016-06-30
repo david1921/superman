@@ -1,0 +1,31 @@
+<% set_page_title "Member registration" %>
+<% @navbar_active_item_tag = :r2 %>
+
+<% row1 do %>
+  <% box2 do %>
+  <div class="padding" style="text-align:justify">
+
+<h2>TXT411 Membership</h2>
+<br style="line-height:16px" />We'll shortly be introducing a membership program at TXT411.
+<br/>
+<br style="line-height: 10px;"/>Viewers who join our web site will be eligible to receive additional discounts and promotions from our advertising clients. This exciting opportunity will have no cost to you and is simply a way for you to receive products and services that interest you at greatly reduced prices.
+<br />
+<br style="line-height:10px" />If you'd like us to send you an email invitation when we launch our membership program, please register your email address here.
+<br/>
+<br style="line-height:16px;"/>
+<% form_for @member, :url => members_path do |f| -%>
+<div><%= error_messages_for :member, :header_message => nil, :message => nil %></div>
+<div>
+  <%= f.label :email, "Email address:" %>
+  <%= f.text_field :email, :value => @member.email if @member %>
+  &nbsp;&nbsp;<%= submit_tag("Register") %>
+</div>
+<br style="line-height:10px" />
+</div>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  Form.focusFirstElement("new_member")
+</script>

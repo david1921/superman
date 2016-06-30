@@ -1,0 +1,44 @@
+<div class="clear"></div>
+<div id="analog_analytics">
+  <div id="daily_deal">
+    <div id="body">
+    <div id="banner"></div>
+      <div id="location_box_top">
+        <p>Save 50% - 70% on the best shops & services your area has to offer!</p>
+      </div>
+      <div id="location_box">
+        <h1 id="location_header">Find Local Deals Now!</h1>
+
+        <div id="market_menu_wrapper">
+	          <form action="{{ publishing_group.subscribers_path }}" class="preopt email_subscription_tracking" method="post" id="optin">
+				<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>	           
+	            <input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+	            <input type="hidden" name="redirect_to_deal_page" value="true" />
+	            <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+	
+	
+	            <div id="market_menu_form">
+	              {{ publishing_group | market_selection: 'publisher_id', true, false, true }}
+	            </div>
+	
+	            <input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email Address" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;"  />
+				
+				<div clear="both"></div>
+	
+	            <div id="sign_up">
+	                <input class="signup" name="sign_up" type="submit" value="SEE THE DEALS" border="none" />
+		            </div>
+	            <div class="clear"></div>
+	
+	          	<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+			    <input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="{{ publishing_group.popup_terms_path }}" class="lbOn" style="color:#000;">Terms</a> and &nbsp;<a href="{{ publishing_group.popup_privacy_policy_path }}" class="lbOn" style="color:#000;">Privacy Policy</a>
+				</p>
+
+	          
+        </div>	
+
+        <img src="/themes/locm/images/graphics/bags.png" alt="Bag Graphic" />
+      </div>
+    </div>
+  </div>
+</div>

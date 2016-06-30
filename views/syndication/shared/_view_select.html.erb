@@ -1,0 +1,9 @@
+<div id="view_select">
+	<p>View:</p>
+	<ul id="view_buttons" class="">
+		<%= syndication_view_by_menu_item("Grid", syndication_grid_view_path(collect_request_parameters)) %>
+    <%= syndication_view_by_menu_item("List", syndication_list_view_path(collect_request_parameters)) %>
+    <%= syndication_view_by_menu_item("Calendar", syndication_calendar_view_path(collect_request_parameters)) %>
+    <%= syndication_view_by_menu_item("Map", syndication_map_view_path(collect_request_parameters)) %>
+	</ul>
+</div>

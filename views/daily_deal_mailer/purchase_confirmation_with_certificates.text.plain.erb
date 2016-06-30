@@ -1,0 +1,23 @@
+<%= t :dear %> <%= @daily_deal_purchase.consumer.name %>,
+<%- if @daily_deal_purchase.earned_discount -%>
+
+<%= render :partial => with_theme('earned_discount.text.plain') %>
+<%- end -%>
+
+<%= render :partial => with_theme("your_vouchers_are_attached.text.plain") %>
+
+<%= daily_deal_download_url(@daily_deal_purchase) %>
+
+<%= t "daily_deal.purchase_confirmation.and_print_any_deals" %>
+
+<%= render :partial => with_theme("voucher_redemption_message.text.plain") %>
+
+<%= render :partial => with_theme("voucher_offer.text.plain") if @offer %>
+
+<%= t "daily_deal.purchase_confirmation.invoice_heading" %>
+
+<%= t "daily_deal.purchase_confirmation.the_deal_label" %>: <%= @daily_deal_purchase.line_item_name %>
+<%= t "daily_deal.purchase_confirmation.quantity_label" %>: <%= @daily_deal_purchase.quantity %>
+<%= t "daily_deal.purchase_confirmation.total_paid_label" %>: <%= number_to_currency(@daily_deal_purchase.total_paid, :unit => @daily_deal_purchase.currency_symbol) %>
+
+<%= render :partial => with_theme("purchase_confirmation_closing_paragraph.text.plain") %>

@@ -1,0 +1,12 @@
+<ul id="dd_nav">
+	<li class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><span class="dollar"></span>Daily Deals</a></li>
+	
+	<li class="second <%= "#{controller_name}##{action_name}" == "offers#public_index" ? 'current_page' : nil %> <%= "#{controller_name}##{action_name}" == "advertisers#public_index" ? 'current_page' : nil %>"><a href="<%= public_offers_path(@publisher) %>" class="second <%= "#{controller_name}##{action_name}" == "offers#public_index" ? 'current_page' : nil %> <%= "#{controller_name}##{action_name}" == "advertisers#public_index" ? 'current_page' : nil %>"><span class="scissors"></span>Printable Coupons</a></li>
+
+</ul><!-- /dd_nav -->
+
+
+		
+
+
+

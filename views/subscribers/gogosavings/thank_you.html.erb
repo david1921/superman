@@ -1,0 +1,41 @@
+<div id="content">
+  <div id="hotdeals"><%= image_tag("/themes/gogosavings/images/hotdeals.png") %></div>
+  <div id="maincontent">
+    <h1>Never Miss A Deal Again</h1>
+    <div id="maincontentwrapper">
+      <div id="signupform">      
+        <div id="analog_analytics">       
+          <div id="flash">
+            <div class="warn" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+              <%= flash[:warn] %>
+            </div>
+            <div class="notice" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+              <%= flash[:notice] %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= image_tag("/themes/gogosavings/images/sidebar.png") %>
+      </div>      
+    </div>    
+    <div class="bottom">
+      <%= image_tag("/themes/gogosavings/images/bottom_border.png") %>
+    </div>
+  </div>
+
+</div>
+
+<% if Rails.env.production? || Rails.env.test? -%>
+<script src="//ah8.facebook.com/js/conversions/tracking.js"></script>
+<script type="text/javascript">
+
+try {
+  FB.Insights.impression({
+     'id' : 6002754187273,
+     'h' : '17aa284e1c'
+  });
+} catch (e) {}
+
+</script>  
+<% end -%>

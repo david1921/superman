@@ -1,0 +1,11 @@
+TravelsaversBooking <%= @booking.id %> has been in an unresolved state for over 24 hours. This means that either the booking, the payment, or both have not yet gone through successfully. We should contact Travelsavers to find out if there is an issue with this booking.
+
+Booking Details:
+
+Deal: <%= @booking.daily_deal.value_proposition %>
+Book Transaction ID: <%= @booking.book_transaction_id %>
+Created at: <%= @booking.created_at %>
+Booking Status: <%= @booking.booking_status.capitalize %>
+Payment Status: <%= @booking.payment_status.capitalize %>
+
+<%= render 'contact_info' %>

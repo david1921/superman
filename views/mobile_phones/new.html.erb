@@ -1,0 +1,28 @@
+<% set_page_title "Opting Out" %>
+<% @navbar_active_item_tag = :r3 %>
+
+<% row1 do %>
+  <% box2 do %>
+    <div class="padding" style="text-align:justify">
+      <h2>Opting Out</h2>
+      <br/>
+      <br style="line-height:10px" />Your right to privacy is important to us.
+      <br/>
+      <br style="line-height:10px" />If for any reason you would like ensure that we do not send text messages to your mobile phone in future, please enter your mobile phone number below and click on the opt-out button.
+      <br/>
+      <% form_for @mobile_phone, :url => opt_outs_path do |f| -%>
+        <div><%= error_messages_for :mobile_phone, :header_message => nil, :message => nil %>&nbsp;</div>
+        <div>
+          <%= f.label :number, "Mobile Number:" %>
+          <%= f.text_field :number, :size => 20, :value => @mobile_phone.number_as_entered if @mobile_phone %>
+          &nbsp;&nbsp;<%= submit_tag("Opt out", :id => "save_button", :name => "save") %>
+        </div>
+      <br style="line-height:10px" />
+      <% end -%>
+    </div>
+  <% end -%>
+<% end -%>
+
+<script type="text/javascript" charset="utf-8">
+  Form.focusFirstElement("new_mobile_phone")
+</script>

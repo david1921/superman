@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head></head>
+<body>
+  <p>
+    TravelsaversBooking <%= @booking.id %> transition error: <%= @exception.message %>
+  </p>
+  <p>Instructions:</p>
+  <ol>
+    <li>Have an account manager contact Travelsavers about the booking to determine the cause of the transition</li>
+    <li>Have an AA engineer manually execute transitions on the booking</li>
+  </ol>
+
+  <%= render 'contact_info' %>
+
+</body>
+</html>

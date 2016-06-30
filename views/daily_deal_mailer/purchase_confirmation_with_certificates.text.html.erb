@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title></title>
+</head>
+
+<body>
+
+<%= render :partial => with_theme('purchase_confirmation_logo.text.html') %>
+
+<p><%= t :dear %> <%= @daily_deal_purchase.consumer.name %>,</p>
+
+<% if @daily_deal_purchase.try(:earned_discount) %>
+  <%= render :partial => with_theme('earned_discount.text.html') %>
+<% end %>
+
+<p class="your_vouchers_are_attached">
+  <%= render :partial => with_theme("your_vouchers_are_attached.text.html") %>
+</p>
+
+<p>
+  <%= daily_deal_download_url(@daily_deal_purchase) %><br>
+  <br>
+  <%= t "daily_deal.purchase_confirmation.and_print_any_deals" %>
+</p>
+
+<p class="voucher_redemption_message">
+  <%= render :partial => with_theme("voucher_redemption_message.text.html") %>
+</p>
+
+<%= render :partial => with_theme("voucher_offer.text.html") if @offer %>
+
+<h2><%= t "daily_deal.purchase_confirmation.invoice_heading" %></h2>
+
+<table>
+  <tr>
+    <td><%= t "daily_deal.purchase_confirmation.the_deal_label" %>:</td>
+    <td><%= @daily_deal_purchase.line_item_name %></td>
+  </tr>
+  <tr>
+    <td><%= t "daily_deal.purchase_confirmation.quantity_label" %>:</td>
+    <td><%= @daily_deal_purchase.quantity %></td>
+  </tr>
+  <tr>
+    <td><%= t "daily_deal.purchase_confirmation.total_paid_label" %>:</td>
+    <td><%= number_to_currency(@daily_deal_purchase.total_paid, :unit => @daily_deal_purchase.currency_symbol) %></td>
+  </tr>
+</table>
+
+<p class="purchase_confirmation_closing_paragraph">
+  <%= render :partial => with_theme("purchase_confirmation_closing_paragraph.text.html") %>
+</p>
+
+</body>
+</html>

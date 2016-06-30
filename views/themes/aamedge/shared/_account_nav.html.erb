@@ -1,0 +1,14 @@
+<div class="account_nav_wrapper">
+<% if current_consumer_for_publisher?(@publisher) %>
+     <ul class="account_nav">
+          <li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+          <li><a href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a></li>
+		<li class="faqs <%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>" class="faqs <%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><span class="question">?</span>FAQs</a></li>
+     </ul>
+<% else %>
+     <ul class="account_nav">
+        <li><a href="<%= daily_deal_login_path(@publisher) %>"> Sign In</a></li>
+		<li class="faqs <%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>" class="faqs <%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><span class="question">?</span>FAQs</a></li>
+     </ul>
+<% end %>
+</div><!-- /account_nav -->

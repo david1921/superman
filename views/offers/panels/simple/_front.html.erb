@@ -1,0 +1,75 @@
+  <div class="front_panel" id="offer_<%= offer.id %>_front_panel">
+    <div class="body" id="offer_<%= offer.id %>_body">
+      <div class="logo" id="offer_<%= offer.id %>_logo">
+        <%# 
+          When this code is deployed to LOCM's server, or when we merge LOCM into master, we need to set the LOCM
+          publishing group's label to "locm".
+          
+          Better to handle this with a theme.
+        %>
+        <% if offer.offer_image.file? && offer.publisher.try(:publishing_group).try(:label) == "locm" %>
+          <%= image_tag offer.offer_image.url(:medium), :class => "photo", :id => "offer_#{offer.id}_logo", :alt => "photo" %>
+        <% else %>
+          <%= image_tag(offer.advertiser.logo.url) %>
+        <% end %>
+      </div>
+      <h3 class="advertiser_name"><%= advertiser_name offer %></h3>
+      <% if offer.advertiser.tagline.present? -%>
+        <p class="text advertiser_tagline"><%= truncate(offer.advertiser.tagline, :length => 40) %></p>
+      <% end -%>
+      <p class="links">
+        <%= raw [ link_to_website(offer), link_to_map(offer), link_to_email(offer), offer_phone_number(offer) ].compact.join(" | ") %>
+      </p>
+      <div id="offer_<%= offer.id %>_text">
+        <p class="text summary_message"><%= truncate(offer.message, :length => 80) %></p>
+        <p class="terms"><%= truncate(offer.terms, :length => 100) %></p>
+      </div>
+    </div>
+    
+    <div class='coupon_code'>
+      <% if offer.coupon_code? -%>
+      <span>Coupon Code:</span> <%= offer.coupon_code %>
+      <% end %>
+    </div>
+    <% class_postfix = offer.show_small_icons? ? "_small" : "" -%>
+    <% image_dir     = offer.show_small_icons? ? "/themes/default/images/small" : "/themes/default/images" -%>
+    <div class="footer<%= class_postfix %>" id="offer_<%= offer.id %>_footer">
+      <%= link_to_function(image_tag("#{image_dir}/print.png"),
+      "clipCoupon(#{offer.id}, #{publisher.id}); trackCouponEvent('Print', #{offer.id})",
+      :id => "print_#{offer.id}", :class => "clip#{class_postfix}", :title => "Click to print coupon", :rel => "nofollow") %>
+      <%= link_to_remote(
+            image_tag("#{image_dir}/email.png"), 
+            :url => email_offer_path(offer, :publisher_id => publisher.id),
+            :html => { :class => "email#{class_postfix}", :title => "Click to email coupon to you", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:email) %>
+      <%= link_to_remote(
+          image_tag("#{image_dir}/phone.png"), 
+          :url => call_offer_path(offer, :publisher_id => publisher.id),
+          :html => { :class => "call#{class_postfix}", :title => "Click to call #{offer.advertiser_name.upcase}", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:call) %>
+      <%= link_to_remote(
+            image_tag("#{image_dir}/txt.png"), 
+            :url => txt_offer_path(offer, :publisher_id => publisher.id),
+            :html => { :class => "txt#{class_postfix}", :title => "Click to send coupon to you via TXT message", :rel => "nofollow" }
+      ) if offer.advertiser.allows_clipping_via(:txt) %> 
+      
+      <% if offer.show_small_icons? -%>
+      <% publisher = offer.publisher %>
+      <%= link_to(
+            image_tag("#{image_dir}/twitter.png"), 
+            twitter_offer_url(offer, :publisher_id => publisher.id),
+            :class => "twitter#{class_postfix}", :target => "_blank", :title => "Share coupon on Twitter", :rel => "nofollow",
+            :onclick => "trackCouponEvent('Twitter', #{offer.id})"
+      ) if offer.bit_ly_url.present? && publisher.show_twitter_button? -%>
+      <%= link_to( 
+            image_tag("#{image_dir}/facebook.png"),
+            facebook_offer_url(offer, :publisher_id => publisher.id),
+            :onclick => "trackCouponEvent('Facebook', #{offer.id}); return facebook_popup('#{facebook_offer_url(offer, :publisher_id => publisher.id, :popup => true)}')",
+            :class => "facebook#{class_postfix}",
+            :id => "offer_#{offer.id}_facebook_link",
+            :target => "_blank",
+            :rel => "nofollow"
+        ) if publisher.show_facebook_button? -%>      
+      <% end -%>
+    </div>
+  </div>

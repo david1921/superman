@@ -1,0 +1,72 @@
+  <div id="<%= table_name %>"></div>
+
+  <%
+    if @dates
+      data_params[:dates_begin] = @dates.begin.to_s
+      data_params[:dates_end] = @dates.end.to_s
+    end
+  %>
+
+<% javascript_tag do %>
+    YAHOO.util.Event.addListener(window, "load", function() {
+      var formatRate = function(elLiner, oRecord, oColumn, oData) {
+        elLiner.innerHTML = oData.toFixed(1) + "%";
+      };
+      var formatUrl = function(href_label,with_parent_params) {
+        if (with_parent_params) {  
+          return function(elCell, oRecord, oColumn, sData) { 
+            elCell.innerHTML = "<a href='" + oRecord.getData(href_label) + "?<%= raw data_params.collect { |key, val| "#{key}=#{val}" }.join('&') %>" + "'>" + sData + "</a>";
+          };
+        } else {
+          return function(elCell, oRecord, oColumn, sData) { 
+            elCell.innerHTML = "<a href='" + oRecord.getData(href_label) + "'>" + sData + "</a>";
+          };          
+        }
+      };
+      var formatCheckbox = function(name) {
+        return function(elCell, oRecord, oColumn, sData) { 
+          elCell.innerHTML = "<input class='yui-dt-checkbox' type='checkbox' name='" + name + "' value='" + sData + "'/>";
+        };
+      };
+      
+      var formatPercentage = function(elCell, oRecord, oColumn, sData) {
+        if (sData != '') {
+          elCell.innerHTML = sData + '%';
+        }
+      };
+
+      var formatBBD = function(elCell, oRecord, oColumn, sData) {
+        if (sData != '') {
+          elCell.innerHTML = 'BBD-' + sData;
+        }
+      };
+      
+      var formatCurrency = function(elCell, oRecord, oColumn, sData) {
+        var amount = new Number(sData);
+        elCell.innerHTML = '<div class="yui-dt-liner">' + oRecord.getData("currency_symbol") + amount.toFixed(2) + '</div>';
+      }
+      
+      var columns = [
+        <%= data_columns.map do |key, opt|
+          if opt.fetch(:display, true)
+            "{ key:'#{key}', label: '#{opt[:label]}'#{", sortable:true" if opt.fetch(:sortable, true)}#{", formatter:#{opt[:formatter]}" if opt[:formatter]}#{", className:'#{opt[:class_name]}'" if opt[:class_name]}}"
+          end
+        end.compact.join(",\n        ") %>
+      ];
+
+      dataSource = new YAHOO.util.DataSource('<%= data_source %>');
+      dataSource.responseType = YAHOO.util.DataSource.TYPE_XML;
+      dataSource.responseSchema = {
+        resultNode: '<%= result_node %>',
+        fields: [
+          <%= data_columns.map do |key, opt|
+            "{ key:'#{key}'#{", parser:'#{opt[:parser]}'" if opt[:parser]}}"
+          end.join(",\n          ") %>
+        ]
+      };
+      new YAHOO.widget.DataTable('<%= table_name %>', columns, dataSource, {
+        initialRequest:'?<%= raw data_params.collect { |key, val| "#{key}=#{val}" }.join('&') %>',
+        sortedBy:{ key:'<%= defined?(sort_by) ? sort_by : data_columns.first.first %>', dir:'asc' }
+      });
+    });
+<% end %>

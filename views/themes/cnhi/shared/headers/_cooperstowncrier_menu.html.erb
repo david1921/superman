@@ -1,0 +1,63 @@
+<div id="header" class="noprint">
+
+      <!-- Monster Search Box -->
+    <!-- Monster Search Form -->
+   <div id="monster">
+
+
+
+<fieldset>
+<form name="jump2">
+<select name="menu"><option value="http://thedailystar.monster.com/search.aspx.com/monster">Find a Job</option>
+<option value="http://my.thedailystar.monster.com/search.aspx.monster.com" class="searchClassTitles">Post a Resume</option>
+<option value="http://career-advice.thedailystar.monster.com/search.aspx.monster.com" class="searchClassTitles">Career Advice</option>
+<option value="http://thedailystar.monster.com/search.aspx.com/monster_buypage" class="searchClassTitles">Employers</option></select><input type="button" onclick="location=document.jump2.menu.options[document.jump2.menu.selectedIndex].value;" value="GO">
+</form>
+
+</fieldset>
+</div>
+
+
+
+    
+      <div id="zillow">
+        <form action="http://www.zillow.com/search/WidgetHomeSearch.htm" method="get">
+          <fieldset>
+<select id="price" name="price"><option value="">Select Price</option>
+<option value="-100000">$100K or less</option>
+<option value="100000-150000">$100K - $150K</option>
+<option value="150000-200000">$150K - $200K</option>
+<option value="200000-250000">$200K - $250K</option>
+<option value="250000-300000">$250K - $300K</option>
+<option value="300000-600000">$300K - $600K</option>
+<option value="600000-">$600K or more</option></select><input type="submit" id="GOButton" title="SEARCH" value="Go!"><input type="hidden" name="groupId" value="0"><input type="hidden" name="cbpartner" value="The Cooperstown Crier"><input name="searchbox" type="hidden" tagname="input" value="Cooperstown, NY">
+</fieldset>
+</form>
+      </div>
+    
+     <div id="autoconx">
+      
+        
+                  <form name="jump">
+<select name="menu"><option value="http://cooperstowncrier.autoconx.com" class="searchClassTitles">Cars</option>
+<option value="http://cooperstowncrier.autoconx.com/Implement/" class="searchClassTitles">AG and HD Equipment</option>
+<option value="http://cooperstowncrier.autoconx.com/Recreational/" class="searchClassTitles">Recreational</option></select><input type="button" onclick="location=document.jump.menu.options[document.jump.menu.selectedIndex].value;" value="GO">
+</form>
+        
+        
+      
+    </div>
+    <!-- Classifieds Form with conditional -->
+    
+      
+        <div id="classifieds">
+          <form id="mp_search" method="get" onsubmit="return CNHI.API.checkInput('mp_search_for','Search Listings')" action="http://<%= @publisher.production_host.gsub("coupons.", "")%>/classifieds">
+            <fieldset>
+<input type="text" class="query" id="mp_search_for" value="Search Listings" onfocus="if(this.value=='Search Listings'){this.value=''}" onblur="if(this.value==''){this.value='Search Listings'}" name="mp_search_for"><input type="submit" value="Go"><input type="hidden" name="publishername" value="cooperstowncrier"><input type="hidden" name="categoryname" value="adsearch"><input type="hidden" name="f" value="1"><input type="hidden" name="view" value="search">
+</fieldset>
+</form>
+        </div>
+      
+      
+    
+  </div>

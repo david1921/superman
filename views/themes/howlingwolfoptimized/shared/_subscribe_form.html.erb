@@ -1,0 +1,12 @@
+	<div id="subscribe_form">
+		<h4 class="subscribe">SIGN UP FOR FREE DEAL ALERTS!</h4>
+		<form action="/publishers/<%= @publisher.id %>/subscribers" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+			<p><input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" /></p>
+			<p class="email_input"><input id="subscriber_email" name="subscriber[email]" size="30" type="text" placeholder="Email Address" title="Email Address" /></p>
+			<p class="submit_form"><input id="subscribe_button" type="submit" value="SIGN UP" /></p>
+			<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox"  /> I agree to the <a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and <a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+			</p>
+		</form>
+	</div>

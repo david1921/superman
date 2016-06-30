@@ -1,0 +1,7 @@
+<% remote_form_for [@publisher, suggested_daily_deal], :update => "suggested_daily_deals_lightbox_content" do |f| %>
+  <div class="suggested_daily_deals_form_wrapper">
+    <%= f.error_messages :header_message => t(:wishlist_header_message) %>
+    <%= f.text_area :description %>
+    <%= f.submit t(:submit) %>
+  </div>
+<% end %>

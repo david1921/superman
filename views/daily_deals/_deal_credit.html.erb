@@ -1,0 +1,12 @@
+<% link_to deal_credit_publisher_consumers_url(@publisher, :protocol => https_unless_development), :method => :post do %>
+  <div class="page_column_4 last rounded_corners" id="deal_credit">
+    <div class="copy">
+      Sign up now for a free account and receive a <%= @publisher.currency_symbol %>10 credit towards your first deal purchase
+    </div>
+    <ul>
+      <li>Valid one per person</li>
+      <li>Must be used before September 30, 2010</li>
+    </ul>
+    <%= image_tag("/themes/daily_deals/images/buttons/deal_credit.png") %>
+  </div>
+<% end unless cookies[:deal_credit] == "applied" || current_consumer -%>

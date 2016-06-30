@@ -1,0 +1,18 @@
+<%- content_tag_for :tr, offer, :class => cycle("even", "odd") do -%>
+  <td>
+    <%= link_to(image_tag(offer.advertiser.logo(:standard)), edit_advertiser_path(offer.advertiser)) %>
+    <div><%= link_to("Edit", edit_advertiser_path(offer.advertiser)) %></div>
+  </td>
+  <td>
+    <%= link_to(image_tag(offer.photo(:standard)), edit_offer_path(offer)) %>
+    <div><%= link_to("Edit", edit_offer_path(offer)) %></div>
+  </td>
+  <td>
+    <%= (link_to(image_tag(offer.advertiser.logo :large), edit_advertiser_path(offer.advertiser))) unless offer.offer_image.file? %>
+    <div><%= (link_to("Edit", edit_advertiser_path(offer.advertiser))) unless offer.offer_image.file? %></div>
+  </td>
+  <td>
+    <%= (link_to(image_tag(offer.offer_image :large), edit_offer_path(offer))) if offer.offer_image.file? %>
+    <div><%= (link_to("Edit", edit_offer_path(offer))) if offer.offer_image.file? %></div>
+  </td>
+<% end -%>

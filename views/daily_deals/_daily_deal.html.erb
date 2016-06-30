@@ -1,0 +1,87 @@
+<div class="daily_deal">
+	<div id="all_deals">
+	<div id="deal_photo_details">
+		<a href="<%= daily_deal_url(daily_deal) %>" style="border:none">
+  		  <img src="<%= daily_deal.photo.url(:facebook) %>" alt="<%= daily_deal.value_proposition %>" width="185" class="deal_image">
+		  <img src="<%= daily_deal.photo.url(:facebook) %>" alt="<%= daily_deal.value_proposition %>" width="260" class="mobile_deal_image">
+                </a>
+	<span class="deal_details">
+		<h4><%= daily_deal.advertiser.name %></h4>
+		<h5><%= daily_deal.value_proposition %></h5>
+		<a href="<%= daily_deal_url(daily_deal) %>" class="button">View Details</a>
+	</span>
+	</div>
+	<span class="dashboard">
+		<div class="deal_dashboard">
+		<div class="dd_buy_box<%= " variation" if !daily_deal.daily_deal_variations.blank? %>">
+			<div class="buy_now">
+				<% if daily_deal.sold_out? %>
+				<div class="sold_out dd_button">
+					Sold Out
+				</div>
+				<% elsif daily_deal.over? %>
+				<div class="dd_price">
+					<%= formatted_price_for(daily_deal.price) %>
+				</div>
+				<div class="deal_over dd_button">
+					Over
+				</div>
+				<% elsif daily_deal.active? %> 
+				<div class="dd_price<%= " variation" if !daily_deal.daily_deal_variations.blank? %>">
+				<% if !daily_deal.daily_deal_variations.blank? %>
+					<%= t("from") %> <%= formatted_price_for(daily_deal.price_to_display) %>
+				<% else %>
+					<%= formatted_price_for(daily_deal.price) %>
+				<% end %>
+			</div>				
+				<% if !daily_deal.daily_deal_variations.blank? -%>
+					<a id="buy_button" class="buy_now_button dd_button dd_variations_button" name="buy_now_button">Buy</a>
+					<div id="dd_variations_<%= daily_deal.id %>" class="dd_variations dd_variations_menu" style="display:none;">
+						<table class="dd_variations_data">
+						<thead>
+							<tr>
+								<th colspan="3">Choose your deal:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% daily_deal.daily_deal_variations.each do |variation| %>
+								<%= render :partial => "/daily_deals/dd_variation", :locals => { :dd_variation => variation, :daily_deal => daily_deal } %>
+							<% end %>
+						</tbody>
+						</table>
+					</div>
+				<% else -%>
+					<%= link_to("Buy", new_daily_deal_daily_deal_purchase_path(daily_deal), :id => "buy_button", :class => "buy_now_button dd_button", :name => "buy_now_button") %>
+				<% end -%>
+				<div class="dd_button unavailable" style="display:none;">
+					Not Yet Available
+				</div>
+				<% else %> <div class="not_yet dd_button"></div>
+				<% end %>
+			</div><!-- END #buy_now -->
+		</div><!-- END #dd_buy_box -->
+			<div id="dashboard_top">
+				<div class="dashboard_value">
+					<p>Value<% "<br />#{t("up_to")}" if !daily_deal.daily_deal_variations.blank? %></p>
+					<span class="dash_value dashboard_bold"><%= formatted_price_for(daily_deal.value_to_display) %></span>
+				</div>
+				<div class="dashboard_value">
+					<p>Discount<% "<br />#{t("up_to")}" if !daily_deal.daily_deal_variations.blank? %></p>
+					<span class="dash_value dashboard_bold"><%= number_to_percentage(daily_deal.savings_to_display_as_percentage, :precision => 0) %></span>
+				</div>
+				<div class="dashboard_value">
+					<p>You Save<% "<br />#{t("up_to")}" if !daily_deal.daily_deal_variations.blank? %></p>
+					<span class="dash_value dashboard_bold"><%= formatted_price_for(daily_deal.savings_to_display) %></span>
+				</div>
+			</div><!-- END #dashboard_top -->
+
+			<div class="deal_start">
+				<%= daily_deal.start_at.strftime("%a, %b %e %Y") %>
+			</div>
+			<div class="number_sold"><%= daily_deal.number_sold %> Sold</div>
+			
+		</div><!-- END #deal_dashboard -->
+	</span>
+	<div class="clear"></div>
+</div>
+</div>

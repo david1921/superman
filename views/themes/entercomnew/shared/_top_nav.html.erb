@@ -1,0 +1,7 @@
+<ul>
+	<li<%=raw "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? ' class="selected"' : nil %>><a href="<%= public_deal_of_day_path(@publisher.label) %>">Featured Deal</a></li>
+	<li<%=raw "#{controller_name}##{action_name}" == "daily_deals#public_index" ? ' class="selected"' : nil %>><a href="<%= daily_deals_public_index_path(@publisher.label) %>">All Deals</a></li>
+	<li<%=raw "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? ' class="selected"' : nil %>><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How it Works</a></li>
+	<li id="featureyourbusiness"><a href="http://www.howperksworks.com">Get Featured</a></li>
+	<li<%=raw "#{controller_name}##{action_name}" == "affiliate#show" ? ' class="selected"' : nil %> id="gomobile"><a href="<%= publisher_affiliate_path(@publisher) %>">Go Mobile<!-- <img src="/themes/entercomnew/images/icons/new.png" width="37" height="18" alt="New" class="new"/>--></a></li>
+</ul>	

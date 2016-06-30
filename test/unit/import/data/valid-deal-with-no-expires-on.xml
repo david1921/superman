@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import_request publisher_label="import-test-publisher" timestamp="20110413205005" xmlns="http://analoganalytics.com/api/daily_deals">
+  <daily_deal>
+    <listing>123</listing>
+    <category>D</category>
+    <value_proposition>This is the value proposition</value_proposition>
+    <value_proposition_subhead>This is the value proposition subhead</value_proposition_subhead>
+    <description>This is the description</description>
+    <short_description>This is the short description</short_description>
+    <highlights>
+      <highlight>highlight1</highlight>
+      <highlight>highlight2</highlight>
+      <highlight>highlight3</highlight>
+    </highlights>
+    <reviews>
+      <review>review1</review>
+      <review>review2</review>
+      <review>review3</review>
+    </reviews>
+    <terms>
+      <term>term1</term>
+      <term>term2</term>
+      <term>term3</term>
+    </terms>
+    <photo_url>http://photos.daily-deals.analoganalytics.com/production/6024/standard.png</photo_url>
+    <value>100.00</value>
+    <price>95.95</price>
+    <starts_at>2011-04-12T06:00:00Z</starts_at>
+    <ends_at>2011-04-18T05:55:00Z</ends_at>
+    <facebook_title_text>$15 for $30 worth of food and drinks at Facebook</facebook_title_text>
+    <twitter_status_text>$15 for $30 worth of food and drinks at Twitter</twitter_status_text>
+    <featured>true</featured>
+    <upcoming>false</upcoming>
+    <enable_email_blast>true</enable_email_blast>
+    <affiliate_url>http://deals.nydailynews.com/publishers/nydailynews/daily_deals/6024</affiliate_url>
+    <quantity_available>1500</quantity_available>
+    <min_purchase_quantity>3</min_purchase_quantity>
+    <max_purchase_quantity>10</max_purchase_quantity>
+    <location_required>false</location_required>
+    <custom_1>custom value one</custom_1>
+    <custom_2>custom value two</custom_2>
+    <custom_3>custom value three</custom_3>
+    <merchant>
+      <brand_name>Grotta Azura</brand_name>
+      <logo_url>http://logos.advertisers.analoganalytics.com/production/20292/normal.png</logo_url>
+      <website_url>http://bluegrotta.com</website_url>
+      <listing>abc-merch</listing>
+      <locations>
+        <location>
+          <listing>my-house</listing>
+          <address_line_1>177 Mulberry St.</address_line_1>
+          <address_line_2>Unit 1</address_line_2>
+          <city>New York</city>
+          <state>NY</state>
+          <zip>10013</zip>
+          <latitude>40.7205</latitude>
+          <longitude>-73.9969</longitude>
+          <phone_number>2125551212</phone_number>
+        </location>
+      </locations>
+    </merchant>
+    <markets>
+      <market>New York</market>
+      <market>Los Angeles</market>
+    </markets>
+  </daily_deal>
+</import_request>

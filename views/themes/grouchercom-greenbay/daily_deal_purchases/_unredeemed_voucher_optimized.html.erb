@@ -1,0 +1,24 @@
+<% if unredeemed_voucher_optimized.daily_deal.present? %>
+    <div class="voucher_title">
+        <h3 class="voucher_item_name"><%= unredeemed_voucher_optimized.line_item_name %></h3>
+        <span class="view_details_arrow"></span>
+    </div>    
+    <div class="voucher_details">
+        <div class="status_buttons">
+            <%= print_daily_deal_purchase_link(unredeemed_voucher_optimized.daily_deal_purchase, "print_voucher") %>
+            <%= link_to("Mark as Used", mark_used_daily_deal_certificate_path(:id => unredeemed_voucher_optimized.to_param),:class => "mark_voucher_used", :confirm => "Are you sure you want to mark this voucher as used?", :method => :post) %>
+        </div>
+        <p class="serial_number"><%= t(:voucher_number) %>: #<%= unredeemed_voucher_optimized.serial_number %></p>
+        <p class="recipient"><strong><%= t(:recipient) %></strong>:
+            <%- if (redeemer_name = unredeemed_voucher_optimized.redeemer_name).length > 30 -%>
+            <span title="<%= redeemer_name %>"><%= truncate(redeemer_name, :length => 30) %></span>
+            <%- else -%>
+            <%= redeemer_name %>
+            <%- end -%>
+        </p>
+        <p class="purchased_on"><strong><%= t(:purchased) %></strong>: <%= unredeemed_voucher_optimized.daily_deal_purchase.humanize_executed_at %></p>
+        <p class="expires"><strong><%= t(:expires) %></strong>: <%= unredeemed_voucher_optimized.daily_deal_purchase.humanize_expires_on %></p>
+    </div>
+<% else %>
+    <%= t('.error_message') %>
+<% end %>

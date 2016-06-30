@@ -1,0 +1,28 @@
+<!-- ::: Start Footer ::: -->
+<div id="footer">
+	<div id="footer-bar">
+		<div id="footer-nav">
+			<ul>
+
+			<li class="active"><a href="http://www.myjumponit.com">Home</a></li>
+			<li><a href="http://myjumponit.com/business.html">Businesses</a></li>
+			<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">Faq</a></li>
+			<li><a href="http://myjumponit.com/contact.html">Contact</a></li>
+			<% if @publisher.launched? %>
+				<% if current_consumer_for_publisher?(@publisher) %>
+			<li class="my_account"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+				<% end %>
+			<% end %>
+			</ul>				
+		</div>
+		
+		<div id="footer-copyright">
+
+			Copyright © 2012. All Rights Reserved.
+		</div>
+	
+		<div class="ribbon ribbon-bottomleft"></div>			
+		<div class="ribbon ribbon-bottomright"></div>			
+	</div>
+</div>
+<!-- ::: End Footer ::: -->		

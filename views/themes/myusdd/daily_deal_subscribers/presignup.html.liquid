@@ -1,0 +1,35 @@
+<div id="presignup">
+    <!--<div id="deal_logos"><img src="/themes/micechat/images/graphics/deal_logos.png" height="63" width="764" alt=""></div> #deal_logos if required-->
+
+    <h1>Never miss a deal!</h1>
+
+    <h2>Sign up now to receive Daily Deal alerts.</h2>
+
+    <form action="{{ publisher.subscribers_path }}" method="post" class="presignup">
+        <input type="hidden" name="redirect_to" value="{{ publisher.verifiable_thank_you_publisher_daily_deal_subscribers_path }}" id="redirect_to"/><input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}"/> <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true"> <input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true"/>
+            <input name="subscriber[zip_code_required]" value="true" type="hidden" />
+
+        <fieldset>
+            <label for="Name">Enter your Name:</label><br/>
+            <input class="dd_input" id="subscriber_name" name="subscriber[name]" size="30" title="Name" type="text"/>
+        </fieldset>
+
+        <fieldset>
+            <label for="Email">Email Address:</label><br/>
+            <input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text"/>
+        </fieldset>
+
+        <fieldset>
+            <label for="ZipCode">Zip Code:</label><br/>
+            <input id="subscriber_zip_code" class="dd_input" name="subscriber[zip_code]" size="10" type="text"/>
+        </fieldset>
+
+        <fieldset>
+            <input name="subscriber[terms]" type="hidden" value="0"/><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked"/> <label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+        </fieldset>
+
+        <fieldset>
+            <input id="subscribe_button" type="submit" value="Sign Up"/>
+        </fieldset>
+    </form>
+</div><!-- /presignup -->

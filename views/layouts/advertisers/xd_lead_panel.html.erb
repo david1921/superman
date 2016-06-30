@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=iso-8859-2" />
+  <%= stylesheet_link_tag "xd_reset", "xd_businesses", "#{@publisher.label}/xd_businesses", :media => "all" %>
+  <!--[if IE 6]>
+    <%= stylesheet_link_tag "ie6", :media => "all" %>
+  <![endif]-->
+  
+  <%= javascript_include_tag :defaults, "xd_lead_panel" %>
+  <style type="text/css">
+    body { margin: 0 }
+    .analog_analytics_content div.offer { border: 0 none }
+  </style>
+</head>
+
+<body>
+  <div class="analog_analytics_content">
+    <div class="<%= @publisher.theme %>">
+      <div class="offer">
+        <div class="<%= @lead.delivery %>_panel" id="offer_<%= @offer.id %>_<%= @lead.delivery %>_panel">
+<%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body> 
+<% javascript_tag do %>
+  window.cancelClipping = cancelClipping = function(advertiserId) {
+    Analog.LeadPanel.hideLeadPanel(advertiserId);
+  }
+
+  window.finishClipping = finishClipping = function(offerId, advertiserId) {
+    Effect.Fade('offer_' + offerId + '_confirmation_panel', {
+      duration: 5,
+      queue: "end",
+      afterFinish: function() { Analog.LeadPanel.hideLeadPanel(advertiserId); }
+    });
+  };
+  
+  document.observe("dom:loaded", function() {
+    Analog.LeadPanel.setXdReceiverUrl('<%= params[:xd_receiver_url] %>');
+    Analog.LeadPanel.showLeadPanel(<%= @advertiser.id %>);
+  });
+  
+<% end %>
+</html>

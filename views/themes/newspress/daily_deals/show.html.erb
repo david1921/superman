@@ -1,0 +1,21 @@
+<div class="main_column">
+	<div class="content_box"><!-- deal info top row -->
+		<img class="dd_advertiser_logo" id="advertiser_logo" src="<%= @daily_deal.advertiser.logo.url(:normal) %>" alt="<%= @daily_deal.advertiser.name %>" /><h1 class="value_prop"><%= @daily_deal.value_proposition %></h1>
+		<% if @daily_deal.value_proposition_subhead.present? -%>
+		  <h2 class="value_prop_subhead"><%= @daily_deal.value_proposition_subhead %></h2>
+		<% end -%>
+		<div style="clear:both;"></div>
+        <%= render :partial => with_theme('shared/deal_photo_and_share'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+        <%= render :partial => with_theme('shared/dashboard'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+		
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	
+	<div><!-- deal info bottom row -->
+	
+		<%= render :partial => with_theme('shared/deal_tab_content'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+		
+	</div><!-- /deal info bottom row -->
+
+</div><!-- /main_column -->
+<%= render :partial => with_theme('shared/sidebar'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>

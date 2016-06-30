@@ -1,0 +1,11 @@
+<tr>
+  <td><%= suspected_fraud_purchase.value_proposition %></td>
+  <td><%= suspected_fraud_purchase.quantity %></td>
+  <td><%= suspected_fraud_purchase.consumer.name %></td>
+  <td><%= suspected_fraud_purchase.consumer.email %></td>
+  <td><%= suspected_fraud_purchase.humanize_created_at %></td>
+  <td><%= suspected_fraud_purchase.ip_address %></td>
+  <td><%= suspected_fraud_purchase.daily_deal_payment.try(:credit_card_last_4) %></td>
+  <td><%= suspected_fraud_purchase.payment_status.capitalize %></td>
+  <td><%= link_to "Edit", daily_deal_purchases_consumers_admin_edit_path(suspected_fraud_purchase.id), :class => "edit-purchase" %></td>
+</tr>

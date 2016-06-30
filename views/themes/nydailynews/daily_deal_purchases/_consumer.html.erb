@@ -1,0 +1,79 @@
+<div id="consumer">
+<% if current_consumer_for_publisher?(publisher) %>
+  <div id="consumer">
+    <div class="row">
+      <div class="static"><%= current_consumer.name %></div>
+      <div class="static"><%= current_consumer.email %></div>
+    </div>
+  </div>
+<% else %>
+  <div id="sign_up">
+    <div class="row">
+      <p>Already have an account? <%= link_to_function("Sign in", "showLoginForm()") %></p>
+    </div>
+    <% fields_for consumer do |consumer_form| %>
+      <%= consumer_form.hidden_field :zip_code_required, :value => true %>
+      <%= consumer_form.text_field_div(
+          :name, "Your Name:", :help => full_error_messages_on(consumer, :name)) %>
+      <%= consumer_form.text_field_div(
+          :zip_code, "ZIP Code:", :help => full_error_messages_on(consumer, :zip_code)) %>
+      <%= consumer_form.text_field_div(:email, "Email:", :help => full_error_messages_on(consumer, :email)) %>
+      <%= consumer_form.password_field_div(
+          :password, "Password:", :help => full_error_messages_on(consumer, :password)) %>
+      <%= consumer_form.password_field_div(
+          :password_confirmation, "Confirm Password:", :help => full_error_messages_on(consumer, :password_confirmation)) %>
+      <%= consumer_form.check_box_div(:agree_to_terms, "I agree to the #{daily_deals_terms_link(publisher)} and #{daily_deals_privacy_link(publisher)}".html_safe, :checked => true) %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+
+  <div id="sign_in" style="display: none;">
+    <div class="row">
+      <p id="session_warning" class="error" style="text-align: left; font-size: 13px; padding-left: 0px; color: red; font-weight: bold"></p>
+    </div>
+    <div class="row">
+      <p>Log in or <%= link_to_function("create an account", "hideLoginForm()") %></p>
+      <p>
+        Forgot
+        <%= link_to "your password?", 
+            consumer_password_reset_path_or_url(publisher),
+            :target => "_blank" %></p>
+    </div>
+    <% fields_for :session do |session_form| %>
+      <%= hidden_field_tag("consumer_login_url", publisher_daily_deal_sessions_path(publisher)) %>
+      <div class="trigger-submit"><%= session_form.text_field_div(:email) %></div>
+      <div class="trigger-submit"><%= session_form.password_field_div(:password) %></div>
+      <%= session_form.check_box_div :remember_me_flag, "Remember me" %>
+      <div class="row button_row">
+      <%= button_to_function("Sign In", "loginConsumer()"); %>&nbsp;<%= link_to_function("Cancel", "hideLoginForm()"); %>
+      </div>
+    <% end %>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    Event.observe(document, "dom:loaded", function() { 
+      $$('.trigger-submit input').each(function(el) {
+        el.observe('keypress', function (event) {
+          var key = event.which || event.keyCode;
+          if (key == Event.KEY_RETURN) {
+            // Skip u/p submission on Firefox, as this event gets
+            // triggered even when hitting Enter to autocomplete a
+            // field value. Argh!
+            if (!Prototype.Browser.Gecko) {
+              loginConsumer();
+            }            
+            event.stop();
+          }
+        })
+      })
+    })
+  </script>
+
+  <% unless attempted_to_register? && consumer.invalid? %>
+    <script type="text/javascript" charset="utf-8">
+      Event.observe(document, "dom:loaded", function() { showLoginForm() });
+    </script>
+  <% end %>
+  <div class="clear"></div>
+<% end %>
+</div>
+

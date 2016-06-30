@@ -1,0 +1,36 @@
+<% benchmark "View offers/_categories", :silence => true do -%>
+  <div id="categories">
+    <h3><%- if defined?(category_header) && !category_header.blank? %><%= category_header %><%- else %><%= t(:categories)%><%- end %></h3>
+    <ul class="<%= "many " if @publisher_categories.size > 24 %><%= "with_subcategories" if @publisher.subcategories? %>">
+       <%- if defined?(include_featured) && include_featured %>
+        <li><%= link_to (defined?(featured_text) ? featured_text : "Featured Offers"),
+              render_public_offers_path(@publisher, {
+                :featured         => true,
+                :background_color => @background_color,
+                :category_id      => nil,
+                :city             => @city,
+                :foreground_color => @foreground_color,
+                :iframe_height    => params[:iframe_height],
+                :iframe_width     => params[:iframe_width],
+                :layout           => @layout,
+                :page_size        => params[:page_size],
+                :state            => @state
+              }) %></li>
+      <%- end %>
+
+      <li><%= link_to t(:all),
+              render_public_offers_path(@publisher, {
+                :background_color => @background_color, 
+                :category_id      => nil,
+                :city             => @city, 
+                :foreground_color => @foreground_color, 
+                :iframe_height    => params[:iframe_height],
+                :iframe_width     => params[:iframe_width],
+                :layout           => @layout,
+                :page_size        => params[:page_size],
+                :state            => @state
+              }) %> (<%=  @offers_count %> <%= t("unique") %>)</li>
+  <%= render :partial => "offers/category", :collection => @publisher_categories.sort_by(&:downcase_name), :locals => { :truncate_at => 18 } %>
+    </ul>
+  </div>
+<% end -%>

@@ -1,0 +1,31 @@
+{% if daily_deal.side_deals.size > 0 %}
+<div class="box other_deal_tracking" style="margin-bottom: 15px">
+	<img src="/themes/anchoragepress/images/display/side-deals-head.png" width="267" height="47" alt="Side Deals" class="sidehead" />
+	<div id="slideshow">
+		<div id="slidesContainer">
+			{% for side_deal in daily_deal.side_deals %}
+			<div class="side_deal slide">
+				<div class="thumb"><img src="{{ side_deal.photo.url }}" width="80" alt="" /></div>
+				<div class="text">
+					<h3 class="valueprop"><a href="{{ side_deal.url }}"><strong>{{ side_deal.value_proposition }}...</strong></a></h3><a href="{{ side_deal.url }}">See Deal</strong></a>						
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+<a class="side_see_all_deals" href="{{ publisher.daily_deals_path }}">SEE ALL DEALS</a>
+</div>
+{% endif %}
+
+<div class="box-nobrdr">
+  <h3>Send Your Deal of The Day</h3>
+  <div class="send"><p>Send us your deal of the day at <a href="mailto:deals@anchoragepress.com">deals@anchoragepress.com</a></p></div>
+</div>
+
+<div id="facebookbox">
+	<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Falbum.php%3Faid%3D15243%26id%3D104890432874955%23%21%2Fpages%2FAnchorage-Press%2F121016867917754&amp;width=300&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=256" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:256px;" allowTransparency="true"></iframe>
+</div>
+
+<div class="display320x240">
+	<!--<a href=""><img src="/themes/anchoragepress/images/display/300x250-placeholder.png" width="300" height="250" alt="Advertisement" /></a>-->
+</div>	

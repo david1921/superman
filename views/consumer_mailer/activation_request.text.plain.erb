@@ -1,0 +1,17 @@
+<%= t :dear %> <%= @consumer.first_name %>,
+
+<%= t "consumers.activation_request.to_activate_please_follow_this_link", :publisher_name => @consumer.publisher.brand_name_or_name %>
+
+  <%= activate_consumer_url(@consumer) %>
+
+<%= t "consumers.activation_request.if_clicking_link_doesnt_work" %>
+
+  <%= @consumer.activation_code %>
+
+<% if @consumer.publisher.daily_deal_email_signature.present? -%>
+<%= @consumer.publisher.daily_deal_email_signature %>
+<% else -%>
+<%= t "consumers.activation_request.valediction" %>,
+
+<%= @consumer.publisher.brand_name_or_name %>
+<% end -%>

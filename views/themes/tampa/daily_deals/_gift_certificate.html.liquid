@@ -1,0 +1,44 @@
+<div class="product">
+  <h2 class="product_name"><span>{{ gc.value | currency }} Deal Certificate for Only {{ gc.price | currency }}</span>
+	</h2>
+	<img class="product_image" src="{{ gc.advertiser.logo.url }}" width="150" alt="" />
+	<div class="details">
+		<p class="location">
+		  <span class="advertiser_name">{{ gc.advertiser_name }}</span><br/>
+		  {% for line in gc.address %}
+        {{ line }}<br/>
+      {% endfor %}
+		</p>
+	</div><!-- /details -->
+	<div class="payment">
+		<p class="value">Only {{ gc.price | currency }}</p>
+		{% if gc.available? and gc.active? %}
+  		<form action="{{ gc.paypal_url }}" method="post" target="_top">
+  		{{ gc | paypal_add_to_cart_button_fields }}
+  		</form>
+  		{% if gc.active? %}
+  		<p class="number_available">{{ gc.available_count }} Available</p>
+  		{% endif %}
+  		{% if gc.handling_fee? %}
+  		<p class="fee">There is a {{ gc.handling_fee | currency: 2 }} handling fee</p>
+  		{% endif %}
+  	{% else %}
+  	  <div class="sold_out">SOLD OUT</div>
+  	{% endif %}
+	</div><!-- /payment -->
+	<div style="clear:both"></div>
+	<div class="product_description">
+	  {{ gc.description }}
+	</div>
+	<div class="product_terms">
+	  {{ gc.terms }}
+	</div>	
+	{% if gc.available? and gc.active? %}
+	<div class="gift_certificate_share_buttons">
+	  Share this deal: 
+	 <a href="{{ gc.facebook_path }}" target="_blank"><img src="/images/icons/facebook.png" width="18" /></a>
+	 <a href="{{ gc.twitter_path }}" target="_blank"><img src="/images/icons/twitter.png" width="18" /></a>
+	</div>
+	{% endif %}
+  
+</div><!-- /product --> 

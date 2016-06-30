@@ -1,0 +1,16 @@
+<div id="passengers">
+  <% @booking.passengers.each_with_index do |passenger, i| %>
+      <div id="passenger_<%= i %>" class="passenger">
+        <p>
+          <span class="passenger_header"><strong>Passenger <%= i+1 %>:</strong></span><br/>
+          <span class="passenger_name"><%= passenger.name %></span><br/>
+          <span class="passenger_address1"><%= passenger.address1 %></span><br/>
+          <% if passenger.address2.present? %><span class="passenger_address2"><%= passenger.address2 %></span><br/>
+          <% end %>
+          <span class="passenger_locality"><%= passenger.locality %></span>, <span class="passenger_region"><%= passenger.region %></span> <span class="passenger_postal_code"><%= passenger.postal_code %></span><br/>
+          <span class="passenger_country"><%= passenger.country_code %></span><br/>
+          <span class="passenger_birth_date">Date Of Birth: <%= passenger.birth_date.try(:strftime, "%m/%d/%Y") %></span><br/>
+        </p>
+      </div>
+  <% end %>
+</div>

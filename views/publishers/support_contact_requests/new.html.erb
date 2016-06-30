@@ -1,0 +1,72 @@
+<% div_for @contact_request do %>
+    <% set_daily_deal_page_title_slug "Contact" %>
+
+    <h1 class="content"><%= t(:contact_us) %></h1>
+
+    <div id="contact_content">
+
+      <p>Have a question or comment? Tell us how we can help, and our Customer Service team will be in touch soon.</p>
+
+      <%= error_messages_for(:contact_request, :header_message =>nil) %>
+
+      <% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+          <% render with_theme("form_options") %>
+
+          <%= f.hidden_field :email_subject_format, :value => @email_subject_format %>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :first_name, "First Name *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :first_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :last_name, "Last Name *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :email, "Email *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_field :email %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :reason_for_request, "Reason *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.collection_select(:reason_for_request, @reasons_for_request || ["Question", "Comment"], :to_s, :to_s,
+                                      :class => "contact_reason", :include_blank => true) %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :message, "Message *", :class => "required" %>
+            </div>
+            <div class="input">
+              <%= f.text_area :message, :class => "message" %>
+            </div>
+          </div>
+
+          <div id="buttons" class="row">
+            <%= f.submit 'Submit', :id => "submit" %>
+
+            <span class="required_fields">* required fields</span>
+          </div>
+      <% end %>
+
+      <div class="after_form"></div>
+    </div>
+<% end %>

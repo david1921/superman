@@ -1,0 +1,57 @@
+    <div id="standard-pages-box-inner">
+        <h2>More Deals</h2>
+        <%= will_paginate @daily_deals %>
+        <br/>
+        <% for daily_deal in @daily_deals %>
+        <div class="shopping-mall-deal-box">
+            <div class="subhead-wrap">
+            <h3><%= daily_deal.value_proposition_subhead %></h3>
+            </div><!-- end .subhead-wrap -->
+            <div class="mall-deal-photo-box">
+            <a href="<%= market_aware_daily_deal_url(daily_deal, params) %>"><img class="mall-deal-photo" src="<%= daily_deal.photo.url %>" alt="<%= daily_deal.value_proposition %>"></a>
+            </div><!-- end .mall-deal-photo-box -->
+
+            <div class="mall-deal-box-left">
+                <p>Price: <%= number_to_currency(daily_deal.price, :unit => @publisher.currency_symbol) %> </p>
+
+                <p>Value: <%= number_to_currency(daily_deal.value, :unit => @publisher.currency_symbol) %> </p>
+
+                <p>Savings: <%= number_to_currency(daily_deal.savings, :unit => @publisher.currency_symbol) %> </p>
+
+                <div class="mall-share-buttons">
+                		<span  class='st_facebook_large' st_url="<%= market_aware_daily_deal_url(daily_deal, params) %>"></span>
+										<span  class='st_twitter_large' st_url="<%= market_aware_daily_deal_url(daily_deal, params) %>"></span>
+										<span  class='st_sharethis_large' st_url="<%= market_aware_daily_deal_url(daily_deal, params) %>"></span>
+								</div><!-- end .mall-share-buttons -->
+            </div><!-- end .mall-deal-box-left -->
+
+            <div class="mall-deal-box-right">
+
+                <div class="mall-deal-buttons">
+                    <% if daily_deal.sold_out? %> }
+
+                    <div class="mall-sold-out-button">
+                        <span>Sold Out</span>
+                    </div><!-- end #sold_out -->
+                    <% elsif daily_deal.over? %>
+
+                    <div class="mall-deal-over-button">
+                        <span>Deal Over</span>
+                    </div><!-- end mall-deal-over-button -->
+                    <% elsif daily_deal.active? %>
+
+                    <div class="mall-buy-now-button">
+                        <a href="<%= market_aware_daily_deal_url(daily_deal, params) %>" class="buy_now_button"><span>Buy Now</span></a>
+                    </div><!-- end .mall-buy-now-button-->
+                    <% else %>
+
+                    <div class="mall-not-available-button">
+                        <span>Not Yet Available</span>
+                    </div><!--  end .mall-not-available-button -->
+                    <% end %>
+                </div><!--.mall-deal-buttons -->
+            </div><!-- end .mall-deal-box-right -->
+        </div><!-- end .shopping-mall-deal-box -->
+        <div style="clear:right;"></div><!--this clear is to make the blocks align properly-->
+        <% end %>
+    </div><!-- end #standard-pages-box-inner -->

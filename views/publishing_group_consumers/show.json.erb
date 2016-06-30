@@ -1,0 +1,11 @@
+<%= {
+  :id => @consumer.id,
+  :first_name => @consumer.first_name,
+  :last_name => @consumer.last_name,
+  :mobile_number => @consumer.mobile_number ? @consumer.mobile_number : "",
+  :referral_code => @consumer.referral_code ? @consumer.referral_code : "",
+  :referrer_code => @consumer.referrer_code ? @consumer.referrer_code : "",
+  :referring_consumer_id => @consumer.referring_consumer.present? ? @consumer.referring_consumer.id : "",
+  :facebook_id => @consumer.facebook_id ? @consumer.facebook_id : "",
+  :publisher_name => @consumer.publisher.name ? @consumer.publisher.name : ""
+}.to_json.html_safe -%>

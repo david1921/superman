@@ -1,0 +1,63 @@
+<div id="page-leftcol">
+    <div class="deal-leftcol">
+        <h3><img src="/themes/anchoragepress/images/display/deal-of-the-day.png" width="192" height="30" alt="DEAL OF THE DAY -&gt;" /></h3>
+        <div class="content">
+            <img class="dealphoto" src="/themes/anchoragepress/images/display/dealphoto.jpg" width="175" height="214" />
+            <div class="map"><img src="/themes/anchoragepress/images/display/deal-map.jpg" width="183" height="155" alt="" /></div>
+        </div>
+    </div>
+    <div class="deal-rightcol">
+        <h1>4 courses &amp; a glass of bubbly for $19</h1>
+        <h2>Highlights</h2>
+        <p>Consistently adventurous food built with top-notch ingredients
+makes Sacks a welcome oasis. Chefs dream up a dish or two every night, centered on fresh Alaska fin fish graced with some exotic combination of favorites like pecans, pine nuts and Asian sauces.</p>
+        <p>Eat smart: The menu changes daily at Sacks Cafe; look for locally sourced standouts, like Halibut Cove oysters served raw on the half.</p>
+        
+        <div id="dashboard">
+            <div>
+                Value<span>$39</span>
+            </div>
+            <div class="dark">
+                Today's Deal<span>$19</span>
+            </div>
+            <div>
+                You Save<span>$20</span>
+            </div>
+            <div id="status">
+                TIME LEFT: <span id="time_left_to_buy">00:00:00</span> WITH <span id="deals_sold">100</span> BOUGHT.
+            </div>
+        </div>
+        
+        <div class="buy-buttons">
+            <img src="/themes/anchoragepress/images/buttons/deal-over.png" width="158" height="48" alt="DEAL OVER" /><img src="/themes/anchoragepress/images/buttons/buy-now.png" width="158" height="48" alt="BUY NOW" />
+        </div>
+        
+    <div class="share">
+        Share with friends
+        <div><a href="{{ daily_deal.twitter_url }}"><img src="/themes/anchoragepress/images/buttons/twitter.png" width="30" height="30" alt="Twitter" /></a><a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share on Facebook"><img src="/themes/anchoragepress/images/buttons/facebook.png" width="30" height="30" alt="facebook" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link"><img src="/themes/anchoragepress/images/buttons/email.png" width="30" height="30" alt="Email" /></a></div>
+        </div>
+        
+    </div>
+    <div class="deal-info">
+        <!--INSERT DETAILS-->
+    </div>
+    
+</div>
+<div id="page-rightcol">
+    <div class="box">
+        <img src="/themes/anchoragepress/images/display/sign-up-head.png" width="267" height="47" alt="Sign-Up" />
+        <form action="/publishers/{{ publisher.id }}/consumers" class="email_subscription_tracking" method="post" id="optin">
+          <input type="hidden" name="consumer[agree_to_terms]" value="true" />
+            <div><label>Email* :</label><input name="consumer[email]" type="text" /></div>
+            <div><label>First Name* :</label><input name="consumer[first_name]" type="text" /></div>
+            <div><label>Last Name* :</label><input name="consumer[last_name]" type="text" /></div>
+            <div><label>Password* :</label><input name="consumer[password]" type="password" /></div>
+            <div><label>Confirm Password* :</label><input name="consumer[password_confirmation]" type="password" /></div>
+            <div><label>Age:</label><input name="consumers[age]" type="text" /></div>
+            <div><label>Gender:</label>M<input class="radio" name="consumer[gender]" type="radio" value="M" />&nbsp;F<input class="radio" name="consumer[gender]" type="radio" value="F" /></div>
+            <div><label>ZIP Code:</label><input name="consumer[zip_code]" type="text" /></div>
+			<div><input name="sign_up" value="Sign Up" type="image" class="signup" src="/themes/anchoragepress/images/buttons/sign-up.png" /></div>
+        </form>
+    </div>
+</div>
+

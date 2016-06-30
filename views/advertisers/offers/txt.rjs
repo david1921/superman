@@ -1,0 +1,5 @@
+page.visual_effect :slide_up, "business_#{@advertiser.id}_wrapper_panel"
+page.replace_html "business_#{@advertiser.id}_lead_panel_container", :partial => "advertisers/offers/txt", :object => @offer
+page.visual_effect :appear, "business_#{@advertiser.id}_lead_panel_container"
+
+

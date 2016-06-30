@@ -1,0 +1,36 @@
+<div class="header">
+<% unless subscribed? || current_consumer_for_publisher?(@publisher) -%>
+  <% form_for :subscriber, :url => subscribe_publisher_daily_deals_path(@publisher), :html => { :id => "daily_deal_header" } do |f| %>
+    <div class="maincontent">
+      <span class="email"><%= f.text_field(:email) %></span>
+      <%= f.submit("SUBSCRIBE") %>
+    </div>
+    <div class="terms">
+      <%= f.check_box(:terms) %> I agree to the &nbsp;<%= daily_deals_terms_link(@publisher).html_safe %> and &nbsp;<%= daily_deals_privacy_link(@publisher).html_safe %>
+    </div>
+  <% end %>
+<% end -%>
+</div>
+    
+<% javascript_tag do %>
+  (function() {   
+    var input = $('subscriber_email');
+    var placeholderText = "Enter email for free <%= @publisher.daily_deal_name %> alerts";
+    if (input) {
+      input.value = placeholderText;
+      input.observe('click', function(event){
+        var element = event.element();
+        if(placeholderText === element.value) {
+          element.value = '';
+          element.activate();
+        }
+      });
+      input.observe('blur', function(event) {
+        var element = event.element();    
+        if (element.value.length == 0) {
+          element.value = placeholderText;
+        }
+      });
+    }
+  })();
+<% end -%>

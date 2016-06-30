@@ -1,0 +1,18 @@
+<% 
+  if defined?(search_url) 
+    url = search_url
+  else 
+    url = render_public_offers_path(@publisher)
+  end
+-%>
+ <div id="search" class="box_wrapper">
+  <div>
+    <% form_tag url, :method => :get, :id => "search_form" do -%>
+      <%= text_field_tag "text", @text, :class => "ghostie", :id => "text", :title => "Search Coupons" %><br/>
+      <% basic_params_for_pagination.each_pair do |key, value| -%>
+        <%= hidden_field_tag key, value %>
+      <% end %>
+      <%= submit_tag "Search", :id=> "search_button"%>
+    <% end -%>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+	<h1>Sign up for Daily Deal alerts!</h1>
+	<p id="description">The daily deal is an awesome way to save 50-90% off your city's finest restaurants, spas, events, and more! Sign up today and you'll get the daily deal sent right to your inbox. There's no easier way to save money and have fun!</p>
+
+	<h2>Enter your email address:</h2>
+	
+	
+	<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" method="POST" class="presignup">
+		<input type="hidden" name="redirect_to" value="{{ publisher.subscribers_thank_you_path | verifiable_url }}" id="redirect_to">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<fieldset>
+			<input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" />		
+		</fieldset>
+		<fieldset>
+			
+			<p id="city_selection">Get Deals For Your City:</p>
+			<div id="market_menu_form">
+				   {{ publisher | market_selection: 'subscriber[market_publisher_id]', true, true, true }}
+            </div>
+
+
+		
+			<input name="subscriber[terms]" type="hidden" value="0" />
+			<input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+			<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+		</fieldset>
+		  
+		  		
+		<p><input id="subscribe_button" class="button" type="submit" value="Sign Up" /></p>
+	</form>
+	<div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div>
+

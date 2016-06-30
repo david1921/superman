@@ -1,0 +1,48 @@
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="header">
+			<div id="banner">
+				{% include with_theme "layouts/shared/publisher_logo" %}      
+				<ul id="account_nav">			
+					{% if publisher.launched? %}
+						{% if publisher.current_user_belongs_to? %}
+					<li><a href="{{ publisher.my_account_path }}">{% t my_account %}</a></li>
+					<li><a href="{{ publisher.my_deals_path }}">{% t my_deals %}</a></li>
+					<li class="last"><a href="{{ publisher.logout_path }}">{% t sign_out %}</a></li>
+						{% else %}
+					<li class="last"><a href="{{ publisher.login_path }}">{% t sign_in %}</a></li>
+						{% endif %}
+					{% endif %}
+				</ul><!-- /account_nav -->
+				<ul id="account_nav">
+          <li><a class="yellow_text" href="{% switch_locale_url en %}">English</a></li>
+          <li class="last"><a class="yellow_text espanol" href="{% switch_locale_url es-MX %}">Espa&ntilde;ol</a></li>
+				</ul>
+				<div class="clear"></div>
+				<div id="subscribe_form">
+					<h4 class="subscribe">{% t .subscribe.title %}</h4>
+					<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+						<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+						<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+						<p id="email_paragraph"><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="{% t .subscribe.email_address %}" onclick="this.value='';" /></p>
+						<p id="subscribe_paragraph"><input id="subscribe_button" type="submit" value="{% t sign_up %}" /></p>
+						<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+							<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> {% t i_agree_to_the %} <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">{% t terms %}</a> {% t and %} <a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">{% t privacy_policy %}</a>
+						</p>
+					</form>
+				</div>
+			</div><!--banner-->   
+		</div><!-- /header -->
+
+    {% include "shared/flash" %}
+		 
+		<div id="page_content">
+      			{% include with_theme "layouts/shared/tabs" %}	
+      		<div class="clear"></div>	
+		</div><!--page_content-->
+		
+		{% include "shared/a_a_alt" %}
+		
+	</div><!--daily_deal-->
+</div><!--analog_analytics-->
+{% include with_theme "layouts/shared/footer" %}

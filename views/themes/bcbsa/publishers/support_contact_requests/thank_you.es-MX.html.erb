@@ -1,0 +1,106 @@
+<% set_daily_deal_page_title_slug t(:title_slug_contact) %>
+
+<% if params[:layout] == "popup" -%>
+  <a href="#" class="lbAction" rel="deactivate"><span>Close</span></a>
+ <% else -%>
+   <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="<%= public_deal_of_day_path(@publisher.label) %>">Inicio</a>
+      </li>
+      <li class="no_underline">></li>
+      <li class="no_underline">          
+        Contáctenos
+      </li>
+    </ul>
+    </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+<% end -%>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">Contáctenos</h1>
+  <div id="contact_content">
+    
+    <div id="left_column">
+      
+      <p>
+        Gracias por contactarse con Blue365. Un miembro de nuestro equipo se comunicará con usted en breve. Nos alegra que le gusten las ofertas saludables tanto como a nosotros, y haremos todo lo posible por hacer que su experiencia Blue365 sea excelente.
+        </p>
+         
+        <p>
+        ¡Le deseamos la mejor salud!<br /><br />
+        
+        <img src="/themes/bcbsa/images/graphics/blue_team_signature.png" alt="The Blue365 Team">
+      </p>    
+    </div>
+    <div class="right_column_2">
+      <div class="content">
+        <div class="top">
+          <h5>Otras formas de contactarse con Blue365</h5>
+          <p>¿Tiene una idea? Asegúrese de informarnos.</p>
+        </div>
+      
+        <div class="middle">
+          
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <img class="contact_icon" src="/themes/bcbsa/images/graphics/feature_your_business_icon_white.png" />
+            </a>
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <h6>Incluya a su empresa</h6>
+            </a>
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <p>Comparta sus oportunidades de salud y bienestar, y construya su empresa al mismo tiempo.</p>
+            </a>
+          
+          <a href="#">
+          <span>
+            <img class="contact_icon" src="/themes/bcbsa/images/graphics/wishlist_icon_white.png" />
+            <h6 id="recommend"><a id="wish_list">¿Le gustaría que se incluyera alguna oportunidad en Blue365?</a></h6>
+            <p>Ayúdenos a encontrar las mejores ofertas para usted y para su estilo de vida.</p>
+          </span>
+          </a>
+          
+        </div>
+        <div class="bottom_img"></div>      
+      </div>
+    </div>
+    <!-- wishlist script -->
+    <script type="text/javascript">
+        function wishListLightbox() {
+          <% if consumer? %>
+            jQuery.fancybox(
+              "<%= escape_javascript(render :partial => with_theme("suggested_daily_deals/lightbox")) %>",
+              {
+                'autoDimensions'  : false,
+                'width'           : 980,
+                'height'          : 736,
+                'transitionIn'    : 'none',
+                'transitionOut'   : 'none',
+                'showCloseButton' : false,
+                'centerOnScroll'  : true
+              }
+            );
+          <% else %>
+            window.location = '<%= suggested_daily_deals_login_path %>';
+          <% end %>
+        }
+    
+        jQuery(document).ready(function() {
+          jQuery('#wish_list').click(wishListLightbox);
+    
+          <% if params[:suggested_daily_deals_lightbox] %>
+            wishListLightbox();
+          <% end %>
+        });
+      </script>
+      <!-- /wishlist script -->
+    </div>
+  </div>
+</div>
+
+
+
+
+

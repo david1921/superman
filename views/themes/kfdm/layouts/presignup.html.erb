@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+
+  <%= render(:partial => "themes/freedom/daily_deals/meta_tags", :locals => { :daily_deal => @daily_deal, :referral => @referral }) %>
+
+  <title><%= daily_deal_page_title %></title>
+
+  <link rel="icon" type="image/x-icon" href="/themes/freedom/images/favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="/themes/freedom/images/favicon.ico" />
+  <%= javascript_include_tag :defaults %>
+
+
+  <%= stylesheet_link_tag "analog_analytics", "/themes/daily_deals/stylesheets/daily_deals", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/kfdm/stylesheets/daily_deals_pre", :media => "all" %>
+  <%= stylesheet_link_tag "/themes/kfdm/stylesheets/daily_deals", :media => "all" %>
+  
+  <!--[if IE]>
+  <%= stylesheet_link_tag "ie", :media => "all" %>
+  <![endif]-->
+
+  <style type="text/css">
+/*<![CDATA[*/
+  body {
+    margin: 0px;
+    width: auto;
+  }
+  #analog_analytics {
+    width: 960px;
+  }
+/*]]>*/
+  </style>
+
+<%= raw render :partial => "/shared/tracking_google_analytics" %>
+</head>
+
+<body>
+  <div id="fi_wrapper">
+    
+
+    <div id="fi_innerWrapper">
+
+
+      <div class="fi_wide marginMidTop">
+        <div class="fi_wide_top"></div>
+
+        <div class="fi_fullpageInner fi_inner">
+          <div class="floatRight marginMidRight">
+          </div>
+
+          <div class="clear"></div>
+
+          <div id="fi_fullpageContent">
+<div class="content" id="content">
+  <div id="analog_analytics">
+    <div id="daily_deal">
+      <div class="rounded_corners" id="outer_frame">
+        <div class="rounded_corners" id="inner_frame">
+
+          <div class="warn rounded_corners" id="flash_warn" style="display: <%= flash[:warn].present? ? "visible" : "none" %>;">
+            <%= flash[:warn] %>
+          </div>
+          <div class="notice rounded_corners" id="flash_notice" style="display: <%= flash[:notice].present? ? "visible" : "none" %>;">
+            <%= flash[:notice] %>
+          </div>
+          
+          <%= image_tag "/themes/kfdm/images/presignup-head.png", :alt => "oaoa.com", :id => "oaoa_logo", :class => "signup_logo" %>
+		 
+	          
+          <%= yield %>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            <div class="clear"></div>
+          </div>
+        </div>
+
+        <div class="fi_wide_bottom"></div>
+      </div>
+    </div>
+
+    <!-- <div class="fi_wide">
+          <div class="fi_wide_top"></div> -->
+
+ <%= raw render :partial => "themes/kfdm/shared/tracking_publisher.html.liquid" %>
+</body>
+</html>

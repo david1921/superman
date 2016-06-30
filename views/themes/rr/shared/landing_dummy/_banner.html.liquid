@@ -1,0 +1,11 @@
+<div id="banner" class="austin">
+
+	<ul id="main_tabs">  
+		<li class="{% page_context_is landing_pages %}current_page{%endpage_context_is%}"><a href="{{ publisher.landing_page_path }}">Home</a></li>
+		<li class="{% if_page_name 'publishers#deal_of_the_day'%}current_page{%endif_page_name%}"><a href="{{ publisher.todays_daily_deal_path }}">Daily Deal</a></li>
+		<li class="{% page_context_is offers %}current_page{%endpage_context_is%}"><a href="{{ publisher.offers_path }}">Coupons</a></li>
+		<li class="{% page_context_is sweepstakes %}current_page{%endpage_context_is%}"><a href="{{ publisher.sweepstakes_path }}">Win!</a></li>
+		<li class="{% page_context_is communities %}current_page{%endpage_context_is%} last"><a href="{{ publisher.communities_path }}">ClickedIn<span class="tm">&trade;</span> Cares</a></li>
+	</ul><!-- /main_tabs -->
+	<div class="clear"></div>
+</div><!-- /banner -->

@@ -1,0 +1,133 @@
+<div id="deal_info" class="container top wide">
+		<div class="rightcol_wide">
+			<div class="content">
+<% div_for @contact_request do %>
+    <% set_daily_deal_page_title_slug "Contact" %>
+
+    
+	
+	<div class="left_content">
+	
+	<%= error_messages_for(:contact_request, :header_message =>nil) %>
+	
+	<h1 id="value_proposition"><%= t(:contact_us) %></h1>
+	
+	  
+	  <h3>Customer Service Inquiries</h3>
+	  <p>Email us using the form to the right and we will get back to you as soon as possible.</p>
+
+      <h3>What’s Your Deal</h3>
+      <p>Let us know what deal or businesses you LOVE, and would like to see featured.  Also if there was a previous deal you want us to bring back – we want to hear from you.  So tell us what’s your deal by filling out this form and select “Suggest A Deal” from the Reason Dropdown.  We strive to bring the best deals to Get My PERKS and your input is appreciated.</p>
+
+      <h3>Get Your Business Featured!</h3>
+		<p>Ready to reap the rewards?<br /><a href="http://www.howperksworks.com/contact.php" target="_blank">Fill out our merchant contact form</a></p>
+
+	  <h3>Frequently Asked Questions</h3>
+		<p>We may have your answer at the ready! <br /><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">Visit our FAQs page</a></p>
+
+
+	  <h3>Address</h3>
+
+	  <p>Get My PERKS: <%= @publisher.market_name_or_city %><br />
+
+	  <%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+      <%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+      <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}<br/>".html_safe unless @publisher.city.blank? %>
+      </p>
+
+
+	</div>
+
+      
+
+      <% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+	      
+		  
+          <% render with_theme("form_options") %>
+
+          <%= f.hidden_field :email_subject_format, :value => @email_subject_format %>
+		  
+		  <h4 class="header">Email us about Get My PERKS</h4>
+		  						
+		  <div class="row">
+		    <p><strong>Have a question or just want to give us some feedback? Fill out the form below and we'll get back to you as soon as possible.</strong></p>
+		  </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :first_name, "First Name *", :class => "required" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :first_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :last_name, "Last Name *", :class => "required" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :email, "Email *", :class => "required" %>
+            </div>
+            <div class="field">
+              <%= f.text_field :email %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :reason_for_request, "Reason *", :class => "required" %>
+            </div>
+            <div class="field">
+              <%= f.select(:reason_for_request, [["Please select one", nil]] + (@reasons_for_request || ["Question", "Comment"]).map{|reason| [reason, "#{@publisher.name} - #{reason}"]},
+                                     {}, :class => "contact_reason") %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">
+              <%= f.label :message, "Message *", :class => "required" %>
+            </div>
+            <div class="field">
+              <p>If applicable, please mention the deal or advertiser in your message below.</p>
+              <%= f.text_area :message, :class => "message" %>
+            </div>
+          </div>
+		  
+		  <div class="row">
+			<div class="label"></div>
+			<div class="field">
+				<p>* Required Fields</p>
+				<p>Please double check the information you've provided for accuracy.</p>
+			</div>
+		</div>
+		
+		<div class="row" id="buttons">
+			<div class="label"></div>
+			<div class="field">
+				<%= f.submit 'Send', :id => "submit" %>
+			</div>
+		</div>
+
+      <% end %>
+
+<% end %>
+
+</div>
+
+	</div><!--END rightcol-->
+	
+	<div class="leftcol">
+		<div class="content">
+		</div>
+		
+		
+		
+	</div><!--END leftcol-->
+</div><!--END deal_info-->

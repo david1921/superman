@@ -1,0 +1,16 @@
+<% set_daily_deal_page_title_slug "Contact Us" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1>Contact Us</h1>
+
+    <h2>Main Office</h2>
+    <p>30 S. Prospect Street, Colorado Springs, CO 80903</p>
+
+    <h2 style="margin-top: 18px;">Customer Service & Technical Support</h2>
+    <p>Please email <%= mail_to(@publisher.support_email_address, nil, :target => "_blank") %> or call (877) 538-4617.</p>
+
+    <h2 style="margin-top: 18px;">To have your business featured</h2>
+    <p>Please email <%= mail_to(@publisher.sales_email_address, nil, :target => "_blank") %>.</p>
+  </div>
+</div>

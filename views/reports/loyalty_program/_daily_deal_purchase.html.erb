@@ -1,0 +1,13 @@
+<tr id="purchase-<%= daily_deal_purchase.id %>">
+  <td class="description"><%= daily_deal_purchase.daily_deal.line_item_name %></td>
+  <td class="quantity"><%= daily_deal_purchase.quantity %></td>
+  <td class="recipient">
+    <%= truncate(daily_deal_purchase.redeemer_names, :length => 30) %>
+  </td>
+  <td class="date"><%= daily_deal_purchase.humanize_created_on %></td>
+  <td class="date"><%= daily_deal_purchase.humanize_expires_on %></td>
+  <td class="status"><%= admin_daily_deal_purchase_status_link(daily_deal_purchase) %></td>
+  <td class="name">
+    <%= link_to "#{daily_deal_purchase.store.present? ? daily_deal_purchase.store.summary : "Edit"}", daily_deal_purchases_consumers_admin_edit_path(daily_deal_purchase.id) %>
+  </td>
+</tr>

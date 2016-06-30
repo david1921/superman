@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+	<link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+	<link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+	<link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+	<link rel="stylesheet" href="/themes/locm/stylesheets/daily_deals.css" type="text/css" />
+	<link href="/themes/locm/stylesheets/global.css" media="all" rel="stylesheet" type="text/css" /> 
+	<link href="/themes/locm/stylesheets/header.css" media="all" rel="stylesheet" type="text/css" /> 
+	<link href="/themes/locm/stylesheets/footer.css" media="all" rel="stylesheet" type="text/css" /> 
+	<link href="/themes/locm/stylesheets/registration.css" media="all" rel="stylesheet" type="text/css" /> 
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  <script src="/javascripts/ghostie.js" type="text/javascript"></script>
+  
+  <script type="text/javascript"><!--//--><![CDATA[//><!--
+ 
+     sfHover = function() {
+          var sfEls = document.getElementById("market_menu").getElementsByTagName("LI");
+          for (var i=0; i<sfEls.length; i++) {
+               sfEls[i].onmouseover=function() {
+                    this.className+=" sfhover";
+               }
+               sfEls[i].onmouseout=function() {
+                    this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+               }
+          }
+     }
+     if (window.attachEvent) window.attachEvent("onload", sfHover);
+     //--><!]] ]]]] >  </script>
+<!--[if IE]>
+<link rel="Stylesheet" href="/themes/locm/stylesheets/globalIE.css" type="text/css" />
+<link href="/themes/locm/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  <title>{% daily_deal_page_title %}</title>
+	{% include "shared/tracking_google_analytics" %}
+  	<script language="JavaScript" type="text/javascript" src="/themes/locm/javascripts/cid.js"></script>	
+</head>
+<body>
+	{% include with_theme "shared/header" %}
+<!--Analog_Analytics_Daily_Deal-->
+<div id="analog_analytics">
+	<div id="daily_deal">
+		<div id="banner">
+			<!-- market dropdown -->
+			<div id="market_menu_wrapper">
+				<ul id="market_menu">
+					<p id="city_selection">City Selection:</p>
+        			<li><a href="#">{{ publisher.market_name_or_city }}</a>
+          				{{ publisher | market_selection_list }}
+					</li>
+				</ul>
+			</div><!-- /market_menu_wrapper -->
+			<div class="clear"></div>			
+			<!--/ market dropdown -->
+				<ul id="account_nav">			
+					{% if publisher.launched? %}
+						{% if publisher.current_user_belongs_to? %}
+					<li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+					<li><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+					<li class="last"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+						{% else %}
+					<li class="last"><a href="{{ publisher.login_path }}">Sign In</a></li>
+						{% endif %}
+					{% endif %}
+				</ul><!-- /account_nav -->
+				<div class="clear"></div>
+			<div id="subscribe_form"><p class="subscribe">ENTER YOUR EMAIL FOR DEAL ALERTS!</p>
+				<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+					<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+					<p><input id="subscriber_email" name="subscriber[email]" size="30" class="ghostie" type="text" value="Email Address" title="Email Address"/></p>
+					<p><input id="subscribe_button" src="/themes/locm/images/buttons/sign_up.png" type="image" /></p>
+					<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+					</p>
+				</form>
+		    {% include "shared/flash" %}
+			</div>
+		</div><!--banner-->   
+		<div id="dd_content">
+			<div id="dd_nav">
+				<a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> 
+				<a href="{{ daily_deal.buy_now_path }}">Buy Now</a>
+				<a href="{{ publisher.how_it_works_path }}">How it Works</a>
+				<a href="{{ publisher.faq_path }}">FAQ's</a>
+ 				<a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a>
+				<a class=last href="{{ publisher.contact_path }}">Contact Us</a>
+			</div><!-- /dd_nav -->
+		    {{ content_for_layout }}
+		</div><!--dd_content-->
+		<div class="clear"></div>
+	</div><!--daily_deal-->
+</div><!--analog_analytics--> 
+	{% include with_theme "shared/footer" %}
+	{% include with_theme "shared/tracking_publisher" %}
+	{% include "daily_deals/javascript" %}
+</body>
+</html>
+
+

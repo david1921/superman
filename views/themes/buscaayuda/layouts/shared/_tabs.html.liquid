@@ -1,0 +1,31 @@
+{% comment %}expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals{% endcomment %}
+
+	<div id="main_tabs">
+		<ul class="main_tab">
+
+		<li><a href="{{ publisher.todays_daily_deal_path }}" class="{% if_page_name != 'daily_deals#public_index' %}main_tab_selected{% endif_page_name %}">{% t .deal_of_the_week %}</a></li>
+    	<li><a href="{{ publisher.daily_deals_path }}?per_page=6&mall=1" class="{% if mall == '1' %}main_tab_selected{% endif %}">{% t all_deals %}</a></li>
+    	<li><a href="{{ publisher.daily_deals_path }}?per_page=6&mall=0" class="{% if mall == '0' %}main_tab_selected{% endif %}">{% t deal_certs %}</a></li>
+    	
+    	<!-- <li><a href="{{ publisher.offers_path }}" class="{% page_context_is offers %}current_page{%endpage_context_is%}">{% t deal_certs %}</a></li> -->
+
+		</ul><!-- /main_tabs -->
+		
+	</div>
+		
+	<div class="clear"></div>
+
+
+	<div class='tab_content {{ current_page }}_content'>
+		{% page_context_is daily_deals %}
+			{% include with_theme "layouts/shared/dd_nav" %}
+		{%endpage_context_is%}
+		
+		{{ content_for_layout }}
+	
+		
+		<div class="clear"></div>
+	</div>               
+</div><!-- /main_tabs -->
+
+

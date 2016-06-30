@@ -1,0 +1,223 @@
+<div>
+<div class="clear"></div>
+<div id="main_column">
+	<div class="content_box"><!-- deal info top row -->
+		<h1 id="value_prop">{{ daily_deal.value_proposition }}</h1>
+		<h2 id="value_prop_subhead">{{ daily_deal.value_proposition_subhead }}</h2>
+		<div class="six_col"><!-- photo and share links -->
+			<div id="deal_photo"><img src="{{ daily_deal.photo.standard_url }}" alt="{{ advertiser.name }}" width="435"/></div>
+			<div id="share">
+				<h4 id="share_deal">{% t share_this_deal %}:</h4>
+					<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_button share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="{% t facebook_share_title %}"><img src="/themes/buscaayuda/images/buttons/facebook.png" alt="{% t facebook_share_alt %}" /></a>
+					<a href="{{ daily_deal.twitter_url }}" class="share_button share_button_twitter" target="_blank"><img src="/themes/buscaayuda/images/buttons/twitter.png" alt="{% t twitter_share_alt %}" /></a>
+					<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button share_button_mail"><img src="/themes/buscaayuda/images/buttons/mail.png" alt="{% t email_share_alt %}" /></a>
+			</div><!-- /share -->
+		</div><!-- /photo and share links -->
+		<div class="three_col"><!--dashboard -->
+			<div id="price_tag">
+				{% if daily_deal.price.is_fractional? %}
+       		<h1 id="daily_deal_price_fractional">{{ daily_deal.price | currency: 2 }}</h1>
+				{% else %}
+        	<h1 id="daily_deal_price">{{ daily_deal.price | currency }}</h1>
+				{% endif %}
+
+				<div id="buy_now">
+					{% if daily_deal.sold_out? %}
+					<div id="sold_out" class="dd_button sold_out gradient">{% t sold_out %}</div>
+					{% elsif daily_deal.over? %}
+					<div id="deal_over" class="dd_button deal_over gradient">{% t deal_over %}</div>
+					{% elsif daily_deal.active? %}
+					<a id="buy_now_button" class="dd_button buy gradient" href="{{ daily_deal.buy_now_path }}" name="buy_now">{% t buy_now_bang %}</a>
+					<div id="deal_over" class="dd_button deal_over gradient unavailable" style="display:none;">{% t deal_over %}</div>
+					{% else %}
+					<div id="not_yet_available" class="dd_button not_yet_available gradient">{% t not_yet_available %}</div>
+					{% endif %}
+										
+				</div><!-- /buy_now -->
+			</div><!-- /price_tag -->
+			<div id="deal_specs">
+				<table id="value_summary">
+					<tr>
+						<th>{% t savings %}</th>
+						<th>{% t value %}</th>
+					</tr>
+					<tr>
+						<td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+						<td >{{ daily_deal.value | currency }}</td>
+					</tr>
+				</table>
+		      
+				<table id="timer">
+					<tr>
+						<th id="clock" rowspan="2"></th>
+						<th id="time_left_to_buy_label">{% t time_left_to_buy %}</th>
+					</tr>
+					<tr>
+						<td id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</td>
+					</tr>
+				</table><!-- /timer -->
+				{%  if daily_deal.number_sold > daily_deal.number_sold_display_threshold  %}
+					<p class="deals_bought"><span class="quantity" id="deals_sold">{{ daily_deal.number_sold }}</span> {% t bought %}</p>
+				{% endif %}
+			</div><!-- /deal_specs -->
+		</div><!-- /dashboard -->
+		<div class="clear"></div>
+	</div><!-- /deal info top row -->
+	<div><!-- deal info bottom row -->
+	
+	
+		<ul id="deal_tabs"> 
+			<li class="current_deal_tab"><a id="tab_overview">{% t description %}</a></li> 
+			 {% if advertiser.num_stores == 1 %}
+			 	<li style="{%unless advertiser.address?%}display:none{%endunless%}"><a id="tab_location">{% t location.one %}</a></li>
+			 {% endif %}
+			 {% if advertiser.num_stores > 1 %}
+			 	<li style="{%unless advertiser.address?%}display:none{%endunless%}"><a id="tab_location">{% t location.other %}</a></li>
+			 {% endif %}
+			<li style="{%if daily_deal.reviews == empty %}display:none{%endif%}"><a id="tab_reviews">{% t reviews %}</a></li>
+			<!-- <li style="{%if daily_deal.fine_print == empty %}display:none{%endif%}"><a id="tab_terms">FINE PRINT</a></li> -->
+		</ul> 
+		
+		<div id="deal_tab_content" class="content_box"> 
+			<div id="tab_overview_content">
+				<div id="description" class="six_col">
+  					<h5 class="advertiser_name">{{ advertiser.name }}</h5>
+  					<h2>{% t description %}</h2>
+				     {{ daily_deal.description }}
+				</div>
+				<div id="highlights" class="three_col">
+				     {% if daily_deal.highlights != "" %}
+				     <h2>{% t highlights %}</h2>
+				     {{ daily_deal.highlights }}
+				     {% endif %}
+				     {% if daily_deal.fine_print != "" %}
+				     <h2>{% t fine_print %}</h2>
+				     {{ daily_deal.terms }}
+				     {% endif %}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<!-- /description -->
+			<!-- location -->
+			<div id="tab_location_content" class="deal_tab_hidden">
+				<div id="advertiser_map" class="">
+				     {% if advertiser.stores.size > 0 %}
+				     <a  id="map" href="{{ advertiser.map_url }}" target="_blank"><img src="{{ daily_deal.multi_loc_map_image_url }}" width="178" /></a>
+				     {% endif %}
+				</div>
+				<!-- /map -->
+				
+				<div id="advertiser" class="four_col"> 
+					  <h5 class="advertiser_name">{{ advertiser.name }}</h5>
+					  {% for store in advertiser.stores %}
+					  <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">                   
+					    <p>
+					    	 {% if store.city != empty %}
+					    	 	<span class="advertiser_city">{{ store.city }}</span>
+					    	 {% endif %}
+     					     {% if store.address_line_1 != empty %}
+     					     <span>{{ store.address_line_1 }}</span>
+     					     {% endif %}
+     					     {% if store.address_line_2 != empty %}
+     					     <span>{{ store.address_line_2 }}</span>
+     					     {% endif %}
+	 					
+     					     {% if store.city != empty and store.state != empty and store.zip != empty %}
+     					     <span>{{ store.city }}, {{ store.state }} {{ store.zip }}</span>
+     					     {% endif %}
+     					     
+     					     {% if store.formatted_phone_number != empty %}
+     					     <span>{{ store.formatted_phone_number }}</span>
+     					     {% endif %}         
+	 					
+     					     </p>
+					  </div><!-- /location_container -->
+					  {% endfor %}
+					  
+					  {% if advertiser.website_url != empty %}
+					  <a href="{{ advertiser.website_url }}">{% t .visit_advertiser_website %}</a><br />
+					  {% endif %}
+					
+					  {% if advertiser.num_stores > 3 %}
+					  <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">{% t see_all_locations %}</a>
+					  {% endif %}
+				</div><!-- /advertiser -->
+				
+				<!-- /location -->
+				<div class="clear"></div>
+
+			</div><!--/tab_overview_content --> 
+			
+			<div id="tab_reviews_content" class="deal_tab_hidden"> 
+				 <h5 class="advertiser_name">{{ advertiser.name }}</h5>
+				 {% if daily_deal.reviews != "" %}
+				 <h2>{% t reviews %}</h2>
+				 {{ daily_deal.reviews }}
+				 {% endif %}
+			</div><!-- /tab_content_reviews --> 
+			
+			<div id="tab_terms_content" class="deal_tab_hidden"> 
+					     {% if daily_deal.fine_print != "" %}
+				     <h2>{% t fine_print %}</h2>
+				     {{ daily_deal.terms }}
+				     {% endif %}
+			</div><!-- /tab_content_fineprint --> 
+		</div><!--/tab content --> 
+	
+	</div><!-- /deal info bottom row -->
+	
+	
+	
+</div><!-- /main_column -->
+
+
+
+<div id="sidebar">
+	{% if publisher.enable_daily_deal_referral %}
+	<div id="refer_friend" class="content_box three_col">
+    <h2 class="refer">{% t daily_deals.show.refer_a_friend_get %} {{ publisher.daily_deal_referral_credit_amount | currency }}</h1>
+		<p><a id="refer_button" href="{{ publisher.refer_a_friend_path }}" class="button gradient refer_a_friend_tracking">{% t refer_a_friend %}</a></p>
+	</div><!-- /refer_friend -->
+	{% endif %}  
+	
+	<div class="app_store content_box three_col">
+		<center>{% t .app_store_badge %}</center>
+		<center><a href="https://play.google.com/store/apps/details?id=com.analoganalytics.biggerbetterdeal.busca"><img src="/themes/buscaayuda/images/buttons/android_app_on_play_large.png" alt="Andoid App on Google Play" /></a></center>
+	</div><!-- App Store -->
+	
+	{% if daily_deal.side_deals.size > 0 %}
+	<div id="side_deals" class="content_box three_col other_deal_tracking">
+	     <h4>{% t other_deals %}</h4>
+           {% assign side_deals = daily_deal.random_side_deals_in_shopping_mall %}
+	       {% for deal in side_deals limit:2 %}
+	         <div class="side_deal_wrap">
+	         	<p class="side-deal-city">{{deal.advertiser.city}}</p>
+				<p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ deal.value_proposition }}</a></p>
+				<div class="side_deal_text">
+					{% if deal.price.is_fractional? %}
+						<div class="side_deal_price_fractional">{{ deal.price | currency: 2 }}</div>
+       		{% else %}
+         		<div class="side_deal_price">{{ deal.price | currency }}</div>
+					{% endif %}
+
+          <p class="side_deal_value">{{ deal.value | currency }} {% t value %}</p>
+				</div><!-- /side_deal_text -->
+				<div class="side_deal_thumb"><img src="{{ deal.photo.facebook_url }}" alt="" /></div>
+				<div class="clear"></div>
+				<a id="view_deal" class="view_deal dd_button gradient" href="{{ deal.url }}" target="_blank">{% t view_deal %}</a>
+				<div class="clear"></div>
+	          </div><!-- /side_deal_wrap -->
+	       {% endfor %}
+	</div><!-- /side_deals -->
+	{% endif %}
+	
+	<div class="content_box three_col">
+    {% if fb_page != '' %}
+		<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2Fusca-Ayudacom/131233756950750&amp;width=210&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=true&amp;height=290" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:210px;height:290px;" allowTransparency="true"></iframe>
+   {% endif %}
+	</div><!-- /facebook like box -->
+	
+</div><!-- /sidebar -->
+</div>
+

@@ -1,0 +1,20 @@
+
+<% form_for :subscriber, @subscriber, :url => publisher_subscribers_path(@publisher) do |f| -%> 
+    <div class="row required">
+      *required
+    </div>
+    <%= f.hidden_field :zip_code_required, :value => true %>
+    <%= hidden_field_tag :display_thank_you_page, true %>
+    <%= f.text_field_div(:first_name, "* First Name:" ) %>
+    <%= f.text_field_div(:last_name,  "* Last Name:" ) %>
+    <%= f.text_field_div(:email, "* Email:" ) %>
+    <%= f.text_field_div(:mobile_number, " Mobile:" ) %>
+    <%= f.text_field_div(:zip_code, "* ZIP Code:" ) %>
+
+    <%= f.hidden_field :must_accept_terms, :value => true %>
+    <%= f.check_box_div(:terms, "I agree to the #{daily_deals_terms_link(@publisher)} and #{daily_deals_privacy_link(@publisher)}".html_safe) %>
+
+    <div class="row button">
+      <%= image_submit_tag "/themes/gogosavings/images/buttons/subscribe.png", :name => "sign_up" %>
+    </div>             
+<% end %>                        

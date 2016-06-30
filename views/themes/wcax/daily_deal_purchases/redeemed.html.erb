@@ -1,0 +1,40 @@
+<% set_daily_deal_page_title_slug t(:redeemed_vouchers) %>
+<% redeemed_off_platform_certificates = @consumer.off_platform_daily_deal_certificates.find(:all, :conditions => ['redeemed = ?', true], :order => 'id ASC') %>
+
+<div class="page_row my_deals_page redeemed">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <div id="dd_nav" style="margin-left:-10px;margin-right:-10px;margin-bottom:15px;">
+      <%= raw render :partial => with_theme("shared/dd_nav")%>
+    </div><!-- END #dd_nav --> 
+    <%= render :partial => "daily_deal_purchases/navigation" %>
+    <h1 class="content"><%= t(:redeemed_vouchers) %></h1>
+    
+    <% if @redeemed_certificates.blank? && redeemed_off_platform_certificates.blank? && @past_travelsavers_bookings.blank? %>
+      <p><%= t('.no_redeemed_vouchers_message') %></p>
+    <% else %>
+      <div class="mydeals_unoptimized">
+      <table id="<%= %Q(consumer_#{@consumer.id}_redeemed_daily_deal_certificates) %>" class="daily_deal_purchase my_deals" cellspacing="0">
+        <tr>
+          <th class="description"><%= t(:description) %></th>
+          <th class="advertiser"><%= t(:advertiser) %></th>
+          <th class="serial_number"><%= t(:voucher_number) %></th>
+          <th class="recipient"><%= t(:recipient) %></th>
+          <th class="used_on"><%= t(:redeemed_on) %></th>
+          <th class="status">&nbsp;</th>
+        </tr>
+
+        <%= render(:partial => with_theme("redeemed_voucher"), :collection => @redeemed_certificates) %>
+        <%= render(:partial => with_theme("redeemed_off_platform_certificate"), :collection => redeemed_off_platform_certificates) %>
+        <%= render(:partial => with_theme("redeemed_travelsavers_booking"), :collection => @past_travelsavers_bookings) %>
+      </table>
+      </div>
+      <div class="mydeals_optimized">
+        <div id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase my_deals">
+          <%= render(:partial => with_theme("redeemed_voucher_optimized"), :collection => @redeemed_certificates) %>
+          <%= render(:partial => with_theme("redeemed_travelsavers_booking"), :collection => @past_travelsavers_bookings) %>
+        </div>
+      </div><!--/mydeals_optimized-->
+    <% end %>
+  </div>
+</div>
+

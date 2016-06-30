@@ -1,0 +1,28 @@
+<!-- sidebar -->
+<div id="sidebar">
+	<%= render :partial =>  with_theme("shared/side/side_tell") %>
+	<%= render :partial =>  with_theme("shared/side/side_share"), :locals => { :daily_deal => daily_deal } if daily_deal.enable_loyalty_program? %>
+    <!-- side deal logic -->
+    <% if ("#{controller_name}" == "daily_deal_categories") %>
+        <% category_deals = @daily_deals.select { |x| x.publishers_category.present? } %>
+        <% side_deals = category_deals.select { |x| x.publishers_category.name == "Travel Deal" } %> 
+        <% unless side_deals.blank? %>
+            <%= render :partial =>  with_theme("shared/side/side_more_deals"), :locals => { :daily_deal => daily_deal, :side_deals => side_deals } unless ("#{controller_name}##{action_name}" == "daily_deals#public_index") || ("#{controller_name}##{action_name}" == "daily_deals#past") %>
+        <% end %>
+    <% elsif !daily_deal.side_deals.blank? %>
+	    <% side_deals = daily_deal.side_deals.reject { |x| x.publishers_category.present? } %>
+            <% unless side_deals.blank? %>
+            <%= render :partial =>  with_theme("shared/side/side_more_deals"), :locals => { :daily_deal => daily_deal, :side_deals => side_deals } unless ("#{controller_name}##{action_name}" == "daily_deals#public_index") || ("#{controller_name}##{action_name}" == "daily_deals#past") %>
+        <% end %>
+	<% end %>
+    <!-- end side deal logic -->
+    <% if @publisher.label == "yumasun" || @publisher.label == "vvdailypress" %>
+        <%= render :partial =>  with_theme("shared/side/side_coupons") %>
+    <% end %>
+    <!-- COMMENTING OUT RECENT DEALS PAGE --> <%# render :partial =>  with_theme("shared/side/side_recent") if "#{controller_name}##{action_name}" == "daily_deals#public_index" %> 
+    <%= render :partial =>  with_theme("shared/side/side_travel")  unless ("#{controller_name}##{action_name}" == "daily_deals#public_index") || ("#{controller_name}##{action_name}" == "daily_deals#past") %>
+    <%= render :partial =>  with_theme("shared/side/side_download_app") %>
+    <%= render :partial =>  with_theme("shared/side/side_send_deals") %>	
+    <%= render :partial =>  with_theme("shared/side/side_facepile") %>    
+</div>
+<!-- /sidebar -->

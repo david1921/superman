@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<title><%= @daily_deal.value_proposition %></title>
+</head>
+
+<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" style="margin: 0px; background-color: #FFFFFF; font-family: Helvetica, Arial, sans-serif;">
+<table cellspacing="0" border="0" bgcolor="#5b4e9f" style="margin: 0; padding: 0; border: 0;" width="100%" cellpadding="0">
+	<tr style="margin: 0; padding: 0; border: 0;">
+		<td align="center" style="margin: 0; padding: 0; border: 0;">
+    		<table id="content_container" cellspacing="0" border="0 " style="padding: 0; border: 0; margin: 0;" bgcolor="#5b4e9f" width="600" cellpadding="0">
+				<tr>
+					<td colspan="3"><img style="display: block;" src="http://<%= @publisher.daily_deal_host %>/themes/allconnect/images/graphics/email_banner.png" height="187" width="600" alt="Daily Deal | Please enable images" /></td>
+				</tr>
+				<tr>
+					<td>
+						<% price_size, precision = (@daily_deal.value.is_fractional? or @daily_deal.price.is_fractional?) ? ['24px', 2] : ['38px', 0] %>
+						<table align="center" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;"><!-- daily deal content -->
+				    			<tr>                   
+				    				<td bgcolor="#ffffff" width="580" style="width:580px;">
+				    					<table align="center" cellpadding="0" cellspacing="0" border="0">
+				    						<tr>
+				    							<td colspan="2" style="color:#000;font-family: Helvetica, sans-serif; font-size:14px; font-weight:bold; padding-top: 20px; text-align:center;"><%= Time.now.strftime("%A, %B %e, %Y") %></td>
+				    						</tr>
+											<tr>
+												<td colspan="2" style="padding-left:20px;padding-top: 20px;" valign="top"><h1 style="color: #aa67aa;font-family: Helvetica, sans-serif;font-size:30px; line-height:34px;margin:0;padding-bottom:16px;"><%= @daily_deal.value_proposition %></h1></td>
+											</tr>
+				    						<tr>
+												<td style="vertical-align:top; padding-left:10px;">
+													<table cellpadding="0" cellspacing="0" border="0" width="240" style="border-spacing:0;"><!-- dashboard -->
+														<tr>
+															<td><img src="http://<%= @publisher.daily_deal_host %>/themes/hearst/images/graphics/price_tag_email_left.png" height="72" width="19" alt="buy_now" /></td>
+																<% if !@daily_deal.daily_deal_variations.blank? -%>
+																	<% if @daily_deal.price.is_fractional? %>
+																		<td style="background-color: #9c0001; color:#ffffff; display:inline-block; font-family: Helvetica, sans-serif;font-size:28px; font-weight:bold; height:61px; line-height:24px; margin:0; padding-top:11px; text-align:center; text-decoration:none; vertical-align:middle;width:90px;">
+																			From<br/><%= number_to_currency(@daily_deal.price_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %>
+																	<% else %>
+																		<td style="background-color: #9c0001; color:#ffffff; display:inline-block; font-family: Helvetica, sans-serif;font-size:28px; font-weight:bold; height:61px; line-height:24px; margin:0; padding-top:11px; text-align:center; text-decoration:none; vertical-align:middle;width:90px;">
+																			From<br/><%= number_to_currency(@daily_deal.price_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+																	<% end %>
+																<% else %>
+																	<% if @daily_deal.price.is_fractional? %>
+																		<td style="background-color: #9c0001; color:#ffffff; display:inline-block; font-family: Helvetica, sans-serif;font-size:<%= price_size %>; font-weight:bold; height:57px; line-height:42px; margin:0; padding-top:15px; text-align:center; text-decoration:none; vertical-align:middle;width:90px;">
+																			<%= number_to_currency(@daily_deal.price_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol) %>
+																	<% else %>
+																		<td style="background-color: #9c0001; color:#ffffff; display:inline-block; font-family: Helvetica, sans-serif;font-size:36px; font-weight:bold; height:57px; line-height:42px; margin:0; padding-top:15px; text-align:center; text-decoration:none; vertical-align:middle;width:90px;">
+																			<%= number_to_currency(@daily_deal.price_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+																	<% end %>
+																<% end %>
+															</a></td>
+															<td><a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>&cmpid=emailbuy"><img src="http://<%= @publisher.daily_deal_host %>/themes/allconnect/images/graphics/price_tag_email_right.png" border="0" style="border:none;" height="72" width="132" alt="buy_now" /></a></td>
+														</tr>
+			
+														<tr>
+															<td colspan="3" style="text-align:center;padding-top:20px;">
+																<table align="center" cellpadding="0" cellspacing="0" border="0" style="text-align:center;">
+																	<tr>
+																		<th style="color:black; border-right:1px solid #ababab;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold; padding-right:10px;">VALUE</th>
+																		<th style="border-right:1px solid #ababab; color:black;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold; padding-right:10px; padding-left:10px;">COST</th>
+																		<th style="color:#7c0001;font-family: Helvetica, sans-serif;font-size:13px; font-weight:bold;padding-left:10px;">SAVINGS</th>
+																	</tr>
+																	<tr>
+																		<% summary_size, precision = (@daily_deal.value.is_fractional? or @daily_deal.price.is_fractional?) ? ['18px', 2] : ['22px', 0] %>
+																		<td style="color:black; border-right:1px solid #ababab;font-family: Helvetica, sans-serif;font-size:<%= summary_size %>; font-weight:bold; padding-right:10px;">
+																			<% if @daily_deal.value.is_fractional? %>
+																				<%= number_to_currency @daily_deal.value_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% else %>
+																				<%= number_to_currency @daily_deal.value_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% end %>
+																		</td>
+																		<td style="border-right:1px solid #ababab; color:black;font-family: Helvetica, sans-serif;font-size:<%= summary_size %>; font-weight:bold;padding-right:10px; padding-left:10px;">
+																			<% if @daily_deal.price.is_fractional? %>
+																				<%= number_to_currency @daily_deal.price_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% else %>
+																				<%= number_to_currency @daily_deal.price_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% end %>
+																		</td>
+																		<td style="color:#7c0001;font-family: Helvetica, sans-serif;font-size:<%= summary_size %>; font-weight:bold;padding-left:10px;">
+																			<% if @daily_deal.savings.is_fractional? %>
+																				<%= number_to_currency @daily_deal.savings_to_display, :precision => 2, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% else %>
+																				<%= number_to_currency @daily_deal.savings_to_display, :precision => 0, :unit => @daily_deal.publisher.currency_symbol %>
+																			<% end %>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+														<tr>
+															<td colspan="3" style="padding:10px;">
+							    								<table align="center" cellpadding="0" cellspacing="0" border="0">
+							    									<tr>
+							    										<td colspan="3"><p style="color:#7c0001;font-family: Helvetica, sans-serif;font-size:14px; font-weight:bold;padding-right:30px;text-align:center;">SHARE THIS DEAL:</p></td>
+							    									</tr>
+							    									<tr>
+							    										<td><a href="<%= facebook_daily_deal_url(@daily_deal) %>" style="color: #ffffff;padding-right:20px; padding-left:20px;"><img src="http://<%= @publisher.daily_deal_host %>/themes/hearst/images/buttons/facebook.png" height="50" alt="Facebook" style="border: none;" width="50" /></a></td>
+							    										<td><a href="<%= twitter_daily_deal_url(@daily_deal) %>" style="color: #ffffff;padding-right:20px;"><img src="http://<%= @publisher.daily_deal_host %>/themes/hearst/images/buttons/twitter.png" height="50" alt="Twitter" style="border: none;" width="50" /></a></td>
+							    										<td><a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" style="color: #ffffff;"><img src="http://<%= @publisher.daily_deal_host %>/themes/hearst/images/buttons/mail.png" height="50" alt="Email" style="border: none;;" width="50" /></a></td>
+							    									</tr>
+							    								</table>
+															</td>
+														</tr>
+													</table><!-- /dashboard -->
+												</td>
+												<td style="padding-left:20px; padding-right:8px;padding-bottom:20px;width:295px;vertical-align:top;"><img src="<%= @daily_deal.photo.url %>" alt="<%= @advertiser.name %>" width="295" /></td>								
+											</tr>
+				    					</table>
+				    				</td>
+				    			</tr>
+								
+				    			<tr>                   
+				    				<td bgcolor="#ffffff" width="580" style="width:580px;">
+				    					<table align="center" width="580" cellpadding="0" cellspacing="0" border="0">
+				    						<tr>
+				    							<td>
+				    								<table cellpadding="0" cellspacing="0" border="0"><!-- deal info -->
+				    									<tr>
+															<td valign="top" style="padding-left:20px; padding-right:20px; padding-bottom:20px;text-align:left;width:60%">
+																<% unless @daily_deal.highlights.blank? %>
+																<h3 style="font-family: Helvetica, sans-serif; font-size: 14px; font-weight: bold; line-height: 1.1em; padding: 0; margin-top: 12px; margin-bottom: 12px; color: #2ea4be;">HIGHLIGHTS</h3>
+																<span style="font-family: Helvetica, sans-serif;font-size:12px;font-weight:normal;"><%= @daily_deal.highlights.try :html_safe! %></span>
+																<% end %>
+					
+																<% unless @daily_deal.description.blank? %>
+																<h3 style="font-family: Helvetica, sans-serif; font-size: 14px; font-weight: bold; padding: 0;margin-bottom: 12px; color: #2ea4be;">DESCRIPTION</h3>
+																<span style="font-family: Helvetica, sans-serif;font-size:12px;font-weight:normal;"><%= @daily_deal.description.try :html_safe! %></span>
+																<% end %>
+															</td>
+															<td valign="top" style="font-family: Helvetica, sans-serif;font-weight: bold;width:280px;padding-left:20px;padding-right:10px;text-align:left;">
+																<img src="<%= @advertiser.logo.url %>" alt="<%= @advertiser.name %>" style="display: block;" width="110" />
+																<p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 10px; margin-bottom: 6px; color: #000000;"><%= @advertiser.name %></p>
+																<% if @advertiser.website_url.present? -%>
+																<p style="padding: 0; margin-top: 0; margin-bottom: 6px;"><a style="color:#2ea4be; font-family: Arial, Helvetica, sans-serif; font-size: 12px;" href="<%= @advertiser.website_url %>">Visit Website</a></p>
+																<% end -%>
+																
+																<% @daily_deal.advertiser.stores.each_with_index do |store, idx| -%>
+																  <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.3em; padding: 0; margin-top: 0;margin-bottom: 6px; color: #000000;<% if idx > 2 %> display:none<% end %>">                  
+																	<% if store.address_line_1.present? -%>
+																      <span style="display:block;"><%= store.address_line_1 %></span>
+																    <% end -%>
+																    <% if store.address_line_2.present? -%>
+																       <span style="display:block;"><%= store.address_line_2 %></span>
+																    <% end -%>
+																	<% if store.city.present? and store.state.present? and store.zip.present? -%>
+																       <span style="display:block;"><%= store.city + ", " + store.state + " " + store.zip %></span>
+																    <% end -%>
+																    <% if store.formatted_phone_number.present? -%>
+																       <span style="display:block;"><%= store.formatted_phone_number %></span>
+																    <% end -%><br />
+																  </p><!-- /location_container -->
+																<% end -%>
+																
+																<% if @daily_deal.advertiser.stores.size > 3 %>
+																<p style="padding: 0; margin-top: 0; margin-bottom: 6px;"><a style="color:#2ea4be; font-family: Arial, Helvetica, sans-serif; font-size: 12px;" href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>">See all locations</a></p>
+																<% end -%>
+																
+															</td>
+														</tr>
+				    								</table><!-- /deal info -->
+				    							</td>
+				    						</tr>
+				    					
+				    					</table>
+				    				</td>
+				    			</tr>
+								<tr>
+								</tr>
+							</table><!-- /daily deal content -->
+					</td>
+				</tr>
+    		</table><!-- /content_container -->
+			<table width="640" align="center" style="text-align:center;">
+				<tr>
+					<td style="background-color: white:text-align:center;">
+						<p style="font-family: Arial, Helvetica, sans-serif;font-size:16px; color:white;font-size:12px;">Copyright <%= Time.now.year %>. All rights reserved.</p>
+			      <p><a style="border: none; text-align: center" href="http://analoganalytics.com"><img style="border:none;" src="http://<%= @publisher.daily_deal_host %>/images/powered_by_analog_analytics.png" alt="Powered by Analog Analytics" /></a></p>
+					</td>
+				</tr>	
+			</table>
+		</td>
+	</tr>
+</table><!-- /body-->
+</body>
+</html>

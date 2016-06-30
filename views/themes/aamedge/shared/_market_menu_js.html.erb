@@ -1,0 +1,18 @@
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+	jQuery("#market_menu_wrapper ul").hover(function() {
+       var thisitem = jQuery(this),
+		totalLength = jQuery("#market_menu_wrapper ul li ul").css("height");
+		thisitem.css({"height" : totalLength, "background" : "none"});
+		jQuery("#market_menu_wrapper ul li ul").css("background", "#ffffff");
+	    thisitem.addClass('open');
+	    thisitem.find("ul").hide().slideDown('1000');
+	} , function() {
+		   	var thisitem = jQuery(this)
+			thisitem.css("height", "");
+		    thisitem.find("ul").stop(true,true).slideUp('1000');
+		    thisitem.removeClass();
+	   });
+});
+</script>

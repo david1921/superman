@@ -1,0 +1,50 @@
+quentin_my_space:
+    user: quentin
+    company: my_space (Publisher)
+
+pam_gvnews:
+    user: pam
+    company: gvnews (Publisher)
+    
+old_password_holder_my_space:
+    user: old_password_holder
+    company: my_space (Publisher)
+
+guest_my_space:
+    user: guest
+    company: my_space (Publisher)
+
+greg_li_press:
+    user: greg
+    company: li_press (Publisher)
+
+scott_student_discount_handbook:
+    user: scott
+    company: student_discount_handbook (PublishingGroup)
+
+gary_locm:
+    user: gary
+    company: locm (PublishingGroup)
+
+mickey_sdh_austin:
+    user: mickey
+    company: sdh_austin (Publisher)
+
+jimmy_changos:
+    user: jimmy
+    company: changos (Advertiser)
+
+jorge_di_milles:
+    user: jorge
+    company: di_milles (Advertiser)
+
+zorba_el_greco:
+    user: zorba
+    company: el_greco (Advertiser)
+
+robert_vvm:
+    user: robert
+    company: vvm (PublishingGroup)
+    
+
+    

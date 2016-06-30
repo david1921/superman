@@ -1,0 +1,90 @@
+<div id="page-leftcol">  
+  {% for gc in gift_certificates %}
+  <div class="certificate"><!--START CERTIFICATE-->  
+	<div class="deal-leftcol">
+        <h3><img src="/themes/anchoragepress/images/display/certificate.png" width="192" height="30" alt="CERTIFICATE" /></h3>
+        <div class="content">
+            <div class="advertiser">
+			  <img src="{{ gc.advertiser.logo.url }}" />
+			  <p class="name">{{ gc.advertiser_name }}</p> 
+			  {% if gc.advertiser.address? %}
+			    {% for store in gc.advertiser.stores %}
+				  <p class="locations" style="{% if forloop.index > 3 %}display:none{% endif %}">
+					{{ store.address_line_1 }}<br />
+					{{ store.city }}, {{ store.state }} {{ store.zip }}
+					  {% if store.formatted_phone_number != empty %}
+					    <br />Phone:{{ store.formatted_phone_number }}
+					  {% endif %}
+					  {% if advertiser.website_url != empty %}
+					  	<br /><a href="{{ advertiser.website_url }}">visit website</a>
+					  {% endif %}
+				  </p>
+			    {% endfor %}
+				{% else %}
+				  <p>
+				  	{% if gc.advertiser.website_url %}
+					  <a href="{{ gc.advertiser.website_url }}">website</a><br />
+					 {% endif %}
+				    {% if store.formatted_phone_number != empty %}
+					    Phone:{{ store.formatted_phone_number }}
+					{% endif %}
+				  </p>
+			  {% endif %}
+			  
+			  {% if gc.advertiser.num_stores > 3 %}
+  				<a id="see_all_locations" href="#"
+  				   onclick="javascript:$$('p.locations').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+  			  {% endif %}	  
+			  
+			</div>
+            <div class="map">
+			{% if gc.advertiser.address? %}
+			  {% if gc.advertiser.stores.size > 0 %}
+                <a href="{{ gc.advertiser.map_url }}" target="_blank">
+                  <img src="{{ gc.multi_loc_map_image_url }}" id="map" width="183" />
+                </a>
+              {% endif %}
+			{% endif %}
+			</div>
+        </div>
+    </div>
+    <div class="deal-rightcol">
+        <h1>{{ gc.value | currency }} Deal Certificate for Only {{ gc.price | currency }}</h1>
+        <div class="description">
+          {{ gc.description }}
+        </div>
+		
+		<div class="terms">
+		  {{ gc.terms }}
+		</div>
+
+        <div class="clear"></div>
+        <div class="share">
+        Share with friends
+        <div>
+          <a href="{{ gc.facebook_path }}" target="_blank"><img src="/themes/anchoragepress/images/buttons/facebook.png"/></a>
+          <a href="{{ gc.twitter_path }}" target="_blank"><img src="/themes/anchoragepress/images/buttons/twitter.png"/></a>
+          <a href="mailto:?subject=Anchoragepress: {{ gc.value | currency }} Deal Certificate for Only {{ gc.price | currency }}&amp;body=Check out this deal at http://pressgoodies.com/" class="share_link">
+            <img src="/themes/anchoragepress/images/buttons/email.png" width="30" height="30" alt="Email" />
+          </a>
+        </div>
+		</div>
+		
+		<div class="buy-buttons">
+		   <div class="price">Only {{ gc.price | currency }}</div>
+       <div class="quantity">{{ gc.available_count }} AVAILABLE</div>
+  		<form action="{{ gc.paypal_url }}" method="post" target="_top">
+       {{ gc | paypal_add_to_cart_button_fields : "/themes/anchoragepress/images/buttons/buy-now.png" }}
+  		</form>
+      </div>  
+    </div>
+    
+  </div><!--END CERTIFICATE-->  
+  {% endfor %}
+</div>
+<div id="page-rightcol">
+    
+	{% include "themes/anchoragepress/shared/rightcol" %}
+	
+</div>
+

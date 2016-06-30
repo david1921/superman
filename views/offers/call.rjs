@@ -1,0 +1,3 @@
+page.visual_effect :slide_up, "offer_#{@offer.id}_front_panel"
+page.replace_html "offer_#{@offer.id}_call_panel", :partial => "offers/panels/call", :object => @offer
+page.visual_effect :appear, "offer_#{@offer.id}_call_panel", :afterFinish => "function() {$('offer_#{@offer.id}_lead_mobile_number').focus()}"

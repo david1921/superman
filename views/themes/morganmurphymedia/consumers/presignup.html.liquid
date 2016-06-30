@@ -1,0 +1,97 @@
+<div id="container">
+	<div id="leftcol">
+		<div id="blueribbon"><h2>Sign up for <span class="gold">FREE</span> today</h2></div>
+		<div class="padding">
+			<h3>How It Works:</h3>
+			<h4>Sign Up</h4>
+			<p>Subscribe to the Best Deals in your city and beyond, and we'll email you exceptional deals weekly, saving you 50-90% at local businesses!</p>
+			<h4>Get the Deal</h4>
+			<p>Buy the deal. Once you buy, check your email for your voucher. It's easy!</p>
+			<h4>Share It</h4>
+			<p>Buy the deal. Once you buy, check your email for your voucher. It's easy!</p>
+	
+		</div>
+	 </div>
+	 
+	<div id="rightcol">
+		<div class="content">
+			<h1>We'll send exceptional deals to your inbox every day.</h1>
+			<p>Get 50% off or more at great places in your neighborhood. Sign up for FREE to receive Best Deals in your city and Beyond for the best, hassle-free, easy-to-use deals with a few surprises each week... to deliver a great experience.</p>
+		</div>
+		
+		<div id="signupform">
+		<form action="/publishers/{{ publisher.id }}/daily_deal_subscribers" class="new_subscriber email_subscription_tracking" id="new_subscriber" method="post" name="new_subscriber">
+		
+			<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}">
+			<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+			<input type="hidden" name="subscriber[required_fields][]" value="name">
+			<input type="hidden" name="subscriber[required_fields][]" value="zip_code">                  
+			<div class="row">
+				<div class="label">
+				  <label for="subscriber_email">Email</label>
+				</div>
+				<div class="input">
+				  <input id="subscriber_email" name="subscriber[email]" size="30" type="text">
+				</div>            
+			</div>
+			
+			<div class="row">
+			  <div class="label">
+				<label for="subscriber_name">First Name</label>
+			  </div>
+			  <div class="input">
+				<input id="subscriber_name" name="subscriber[first_name]" size="30" type="text">                              
+			  </div>
+			</div>
+			
+			<div class="row">
+			  <div class="label">
+				<label for="subscriber_name">Last Name</label>
+			  </div>
+			  <div class="input">
+				<input id="subscriber_name" name="subscriber[first_name]" size="30" type="text">                              
+			  </div>
+			</div>
+			
+			<div class="row">
+				<div class="label">
+				  <label for="subscriber_zip_code">Postal Code</label>
+				</div>
+				<div class="input">
+				  <input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text">
+				</div>            
+			</div>
+			
+			<div class="row">
+				<div class="label">
+				  <label>Get Deals for</label>
+				</div>
+        {{ publisher | market_selection: 'subscriber[market_publisher_id]', true, true, true }}
+			</div>
+			
+			<div class="row" id="terms">
+				
+				<div class="label">
+					<label for="subscriber_terms"></label>
+				</div>
+				<div class="input">
+					<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" />
+					<label for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+					
+				</div>
+			</div>
+			
+			<div id="buttons" class="row">
+				<div class="label">
+					<label for="subscriber_submit"></label>
+				</div>
+				<div class="input">
+					<input id="subscribe_button" type="submit" value="sign up" />             
+				</div>
+			</div>
+		
+		</form>
+		</div>
+		
+	</div>
+</div>

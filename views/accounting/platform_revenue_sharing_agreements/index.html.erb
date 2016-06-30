@@ -1,0 +1,43 @@
+<table>
+  <thead>
+    <th>Effective Date</th>
+    <th>AA Gross<br>Fee %</th>
+    <th>AA Net<br>Fee %</th>
+    <th>Credit Card Fee Source</th>
+    <th>Credit Card Fee Details</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </thead>
+  <%  
+  if @publishing_group.present?
+    agreements = @publishing_group.platform_revenue_sharing_agreements
+  elsif @publisher.present?
+    agreements = @publisher.platform_revenue_sharing_agreements
+  else
+    agreements = []
+  end
+  %>
+  <% agreements.each do |agreement| -%>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td><%= agreement.effective_date %></td>
+    <td><%= agreement.platform_fee_gross_percentage %><%= "%" if agreement.platform_fee_gross_percentage.present? %></td>
+    <td><%= agreement.platform_fee_net_percentage %><%= "%" if agreement.platform_fee_net_percentage.present? %></td>
+    <td><%= agreement.credit_card_fee_split_description %></td>
+    <td><%= agreement.credit_card_fee_split_details %></td>
+    <td>
+      <% if @publishing_group.present? -%>
+        <%= link_to("Edit", edit_publishing_group_platform_revenue_sharing_agreement_path(@publishing_group, agreement)) %>
+      <% elsif @publisher.present? -%>
+        <%= link_to("Edit", edit_publisher_platform_revenue_sharing_agreement_path(@publisher, agreement)) %>
+      <% end -%>
+    </td>
+    <td>
+      <% if @publishing_group.present? -%>
+        <%= link_to("Delete", publishing_group_platform_revenue_sharing_agreement_path(@publishing_group, agreement), :method => :delete) %>
+      <% elsif @publisher.present? -%>
+        <%= link_to("Delete", publisher_platform_revenue_sharing_agreement_path(@publisher, agreement), :method => :delete) %>
+      <% end -%>
+    </td>
+  </tr>
+  <% end -%>
+</table>

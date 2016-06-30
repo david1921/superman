@@ -1,0 +1,28 @@
+<% form_tag delete_advertiser_offers_url(@advertiser) do %>
+  <table cellspacing="0" summary="offers">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Image</th>
+      <th>Message</th>
+      <th>TXT Message</th>
+      <th>Value</th>
+      <th>&nbsp;</th>
+    </tr>
+
+    <%= render :partial => "offer", :collection => @offers %>
+
+    <% if @offers.empty? -%>
+    <tr>
+      <td colspan="6" style="text-align: center;">Click New Offer to add an offer</td>
+    </tr>
+    <% end -%>
+
+  </table>
+
+  <% if admin? %>
+  <div class="full_width buttons">
+    <%= submit_tag("Delete", :confirm => "Really delete?", :class => "left") %>
+    <%= button_to_function "New Offer", "window.location.href = '#{new_advertiser_offer_url(@advertiser)}'" %>
+  </div>
+  <% end %>
+<% end -%>

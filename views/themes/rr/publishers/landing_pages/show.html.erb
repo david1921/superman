@@ -1,0 +1,47 @@
+<!-- begin home tab content -->
+<div id="home_tab">
+	<div id="daily_deal">
+		<div id="left_column">
+			<%=raw render :partial => with_theme("shared/sweepstakes_box") %>
+			<%=raw render :partial => with_theme("shared/community_box") %>
+		</div><!-- /left_column -->
+		<div id="center_column">
+			<div id="top_row">
+				<h1 class="page_title">Your Daily Deal - <%= @daily_deal.advertiser.name %></h1>
+				<div id="deal_headings">
+					<h2 id="value_proposition"><%= @daily_deal.value_proposition %><br />
+					<br /><span><%= @daily_deal.value_proposition_subhead %><span></h2>
+				</div><!-- /deal_headings -->
+				<div id="deal_photo"><img src="<%= @daily_deal.photo.url %>" alt="<%= @daily_deal.advertiser.name %>" height="360" /></div>
+				<div id="buy_wrapper">
+					<div id="highlights">
+						 <%= @daily_deal.highlights.try :html_safe %>
+					</div><!-- /highlights -->
+					<div id="buy_now">
+						<a class="more_info img_button" href="<%= public_deal_of_day_path(@publisher.label) %>"><span>More Info</span></a>
+					</div><!-- /buy_now -->
+				</div><!-- /buy_wrapper -->
+			</div><!-- top_row -->
+			
+			<div class="clear"></div>
+			
+			<div id="offers_wrapper" class="box_gradient">
+				<%=raw render :partial => with_theme("offers/offer") %>
+			</div>
+		    
+		</div><!--/center_column-->
+	</div><!-- /daily_deal -->
+	
+<div id="right_column">
+
+  <%=raw render :partial => with_theme("shared/search") %>
+  <%=raw render :partial => with_theme("shared/side_deals") %>
+  <%=raw render :partial => with_theme("shared/refer_friend") %>
+
+
+</div><!--right_column-->
+	    
+	<div class="clear"></div>
+
+</div><!-- /home_tab -->
+<!-- end home tab content -->

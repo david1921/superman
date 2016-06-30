@@ -1,0 +1,24 @@
+<div id="dd_nav_wrapper">
+	<ul id="dd_nav">
+		<li class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><a href="<%= public_deal_of_day_path(@publisher.label) %>" class="first <%= "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %>"><%= t(:todays_deal) %></a></li>
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#how_it_works" ? 'current_page' : nil %>"><%= t(:how_it_works) %></a></li>
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#feature_your_business" ? 'current_page' : nil %>"><%= t(:feature_your_business) %></a></li>
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deals#faqs" ? 'current_page' : nil %>"><%= t(:faq) %></a></li>
+		<li class="<%= "#{controller_name}##{action_name}" == "daily_deals#contact" ? 'current_page' : nil %>"><a href="<%= contact_publisher_daily_deals_path(@publisher) %>" class="last <%= "#{controller_name}##{action_name}" == "daily_deals#contact" ? 'current_page' : nil %>"><%= t(:contact_us) %></a></li>
+		
+	<% unless current_consumer_for_publisher?(@publisher) %>
+		<li class="last"><a href="<%= daily_deal_login_path(@publisher) %>"><%= t(:sign_in) %></a></li>
+        <li class="last facebook_connect"><a href="<%= auth_init_path(@publisher) %>" class="facebook_connect"><img src="/images/buttons/facebook_connect.png" height="28" width="99" alt="facebook Connect" /></a>
+	<% end %>
+		
+		
+	</ul><!-- /dd_nav -->
+</div><!-- /dd_nav_wrapper -->
+
+<% if current_consumer_for_publisher?(@publisher) %>
+	<ul class="account_nav">
+		<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>"><%= t(:my_account) %></a></li>
+		<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>"><%= t(:my_deals) %></a></li>
+		<li class="last"><a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>"><%= t(:logout) %></a></li>
+	</ul>
+<% end %>

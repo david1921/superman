@@ -1,0 +1,47 @@
+<script type='text/javascript' src='/javascripts/social_media_share.js'></script>
+
+<div id="presignup">	
+	<div id="arrowBanner">		
+		<h1><span>Sign Up for Free Today. We'll send you exceptional deals to your inbox every day.</span></h1>
+	</div><!-- end arrowBanner -->
+	
+	
+	<form action="{{ publisher.subscribers_path }}" method="POST" class="presignup">
+		<input type="hidden" name="redirect_to" value="{{ publisher.verifiable_thank_you_publisher_daily_deal_subscribers_path | verifiable_url }}" id="redirect_to">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input name="subscriber[zip_code_required]" value="true" type="hidden" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<p><label for="Name">Name</label></p>
+		<p><input class="dd_input" id="subscriber_name" name="subscriber[name]" size="30" title="Name" type="text" /></p>
+		<p><label for="Email">Email address</label></p>
+		<p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></p>
+		<p><label for="ZipCode">ZIP Code</label></p>
+		<p><input id="subscriber_zip_code" class="dd_input" name="subscriber[zip_code]" size="10" type="text" /></p>
+		<p><input id="subscribe_button" type="submit" value="Sign Me Up for FREE Now!" /></p>
+
+		<p>*Don't worry, we will not share your email address with anyone.</p>
+		<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+		<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a></label>
+	</form>
+			
+	<div id="how_it_works">
+		<div id="howitworks_header"><h2>HOW IT WORKS</h2></div><!-- end howitworks_header -->
+		<div id="howitworks_container">
+		<div  id="sign_up"><h3>SIGN UP</h3>
+			<div id="checkmark"></div><!-- end checkmark -->
+				<p>Subscribe to the Daily Deal and we’ll email you one exceptional deal per day saving you up to 70% in and around your city!</p>
+			</div>
+		<div id="get_the_deal"><h3>GET THE DEAL</h3>
+			<div id="envelope"></div><!-- end envelope -->
+			<p>Buy the deal. Once you buy, check your email for your voucher. <br />It’s easy! Everyone gets the deal and there are no expiration dates!</p>
+		</div>
+			<div id="share_it"><h3>SHARE IT</h3>
+				<a id="facebook" class="share_button share_button_facebook" href="#" onclick="return share_on_facebook('Sign up for Daily Deal alerts on Elivelife!')" target="_blank"></a>
+				<a id="twitter" class="share_button share_button_twitter" href="#" onclick="return share_on_twitter('Sign up for Daily Deal alerts on Elivelife!')" target="_blank"></a>
+				<p>Share the love and savings with friends and family on Facebook &amp; Twitter.</p>
+			</div><!-- end SHARE IT -->
+		</div><!-- end howitworks_container -->
+	</div><!-- end how_it_works -->
+
+ </div><!--end presignup-->

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Coupon</title>
+  <%= render :partial => 'offers/print/meta' %>
+  <%= stylesheet_link_tag "reset", :media => "all" %>
+  <%= stylesheet_link_tag "offers", :media => "all" %>
+  <%= stylesheet_link_tag "offers_print", :media => "all" %>
+  <%= stylesheet_link_tag "simple/offers", :media => "all" if @publisher.simple_or_narrow_layout? %>
+  <%= render :partial => with_theme("daily_deals/custom_stylesheet_includes") %>
+  <%= javascript_include_tag :defaults %>
+</head>
+
+<body>
+  <div id="analog_analytics_content">
+  <%- if @lead.errors.empty? -%>
+    <% if %w{ demo demo2 }.include?(Rails.env) || @publisher.label.ends_with?("demo") -%>
+    <div id="notice">Sample coupons&mdash;not redeemable in store</div>
+    <br/>
+    <% end -%>                                                          
+    <% extra_offer_class = @publisher.simple_or_narrow_layout? ? " #{@publisher.coupon_border_type}" : ""%>
+    <div class="offer<%= extra_offer_class %>" id="offer_<%= @offer.id %>">
+      <div class="front_panel" id="offer_<%= @offer.id %>_front_panel">
+        <div class="body" id="offer_<%= @offer.id %>_body">
+          <div class="headline"><%= @publisher.coupon_headline %></div>
+          <div class="logo">
+            <%= image_tag(@offer.image.url(:large), :alt => @offer.advertiser_name, :id => "offer_image") %>
+          </div>
+          <h3><%= @offer.message.upcase %></h3>
+          <p class="terms"><%= @offer.terms %> <%= show_expires_on_unless_mcclatchy(@offer) %></p>
+
+          <p class="advertiser_name"><%= advertiser_name @offer %></p>
+          <% if @offer.advertiser.tagline.present? -%>
+            <p class="text advertiser_tagline"><%= @offer.advertiser.tagline %></p>
+          <% end -%>
+          <p class="links">
+            <%= raw [ link_to_website(@offer), link_to_map(@offer), link_to_email(@offer) ].compact.join(" | ") %>
+          </p>
+        </div>
+        <% if @publisher.simple_or_narrow_layout? -%>
+        <div class="coupon_code">
+          <% if @offer.coupon_code? -%>
+          <span>Coupon Code:</span> <%= @offer.coupon_code %>
+          <% end %>          
+        </div>
+        <% end %>
+<%= render :partial => "offers/print/footer" %>
+      </div>
+    </div>
+
+  <% if @publisher.printed_coupon_map? && @publisher.link_to_map? && @offer.advertiser.map_url.present? %>
+  <iframe width="444" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+          src="<%= @offer.advertiser.map_url %>&amp;output=embed"></iframe><br />
+  <small><a href="<%= @offer.advertiser.map_url %>&amp;source=embed" style="color:#0000FF;text-align:left" target="_blank">View Larger Map</a></small>
+  <% end %>
+  
+    <form action="" id="print">
+      <%= button_to_function "Print", "$('print').hide(); window.print()", :id => "print_button" -%>
+    </form>
+
+    <%- else -%>
+    <div class="offer" id="offer_<%= @offer.id %>">
+      <div class="errorExplanation" id="errorExplanation" style="margin: 20px 8px;">
+        <%= @lead.errors.full_messages.join(". ") %>.
+      </div>
+    </div>
+  <%- end -%>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    Event.observe(window, 'load', function() {
+      var width = 460;
+      var x = (screen.availWidth - width) / 2;
+      <% if @publisher.printed_coupon_map? && @publisher.link_to_map? && @offer.advertiser.map_url.present? %>
+      var height = 800;
+      <% else %>
+      var height = 700;
+      <% end %>
+      if (screen.availHeight < height) {
+        height = screen.availHeight;
+      }
+      var y = (screen.availHeight - height) / 2;
+    
+      window.moveTo(x, y);
+      window.resizeTo(width, height);
+    }); 
+  </script>
+
+  <%= render(:partial => @publisher.analytics_service_provider[:partial]) if @publisher.using_analytics_provider? %>  
+</body>
+</html>

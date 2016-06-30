@@ -1,0 +1,26 @@
+<div id="footer">
+	<div id="footer_content">
+		<ul id="footer_nav">
+			<li><a href="{{ publisher.todays_daily_deal_path }}">This Week's Deal</a></li>
+			<li><a href="{{ daily_deal.buy_now_path }}">Buy Now</a></li>
+			<li><a href="{{ publisher.how_it_works_path }}">How it Works</a></li>
+			<li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+			<li><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+			<li><a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+			{% if publisher.launched? %}
+				{% if publisher.current_user_belongs_to? %}
+			<li class="last"><a href="{{ publisher.logout_path }}">Sign Out</a></li>
+				{% else %}
+			<li class="last"><a href="{{ publisher.login_path }}">Sign In</a></li>
+				{% endif %}
+			{% endif %}
+		</ul><!-- /footer_nav -->
+		
+		<div class="clear"></div>
+		<ul id="legal_nav">
+			<li><a href="{{ publisher.privacy_path }}">Privacy Policy</a></li>
+      <li class="last"><a href="{{ publisher.terms_path }}">Terms and Conditions</a></li>
+		</ul><!-- /legal_nav -->
+	</div>
+</div>
+

@@ -1,0 +1,18 @@
+{% comment %}expects a local variable for current page, acceptable values are :deal, :coupons, :bonusdeals{% endcomment %}
+
+<div id="main_tabs">
+
+	<div class='tab_content {{ current_page }}_content'>
+		{% if current_page == "coupons" or current_page == "gift_certificates" %}
+		<div id="analog_analytics_content">
+			{{ content_for_layout }}
+		</div>
+		{% else %}
+		{% include with_theme "layouts/shared/dd_nav" %}
+			{{ content_for_layout }}
+		{% endif %}
+		<div class="clear"></div>
+	</div>               
+</div><!-- /main_tabs -->
+
+

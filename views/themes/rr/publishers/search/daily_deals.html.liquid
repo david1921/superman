@@ -1,0 +1,11 @@
+{% if daily_deals.size > 0 %}
+  <div class="daily_deals">
+    {% for daily_deal in daily_deals %}
+      <div class="daily_deal">
+      
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>Sorry, no daily deals were found for <strong>{{ query }}</strong>.</p>
+{% endif %}

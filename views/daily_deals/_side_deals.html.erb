@@ -1,0 +1,9 @@
+<% if side_deals.present? %>
+<div class="side_deals">
+  <h3>Side Deals</h3>
+  <% side_deals.each do |side_deal| %>
+  <span class="value_proposition"><%= side_deal.value_proposition %></span>
+  <%= link_to "View Deal", daily_deal_path(side_deal) %>
+  <% end -%>
+</div>
+<% end %>

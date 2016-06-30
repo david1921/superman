@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TODAY'S ZINGER</title>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#fbaf40" background="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/bg.gif">
+  <tr>
+    <td valign="top" height="80">&nbsp;</td>
+    <td width="600" rowspan="3" valign="top">
+    	<table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td valign="top">
+            	<table width="600" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td rowspan="3" width="200"><a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>"><img border="0" style="display block;" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/zingin-dealz.gif" width="200" height="173" alt="Zingin Dealz" /></a>
+                    </td>
+                    <td height="80" align="center" style="font-family: Verdana, Geneva, sans-serif; color: #ffffff; font-size: 18px;">
+                    	<strong><%= @time.strftime("%A, %B %e, %Y")%></strong>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td height="56" align="center" bgcolor="#000000" style="font-family: Verdana, Geneva, sans-serif; color: #ffffff; font-size: 20px;"><h1 style="font-size: 30px; color: #ffffff; margin: 0; padding: 0;">TODAY'S ZINGER</h1></td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top" bgcolor="#FFFFFF"><img style="display: block;" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/box-top.gif" width="600" height="14" alt="" /></td>
+          </tr>
+          <tr>
+            <td valign="top" bgcolor="#FFFFFF" style="padding-left: 12px; padding-right: 12px; font-family: Verdana, Geneva, sans-serif;">
+            	<h2 style="margin: 0; padding: 0; font-size: 22px;"><%= @daily_deal.value_proposition %></h2>
+                <% if @daily_deal.value_proposition_subhead.present? %>
+                <h3 style="margin: 0; padding: 0; font-size: 16px;"><%= @daily_deal.value_proposition_subhead %></h3>
+                <% end %>
+                <table width="576" border="0" cellspacing="0" cellpadding="0" align="center" style="margin-top: 10px;">
+                  <tr>
+                    <td width="240" valign="top">
+                    	<table width="100%" border="0" cellspacing="10" cellpadding="0" bgcolor="#769bb9">
+                          <tr>
+                            <td align="center" valign="top" style="font-family:Verdana, Geneva, sans-serif; color: #ffffff; font-size: 60px;"><strong><% if @daily_deal.price.is_fractional? %>
+                            <%= "<span style='font-size: 80%'>#{ number_to_currency(@daily_deal.price) }</span>".html_safe %>
+                          <% else %>
+                            <%= number_to_currency(@daily_deal.price, :precision => 0, :unit => @daily_deal.publisher.currency_symbol) %>
+                          <% end %></strong></td>
+                          </tr>
+                          <tr>
+                            <td align="center"><a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/buy.gif" width="184" height="84" alt="BUY" /></a></td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="14" cellpadding="0">
+                          <tr>
+                            <td align="center" width="50%" style="font-family: Verdana, Geneva, sans-serif; font-size: 20px;">
+                            	<span style="font-size: 16px;">Savings</span><br />
+                           		<strong><span id="daily_deal_savings_as_percentage"><%= number_to_percentage(@daily_deal.savings_to_display_as_percentage, :precision => 0) %></span></strong>
+                            </td>
+                            <td align="center" width="50%" style="font-family: Verdana, Geneva, sans-serif; font-size: 20px;">
+                            	<span style="font-size: 16px;">Value</span><br />
+                           		<strong><span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display, @daily_deal.currency_symbol) %></span></strong>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center" colspan="2"><a href="<%= add_params_to_email_link(market_aware_daily_deal_url(@daily_deal, params), @publisher.label) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/buy-for-friend.gif" width="155" height="48" /></a></td>
+                          </tr>
+                        </table>
+                    </td>
+                    <td width="14">&nbsp;</td>
+                    <td width="316" colspan="3" valign="top" align="right">
+                    	<img src="<%= @daily_deal.photo.url %>" width="306" height="259" style="border-width: 5px; border-style: solid; border-color: #000000;" />
+                      <table width="100%" border="0" cellspacing="5" cellpadding="0">
+                        <tr>
+                          <td align="right" valign="middle" style="font-family: Verdana, Geneva, sans-serif;">SHARE THIS DEAL:</td>
+                          <td align="left" valign="middle"><a class="share_button share_button_facebook" href="<%= facebook_daily_deal_path(@daily_deal) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/facebook.gif" width="40" height="31" alt="Facebook" /></a> <a class="share_button share_button_facebook" href="<%= twitter_daily_deal_path(@daily_deal) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/twitter.gif" width="40" height="31" alt="Twitter" /></a></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="5" valign="top" align="left" style="font-family: Verdana, Geneva, sans-serif; font-size: 12px;">
+                      <%= raw HtmlTruncator.truncate_html(@daily_deal.description, 300) %>
+                    </td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top"><img style="display: block;" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/box-bot.gif" width="600" height="14" alt="" /></td>
+          </tr>
+          <tr>
+            <td valign="top">&nbsp;</td>
+          </tr>
+          <% unless @daily_deal.side_deals.select(&:enable_daily_email_blast?).blank? %>
+          <tr><!-- START SIDE DEALS -->
+            <td valign="top"><img style="display: block;" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/box-top.gif" width="600" height="14" alt="" /></td>
+          </tr>
+          <tr>
+            <td valign="top" bgcolor="#FFFFFF" style="background-color: #ffffff; padding-left: 12px; padding-right: 12px; font-family: Verdana, Geneva, sans-serif;">
+              <table width="576" border="0" cellspacing="0" cellpadding="0" align="left">
+              <% @daily_deal.side_deals.select(&:enable_daily_email_blast?)[0,4].each_with_index do |deal, index| %>
+                <%=raw '<tr>' if index % 2 == 0 %>
+                  <td valign="top" width="50%" style="font-family: 'Verdana', Arial, sans-serif; padding-bottom: 20px;">
+                    <a href="<%= add_params_to_email_link(market_aware_daily_deal_url(deal, params), @publisher.label) %>"><img style="border-width: 3px; border-style: solid; border-color: black; background: #ffffff; margin-bottom: 10px;" src="<%= deal.photo.url(:standard) %>" alt="" width="266" height="225" /></a>
+                    <h3 style="font-size: 14px; font-family: 'Verdana', Arial, sans-serif; color: black; margin-top: 0; margin-bottom: 8px; padding: 0; font-weight: bold;"><a style="color: black; text-decoration: none;" href="<%= add_params_to_email_link(market_aware_daily_deal_url(deal, params), @publisher.label) %>"><%= deal.value_proposition %></a></h3>
+                    <a href="<%= add_params_to_email_link(market_aware_daily_deal_url(deal, params), @publisher.label) %>"><img border="0" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/view-deal-small.gif" width="82" height="22" alt="VIEW DEAL" /></a>
+                  </td>
+                  <% if @daily_deal.side_deals.select(&:enable_daily_email_blast?).length.odd? && ((index + 1) == @daily_deal.side_deals.select(&:enable_daily_email_blast?).length) %>
+                    <%=raw("<td valign='top' align='center'><a href='#{ add_params_to_email_link(market_aware_daily_deal_url(deal, params), @publisher.label) }'><img src='http://#{ @publisher.daily_deal_host }/themes/zingindealz/images/email/zingin-dealz-blank.gif' alt='Zingin Dealz' width='266' height='225' /></a> </td>") %>
+                  <% end %>
+                  <% if ((index % 2) == 1) || ((index + 1) == @daily_deal.side_deals.select(&:enable_daily_email_blast?).length) %>
+                    <%=raw('</tr>')%>
+                  <% end %>
+              <% end %>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top"><img style="display: block;" src="http://<%= @publisher.daily_deal_host %>/themes/zingindealz/images/email/box-bot.gif" width="600" height="14" alt="" /></td>
+          </tr><!-- END SIDE DEALS -->
+          <% end %>
+          <tr>
+            <td valign="top">&nbsp;</td>
+          </tr>
+        </table>
+    </td>
+    <td valign="top" height="80">&nbsp;</td>
+  </tr>
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+	 	<% cache([@daily_deal, "subscribe"], :expires_in => 1.hour) do %>
+			<%=raw render :partial => with_theme("shared/subscribe") %>
+		<% end %>
+
+<div id="banner" class="<%= @publisher.market_name.downcase.gsub(" ", "_") if @publisher.market_name.present? %>">
+	
+	<% unless @publisher.label == "clickedin-charlotte" %>
+	<div class="market"> 
+<!--		<h1 class="market_name"><%= @publisher.market_name.titleize if @publisher.market_name.present?  %></h1> 
+-->		
+		<!-- market dropdown -->
+<!--		<div id="market_menu_wrapper">
+			<ul id="market_menu">
+			   <li onmouseover=""><span>(Change City)</span>
+					<%= market_selection_list(@publisher) %>
+			    </li>
+			</ul>
+		</div><!-- /market_menu_wrapper -->
+		<div class="clear"></div>              
+		<!--/ market dropdown -->
+		
+		<div class="clear"></div>
+	</div><!-- /market -->
+	<% end %>
+	
+	<ul id="main_tabs">  
+		<li class="<%=raw "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" ? 'current_page' : nil %> deal_of_the_day"><a href="<%= public_deal_of_day_path(@publisher.label) %>">Offers</a></li>
+		<li class="<%- if context_is?("sweepstakes") %>current_page<%- end %> sweepstakes"><a href="<%= publisher_sweepstakes_path(@publisher.label) %>">Win!</a></li>
+		
+		<% unless @publisher.label == "clickedin-charlotte" %>
+		<li class="<%- if context_is?("communities") %>current_page<%- end %> communities" ><a href="<%= publisher_communities_path(@publisher.label) %>">ClickedIn<span class="tm">&trade;</span> Cares</a></li>
+		<% end %>
+
+		<% if current_consumer_for_publisher?(@publisher) %>
+		<li class="<%=raw "#{controller_name}##{action_name}" == "consumers#edit" ? 'current_page' : nil %> my_account last"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+	 	<% else %>
+		<li class="<%=raw "#{controller_name}##{action_name}" == "daily_deal_sessions#new" ? 'current_page' : nil %><%=raw "#{controller_name}##{action_name}" == "consumers#new" ? 'current_page' : nil %> my_account last"><a href="<%= daily_deal_login_path(@publisher) %>">My Account</a></li>
+		<% end %>
+	</ul><!-- /main_tabs -->
+	<div class="clear"></div>
+</div><!-- /banner -->

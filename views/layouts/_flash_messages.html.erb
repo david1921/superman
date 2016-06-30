@@ -1,0 +1,13 @@
+<p>
+<% if flash[:warn].present? %>
+<div class="warn" id="flash_warn">&nbsp;<%= flash[:warn] %></div>
+<% end %>
+<% if flash[:notice].present? %>
+<div class="notice">&nbsp;<%= flash[:notice] %></div>
+<% end %>
+<% if flash[:error].present? %>
+<div class="error">&nbsp;<%= flash[:error] %></div>
+<% end %>
+<!-- &nbsp; for consistent vertical spacing with or without flash message -->
+&nbsp;
+</p>

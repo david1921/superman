@@ -1,0 +1,26 @@
+<!-- Homepage Top -->
+
+<div id="homepage_text_header">
+	<div id="text_header_row1">
+ 		<img src="/themes/bcbsa/images/graphics/tip_swirl_top.png"/>
+ 	</div>
+ 	<div id="text_header_row2">
+ 		<h2>
+      <%= t(:homepage_top_message) %>
+ 		</h2>
+ 	</div>
+ 	<div id="text_header_row3">
+ 		<img src="/themes/bcbsa/images/graphics/tip_swirl_bottom.png" />
+ 	</div>
+</div>
+
+<div id="homepage_text_subhead">
+	<% if @daily_deal.value_proposition_subhead.blank? %>
+		<div id="value_prop_subhead_spacer"></div>
+	<% else %>
+		<h3><%= @daily_deal.value_proposition_subhead %></h3>
+	<% end %>
+		
+</div>
+	
+<!-- /Homepage Top -->

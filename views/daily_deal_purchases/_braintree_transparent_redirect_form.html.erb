@@ -1,0 +1,48 @@
+<% form_for :transaction,
+            :result => result,
+            :builder => BraintreeFormBuilder,
+            :url => Braintree::TransparentRedirect.url,
+            :html => {:autocomplete => "off", :id => "transparent_redirect_form"} do |f| -%>
+
+  <%= f.display_braintree_error_messages %>
+
+  <% f.fields_for :credit_card do |c| -%>
+    <%= c.text_field_div :cardholder_name, "#{t('.cardholder_name')} *", :class => "required" %>
+    <%= c.text_field_div :number, "#{t('.card_number')} *", :class => "required" %>
+    <%= c.expiration_date_div t('.expiration_date'), {:month_options => options_for_select(credit_card_month_options), :year_options => options_for_select(credit_card_year_options)} %>
+    <%= c.cvv_div t('.cvv'), :class => "required" %>
+  <% end -%>
+  <% f.fields_for :billing, @billing_address do |b| -%>
+    <%= b.text_field_div :first_name, t('.billing_first_name_label'), :class => "required" %>
+    <%= b.text_field_div :last_name, t('.billing_last_name_label'), :class => "required" %>
+    <%= b.text_field_div :street_address, t('.billing_address_line_1_label'), :class => "required" %>
+    <%= b.text_field_div :extended_address, t('.billing_address_line_2_label') %>
+    <%= b.text_field_div :locality, t('.billing_address_city_label'), :class => "required" %>
+    <%= b.braintree_select_div :region, grouped_options_for_select(grouped_state_options, @billing_address.try(:region)), {:label_text => t('.billing_address_state_label')}, :class => "floatLeft" %>
+    <%= b.text_field_div :postal_code, t('.billing_zipcode_label', :zip_code_label => zip_code_label(daily_deal_purchase.publisher) + ' *'), :size => 10, :maxlength => 10, :class => "autowidth required zipCode" %>
+    <%= b.braintree_select_div :country_code_alpha2, options_for_select([["United States", "US"], ["Canada", "CA"]], @billing_address.try(:country_code_alpha2)), {:label_text => t('.billing_address_country_label')}, :class => "floatLeft" %>
+  <% end -%>
+
+  <% if use_vault %>
+    <%- # not using form builder here because BT chokes on the multiple checkbox input thing that rails does  -%>
+    <div class="row">
+      <div class="check_box save_this_card">
+        <%= check_box_tag("transaction[options][store_in_vault_on_success]", "true", true) %>
+        <%= label_tag("transaction[options][store_in_vault_on_success]", "Save this card") %>
+      </div>
+    </div>
+    <% tr_data_options = { :use_vault => true } %>
+  <% end %>
+
+  <span class="required_text">* <%= t 'required' %></span>
+  <%= hidden_field_tag :tr_data, braintree_transaction_data(daily_deal_purchase, tr_data_options || {}) %>
+  <% unless hide_submit_button %>
+    <%= f.submit t('buy_now'), :id => "credit_card_buy_now" %>
+  <% end %>
+  <% if daily_deal_purchase.publisher.shopping_cart? %>
+    &nbsp;&nbsp;<%= link_to t('.continue_shopping'), public_deal_of_day_path(daily_deal_purchase.publisher.label) %> |
+  <% end -%>
+  <% unless hide_submit_button %>
+    <%= daily_deal_cancel_link(daily_deal_purchase.publisher) %>
+  <% end %>
+<% end -%>

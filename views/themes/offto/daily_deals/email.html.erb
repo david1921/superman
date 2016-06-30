@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title><%= @daily_deal.value_proposition %></title>
+		<!-- Subject: <%= @daily_deal.email_blast_subject %> -->
+		<!-- From: <%= @publisher.name %> daily deal -->
+	</head>
+	<body>
+		<table style="border-spacing: 0; font: 14px/20px helvetica, arial, sans-serif; color: #4a4a4a; width: 638px;" align="center">
+			<tr>
+				<td>
+					<a href="http://www.offto.com"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/#{@publisher.label}/images/graphics/email_banner.png", :alt => "OffTo.com – Great Deals on Fabulous Getaways", :border => 0, :height => 86, :width => 168) %></a>
+				</td>
+				<td style="color: #46951d; text-align: right;">
+					<p style="font-size: 20px"><%= @time.strftime("%A, %B %e, %Y")%></p>
+					<p style="display: inline; line-height: 30px; vertical-align: top;">
+						Follow Us: 
+						<a style="display: inline-block;" href="http://www.facebook.com/offto" target="_blank" title="Share coupon on Facebook"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_alt_facebook.png", :alt => "Facebook", :border => '0') %></a>
+						<a style="display: inline-block;" href="http://twitter.com/#!/off_to" target="_blank"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_alt_twitter.png", :alt => "Twitter", :border => '0') %></a>
+					</p>
+				</td>
+			</tr>
+			<tr style="background: #46951d;">
+				<td colspan="2">
+					<table style="border-spacing: 0; font: 14px/20px helvetica, arial, sans-serif; padding: 10px 20px; width: 638px">
+						<tr style="border-bottom: 10px solid #46951d; display: block;">
+							<td colspan="2" style="background: #fff; border: 7px solid #a3ca8e; font: 14px/20px helvetica, arial, sans-serif; margin: 0 0 10px 0; padding: 10px; width: 599px;">
+								<table style="font: 14px/20px helvetica, arial, sans-serif; margin: 0 0 10px 0; width: 100%;">
+									<tr>
+										<td colspan="2">
+											<h2 style="color: #000; font-size: 30px; line-height: 30px; margin-top: 0;"><%= @daily_deal.value_proposition %></h2>
+										</td>
+									</tr>
+									<tr style="vertical-align: top;">
+										<td style="width: 424px; font-size: 18px;" align="center">
+											<a href="<%= daily_deal_url(@daily_deal) %>"><%= image_tag(@daily_deal.photo.url(:portrait), :style => "vertical-align: text-bottom;", :alt => "Photo", :border => 0, :width => 424) %></a>
+											<br /><%= @daily_deal.value_proposition_subhead %>
+										</td>
+										<td>
+											<table cellpadding="0" style="border-spacing: 0; font: 14px/20px helvetica, arial, sans-serif; padding-left: 10px; text-align: center; text-transform: uppercase; width: 100%;">
+												<tr>
+													<td style="color: #1766bd; font-size: 45px; line-height: 45px; padding: 0 0 10px 0; text-shadow: 3px 3px 5px #CCC;"><%= number_to_currency(@daily_deal.price, :precision => 0 ) %></td>
+												</tr>
+												<tr>
+													<td>Value: <%= number_to_currency(@daily_deal.value, :precision => 0) %></td>
+												</tr>
+												<tr>
+													<td>
+														<a href="<%= daily_deal_url(@daily_deal) %>" style="background: #78cb4d; background: #f3bd5f; background: -moz-linear-gradient(top, #f3bd5f 2%, #f57d00 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#f3bd5f), color-stop(100%,#f57d00)); background: -webkit-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); background: -o-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); background: -ms-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bd5f', endColorstr='#f57d00',GradientType=0 ); background: linear-gradient(top, #f3bd5f 2%,#f57d00 100%); border: 0; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px, inset 10px; -moz-box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); -webkit-box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); color: #fff; display: block; font-size: 35px; padding: 20px 0; margin: 10px 0; text-align: center; text-decoration: none; text-shadow: 1px 1px 3px rgba(0,0,0,.4); text-transform: uppercase; width: 100%;">View</a>
+													</td>
+												</tr>
+												<tr>
+													<td><strong><%= number_to_percentage(100 * (@daily_deal.value.to_i - @daily_deal.price) / @daily_deal.value, :precision => 0) %></strong> Savings</td>
+												</tr>
+												<tr style="font-size: 12px; vertical-align: text-middle;">
+													<td style="padding: 0;">
+														Share This Deal<br />
+														<a style="display: inline-block; height: 45px; width: 35px;" href="<%= facebook_daily_deal_url(@daily_deal) %>" target="_blank" title="Share coupon on Facebook"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_facebook.png", :alt => "Facebook", :border => '0') %></a>
+														<a style="display: inline-block; height: 45px; width: 35px;" href="<%= twitter_daily_deal_url(@daily_deal) %>" target="_blank"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_twitter.png", :alt => "Twitter", :border => '0') %></a>
+														<a style="display: inline-block; height: 45px; width: 35px;" href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal_url(@daily_deal) %>"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_mail.png", :alt => "E-mail", :border => '0') %></a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<% @daily_deal.side_deals.each do |side_deal| %>
+							<tr>
+								<td colspan="2" style="background: #fff; border: 7px solid #a3ca8e; padding: 10px; width: 100%;">
+									<table style="font: 14px/20px helvetica, arial, sans-serif; width: 100%">
+										<tr style="vertical-align: top;">
+											<td style="width: 315px;font-size: 12px;">
+												<a href="<%= daily_deal_url(side_deal) %>"><%= image_tag(side_deal.photo.url(:email), :style => "vertical-align: text-bottom;", :alt => "Photo", :border => 0, :width => 315) %></a>
+												<br /><%= side_deal.value_proposition_subhead %>
+											</td>
+											<td>
+												<table style="font: 14px/20px helvetica, arial, sans-serif; padding-left: 10px; text-align: left; width: 100%;">
+													<tr>
+														<td colspan="2"><h2 style="color: #000; font-size: 20px; font-weight: normal; height: 50px; line-height: 25px; margin-top: 0;"><%= truncate(side_deal.value_proposition, :length => 40) %></h2></td>
+													</tr>
+													<tr style="text-transform: uppercase;">
+														<td>
+															<span style="color: #1766bd; font-size: 40px; line-height: 40px; padding: 0 0 10px 0; text-shadow: 3px 3px 5px #CCC;"><%= number_to_currency(side_deal.price, :precision => 0 ) %></span><br />
+															Value: <%= number_to_currency(side_deal.value, :precision => 0) %>
+														</td>
+														<td style="text-align: right;">
+															<a href="<%= daily_deal_url(side_deal) %>" style="background: #78cb4d; background: #f3bd5f; background: -moz-linear-gradient(top, #f3bd5f 2%, #f57d00 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,#f3bd5f), color-stop(100%,#f57d00)); background: -webkit-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); background: -o-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); background: -ms-linear-gradient(top, #f3bd5f 2%,#f57d00 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3bd5f', endColorstr='#f57d00',GradientType=0 ); background: linear-gradient(top, #f3bd5f 2%,#f57d00 100%); border: 0; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px, inset 10px; -moz-box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); -webkit-box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); box-shadow: 0 0 10px rgba(0,0,0,.5), inset 0 0 10px rgba(0,0,0,.3); color: #fff; display: block; font-size: 28px; padding: 20px 0; margin: 10px 0 0 0; text-align: center; text-decoration: none; text-shadow: 1px 1px 3px rgba(0,0,0,.4); text-transform: uppercase; width: 100%;">View</a>
+														</td>
+													</tr>
+													<tr style="font-size: 12px; padding-top: 5px; text-transform: uppercase;" valign="top">
+														<td align="right">
+															<span style="position: relative; top: 13px; vertical-align: top;">Share Deal</span>
+														</td>
+														<td nowrap>
+															<a style="display: inline-block; height: 45px; width: 35px;" href="<%= facebook_daily_deal_url(side_deal) %>" target="_blank" title="Share coupon on Facebook"><%= image_tag("http://#{side_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_facebook.png", :alt => "Facebook", :border => '0') %></a>
+															<a style="display: inline-block; height: 45px; width: 35px;" href="<%= twitter_daily_deal_url(side_deal) %>" target="_blank"><%= image_tag("http://#{side_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_twitter.png", :alt => "Twitter", :border => '0') %></a>
+															<a style="display: inline-block; height: 45px; width: 35px;" href="mailto:?subject=<%= URI.escape("#{side_deal.publisher_prefix}: #{side_deal.value_proposition}") %>&body=Check out this deal at <%= daily_deal_url(side_deal) %>"><%= image_tag("http://#{side_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_mail.png", :alt => "E-mail", :border => '0') %></a>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 0;">
+					<table style="border-spacing: 10px; background: #000; color: #fff; font: 14px/20px helvetica, arial, sans-serif; padding: 10px; width: 100%;">
+						<tr style="text-align: center;">
+							<td colspan="4">
+								<a href="http://analoganalytics.com/"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/images/powered_by_analog_analytics.png", :alt => "Powered By Analog Analytics", :border => '0') %></a>
+							</td>
+						</tr>
+						<tr style="vertical-align: top;">
+							<td style="border-right: 1px solid #fff; width: 33%;">
+								<ul style="list-style: none; margin: 0; padding: 0 10px;">
+									<li>Follow Us:<br />
+										<a style="color: #fff; display: inline-block; text-decoration: none;" href="http://www.facebook.com/offto" target="_blank" title="Share coupon on Facebook"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_alt_facebook.png", :alt => "Facebook", :border => '0') %></a>
+										<a style="color: #fff; display: inline-block; text-decoration: none;" href="http://twitter.com/#!/off_to" target="_blank"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/offto-sixseats/images/buttons/email_alt_twitter.png", :alt => "Twitter", :border => '0') %></a>
+									</li>
+								</ul>
+							</td>
+							<td style="border-right: 1px solid #fff; width: 33%;">
+								<ul style="list-style: none; margin: 0;  padding: 0 10px;">
+									<li><a style="color: #fff; text-decoration: none;" href="<%= public_deal_of_day_url(@publisher.label) %>">Today's Deal</a></li>
+									<li><a style="color: #fff; text-decoration: none;" href="<%= how_it_works_publisher_daily_deals_url(@publisher) %>">How It Works</a></li>
+									<li><a style="color: #fff; text-decoration: none;" href="<%= feature_your_business_publisher_daily_deals_url(@publisher) %>">Feature Your Business</a></li>
+									<li><a style="color: #fff; text-decoration: none;" href="<%= faqs_publisher_daily_deals_url(@publisher) %>">FAQ</a></li>
+									<li><a style="color: #fff; text-decoration: none;" href="<%= contact_publisher_daily_deals_url(@publisher) %>">Contact Us</a></li>
+								</ul>
+							</td> <!-- footer_nav -->
+							<td style="width: 33%;">
+								<ul style="list-style: none; margin: 0;  padding: 0 10px;">
+									<li>&copy; 2011
+									<li>OffTo</li>
+								</ul>
+							</td> <!-- legal_nav -->
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

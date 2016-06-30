@@ -1,0 +1,48 @@
+<div class="product">
+  <h2 class="product_name"><span>{{ daily_deal.value_proposition }}</span>
+  </h2>
+  <img class="product_image" src="{{ daily_deal.advertiser.logo.url }}" width="150" alt="" />
+  <div class="details">
+    <p class="location">
+      <span class="advertiser_name">{{ daily_deal.advertiser_name }}</span><br/>
+      {% for line in daily_deal.address %}
+        {{ line }}<br/>
+      {% endfor %}
+    </p>
+  </div><!-- /details -->
+  <div class="payment">
+    <p class="value">Only {{ daily_deal.price | currency }}</p>
+    
+	
+	{% if daily_deal.sold_out? %}
+	<div id="sold_out" class="dd_button">
+	 <strong style="color:red;"><em>SOLD OUT</em></strong>
+	</div>	
+	{% elsif daily_deal.active? %}
+    <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button" style="background:transparent">
+      <img alt="Buy_now" src="https://www.paypal.com/en_US/i/btn/btn_cart_LG.gif" />
+    </a>
+	
+      {% if daily_deal.number_left %}
+    <p class="number_available">{{ daily_deal.number_left }} Available</p>
+      {% endif %}
+    {% else %}
+      <div class="sold_out">SOLD OUT</div>
+    {% endif %}
+  </div><!-- /payment -->
+  <div style="clear:both"></div>
+  <div class="product_description">
+    {{ daily_deal.description }}
+  </div>
+  <div class="product_terms">
+    {{ daily_deal.terms }}
+  </div>  
+  {% if daily_deal.active? %}
+  <div class="gift_certificate_share_buttons">
+    Share this deal: 
+   <a href="{{ daily_deal.facebook_url }}" target="_blank"><img src="/images/icons/facebook.png" width="18" /></a>
+   <a href="{{ daily_deal.twitter_url }}" target="_blank"><img src="/images/icons/twitter.png" width="18" /></a>
+  </div>
+  {% endif %}
+  
+</div><!-- /product -->

@@ -1,0 +1,15 @@
+<% if current_consumer_for_publisher?(@publisher) %> 
+
+<div id="account_nav_logout">
+<!--
+      <h4 class="account">Welcome, <strong>{{ publisher.current_consumer.first_name }}</strong></h4>
+-->
+<!--
+      <ul id="account_nav">
+           <li><a href="{{ publisher.my_account_path }}">My Account</a></li>
+           <li class="last"><a href="{{ publisher.my_deals_path }}">My Deals</a></li>
+      </ul>
+-->
+      <a id="log_out" href="<%= daily_deal_logout_path(@publisher) %>"><span>Log Out</span></a>
+ </div>
+<% end %>

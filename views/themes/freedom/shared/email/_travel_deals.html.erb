@@ -1,0 +1,8 @@
+<% travel_deals.shuffle[0,4].each_with_index do |travel_deal, index| %>
+ <%=raw '<tr valign="top">' if index % 2 == 0 %>
+		<%= render :partial => with_theme('shared/email/small_deal'), :locals => {:small_deal => travel_deal} %>
+		<% if index == travel_deals.count - 1 && travel_deals.length.odd? %>
+			<%= render :partial => with_theme('shared/email/email_ad') %>
+		<% end %>
+ <%=raw'</tr>' if index % 2 == 1 or index + 1 == travel_deals.length %>
+<% end %>

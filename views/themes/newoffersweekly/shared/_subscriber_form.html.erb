@@ -1,0 +1,13 @@
+<div id="subscribe_form">
+		<h4 class="subscribe">get free now! alerts</h4>
+		<form action="<%= publisher_subscribers_path(@publisher) %>" id="daily_deal_header" class="email_subscription_tracking" method="post">
+				<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+				<p><input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" /></p>
+				<p><input class="text" id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" /></p>
+				<p><input class="text" id="subscriber_zip_code" name="subscriber[zip_code]" size="10" type="text" value="Zip Code" onclick="this.value='';" /></p>
+				<p><input id="subscribe_button" type="submit" value="subscribe" /></p>
+				<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('<%= terms_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('<%= privacy_policy_publisher_daily_deals_path(@publisher) %>', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+				</p>
+		</form>
+</div><!--/subscriber_form -->

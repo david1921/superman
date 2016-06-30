@@ -1,0 +1,22 @@
+<div id="brand_banner">
+
+  {% assign show_twc_logo = false %}
+  {% show_twc_logo %}
+    {% assign show_twc_logo = true %}
+  {% endshow_twc_logo %}
+  
+  {% assign landing_page_path = "/" %}
+  {% if publisher %}
+    {% assign landing_page_path = publisher.landing_page_path %}
+  {% endif %}
+
+  {% if show_twc_logo %}
+	<a id="brand_logo" class="twc" href="{{ landing_page_path }}"><img id="twc_brand_logo" src="/themes/rr/images/graphics/clickedin_logo_and_tagine.png" height="33" width="732" alt="ClickedIn -- Your Local Deal Finder" /></a>
+  
+	<a id="brand_logo" class="rr" href="http://www.rr.com/"><img id="rr_brand_logo" src="/themes/rr/images/graphics/rr_logo.png" alt="RoadRunner" /></a>  
+  {% else %}
+	<a id="brand_logo" class="twc" href="{{ landing_page_path }}"><img id="twc_brand_logo" src="/themes/rr/images/graphics/clickedin_logo_and_tagline.png" height="33" width="732" alt="ClickedIn -- Your Local Deal Finder" /></a>
+  
+  {% endif %}
+
+</div><!-- /brand_banner -->

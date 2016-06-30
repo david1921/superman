@@ -1,0 +1,17 @@
+<% form_tag '', {:method => :get, :id => "dates"} do -%>
+  <div id="dates">
+  <%= hidden_field_tag(:summary, @summary) if @summary.present? %>
+  <%= link_to("Download", csv_url, :id => "download") if defined?(csv_url) %>
+  <%- with_options :popup => 'force', :after_close => "$('dates').submit()" do |page| -%>
+    <% if defined?(selector_label) %>
+      <span id="dates_title"><%= selector_label %>:</span>
+    <% end %>
+    <% if defined?(one_date) and one_date %>
+      <%= raw(page.calendar_date_select_tag("date", @date.strftime("%B %d, %Y"))) %>
+    <% else %>
+      <%= raw(page.calendar_date_select_tag("dates_begin", @dates.begin.strftime("%B %d, %Y"))) %> to 
+      <%= raw(page.calendar_date_select_tag("dates_end", @dates.end.strftime("%B %d, %Y"))) %>
+    <% end %>
+  <%- end -%>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<div class="optimized">
+<% cache([@daily_deal, "main_content"], :expires_in => 5.minutes) do %>
+	<%= render :partial => with_theme("daily_deals/main_daily_deal_content") %>
+<% end %>
+
+
+<div id="right_column">
+  <% unless @publisher.label == "clickedin-charlotte" %>
+    <% cache([@daily_deal, "search"], :expires_in => 1.hour) do %>
+	  <%=raw render :partial => with_theme("shared/search") %>
+    <% end %>
+  <% end %>
+  <% cache([@daily_deal, "side_deals"], :expires_in => 5.minutes) do %>
+	<%=raw render :partial => with_theme("shared/side_deals") %>
+  <% end %>
+  <%=raw render :partial => with_theme("shared/refer_friend") %>
+
+</div><!--right_column-->
+    
+    
+<div class="clear"></div>
+
+  <%=raw render :partial => "shared/affiliate_link_form_popup" %>
+
+</div><!-- /optimized -->

@@ -1,0 +1,19 @@
+<h1>Recipient's Information</h1>
+<p class='directions'>Please enter the recipient's information below.</p>
+<%= error_messages_for 'purchased_gift_certificate' %>
+<% form_for :purchased_gift_certificate, @purchased_gift_certificate, :url => purchase_gift_certificate_path( @gift_certificate ), :html => {:class => 'recipient'} do |f| %>
+  <%= hidden_field_tag :return_url, @return_url unless @return_url.blank? %>
+  
+  <%= f.text_field_div :recipients_name, "Recipient's Name:" %>
+  <%= f.text_field_div :recipients_email, "Recipients's Email:" %>
+  
+  <%= f.text_field_div :address_line_1 %>
+  <%= f.text_field_div :address_line_2 %>
+  <%= f.text_field_div :city %>
+  <%= f.text_field_div :state %>
+  <%= f.text_field_div :zip %>    
+  
+  <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" 
+         alt="PayPal - The safer, easier way to pay online!">
+  
+<% end %>

@@ -1,0 +1,30 @@
+    <div class="wrapper" id="txt_coupon_<%= txt_coupon.id %>_wrapper">
+      <div class="coupon" id="txt_coupon_<%= txt_coupon.id %>">
+        <div class="body" id="txt_coupon_<%= txt_coupon.id %>_body">
+          <div class="header">
+            <p class="short_code"><%= txt_coupon.short_code %></p>
+            <p class="keyword"><%= txt_coupon.keyword %></p>
+          </div>
+          <div style="clear: both"></div>
+          <div class="text" id="txt_coupon_<%= txt_coupon.id %>_text">
+            <p class="message"><%= txt_coupon.full_message %></p>
+          </div>
+          <div class="footer">
+            <div class="dates">
+              <% if txt_coupon.appears_on && txt_coupon.expires_on -%>
+                <%= txt_coupon.appears_on.to_s(:compact) %> to <%= txt_coupon.expires_on.to_s(:compact) %>
+              <% elsif !txt_coupon.appears_on && txt_coupon.expires_on -%>
+                Until <%= txt_coupon.expires_on.to_s(:compact) %>
+              <% elsif txt_coupon.appears_on && !txt_coupon.expires_on -%>
+                From <%= txt_coupon.appears_on.to_s(:compact) %>
+              <% end -%>
+              &nbsp;
+            </div>
+            <div class="edit"><%= link_to "Edit", edit_advertiser_txt_offer_path(txt_coupon.advertiser, txt_coupon) %></div>
+          </div>
+        </div>
+      </div>
+      <div class="links">
+        <%= link_to("Delete", advertiser_txt_offer_path(txt_coupon.advertiser, txt_coupon), :method => :delete, :confirm => "Are you sure you want to delete this TXT coupon?") %>
+      </div>
+    </div>

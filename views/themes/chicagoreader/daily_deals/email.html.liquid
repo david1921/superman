@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Subject: {{ daily_deal.email_blast_subject }} -->
+<!-- From: "Chicago Reader Daily Deal" -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+<table width="95%" cellpadding="0" cellspacing="0" border="0" align="center">
+<tr>
+<td>
+<table width="650" cellpadding="0" cellspacing="0" align="center" style="border:1px solid #000000;" >
+ 
+          <tr>
+             <td><a href="{{ daily_deal.url_for_email }}"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/header.jpg" width="650" height="123" alt="{{ publisher.name }} Deal of the day" border="0"></a></td>    
+          </tr>
+<!-- share--><tr><td><br>
+             <table cellpadding="0" cellspacing="0" width="246" border="0" style="margin-left:50px;">
+                <tr><td ></td>
+                </tr>        
+              </table>
+<!-- share--></td></tr>
+<!-- deal--><tr><td>
+              <table width="600" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff" border="0" style="border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#e1e1e1; border-left-style:solid; border-left-width:1px; border-left-color:#e1e1e1; border-right-style:solid; border-right-width:1px; border-right-color:#e1e1e1; border-top-style:solid; border-top-width:1px; border-top-color:#e1e1e1;">
+                <tr>
+                <td colspan="2">
+                <table>
+                  <tr>
+                    <td rowspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size:16px; padding:10px;"><h1><span style="color:#003b6f; font-size:34px;">Today’s Deal: {{ daily_deal.savings_as_percentage | percentage }} Off!</span><br>{{ daily_deal.value_proposition }}</h1></td>
+                    <td valign="middle" align="center" background="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/bug.gif" width="102" height="102" style="color: #ffffff; font-size: 20px; font-family: Arial, Helvetica, sans-serif"><strong>{{ daily_deal.price | currency: 2 }}</strong></td>
+                  </tr>
+                  <tr>
+                    <td valign="middle">&nbsp;</td>
+                  </tr>
+                </table></td>
+                </tr>
+                <tr>
+                  <td valign="top" align="center" width="280" style="padding-left:10px;"><a href="{{ daily_deal.url_for_email }}"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/buy_now_button.gif" width="247" height="52" alt="buy now" border="none"></a>
+                  <table width="246" bgcolor="#d7d9db" align="center" style="padding-top:10px; padding-bottom:10px; border-top-style:solid; border-top-width:1px; border-top-color:#009fee; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#009fee; border-left-style:solid; border-left-width:1px; border-left-color:#009fee; border-right-style:solid; border-right-width:1px; border-right-color:#009fee;"><tr><td></td></tr>
+                  <tr><td height="21" align="center" style="font-size:15px; color:#9a9a9a;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"><b>{{ daily_deal.value | currency: 2 }}</b></td><td align="center" style="font-size:15px; color:#9a9a9a;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"><b>{{ daily_deal.price | currency: 2 }}</b></td><td align="center" style="font-size:24px; color:red;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"><b>{{ daily_deal.savings | currency: 2 }}</b></td></tr><tr><td align="center" style="font-size:8px; color:#9a9a9a;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;"><b>VALUE</b></td><td style="font-size:8px;color:#9a9a9a;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;" align="center"><b>TODAY'S DEAL</b></td>
+                  <td align="center" valign="top" ><strong style="font-size:14px; color:red;font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;">YOU SAVE</strong></td></tr>
+                  </table>
+                  </td>
+                  <td width="316" rowspan="3" align="center" valign="top"><img src="{{ daily_deal.photo.url }}" width="297"  alt="{{ advertiser.name }}"><br>
+                  <table>
+                   <tr><td valign="middle" align="center" style="border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#e1e1e1; border-left-style:solid; border-left-width:1px; border-left-color:#e1e1e1; border-right-style:solid; 
+                   border-right-width:1px; border-right-color:#e1e1e1; border-top-style:solid; border-top-width:1px; border-top-color:#e1e1e1; padding-right:5px;"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/share_it.gif" width="130" height="37" alt="share this deal">
+                   <a href="{{ daily_deal.facebook_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/facebook_icon.gif" width="50" height="41" border="0" alt="facebook"></a><a href="{{ daily_deal.twitter_url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/twitter_icon.gif" width="50" height="41" border="0" alt="twitter"></a>
+                   <a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}"><img src="http://{{ publisher.daily_deal_host }}/themes/chicagoreader/images/email/email_icon.gif" width="50" height="41" border="0" alt="email to a friend"></a></td></tr>
+                  </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td valign="top">
+                  
+                  </td>
+                  
+                </tr>
+                
+                <tr>
+                  <td >
+                  <table width="248" align="center" style="margin-left:25px;">
+                  <tr><td bgcolor="#d7d9db" style=" border-top-style:solid; border-top-width:1px; border-top-color:#009fee; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:#009fee; border-left-style:solid; 
+                  border-left-width:1px; border-left-color:#009fee; border-right-style:solid; border-right-width:1px; border-right-color:#009fee; font-family:Arial, Helvetica, sans-serif; font-size:12px; padding:10px;" >
+                  {% if advertiser.logo.file? %}
+                  <img src="{{ advertiser.logo.url }}" width="87" alt="{{ advertiser.name }}">{% endif %}
+                  <p >
+                  {% if advertiser.address? %}
+                  <strong>{{ advertiser.name }}</strong><br>
+                  {{ advertiser.address_line_1 }}<br>
+                  {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br>
+                  {{ advertiser.phone_number }}<br>
+                  {% endif %}
+                  {% if advertiser.website_url != "" %}
+                    <a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a><br />
+                  {% endif %}<br>
+                  </p></td></tr></table></td>
+                  
+                </tr>
+                
+                
+              <tr>
+              <td colspan="2" style="padding:30px; font-family:Arial, Helvetica, sans-serif;font-size:12px;">{{ daily_deal.description }}</td>
+              </tr>
+                <tr>
+                 <td valign="top" style="padding-top:0; padding-left:30px;padding-right:30px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+                   {% if advertiser.terms != "" %}
+                   <b>Fine Print</b><br>
+                   {{ daily_deal.terms }}
+                   {% endif %}
+                </td>
+                <td valign="top" style="padding-top:0; padding-left:30px;padding-right:30px; font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+                  {% if advertiser.highlights != "" %}
+                  <b>Highlights</b><br>
+                   {{ daily_deal.highlights }}
+                   {% endif %}
+                </td>
+                </tr>
+              </table><br>
+<!-- deal--></td></tr>
+
+
+        </table>
+        
+         
+  
+</td>
+</tr>
+</table>
+</body>
+</html>

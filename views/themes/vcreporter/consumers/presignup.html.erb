@@ -1,0 +1,61 @@
+<div id="aa-main">
+	<div id="aa-leftCol">
+		<div id="aa-leftHead">
+			<h1>Sign Up for Free Today</h1>
+			<h2>and you’ll be entered to win a free tote bag or other prize</h2>
+			<h2>(new drawings Each Week)</h2>
+			<h3>We'll send you exceptional deals<br /> to your inbox every week!</h3>
+		</div>
+		<div id="aa-form">
+		  <% %>
+		  <% form_for :subscriber, @subscriber, :url => publisher_subscribers_path(@publisher), :html => {:id => :new_consumer, :class => "email_subscription_tracking"} do |f| -%>
+		      <%= f.hidden_field :zip_code_required, :value => true %>
+          <p>
+            <%= f.label :name, "Name" %>
+            <%= f.text_field :name %>
+          </p>
+          <p>
+            <%= f.label :email, "Email" %>
+            <%= f.text_field :email %>
+          </p>
+          <p>
+            <%= f.label :zip_code, "ZIP Code" %>
+            <%= f.text_field :zip_code %>
+          </p>
+          <p class="row button_row">
+            <%= f.submit "Submit", :class => 'submit' %>
+          </p>
+      <% end -%>
+			<p class="terms">* Don’t Worry, we will not to share your email address with anyone.<br />
+			See our <%= link_to( "Privacy Policy", privacy_policy_publisher_daily_deals_path(@publisher)) %>.</p>
+		</div>
+  	</div><!-- end LEFT-->
+	
+	<div id="aa-rightCol">
+		<div id="aa-rightHead">
+			<h1>How It Works</h1>
+		</div>	
+		<div id="aa-rightMain">
+			<div class="sub">
+				<h2>SIGN UP</h2>
+				<%= image_tag("/themes/#{@publisher.label}/images/icons/check.png", :alt => "Check Mark") %>
+				<p>Subscribe to the Bigger Better Deal and we’ll email you exceptional deals saving you up to 70% in Ventura County!</p>
+			</div>
+			<div class="sub">
+				<h2>GET THE DEAL</h2>
+				<%= image_tag("/themes/#{@publisher.label}/images/icons/envelope.png", :alt => "Envelope") %>
+				<p>Buy the deal. Once you buy, check your email for your voucher. It’s easy! </p>
+			</div>			
+			<div class="sub">
+				<h2>SHARE IT</h2>
+        <%= image_tag("/themes/#{@publisher.label}/images/icons/facebook.png", :alt => "Facebook") %>
+        <%= image_tag("/themes/#{@publisher.label}/images/icons/twitter.png", :alt => "Twitter") %>
+				<p>Share the love and savings with friends and family on Facebook &amp; Twitter.</p>
+			</div>		
+		</div>
+	</div><!-- end RIGHT -->
+	<div class="clear"></div>
+</div><!-- end MAIN -->
+<div id="aa-footer">
+  <%= link_to( image_tag( "/themes/#{@publisher.label}/images/powered_by_analog_analytics.png"), "http://www.analoganalytics.com/", :id => :analog_analytics_logo )%>
+</div>

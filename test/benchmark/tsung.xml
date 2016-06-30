@@ -1,0 +1,212 @@
+<!DOCTYPE tsung SYSTEM "/usr/local/share/tsung/tsung-1.0.dtd" [
+ <!ENTITY mysession1 SYSTEM "/home/nniclausse/.tsung/tsung_recorder20051217-13:11.xml">
+]>
+
+<tsung loglevel="info">
+  <clients>
+     <client host="localhost" use_controller_vm="true"/>
+  </clients>
+
+  <servers>
+     <server host="localhost" port="80" type="tcp"/>
+     <server host="localhost" port="81" type="tcp"/>
+  </servers>
+
+  <load loop="1">
+    <arrivalphase phase="1" duration="5" unit="minute">
+     <users interarrival="0.1" unit="second" maxnumber="20000"/>
+    </arrivalphase>
+  </load>
+
+  <options>
+    <option name="file_server" value="daily_deal_ids.csv" id="daily_deal_ids"/>
+  </options>
+  
+  <sessions>
+    <session name="seo_friendly_public_index_pagination" probability="1" type="ts_http">
+      <request>
+        <http url="http://coupons.westword.com/denver/deals" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.westword.com/denver/deals?restaurants/?order=3967431844&amp;page=1&amp;page_size=4" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.westword.com/denver/deals?restaurants/?order=3967431844&amp;page=2&amp;page_size=4" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.westword.com/denver/deals?restaurants/?order=3967431844&amp;page=3&amp;page_size=4" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.westword.com/denver/deals?restaurants/?order=3967431844&amp;page=4&amp;page_size=4" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.westword.com/denver/deals?restaurants/?order=3967431844&amp;page=5&amp;page_size=4" version="1.1" method="GET"/>
+      </request>
+    </session>
+    <session name="seo_friendly_public_index" probability="2" type="ts_http">
+      <request>
+        <http url="http://coupons.houstonpress.com/houston/deals" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="5" random="true"/>
+      <request>
+        <http url="http://coupons.laweekly.com/los-angeles/deals" version="1.1" method="GET"/>
+      </request>
+    </session>
+    
+    <session name="show_daily_deal" probability="16" type="ts_http">
+      <setdynvars sourcetype="file" fileid="daily_deal_ids" order="iter">
+        <var name="daily_deal_id"/>
+      </setdynvars>
+
+      <request subst="true">
+        <http url="http://admin.analoganalytics.com/daily_deals/%%_daily_deal_id%%" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="deal_of_the_day_json" probability="32" type="ts_http">
+      <setdynvars sourcetype="file" fileid="daily_deal_ids" order="iter">
+        <var name="daily_deal_id"/>
+      </setdynvars>
+      <request subst="true">
+        <http url="http://admin.analoganalytics.com/daily_deals/%%_daily_deal_id%%.json" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="deal_of_the_day_xml" probability="3" type="ts_http">
+      <setdynvars sourcetype="file" fileid="daily_deal_ids" order="iter">
+        <var name="daily_deal_id"/>
+      </setdynvars>
+      <request subst="true">
+        <http url="http://admin.analoganalytics.com/daily_deals/%%_daily_deal_id%%.xml" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="seo_friendly_deal_of_the_day" probability="1" type="ts_http">
+      <request>
+        <http url="http://www.getmyperks.com/heartofflorida" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="offers_public_index" probability="1" type="ts_http">
+      <request>
+        <http url="http://coupons.sdreader.com/publishers/33/offers" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="deal_of_the_day" probability="3" type="ts_http">
+      <request>
+        <http url="http://admin.analoganalytics.com/publishers/ocregister/deal-of-the-day" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="coupons" probability="1" type="ts_http">
+      <setdynvars sourcetype="random_number" start="4000" end="5000">
+        <var name="offer_id" />
+      </setdynvars>
+
+      <request subst="true">
+        <http url="http://localhost/publishers/33/offers?offer_id=%%_offer_id%%" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="api" probability="1" type="ts_http">
+      <request>
+        <http url="/api2/web_coupons/categories?publisher_label=fortworthstartelegram" version="1.1" method="GET">
+          <www_authenticate userid="Aladdin" passwd="secret"/>
+          <http_header name="API-Version" value="2.0.0"/>
+        </http>
+      </request>
+    </session>
+    
+    <session name="admin" probability="1" type="ts_http">
+      <request>
+        <http url="http://admin.analoganalytics.com/" version="1.1" method="GET"/>
+      </request>
+
+      <repeat name="redirect_loop" max_repeat="5">
+        <request subst="true">
+          <dyn_variable name="redirect" regexp="Location: \(http.*\)\r"/>
+          <http url="%%_redirect%%" method="GET"/>
+        </request>
+        <until var="redirect" eq=""/>
+      </repeat>
+      
+      <thinktime value="5" random="true"/>
+      <request subst="true">
+        <dyn_variable name="redirect" regexp="Location: \(http.*\)\r"/>
+        <http url="/session" method="POST" version="1.1" contents="user[login]=admin;user[password]=secret"/>
+      </request>
+
+      <request subst="true">
+        <http url="%%_redirect%%" method="GET"/>
+      </request>
+
+      <request>
+        <http url="http://admin.analoganalytics.com/publishers/33/advertisers" version="1.1" method="GET"/>
+      </request>
+    </session>
+
+    <session name="purchase_deal" probability="1" type="ts_http">
+      <request>
+        <http url="http://admin.analoganalytics.com/publishers/newsday/deal-of-the-day" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="15" random="true"/>
+      <request>
+        <http url="http://admin.analoganalytics.com/daily_deals/4608/daily_deal_purchases/new" version="1.1" method="GET"/>
+      </request>
+
+      <setdynvars sourcetype="random_string" length="30">
+        <var name="email_address" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_string" length="30">
+        <var name="domain" />
+      </setdynvars>
+
+      <thinktime value="15" random="true"/>
+      <request subst="true">
+        <http url="http://admin.analoganalytics.com/daily_deals/4608/daily_deal_purchases" version="1.1" method="POST"
+        contents="consumer[name]=MrConsumer&amp;consumer[agree_to_terms]=1&amp;consumer[password_confirmation]=secret&amp;consumer[password]=secret&amp;consumer[email]=%%_email_address%%@%%_domain%%.com&amp;daily_deal_purchase[quantity]=1"
+        />
+      </request>
+
+      <repeat name="redirect_loop" max_repeat="5">
+        <request subst="true">
+          <dyn_variable name="redirect" regexp="Location: \(http.*\)\r"/>
+          <http url="%%_redirect%%" method="GET"/>
+        </request>
+        <until var="redirect" eq=""/>
+      </repeat>
+
+      <request>
+        <http url="http://admin.analoganalytics.com/benchmark/simulate_braintree_redirect" version="1.1" method="GET"/>
+      </request>
+
+      <repeat name="redirect_loop" max_repeat="5">
+        <request subst="true">
+          <dyn_variable name="redirect" regexp="Location: \(http.*\)\r"/>
+          <http url="%%_redirect%%" method="GET"/>
+        </request>
+        <until var="redirect" eq=""/>
+      </repeat>
+    </session>
+
+    <session name="404" probability="37" type="ts_http">
+      <request>
+        <http url="http://coupons.westword.com/gbinc/jsfiles/incFadeImagesAPI.js" version="1.1" method="GET"/>
+      </request>
+    </session>
+  </sessions>
+</tsung>

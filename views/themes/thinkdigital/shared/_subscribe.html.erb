@@ -1,0 +1,21 @@
+<h4><%= t(".title") %></h4>
+<div class="content_box">
+	<div id="subscribe_form">
+    <form action="<%= publisher_subscribers_path(@publisher) %>" id="daily_deal_header" class="email_subscription_tracking" method="post">
+			<fieldset>
+				<input name="subscriber[must_accept_terms]" value="true" type="hidden" />
+				<input name="redirect_to" value="<%= verifiable_url(public_deal_of_day_path(@publisher.label)) %>" type="hidden" />
+			</fieldset>
+			<fieldset>
+				<input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="<%= t(:email) %>" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'<%= t(:email) %>':this.value;" />	
+				<input id="subscriber_zip" name="subscriber[zip_code]" size="30" type="text" value="<%= t(:zip_code) %>" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'<%= t(:zip_code) %>':this.value;" />
+				<input name="subscriber[terms]" value="0" type="hidden" />
+				<input id="subscriber_terms" name="subscriber[terms]" value="1" checked type="checkbox" /><%= t("i_agree_to_the") %> <%= daily_deals_terms_link(@publisher) %> <%= t("and") %> <%= daily_deals_privacy_link(@publisher) %></a>
+			</fieldset>
+			<fieldset class="sign_up">
+				<input type="submit" class="sign_up button gradient" value="<%= t(:sign_up) %>" />
+			</fieldset>
+		</form>
+	</div><!-- /subscribe_form -->
+	<div class="clear"></div>
+</div>

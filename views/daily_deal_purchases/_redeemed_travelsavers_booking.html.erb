@@ -1,0 +1,11 @@
+<tr>
+  <td class="description">
+    <%= redeemed_travelsavers_booking.daily_deal.value_proposition %>
+  </td>
+  <td class="serial_number"><%= "##{redeemed_travelsavers_booking.confirmation_number}" if redeemed_travelsavers_booking.confirmation_number.present? %></td>
+  <td class="recipient">
+    <%= redeemed_travelsavers_booking.passengers.map(&:name).join(", ") %>
+  </td>
+  <td class="redeemed_on"><%= travelsavers_booking_redemption_date(redeemed_travelsavers_booking) %></td>
+  <td class="status"></td>
+</tr>

@@ -1,0 +1,42 @@
+<% if admin? -%>
+  <% form_tag consumers_path, :method => :get do -%>
+    <div class="row">
+      <div class="label"><%= label_tag :text, "Search" %></div>
+      <div class="input"><%= text_field_tag :text, @text %></div>
+      <div class="help"></div>
+    </div>
+  <% end -%>
+  <div style="float: right" id="manage-locked-accounts-container">
+    <%= link_to "Manage Locked Accounts", user_locks_path, :id => "manage-locked-accounts" %>
+  </div>
+<% else -%>
+  <% form_tag publisher_consumers_path(@publisher), :method => :get do -%>
+    <div class="row">
+      <div class="label"><%= label_tag :text, "Search" %></div>
+      <div class="input"><%= text_field_tag :text, @text %></div>
+      <div class="help"></div>
+    </div>
+  <% end -%>
+<% end -%>
+
+<div class="clear"></div>
+
+<table cellspacing="0" summary="consumers" class="consumers">
+  <tr>
+    <th class="name">Name</th>
+    <th class="login">Login</th>
+    <th class="publisher">Publisher</th>
+    <th class="activation_code">Activation Code</th>
+    <th class="created_at right">Created At</th>
+    <th class="activated_at right">Activated At</th>
+    <th class="daily_deal_purchases"></th>
+    <th class="add_credit"></th>
+  </tr>
+  <%= render @consumers %>
+</table>
+
+<div class="full_width buttons">
+  <%= button_to_function "New Consumer", "window.location.href = '#{new_admin_consumer_path}'", :class => "add_new_consumer" %>
+</div>
+
+<%= focus "text" %>

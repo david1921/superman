@@ -1,0 +1,9 @@
+<div id="banner">
+	<div id="logo_wrap">
+		<a href="<%= public_deal_of_day_path(@publisher.label) %>"><img id="deal_logo" src="/themes/allconnect/images/graphics/deal_logo.png" height="180" alt="Seattle Pi Daily Deal" /></a>
+		<%= render :partial => with_theme('shared/market_menu') if @publisher.enable_market_menu %>
+		<%= render :partial => with_theme("shared/account_nav") %>
+	</div>
+	<div class="logo_bar"></div>
+		<%= render :partial => with_theme("shared/dd_nav") %>
+</div>

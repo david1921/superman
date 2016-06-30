@@ -1,0 +1,16 @@
+<% @page_title = "Welcome to #{@publisher.name}'s coupons! Please create an account so that you can create coupons for your business." %>
+
+<% form_for([ @publisher, @advertiser_signup ], :url => publisher_advertiser_signups_path(@publisher), :html => { :multipart => true }) do |f| %>
+  <%= error_messages_for :advertiser_signup, :advertiser, :advertiser_user %>
+
+  <%= f.text_field_div(:advertiser_name, "Name of Your Business:", :required => true) %>
+  <%= f.text_field_div :email, "Your Email Address:", :required => true %>
+  <%= f.password_field_div :password, nil, :required => true %>
+  <%= f.password_field_div :password_confirmation, nil, :required => true %>
+
+  <div class="buttons">
+    <%= f.submit "Next: Business Details &rarr;", :id => "next_button" %>
+  </div>
+<% end %>
+
+<%= focus "advertiser_signup_advertiser_name" %>

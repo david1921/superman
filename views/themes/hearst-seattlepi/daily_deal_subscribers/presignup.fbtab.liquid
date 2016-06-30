@@ -1,0 +1,20 @@
+	<h1>Presents:</h1>
+	<h2>Enter to Win: <br />Two Premiere Tickets to see Rod Stewart and Stevie Nicks at Key Arena on April 23rd!</h2>
+	<h2>Fill in your email address below to enter!</h2>
+	<p class="info">We hate SPAM! Your info will never be sold. You will only receive information about this contest and other giveaways and deals in the greater Seattle area from your friends at the SeattlePI.com</p>
+	
+	
+	<form action="{{ publisher.subscribers_path }}" method="POST" class="presignup">
+		<input type="hidden" name="authenticity_token" value="{% form_authenticity_token %}" />
+		<input type="hidden" name="redirect_to" value="{{ publisher.thank_you_daily_deal_subscribers_fbtab_path | verifiable_url }}" id="redirect_to">
+		<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+		<input id="subscriber_must_accept_terms" name="subscriber[must_accept_terms]" type="hidden" value="true" />
+		<p><input class="dd_input" id="subscriber_email" name="subscriber[email]" size="30" title="Email address" type="text" /></p>
+		<fieldset>
+			<input name="subscriber[terms]" type="hidden" value="0" /><input id="subscriber_agree_to_terms" name="subscriber[terms]" type="checkbox" value="1" checked="checked" />
+			<label id="subscriber_terms" for="subscriber_terms">I agree to the <a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false;">Terms</a> and <a href="#" onclick="window.open('{{ publisher.privacy_path}}', '_blank'); return false;">Privacy Policy</a> and <a href="http://extras.seattlepi.com/dd/terms.php">Contest Terms</a></label>
+		</fieldset>
+		<p><input id="subscribe_button" class="button" type="submit" value="Sign Up" /></p>
+	</form>
+	<div id="a_a"><a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics.png" width="169" height="20" alt="Powered by Analog Analytics" /></a></div>
+

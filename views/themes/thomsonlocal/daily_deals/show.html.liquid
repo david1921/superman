@@ -1,0 +1,142 @@
+         <script type="text/javascript">
+         document.title = document.title + " - Today's Deal"
+         </script>
+         <div id="deal_content">
+           <div class="deal_intro"><img src="/themes/thomsonlocal/images/graphics/todays_deal.png" width="218" height="115" alt="Deal of the Day"  /><h1><span class="price">&#x20A4;{{ daily_deal.price | integer }}</span> for {{ daily_deal.value_proposition }} at <span class="advertiser_name">{{ advertiser.name }}</span><br /> ({{ daily_deal.value |  currency: 0, publisher.currency_symbol }} value)</h1>
+             {% if daily_deal.highlights != "" %}
+             <h3>Highlights</h3>
+               <div class="deal_intro_text">{{ daily_deal.highlights }}</div>
+              {% endif %}
+           </div><!-- /deal_intro -->
+           <div class="deal_visual"><img src="{{ daily_deal.photo.url }}" width="358" height="238" alt="{{ advertiser.name }}"  />
+            <div id="value_proposition_subhead">
+              <h3>{{ advertiser.name }}</h3>
+              <p>{{ daily_deal.value_proposition_subhead }}</p>
+            </div>
+           </div>
+           
+           <div class="deal_dashboard">
+				<div class="deal_specs">
+				
+		             <table align="center">
+			             <tr align="center">
+			              <th>Value</th>
+			              <th>Discount</th>
+			              <th>Save</th>
+			             </tr> 
+			             <tr align="center">
+			               <td height="40">{{ daily_deal.value | currency: 0, publisher.currency_symbol }}</td>
+			               <td>{{ daily_deal.savings_as_percentage | percentage }}</td>
+			               <td>{{ daily_deal.savings | currency: 0, publisher.currency_symbol }}</td>
+			             </tr>
+		             </table>
+		             <table id="deal_status">
+						<tr>
+							<td colspan="3"><span id="deals_sold">{{ daily_deal.number_sold }}</span> Bought</td>
+						</tr>              
+		             </table>
+				</div><!-- /deal_specs  -->      
+           	
+             
+      <div class="buy_now">
+        {% if daily_deal.sold_out? %}
+        <div id="sold_out" class="dd_button">
+          <img alt="sold_out" src="/themes/thomsonlocal/images/buttons/sold_out.png" alt="sold out" />
+        </div>
+        {% elsif daily_deal.over? %}
+        <div id="deal_over" class="dd_button">
+          <img alt="deal_over" src="/themes/thomsonlocal/images/buttons/deal_is_over.png" alt="deal over" />
+        </div>              
+        {% elsif daily_deal.active? %}
+        <a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button">
+          <img alt="Buy_now" src="/themes/thomsonlocal/images/buttons/buy_now_button.png" alt="buy now" />
+        </a>
+        <div id="deal_over" class="dd_button unavailable" style="display:none;">
+          <img alt="deal_over" src="/themes/thomsonlocal/images/buttons/deal_is_over.png" alt="deal over" />
+        </div>
+        {% else %}
+        <div id="not_yet_available" class="dd_button">
+          <img alt="not_yet_available" src="/themes/thomsonlocal/images/buttons/not_yet_available.png" alt="not yet available" />
+        </div>              
+        {% endif %}
+      </div><!-- /value and button -->
+
+             <!--<img src="images/buttons/deal_is_over.png" width="232" height="61" alt="buy now - deal of the day" /> </a>-->
+             
+             <div id="timer"><img src="/themes/thomsonlocal/images/graphics/timer_clock.png" width="16" height="16" alt="time_left_to_buy" /><p>Time Left to Buy &nbsp; <span id="time_left_to_buy">{{ daily_deal.time_remaining_display }}</span></p>
+             </div>
+                       
+             <div id="share"><p>Share this deal: </p>
+               <a href="/daily_deals/{{ daily_deal.id }}/facebook" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook" class="share_button_facebook"><img src="/themes/thomsonlocal/images/icons/facebook_icon.png" width="38" height="38" alt="facebook"  /></a>
+               <a href="{{ daily_deal.twitter_url }}" target="_blank" class="share_button_twitter"><img src="/themes/thomsonlocal/images/icons/twitter_icon.png" width="38" height="38" alt="twitter"  /></a>
+               <a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_button_mail"><img src="/themes/thomsonlocal/images/icons/email_icon.png" width="38" height="38" alt="email"  /></a>
+             </div><!-- /share -->
+           </div>
+           <div style="clear:both"></div>
+           
+         </div><!--deal_content-->
+         
+         <div id="description">
+         <h1>Details</h1>
+         <div class="details">
+           <div class="map_fineprint">
+            <!-- map -->
+            {% if advertiser.stores.size > 0 %}
+              <a href="{{ advertiser.map_url }}">
+                <img src="{{ daily_deal.multi_loc_map_image_url }}" id="map" target="blank" />
+              </a>
+            {% endif %}
+      
+            <!--stores -->
+            {% if advertiser.address? %}
+              {% for store in advertiser.stores %}
+              <div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">
+                <div class="advertiser_address">
+                  <h2>{{ advertiser.name }}</h2>
+                    {{ store.address_line_1 }}<br/>
+                    {% if store.address_line_2 != empty %}
+                    {{ store.address_line_2 }}<br/>
+                    {% endif %}
+                    {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+                    {% if store.formatted_phone_number != empty %}
+                    Phone: {{ store.formatted_phone_number }}<br />
+                    {% endif %}
+                </div>
+                <div style="clear:both"></div>
+              </div>
+              {% endfor %}
+            {% endif %}
+          {% if advertiser.website_url != empty %}
+            <p><a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a></p>
+          {% endif %}
+             <div class="fine_print">
+				<h2>Fine Print</h2>
+				{{ daily_deal.fine_print }}           
+             </div>
+      </div><!--map_fineprint-->
+           
+           <div class="description_copy"><h2>Description</h2>
+           {{ daily_deal.description }}
+           {% if daily_deal.reviews != empty and daily_deal.reviews != null  %}
+           <h2 class="reviews"><em>Reviews</em></h2>
+           <span class="reviews_copy"><em>{{ daily_deal.reviews }}</em></span>
+           {% endif %}
+          </div>
+          <div class="clear"></div>
+    <div class="bottom_cta"> 
+      <div class="box">
+        <img src="/themes/thomsonlocal/images/graphics/restaurant.jpg" width="172" height="116" alt="restaurants" /> 
+        <p><span class="box_offer">Up to 70% off</span> <br /> Restaurants </p> 
+      </div> 
+      <div class="box">
+        <img src="/themes/thomsonlocal/images/graphics/spas.jpg" width="172" height="116" alt="spas" /> 
+        <p><span class="box_offer">Up to 50% off</span><br /> Spas  </p> 
+      </div> 
+      <div class="box last">
+        <img src="/themes/thomsonlocal/images/graphics/attractions.jpg" width="172" height="116" alt="attractions" /> 
+        <p> <span class="box_offer">Up to 60% off</span><br /> Attractions </p> 
+      </div> 
+    </div> 
+           <div style="clear:both;"></div>
+         </div><!--details-->
+         </div><!--description-->

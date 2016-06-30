@@ -1,0 +1,30 @@
+<% set_daily_deal_page_title_slug "Activate Account" %>
+
+<div class="page_row">
+  <div class="prefix_2 page_column_8 suffix_2 first rounded_corners">
+    <h2>Revise su correo electr&oacute;nico</h2>
+    <p>Por favor revise su correo electr&oacute;nico para ver si recibi&oacute; un correo de <%= @publisher.brand_name_or_name %> con instrucciones.  
+    </p>
+
+    <p class="small">Si a&uacute;n no ha recibido un correo, favor de reintroducir su correo electr&oacute;nico. <%= link_to_remote("Reenviar correo electr&oacute;nico", { :url => send_activation_request_consumer_path(@consumer) }, { :id => "send_activation_request_link" }) %></p>
+    
+    <% if @consumer.signup_discount -%>
+      <p class="small">Your Deal Dollars will be applied to your first daily-deal purchase.</p>
+    <% end -%>
+
+    <% form_tag activate_publisher_consumers_path(@publisher), :style => "padding-top: 12px", :id => "activate_form" do %>
+      <div class="row">
+        <div class="label">
+          <%= label_tag(:activation_code, "C&oacute;digo de Activaci&oacute;n:") %>
+        </div>
+        <div class="input">
+          <%= text_field_tag(:activation_code) %>
+        </div>
+      </div>
+	 <div class="clear"></div>
+      <div class="full_width buttons button_row">
+        <%= submit_tag("Activar", :name => "activate") %>
+      </div>
+    <% end %>
+  </div>
+</div>

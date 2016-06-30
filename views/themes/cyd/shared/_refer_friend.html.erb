@@ -1,0 +1,9 @@
+<% if @publisher.enable_daily_deal_referral %>
+<div id="refer_friend" class="content_box">
+ <div id="refer_inner" class="page_column_4 last rounded_corners">
+      <a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>"><img style="width:200px;" src="/themes/cyd/images/graphics/refer_a_friend_credit.png" alt="Refer a friend and earn a $10 Deal Credit!" /></a>
+            <p>When you <a href="<%= refer_a_friend_publisher_consumers_path(@publisher) %>">refer a friend</a> to sign-up for deals, you earn a $10 Deal Credit when your friend purchases their first deal.</p>
+    </div>
+</div><!-- /refer_friend -->
+<div class="clear:both;"></div>
+<% end %>       

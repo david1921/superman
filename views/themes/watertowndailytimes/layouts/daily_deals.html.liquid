@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+{% if daily_deal %}
+ <meta name="title" content="{{ daily_deal.facebook_title }}" />
+ <meta name="description" content="{{ daily_deal.facebook_description }}" />
+ <meta name='keywords' content="{{ advertiser.name }}, {{ daily_deal.value_proposition }}">
+ <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+ <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+ <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/watertowndailytimes/stylesheets/daily_deals.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/watertowndailytimes/stylesheets/watertowndailytimes.css" type="text/css" />
+  
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  
+<!--[if IE]>
+<link href="/themes/watertowndailytimes/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  
+  <title>{% daily_deal_page_title %}</title>
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body>
+
+<!-- pub header -->
+<div id="pub_header">
+	{% include with_theme "shared/header" %}
+</div><!-- end pub_header -->
+
+<div class="clear"></div>
+<!--Analog_Analytics_Daily_Deal-->
+
+
+<div id="analog_analytics">
+	<div id="daily_deal">
+	
+		<div id="banner">
+			{% include with_theme "shared/account_nav" %}
+
+			<div class="clear"></div>
+			{% unless publisher.current_user_belongs_to? %}
+			<div id="subscribe_form">
+				<h4 class="subscribe">SIGN UP FOR FREE DEAL ALERTS!</h4>
+				<form action="{{ publisher.subscribers_path }}" id="daily_deal_header" class="email_subscription_tracking" method="post">
+					<p><input name="subscriber[must_accept_terms]" value="true" type="hidden" /></p>
+					<p><input name="redirect_to" value="{{ publisher.todays_daily_deal_path | verifiable_url }}" type="hidden" /></p>
+					<p><input id="subscriber_email" name="subscriber[email]" size="30" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" /></p>
+					<p><input id="subscriber_zip_code" name="subscriber[zip_code]" size="30" type="text" value="Zip Code" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Zip Code':this.value;" /></p>
+					<p><input id="subscribe_button" type="submit" value="Sign Up" /></p>
+					<p id="terms"><input name="subscriber[terms]" value="0" type="hidden" />
+						<input id="subscriber_terms" name="subscriber[terms]" value="1" type="checkbox" /> I agree to the &nbsp;<a href="#" onclick="window.open('{{ publisher.terms_path }}', '_blank'); return false; return false;" style="color:#fff;">Terms</a> and &nbsp;<a href="#" onclick="window.open('{{ publisher.privacy_path }}', '_blank'); return false; return false;" style="color:#fff;">Privacy Policy</a>
+					</p>
+				</form>
+			</div><!-- /subscribe_form -->
+			{% endunless %}
+		</div><!--banner-->   
+		 
+		<div id="dd_content">
+			{% include with_theme "shared/dd_nav" %}
+	       	 
+		    {% include "shared/flash" %}
+		    {{ content_for_layout }}
+		    <div class="clear"></div>
+		    {% include "shared/a_a" %}
+		</div><!--dd_content-->
+		
+		<div id="dd_footer">
+			<ul id="footer_nav">
+				<li><a href="{{ publisher.todays_daily_deal_path }}">Today's Deal</a> </li>
+				<li><a href="{{ publisher.how_it_works_path }}">How It Works</a></li>
+				<!-- <li><a href="">Past Deals</a></li> -->
+				<li><a href="{{ publisher.feature_your_business_path }}">Feature Your Business</a></li>
+				<li><a href="{{ publisher.faq_path }}">FAQ</a></li>
+				<li class="last"><a href="{{ publisher.contact_path }}">Contact Us</a></li>
+			</ul><!-- /footer_nav -->
+			<div class="clear"></div>
+			<ul id="legal_nav">
+				<li><a href="{{ publisher.privacy_path }}">Privacy Policy</a></li>
+				<li class="last"><a href="{{ publisher.terms_path }}">Terms and Conditions</a></li>
+			</ul><!-- /legal_nav -->
+		</div><!-- /dd_footer -->
+	</div><!--daily_deal-->
+
+</div><!--analog_analytics-->
+{% include "daily_deals/javascript" %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!-- render deal category links -->
+  <%
+  all_category_deals = {}
+  @daily_deals.each do |deal|
+    if deal.publishers_category.present?
+      if all_category_deals[deal.publishers_category.name]
+        all_category_deals[deal.publishers_category.name] << deal
+      else
+        all_category_deals[deal.publishers_category.name] = [deal]
+      end
+    end
+  end
+  %>
+
+  <% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending %>
+
+  <% unless categories.blank? %>
+    <h3>Deal Categories</h3>
+      <a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6" class="button gradient all_deals_tracking <%= "#{controller_name}##{action_name}" == "daily_deals#public_index" ? 'current_page' : nil %>">View All<span></span></a>
+      <ul>
+        <% categories.each_with_index do |daily_deal_category, index| %>
+          <li><%= link_to("#{daily_deal_category.name}", publisher_daily_deal_category_path(@publisher, daily_deal_category)) %>
+              <span>(<%= all_category_deals[daily_deal_category.name].length %>)</span></li>
+        <% end %>  
+      </ul>
+  <% end %>
+<!-- END render deal category links -->

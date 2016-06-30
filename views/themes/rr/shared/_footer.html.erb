@@ -1,0 +1,35 @@
+<div id="footer">
+	<ul>
+		<% if @publisher.label == "clickedin-charlotte" %>
+			<li id="daily_deal"><a href="<%= public_deal_of_day_path(@publisher.label) %>">Offers</a></li>
+			<li id="win"><a href="<%= publisher_sweepstakes_path(@publisher.label) %>">Win!</a></li>
+			<% if current_consumer_for_publisher?(@publisher) %>
+			<li id="my_account"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+		 	<% else %>
+		 		<li id="my_account"><a href="<%= daily_deal_login_path(@publisher) %>">My Account</a></li>
+			<% end %>
+		 	<li id="contact_us"><a href="<%= contact_publisher_daily_deals_path(@publisher) %>" class="last">Contact Us</a></li>
+		<% else %>
+			<li id="daily_deal"><a href="<%= public_deal_of_day_path(@publisher.label) %>">Daily Deal</a></li>
+			<li id="win"><a href="<%= publisher_sweepstakes_path(@publisher.label) %>">Win!</a></li>
+			<li id="clickedin_cares"><a href="<%= publisher_communities_path(@publisher.label) %>">ClickedIn Cares</a></li>
+	    	<li id="about_us"><a href="<%= about_us_publisher_daily_deals_path(@publisher) %>">About Us</a></li>
+	    	<% if current_consumer_for_publisher?(@publisher) %>
+			<li id="my_account"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+		 	<% else %>
+			<li id="my_account"><a href="<%= daily_deal_login_path(@publisher) %>">My Account</a></li>
+			<% end %>
+	    	<li id="faq"><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a></li>
+			<li id="contact_us"><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+			<li id="advertise"><a href="<%= feature_your_business_publisher_daily_deals_path(@publisher) %>">Advertise With Us</a></li>
+			<li id="how_it_works"><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>" class="last">How It Works</a></li>
+		<% end %>
+	</ul>
+	<ul>
+		<li><a href="<%= terms_publisher_daily_deals_path(@publisher.id) %>" target="_blank">Terms of Use</a></li>
+		<li><a href="<%= privacy_policy_publisher_daily_deals_path(@publisher.id) %>" target="_blank">Privacy Policy</a></li>
+		<li><a href="<%= california_privacy_policy_publisher_daily_deals_path(@publisher) %>" target="_blank" class="last">Your California Privacy Rights</a></li>
+	</ul>
+	<p>&copy; 2011, 2012 Time Warner Cable Inc. All Rights Reserved.</p>
+	
+</div><!-- /footer -->

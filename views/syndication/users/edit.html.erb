@@ -1,0 +1,124 @@
+<div id="my_account">
+
+<h1 class="page_title">Account Settings</h1>
+<div id="account_settings">
+
+    <div id="button1" class="first AccordionPanel Tab Button Widget">Contact Information</div>
+    <div id="panel1" class="account_panel"><div>
+    <% form_for @publisher, :url => syndication_user_path(@user), :html => {:id => "contact_info"} do |f| -%>
+    <%= f.error_messages -%>
+      <%= hidden_field_tag :publisher_id, @publisher.id %>
+      <% field_set_tag do -%>
+        <%= f.label :name, "Name:" %>
+        <%= f.text_field :name %>
+      <% end %>
+      <% field_set_tag do -%>
+        <%= f.label :address_line_1, "Address Line 1:" %>
+        <%= f.text_field :address_line_1 %>
+      <% end %>
+      <% field_set_tag do -%>
+        <%= f.label :address_line_2, "Address Line 2:" %>
+        <%= f.text_field :address_line_2 %>
+      <% end %>
+      <% field_set_tag do -%>
+        <%= f.label :city, "City:" %>
+        <%= f.text_field :city %>
+      <% end %>
+      <% field_set_tag do -%>
+        <%= f.label :country_id, "Country:" %>
+        <%= collection_select(:publisher, :country_id, Country.active, :id, :name , {}) %>
+      <% end %>
+      <span id="country_aware_fields">
+        <span id="region">
+          <% field_set_tag do -%>
+            <%= f.label :region, "Region:" %>
+            <%= f.text_field :region %>
+          <% end %>
+        </span>
+        <span id="us_states">
+          <% field_set_tag do -%>
+            <%= f.label :state, "State:" %>
+            <%= f.select(:state, Addresses::Codes::US::STATE_CODES) %>
+          <% end %>
+        </span>
+        <span id="ca_states">
+          <% field_set_tag do -%>
+            <%= f.label :state, "State:" %>
+            <%= f.select(:state, Addresses::Codes::CA::STATE_CODES) %>
+          <% end %>
+        </span>
+      </span>
+      <% field_set_tag do -%>
+        <%= f.label :zip, "Zip:" %>
+        <%= f.text_field(:zip, :value => @publisher.zip_as_entered) %>
+      <% end %>
+      <% field_set_tag do -%>
+        <%= f.label :phone_number, "Phone Number:" %>
+        <%= f.text_field(:phone_number, :value => @publisher.phone_number_as_entered) %>
+      <% end %>
+      <fieldset>
+        <%= submit_tag "Update", :class => "button gradient" %>
+      </fieldset>
+    <% end %>
+    </div></div><!-- /contact panel -->
+    <div id="button2" class="AccordionPanel Tab Button Widget">Login Information</div>
+    <div id="panel2" class="account_panel"><div>
+      <% form_for @user, :url => syndication_user_path(@user), :html => {:id => "login_info"} do |f| -%>
+      <%= f.error_messages -%>
+      <p>To change your password, enter your new password below and click "Change".</p>
+        <% field_set_tag do -%>
+          <%= f.label :user, "Login:" %>
+          <%= f.text_field :login, :disabled => true %>
+        <% end %>
+        <% field_set_tag do -%>
+          <%= f.label :user, "New Password:" %>
+          <%= f.password_field :password %>
+        <% end %>
+        <% field_set_tag do -%>
+          <%= f.label :user, "Confirm New Password:" %>
+          <%= f.password_field :password_confirmation %>
+        <% end %>
+        <fieldset>
+          <%= submit_tag "Change", :class => "button gradient" %>
+        </fieldset>
+      <% end %>
+    </div></div><!-- /login panel -->
+
+  <div id="button3" class="AccordionPanel Tab Button Widget">Syndication Preferences</div>
+  <div id="panel3" class="account_panel"><div>
+  </div></div>
+  <!-- /syndication panel -->
+
+  <div id="button4" class="last AccordionPanel Tab Button Widget">Terms</div>
+  <div id="panel4" class="account_panel"></div>
+
+</div><!-- /account_settings -->
+</div><!-- /my_account -->
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    var usStates = $('#us_states').remove();
+    var caStates = $('#ca_states').remove();
+
+    function setupCountryAwareFields() {
+      var country = $('#publisher_country_id option:selected').text(); 
+      if(country == "United States") {
+        $('#region').hide();
+        $('#country_aware_fields').append(usStates);
+        $('#ca_states').remove();
+      } else if(country == "Canada") {
+        $('#region').hide();
+        $('#country_aware_fields').append(caStates);
+        $('#us_states').remove();
+      } else {
+        $('#region').show();
+        $('#us_states').remove();
+        $('#ca_states').remove();
+      }
+    }
+
+    $('#publisher_country_id').change(function() {
+      setupCountryAwareFields();
+    });
+  });
+</script>

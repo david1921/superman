@@ -1,0 +1,17 @@
+<div class="deal">
+    <div class="image"><img src="<%= featured_deal.photo.url(:blast) %>" alt="" width="220" height="133" /></div>
+    <div class="value_prop"><p><%= featured_deal.value_proposition_subhead %></p></div>
+    <div class="locations">
+        <p>
+        <% if featured_deal.advertiser.store.present? %> 
+            <% if featured_deal.advertiser.store.city.present? %> 
+            <span class="location"><%= featured_deal.advertiser.store.city %></span>
+            <% end %>
+        <% end %>
+        </p>
+    </div>
+    <div class="price"><span><%= number_to_currency featured_deal.price, :precision => 2, :unit => featured_deal.publisher.currency_symbol %> </span></div>
+    <div class="view">
+        <a href="<%= Drop::DailyDeal.new(featured_deal).url %>">VIEW DEAL</a>
+    </div>
+</div><!--END DEAL-->

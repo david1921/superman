@@ -1,0 +1,46 @@
+<div id="container-mall">
+	<h1>
+	<!--market name-->
+	</h1>
+	<div id="deals">
+		{% for daily_deal in daily_deals %}
+		<div class="deal">
+			<div class="image">
+				<img src="{{ daily_deal.photo.blast_url }}" alt="" width="220" height="133" />
+			</div>
+			<div class="value_prop">
+				<p>{{ daily_deal.value_proposition_subhead }}</p>
+			</div>
+			<div class="locations">
+			   <p>
+				{% if daily_deal.advertiser.address? %}
+  				  {% for store in daily_deal.advertiser.stores %}
+					<span class="location" style="{% if forloop.index > 1 %}display:none{% endif %}">{{ store.city }} &nbsp;</span>
+				  {% endfor %}
+			   {% endif %}
+			   {% if daily_deal.advertiser.num_stores > 1 %}
+				  <a href="{{ daily_deal.url }}#location">See all locations</a>
+               {% endif %}
+			   </p>
+			</div>
+			<div class="price">
+				<span>{{ daily_deal.price | currency: 2 }}</span>
+			</div>
+			<div class="view">
+				<a href="{{ daily_deal.url }}">VIEW DEAL</a>
+			</div>
+		</div><!--END DEAL-->
+		{% endfor %}
+		
+	</div>
+</div>
+<div class="clear"></div>
+</div><!--END Inner-->
+
+<div id="sidebar">
+	<div id="container">
+		<div id="facebookbox" class="content">
+			{% include with_theme 'shared/facebook_likebox' %}
+		</div>
+	</div>
+</div>

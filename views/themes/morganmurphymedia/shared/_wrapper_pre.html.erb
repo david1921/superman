@@ -1,0 +1,45 @@
+<%= render :partial => with_theme("shared/head") %>
+
+<body>
+
+<div id="analog_analytics">
+    <div id="daily_deal" class="presignup">
+		
+		<div id="topbanner">
+		  <img src="/themes/morganmurphymedia/images/header.jpg" width="1000" height="150" alt="BEST DEALS AND BEYOND" />
+		</div>
+		
+		<div id="topnavbar">
+			<div id="nav">
+				<ul>
+					<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+					<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+					<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+				</ul>
+			</div>
+			<div id="subscription">
+				
+			</div>
+		</div>
+		
+		
+		<%= render :partial => with_theme("shared/flash_messages") %>
+		
+		
+		
+		<!--START BODY CONTENT-->
+			
+			<%=raw yield %>
+	
+		<!--END BODY CONTENT-->
+		 
+		 
+		 
+		 <%= raw render :partial => 'shared/a_a_alt' %>
+
+    </div><!--end daily_deal-->
+</div><!--end analog_analytics-->
+
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+</body>
+</html>

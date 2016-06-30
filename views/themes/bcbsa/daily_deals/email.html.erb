@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= t(:blue365_deals) %></title>
+<style type="text/css">
+	p {margin:0px;padding:0; margin-bottom:10px;}
+    /*.footer_disclaimer p{margin-bottom:0px;}*/
+</style>
+</head>
+
+<body style="background-color:#d4d9dd; margin: 2px; margin-bottom: 2px">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#d4d9dd">
+  <tr>
+    <td valign="top">
+
+<% case params[:email] %>
+    <% when '1' %>
+    	<%= render :partial => with_theme('daily_deals/email_launch_current') %> 
+    <% when '2' %>
+    	<% if false %><%= render :partial => with_theme('daily_deals/email_launch_general') %> <% end %>
+    <% when '3' %>
+    	<%= render :partial => with_theme('daily_deals/email_launch_local') %>
+    <% when '4' %>
+    	<%= render :partial => with_theme('daily_deals/email_new_plan_announce') %>
+    <% when '5' %>
+    	<% if false %> <%= render :partial => with_theme('daily_deals/email_purchase_conf') %> <% end %>
+    <% when '6' %>
+    	<%= render :partial => with_theme('daily_deals/email_weekly_offer') %>
+    <% when '7' %>
+    	<%= render :partial => with_theme('daily_deals/email_weekly_offer_unreg') %>
+    <% when 'express_test' %>
+        <%= render :partial => with_theme('shared/email/pre_text') %>
+
+        <%= render :partial => with_theme('shared/email/header_launch_current') %>
+        <%= render :partial => with_theme('shared/email/contenttop_launch_current') %>
+       
+        <%= render :partial => with_theme('shared/email/contentmiddle_launch') %>
+<% if false %> 
+<% end %>
+        <%= render :partial => with_theme('shared/email/bottom_deals_unreg') %>
+        <%= render :partial => with_theme('shared/email/footer_unreg') %>
+    <% else %>
+    	<%= render :partial => with_theme('shared/email/pre_text') %>
+		<%= render :partial => with_theme('shared/email/header_unreg') %>
+		<%= render :partial => with_theme('shared/email/contenttop_weekly_offer') %>
+		<% if false %><%= render :partial => with_theme('shared/email/bottom_deals') %><% end %>
+		<%= render :partial => with_theme('shared/email/footer') %>
+<% end %>
+
+    </td>
+  </tr>
+  <!-- remove bottom page padding -->
+  <!-- <tr><td>&nbsp;</td></tr> -->
+</table>
+
+</body>
+</html>

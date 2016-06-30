@@ -1,0 +1,13 @@
+<% form_for [:admin, @country] do |f| -%>
+  <%= f.error_messages %>
+  <%= f.text_field_div :name %>
+  <%= f.text_field_div :code %>
+  <%= f.text_field_div :calling_code %>
+  <%= f.text_field_div :phone_number_length %>
+  <%= f.text_field_div :postal_code_regex %>
+  <%= f.check_box_div :active %>
+  <div class="row button_row">
+    <%= submit_tag "Save", :name => "update" %>
+  </div>
+<% end %>
+

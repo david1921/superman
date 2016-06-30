@@ -1,0 +1,8 @@
+<% if current_user.present? && @publishing_group.present? %>
+  <% form_for :deals, :html => {:method => :get, :id => "publisher_form"} do |form| %>
+    <%= select_tag('publisher_id',  options_from_collection_for_select(@publishing_group_publishers_in_network.sort_by(&:name), 'id', 'name', :selected => @publisher.id), :onchange => "this.form.submit();", :class => 'sort_select') %>
+  <%= hidden_field_tag(:sort, @search_request.sort) %>
+  <%= hidden_field_tag(:status, @search_request.status) %>
+  <%= render :partial => "syndication/shared/filter_params", :object => form %>
+  <% end %>
+<% end %>

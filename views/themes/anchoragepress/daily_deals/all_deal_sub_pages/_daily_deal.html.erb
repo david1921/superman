@@ -1,0 +1,17 @@
+<div class="alldeals_deal_box">
+	<a href="<%= daily_deal_url(daily_deal) %>"><img src="<%= daily_deal.photo.url(:alternate_standard) %>" alt="<%= daily_deal.advertiser_name %> Claim Your Deal, Deal of the Day!" /></a>
+	<div class="alldeals_view_deal_box">
+		<h2 class="alldeals_value_prop"><%= daily_deal.value_proposition %></h2>
+		<p class="alldeals_value_prop_sub"><%= daily_deal.value_proposition_subhead %></p>
+		<div class="details">
+	  	<p class="location">
+	   	 <span class="advertiser_name"><%= daily_deal.advertiser_name %></span>
+	   	   <% if daily_deal.advertiser.store.present? %> 
+	   	  <span class="locations_name" rel="<% for line in daily_deal.address %><%= line %><% end %>">Locations</span>
+	   	  <% end %>
+	  	</p>
+  	</div><!-- end .details -->
+		<p class="alldeals_price"><%= number_to_currency(daily_deal.price, :precision => 0) %></p>
+		<a class="alldeals_button" href="<%= daily_deal_url(daily_deal) %>">View Deal</a>
+	</div><!-- end .alldeals_view_deal_box -->
+</div><!-- end .alldeals_deal_box -->

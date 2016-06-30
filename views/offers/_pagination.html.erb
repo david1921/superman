@@ -1,0 +1,58 @@
+<div class="scope">
+  <% if @publisher.search_box? -%>
+    <% if @categories && @categories.present? -%>
+      <%- if @categories.size > 3 -%>
+      <%= "#{@categories.size} CATEGORIES: " -%>
+      <%- else -%>
+        <%= "#{@categories.map(&:full_name).join(', ').upcase}: " -%>
+      <%- end -%>
+    <%- end -%>
+
+
+    <% if @text.present? %>
+      <%= "You searched for \"#{@text}\"" %>
+      <%= " in #{@postal_code}" if @postal_code.present? -%>
+    <% elsif @postal_code.present? -%>
+    ZIP: <%= @postal_code -%>
+  <%- end -%>
+<%- end -%>
+
+&nbsp;
+</div>
+
+<div class="page_numbers">
+  &nbsp;
+  <%- if @pages > 1 -%>
+  PAGE
+  <ul class="pagination">
+<%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+<%- formatter.index_range.each do |page| -%>
+<%- link_params = {
+      :background_color => @background_color,
+      :city => @city, 
+      :foreground_color => @foreground_color,
+      :iframe_height    => @iframe_height,
+      :iframe_width     => @iframe_width,
+      :layout => @layout,
+      :order => @order,
+      :page => page,
+      :page_size => @page_size,
+      :postal_code => @postal_code,
+      :publisher_id => @publisher_id,
+      :radius => @radius,
+      :state => @state, 
+      :text => @text,
+} %>
+<%- if @categories && @categories.present?
+      if @categories.size == 1
+        link_params.merge!({ :category_id => @category })
+      else
+        link_params.merge!({ :category_id => @categories })
+      end
+    end
+-%>
+    <li><%= page == @page ? page : link_to(formatter.text_for(page), public_offers_path(link_params)) %></li>
+<%- end -%>
+  </ul>
+  <%- end -%>
+</div>

@@ -1,0 +1,9 @@
+<ul>
+	<li><a href="<%= public_deal_of_day_path(@publisher.label) %>">Today's Deal</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+	<li><a href="<%= how_it_works_publisher_daily_deals_path(@publisher) %>">How It Works</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+	<li><a href="<%= faqs_publisher_daily_deals_path(@publisher) %>">FAQ</a> &nbsp;&nbsp;|&nbsp;&nbsp; </li>
+	<li><a href="<%= contact_publisher_daily_deals_path(@publisher) %>">Contact Us</a></li>
+	<% if !current_consumer_for_publisher?(@publisher) %>
+	<li> &nbsp;&nbsp;|&nbsp;&nbsp;<a href="<%= daily_deal_login_path(@publisher) %>">Sign In</a></li>
+	<% end %>
+</ul>

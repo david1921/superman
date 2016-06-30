@@ -1,0 +1,89 @@
+{% if daily_deal.affiliate_url and publisher.enable_affiliate_url_popup and daily_deal.active? %}
+<div id='affiliate_link_popup_content' style='display:none;'>
+<form action="{{ publisher.subscribers_path }}" class="new_subscriber" id="new_subscriber" method="post">
+<h1>Please enter your email address to continue:</h1>
+    <input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+    <input name="redirect_to" type="hidden" value="{{ daily_deal.buy_now_path | verifiable_url }}" />
+    <fieldset>
+        <input class="dd_input" id="subscriber_email_popup" onblur="validEmail()" name="subscriber[email]" size="30" title="Email Address" type="email" />
+    </fieldset>
+    <div class="hidden_submit_btn" onclick="validEmail()"></div>
+    <fieldset id="submit">
+<input id="submit_button" type='submit' disabled="disabled" value='continue &#187;' />
+    </fieldset>
+</form>
+    <div id="terms">
+        <input name="subscriber[terms]" type="hidden" value="0" />
+        <label for="subscriber_terms"><a href="#" onclick="window.open('http://www.getmyperks.com/themes/entercomnew/docs/Privacy_Policy.pdf', '_blank'); return false; return false;">Read Terms & </a><a href="#" onclick="window.open('http://www.getmyperks.com/themes/entercomnew/docs/Privacy_Policy.pdf', '_blank'); return false; return false;">Privacy Policy</a></label>
+    </div>
+    <div id="popup_logo"></div>
+    <div class='error'></div>
+
+
+<script type="text/javascript" src="/tpe/tracker.js"></script>
+<script type="text/javascript">
+//this is the validation script to make sure an email is an email
+    function validEmail(){
+        var emailInfo = jQuery('.error');
+        var ele = jQuery('.pp_inline').find('input#subscriber_email_popup');
+        var patt = /^.+@.+[.].{2,}$/i;
+        if(patt.test(ele.val())) {
+            emailInfo.hide();
+            jQuery('input[type="submit"]').removeAttr('disabled');
+            jQuery('.hidden_submit_btn').hide();
+           	AA_EVENT.set_action("lightbox-submit");
+			AA_EVENT.set_visitor({"email" : jQuery('.pp_inline').find('input#subscriber_email_popup').val() }); 
+			AA_EVENT.set_third_party({"id": "{{ daily_deal.advertiser.id }}", "type" : "Advertiser"});
+			AA_EVENT.set_target({"id": "{{ daily_deal.id }}", "type":"DailyDeal"});
+			AA_EVENT.engage();
+
+        } else {
+            emailInfo.html('<span>Valid email address required</span>').show();
+            jQuery('input[type="submit"]').attr('disabled','disabled');
+            jQuery('.hidden_submit_btn').show();
+
+        }
+    }
+</script>
+</div><!-- /affiliate_link_popup_content -->
+
+<script type="text/javascript">
+//this is the lightbox script for the popup
+
+
+    var affiliatePopupOnPageLoadCookie = getCookie("affiliate.popup.onpageload");
+    var aaSubscribed = getCookie("subscribed");
+
+    if( (affiliatePopupOnPageLoadCookie && "" != affiliatePopupOnPageLoadCookie) ||
+         "subscribed" == aaSubscribed ) {
+        pp_skipInitialHashLoad = true;
+		buyBtn.attr('href') = '{{ daily_deal.buy_now_path }}'
+    }
+   
+    if ("subscribed" != aaSubscribed ) {
+        var buyBtn = jQuery('#buy_now_button');
+        var buyURL = buyBtn.attr('href');
+        buyBtn.attr('href','#affiliate_link_popup_content');
+        buyBtn.attr('rel','prettyPhoto');
+        jQuery(document).ready(function($){
+            function affiliate_lightbox(){
+                $("a[rel^='prettyPhoto']").prettyPhoto({
+                    allow_resize: false,
+                    social_tools:false,
+                    show_title:false
+                });
+            }
+            affiliate_lightbox();
+            jQuery('a[rel^="prettyPhoto"]').bind('click',function(){
+                AA_EVENT.set_action("lightbox");
+				AA_EVENT.set_third_party({"id": "{{ daily_deal.advertiser.id }}", "type" : "Advertiser"});
+				AA_EVENT.set_target({"id": "{{ daily_deal.id }}", "type":"DailyDeal"});
+				AA_EVENT.engage();
+            });
+        });
+    }
+    setCookie("affiliate.popup.onpageload", "appeared", 30); // expire in 30 days
+    
+
+</script>
+{% endif %}

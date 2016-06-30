@@ -1,0 +1,49 @@
+<%
+   can_create = can_create_publisher_advertiser?(@publisher)
+   show_txt_offers_or_gift_certificates = @publisher.txt_offers_enabled? || @publisher.allow_gift_certificates?
+%>
+<%= render :partial => "az_sorting_nav" %>
+
+<div class="search_form" style="padding-bottom: 50px; margin-top: -20px;">
+    <%= render :partial => "search_form" %>
+</div>
+
+<div class="pagination_top">
+  <%= render :partial => "pagination" %>
+</div>
+
+<% form_tag delete_publisher_advertisers_path(@publisher), :html => {:class => "delete_advertisers"} do %>
+  <table cellspacing="0" summary="advertisers" class="advertisers">
+    <%= render show_txt_offers_or_gift_certificates ? "index_table_headers_with_txt_offers" : "index_table_headers" %>
+
+    <%= render(:partial => show_txt_offers_or_gift_certificates ? "advertiser_with_txt_offers" : "advertiser",
+               :collection => @advertisers, :locals => { :can_create => can_create, :publisher => @publisher }) %>
+    <div id="no_results"></div>
+
+  <% if @advertisers.empty? -%>
+    <tr>
+      <td colspan="8" style="text-align: center;"><%= can_create ? "Click New Advertiser to add an advertiser" : "No advertisers are assigned to your account" %></td>
+    </tr>
+  <% end -%>
+
+  </table>
+
+  <%= render :partial => "pagination" %>
+
+  <div class="full_width buttons">
+  <% if can_create && current_user.can_manage?(@publisher) -%>
+    <%= submit_tag("Delete", :confirm => "Really delete?", :class => "left") %>
+    <%= link_to "View All Consumers", publisher_consumers_path( @publisher ) if current_user.can_manage_consumers? %>
+    <%= link_to "View All Sweepstakes", admin_index_publisher_sweepstakes_path( @publisher ) if @publisher.enable_sweepstakes? %>
+    <%= link_to "View All Deals", publisher_daily_deals_path( @publisher ) %>
+    <%= link_to "View All Images", publisher_images_path(@publisher) %>
+    <%= button_to_function "New Advertiser", "window.location.href = '#{new_publisher_advertiser_url(@publisher)}'", :class => "add_new_advertiser" %>
+  <%- end -%>
+  </div>
+<% end -%>
+
+<script type="text/javascript">
+if(!$$('.advertisers .advertiser').length){
+    document.getElementById('no_results').innerHTML = '<h2>Sorry, did not find any advertisers.</h2>';
+}
+</script>

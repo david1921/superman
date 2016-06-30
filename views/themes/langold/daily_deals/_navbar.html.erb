@@ -1,0 +1,10 @@
+<div id="nav">
+  <div id="todays_deal">
+    <%= navbar_link("Today's Deal", public_deal_of_day_path(publisher.label)) %>
+  </div>
+  <div id="how_it_works">
+    <%= navbar_link("How it Works", how_it_works_publisher_daily_deals_path(publisher)) %>
+  </div>
+  <%= render :partial => "daily_deals/signup" %>
+</div>
+<div class="clear"></div>

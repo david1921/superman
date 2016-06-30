@@ -1,0 +1,17 @@
+<div id="account_nav">
+	<ul>
+	<% if @publisher.launched? %>
+		<% if current_consumer_for_publisher?(@publisher) %>
+		<li><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>" class="<%= "#{controller_name}##{action_name}" == "consumers#edit" ? 'current_page' : nil %>">My Account</a></li>
+		<li><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>" class="<%= "#{controller_name}##{action_name}" == "daily_deal_purchases#_index" ? 'current_page' : nil %>">My Deals</a></li>
+		<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>">Sign Out</a></li>
+		<% else %>
+		<li><a href="<%= daily_deal_login_path(@publisher) %>">Log In</a></li>
+		<li class="last"><a href="<%= new_publisher_consumer_path(@publisher) %>">Sign Up</a></li>
+		<% end %>
+	<% end %>
+		<li class="last facebook"><a href="<%= auth_init_path(@publisher) %>" class="facebook_connect"><img src="/images/buttons/facebook_connect.png" border="0" height="28" width="99" alt="facebook Connect" /></a></li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div id="clear"></div>

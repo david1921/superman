@@ -1,0 +1,12 @@
+<%- url_options = { :protocol => "https", :host => AppConfig.api_host, :format => "json" } -%>
+<%= @daily_deal_purchases.map { |daily_deal_purchase| {
+  :status => daily_deal_purchase.payment_status,
+  :description => daily_deal_purchase.value_proposition,
+  :quantity => daily_deal_purchase.quantity,
+  :executed_at => daily_deal_purchase.executed_at.utc.to_s(:iso8601),
+  :expires_on => daily_deal_purchase.expires_on.try(:to_s, :db_date),
+  :photo => daily_deal_purchase.daily_deal.photo.url(:widget),
+  :connections => {
+    :details => status_daily_deal_purchase_url(daily_deal_purchase.uuid, url_options)
+  }
+}}.to_json.html_safe -%>

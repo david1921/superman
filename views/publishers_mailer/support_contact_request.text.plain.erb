@@ -1,0 +1,10 @@
+Contact request for: <%= @publisher.name %>
+Market: <%= @publisher.market_name %>
+
+Name: <%= "#{@contact_request.first_name} #{@contact_request.last_name}" %>
+Email: <%= @contact_request.email %>
+
+Reason for request: <%= @contact_request.reason_for_request %>
+
+Message:
+<%= @contact_request.message %>

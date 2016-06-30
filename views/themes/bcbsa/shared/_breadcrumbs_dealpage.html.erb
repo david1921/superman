@@ -1,0 +1,23 @@
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+	<ul>
+		<li>
+			<a href="<%= public_deal_of_day_path(@publisher.label) %>"><%= t(:home) %></a>
+		</li>
+		<li class="no_underline">></li>
+		<li>          
+			<a href="<%= publisher_daily_deal_categories_path(@publisher) %>"><%= t(:all_deals) %></a>
+		</li>
+				<li class="no_underline">></li>
+		<li>
+			<% if @daily_deal.publishers_category %>
+				<a href="<%= publisher_daily_deal_category_path(@daily_deal.publisher, @daily_deal.publishers_category) %>">
+					<%= t(@daily_deal.publishers_category.name.downcase.gsub(/\s/, '_')) %>
+				</a>
+			<% end %>
+		</li>
+		<li class="no_underline">></li>
+		<li class="no_underline"><%= @daily_deal.advertiser.name %></li>
+	</ul>
+	</div><!-- /breadcrumbs -->
+	<div class="clear"></div>

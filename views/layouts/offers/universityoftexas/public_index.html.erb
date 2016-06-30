@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<title>Student Insider: Inside My Campus &amp; Community</title> 
+<link href="http://www.studentinsider.com/asu/SI.css" rel="stylesheet" type="text/css" /> 
+
+<%= render :partial => 'layouts/offers/sdcitybeat/stylesheets_and_javascript' %>
+<%= render :partial => 'layouts/offers/standard/facebook_metadata' %>
+<%= raw render :partial => "/shared/tracking_offers" %>
+</head> 
+ 
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"> 
+<table id="Table_01" width="986" border="0" cellpadding="0" cellspacing="0" align="center"> 
+	<tr> 
+		<td width="766" colspan="10"><a href="http://www.studentinsider.com" target="_blank" style="border:none;"><img style="margin-left:30px;" src="/themes/universityoftexas/images/top-banner.png"/></a></td> 
+	</tr>
+  <tr>
+    <td colspan="10">
+      <div id="analog_analytics_content">
+        <%= yield %>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+		<td colspan="10">
+		  <div  class="copyrightTXT">Fall 2011 | Texas Edition | StudentInsider.com<br /> 
+      &copy; 2011 The Bernstein Group, Inc. | All Rights Reserved.
+      </div>
+    </td>
+	</tr>
+</table> 
+<!-- End ImageReady Slices --> 
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type="text/javascript"> 
+try {
+var pageTracker = _gat._getTracker("UA-15203595-1");
+pageTracker._trackPageview();
+} catch(err) {}</script> 
+</body> 
+</html>

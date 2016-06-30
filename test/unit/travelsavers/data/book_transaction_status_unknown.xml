@@ -1,0 +1,17 @@
+<BookTransaction xmlns="https://bookingservices.travelsavers.com/" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+   <Version>1.0</Version>
+  <Booking i:nil="true"/>
+  <BookingStatus>Unknown</BookingStatus>
+  <Errors>
+    <Error>
+      <ErrorCode>133</ErrorCode>
+      <ErrorSourceID>3</ErrorSourceID>
+      <ErrorText>An unhandled error occurred while accessing the transaction information : Transaction information is unavailable - Database error</ErrorText>
+      <UserCanFix>false</UserCanFix>
+    </Error>
+  </Errors>
+  <FormValues/>
+  <PaymentStatus>Unknown</PaymentStatus>
+  <TransactionDate>2012-03-05T08:14:09.057</TransactionDate>
+  <TransactionID>211</TransactionID>
+</BookTransaction>

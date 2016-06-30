@@ -1,0 +1,44 @@
+<!-- START SIDE facepile SECTION-->
+<div class="side_section facepile">
+  <div class="side_facepile">
+    <div class="side_content">
+		<% case @publisher.label  %>
+      <%  when 'ocregister', 'ocrcentral', 'ocrsouth', 'ocrnorthinland', 'ocrnorthcoastal' %>
+              <% fb_page = 'ocrdealoftheday' %>
+      <%  when 'gastongazette' %>
+              <% fb_page = 'pages/Gaston-Gazette-Deal-of-the-Day/104142352974847' %>
+      <%  when 'gazette' %>
+              <% fb_page = 'CSDealoftheDay' %>
+      <%  when 'themonitor' %>
+              <% fb_page = 'apps/application.php?id=165895906779095' %>
+      <%  when 'oaoa' %>
+              <% fb_page = 'apps/application.php?id=175402899145796' %>
+			<%  when 'shelbystar' %>
+              <% fb_page = 'pages/Shelby-Star-Deal-of-the-Day/127112670666647' %>
+			<%  when 'yumasun' %>
+              <% fb_page = 'yumasundealoftheday' %>
+			<%  when 'rgv' %>
+              <% fb_page = 'pages/RGV-Deal-of-the-Day/103358786422587' %>
+			<%  when 'northwestfloridadailynews' %>
+              <% fb_page = 'pages/Northwest-Florida-Daily-News-Deal-of-the-Day/252327904799622' %>
+			<%  when 'panamacitynewsherald' %>
+              <% fb_page = 'pcdealoftheday' %>
+			<%  when 'kfdm' %>
+              <% fb_page = 'KFDMNews' %>
+			<%  when 'cbs6albany' %>
+              <% fb_page = 'CBS6DealoftheDay' %>
+			<%  when 'vvdailypress' %>
+              <% fb_page = 'HighDesertDeals' %>
+			<%  when 'thetimesnews' %>
+              <% fb_page = 'thetimesnews' %>
+			<%  when 'gastonchamberdeals' %>
+              <% fb_page = 'gastonchamberdeals' %>
+			<%  when 'myjournalcourier' %>
+              <% fb_page = 'myjournalcourier' %>
+		<% end %>
+
+    <iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F<%= fb_page %>&amp;&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false&amp;appId=253875118012447" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:268px;" allowTransparency="true"></iframe>
+
+    </div>
+  </div>
+</div>

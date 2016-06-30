@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style type="text/css">
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 15px;
+}
+p {
+	margin-top: 0;
+	padding-top: 0;
+}
+</style>
+</head>
+
+
+
+<body>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;">
+    
+      <table width="700" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#b8b874">
+        <tr>
+          <td background="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/horiz-cork-top.jpg" align="center" height="26" valign="bottom" style="font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #000000;" colspan="3"><strong>{{ "now" | date: "%A, %B %e, %Y" }}</strong></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" colspan="3"><a href="{{ daily_deal.url_for_email }}"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/header.jpg" border="0" height="143" alt="Rubber Dollar - Please enable images" width="700" style="display: block;" /></a></td>
+        </tr>
+        <tr>
+          <td height="42" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="51"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/ribbon-left.jpg" height="42" alt="" width="51" style="display: block;" /></td>
+          <td align="center" height="42" valign="middle" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif; color: #ffffff;" bgcolor="#283c20" width="598"><strong>Today's Daily Indulgence: {{ daily_deal.savings_as_percentage | percentage }} Savings!</strong></td>
+          <td height="42" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="51"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/ribbon-right.jpg" height="42" alt="" width="51" style="display: block;" /></td>
+        </tr> 
+        <tr>
+          <td height="11" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" colspan="3"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/ribbon-bottom.jpg" height="11" alt="" width="700" style="display: block;" /></td>
+        </tr>
+        <tr>
+          <td background="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/cork-left.jpg" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="51"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/cork-left.jpg" height="249" alt="" width="51" style="display: block;" /></td>
+          <td valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="598">
+            <table width="100%" border="0" cellspacing="8" align="center" bgcolor="#ffffff">
+              <tr>
+                <td valign="top" style="font-size: 15px; border-color: #dfdfdf; font-family: Arial, Helvetica, sans-serif; padding: 14px; color: #000000; border-style: solid; border-width: 1px;" bgcolor="#ebebeb" colspan="2">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                      <tr>
+                        <td align="center" style="font-size: 35px; font-family: Arial, Helvetica, sans-serif; color: #000000;" width="33%"><strong>{{ daily_deal.value | currency }}</strong></td>
+                        <td align="center" style="font-size: 35px; font-family: Arial, Helvetica, sans-serif; color: #000000;" width="33%"><strong>{{ daily_deal.price | currency }}</strong></td>
+                        <td align="center" style="font-size: 35px; font-family: Arial, Helvetica, sans-serif; color: #000000;" width="33%"><strong>{{ daily_deal.savings | currency }}</strong></td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #6d6d6d;"><strong>VALUE</strong></td>
+                        <td align="center" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #6d6d6d;"><strong>TODAY'S DEAL</strong></td>
+                        <td align="center" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #6d6d6d;"><strong>YOU SAVE</strong></td>
+                      </tr>
+                  </table>
+                  <br />
+
+                   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td rowspan="2" align="left" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="290"><img src="{{ daily_deal.photo.url }}" width="290" alt="" /></td>
+                        <td valign="top" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #000000; padding-left: 10px;">
+                          <p style="padding-top: 0; margin-bottom: 8px; line-height: 24px; margin-top: 10px; color: #557f44;"><strong>{{ daily_deal.value_proposition }}</strong></p>
+                          <p style="padding-top: 0; line-height: 22px; margin: 0; padding: 0;">{{ daily_deal.value_proposition_subhead }}</p>
+						 </td>
+					  </tr>
+					  <tr>
+                          <td valign="middle" align="center" style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #000000; padding-left: 10px;">
+                           <p style="padding-top: 0; margin: 0;"><a href="{{ daily_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/buttons/buy-now.gif" alt="BUY NOW" width="211" height="56" /></a></p>
+                        </td>
+                      </tr>
+                  </table>
+
+                </td>
+              </tr>
+              <tr>
+                <td height="38" valign="middle" style="font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #ffffff;" bgcolor="#283c20" width="40%"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/share-it.gif" width="98" height="39" alt="Share It: " /><a href="{{ daily_deal.facebook_url }}" style="color: #ffffff;"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/buttons/facebook.gif" width="37" height="39" alt="Facebook | " /></a><a href="{{ daily_deal.twitter_url }}" style="color: #ffffff;"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/buttons/twitter.gif" width="36" height="39" alt="Twitter | " /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" style="color: #ffffff;"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/buttons/email.gif" width="44" height="39" alt="Email" /></a></td>
+                <td rowspan="2" valign="top" style="font-size: 15px; border-color: #dfdfdf; font-family: Arial, Helvetica, sans-serif; padding: 10px; color: #000000; border-style: solid; border-width: 1px;" width="60%">
+                  <h3 style="margin-top: 0; margin-bottom: 5px; font-size: 16px;"><strong>Highlights</strong></h3>
+                  {{ daily_deal.highlights }}
+                  
+                  <h3 style="margin-top: 10px; margin-bottom: 5px; font-size: 16px;"><strong>The Fine Print</strong></h3>
+                  {{ daily_deal.terms }}
+                </td>
+              </tr>
+              <tr>
+                <td valign="top" style="font-size: 13px; border-color: #dfdfdf; font-family: Arial, Helvetica, sans-serif; padding: 10px; color: #000000; border-style: solid; border-width: 1px;">
+                  <img style="margin-left: 10px;" src="{{ advertiser.logo.url }}" alt="" />
+                  <p style="padding-top: 0; padding-bottom: 0; margin-bottom: 0; margin-top: 5px; margin-left: 10px;"><strong>{{ advertiser.name }}</strong><br />
+                  {{ advertiser.address_line_1 }}<br />
+{{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+{{ advertiser.phone_number }}
+                  </p>
+                  {% if advertiser.website_url != "" %}
+                  <a href="{{ advertiser.website_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/buttons/visit-website.gif" width="167" height="40" alt="Visit Website" /></a>
+                  {% endif %}
+                  <p style="padding-top: 0; margin-bottom: 0; margin-top: 10px; margin-left: 5px;">
+                  {% if advertiser.stores.size > 0 %}
+                  <a href="{{ advertiser.map_url }}"><img border="0" width="187" height="120" src="{{ daily_deal.map_image_url }}" id="map" target="_blank" alt="map" /></a>
+                  {% endif %}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 15px; font-family: Arial, Helvetica, sans-serif; line-height: 20px; color: #404040; padding-left: 5px;" colspan="2">
+                  {{ daily_deal.description }}
+                </td>
+              </tr>
+            </table>
+            
+          </td>
+          <td background="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/cork-right.jpg" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" width="51"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/cork-right.jpg" height="250" alt="" width="51" style="display: block;" /></td>
+        </tr>
+        <tr>
+          <td height="31" valign="top" style="font-family: Arial, Helvetica, sans-serif; color: #000000; font-size: 15px;" colspan="3"><img src="http://{{ publisher.daily_deal_host }}/themes/my719deals/images/email/backgrounds/cork-bottom.jpg" height="31" alt="" width="700" style="display: block;" /></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="font-size: 11px; font-family: Arial, Helvetica, sans-serif; padding: 8px; color: #ffffff; text-align: center;" bgcolor="#283c20" colspan="3">
+          <a href="{{ publisher.contact_path }}" style="color: #ffffff;">Contact Us</a> &nbsp;|&nbsp; © 2010 RubberDollar.com &nbsp;|&nbsp; <a href="{{ daily_deal.unsubscribe_url }}" style="color: #ffffff;">Unsubscribe</a> &nbsp;|&nbsp; Today is: {{ "now" | date: "%A, %B %e, %Y" }} </td>
+        </tr>
+      </table>
+
+    
+    </td>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

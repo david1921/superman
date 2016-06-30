@@ -1,0 +1,23 @@
+<h2>Search</h2>
+<form method="GET" class="search">
+  <fieldset>
+    <label for="name">Name</label>
+    <input name="name" type="text" value="<%= params[:name] %>">
+
+    <label for="zip"><%= t('zip_code') %></label>
+    <input name="zip" type="text" value="<%= params[:zip] %>">
+  </fieldset>
+
+  <fieldset style=" padding: 10px 0; ">
+    <input type=submit value="Search">
+    <input type=button value="Clear" class="clearForm">
+  </fieldset>
+</form>
+
+<script language="JavaScript">
+    jQuery(document).ready(function ($) {
+        $("input.clearForm").on("click", function () {
+            $(this).closest("form").find("input[type=text]").val("");
+        });
+    });
+</script>

@@ -1,0 +1,22 @@
+<div style="margin-bottom: 20px; font-weight: bold">
+  <%= will_paginate(@locked_users) %>
+</div>
+
+<table id="locked-users">
+  <tr>
+    <th>Name</th>
+    <th>Login</th>
+    <th>Publisher</th>
+    <th>Locked At</th>
+    <th>Created At</th>
+  </tr>
+  <% @locked_users.each do |u| %>
+  <tr>
+    <td><%= u.name %></td>
+    <td><%= link_to(u.login, polymorphic_edit_user_path(u)) %></td>
+    <td><%= u.publisher.try(:label) %></td>
+    <td><%= u.locked_at.to_s(:compact) %></td>
+    <td><%= u.created_at.to_s(:compact) %></td>
+  </tr>
+  <% end %>
+</table>

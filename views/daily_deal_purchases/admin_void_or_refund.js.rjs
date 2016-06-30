@@ -1,0 +1,1 @@
+page.redirect_to(@consumer ? consumers_daily_deal_purchases_admin_index_path(@consumer) : consumers_path)

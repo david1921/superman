@@ -1,0 +1,11 @@
+<%- content_tag_for(:tr, publisher, :class => cycle("even", "odd")) do -%>
+  <td class="publisher"><%= publisher.name %></td>
+  <td class="deals">
+    <% publisher.advertisers.map(&:daily_deals).flatten.each do |daily_deal| %>
+      <p><%= daily_deal.value_proposition %></p>
+    <% end -%>
+  </td>
+  <td>
+    <%= link_to "Edit", publisher_daily_deals_path(publisher) %>
+  </td>
+<% end -%>

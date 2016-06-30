@@ -1,0 +1,62 @@
+<div class="left_column">
+  <% url = @syndication_revenue_split.new_record? ? daily_deal_syndication_revenue_split_url(@daily_deal) : daily_deal_syndication_revenue_split_url(@daily_deal) -%>
+  <% form_for @syndication_revenue_split, :url => url  do |f| -%>
+    <%= error_messages_for :syndication_revenue_split %>
+    <%= f.hidden_field(:aa_gross_percentage) %>
+    <%= f.hidden_field(:aa_net_percentage_of_remaining) %>
+    <%= f.select_div(:revenue_split_type,
+          DailyDeals::SyndicationRevenueSplit::SYNDICATION_REVENUE_SPLIT_TYPE, 
+          {:include_blank => false, :label_text => "Revenue Split Type"}, {:onchange => "revenueSplitTypeChanged();"}
+           ) %>
+    <div id="gross_div">
+      <%= f.text_field_div(:source_gross_percentage, "Source Gross %:") %>
+      <%= f.text_field_div(:merchant_gross_percentage, "Merchant Gross %:") %>
+      <%= f.text_field_div(:distributor_gross_percentage, "Distributor Gross %:") %>
+      <%= f.text_field_div(:aa_gross_percentage, "AA Gross %:", :disabled => true) %>
+      <div class="row"></div>
+      <div class="row.left">
+        <br>
+        <strong>Gross Revenue Commission %</strong>
+        <br>
+          Percentage of total revenue received from Consumers, less refunds, chargebacks, returns and cancellations. Promotions and other discounts offered by Distributor will be deducted from the Distributor's Gross Revenue Commission. Credit card fee split is determined by Source and is defined separately.
+      </div>
+    </div>
+    <div id="net_div">
+      <%= f.text_field_div(:merchant_net_percentage, "Merchant Net %:") %>
+      <%= f.text_field_div(:source_net_percentage_of_remaining, "Source Net % of Remaining:") %>
+      <%= f.text_field_div(:distributor_net_percentage_of_remaining, "Distributor Net % of Remaining:") %>
+      <%= f.text_field_div(:aa_net_percentage_of_remaining, "AA Net % of Remaining:", :disabled => true) %>
+      <div class="row"></div>
+      <div class="row.left">
+        <br>
+        <strong>Net Revenue Commission %</strong>
+        <br>
+        Percentage of total revenue received from Consumers, less refunds, chargebacks, returns and cancellations, less Merchant Commission. Promotions and other discounts offered by Distributor will be deducted from the Distributor's Net Revenue Commission. Credit card fee split is determined by Source and is defined separately.
+      </div>
+    </div>
+    <div class="buttons">
+      <%= button_to_function("Cancel", "window.location.href = '#{edit_daily_deal_path(@daily_deal)}'", :class => "left") %>
+      <%= submit_tag("Save", :id => "save_button", :name => "save") %>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript" charset="utf-8">
+  revenueSplitTypeChanged();
+  function revenueSplitTypeChanged() {
+    var revenueSplitType = $("daily_deals_syndication_revenue_split_revenue_split_type").value;
+    switch(revenueSplitType) {
+      case 'net':
+        $('net_div').show();
+        $('gross_div').hide();
+        break;
+      case 'gross':
+        $('net_div').hide();
+        $('gross_div').show();
+        //$('accounting_syndication_revenue_sharing_agreement_credit_card_fee_fixed_amount').value = "";
+        break;
+      default:
+        $('net_div').show();
+        $('gross_div').show();
+    }
+  }
+</script>

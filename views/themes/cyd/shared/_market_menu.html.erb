@@ -1,0 +1,24 @@
+
+ <div id="market_menu_wrapper">
+    <h4>Daily Deals on the Best in</h4>
+    <ul id="market_menu" style="list-style-type:none">
+       <li><a href="#"><%= @publisher.market_name_or_city %><span class="dropdown_arrow"><img src="/themes/cyd/images/backgrounds/market-dropdown-arrow.png" alt="select a deal in these markets"/></span></a>
+
+         <%= market_selection_list(@publisher) %>
+       </li>
+    </ul>
+    <%= render :partial => with_theme("shared/account_nav") %> 
+ </div><!-- /market_menu_wrapper -->
+ <div class="clear"></div>
+ <script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+    jQuery("#market_menu li").hover(function() {
+        var thisitem = jQuery(this);
+            thisitem.find("ul").hide().stop(true,true).slideDown('1000');
+    } , function() {
+        var thisitem = jQuery(this)
+            thisitem.find("ul").stop(true,true).slideUp('1000');
+    });
+});
+ </script>              

@@ -1,0 +1,11 @@
+<ul class="pagination">
+  <% if @page > 1 -%>
+    <li class="previous_page"><%= link_to "Prev", render_public_offers_path(@publisher, pagination_link_params(@page - 1).merge(:category => @category)) %></li>
+  <% end -%>
+  <%- formatter = PaginationHelper::RangeFormatter.new(@pages, @page) -%>
+
+  <% if @page < formatter.index_range.last %>
+    <li class="next_page"><%= link_to "Next", render_public_offers_path(@publisher, pagination_link_params(@page + 1).merge(:category => @category)) %></li>
+  <% end -%>
+</ul>
+

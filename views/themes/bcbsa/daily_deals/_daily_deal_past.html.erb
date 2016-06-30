@@ -1,0 +1,26 @@
+<!-- <a href="<%= daily_deal_path(daily_deal) %>" title="<%= daily_deal_path(daily_deal) %>"> -->
+  <div class="past_deal_box">		
+    <div class="past_deal_photo">
+	    <% if daily_deal.secondary_photo.file? %>
+	    	<img src="<%=  protocol_relative_url(daily_deal.secondary_photo.url(:thumbnail)) %>" alt="" />
+	    <% else %>
+	    	<img src="<%=  protocol_relative_url(daily_deal.photo.url(:facebook)) %>" alt="" />
+
+	    <% end %>
+	</div>
+	<div class="past_deal_info">
+	     <% if daily_deal.custom_2.present? %>
+	     	<h3><%= daily_deal.custom_2 %></h3>
+	     <% else %>
+	     	<h3><%= daily_deal.advertiser.name %></h3>
+	     <% end %>
+	    
+	    <div class="past_deal_timer">
+	    	<div id="time_left">
+	    		<p><%= t(:deal_expired_on) %> <%= daily_deal.hide_at.to_s(:compact_date_only) %></p>
+	    	</div>
+	    	
+	    </div>
+	</div>
+  </div><!-- /past_deal_box -->
+<!-- </a> -->

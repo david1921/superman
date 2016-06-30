@@ -1,0 +1,40 @@
+<% @advertiser.offers.not_deleted.reverse.each_with_index do |coupon, idx| %>
+    <div class="wrapper" id="coupon_<%= coupon.id %>_wrapper"style="<% if idx > 2 %>display:none<% end %>">
+      <div class="coupon" id="coupon_<%= coupon.id %>">
+        <div class="body" id="coupon_<%= coupon.id %>_body">
+          <div class="logo" id="coupon_<%= coupon.id %>_logo">
+            <%= image_tag(coupon.advertiser.logo.url(:thumbnail)) %>
+          </div>
+          <h3 class="advertiser_name"><%= advertiser_name coupon %></h3>
+          <% if coupon.advertiser.tagline.present? -%>
+            <p class="text advertiser_tagline"><%= truncate(coupon.advertiser.tagline, :length => 40) %></p>
+          <% end -%>
+          <div class="text" id="coupon_<%= coupon.id %>_text">
+            <p class="summary_message"><%= truncate(coupon.message, :length => 80) %></p>
+            <p class="terms"><%= truncate(coupon.terms, :length => 100) %></p>
+          </div>
+          <div class="footer">
+            <div class="dates">
+              <% if coupon.show_on && coupon.expires_on -%>
+                <%= coupon.show_on.to_s(:compact) %> to <%= coupon.expires_on.to_s(:compact) %>
+              <% elsif !coupon.show_on && coupon.expires_on -%>
+                Until <%= coupon.expires_on.to_s(:compact) %>
+              <% elsif coupon.show_on && !coupon.expires_on -%>
+                From <%= coupon.show_on.to_s(:compact) %>
+              <% end -%>
+              &nbsp;
+            </div>
+
+            <div class="edit"><%= link_to "Copy", copy_offer_path(coupon, :advertiser_id => coupon.advertiser) %> | <%= link_to "Edit", edit_offer_path(coupon) %></div>
+          </div>
+        </div>
+      </div>
+      <div class="links">
+        <%= link_to("Listing View", listing_view_path(coupon.advertiser.publisher, coupon), :target => "_blank") %><br />
+        <%= link_to_function("Print View", "clipCoupon(#{coupon.id}, #{coupon.advertiser.publisher.id})") %><br />
+        <% if can_delete_coupon?(current_user) %>
+            <%= link_to("Delete", advertiser_offer_path(coupon.advertiser, coupon), :method => :delete, :confirm => "Are you sure you want to delete this coupon?") %>
+        <% end %>
+      </div>
+    </div>
+<% end %>

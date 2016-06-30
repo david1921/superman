@@ -1,0 +1,12 @@
+<div id="banner">
+	<div id="navigation_bar">
+		<%= render :partial => with_theme("shared/dd_nav") %>
+		<%= render :partial => with_theme("shared/account_nav") %>
+	</div>
+
+	<div id="logo_market">
+		<img id="deal_logo" src="/themes/mytownvip/images/graphics/deal_logo.png" height="91" width="219" alt="MyTown VIP - Your Ticket to Savings" />
+		<%= render :partial => with_theme('shared/market_menu') if @publisher.enable_market_menu %>
+	</div>
+
+</div>

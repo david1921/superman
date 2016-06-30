@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{ daily_deal.email_blast_subject }}</title>
+</head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center">
+  <tr>
+    <td valign="top">
+        <table width="800" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td colspan="3" valign="top"><a style="text-decoration: none;" href="{{ daily_deal.url_for_email }}"><img border="0" style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/deal_of_the_day.gif" width="800" height="170" alt="DEAL OF THE DAY" /></a></td>
+          </tr>
+          <tr>
+            <td width="44" valign="top" bgcolor="#e5e3e6"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/leftbg.gif" width="44" height="422" alt="" /></td>
+            <td width="712" valign="top" style="background-image: url(http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/mainbg.gif); background-repeat: repeat-y;" background="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/mainbg.gif">
+            
+            	<table width="680" align="center" border="0" cellspacing="8" cellpadding="0">
+                  <tr>
+                    <td colspan="2" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px; color:#0072bc;"><strong>TODAY'S DEAL</strong></td>
+                    <td rowspan="4" valign="top" width="260"><img src="{{ daily_deal.photo.url }}" width="258" height="416" alt="" /></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 34px; color:#464646;"><strong>{{ daily_deal.value_proposition }}</strong></td>
+                  </tr>
+                  <tr>
+                    <td valign="middle" style="font-family: Arial, Helvetica, sans-serif; font-size: 100px; color:#0072bc;"><strong><sup style="font-size: 40%">$</sup>{{ daily_deal.price | integer }}</strong></td>
+                    <td valign="middle" align="left"><a href="{{ daily_deal.url_for_email }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/buttons/buy_now.gif" width="178" height="50" alt="BUY NOW" /></a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color:#0072bc;">share this deal: <a href="{{ daily_deal.facebook_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/buttons/facebook.gif" width="22" height="21" alt="facebook" /></a>&nbsp;<a href="{{ daily_deal.twitter_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/buttons/twitter.gif" width="22" height="21" alt="twitter" /></a>&nbsp;<a href="{{ daily_deal.email_url }}"><img border="0" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/buttons/email.gif" width="22" height="21" alt="email" /></a></td>
+                  </tr>
+                </table>
+
+            
+            </td>
+            <td width="44" valign="top" bgcolor="#e5e3e6"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/rightbg.gif" width="44" height="422" alt="" /></td>
+          </tr>
+          <tr>
+            <td colspan="3" height="16" valign="top"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/border-bottom.gif" width="800" height="16" alt="" /></td>
+          </tr>
+          <tr>
+            <td colspan="3" height="26"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/border-top.gif" width="800" height="26" alt="" /></td>
+          </tr>
+          <tr>
+            <td bgcolor="#e5e3e6"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/sidespace.gif" width="44" height="7" alt="" /></td>
+            <td valign="top" width="712" style="background-image: url(http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/mainbg.gif); background-repeat: repeat-y;" background="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/mainbg.gif">
+            
+            	<table width="680" border="0" cellspacing="8" cellpadding="12" align="center">
+                  <tr>
+                    <td width="45%" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.7em; color:#464646;">
+                    	<p style="font-size: 20px; text-transform: uppercase; color: #0072bc; margin-top: 0; padding-top: 0;"><strong>{{ advertiser.name }}</strong></p>
+                    	 {% if advertiser.address? %}
+                        <p>{{ advertiser.address_line_1 }}<br />
+                        {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                        {{ advertiser.phone_number }}</p>
+                        {% endif %}
+                        
+                        {% if advertiser.stores.size > 0 %}
+                        <a href="{{ advertiser.map_url }}"><img src="{{ daily_deal.map_image_url }}" id="map" target="_blank" /></a>
+                        {% endif %}
+                    	<a href="{{ advertiser.website_url }}">{{ advertiser.website_url }}</a>
+                        
+                      {% if daily_deal.highlights != "" or daily_deal.terms != "" %}
+                      <p style="color:#0072bc">THE DETAILS</p>
+                      {{ daily_deal.highlights }}
+                      {{ daily_deal.terms }}
+                      {% endif %}
+                        
+                    </td>
+                    <td width="55%" valign="top" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 1.7em; color:#464646; border-left-width: 1px; border-left-style: solid; border-left-color: #cccccc;">
+                    	<p style="font-size: 16px; color: #0072bc; margin-top: 0; padding-top: 0;"><strong>Description:</strong></p>
+                    	  
+               	      {{ daily_deal.description }}
+                    </td>
+                  </tr>
+                </table>
+
+            
+            </td>
+            <td bgcolor="#e5e3e6"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/sidespace.gif" width="44" height="7" alt="" /></td>
+          </tr>
+          <tr>
+            <td colspan="3" valign="top" bgcolor="#e5e3e6" height="40"><img style="display: block;" src="http://{{ publisher.daily_deal_host }}/themes/lang/images/backgrounds/border-bottom.gif" width="800" height="16" alt="" /></td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+
+
+</body>
+</html>

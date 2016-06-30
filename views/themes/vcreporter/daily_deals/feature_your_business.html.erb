@@ -1,0 +1,26 @@
+<% set_daily_deal_page_title_slug "Feature Your Business" %>
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">Contact Us</h1>
+
+    <h2>Main Office</h2>
+    <p>
+      <%= "#{@publisher.address_line_1}<br/>".html_safe unless @publisher.address_line_1.blank? %>
+      <%= "#{@publisher.address_line_2}<br/>".html_safe unless @publisher.address_line_2.blank? %>
+      <%= "#{@publisher.city}, #{@publisher.state} #{@publisher.zip}" unless @publisher.city.blank? %>
+    </p>
+
+    <% unless @publisher.support_email_address.blank? %>
+    <h2 style="margin-top: 18px;">Customer Service &amp; Technical Support</h2>
+    <p>
+      Please email <a href="mailto:<%= @publisher.support_email_address %>" target="_blank"><%= @publisher.support_email_address %></a>
+    </p>
+    <% end %>
+
+    <% unless @publisher.sales_email_address.blank? %>
+    <h2 style="margin-top: 18px;">To have your business featured</h2>
+    <p>Please call Brian at 805-648-2244 extension 209 or email at <a href="mailto:<%= @publisher.sales_email_address %>" target="_blank"><%= @publisher.sales_email_address %></a>.
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% if @publisher.show_special_deal %>
+	<div id="signup_credit" class="content_box">
+		<h4><strong><%= number_to_currency @publisher.daily_deal_referral_credit_amount %> deal credit!</strong></h4>
+		<p>Sign up now for a free account and receive a <%= number_to_currency @publisher.daily_deal_referral_credit_amount %>  credit towards your first deal purchase.</p>
+		<p class="special_banner">This is awesome!</p>
+		<ul>
+		  <li>Valid one per person</li>
+		  <li>Promotion ends November 30, 2011</li>
+		</ul>
+		<a href="<%= deal_credit_publisher_consumers_path(@publisher) %>" class="button gradient refer_a_friend_tracking">Sign Up</a>
+	</div><!-- /signup credit -->
+<% end %>       

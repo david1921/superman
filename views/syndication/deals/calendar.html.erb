@@ -1,0 +1,15 @@
+<%= render :partial => "syndication/shared/filter" %>
+<div id="calendar_view">
+    <script src="calendar.js" type="text/javascript"></script>
+
+    <div id="browse_tabs">
+     <%= render( :partial => 'syndication/shared/publisher_select' )%>
+     <div class="calendar-view-wrap">
+     	<%= render :partial => "syndication/shared/view_select" %>
+     	<%= render :partial => "syndication/shared/sort" %>
+		 </div><!-- end .calendar-view-wrap -->
+    </div><!-- /browse_tabs -->
+    <div class="clear"></div>
+    <div class="loading_wrapper"><div class="loading"><img src="/images/ajax-loader.gif"></div></div>
+    <div id="calendar"></div><!-- end calendar -->
+</div>

@@ -1,0 +1,14 @@
+{% if daily_deal %}
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+  {% if referral %}
+    <meta property="og:title" content="{{ daily_deal.publisher.daily_deal_referral_message_head }}" />
+    <meta property="og:description" content="{{ daily_deal.publisher.daily_deal_referral_message_body }}" />
+    <meta property="og:image" href="{{ daily_deal.publisher.logo.url }}" />
+  {% else %}
+    <meta property="og:title" content="{{ daily_deal.facebook_title }}" />
+    <meta property="og:description" content="{{ daily_deal.facebook_description }}" />
+    <meta property="og:image" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+  {% endif %}
+{% endif %}

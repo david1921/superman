@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<title><%= @daily_deal.value_proposition %></title>
+	</head>
+	<body style="margin: 0;">
+		<table style="background-color: #eeebd5; border-spacing: 0; font: 14px/20px helvetica, arial, sans-serif; color: #2e2e2e; width: 100%;" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td>
+						<table width="730" border="0" cellspacing="0" cellpadding="0" align="center">
+							<tr>
+								<td style="background-color:white;">
+									<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/top_tag_left.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :width => 50) %>
+								</td>
+									<td align="center" style="background-color:#fff; padding: 0 15px;">
+									<img style="display:block" src="http://<%= @daily_deal.publisher.daily_deal_host %>/themes/wcax/images/graphics/<%= @publisher.label.gsub("wcax-","") %>-email-logo.jpg" width="327" style="display:block" alt="<%= @publisher.label.gsub("wcax-","") %> jumponit logo"/>
+								</td>
+								<td>
+									<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/top_tag_right.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :width => 318) %>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			<!-- End Header -->
+			<tr>
+				<td>
+					<table width="665" style="background-color: white;" border="0" cellspacing="0" cellpadding="0" align="center">
+						<tr>
+							<td colspan="2" align="center" style="padding-top: 20px">
+								<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/rounded_email_top.png", :style => "display:block;", :alt => "Rounded corners top", :border => 0, :height => 10, :width => 600) %>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 0; margin: 0">
+								<table width="600" style="border-left: 1px solid #666; border-right: 1px solid #666; background-color: white;" border="0" cellspacing="0" cellpadding="0" align="center">
+									<tr>
+										<td style="color: black; padding-left: 10px; font-size: 20px; font-weight:bold; padding-bottom:15px">
+											<%= @daily_deal.value_proposition %>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- Top Deals Table -->
+								<table width="617" style="border-right: 1px solid #666; background-color: white;margin-left:15px" border="0" cellspacing="0" cellpadding="0">
+									<tr valign="top">
+										<td>
+											<table border="0" cellspacing="0" cellpadding="0">
+											<%= render :partial => with_theme("daily_deals/#{@publisher.label.gsub('wcax-','')}_buy_tag"), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>					
+											</table>
+											<!-- Deal Specs -->
+											<table border="0" cellspacing="0" cellpadding="0" style="border-left: 1px solid #666; margin-left: 17px;">
+												<tr>
+													<td style="padding: 0 0 0 13px;margin: 0">
+														<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/rounded_specs_top.png", :style => "display:block;margin: 0; padding: 0;", :alt => "Jump On It", :border => 0, :height => 11, :width => 192) %>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<table border="0" cellspacing="0" cellpadding="0" style="border-left:1px solid #aae4fc; border-right: 1px solid #aae4fc; background-color:#ddf0fe;width:192px;margin-left:13px;">
+															<tr>
+																<td align="center" style="color: #3f565e;font-size: 12px;border-right:1px solid #aae4fc;padding-left:5px;">
+																	Value <br />
+																	<strong style="font-size:17px"><span id="daily_deal_value"><%= formatted_price_for(@daily_deal.value_to_display) %></span></strong>
+																</td>
+																<td align="center" style="color: #3f565e;font-size: 12px; border-left: 1px solid #f2fafc;border-right:1px solid #aae4fc;">
+																	Discount <br />
+																	<strong style="font-size:17px"><span id="daily_deal_savings_as_percentage"><%= number_to_percentage(100 * (@daily_deal.value_to_display.to_i - @daily_deal.price_to_display) / @daily_deal.value_to_display, :precision => 0) %></span></strong>
+																</td>
+																<td align="center" style=" border-left: 1px solid #f2fafc; color: #3f565e;font-size: 12px">
+																	You Save <br />
+																	<strong style="font-size:17px"><span id="daily_deal_savings"><%= formatted_price_for(@daily_deal.savings_to_display) %></span></strong>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="padding: 0 0 15px 13px; margin: 0">
+														<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/rounded_specs_bottom.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 11, :width => 192) %>
+													</td>
+												</tr>
+											</table><!-- End Deal Specs -->
+											<!-- Deal Share -->
+											<table border="0" cellspacing="0" cellpadding="0" style="border-left: 1px solid #666; margin-left: 17px;">
+												<tr>
+													<td style="padding: 0 0 0 13px;margin: 0">
+														<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/email_share_top.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 11, :width => 192) %>
+													</td>
+												</tr>
+												<tr>
+													<td style="padding: 0 0 0 13px;margin: 0">
+														<table border="0" cellspacing="0" cellpadding="0" style="border-left:1px solid #666; border-right: 1px solid #666; background-color:white;width:192px;">
+															<tr>
+																<td colspan="3" align="center" style="color: #5d707e;font-size:15px; padding-bottom:10px;">
+																	Share This Deal
+																</td>
+															</tr>
+															<tr align="center">
+																<td>
+																	<a href="<%= facebook_daily_deal_url(@daily_deal) %>" style="border:none;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/facebook_share.png", :style => "display:block;", :alt => "Share On Facebook", :border => 0, :height => 40, :width => 41) %></a>
+																</td>
+																<td>
+																	<a href="<%= twitter_daily_deal_url(@daily_deal) %>" style="border:none;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/twitter_share.png", :style => "display:block;", :alt => "Share On Twitter", :border => 0, :height => 40, :width => 41) %></a>
+																</td>
+																<td>
+																	<a href="mailto:?subject=<%= URI.escape("#{@daily_deal.publisher_prefix}: #{@daily_deal.value_proposition}") %>: <%= @daily_deal.value_proposition %>&amp;body=Check out this deal at <%= daily_deal_url(@daily_deal) %>" style="border:none;"><%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/email_share.png", :style => "display:block;", :alt => "Email This Deal", :border => 0, :height => 40, :width => 41) %></a>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td style="padding: 0 0 0 13px;margin: 0">
+														<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/email_share_bottom.png", :style => "display:block;", :alt => "Jump On It", :border => 0, :height => 11, :width => 192) %>
+													</td>
+												</tr>
+											</table><!-- End Deal Share -->
+										</td>
+										<td>
+											<table border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td style="padding-top:5px;">
+														<a class="deal1" href="<%= daily_deal_url(@daily_deal) %>"><%= image_tag(@daily_deal.photo.url(:portrait), :style => "border: 1px solid #666;vertical-align: text-bottom;", :alt => "Photo", :border => 0, :width => 350) %></a>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<!-- End Top Deals Table -->
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="600" style="border-left:1px solid #666;border-right:1px solid #666;margin-left:32px;padding-left:15px;padding-top:15px" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td style="color:black; font-size: 13px; font-weight:bold;">
+											Description
+										</td>
+									</tr>
+									<tr valign="top">
+										<td style="font-size: 13px; line-height: 14px; padding-right: 15px;">
+											<%= raw HtmlTruncator.truncate_html(@daily_deal.description, 500) %>
+										</td>
+									</tr>
+									<tr>
+										<td style="color:black; font-size: 13px; font-weight:bold;">
+											Location
+										</td>
+									</tr>
+									<tr>
+										<td style="font-size: 13px; line-height: 14px; padding-right: 15px;">
+											<% @advertiser.stores.each_with_index do |store, index| %>
+			<p>
+				<% unless store.address_line_1.blank? %> <span><%= store.address_line_1 %></span>
+				<% end %>
+				<% unless store.address_line_2.blank? %> <span><%= store.address_line_2 %></span>
+				<% end %><br/>
+				<% unless store.city.blank? or store.state.blank? or store.zip.blank? %> <span><%= store.city %>, <%= store.state %> <%= store.zip %><br/></span>
+				<% end %>
+				<% unless store.city.blank? or store.country.name.blank? or store.zip.blank? %> <span><%= store.city %>, <%= store.country.name %> <%= store.zip %><br/></span>
+				<% end %>
+				<% unless store.formatted_phone_number.blank? %> 
+					<span><%= number_to_phone(store.formatted_phone_number, :area_code => true) %></span>
+				<% end %>
+				<br />
+			</p>
+			<% end %>
+			<% unless @advertiser.website_url.blank? %> <a class="visit_website_link" target="_blank" href="<%= @advertiser.website_url %>">Visit Website</a>
+		<% end %>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<%= image_tag("http://#{@daily_deal.publisher.daily_deal_host}/themes/wcax/images/graphics/rounded_email_bottom.png", :style => "display:block;", :alt => "Rounded corners bottom", :border => 0, :height => 10, :width => 600) %>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table align="center" width="665" style="background-color: white;padding-top: 10px;" border="0" cellspacing="0" cellpadding="0" >
+						<tr>
+							<td>
+								<table class="derp" align="center" width="634" style="background-color: white;padding-top: 10px;" border="0" cellspacing="0" cellpadding="0" >
+										<% featured_deals =  @publisher.publishing_group.publishers.launched.all(:conditions => ["id <> ?", @publisher.id]).map{|publisher| publisher.daily_deals.active.featured.first }.compact %>
+									  <% featured_deals.each_with_index do |daily_deal, index| %>
+										  <%=raw '<tr valign="top">' if index % 2 == 0 %>
+												<%= render :partial => with_theme('daily_deals/email_other_featured'), :locals => { :daily_deal => daily_deal, :publisher => daily_deal.publisher } %>
+												<% if index == featured_deals.count - 1 && featured_deals.length.odd? %>
+													<%= render :partial => with_theme('daily_deals/email_ad'), :locals => { :daily_deal => daily_deal, :publisher => daily_deal.publisher } %>
+												<% end %>
+											<%=raw'</tr>' if index % 2 == 1 or index + 1 == featured_deals.length %>
+										<% end %>		
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<% unless @daily_deal.side_deals.blank? %>
+			<tr>
+				<td>
+					<table align="center" width="665" style="background-color: white;" border="0" cellspacing="0" cellpadding="0" >
+							<tr>
+								<td style="padding-top:10px;">
+									<table class="side_deal_wrapper" width="600" style="background-color: white;" border="0" cellspacing="0" cellpadding="0" >
+										<tr>								
+											<td colspan="2" style="<% if @publisher.label == 'wcax-vermont' %>color: #f68026;<% elsif @publisher.label == 'wcax-adirondacks' %>color: #fdce1c;<% else %>color: #B9B30A;<% end %>font-size: 18px; padding-bottom: 10px; padding-left: 30px; padding-top: 20px">
+												Other Great Deals From <%= @publisher.market_name_or_city %>
+											</td>
+										</tr>
+										<% @daily_deal.side_deals.each_with_index do |deal, index| %>
+									   <%=raw '<tr valign="top">' if index % 2 == 0 %>
+												<%= render :partial => with_theme('daily_deals/email_side_deal'), :locals => { :side_deal => deal, :publisher => @publisher } %>
+								   	 <%=raw'</tr>' if index % 2 == 1 or index + 1 == @daily_deal.side_deals.length %>
+									  <% end %>
+									</table>
+								</td>
+							</tr>
+					</table>
+				</td>
+			</tr>
+			<% end %> <!-- End side deals -->
+		</table><!-- End main table wrapper -->
+	</body>
+</html>

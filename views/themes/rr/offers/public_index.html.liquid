@@ -1,0 +1,89 @@
+<div class="optimized">
+<div class="coupon_wrapper">
+<!--
+	<div class="page_numbers top"> 
+		&nbsp;
+		Page&nbsp;&nbsp;
+		<ul class="pagination"> 
+			<li class="selected">1</li> 
+			<li><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">2</a></li> 
+		</ul> 
+		<span class="next_page"><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">&rarr;</a></span> 
+		&nbsp;&nbsp;&nbsp;Size&nbsp;<select id="top_page_size" name="page_size"><option value="4" selected="selected">4</option> 
+		<option value="10">10</option> 
+		<option value="20">20</option> 
+		<option value="50">50</option> 
+		<option value="100">100</option></select> 
+		<script type="text/javascript"> 
+		//<![CDATA[
+		new Form.Element.EventObserver('top_page_size', function(element, value) {page_size_changed('top_page_size', 'iframe_height=&page_size=4&order=3496430341&layout=&iframe_width=&city=&text=&radius=&background_color=&sort=&foreground_color=&postal_code=&state=')})
+		//]]>
+		</script> 
+	</div>
+--><!-- /page_numbers -->
+
+	  <!-- TODO: need notion of featured offers vs normal offers -->
+		<h1 class="page_title">
+		  {% capture flash_keys %}{% all_flash %}{% endcapture %}
+  {% if flash_keys contains 'header' %}
+    {% flash header %}
+		  {% elsif showing_featured %}
+		    Featured Offers
+		  {% else %}
+		    Coupons for {{ "now" | date: "%B" }} <a href="{{ publisher.map_businesses_path }}">View on the Map</a>
+		  {% endif %}
+		</h1>
+			<div id="offers"> 
+				{% include with_theme 'offers/offer' %}
+				<div class="page_numbers bottom"> 
+				  &nbsp;
+				  Page&nbsp;&nbsp;
+					<ul class="pagination"> 
+						<li class="selected">1</li> 
+						<li><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">2</a></li> 
+					</ul> 
+					<span class="next_page"><a href="/publishers/306/offers?order=3496430341&amp;page=2&amp;page_size=4">&rarr;</a></span> 
+					&nbsp;&nbsp;&nbsp;Size&nbsp;<select id="bottom_page_size" name="page_size"><option value="4" selected="selected">4</option> 
+					<option value="10">10</option> 
+					<option value="20">20</option> 
+					<option value="50">50</option> 
+					<option value="100">100</option></select> 
+					<script type="text/javascript"> 
+					//<![CDATA[
+					new Form.Element.EventObserver('bottom_page_size', function(element, value) {page_size_changed('bottom_page_size', 'iframe_height=&page_size=4&order=3496430341&layout=&iframe_width=&city=&text=&radius=&background_color=&sort=&foreground_color=&postal_code=&state=')})
+					//]]>
+					</script> 
+				</div><!-- page_numbers -->
+			 
+			</div><!-- /offers  -->
+	    {% if pages > 1 %}      
+	      <ul class="pagination">      
+	        {% if page > 1 %}
+	          <li class='prev'><a href="{{ publisher.offers_path }}?page={{ page | minus: 1 }}">Prev</a></li>
+	        {% else %}
+	          <li>Prev</li>
+	        {% endif %}
+	        {% if page < pages %}
+	          <li class='next'><a href="{{ pubisher.offers_path }}?page={{ page | plus: 1 }}">Next</a></li>
+	        {% else %}
+	          <li>Next</li>
+	        {% endif %}
+	      </ul>    
+	    {% endif %}
+		
+		<div class="clear"></div>
+</div><!-- /center_column -->
+<div id="right_column">
+
+  {% assign daily_deal = publisher.current_or_previous_deal %}
+  {% assign cache_key = daily_deal.id %}
+  {% cache with_theme 'shared/search' | expiry: 1.hour %}
+  {% include with_theme 'shared/refer_friend' %}
+
+
+</div><!--right_column-->
+
+	<div class="clear"></div>
+
+
+</div><!-- /optimized -->

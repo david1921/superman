@@ -1,0 +1,9 @@
+<% set_daily_deal_page_title_slug "Recent Deals for #{@publisher.name}" %>
+
+<div class="page_row past">  
+  <div class="page_column_12 first">
+    <h1 class="content">Recent Deals for <%= @publisher.name %></h1>
+    <%= render :partial => 'past_daily_deal', :collection => @daily_deals %>
+  </div>
+</div>
+

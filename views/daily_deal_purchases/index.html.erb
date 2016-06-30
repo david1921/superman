@@ -1,0 +1,35 @@
+<% set_daily_deal_page_title_slug t(:my_deals) %>
+<% redeemable_certificates = @consumer.daily_deal_purchases.redeemable_certificates %>
+<% travelsavers_bookings = @consumer.travelsavers_bookings.successful_bookings_with_any_payment_status.with_service_start_date_in_future_or_nil %>
+<% available_items = redeemable_certificates + travelsavers_bookings %>
+
+<div class="page_row my_deals_page">
+  <div class="page_column_12 first rounded_corners daily_deal_purchases_list">
+    <%= render :partial => "daily_deal_purchases/navigation" %>
+    <h1 class="content"><%= t(:my_deals) %></h1>
+    
+    <% if available_items.blank? %>
+      <p><%= t('.no_redeemable_certificates') %></p>
+    <% else %>
+      <table id="<%= %Q(consumer_#{@consumer.id}_daily_deal_purchases) %>" class="daily_deal_purchase my_deals" cellspacing="0">
+        <tr>
+          <th class="description"><%= t(:description) %></th>
+          <th class="serial_number"><%= t(:voucher_number) %></th>
+          <th class="recipient"><%= t(:recipient) %></th>
+          <th class="purchased_on"><%= t(:purchased) %></th>
+          <th class="expires"><%= t(:expires) %></th>
+          <th class="status"></th>
+        </tr>
+	<% available_items.each do |item| %>
+	  <% case item %>
+  	    <% when DailyDealCertificate %>
+              <%= render(:partial => "unredeemed_voucher", :object => item) %>
+            <% when TravelsaversBooking %>
+              <%= render(:partial => "travelsavers_booking", :object => item) %>
+          <% end %>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
+

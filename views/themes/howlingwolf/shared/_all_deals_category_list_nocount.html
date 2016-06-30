@@ -1,0 +1,73 @@
+<!-- render deal category links -->
+<div class="deal_categories_list">
+  <%
+  all_category_deals = {}
+  @daily_deals.each do |deal|
+    if deal.publishers_category.present?
+      if all_category_deals[deal.publishers_category.name]
+        all_category_deals[deal.publishers_category.name] << deal
+      else
+        all_category_deals[deal.publishers_category.name] = [deal]
+      end
+    end
+  end
+  %>
+
+  <% categories = @daily_deal_categories || @publisher.daily_deal_categories_with_deals.ordered_by_name_ascending %>
+
+  <% unless categories.blank? %>
+
+    <% unless "#{controller_name}##{action_name}" == "daily_deals#public_index" %>
+      <% current_category_name = @daily_deal_category.name %>
+    <% end %>
+    <!-- display suckerfish category dropdown menu -->
+    <div id="category_menu_wrapper">
+      <ul id="category_menu">
+        <li>
+          <a href="#" class="category_menu_header_link">
+            (change category)
+          </a>
+          <div class="arrow-down"></div>
+          <div class="clear"></div>              
+
+          <ul class="market_selection_list">
+              <!-- Add in all categories link -->
+              <% if "#{controller_name}##{action_name}" != "daily_deals#public_index" %>
+                <li><a href="<%= daily_deals_public_index_path(@publisher.label) %>?per_page=6" class="">View All Categories</a></li>
+              <% end %>
+              <!-- All other categories added to list here -->
+              <% categories.each_with_index do |daily_deal_category, index| %>
+
+                <% unless daily_deal_category.name == current_category_name %>
+              
+                <li>
+                  <%= link_to("#{daily_deal_category.name}", publisher_daily_deal_category_path(@publisher, daily_deal_category)) %>
+                </li>
+                <% end %>
+              <% end %>
+          </ul>
+        </li>
+        
+      </ul>
+    </div><!-- /category_menu_wrapper -->
+    <div class="clear"></div>              
+    <!--/ category suckerfish dropdown -->
+
+    <script type="text/javascript"><!--//--><![CDATA[//><!--
+ 
+     sfHover = function() {
+          var sfEls = document.getElementById("category_menu").getElementsByTagName("LI");
+          for (var i=0; i<sfEls.length; i++) {
+               sfEls[i].onmouseover=function() {
+                    this.className+=" sfhover";
+               }
+               sfEls[i].onmouseout=function() {
+                    this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
+               }
+          }
+     }
+     if (window.attachEvent) window.attachEvent("onload", sfHover);
+     //--><!]] ]]]] >  </script>
+  <% end %>
+</div>
+<!-- END render deal category links -->

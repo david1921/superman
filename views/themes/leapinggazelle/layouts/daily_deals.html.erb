@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+  <link rel="stylesheet" href="/stylesheets/scoped_reset.css" type="text/css" />
+  <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/daily_deals/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/leapinggazelle/stylesheets/daily_deals.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/all_deals.css" type="text/css" />
+
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/header-footer.css" type="text/css" />
+  
+  <link rel="stylesheet" href="/themes/leapinggazelle/stylesheets/leapinggazelle.css" type="text/css" />
+  <link rel="stylesheet" href="/themes/<%= @publisher.label %>/stylesheets/<%= @publisher.label %>.css" type="text/css" />
+  
+  <script src="/javascripts/lib/prototype.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery/jquery.min.js" type="text/javascript"></script>
+  <script type='text/javascript'>jQuery.noConflict();</script>
+  <script src="/javascripts/effects.js" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js" type="text/javascript"></script>
+  <script src="/javascripts/controls.js" type="text/javascript"></script>
+  <script src="/javascripts/application.js" type="text/javascript"></script>
+  <script src="/javascripts/deal.js" type="text/javascript"></script>
+<!--[if IE]>
+<link href="/themes/leapinggazelle/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if lte IE 9]>
+<link href="/themes/leapinggazelle/stylesheets/ie.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<!--[if IE 9]>
+<link href="/themes/leapinggazelle/stylesheets/ie9.css" media="all" rel="stylesheet" type="text/css" />
+<![endif]-->
+  
+  
+  <title><%= daily_deal_page_title %></title>
+  <!-- tracking includes -->
+  <%= raw render :partial => "shared/tracking_google_analytics" %>
+</head>
+
+<body>
+<%= render :partial => with_theme('/admin_toolbar/admin_toolbar') %>
+<%= render :partial => with_theme("shared/publisher_header") %>
+<!--Analog_Analytics_Daily_Deal-->
+<div id="analog_analytics">
+<div id="daily_deal">
+	
+	<!-- header -->
+	<%= render :partial => with_theme("shared/header") %>
+	<!-- /header -->
+	<div class="clear"></div>
+	
+	<!--notice/warn-->
+	<%= render :partial => with_theme("shared/flash_messages") %>
+ <script type="text/javascript">
+jQuery("#flash_notice").delay(4000).animate({
+    "opacity": "0",
+    "height": "0"
+}, function () {
+    jQuery(this).hide();
+});
+</script>
+
+ <script type="text/javascript">
+jQuery("#flash_warn").delay(4000).animate({
+    "opacity": "0",
+    "height": "0"
+}, function () {
+    jQuery(this).hide();
+});
+</script>
+
+
+	<!--dd_content-->
+	<div id="dd_content">
+		<div id="content_wrapper">
+	 	<div class="clear"></div>
+	   	<%= yield %>
+	   	</div>
+   	</div><!--/dd_content-->
+	<div class="clear"></div>
+	
+	<!-- footer -->
+	<%= render :partial=>  with_theme("shared/footer") %>
+	<!-- /footer -->
+			
+    <%= raw render :partial => 'shared/a_a_alt' %></div><!--/daily_deal-->
+<div class="clear"></div>
+</div><!--/analog_analytics-->
+<%= render :partial => with_theme("shared/publisher_footer") %>
+<%= render :partial => with_theme("shared/tracking_publisher") %>
+<%= raw render :partial => 'daily_deals/javascript' %>
+ <script type="text/javascript">
+ 	jQuery(function($) {
+ 		var liOrgHeight = $('#market_menu .first-li').outerHeight();
+ 		var orgHeight = $('.market_selection_list').outerHeight();
+ 		$('#market_menu .first-li').hover(
+			function() {
+				$(this).css({"height" : orgHeight + 50});
+				$('#current_market_menu_selection').addClass("active_menu");
+			},
+			function() {
+				$(this).css({"height" : liOrgHeight})
+				$('#current_market_menu_selection').removeClass("active_menu");
+			}
+ 		);
+ 	});
+ </script>
+</body>
+</html>

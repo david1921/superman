@@ -1,0 +1,146 @@
+<div class="page_column_2">
+	<div id="value_and_dashboard">
+		<div id="deal_of_the_day_logo">
+			<img src="/themes/tampa/images/deal-of-the-day.png" width="252" height="189" alt="Deal of the Day" />
+		</div><!-- /value_proposition -->
+		<div id="dashboard">
+			<table cellspacing="0" class="dashboard">
+				<tr>
+					<th id="value">RETAIL PRICE</th>
+					<td>{{ daily_deal.value | currency }}</td>
+				</tr>
+				<tr>
+					<th id="value">YOUR PRICE</th>
+					<td>{{ daily_deal.price | currency }}</td>
+				</tr>
+				<tr>
+					<th id="value">DEALS SOLD</th>
+					<td id="deals_sold">{{ daily_deal.number_sold }}</td>
+				</tr>
+			</table>
+			
+			<div id="deal_time">
+				<p id="time_left_to_buy" class="time">{{ daily_deal.time_remaining_display }}</p>
+				<p class="time_label">TIME LEFT TO BUY</p>
+			</div><!-- /deal_time -->
+			<div id="clock_container"><img id="clock" src="/themes/tampa/images/clock.png" height="51" width="44" alt="clock" /></div>
+			
+			{% if daily_deal.sold_out? %}
+			<div id="sold_out" class="dd_button">
+				<img alt="sold_out" src="/themes/tampa/images/buttons/sold_out.png" />
+			</div>
+			  {% elsif daily_deal.over? %}
+			<div id="deal_over" class="dd_button">
+				<img alt="deal_over" src="/themes/tampa/images/buttons/deal_over.png" />
+			</div>              
+			  {% elsif daily_deal.active? %}
+			<a id="buy_now_button" class="dd_button" href="{{ daily_deal.buy_now_path }}" name="buy_now_button" style="background:transparent">
+				<img alt="Buy_now" src="/themes/tampa/images/buttons/buy_now.png" />
+			</a>
+			<div id="deal_over" class="dd_button unavailable" style="display:none;">
+				<img alt="deal_over" src="/themes/tampa/images/buttons/deal_over.png" />
+			</div>
+			  {% else %}
+			<div id="not_yet_available" class="dd_button">
+				<img alt="not_yet_available" src="/themes/tampa/images/buttons/not_yet_available.png" />
+			</div>              
+		  {% endif %}
+		  
+		</div><!-- /dashboard -->
+	</div><!-- /value_and_dashboard -->
+	<div id="value_proposition">
+	 {{ daily_deal.value_proposition }}
+	</div>
+	<div class="description"><strong>What you get:</strong>{{ daily_deal.description }}</div>
+	<div id="photo_and_location">
+		<div id="deal_photo_container"><img id="deal_photo" alt="{{ advertiser.name }}" src="{{ daily_deal.photo.url }}" /></div>
+		<div class="deal_location">
+	        <!--stores -->
+			{% if advertiser.address? %}
+				{% for store in advertiser.stores %}
+			<div class="location_container" style="{% if forloop.index > 3 %}display:none{% endif %}">
+				<img class="advertiser_logo" src="{{ advertiser.logo.url }}" alt="{{ advertiser.name }}" />
+				<div class="advertiser_address">
+					<p class="advertiser_name">{{ advertiser.name }}</p>
+					<p>
+	                {{ store.address_line_1 }}<br/>
+	                {{ store.city }}, {{ store.state }} {{ store.zip }}<br />
+	                {% if store.formatted_phone_number != empty %}
+	                phone:{{ store.formatted_phone_number }}<br />
+	                {% endif %}
+					</p>
+				</div>
+				<div style="clear:both"></div>
+			</div><!-- /location_container -->
+	          {% endfor %}
+	        {% endif %}
+	
+			{% if advertiser.num_stores > 3 %}
+	        <a id="see_all_locations" href="#" onclick="javascript:$$('div.location_container').each(Element.show); $('see_all_locations').hide(); return false">see all locations</a>
+			{% endif %}
+	
+			{% if advertiser.website_url != empty %}
+	        <p><a href="{{ advertiser.website_url }}" target="_blank">{{ advertiser.website_url }}</a></p>
+			{% endif %}
+	    </div><!-- /deal_location -->
+	</div><!-- /photo_and_location -->
+	<div id="share_deal_left">
+		<a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link share_button_facebook" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share coupon on Facebook"><img alt="Facebook" src="/themes/tampa/images/icons/facebook.png" /></a>
+		<a href="{{ daily_deal.twitter_url }}" class="share_link share_button_twitter" id="twitter_link" target="_blank" title="Share coupon on Twitter"><img alt="Twitter" src="/themes/tampa/images/icons/twitter.png" /></a>
+		<a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link share_button_mail"><img alt="Email" src="/images/buttons/email_32.png" width="31" height="31" /></a>
+	</div>
+	<div id="share_deal_right">
+	</div><!-- /share_deal -->
+	<div class="clear"></div>
+	<div id="highlights_fine_print">
+		<div id="highlights">
+			<h3>Highlights</h3>
+			{{ daily_deal.highlights }}
+		</div><!-- /highlights -->
+		<div id="fine_print">
+			<h3>Fine Print</h3>
+			{{ daily_deal.terms }}
+		</div><!-- fine_print -->
+	</div><!-- /highlights_fine_print -->
+	
+	<div style="margin-bottom: 10px">
+	  <a href="{{ publisher.cart_path }}"><img src="https://www.sandbox.paypal.com/en_US/i/btn/btn_viewcart_LG.gif" width="107" height="26"></a>
+  </div>
+  
+	<div id="certificates">
+    {% category_side_deal tampa eats %}
+    {% if daily_deal %}
+    <a href="{{ publisher.daily_deals_path }}?category=eats"><img src="/themes/tampa/images/backgrounds/more_in_eats.png" width="496" height="42" alt="More in Eats" /></a>
+    {% include "themes/tampa/daily_deals/daily_deal_liquid" with daily_deal %}
+    <div style="clear:both"></div>
+    <div class="see-all-certs"><a href="{{ publisher.daily_deals_path }}?category=eats">see all eats...</a></div>
+    {% endif %}
+
+    {% category_side_deal tampa goods %}
+    {% if daily_deal %}
+    <a href="{{ publisher.daily_deals_path }}?category=goods"><img src="/themes/tampa/images/backgrounds/more_in_goods.png" width="496" height="42" alt="More in Goods" /></a>
+    {% include "themes/tampa/daily_deals/daily_deal_liquid" with daily_deal %}
+    <div style="clear:both"></div>
+    <div class="see-all-certs"><a href="{{ publisher.daily_deals_path }}?category=goods">see all goods...</a></div>
+    {% endif %}
+
+    {% category_side_deal tampa living %}
+    {% if daily_deal %}
+    <a href="{{ publisher.daily_deals_path }}?category=living"><img src="/themes/tampa/images/backgrounds/more_in_living.png" width="496" height="42" alt="More in Living" /></a>
+    {% include "themes/tampa/daily_deals/daily_deal_liquid" with daily_deal %}
+    <div style="clear:both"></div>
+    <div class="see-all-certs"><a href="{{ publisher.daily_deals_path }}?category=living">see all living...</a></div>
+    {% endif %}
+
+	</div><!-- /certificates -->
+	<div>
+	  <a href="{{ publisher.cart_path }}"><img src="https://www.sandbox.paypal.com/en_US/i/btn/btn_viewcart_LG.gif" width="107" height="26"></a>
+  </div>
+	
+</div><!-- /page_column_2 -->
+
+<div class="page_column_3 right_rail">
+	<div id="facebook_likebox">
+       <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FCL-Deals%2F123431944347787&amp;width=320&amp;colorscheme=light&amp;connections=10&amp;stream=false&amp;header=true&amp;height=287" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:320px; height:287px;" allowTransparency="true"></iframe>			
+	</div><!-- end facebook_likebox -->	
+</div><!-- /right_rail -->

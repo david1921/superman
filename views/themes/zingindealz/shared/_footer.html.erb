@@ -1,0 +1,18 @@
+<footer>
+	<div class="footer_content">		
+		<nav class="footer legal">
+            <%= daily_deals_privacy_link(@publisher) %>
+            <%= daily_deals_terms_link(@publisher) %>
+            <% if current_consumer_for_publisher?(@publisher) %>
+        		<a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a>
+        		<a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a>
+        		<a id="log_out" class="button gradient" href="<%= daily_deal_logout_path(@publisher) %>">Log Out</a>
+            <% end %>     
+		</nav><!-- /footer legal -->
+        <div id="a_a">
+			<a href="http://analoganalytics.com/"><img src="/images/powered_by_analog_analytics_250.png" width="264" height="36" border="0" alt="Powered by Analog Analytics" /></a>
+			<a href="http://analoganalytics.com/clients/"><img src="/images/syndication_network_light_250.png" width="250" height="37" border="0" alt="Member of the Analog Analytics Syndication Network" /></a>
+		</div><!-- /a_a -->
+        <p>US Patent 8090613, Additional Patents Pending. Copyright 2012 Analog Applied</p>
+	</div><!-- /footer_content -->
+</footer><!-- footer -->

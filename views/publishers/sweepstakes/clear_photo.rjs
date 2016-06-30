@@ -1,0 +1,3 @@
+page.visual_effect "puff", "sweepstake_photo_image"
+page.hide "sweepstake_photo_delete_link"
+page.show "sweepstake_photo"

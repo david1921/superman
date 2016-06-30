@@ -1,0 +1,38 @@
+<% if @daily_deal.available? || @daily_deal_purchase.allow_execution? %>
+  <h1 class="content"><%=t "daily_deal_purchases.confirm.title" %></h1>
+  <div id="review">
+    <%= raw purchase_review_message(@daily_deal_purchase) %>
+  </div>
+
+  <div class="row">
+    <div id="go_back">
+      <%= link_to(t('daily_deal_purchases.confirm.go_back_to_details'), edit_daily_deal_purchase_path(@daily_deal_purchase)) %>
+    </div>
+  </div>
+
+  <%- if @daily_deal_purchase.total_price > 0 -%>
+    <h2 class="buy_now_proposition">
+      <%=t 'daily_deal_purchases.confirm.buy_now_proposition',
+        :total_value => number_to_currency(@daily_deal_purchase.total_value, :unit => @daily_deal_purchase.currency_symbol),
+        :total_price => number_to_currency(@daily_deal_purchase.total_price, :unit => @daily_deal_purchase.currency_symbol) %>
+    </h2> 
+    
+    <form method="POST" action="<%= @optimal_payment_url %>">
+				<input type="hidden" name="shopId" value="<%= @shop_id %>">
+				<input type="hidden" name="encodedMessage" value="<%= @encoded_message %>">
+				<input type="hidden" name="signature" value="<%= @signature %>">
+				<input type="submit" value="Confirm &amp; Buy" name="buy">
+		</form>
+  <%- else -%>
+    <h2><%=t 'daily_deal_purchases.confirm.free_proposition', :total_value => number_to_currency(@daily_deal_purchase.total_value, :unit => @daily_deal_purchase.currency_symbol) %></h2>
+
+    <%= render(:partial => "free_purchase_form", :locals => { :daily_deal_purchase => @daily_deal_purchase }) %>
+  <%- end -%>
+<% else %>
+  <h2><%=t 'daily_deal_purchases.confirm.deal_is_over' %></h2>
+  <div id="deal_is_over">
+    <%=t 'daily_deal_purchases.confirm.deal_is_over_message',
+      :line_item_name => @daily_deal_purchase.line_item_name,
+      :current_deal_page => link_to("current #{@publisher.daily_deal_name}", public_deal_of_day_path(@publisher.label)) %>
+  </div>
+<% end %>

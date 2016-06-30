@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	  <title>
+	    Certificate
+	  </title>
+	  <style type="text/css">
+
+	    @charset "utf-8";
+	    body {
+	    	color: #464646;
+	      font-family: Arial, Helvetica, sans-serif;
+	      font-size: 14px;
+	     	line-height: 18px;
+	    }
+
+	    /* CSS Document */
+
+	    h1 {
+	    	color: #0194d0;
+	    	font-size: 36px;
+	    	line-height: 36px;
+	    	position: relative;
+	    	top: -65px;
+	    }
+
+	    .es-MX h1 {
+	    	font-size: 27px;
+	    	line-height: 27px;
+	    }
+
+	    h2 {
+	    	font-size: 30px;
+	    	line-height: 30px;
+	    	margin: 0;
+	    }
+
+	    h3 {
+	    	font-size: 15px;
+	    	margin: 20px 0 0 0;
+	    }
+
+	    h3#value_prop {
+	    	font-size: 22px;
+	    	font-weight: normal;
+	    	line-height: 22px;
+	    	margin: 5px 0;
+	    }
+
+	    h3#fine_print {
+	    	color: #0093d0;
+	    	font-size: 20px;
+	    }
+
+	    h4 {
+	    	font-size: 18px;
+	    	font-style: italic;
+	    	font-weight: normal;
+	    	line-height: 18px;
+	    	margin: 0;
+	    }
+
+	    p {
+	    	margin: 5px 0;
+	    }
+
+	    #banner_left {
+	    	position: absolute;
+	    	left: 50%;
+	    	margin: 20px 0 0 -442px;
+	    	z-index: 1;
+	    }
+
+	    #banner_right {
+	    	position: absolute;
+	    	left: 50%;
+	    	margin: 20px 0 0 393px;
+	    	z-index: 1;
+	    }
+
+	    #container {
+	    	margin: 42px auto;
+	    	text-align: center;
+	    	width: 904px;
+	    }
+
+	    #heading {
+	    	margin: 0 auto;
+	    }
+
+	    #content_container {
+	    	background: #ccf0ff;
+	    	-webkit-box-shadow: 0 0 8px rgba(0,0,0,.24);
+	    	box-shadow: 0 0 8px rgba(0,0,0,.24);
+	    	margin: 0 auto;
+	    	position: relative;
+	    	text-align: left;
+	    	width: 796px;
+	    	z-index: 2;
+	    }
+
+	    #border {
+	    	border: 2px dashed #52b9e3;
+	    	border-top: 0;
+	    	margin: 0 10px;
+	    	padding: 20px 20px;
+	    }
+
+	    #header {
+	    	background: #0194d0;
+	    	height: 160px;
+	    }
+
+	    #advertiser_logo {
+	    	margin: 20px 30px;
+	    }
+
+	    #logo {
+	    	margin: 0 0 0 35px;
+	    }
+
+	    #serial_number {
+	    	color: #fff;
+	    	float: right;
+	    	font-size: 28px;
+	    	margin: 80px 40px 0 0;
+	    }
+
+	    #content {
+	    	padding-bottom: 8px;
+	    }
+
+	    #right_column {
+	    	float: right;
+	    	margin: 0 0 0 40px;
+	    	width: 252px;
+	    }
+
+	    #bar_code {
+	    	margin: 20px 0;
+	    }
+
+	    #terms {
+	    	float: right;
+	    	font-size: 11px;
+	    	line-height: 12px;
+	    	margin: 12px 56px 12px 0;
+	    	text-align: right;
+	    }
+
+	    #how_to_use {
+	    	font-size: 16px;
+	    	margin: 60px 0 0 55px;
+	    	text-align: left;
+	    	width: 450px;
+	    }
+
+	    #how_to_use img {
+	    	margin: 0 0 0 40px;
+	    }
+
+	    #how_to_use h3 {;
+	    	color: #0194d0;
+	    	font-size: 27px;
+	    	margin: 12px 0;
+	    }
+
+	    #how_to_use ol {
+	    	padding: 0 0 0 20px;
+	    }
+
+	    #how_to_use li {
+	    	padding: 3px 0;
+	    }
+
+	    #redemption_term {
+	    	margin-top: -14px;
+	    }
+
+	   	#terms_lists ul {
+	   		width: 300px;
+	   	}
+
+	    .new_page {
+	      page-break-before: always;
+	    }
+
+	    .clear {
+	    	clear: both;
+	    }
+
+	  </style>
+
+	</head>
+	<body class="<%= Analog::Themes::I18n.t(publisher, "voucher_body_class") %>">
+		<%= certificate_bodies %>
+	</body>
+</html>

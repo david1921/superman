@@ -1,0 +1,113 @@
+<% set_daily_deal_page_title_slug t(:title_slug_contact) %>
+
+<% if params[:layout] == "popup" -%>
+ <a href="#" class="lbAction" rel="deactivate"><span>Close</span></a>
+ <% else -%>
+   <!-- breadcrumbs -->
+  <div class="breadcrumbs">
+    <ul>
+      <li>
+        <a href="<%= public_deal_of_day_path(@publisher.label) %>">Inicio</a>
+      </li>
+      <li class="no_underline">></li>
+      <li class="no_underline">          
+        Contáctenos
+      </li>
+    </ul>
+    </div><!-- /breadcrumbs -->
+  <div class="clear"></div>
+<% end -%>
+
+
+<div class="page_row">
+  <div class="page_column_12 first rounded_corners">
+    <h1 class="content">Contáctenos</h1>
+  <div id="contact_content">
+    
+    <div id="left_column">
+      <p>¿Tiene alguna pregunta o comentario sobre Blue365? Cuéntenos cómo podemos ayudar y nuestro equipo de Servicio al Cliente se pondrá en contacto próntamente.</p>
+      
+      <%=  error_messages_for(:contact_request, :header_message =>nil)%>
+      
+      <% form_for [@publisher, @contact_request], :html => {:id => "contact_form"} do |f| %>
+        <div>
+          <span>
+            <h5><%= t(:name) %></h5><span class="required">*</span>
+            <%= f.text_field :first_name, :id => "first_name" %> <%= f.text_field :last_name, :id => "last_name" %>
+          <label id="name_first" for="first_name"><%= t(:first_name) %></label><label id="name_last" for="last_name"><%= t(:last_name) %></label>
+          </span>
+        </div>
+        <div>
+          <span>
+            <h5><%= t(:email) %>:</h5><span class="required">*</span>
+            <%= f.text_field :email %>
+          </span>
+        </div>
+        <div>
+          <span class="reason_dropdown">
+            
+            <%= f.collection_select(:reason_for_request, 
+            ["Tengo una pregunta sobre una Oferta o un Distribuidor", 
+            "Tengo una pregunta sobre mi cuenta",
+            "Necesito ayuda con el inicio de sesión/la registración",
+            "Tengo una pregunta sobre un pago o un vale",
+            "Me gustaría recomendar un Distribuidor",
+            "Me gustaría informar un problema técnico",
+            "Tengo una pregunta sobre mi seguro o una reclamación",
+            "Otro (especifique)"
+            ], 
+            :to_s, :to_s, :class => "contact_reason", :prompt => 'Motivos para contactarnos')%>
+          </span>
+        </div>
+        <div>
+          <span class="message_block">
+            <h5>Mensaje:</h5><span class="required">*</span>
+            <%= f.text_area :message, :class => "message" %>
+          </span>
+        </div>
+        <div class="clear"></div>
+        <div class="submit_field">
+          <%= f.submit t(:submit), :id => "submit", :class => "blue_button" %>
+          <span class="required_fields">* Campos obligatorios </span>
+        </div>
+      <% end %>     
+      
+    </div>
+    <div class="right_column_2">
+      <div class="content">
+        <div class="top">
+          <h5>Otras formas de contactarse con Blue365</h5>
+          <p>¿Tiene una idea? Asegúrese de informarnos.</p>
+        </div>
+      
+        <div class="middle">
+          
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <img class="contact_icon" src="/themes/bcbsa/images/graphics/feature_your_business_icon_white.png" />
+            </a>
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <h6>Incluya a su Empresa</h6>
+            </a>
+            <a href="<%= new_publisher_sales_contact_request_path(@publisher) %>">
+              <p>Comparta sus ofertas de salud y bienestar, y crezca su negocío al mismo tiempo.</p>
+            </a>
+          
+          <a href="#">
+          <span>
+            <img class="contact_icon" src="/themes/bcbsa/images/graphics/wishlist_icon_white.png" />
+            <h6 id="recommend"><a id="wish_list">¿Le gustaría que se incluyera alguna oferta en Blue365?</a></h6>
+            <p>Ayúdenos a encontrar las mejores ofertas para usted y para su estilo de vida.</p>
+          </span>
+          </a>
+          
+        </div>
+        <div class="bottom_img"></div>      
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+

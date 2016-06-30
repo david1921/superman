@@ -1,0 +1,59 @@
+<div id="clear"></div>
+<!-- DEAL INFO WRAPPER -->
+  	<div id="deal_info_wrapper">
+  		<div id="deal_info_and_location_wrapper">
+  	
+  	  		<div id="deal_info_text_col">
+	  				<div id="description" class="">
+	  				     <h2><%= t(:the_opportunity) %></h2>
+	  				     <%= @daily_deal.description.try :html_safe %>
+	  				</div><!-- /description -->
+	  				<div id="highlights" class="">
+	  				     <% if @daily_deal.highlights.present? %>
+	  				       <h2><%= t(:the_details) %></h2>
+	  				       <%= @daily_deal.highlights.try :html_safe %>
+	  				     <% end %>
+	  				</div><!-- /highlights -->
+	  				<div id="terms" class="">
+	  				     <h2><%= t(:the_terms) %></h2>
+	  				      <% if !@daily_deal.affiliate_url && @daily_deal.expires_on.present? %>  
+	  				      	<ul><li>
+                      <%= t(:expiration_date_voucher) %> <%= @daily_deal.expires_on.strftime("%B #{@daily_deal.expires_on.day}, %Y")%>.
+	  				      	</li></ul>
+	  				     <% end %>
+	  				     <% if @daily_deal.terms.present? %>			     
+	  				     <%= @daily_deal.terms.try :html_safe %>
+	  				     <% end %>
+	  				     <% if @daily_deal.disclaimer.present? %>
+	  				     	<ul><li>
+	  				     			<%= t(:other_conditions_1) %> <a href="#other_conditions"><%= t(:other_conditions_2) %></a> <%= t(:other_conditions_3) %>
+	  				     	</li></ul>
+	  				     <% end %>
+	  				     <% if !@daily_deal.affiliate_url && !@daily_deal.non_voucher_deal? %>
+		  				     <ul><li>
+		  				     	<%= t(:redemption_terms) %>
+		  				     </li></ul>
+	  				     <% end %>
+	  				</div><!-- /terms -->
+	  		 </div> 
+	  		 <!-- /deal_info_text_col -->
+	  			
+  	  		 <div id="share_location_col">
+  	  		 		<%= render :partial => with_theme('shared/share'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+	  				 
+	  				 <%= render :partial => with_theme('shared/location'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+  	  		 </div>
+  	  		 <!-- share_location_col -->
+  	   	</div><!-- /deal_info_and_location_wrapper -->
+  	   
+  	   <div id="tips_reviews_col">
+  	   		<%= render :partial => with_theme('shared/tips'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+			<%= render :partial => with_theme('shared/reviews'), :locals => { :daily_deal => @daily_deal, :publisher => @publisher } %>
+  	   </div>
+  	   <!-- tip_reviews_col -->
+  	   
+  	   <div class="clear"></div>
+  	</div>
+  	<!-- / DEAL INFO WRAPPER -->
+
+

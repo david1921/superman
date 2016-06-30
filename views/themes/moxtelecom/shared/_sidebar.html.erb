@@ -1,0 +1,12 @@
+<div id="sidebar">
+	<%= render :partial => with_theme("shared/refer_a_friend") %>
+	<%= render :partial => with_theme('shared/side_deal'), :collection => @daily_deal.side_deals[0,3] if @daily_deal.present? %>
+	<% unless publisher.facebook_page_url.blank? %>
+		<div class="content_box" id="facebook_container">
+			<div id="facebook_likebox_cont">
+				<iframe id="facebook_likebox" src="http://www.facebook.com/plugins/likebox.php?href=<%= publisher.facebook_page_url %>&amp;width=210&amp;colorscheme=light&amp;show_faces=true&amp;stream=false&amp;header=false&amp;height=370" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:210px;height:370px;" allowTransparency="true" ></iframe>
+			</div>
+		</div><!-- /facebook like box -->
+	<% end %>
+	<%#= contactbox partial %>
+</div><!-- /sidebar -->

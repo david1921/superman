@@ -1,0 +1,9 @@
+<%= {
+  :methods => {
+    :destroy => publisher_push_notification_device_url(@publisher.to_param, @push_notification_device.token, {
+      :protocol => "https",
+      :host => AppConfig.api_host,
+      :format => "json"
+    })
+  }
+}.to_json.html_safe -%>

@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="discount">
+    <div class="body">
+      <div class="header">
+        <p class="code"><%= discount.code %></p>
+        <p class="credit"><%= number_to_currency(discount.amount, :unit => @publisher.currency_symbol) %></p>
+      </div>
+      <div style="clear:both"></div>
+      <div class="info" style="padding-top: 10px;">
+        <% if discount.first_usable_at && discount.last_usable_at -%>
+          <strong><%= discount.first_usable_at.to_s(:short) %></strong> to <strong><%= discount.last_usable_at.to_s(:short) %></strong>
+        <% elsif !discount.first_usable_at && discount.last_usable_at -%>
+          Until <strong><%= discount.last_usable_at.to_s(:short) %></strong>
+        <% elsif discount.first_usable_at && !discount.last_usable_at -%>
+          From <strong><%= discount.first_usable_at.to_s(:short) %></strong>
+        <% end -%>
+        &nbsp;
+      </div>
+      <div class="footer">
+        <div class="edit" style="width: 100%"><%= link_to "Edit", edit_publisher_discount_path(discount.publisher, discount) %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="links">
+    <%= link_to("Delete", publisher_discount_path(discount.publisher, discount), :method => :delete, :confirm => "Are you sure you want to delete this Discount Code?") %>    
+  </div>
+</div>

@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+	<head>
+		<title><%= @daily_deal_page_title_slug.present? ? @daily_deal_page_title_slug : daily_deal_page_title(:daily_deal_if_present) %></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE8=EmulateIE7" /> <!-- this sort of fixes the IE8 Windows XP crashing  -->
+
+		<% if @daily_deal -%>
+		<meta name="title" content="<%= @daily_deal.facebook_title %>" />
+		<meta name="description" content="<%= "#{@daily_deal.advertiser.name} Daily Deal! #{@daily_deal.value_proposition}" %>" />
+		<meta name='keywords' content="<%= "#{@daily_deal.advertiser.name}, #{@daily_deal.value_proposition}" %>" />
+		<link rel="image_src" href="<%= url_for_facebook_daily_deal_image @daily_deal %>" />
+		<% else -%>
+		<meta name="description" content="<%= "Daily Deal! Get the best daily deals with a new deal every single day!" %>">
+		<meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+		<% end -%> <!-- Stylesheets -->
+
+
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/daily_deals.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/main.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/bottom_deals.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/header_footer.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/bcbsa.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/global.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/print.css", :media => "print" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/javascript/fancybox/jquery.fancybox-1.3.4.css" %>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/lightbox.css" %>
+
+		<!--[if lte IE 9]>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/ie.css", :media => "all" %>
+		<![endif]-->
+		<!--[if IE 9]>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/ie9.css", :media => "all" %>
+		<![endif]-->
+		<!--[if IE 8]>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/ie7.css", :media => "all" %>
+		<![endif]-->
+		<!--[if IE 7]>
+	<%= stylesheet_link_tag "/themes/bcbsa/stylesheets/ie7.css", :media => "all" %>
+		<![endif]-->
+
+		<!-- End Stylesheets -->
+		<!-- Javascripts -->
+	<%= javascript_include_tag "/javascripts/lib/prototype.js" %>
+	<%= javascript_include_tag "/themes/bcbsa/javascript/cookies.js" %>
+	<%= javascript_include_tag "/javascripts/effects.js" %>
+
+
+		<%= raw render :partial => "/shared/tracking_google_analytics" %>
+
+		<script type="text/javascript">
+			function slideUpAndRemember(element) {
+				new Effect.SlideUp(element);
+				setCookie('slide.' + element, 'up', 1);
+			}
+
+			function slideDownAndForget(element) {
+				new Effect.SlideDown(element);
+				setCookie('slide.' + element, 'down', -1);
+			}
+		</script>
+		<script type="text/javascript">
+			sfHover = function() {
+				var sfEls = document.getElementById("browse_deals_menu").getElementsByTagName("LI");
+				for(var i = 0; i < sfEls.length; i++) {
+					sfEls[i].onmouseover = function() {
+						this.className += " sfhover";
+					}
+					sfEls[i].onmouseout = function() {
+						this.className = this.className.replace(new RegExp(" sfhover\\b"), "");
+					}
+				}
+			}
+			if(window.attachEvent)
+				window.attachEvent("onload", sfHover);
+		</script>
+		<script type="text/javascript">
+			<!--
+			function submitenter(myfield, e) {
+				var keycode;
+				if(window.event)
+					keycode = window.event.keyCode;
+				else if(e)
+					keycode = e.which;
+				else
+					return true;
+
+				if(keycode == 13) {
+					myfield.form.submit();
+					return false;
+				} else
+					return true;
+			}
+
+			//-->
+		</script>
+		<!-- End Javascripts -->
+		<link rel="shortcut icon" href="/themes/bcbsa/images/graphics/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/themes/bcbsa/images/graphics/favicon.ico" type="image/x-icon">
+		<!-- Media Query for IE and iphone -->
+		<!-- <script src="/javascripts/lib/respond.src.js" type="text/javascript"></script> -->
+
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" /> -->
+		<!-- Tells the iPhone not to shrink the page to fit into its tiny window -->
+		<!-- <meta name="apple-mobile-web-app-capable" content="yes"/> -->
+
+	<!-- bottom deals scrollable nav -->
+	
+		<% unless @publisher.label == "bcbsa-national" %>
+			<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+		<% end %>
+	</head>
+	<body class="<%= I18n.locale %> <%= "activate" if params[:activation_code] %>">
+		<%= render :partial => with_theme('shared/floodlight_tagging') %>
+		<!-- facebook like button code (both spanish and english-->
+		<div id="fb-root"></div>
+			<script type="text/javascript">
+				( function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if(d.getElementById(id)) return;
+					js = d.createElement(s);
+					js.id = id;
+					<% if params[:locale] == "es-MX" %>
+					js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+					<% else %>
+					js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+					<% end %>
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+			</script>
+		<!-- /facebook like button code -->
+		<div id="analog_analytics" class="wrapper">
+			<!-- Analog Analytics Daily Deal -->
+			<div id="daily_deal">
+				<% if @publisher.launched %>
+				<%= render :partial => with_theme('shared/header') %>
+				<% else %>
+				<%= render :partial => with_theme('landing_pages/landingpage_header') %>
+				<% end %>
+				<div id="dd_content">
+					<%= yield %>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- dd_content -->
+		</div>
+		<!-- daily_deal -->
+		<div class="push"></div>
+		<div class="clear"></div>
+		</div> <!-- analog_analytics -->
+		<% if @publisher.launched %>
+		<%= render :partial => with_theme('shared/footer'), :locals => { :daily_deal => @daily_deal } %>
+		<% else %>
+		<%= render :partial => with_theme('landing_pages/landingpage_footer') %>
+		<% end %>
+
+		<%= render :partial => with_theme('shared/tracking_publisher') %>
+
+
+	</body>
+	  <%= javascript_include_tag "/themes/bcbsa/javascript/jquery-1.6.2.min.js" %>
+	  <script type="text/javascript">
+		jQuery.noConflict();
+	  </script>
+	<%= javascript_include_tag "/themes/bcbsa/javascript/jquery.tools.min.js" %>
+	<%= javascript_include_tag "/themes/bcbsa/javascript/fancybox/jquery.fancybox-1.3.4.js" %>
+	<%= javascript_include_tag "/themes/bcbsa/javascript/formvalue-clickblur.js" %>
+		<%= javascript_include_tag "/themes/bcbsa/javascript/custom.js" %>
+		<%= yield :bottom_scripts %>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$("#browsable").scrollable().navigator();
+				if($('#left_column').height() > $('.right_column_1').height()) {
+					$('.right_column_1').height($('#left_column').height());
+				}
+
+				// ID Card Prefix Lightbox
+				$("a.fancybox").fancybox({
+					'onStart' : function() {
+						$('.lightbox').toggle();
+					},
+					'onClosed' : function() {
+						$('.lightbox').toggle();
+					},
+					'transitionIn' : 'none',
+					'transitionOut' : 'none',
+					'showCloseButton' : false,
+					'centerOnScroll' : true
+				});
+				$("a.referbox").fancybox({
+					'onStart' : function() {
+						$('.referbox').toggle();
+					},
+					'onClosed' : function() {
+						$('.referbox').toggle();
+					},
+					'transitionIn' : 'none',
+					'transitionOut' : 'none',
+					'showCloseButton' : false,
+					'centerOnScroll' : true
+				});
+
+			});
+
+		</script>
+		<% if "#{controller_name}##{action_name}" == "publishers#deal_of_the_day" %>
+		<script type="text/javascript">
+			// Welcome Screen Lightbox
+jQuery(document).ready(function($) {
+if(getCookie("seen_welcome") != 1) {
+	jQuery.fancybox(
+				  "<%= escape_javascript(render :partial => with_theme("shared/lightboxes/welcome")) %>",
+
+	{
+	'autoDimensions' : false,
+	'width' : 980,
+	'height' : 756,
+	'transitionIn' : 'none',
+	'transitionOut' : 'none',
+	'showCloseButton' : false,
+	'centerOnScroll' : true
+	}
+	);
+	setCookie('seen_welcome', 1, 60);
+	}
+	});
+		</script>
+		<% end %>
+		<script type="text/javascript">
+			// Fix for registration form
+			jQuery(document).ready(function($) {
+				$(".consumer_name .fieldWithErrors #consumer_first_name").css("margin-right", "0px");
+				$("#contact_form .fieldWithErrors #first_name").css("margin-right", "0px");
+				$("##feature_form .fieldWithErrors #sales_contact_request_first_name").css("margin-right", "0px");
+
+			});
+
+		</script>
+		<script type="text/javascript">
+			//this script is for the register page zip code so that only numbers show
+			jQuery("#consumer_zip_code").keyup(function() {
+				this.value = this.value.replace(/[^0-9\.]/g, '');
+			});
+
+		</script>
+		<script type="text/javascript">
+			//this script is for the prefix validation on my account page
+			jQuery('#consumer_publisher_membership_code_as_text').live('blur', function(){
+				var idPrefixInfo = jQuery('#id_prefix_error');
+				var ele = jQuery(this);
+				var patt = /^(?:[^\W_]|\s)*$/;
+				if(!patt.test(ele.val())) {
+					this.errors = true;
+					idPrefixInfo.addClass('error').show();
+					jQuery('#register_sign_up').attr('disabled','disabled');
+					jQuery('.submit_field').addClass('error');
+					if(!jQuery(this).parent('.fieldWithErrors').length > 0){
+						ele.wrap('<div class="fieldWithErrors" />');
+					}
+				} else {
+					idPrefixInfo.removeClass('error').hide();
+					if(jQuery(this).parent('.fieldWithErrors').length > 0){
+						ele.unwrap('<div class="fieldWithErrors" />');
+					}
+					jQuery('.submit_field').removeClass('error');
+					jQuery('#register_sign_up').removeAttr('disabled');
+				}
+			});
+		</script>
+
+		<!-- wishlist script -->
+		<script type="text/javascript">
+		    function wishListLightbox() {
+		      <% if consumer? %>
+		        jQuery.fancybox(
+		          "<%= escape_javascript(render :partial => with_theme("suggested_daily_deals/lightbox")) %>",
+		          {
+		            'autoDimensions'  : false,
+		            'width'           : 980,
+		            'height'        	: 736,
+		            'transitionIn'		: 'fade',
+		            'transitionOut'		: 'none',
+		            'showCloseButton' : false,
+		            'centerOnScroll'  : true
+		          }
+		        );
+		      <% else %>
+		        window.location = '<%= suggested_daily_deals_login_path %>';
+		      <% end %>
+		    }
+
+		    jQuery(document).ready(function() {
+		      jQuery('a#wish_list').click(wishListLightbox);
+		      jQuery('a#wish_list').click(function(event) {
+		          event.preventDefault();
+		        });
+
+		      <% if params[:suggested_daily_deals_lightbox] %>
+		        wishListLightbox();
+		      <% end %>
+		    });
+		</script>
+  
+    <!-- /wishlist script -->
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>{{ daily_deal.value_proposition }}</title>
+</head>
+
+<body marginheight="0" topmargin="0" marginwidth="0" background="#EAEAEA" leftmargin="0" style="margin: 0px; font-family: Helvetica, Arial, sans-serif;">
+<table cellspacing="0" border="0" bgcolor="#EAEAEA" style="margin: 0; padding: 0; border: 0;" width="100%" cellpadding="0">
+	<tr style="margin: 0; padding: 0; border: 0;" width="600">
+		<td align="center" style="margin: 0; padding: 0; border: 0; ">
+		
+			<table border="0" style="background-color:#FFFFFF; border-bottom:2px solid #C2C2C2; border-left:2px solid #C2C2C2; border-right:2px solid #C2C2C2; " cellpadding="0" cellspacing="0">
+			
+				<tr style="border:0px;">
+					<td align="center" valign="top">
+						<img src="/themes/anchoragepress/images/email/anchoragepress_logo_email.png" width="600" alt="Anchorage Press" style="background:#FFFFFF;" />
+
+						<table border="0" style="background-color:#FFFFFF; padding-left:20px; margin-top: 20px;" width="580" cellpadding="0" cellspacing="0">
+							<tr>
+								<td align="left" valign="top" style="color:#000000; font-weight:normal; font-size:12px; padding-right:20px;" width="125">
+								
+								<img src="{{ daily_deal.photo.url }}" alt="{{ advertiser.name }}" width="125"  />
+								<span style="color:#FE0000; font-weight:bold; font-size:16px" >{{ advertiser.name }}</span><br />
+                {% if advertiser.address? %}
+                  {{ advertiser.address_line_1 }}<br />
+                  {{ advertiser.city }}, {{ advertiser.state }} {{ advertiser.zip }}<br />
+                {% endif %}
+                {% if advertiser.formatted_phone_number != empty %}
+                  <span style="font-weight:bold;">Phone:</span> {{ advertiser.formatted_phone_number }}
+                {% endif %}
+								</td>
+								<td valign="top">
+								<table border="0" style="background-color:#FFFFFF" width="400" cellpadding="0" cellspacing="0">
+									<tr valign="top">
+										<td align="left" valign="top" style="color:#000000; font-weight:bold; font-size:30px; padding-bottom:20px;" >{{ daily_deal.value_proposition }}<br /> Only {{ daily_deal.price | currency }}</td>
+									</tr>
+									<tr>
+										<td align="left" style="font-size:12px; font-weight:normal; line-height:18px;">
+											<h3 style="color:#2c6487; font-size:14px; font-weight:bold;">HIGHLIGHTS</h3>
+											{{ daily_deal.highlights }}
+										</td>
+									</tr>
+									<tr>
+										<td align="left" style="font-size:12px; font-weight:normal; line-height:18px;">
+											<h3 style="color:#2c6487; font-size:14px; font-weight:bold;">THE FINE PRINT</h3>
+											{{ daily_deal.terms }}
+										</td>
+									</tr>									
+								</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<table border="0" style="background-color:#FFFFFF; margin-top:20px;" width="600" cellpadding="0" cellspacing="0">
+						<tr>
+							<td align="center">
+							<table border="0" style="background-color:#FFFFFF; margin-bottom:5px;" width="300" cellpadding="0" cellspacing="0">
+								<tr align="center" style="color:#000000; font-weight:normal; font-size:14px">
+						          <th style="font-weight:normal;">Value</th>
+						          <th style="font-weight:normal;">Today's Deal</th>
+						          <th style="font-weight:normal;">You Save</th>
+						        </tr>
+						        <tr align="center" style="color:#000000; font-weight:bold; font-size:30px" >
+						          <td>{{ daily_deal.value | currency }}</td>
+						          <td>{{ daily_deal.price | currency }}</td>
+						          <td>{{ daily_deal.savings | currency }}</td>
+						        </tr>        
+
+							</table>							
+							</td>
+						</tr>
+						<tr>
+							<td style="color:#FE0000; font-weight:bold; font-size:14px; text-align: center;" >TIME LEFT {{ daily_deal.time_remaining_display }} WITH {{ daily_deal.number_sold }} BOUGHT</td>
+						</tr>
+					</table>
+					
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<table border="0" bordercolor="" style="background-color:#FFFFFF; margin-top: 40px; margin-bottom: 30px; padding-left: 20px;" width="600" cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+							<table align="left" border="0" style="background-color:#FFFFFF" width="170" cellpadding="0" cellspacing="0">
+								<tr>
+									<td align="left" style="color:#000000; font-weight:bold; font-size:18px;">Share with Friends</td>
+								</tr>
+								<tr>
+									<td align="left" style="width: 200px;"><a href="{{ daily_deal.twitter_url }}" style="margin-right: 5px;"><img border="0" src="/themes/anchoragepress/images/email/twitter.png" width="30" height="30" alt="Twitter" /></a><a href="/daily_deals/{{ daily_deal.id }}/facebook" class="share_link" id="facebook_link" onclick="return facebook_popup('/daily_deals/{{ daily_deal.id }}/facebook?popup=true')" target="_blank" title="Share on Facebook"  style="margin-right: 8px;"> <img border="0"  src="/themes/anchoragepress/images/email/facebook.png" width="30" height="30" alt="facebook" /></a><a href="mailto:?subject={{ daily_deal.publisher_prefix }}: {{ daily_deal.value_proposition }}&amp;body=Check out this deal at {{ daily_deal.url }}" class="share_link"><img border="0"  src="/themes/anchoragepress/images/email/email.png" width="30" height="30" alt="Email" /></a>
+									</td>
+								</tr>
+							</table>
+							
+							</td>
+							<td align="right" style="padding-right:20px;"><a href="{{ daily_deal.url_for_email }}"><img border="0" src="/themes/anchoragepress/images/email/buy-now.png" alt="Buy Now" width="148" /></a></td>
+						</tr>
+					</table>					
+					</td>
+				</tr>
+				<tr>
+					<td align="left" style="font-size:12px; font-weight:normal; line-height:18px; padding-bottom: 20px; padding-left: 20px; padding-right:20px; width:560px">
+						<h3 style="color:#2c6487; font-size:14px; font-weight:bold;">DESCRIPTION</h3>
+						{{ daily_deal.description }}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table><!-- /body-->
+<table width="100%" align="center" bgcolor="#EAEAEA" style="text-align:center;">
+	<tr>
+		<td style="background-color: #EAEAEA:text-align:center;">
+			<p style="color:#333333; font-family: Arial, Helvetica, sans-serif; font-size: .7em; font-weight: normal; line-height: 12px;text-align:center;">If you no longer wish to receive this mailing, <a href="{{ daily_deal.unsubscribe_url }}" style="color:#333333;">click here to unsubscribe</a></p>
+			<p style="font-family: Arial, Helvetica, sans-serif;font-size:16px; color:#333333;font-size:12px;">Copyright 2011. All rights reserved.</p>
+      <p><a style="border: none; text-align: center" href="http://analoganalytics.com"><img src="/themes/anchoragepress/images/powered_by_analog_analytics.png" alt="Powered by Analog Analytics" border="none" /></a></p>
+		</td>
+	</tr>	
+</table>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<ul id="account_nav" <%= 'class=sign_in_wrap' if @publisher.launched? unless current_consumer_for_publisher?(@publisher) %>>
+	<% if @publisher.launched? %>
+		<% if current_consumer_for_publisher?(@publisher) %>
+		<li class="last"><a href="<%= daily_deal_logout_path(@publisher) %>"><span>Sign Out</span><img src="/themes/freedom/images/icons/arrow_right.png"></a></li>
+		<% else %>
+		<li class="last"><a href="<%= daily_deal_login_path(@publisher) %>"><span>Sign In </span><img src="/themes/freedom/images/icons/arrow_right.png"></a></li>
+		<% end %>
+	<% end %>
+</ul><!-- /account_nav -->
+<% if @publisher.launched? %>
+	<% if current_consumer_for_publisher?(@publisher) %>
+<div class="clear"></div>
+<div id="logged_on_box">
+<h3 id="welcome_message"><span  <%= 'class=smaller_text' if current_consumer.first_name.length > 8 %>>Hi <%= current_consumer.first_name %>, Welcome Back </span><img src="/themes/freedom/images/icons/arrow_down.png"></h3>
+<ul id="account_options">
+	<li class="first"><a href="<%= publisher_consumer_daily_deal_purchases_path(@publisher, current_consumer) %>">My Deals</a></li>
+	<li class="last"><a href="<%= edit_publisher_consumer_path(@publisher, current_consumer) %>">My Account</a></li>
+</ul>
+</div>
+	<% end %>
+<% end %>
+<div class="clear"></div>

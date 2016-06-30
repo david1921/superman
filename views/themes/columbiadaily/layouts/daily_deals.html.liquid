@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+{% if daily_deal %}
+  <meta name="title" content="{{ daily_deal.facebook_title }}" />
+  <meta name="description" content="{{ daily_deal.facebook_description }}" />
+  <meta name='keywords' content="{{ daily_deal.advertiser.name }}, {{ daily_deal.value_proposition }}">
+  <link rel="image_src" href="{{ daily_deal.facebook_daily_deal_image_url }}" />
+{% else %}
+  <meta name="description" content="Daily Deal! Get the best daily deals with a new deal every single day!">
+  <meta name="keywords" content="Daily Deal! Hotel Deals, best deals, travel deals, vacation deals, restaurant deals">
+{% endif %}
+
+  <meta name="topicname" content="home">
+  <meta name="WT.cg_s" content="Partner">
+  <meta name="WT.cg_n" content="Home">
+  <meta name="WT.ti" content="Partner">
+  <meta name="DCSext.mtype" content="interactive">
+
+  <title>{% daily_deal_page_title %}</title>
+  
+  <link href="/stylesheets/scoped_reset.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/daily_deals/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="/themes/{{ publisher.label }}/stylesheets/daily_deals.css" media="all" rel="stylesheet" type="text/css" />
+
+  <!--[if IE]>
+  <link href="/stylesheets/ie.css?1287550047" media="all" rel="stylesheet" type="text/css" />
+  <![endif]-->
+
+  <script src="/javascripts/lib/prototype.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/effects.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/dragdrop.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/controls.js?1287550047" type="text/javascript"></script>
+  <script src="/javascripts/application.js?1287550047" type="text/javascript"></script>
+
+  <meta name="sectionname" content="partner">
+
+{% include "shared/tracking_google_analytics" %}
+</head>
+
+<body class="{{ controller.controller_name }} {{ controller.action_name }}">
+
+<div class="content" id="content">
+	<div id="analog_analytics">
+		<div id="daily_deal">
+			<div id="header">
+				<a href="{{ publisher.todays_daily_deal_path }}"><img src="/themes/columbiadaily/images/columbia_daily_deal_logo.png" width="500" height="135" alt="Columbia Daily Deal" /></a>
+				<a href="http://www.columbiatribune.com"><img id="tribune_logo" src="/themes/columbiadaily/images/columbia_tribune_logo.png" width="223" height="100" alt="Columbia Tribune" /></a>
+				{% include "themes/columbiadaily/shared/navigation" %}
+			</div><!-- end header  -->     
+
+      {% include "shared/flash" %}
+			{{ content_for_layout }}
+			    
+
+			<div class="clear"></div>
+
+			<div id="footer">
+    			{% if publisher.launched? %}
+    			<p id="navbar_bottom">
+    				<a href="{{ publisher.todays_daily_deal_path }}">TODAY'S DEAL</a> |
+    				<a href="{{ publisher.recent_deals_path }}">RECENT DEALS</a> |
+    				<a href="{{ publisher.how_it_works_path }}">HOW IT WORKS</a> |
+    				<a href="{{ presignup_daily_deal_subscribers_url }}">GET DAILY EMAILS</a>
+    			</p>
+    			{% endif %}
+    			<p>Copyright 2010.  All rights reserved</p>
+                <p><img src="/themes/columbiadaily/images/columbia_daily_deal_logo_small.png" width="100" height="27" alt="Columbia Daily Deal" /></p>
+    			{% include "shared/a_a" %}	
+			</div>
+
+		</div><!-- end daily_deal -->
+	</div><!-- end analog_analytics -->
+</div><!-- end content -->
+{% include with_theme "shared/tracking_publisher" %}
+{% include "daily_deals/javascript" %}
+</body>
+</html>

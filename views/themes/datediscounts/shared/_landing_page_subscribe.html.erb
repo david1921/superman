@@ -1,0 +1,18 @@
+<script type="text/javascript">
+	cookieValue=getCookie('slide.subscribe_form');
+	if (cookieValue == null || cookieValue == "") {
+		document.write("<div id='subscribe_form'>");
+	}
+	else {
+		document.write("<div id='subscribe_form' style='display: none;'>");
+	}
+	<% if subscribed? %>
+		$('subscribe_form').hide();
+	<% end %>
+</script>
+	<form  id="daily_deal_header" >
+		<a href="#" id="subscribe_form_hide" onclick="slideUpAndRemember('subscribe_form'); return false;">Hide</a>
+		<h4>Sign Up for Deal Alerts!</h4>
+	</form>
+</div><!-- /subscribe_form -->
+<div class="clear"></div>

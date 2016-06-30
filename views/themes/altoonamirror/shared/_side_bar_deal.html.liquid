@@ -1,0 +1,27 @@
+{% if daily_deal.side_deals.size > 0 %}
+<h4>Other Great Deals</h4>
+<div id="side_deals" class="content_box other_deal_tracking">
+       {% for side_deal in daily_deal.side_deals %}
+         <div class="side_deal_wrap">
+<p class="side_deal_value_prop"><a class="side_deal" href="{{ deal.url }}" target="_blank">{{ side_deal.value_proposition }}</a></p>
+<div class="side_deal_text">
+<div class="side_deal_price">{% if side_deal.price.is_fractional? %}
+       {{ side_deal.price | currency: 2 }}
+{% else %}
+       {{ side_deal.price | currency }}
+{% endif %}</div>
+<p class="side_deal_value">{% if side_deal.value.is_fractional? %}
+       {{ side_deal.value | currency: 2 }}
+{% else %}
+       {{ side_deal.value | currency }}
+{% endif %}
+ VALUE</p>
+</div><!-- /side_deal_text -->
+<div class="side_deal_thumb"><img src="{{ side_deal.photo.facebook_url }}" alt="" /></div>
+<div class="clear"></div>
+<a class="view_deal" href="{{ side_deal.url }}" target="_blank"><span>View Deal</span></a>
+<div class="clear"></div>
+          </div><!-- /side_deal_wrap -->
+       {% endfor %}
+</div><!-- /side_deals -->
+{% endif %}

@@ -1,0 +1,11 @@
+<% if @consumer.valid? %>
+<%= {
+  :methods => {
+    :activate_consumer => activate_consumer_url( @consumer, :protocol => "https", :format => "json", :host => AppConfig.api_host )
+  }
+}.to_json.html_safe -%>
+<% else %>
+<%= {
+  :errors => @consumer.errors.full_messages
+}.to_json.html_safe -%>
+<% end %>

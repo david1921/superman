@@ -1,0 +1,25 @@
+burger_king:
+  voice_response_code: 2112
+  status: "approved"
+  publisher: my_space
+
+di_milles:
+  voice_response_code: 2112
+  status: "approved"
+  publisher: gvnews
+
+changos:
+  publisher: sdh_austin
+  status: "approved"
+
+el_greco:
+  publisher: sdh_austin
+  status: "approved"
+
+bella_smiles:
+  publisher: north_shore_sun
+  status: "approved"
+
+elbow_east:
+  publisher: north_shore_sun
+  status: "approved"

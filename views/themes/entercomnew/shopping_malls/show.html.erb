@@ -1,0 +1,46 @@
+<div id="container-mall">
+	<h1>
+	<!--market name-->
+	</h1>
+	<div id="deals">
+		<% @daily_deals.each do |daily_deal| %>
+		<div class="deal">
+			<div class="image">
+				<img src="<%= daily_deal.photo.blast_url%>" alt="" width="220" height="133" />
+			</div>
+			<div class="value_prop">
+				<p><%= daily_deal.value_proposition_subhead %></p>
+			</div>
+			<div class="locations">
+			   <p>
+				<% if daily_deal.advertiser.address? %>
+  				  <% daily_deal.advertiser.stores.each do |store| %>
+					<span class="location" ><%= store.city %> &nbsp;</span>
+				  <% end %>
+			    <% end %>
+			   <% if daily_deal.advertiser.num_stores > 1 %>
+				  <a href="<%= daily_deal.url %>#location">See all locations</a>
+               <% end %>
+			   </p>
+			</div>
+			<div class="price">
+				<span><%= number_to_currency(daily_deal.price) %></span>
+			</div>
+			<div class="view">
+				<a href="<%= daily_deal.url %>">VIEW DEAL</a>
+			</div>
+		</div><!--END DEAL-->
+		<% end %>
+		
+	</div>
+</div>
+<div class="clear"></div>
+</div><!--END Inner-->
+
+<div id="sidebar">
+	<div id="container">
+		<div id="facebookbox" class="content">
+			<% render :partial => with_theme('shared/facebook_likebox') %>
+		</div>
+	</div>
+</div>

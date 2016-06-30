@@ -1,0 +1,18 @@
+<% featured_deals =  @publisher.publishing_group.publishers.launched.all(:conditions => ["id <> ?", @publisher.id]).map{|publisher| publisher.daily_deals.active.featured.first }.compact %>
+<% if featured_deals.length > 0 %>
+	<div id="side_deals" class="side_deal_box">
+		<h4>More Deals</h4>
+		<% featured_deals.each do |deal| %>
+        <% deal_label = deal.publisher.label.gsub("wcax-", "") %>
+	        <div class="side_deal_wrap <%= deal_label %>">
+	          <% side_deal_link = "#{daily_deal_url(deal)}" %>
+	          <%= link_to image_tag("/themes/wcax/images/#{deal_label}-images/#{deal_label}-logo-sidebar.png"), side_deal_link, :class => 'side_deal_logo' %>         
+	            <a class="side_thumb_link" href="<%= side_deal_link %>">
+					<img class="side_deal_thumb" src="<%= deal.photo.url(:facebook) %>" alt="<%= deal.value_proposition %>" />					
+					<h3><%= deal.value_proposition %></h3>
+				</a>
+				<div class="clear"></div>
+			</div><!-- END .side_deal_wrap -->
+		<% end %>
+	</div><!-- END #side_deals -->
+<% end %>

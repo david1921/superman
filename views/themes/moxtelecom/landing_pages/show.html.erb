@@ -1,0 +1,29 @@
+<div id="landing">
+	<h1 id="deal_logo">Mox Deals</h1>
+	<div class="content_box">
+		<div id="signup_box">
+			<h2>Sign Up &amp; See Deals Now!</h2>
+			<div id="market_subscription_form">
+				<form action="<%= publishing_group_subscribers_path %>
+					" method="POST" class="presignup email_subscription_tracking">
+					<input type="hidden" name="redirect_to_deal_page" value="true" />
+					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+					<!--<input name="subscriber[must_accept_terms]" value="true" type="hidden" />-->
+					
+					<input id="subscriber_email_required" name="subscriber[email_required]" type="hidden" value="true" />
+
+					<%= market_selection(@publishing_group, :include_blank => true, :use_ids => true, :field_name => "publisher_id") %>
+
+					<input id="subscriber_email" name="subscriber[email]" type="text" value="Email Address" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Email Address':this.value;" />
+
+					<input class="sign_up_button" name="sign_up_button" type="submit" value="Sign Up">
+				</form>
+
+				<% if national_publisher = @publishing_group.publishers.find_by_label("moxtelecom") %>
+          			<a id="skip_landing_link" href="<%= public_deal_of_day_path(national_publisher.label) %>">Skip This and Go to the Deal</a>
+          		<% end %>
+				<div class="clear"></div>
+			</div><!-- END #market_subscription_form -->
+		</div><!-- END #signup_box -->
+	</div><!-- END .content_box -->
+</div><!-- END #landing -->
